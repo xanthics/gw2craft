@@ -410,6 +410,7 @@ jewelcraft = {
 		"Mithril Setting":{"Mithril Ingot":2}
 	},
 	"325":{
+		"Brilliant Azurite Jewel":{"Mithril Filigree":1,"Azurite Crystal":1},
 		"Brilliant Beryl Jewel":{"Mithril Filigree":1,"Beryl Crystal":1},
 		"Brilliant Chrysocola Jewel":{"Mithril Filigree":1,"Chrysocola Crystal":1},
 		"Brilliant Coral Jewel":{"Coral Tentacle":1,"Mithril Filigree":1},
@@ -417,6 +418,9 @@ jewelcraft = {
 		"Brilliant Opal Jewel":{"Mithril Filigree":1,"Opal Crystal":1},
 		"Brilliant Ruby Jewel":{"Mithril Filigree":1,"Ruby Crystal":1},
 		"Brilliant Sapphire Jewel":{"Sapphire Crystal":1,"Mithril Filigree":1},
+		"Azurite Mithril Amulet-Fine":{"Azurite Crystal":1,"Mithril Setting":1,"Mithril Chain":1},
+		"Azurite Mithril Earring-Fine":{"Mithril Hook":1,"Azurite Crystal":1,"Mithril Setting":1},
+		"Azurite Mithril Ring-Fine":{"Mithril Band":1,"Azurite Crystal":1,"Mithril Setting":1},
 		"Coral Mithril Amulet-Fine":{"Coral Tentacle":1,"Mithril Setting":1,"Mithril Chain":1},
 		"Coral Mithril Earring-Fine":{"Mithril Hook":1,"Coral Tentacle":1,"Mithril Setting":1},
 		"Coral Mithril Ring-Fine":{"Mithril Band":1,"Coral Tentacle":1,"Mithril Setting":1},
@@ -432,6 +436,10 @@ jewelcraft = {
 		"Sapphire Mithril Ring-Fine":{"Mithril Band":1,"Sapphire Crystal":1,"Mithril Setting":1}
 	},
 	"350":{
+		"Azurite Mithril Amulet-Master":{"Brilliant Azurite Jewel":1,"Mithril Setting":1,"Mithril Chain":1},
+		"Azurite Mithril Earring-Master":{"Mithril Hook":1,"Brilliant Azurite Jewel":1,"Mithril Setting":1},
+		"Azurite Mithril Ring-Master":{"Mithril Band":1,"Brilliant Azurite Jewel":1,"Mithril Setting":1},
+		"Azurite Orb":{"Azurite Crystal":2,"Pile of Incandescent Dust":5},
 		"Beryl Mithril Amulet-Master":{"Brilliant Beryl Jewel":1,"Mithril Setting":1,"Mithril Chain":1},
 		"Beryl Mithril Earring-Master":{"Mithril Hook":1,"Brilliant Beryl Jewel":1,"Mithril Setting":1},
 		"Beryl Mithril Ring-Master":{"Mithril Band":1,"Brilliant Beryl Jewel":1,"Mithril Setting":1},
@@ -462,6 +470,9 @@ jewelcraft = {
 		"Sapphire Orb":{"Sapphire Crystal":2,"Pile of Incandescent Dust":5}
 	},
 	"375":{
+		"Azurite Mithril Amulet-Rare":{"Embellished Brilliant Azurite Jewel":3,"Mithril Setting":1,"Mithril Chain":1},
+		"Azurite Mithril Earring-Rare":{"Mithril Hook":1,"Embellished Brilliant Azurite Jewel":3,"Mithril Setting":1},
+		"Azurite Mithril Ring-Rare":{"Mithril Band":1,"Embellished Brilliant Azurite Jewel":3,"Mithril Setting":1},
 		"Beryl Mithril Amulet-Rare":{"Embellished Brilliant Beryl Jewel":3,"Mithril Setting":1,"Mithril Chain":1},
 		"Beryl Mithril Earring-Rare":{"Mithril Hook":1,"Embellished Brilliant Beryl Jewel":3,"Mithril Setting":1},
 		"Beryl Mithril Ring-Rare":{"Mithril Band":1,"Embellished Brilliant Beryl Jewel":3,"Mithril Setting":1},
@@ -472,6 +483,7 @@ jewelcraft = {
 		"Coral Mithril Amulet-Rare":{"Mithril Setting":1,"Mithril Chain":1,"Embellished Brilliant Coral Jewel":3},
 		"Coral Mithril Earring-Rare":{"Mithril Hook":1,"Mithril Setting":1,"Embellished Brilliant Coral Jewel":3},
 		"Coral Mithril Ring-Rare":{"Mithril Band":1,"Mithril Setting":1,"Embellished Brilliant Coral Jewel":3},
+		"Embellished Brilliant Azurite Jewel":{"Glob of Ectoplasm":1,"Mithril Filigree":1,"Azurite Crystal":5},
 		"Embellished Brilliant Beryl Jewel":{"Glob of Ectoplasm":1,"Mithril Filigree":1,"Beryl Crystal":5},
 		"Embellished Brilliant Chrysocola Jewel":{"Glob of Ectoplasm":1,"Mithril Filigree":1,"Chrysocola Crystal":5},
 		"Embellished Brilliant Coral Jewel":{"Glob of Ectoplasm":1,"Coral Tentacle":5,"Mithril Filigree":1},
