@@ -39,11 +39,6 @@ from random import random
 # FTP Login
 from ftp_info import ftp_url, ftp_user, ftp_pass
 
-gcList = {} # Master item list
-totals = {} # hold totals for each craft
-mytime = "" # Timestamp for guides
-
-
 #Navigation bar for each guide and totals page
 header = """<nav>
 	<ul>
@@ -102,18 +97,16 @@ header = """<nav>
 """
 
 # Copyright notice for GW2 IP
-copyright = '''<footer>
+cright = '''<footer>
 	Guild Wars 2 &#0169; 2012 ArenaNet, Inc. All rights reserved. NCsoft, the interlocking NC logo, ArenaNet, Guild Wars, Guild Wars Factions, Guild Wars Nightfall, Guild Wars: Eye of the North, Guild Wars 2, and all associated logos and designs are trademarks or registered trademarks of NCsoft Corporation. All other trademarks are the property of their respective owners.
 </footer>'''
-
-# Will hold level:total xp pairs (array)
-xp_to_level = [0]
 
 # helper function to get data via item_id
 def search(name, people):
 	return [element for element in people if name == str(element['data_id'])]
 
 def itemlistworker(_itemList, temp, out_q):
+
 	outdict = {}
 	for item in _itemList:
 		val = search(itemlist.itemlist[item]['item_id'], temp)[0]
@@ -162,32 +155,34 @@ def appendCosts():
 
 	print len(temp['results']) # print total items returned from gw2spidy
 
-	global gcList
-	gcList = cItemlist(itemlist.itemlist.keys(),temp['results'])
-	gcList['Spool of Jute Thread']['cost'] = 8
-	gcList['Spool of Wool Thread']['cost'] = 16
-	gcList['Spool of Cotton Thread']['cost'] = 24
-	gcList['Spool of Linen Thread']['cost'] = 32
-	gcList['Spool of Silk Thread']['cost'] = 48
-	gcList['Lump of Tin']['cost'] = 8
-	gcList['Lump of Coal']['cost'] = 16
-	gcList['Lump of Primordium']['cost'] = 48
-	gcList['Jar of Vinegar']['cost'] = 8
-	gcList['Packet of Baking Powder']['cost'] = 8
-	gcList['Jar of Vegetable Oil']['cost'] = 8
-	gcList['Packet of Salt']['cost'] = 8
-	gcList['Bag of Sugar']['cost'] = 8
-	gcList['Jug of Water']['cost'] = 8
-	gcList['Bag of Starch']['cost'] = 8
-	gcList['Bag of Flour']['cost'] = 8
-	gcList['Bottle of Rice Wine']['cost'] = 16
-	gcList['Bottle of Soy Sauce']['cost'] = 8
+	cList = {}
+	cList = cItemlist(itemlist.itemlist.keys(),temp['results'])
+	cList['Spool of Jute Thread']['cost'] = 8
+	cList['Spool of Wool Thread']['cost'] = 16
+	cList['Spool of Cotton Thread']['cost'] = 24
+	cList['Spool of Linen Thread']['cost'] = 32
+	cList['Spool of Silk Thread']['cost'] = 48
+	cList['Lump of Tin']['cost'] = 8
+	cList['Lump of Coal']['cost'] = 16
+	cList['Lump of Primordium']['cost'] = 48
+	cList['Jar of Vinegar']['cost'] = 8
+	cList['Packet of Baking Powder']['cost'] = 8
+	cList['Jar of Vegetable Oil']['cost'] = 8
+	cList['Packet of Salt']['cost'] = 8
+	cList['Bag of Sugar']['cost'] = 8
+	cList['Jug of Water']['cost'] = 8
+	cList['Bag of Starch']['cost'] = 8
+	cList['Bag of Flour']['cost'] = 8
+	cList['Bottle of Rice Wine']['cost'] = 16
+	cList['Bottle of Soy Sauce']['cost'] = 8
 	karma = ['Bell Pepper','Basil Leaf','Ginger Root','Tomato','Bowl of Sour Cream','Rice Ball','Packet of Yeast','Glass of Buttermilk','Cheese Wedge',"Almond","Apple","Avocado","Banana","Black Bean","Celery Stalk","Cherry","Chickpea","Coconut","Cumin","Eggplant","Green Bean","Horseradish Root","Kidney Bean","Lemon","Lime","Mango","Nutmeg Seed","Peach","Pear","Pinenut","Shallot"]
 	for item in karma:
-		gcList[item]['cost'] = 0
-	gcList["Loaf of Bread"]['cost'] = 99999999 # bread is soulbound, cheat to make it not purchased
+		cList[item]['cost'] = 0
+	cList["Loaf of Bread"]['cost'] = 99999999 # bread is soulbound, cheat to make it not purchased
 
-	print len(gcList.keys()) # print number of items used by the guides
+	print len(cList.keys()) # print number of items used by the guides
+
+	return cList
 
 # convert rarities to their xp multiplier
 def rarityNum(num):
@@ -224,7 +219,7 @@ def xpgain(level,typ,minlvl):
 	return math.ceil(gain)
 
 # compute what level would be after crafting items, assume order is refine > parts > discovery > items
-def compute_level(_xp, craftlist, tlvl):
+def compute_level(_xp, craftlist, tlvl, xp_to_level):
 	level = tlvl
 	while xp_to_level[level+1] < _xp:
 		level += 1
@@ -265,10 +260,8 @@ karmin = {}
 refiners = ["Copper Ingot","Iron Ingot","Silver Ingot","Gold Ingot","Platinum Ingot","Mithril Ingot","Bronze Ingot","Steel Ingot","Darksteel Ingot","Amethyst Nugget","Carnelian Nugget","Lapis Nugget","Peridot Nugget","Spinel Nugget","Sunstone Nugget","Topaz Nugget","Amethyst Lump","Carnelian Lump","Lapis Lump","Peridot Lump","Spinel Lump","Sunstone Lump","Topaz Lump","Beryl Shard","Chrysocola Shard","Coral Chunk","Emerald Shard","Opal Shard","Ruby Shard","Sapphire Shard","Beryl Crystal","Chrysocola Crystal","Coral Tentacle","Emerald Crystal","Opal Crystal","Ruby Crystal","Sapphire Crystal","Beryl Orb","Chrysocola Orb","Coral Orb","Emerald Orb","Opal Orb","Ruby Orb","Sapphire Orb","Green Wood Plank","Soft Wood Plank","Seasoned Wood Plank","Hard Wood Plank","Elder Wood Plank","Bolt of Jute","Bolt of Wool","Bolt of Cotton","Bolt of Linen","Bolt of Silk","Stretched Rawhide Leather Square","Cured Thin Leather Square","Cured Coarse Leather Square","Cured Rugged Leather Square","Cured Thick Leather Square","Green Wood Dowel","Bronze Plated Dowel","Soft Wood Dowel","Iron Plated Dowel","Seasoned Wood Dowel","Steel Plated Dowel","Hard Wood Dowel","Darksteel Plated Dowel","Elder Wood Dowel","Mithril Plated Dowel"]
 
 # Compute a non-cooking guide
-def costCraft(filename,c_recipes,fast,ignore_mixed):
+def costCraft(filename,c_recipes,fast,ignore_mixed,cList,mytime,header,cright,xp_to_level):
 	print "Start", filename
-	global gcList
-	cList = deepcopy(gcList) # create a local copy of gcList
 	buttonList = [] # Buttons for discovery
 	craftcount = {} # Used to track current xp per tier
 	make = {} # make list per tier
@@ -292,6 +285,7 @@ def costCraft(filename,c_recipes,fast,ignore_mixed):
 
 	# Cooking guides don't use tierbuy, but they do care about karma items
 	if "cook" in filename:
+		global karmin
 		if karmin: # this will be false the first time a cooking guide is called
 			topl = []
 			for top in sorted(karmin, key=lambda k: karmin[k], reverse=True)[:5]:
@@ -317,7 +311,7 @@ def costCraft(filename,c_recipes,fast,ignore_mixed):
 		bkey = []
 		# if this is a fast guide, choose our 1 item to craft
 		if fast and (not tier == 375 or "cook" in filename):
-			bucket = makeQueuecraft(c_recipes[str(tier)], cList,craftcount,tier,ignore_mixed)
+			bucket = makeQueuecraft(c_recipes[str(tier)], cList,craftcount,tier,ignore_mixed,xp_to_level)
 			bkey = sorted(bucket, reverse=True)
 			# If we already made something for cooking at this tier from another recipe, keep making that item
 			if make[tier] and "cook" in filename: 
@@ -333,19 +327,19 @@ def costCraft(filename,c_recipes,fast,ignore_mixed):
 #			print bucket,make[tier].keys()[0]
 #		print tier, bkey[0]
 
-		while compute_level(xp_to_level[tier], craftcount[tier],tier) < xp_to_level[tier + 25]:
+		while compute_level(xp_to_level[tier], craftcount[tier],tier,xp_to_level) < xp_to_level[tier + 25]:
 			if not tier == 0:
-				if not compute_level(craftcount[tier-25]['current_xp'], craftcount[tier],tier) < xp_to_level[tier + 25]:
+				if not compute_level(craftcount[tier-25]['current_xp'], craftcount[tier],tier,xp_to_level) < xp_to_level[tier + 25]:
 					break
 			if fast and tier == 375 and not "cook" in filename:
 				bucket = {}
-				bucket = makeQueuecraft(c_recipes[str(tier)], cList,craftcount,tier,ignore_mixed)
+				bucket = makeQueuecraft(c_recipes[str(tier)], cList,craftcount,tier,ignore_mixed,xp_to_level)
 				bkey = sorted(bucket, reverse=True)
 			elif not fast:
 				if not tier == 0 and craftcount[tier]['current_xp'] <= xp_to_level[tier+10]:
-					bucket = makeQueuecraft(dict(chain(c_recipes[str(tier)].iteritems(),c_recipes[str(tier-25)].iteritems())), cList,craftcount,tier,ignore_mixed)
+					bucket = makeQueuecraft(dict(chain(c_recipes[str(tier)].iteritems(),c_recipes[str(tier-25)].iteritems())), cList,craftcount,tier,ignore_mixed,xp_to_level)
 				else:
-					bucket = makeQueuecraft(c_recipes[str(tier)], cList,craftcount,tier,ignore_mixed)
+					bucket = makeQueuecraft(c_recipes[str(tier)], cList,craftcount,tier,ignore_mixed,xp_to_level)
 				bkey = sorted(bucket, reverse=True)
 				
 			tcost += bucket[bkey[0]]['cost']
@@ -355,7 +349,7 @@ def costCraft(filename,c_recipes,fast,ignore_mixed):
 			for item in bucket[bkey[0]]['make']:
 				if item == bucket[bkey[0]]['name'] and int(cList[item]['tier']) < tier:
 					craftcount[tier]['ptitem'].append(rarityNum(int(cList[item]['rarity'])))
-					craftcount[tier]['current_xp'] = compute_level(xp_to_level[tier], craftcount[tier],tier)
+					craftcount[tier]['current_xp'] = compute_level(xp_to_level[tier], craftcount[tier],tier,xp_to_level)
 					pmake[tier][item] += 1
 				elif cList[item]['type'] == '3' and not 'discover' in cList[item]:
 					cList[item]['discover'] = 0
@@ -382,7 +376,7 @@ def costCraft(filename,c_recipes,fast,ignore_mixed):
 						craftcount[int(cList[item]['tier'])]['part'].append(rarityNum(int(cList[item]['rarity'])))
 					make[int(cList[item]['tier'])][item] += 1
 				ctier = int(cList[item]['tier'])
-				craftcount[ctier]['current_xp'] = compute_level(xp_to_level[ctier], craftcount[ctier],ctier)
+				craftcount[ctier]['current_xp'] = compute_level(xp_to_level[ctier], craftcount[ctier],ctier,xp_to_level)
 			t = int(math.floor(tier/75.0)*75)
 			if t == 375:
 				t = 300
@@ -397,14 +391,15 @@ def costCraft(filename,c_recipes,fast,ignore_mixed):
 					else:
 						tierbuy[t][item] += 1
 						buy[item] += 1
-	printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList, filename)
-
+	totals = {}
+	totals.update(printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList, filename, mytime, header, cright))
+	return totals	
 # For our traditional style guides, we still want to consider buying gems even though you can refine.	This is a list of those gems
 gemss = ["Amber Pebble","Garnet Pebble","Malachite Pebble","Pearl","Tiger's Eye Pebble","Turquoise Pebble","Amethyst Nugget","Carnelian Nugget","Lapis Nugget","Peridot Nugget","Spinel Nugget","Sunstone Nugget","Topaz Nugget","Amethyst Lump","Carnelian Lump","Lapis Lump","Peridot Lump","Spinel Lump","Sunstone Lump","Topaz Lump","Beryl Shard","Chrysocola Shard","Coral Chunk","Emerald Shard","Opal Shard","Ruby Shard","Sapphire Shard","Beryl Crystal","Chrysocola Crystal","Coral Tentacle","Emerald Crystal","Opal Crystal","Ruby Crystal","Sapphire Crystal","Passion Flower"]
 
 # given an item, determine if it is better to craft its sub items, or buy them.	return the recipe.
 # include cost for current state, and xp generated.
-def calcRecipecraft(recipe,items,craftcount,tier,count,itier,ignore_mixed):
+def calcRecipecraft(recipe,items,craftcount,tier,count,itier,ignore_mixed,xp_to_level):
 	level = 0
 	while xp_to_level[int(level)] < craftcount[int(tier)]['current_xp']:
 		level += 1
@@ -442,7 +437,7 @@ def calcRecipecraft(recipe,items,craftcount,tier,count,itier,ignore_mixed):
 	mycost *= count
 	for item in items[recipe]['recipe']:
 		if not items[item]['recipe'] == None:
-			tcost, txptotal, tmake, tbuy = calcRecipecraft(item,items,craftcount,items[item]['tier'],items[recipe]['recipe'][item]*count,int(items[recipe]['tier']),ignore_mixed)
+			tcost, txptotal, tmake, tbuy = calcRecipecraft(item,items,craftcount,items[item]['tier'],items[recipe]['recipe'][item]*count,int(items[recipe]['tier']),ignore_mixed,xp_to_level)
 			if (ignore_mixed and item not in gemss) or tcost < items[item]['cost']*items[recipe]['recipe'][item]*count or float(xptotal+txptotal)/float(mycost-items[item]['cost']*items[recipe]['recipe'][item]*count+tcost) >= float(xptotal)/float(mycost):
 				xptotal += txptotal*.85
 				cost += tcost
@@ -458,7 +453,7 @@ def calcRecipecraft(recipe,items,craftcount,tier,count,itier,ignore_mixed):
 			cost += items[item]['cost']*count*items[recipe]['recipe'][item]
 	return cost, xptotal, make, buy
 
-def makeQueuecraft(recipes,items,craftcount,tier,ignore_mixed):
+def makeQueuecraft(recipes,items,craftcount,tier,ignore_mixed,xp_to_level):
 	outdict = {}
 	cost = 0
 	xptotal = 0
@@ -466,7 +461,7 @@ def makeQueuecraft(recipes,items,craftcount,tier,ignore_mixed):
 	buy = []
 	for recipe in recipes.keys():
 		if items[recipe]['type'] == '3':# or int(items[i]['tier']) > int(tier)-25:
-			cost, xptotal, make, buy = calcRecipecraft(recipe,items,craftcount,tier,1,tier,ignore_mixed)
+			cost, xptotal, make, buy = calcRecipecraft(recipe,items,craftcount,tier,1,tier,ignore_mixed,xp_to_level)
 			if xptotal:
 				outdict[float(xptotal)/float(cost)+0.00001*random()] = {'name':recipe,'w':xptotal,'make':make,'buy':buy,'cost':cost}
 			else:
@@ -515,17 +510,13 @@ def colorText(rarity):
 		return "common"
 
 # TODO Replace all "duplicate" f.write statements with function calls for easier reading
-def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList, filename):
+def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList, filename, mytime, header, cright):
 	discbutton = buttonList[:]
-	# navigation header for all of our pages
-	global header
-	global copyright
-
+	totals = {}
 	if tierbuy:
 		totals[filename.split('.')[0]] = {0:defaultdict(int),75:defaultdict(int),150:defaultdict(int),225:defaultdict(int),300:defaultdict(int),'total':int(tcost)}
 	else:
 		totals[filename.split('.')[0]] = int(tcost)
-
 	karma_items = {"Almond":{'note':"Lieutenant Pickins - Greystone Rise(Harathi Hinterlands 35-45) <br /> Disa - Snowslide Ravine(Dredgehaunt Cliffs 40-50)",'cost':77},
 					"Apple":{'note':"Farmer Eda - Shaemoor Fields(Queensdale 1-15) <br /> Apple Jack(16c per) - Cornucopian Fields(Gendarran Fields 25-35)",'cost':35},
 					"Avocado":{'note':"Fallen Angel Makayla - Stronghold of Ebonhawke(Fields of Ruin 30-40)",'cost':77},
@@ -877,7 +868,7 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList
 					f.write("<div class=\"s"+str(t)+"\">Make:%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],colorText(cList[item]['rarity']),item))
 		f.write('<br />\n<h3>Level:400</h3>\n')
 		t = (t+1)%2
-		f.write("<div class=\"s"+str(t)+"\">Nothing.	You are done!</div>\n"+'</section>\n'+copyright)
+		f.write("<div class=\"s"+str(t)+"\">Nothing.	You are done!</div>\n"+'</section>\n'+cright)
 		f.write('\n<script type="text/javascript">\n')
 		for item in buttonList:
 			f.write("$(\"#"+item+"\").click(function () {\n\t$(\"#1"+item+"\").toggle();});\n")
@@ -888,10 +879,11 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList
 		f.write('});\n</script>\n')
 		f.write('</body>\n')
 		f.write('</html>\n')
+	return totals
 
-def maketotals():
+def maketotals(totals, mytime):
 	global header
-	global copyright
+	global cright
 
 	page = '''
 <!DOCTYPE html>
@@ -943,7 +935,7 @@ def maketotals():
 
 	page += ' </table>\n<br /><strong>Total for non-cooking traditional: </strong>' + mFormat(cttl)
 
-	page += '\n</section>\n' + copyright + '\n</body>\n</html>'
+	page += '\n</section>\n' + cright + '\n</body>\n</html>'
 
 	with open('total.html','wb') as f:
 		f.write(page)
@@ -954,23 +946,23 @@ def join(A, B):
 				return A or B
 		return dict([(a, join(A.get(a), B.get(a))) for a in set(A.keys()) | set(B.keys())])
 
-def recipeworker(cmds, out_q):
+def recipeworker(cmds, cList, mytime, header, cright, xp_to_level, out_q):
+	totals = {}
 	for cmd in cmds:
-		costCraft(cmd[0],cmd[1],cmd[2],cmd[3])
+		totals.update(costCraft(cmd[0],cmd[1],cmd[2],cmd[3],cList,mytime,header,cright,xp_to_level))
 	out_q.put(totals)
 
 def main():
-
-	global karmin
-	global mytime
-
 	mytime = "<span class=\"localtime\">" + datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S')+'+00:00</span>'
 	print datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
+	# Will hold level:total xp pairs (array)
+	xp_to_level = [0]
 	# populate the xp chart
 	for i in range(1,410):
 		xp_to_level.append(xpreq(i)+xp_to_level[i-1])
 
-	appendCosts()
+	cList = {}
+	cList = appendCosts()
 
 	out_q = Queue()
 	rList = []
@@ -1004,20 +996,22 @@ def main():
 	nprocs = len(rList)
 
 	procs = []
+	global header
+	global cright
 
 	for i in range(nprocs):
-		p = Process(target=recipeworker,args=(rList[i],out_q))
+		p = Process(target=recipeworker,args=(rList[i],cList,mytime,header,cright,xp_to_level,out_q))
 		procs.append(p)
 		p.start()
 
-#	resultdict = {}
+	totals = {}
 	for i in range(nprocs):
 		totals.update(out_q.get())
 
 	for p in procs:
 		p.join()
 
-	maketotals()
+	maketotals(totals,mytime)
 	print datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
 	print "Starting upload"
 	myFtp = FTP(ftp_url)
