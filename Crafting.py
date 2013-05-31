@@ -113,20 +113,20 @@ xp_to_level = [0]
 def search(name, people):
 	return [element for element in people if name == str(element['data_id'])]
 
+def itemlistworker(_itemList, temp, out_q):
+	outdict = {}
+	for item in _itemList:
+		val = search(itemlist.itemlist[item]['item_id'], temp)[0]
+		w = val['max_offer_unit_price']
+		if w < 50:
+			w = val['min_sale_unit_price']
+		outdict[item] = {'w':w,'cost':val['min_sale_unit_price'],'recipe':None,'rarity':val['rarity'],'type':itemlist.itemlist[item]['type'],'icon':val['img']} 
+		if val['sale_availability'] <= 50:
+			outdict[item]['cost'] = 99999999
+	out_q.put(outdict)
+
 # helper function to parse out only the items we care about from gw2spidy
 def cItemlist(itemList,temp):
-	def worker(_itemList, out_q):
-		outdict = {}
-		for item in _itemList:
-			val = search(itemlist.itemlist[item]['item_id'], temp)[0]
-			w = val['max_offer_unit_price']
-			if w < 50:
-				w = val['min_sale_unit_price']
-			outdict[item] = {'w':w,'cost':val['min_sale_unit_price'],'recipe':None,'rarity':val['rarity'],'type':itemlist.itemlist[item]['type'],'icon':val['img']} 
-			if val['sale_availability'] <= 50:
-				outdict[item]['cost'] = 99999999
-		out_q.put(outdict)
-
 	out_q = Queue()
 	nprocs = 8
 
@@ -134,7 +134,7 @@ def cItemlist(itemList,temp):
 	procs = []
 
 	for i in range(nprocs):
-		p = Process(target=worker,args=(itemList[chunksize * i:chunksize * (i + 1)],out_q))
+		p = Process(target=itemlistworker,args=(itemList[chunksize * i:chunksize * (i + 1)],temp,out_q))
 		procs.append(p)
 		p.start()
 
@@ -459,44 +459,20 @@ def calcRecipecraft(recipe,items,craftcount,tier,count,itier,ignore_mixed):
 	return cost, xptotal, make, buy
 
 def makeQueuecraft(recipes,items,craftcount,tier,ignore_mixed):
-	def worker(_itemList, out_q):
-		outdict = {}
-		cost = 0
-		xptotal = 0
-		make = []
-		buy = []
-		for recipe in _itemList:
+	outdict = {}
+	cost = 0
+	xptotal = 0
+	make = []
+	buy = []
+	for recipe in recipes.keys():
+		if items[recipe]['type'] == '3':# or int(items[i]['tier']) > int(tier)-25:
 			cost, xptotal, make, buy = calcRecipecraft(recipe,items,craftcount,tier,1,tier,ignore_mixed)
 			if xptotal:
 				outdict[float(xptotal)/float(cost)+0.00001*random()] = {'name':recipe,'w':xptotal,'make':make,'buy':buy,'cost':cost}
 			else:
 				outdict[-1.0*float(cost)-random()] = {'name':recipe,'w':xptotal,'make':make,'buy':buy,'cost':cost}
-		out_q.put(outdict)
 
-	out_q = Queue()
-
-	rList = []
-	for i in recipes.keys():
-		if items[i]['type'] == '3':# or int(items[i]['tier']) > int(tier)-25:
-			rList.append(i)
-	nprocs = 8
-
-	chunksize = int(math.ceil(len(rList) / float(nprocs)))
-	procs = []
-
-	for i in range(nprocs):
-		p = Process(target=worker,args=(rList[chunksize * i:chunksize * (i + 1)],out_q))
-		procs.append(p)
-		p.start()
-
-	resultdict = {}
-	for i in range(nprocs):
-		resultdict.update(out_q.get())
-
-	for p in procs:
-		p.join()
-
-	return resultdict
+	return outdict
 
 # Format copper values so they are easier to read
 def mFormat(line):
@@ -978,6 +954,11 @@ def join(A, B):
 				return A or B
 		return dict([(a, join(A.get(a), B.get(a))) for a in set(A.keys()) | set(B.keys())])
 
+def recipeworker(cmds, out_q):
+	for cmd in cmds:
+		costCraft(cmd[0],cmd[1],cmd[2],cmd[3])
+	out_q.put(totals)
+
 def main():
 
 	global karmin
@@ -990,43 +971,51 @@ def main():
 		xp_to_level.append(xpreq(i)+xp_to_level[i-1])
 
 	appendCosts()
-	cooking_karma = join(cooking_r.cooking, cooking_r.cooking_karma)
 
+	out_q = Queue()
+	rList = []
 	#TODO change the way flags are passed so it is easier to understand
 
-	costCraft("cooking_karma_fast.html",cooking_karma,True,False)
-	costCraft("cooking_karma_fast_light.html",cooking_karma,True,False)
-	costCraft("cooking_fast.html",cooking_r.cooking,True,False)
-	costCraft("artificing_fast.html",join(insc_r.insc,articer_r.artificer),True,False)
-	costCraft("weaponcraft_fast.html",join(insc_r.insc,weaponcraft_r.weaponcraft),True,False)
-	costCraft("huntsman_fast.html",join(insc_r.insc,huntsman_r.huntsman),True,False)
-	costCraft("armorcraft_fast.html",join(insig_r.insig,armorcraft_r.armor),True,False)
-	costCraft("tailor_fast.html",join(insig_r.insig,tailor_r.tailor),True,False)
-	costCraft("leatherworking_fast.html",join(insig_r.insig,leatherworking_r.leatherwork),True,False)
-	costCraft("jewelcraft_fast.html",jewel_r.jewelcraft,True,False)
+	cooking_karma = join(cooking_r.cooking, cooking_r.cooking_karma)
+	rList.append([("cooking_karma_fast.html",cooking_karma,True,False),("cooking_karma_fast_light.html",cooking_karma,True,False)])
+	rList.append([("cooking_karma.html",cooking_karma,False,False),("cooking_karma_light.html",cooking_karma,False,False)])
+	rList.append([("cooking_fast.html",cooking_r.cooking,True,False),("cooking.html",cooking_r.cooking,False,False)])
 
-	karmin = {}
+	rList.append([("jewelcraft_fast.html",jewel_r.jewelcraft,True,False),("jewelcraft.html",jewel_r.jewelcraft,False,False),("jewelcraft_craft_all.html",jewel_r.jewelcraft,False,True)])
 
-	costCraft("cooking_karma.html",cooking_karma,False,False)
-	costCraft("cooking_karma_light.html",cooking_karma,False,False)
-	costCraft("cooking.html",cooking_r.cooking,False,False)
-	costCraft("artificing.html",join(insc_r.insc,articer_r.artificer),False,False)
-	costCraft("weaponcraft.html",join(insc_r.insc,weaponcraft_r.weaponcraft),False,False)
-	costCraft("huntsman.html",join(insc_r.insc,huntsman_r.huntsman),False,False)
-	costCraft("armorcraft.html",join(insig_r.insig,armorcraft_r.armor),False,False)
-	costCraft("tailor.html",join(insig_r.insig,tailor_r.tailor),False,False)
-	costCraft("leatherworking.html",join(insig_r.insig,leatherworking_r.leatherwork),False,False)
-	costCraft("jewelcraft.html",jewel_r.jewelcraft,False,False)
+	artificing = join(insc_r.insc,articer_r.artificer)
+	rList.append([("artificing_fast.html",artificing,True,False),("artificing.html",artificing,False,False),("artificing_craft_all.html",artificing,False,True)])
 
-	karmin = {}
+	weaponcraft = join(insc_r.insc,weaponcraft_r.weaponcraft)
+	rList.append([("weaponcraft_fast.html",weaponcraft,True,False),("weaponcraft.html",weaponcraft,False,False),("weaponcraft_craft_all.html",weaponcraft,False,True)])
 
-	costCraft("artificing_craft_all.html",join(insc_r.insc,articer_r.artificer),False,True)
-	costCraft("weaponcraft_craft_all.html",join(insc_r.insc,weaponcraft_r.weaponcraft),False,True)
-	costCraft("huntsman_craft_all.html",join(insc_r.insc,huntsman_r.huntsman),False,True)
-	costCraft("armorcraft_craft_all.html",join(insig_r.insig,armorcraft_r.armor),False,True)
-	costCraft("tailor_craft_all.html",join(insig_r.insig,tailor_r.tailor),False,True)
-	costCraft("leatherworking_craft_all.html",join(insig_r.insig,leatherworking_r.leatherwork),False,True)
-	costCraft("jewelcraft_craft_all.html",jewel_r.jewelcraft,False,True)
+	huntsman = join(insc_r.insc,huntsman_r.huntsman)
+	rList.append([("huntsman_fast.html",huntsman,True,False),("huntsman.html",huntsman,False,False),("huntsman_craft_all.html",huntsman,False,True)])
+
+	armorcraft = join(insig_r.insig,armorcraft_r.armor)
+	rList.append([("armorcraft_fast.html",armorcraft,True,False),("armorcraft.html",armorcraft,False,False),("armorcraft_craft_all.html",armorcraft,False,True)])
+
+	tailor = join(insig_r.insig,tailor_r.tailor)
+	rList.append([("tailor_fast.html",tailor,True,False),("tailor.html",tailor,False,False),("tailor_craft_all.html",tailor,False,True)])
+
+	leatherworking = join(insig_r.insig,leatherworking_r.leatherwork)
+	rList.append([("leatherworking_fast.html",leatherworking,True,False),("leatherworking.html",leatherworking,False,False),("leatherworking_craft_all.html",leatherworking,False,True)])
+
+	nprocs = len(rList)
+
+	procs = []
+
+	for i in range(nprocs):
+		p = Process(target=recipeworker,args=(rList[i],out_q))
+		procs.append(p)
+		p.start()
+
+#	resultdict = {}
+	for i in range(nprocs):
+		totals.update(out_q.get())
+
+	for p in procs:
+		p.join()
 
 	maketotals()
 	print datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
