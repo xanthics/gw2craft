@@ -394,8 +394,6 @@ def costCraft(filename,c_recipes,fast,ignore_mixed,cList,mytime,header,cright,xp
 	totals = {}
 	totals.update(printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList, filename, mytime, header, cright))
 	return totals	
-# For our traditional style guides, we still want to consider buying gems even though you can refine.	This is a list of those gems
-gemss = ["Amber Pebble","Garnet Pebble","Malachite Pebble","Pearl","Tiger's Eye Pebble","Turquoise Pebble","Amethyst Nugget","Carnelian Nugget","Lapis Nugget","Peridot Nugget","Spinel Nugget","Sunstone Nugget","Topaz Nugget","Amethyst Lump","Carnelian Lump","Lapis Lump","Peridot Lump","Spinel Lump","Sunstone Lump","Topaz Lump","Beryl Shard","Chrysocola Shard","Coral Chunk","Emerald Shard","Opal Shard","Ruby Shard","Sapphire Shard","Beryl Crystal","Chrysocola Crystal","Coral Tentacle","Emerald Crystal","Opal Crystal","Ruby Crystal","Sapphire Crystal","Passion Flower"]
 
 # given an item, determine if it is better to craft its sub items, or buy them.	return the recipe.
 # include cost for current state, and xp generated.
@@ -407,6 +405,8 @@ def calcRecipecraft(recipe,items,craftcount,tier,count,itier,ignore_mixed,xp_to_
 	make = []
 	buy = []
 	cost = 0
+	# For our traditional style guides, we still want to consider buying gems even though you can refine.	This is a list of those gems
+	gemss = ["Amber Pebble","Garnet Pebble","Malachite Pebble","Pearl","Tiger's Eye Pebble","Turquoise Pebble","Amethyst Nugget","Carnelian Nugget","Lapis Nugget","Peridot Nugget","Spinel Nugget","Sunstone Nugget","Topaz Nugget","Amethyst Lump","Carnelian Lump","Lapis Lump","Peridot Lump","Spinel Lump","Sunstone Lump","Topaz Lump","Beryl Shard","Chrysocola Shard","Coral Chunk","Emerald Shard","Opal Shard","Ruby Shard","Sapphire Shard","Beryl Crystal","Chrysocola Crystal","Coral Tentacle","Emerald Crystal","Opal Crystal","Ruby Crystal","Sapphire Crystal","Passion Flower"]
 	# impossible to make item at this point.
 	if int(items[recipe]['tier']) > int(itier):
 #		print recipe
@@ -949,7 +949,7 @@ def join(A, B):
 def recipeworker(cmds, cList, mytime, header, cright, xp_to_level, out_q):
 	totals = {}
 	for cmd in cmds:
-		totals.update(costCraft(cmd[0],cmd[1],cmd[2],cmd[3],cList,mytime,header,cright,xp_to_level))
+		totals.update(costCraft(cmd[0],cmd[1],cmd[2],cmd[3],deepcopy(cList),mytime,header,cright,xp_to_level))
 	out_q.put(totals)
 
 def main():
