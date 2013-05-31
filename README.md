@@ -3,9 +3,9 @@ gw2craft
 
 These are all the python files that generate http://gw2crafts.net
 
-Requires Python 2.7.x and Linux (Mint 14).  You will need to define a ftp_info.py file.
+Requires Python 2.7.x.  You will need to define a ftp_info.py file.
 
-Crafting.py is the main file.  Due to differences in how multiprocessing is implemented on Windows and Linux, this script is written specifically for Linux and also takes advantage of some coding elements that only work on Linux.
+Crafting.py is the main file.
 
 How-To
 ======
