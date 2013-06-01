@@ -1019,7 +1019,6 @@ def main():
 
 	maketotals(totals,mytime)
 	print datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
-	exit(-1)
 	print "Starting upload"
 	myFtp = FTP(ftp_url)
 	myFtp.login(ftp_user,ftp_pass)
