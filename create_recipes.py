@@ -112,7 +112,7 @@ def parse_recipes(recipes):
     item_ids = {}
 
     new_recipes = {r[0]:r[1] for r in recipes.items() if
-                   r[0] not in bad_recipes}
+                   r[0] not in [bad_recipes, feasts]}
     for recipe, data in new_recipes.items():
         min_rating = data['min_rating']
         item_id = data['output_item_id']
@@ -124,14 +124,9 @@ def parse_recipes(recipes):
             
         for it in data[u'disciplines']:
             key = it
-            if it == u'Chef':
-                # Disregard feast recipes
-                if int(item_id) in feasts:
-                    continue
-
-                # If this is a karma-bought recipe, separate it.
-                if set(karma) & ingredient_set:
-                    key = u'Chef_karma'
+            
+            if it == u'Chef' and set(karma) & ingredient_set:
+                key = u'Chef_karma'
 
             crafts[key].setdefault(str(min_rating), {})
             crafts[key][min_rating][item_id] = data[u'ingredients']
