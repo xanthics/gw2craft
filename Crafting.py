@@ -267,6 +267,10 @@ karmin = {}
 # Compute a non-cooking guide
 def costCraft(filename,c_recipes,fast,ignore_mixed,cList,mytime,header,cright,xp_to_level):
 	print "Start", filename
+	# TODO Hack, fix this
+	if 19679 in c_recipes[0]:
+		c_recipes[0][19679][19697] = 2
+
 	buttonList = [] # Buttons for discovery
 	craftcount = {} # Used to track current xp per tier
 	make = {} # make list per tier
@@ -348,7 +352,7 @@ def costCraft(filename,c_recipes,fast,ignore_mixed,cList,mytime,header,cright,xp
 				
 			tcost += bucket[bkey[0]]['cost']
 			treco += cList[bucket[bkey[0]]['item_id']]['w']
-			# TODO fix this
+			# TODO fix this, all text formatting needs to be in printtofile
 			sell["<span class=\"%s\">%s</span> - Sold for %s per"%(cList[bucket[bkey[0]]['item_id']]['rarity'],cList[bucket[bkey[0]]['item_id']]['name'],mFormat(cList[bucket[bkey[0]]['item_id']]['w']))] += 1
 			sole = 0
 			for item in bucket[bkey[0]]['make']:
@@ -423,7 +427,7 @@ def calcRecipecraft(recipe,items,craftcount,tier,count,itier,ignore_mixed,xp_to_
 	elif not items[recipe]['type'] in non_item:
 		xptotal = xp_calc(0,0,count,0,rarityNum(items[recipe]['rarity']),int(items[recipe]['tier']),level)
 	elif items[recipe]['type'] == u'Refinement':
-		if "Bronze Ingot" == recipe:
+		if 19679 == recipe:
 			xptotal = math.ceil(xp_calc(count,0,0,0,1.0,int(items[recipe]['tier']),level)*0.2)
 		else:
 			xptotal = xp_calc(count,0,0,0,1.0,int(items[recipe]['tier']),level)
@@ -680,7 +684,7 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList
 	# TODO add check for buying bronze ingot and reduce by amount we add, remove if <0
 	if 19679 in make[0]:
 		var = 5 - (make[0][19679] % 5)
-		if var:
+		if var in [1,2,3,4]:
 			make[0][19679] += var
 			tierbuy[0][19697] += 2*var
 			tierbuy[0][19704] += 0.2*var
