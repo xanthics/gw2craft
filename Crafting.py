@@ -832,7 +832,19 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList
 		for tier in [0,25,50,75,100,125,150,175,200,225,250,275,300,325,350,375]:
 			if tier == 150:
 				# adword
-				f.write('<div style="display:block;text-align:Right;"> <script type="text/javascript"><!--google_ad_client = "ca-pub-6865907345688710";/* half page banner */google_ad_slot = "7976367388";google_ad_width = 234;google_ad_height = 60;//--></script><script type="text/javascript"src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script> </div>\n')
+				f.write('<div style="display:block;text-align:Right;"> \
+						\n<script type="text/javascript"><!-- \
+						\ngoogle_ad_client = "ca-pub-6865907345688710"; \
+						\n/* half page banner last */ \
+						\ngoogle_ad_slot = "9379048580"; \
+						\ngoogle_ad_width = 234; \
+						\ngoogle_ad_height = 60; \
+						\n//--> \
+						\n</script> \
+						\n<script type="text/javascript" \
+						\nsrc="http://pagead2.googlesyndication.com/pagead/show_ads.js"> \
+						\n</script> \
+						\n</div>\n')
 			if tierbuy and tier in [0,75,150,225,300]:
 				tt = 0
 				tc = tier+75
@@ -889,7 +901,19 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList
 		t = (t+1)%2
 		f.write("<div class=\"s"+str(t)+"\">Nothing.	You are done!</div>\n")
 		# adword
-		f.write('<div style="display:block;text-align:Right;"> <script type="text/javascript"><!--google_ad_client = "ca-pub-6865907345688710";/* half page banner 2 */google_ad_slot = "9379048580";google_ad_width = 234;google_ad_height = 60;//--></script><script type="text/javascript"src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script> </div>\n')
+		f.write('<div style="display:block;text-align:Right;"> \
+				\n<script type="text/javascript"><!-- \
+				\ngoogle_ad_client = "ca-pub-6865907345688710"; \
+				\n/* half page banner 2 */ \
+				\ngoogle_ad_slot = "9379048580"; \
+				\ngoogle_ad_width = 234; \
+				\ngoogle_ad_height = 60; \
+				\n//--> \
+				\n</script> \
+				\n<script type="text/javascript" \
+				\nsrc="http://pagead2.googlesyndication.com/pagead/show_ads.js"> \
+				\n</script> \
+				\n</div>\n')
 		f.write('</section>\n'+cright+'\n<script type="text/javascript">\n')
 		for item in buttonList:
 			f.write("$(\"#"+str(item)+"\").click(function () {\n\t$(\"#1"+str(item)+"\").toggle();});\n")
@@ -1028,7 +1052,6 @@ def main():
 
 	maketotals(totals,mytime)
 	print datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
-	exit()
 	print "Starting upload"
 	myFtp = FTP(ftp_url)
 	myFtp.login(ftp_user,ftp_pass)
