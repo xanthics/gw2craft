@@ -119,13 +119,18 @@ def parse_recipes(recipes):
         item_count = data['output_item_count']
         ingredient_set = set(int(i[u'item_id']) for i in data[u'ingredients'])
 
+        if int(item_id) in feasts:
+            continue
+        # Sun Beads
         if min_rating == u'400' or 19717 in ingredient_set:
             continue
             
         for it in data[u'disciplines']:
             key = it
-            
-            if it == u'Chef' and set(karma) & ingredient_set:
+			# We don't want recipe items.  Except for karma cooking
+            if u'LearnedFromItem' in data[u'flags'] and not (it == u'Chef' or int(item_id) in good_recipes):
+                 continue
+            if it == u'Chef' and (set(karma) & ingredient_set or u'LearnedFromItem' in data[u'flags']):
                 key = u'Chef_karma'
 
             crafts[key].setdefault(str(min_rating), {})
