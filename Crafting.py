@@ -830,6 +830,9 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList
 		f.write("<br />\n<br />\n<h2>MAKE</h2>\n")
 		rt = 0
 		for tier in [0,25,50,75,100,125,150,175,200,225,250,275,300,325,350,375]:
+			if tier == 150:
+				# adword
+				f.write('<div style="display:block;float:Right;margin: 5px 5px 5px 5px;"> <script type="text/javascript"><!--google_ad_client = "ca-pub-6865907345688710";/* half page banner */google_ad_slot = "7976367388";google_ad_width = 234;google_ad_height = 60;//--></script><script type="text/javascript"src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script> </div>')
 			if tierbuy and tier in [0,75,150,225,300]:
 				tt = 0
 				tc = tier+75
