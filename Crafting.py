@@ -113,7 +113,7 @@ def itemlistworker(_itemList, temp, out_q):
 			w = val['max_offer_unit_price']
 		if w == 0:
 			w = val['min_sale_unit_price']
-		outdict[item] = {u'w':w,u'cost':val['min_sale_unit_price'],u'recipe':None,u'rarity':items.ilist[item][u'rarity'],u'type':items.ilist[item][u'type'],u'icon':val['img'], u'name':items.ilist[item][u'name']} 
+		outdict[item] = {u'w':w,u'cost':val['min_sale_unit_price'],u'recipe':None,u'rarity':items.ilist[item][u'rarity'],u'type':items.ilist[item][u'type'],u'icon':val['img'], u'name':items.ilist[item][u'name'],u'output_item_count':items.ilist[item][u'output_item_count']} 
 		# if the item has a low supply, ignore it
 		if val['sale_availability'] <= 50:
 			outdict[item][u'cost'] = 99999999
