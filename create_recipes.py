@@ -119,7 +119,7 @@ def parse_recipes(recipes):
         item_count = data['output_item_count']
         ingredient_set = set(int(i[u'item_id']) for i in data[u'ingredients'])
 
-        if int(item_id) in feasts:
+        if int(item_id) in feasts or int(recipe) in bad_recipes:
             continue
         # Sun Beads
         if min_rating == u'400' or 19717 in ingredient_set:
