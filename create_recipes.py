@@ -89,8 +89,8 @@ def parse_recipes(recipes):
     # These recipes have to be purchased from AH, therefore we don't want them
     # Glazed Peach Tart[s], Glazed Pear Tart[s], Piece[s] of Candy Corn Almond
     # Brittle, Strawberry Ghost[s], Bowl[s] of Candy Corn Custard
-    # key is recipe_id
-    bad_recipes = [6479, 6478, 6475, 6474, 6472]
+    # key is item_id
+    bad_recipes = [36081, 36080, 36077, 36076, 36074]
 
     # Recipes learned from Master Craftsmen that we still want to consider
     # key is item_id
@@ -112,22 +112,20 @@ def parse_recipes(recipes):
     item_ids = {}
 
     new_recipes = {r[0]:r[1] for r in recipes.items() if
-                   r[0] not in [bad_recipes, feasts]}
+                   not int(r[1][u'output_item_id']) in (bad_recipes + feasts)}
     for recipe, data in new_recipes.items():
-        min_rating = data['min_rating']
-        item_id = data['output_item_id']
-        item_count = data['output_item_count']
+        min_rating = data[u'min_rating']
+        item_id = data[u'output_item_id']
+        item_count = data[u'output_item_count']
         ingredient_set = set(int(i[u'item_id']) for i in data[u'ingredients'])
 
-        if int(item_id) in feasts or int(recipe) in bad_recipes:
-            continue
         # Sun Beads
         if min_rating == u'400' or 19717 in ingredient_set:
             continue
             
         for it in data[u'disciplines']:
             key = it
-			# We don't want recipe items.  Except for karma cooking
+			# We don't want recipe items.  Except for karma cooking and known good recipes
             if u'LearnedFromItem' in data[u'flags'] and not (it == u'Chef' or int(item_id) in good_recipes):
                  continue
             if it == u'Chef' and (set(karma) & ingredient_set or u'LearnedFromItem' in data[u'flags']):
