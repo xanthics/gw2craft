@@ -184,7 +184,8 @@ def itemlist(item_list):
 
     with open("items.py","wb") as f:
         f.write('# coding=unicode-escape\nilist = {\n')
-        for i in flags:
+        # sorted is only so we can easily spot new items with diff
+        for i in sorted(flags): # otherwise output is semi random order
             item_list[i][u'name'] = flags[i][u'name']
             item_list[i][u'rarity'] = flags[i][u'rarity']
             item_list[i][u'vendor_value'] = int(flags[i][u'vendor_value'])
