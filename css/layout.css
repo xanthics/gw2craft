@@ -1,0 +1,298 @@
+dl {
+  width: 300px;}
+
+dt {
+  float: left;
+  text-align: right;
+  width: 160px;
+  margin-bottom: 0em;
+  font-weight: 100;
+  color: #666;}
+dd {
+  margin-left: 25px;
+  float: left;
+  width: 200pxem;
+  margin-bottom: 0em;}
+.clear {clear: both;}
+
+.Exotic {
+	color: rgb(100,50,0);}
+
+.Rare {
+	color: rgb(100,100,0);}
+
+.Masterwork {
+	color: rgb(0,100,0);}
+
+.Fine {
+	color: rgb(0,0,100);}
+
+.Basic {
+	color: rgb(0,0,0);}
+
+span.goldIcon, span.silverIcon, span.copperIcon, span.karmaIcon {
+	background: url() no-repeat left bottom;
+	background-size: 12px 12px;
+	display: inline-block;
+	position: relative;
+	top: 1px;
+	margin-left: 1px;
+	margin-right: 0px;
+	width: 12px;
+	height: 12px;}
+
+span.itemIcon {
+	background: url() no-repeat left bottom;
+	background-size: 24px 24px;
+	display: inline-block;
+	position: relative;
+	top: 2px;
+	margin-left: 0px;
+	margin-right: 0px;
+	width: 24px;
+	height: 24px;}
+
+span.goldIcon{
+  background-image: url(http://wiki.guildwars2.com/images/d/d1/Gold_coin.png);}
+span.silverIcon{
+  background-image: url(http://wiki.guildwars2.com/images/3/3c/Silver_coin.png);}
+span.copperIcon{
+  background-image: url(http://wiki.guildwars2.com/images/e/eb/Copper_coin.png);}
+span.karmaIcon{
+  background-image: url(http://wiki.guildwars2.com/images/a/af/Karma.png);}
+
+span.quantity {
+	width: 2em;
+	text-align: right;
+	display: inline-block;
+	padding-right: 8px;}
+
+body {
+	background-color: rgb(100,100,100);
+	background-image: url('sbg.gif');
+	background-attachment: fixed;
+	font-family: Arial, Helvetica, sans-serif;}
+
+header {
+	width: 90%;
+	margin: 25% 5%;
+	text-align: center;}
+
+a:link, a:visited {
+	color:rgb(10,10,10);}
+
+a:hover, a:active {
+	color: rgb(51,51,51);}
+
+table, td, th{
+	font-size: .925em;
+	border: 1px solid black;
+	background-color: rgb(200,200,200);
+	color: rgb(20,20,20);
+	margin: 0% 0%;}
+
+table {
+	border-collapse:collapse;
+	width: 100%;}
+
+
+
+/* "Spoiler" Button Style */
+
+button#show_all {
+    margin-bottom: 6px;
+}
+
+button.arrow {
+    border: #960000;
+    background-color: inherit;
+    background: url('/img/arrow.png') no-repeat right center;
+    text-decoration: none;
+    margin: 0px 0px;
+    padding: 0px 20px 0px 0px;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 16px;
+    cursor: pointer;
+	min-width: 16px;
+	min-height: 18px;}
+
+button.arrow img {
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+button.arrow:hover {
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+}
+
+button.arrow:active {
+    top: 1px !important;
+    position: relative !important;
+}
+
+button.arrow span:active {
+    top: 1px;
+    position: relative;
+}
+
+button.arrow img:active {
+    top: 1px;
+    position: relative;
+}
+
+button.info {
+    border: #000000;
+    cursor: pointer;
+    color: #dcdcdc;
+    background-color: #525252;
+    background: -moz-linear-gradient(top, #656565, #404040);
+    background: -webkit-gradient(linear, left top, left bottom, from(#656565), to(#404040));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#656565', endColorstr='#404040');
+    border-style: solid;
+    border-width: 1px;
+    text-decoration: none;
+    margin: 0px 0px;
+    padding: 3px 8px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 0.92em;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+button.info:hover {
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+}
+
+button.info:active {
+    top: 1px;
+    position: relative;
+}
+
+/* Main List Style */
+
+section {
+	text-align: justify;
+	top: 3em;
+	z-index: 1;
+	position: relative;
+	background-color: rgb(200,200,200);
+	padding:10px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 42em;
+	border-style:solid;
+	border-width:1px;
+	border-color: rgb(75,75,75);}
+
+/* Alternating list background Styles */
+
+div.s1 {
+	background-color: rgb(185,185,185);
+	padding:6px;
+	margin: 1px
+	line-height: 1;}
+
+div.s0 {
+	background-color: rgb(220,220,220);
+	padding:6px;
+	margin: 1px
+	line-height: 1;}
+
+/* GW2 copyright notice Style */
+
+footer {
+	position: relative;
+	top: 5em;
+	clear: both;
+	background-color: rgb(200,200,200);
+	padding:10px;
+	margin: .1% auto 5% auto;
+	width: 65em;
+	border-style:solid;
+	border-width:1px;
+	border-color: rgb(75,75,75);
+	font-size: .6em;}
+
+/* Horizontal Nav Styles */
+nav {
+	left: 0;
+	right: 0;
+	z-index: 10;
+	float: left;
+	text-align: center;
+	position: fixed;
+	min-width:40em;
+	margin: auto auto;
+	clear: both;}
+
+nav ul ul {
+	display: none;}
+
+nav ul li:hover > ul {
+	display: block;}
+
+nav ul {
+	background: rgb(150, 150, 150); 
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.15);
+	padding: 0 8px;
+	margin: 0;
+	list-style: none;
+	position: relative;
+	display: inline-table;
+	font-family: Arial, Helvetica, sans-serif;
+	font-variant: small-caps;
+	font-size: .9em;
+	border-style:solid;
+	border-width:1px;
+	border-color: rgb(125,55,55);}
+
+nav ul:after {
+	content: ""; clear: both; display: block;}
+
+nav ul li {
+	float: left;}
+
+nav ul li:hover {
+	background: rgb(90, 90, 90);}
+
+nav ul li:hover a {
+	color: rgb(235, 235, 235);}
+
+nav ul li a {
+	display: block;
+	padding: 7px 15px;
+	text-decoration: none;}		
+	
+nav ul ul {
+	background: rgb(95, 95, 95); 
+	border-radius: 0px; 
+	padding: 0;
+	position: absolute; 
+	top: 100%;}
+
+nav ul ul li {
+	float: none; 
+	border-top: 1px solid rgb(80, 80, 80);
+	position: relative;
+	top: -4px;}
+
+nav ul ul li a {
+	padding: 5px 20px;}	
+
+nav ul ul li a:hover {
+	background: rgb(100, 100, 100);}
+
+nav ul ul ul {
+	z-index: 11;
+	position: absolute; 
+	left: 100%; 
+	top:0;
+	width: 10em;}
+
+nav ul ul ul li {
+	top: -1px;}
