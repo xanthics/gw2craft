@@ -351,9 +351,9 @@ def costCraft(filename,c_recipes,fast,ignore_mixed,cList,mytime,header,cright,xp
 				bkey = sorted(bucket, reverse=True)
 				
 			tcost += bucket[bkey[0]]['cost']
-			treco += cList[bucket[bkey[0]]['item_id']]['w']
+			treco += cList[bucket[bkey[0]]['item_id']]['w'] * int(bucket[bkey[0]]['item_id']][u'output_item_count'])
 			# TODO fix this, all text formatting needs to be in printtofile
-			sell["<span class=\"%s\">%s</span> - Sold for %s per"%(cList[bucket[bkey[0]]['item_id']]['rarity'],cList[bucket[bkey[0]]['item_id']]['name'],mFormat(cList[bucket[bkey[0]]['item_id']]['w']))] += 1
+			sell["<span class=\"%s\">%s</span> - Sold for %s per"%(cList[bucket[bkey[0]]['item_id']]['rarity'],cList[bucket[bkey[0]]['item_id']]['name'],mFormat(cList[bucket[bkey[0]]['item_id']]['w']))] += int(bucket[bkey[0]]['item_id']][u'output_item_count'])
 			sole = 0
 			for item in bucket[bkey[0]]['make']:
 				if item == bucket[bkey[0]]['item_id'] and int(cList[item]['tier']) < tier:
