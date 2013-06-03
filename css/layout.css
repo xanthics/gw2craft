@@ -47,6 +47,8 @@ span.itemIcon {
 	display: inline-block;
 	position: relative;
 	top: 2px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
 	margin-left: 0px;
 	margin-right: 0px;
 	width: 24px;
@@ -67,6 +69,22 @@ span.quantity {
 	display: inline-block;
 	padding-right: 8px;}
 
+h1, h2 {
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+	background-color: rgb(55,46,46);
+	color: rgb(225,225,225);
+	padding: .2em;
+}
+
+h3 {
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+	background-color: rgb(95,80,80);
+	color: rgb(225,225,225);
+	padding: .1em;
+}
+
 body {
 	background-color: rgb(100,100,100);
 	background-image: url('sbg.gif');
@@ -74,6 +92,8 @@ body {
 	font-family: Arial, Helvetica, sans-serif;}
 
 header {
+    -moz-border-radius: 3px;
+    border-radius: 3px;
 	width: 90%;
 	margin: 25% 5%;
 	text-align: center;}
@@ -185,6 +205,8 @@ section {
 	margin-left: auto;
 	margin-right: auto;
 	width: 42em;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
 	border-style:solid;
 	border-width:1px;
 	border-color: rgb(75,75,75);}
@@ -192,12 +214,16 @@ section {
 /* Alternating list background Styles */
 
 div.s1 {
+    -moz-border-radius: 3px;
+    border-radius: 3px;
 	background-color: rgb(185,185,185);
 	padding:6px;
 	margin: 1px
 	line-height: 1;}
 
 div.s0 {
+    -moz-border-radius: 3px;
+    border-radius: 3px;
 	background-color: rgb(220,220,220);
 	padding:6px;
 	margin: 1px
@@ -213,6 +239,8 @@ footer {
 	padding:10px;
 	margin: .1% auto 5% auto;
 	width: 65em;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
 	border-style:solid;
 	border-width:1px;
 	border-color: rgb(75,75,75);
@@ -226,6 +254,8 @@ nav {
 	float: left;
 	text-align: center;
 	position: fixed;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
 	min-width:40em;
 	margin: auto auto;
 	clear: both;}
