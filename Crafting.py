@@ -749,10 +749,24 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList
 		f.write('<body>\n'+header+'\n<section>')
 		f.write('<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n')
 		f.write('<img src="css/warning-icon.png" width="24px" height="24px" style="padding: 0 8px 0 8px; float: left;"><span style="position: relative; top: 4px;"><span style="color: red">Do not refresh this page.</span>	It may change. Updated: '+mytime+'</b></span>\n')
-		f.write('</div>\n')
-		f.write("<br />Wherever you see this  <img src=\"/img/arrow.png\"></img> you can click for more information <br />")
+		f.write('</div><br />\n')
+		# adword
+		f.write('<div style="display:block;float:Right;"> \
+				\n<script type="text/javascript"><!-- \
+				\ngoogle_ad_client = "ca-pub-6865907345688710"; \
+				\n/* half page banner last */ \
+				\ngoogle_ad_slot = "9379048580"; \
+				\ngoogle_ad_width = 234; \
+				\ngoogle_ad_height = 60; \
+				\n//--> \
+				\n</script> \
+				\n<script type="text/javascript" \
+				\nsrc="http://pagead2.googlesyndication.com/pagead/show_ads.js"> \
+				\n</script> \
+				\n</div>\n')
 		f.write("<button title=\"Click To Show All Discovery Recipes\" class =\"info\" id=\"show_all\">Show All Discovery</button><br />")
 		f.write("<button title=\"Click To Hide All Discovery Recipes\" class =\"info\" id=\"hide_all\">Hide All Discovery</button><br />")
+		f.write("<br />Wherever you see this  <img src=\"/img/arrow.png\"></img> you can click for more information <br />")
 		f.write('<h1>'+filename.split('.')[0].replace("_"," ").title()+'</h1>')
 		f.write('<dl>\n')
 		f.write('	<dt>Initial Cost</dt>\n')
@@ -830,21 +844,6 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList
 		f.write("<br />\n<br />\n<h2>MAKE</h2>\n")
 		rt = 0
 		for tier in [0,25,50,75,100,125,150,175,200,225,250,275,300,325,350,375]:
-			if tier == 150:
-				# adword
-				f.write('<div style="display:block;text-align:Right;"> \
-						\n<script type="text/javascript"><!-- \
-						\ngoogle_ad_client = "ca-pub-6865907345688710"; \
-						\n/* half page banner last */ \
-						\ngoogle_ad_slot = "9379048580"; \
-						\ngoogle_ad_width = 234; \
-						\ngoogle_ad_height = 60; \
-						\n//--> \
-						\n</script> \
-						\n<script type="text/javascript" \
-						\nsrc="http://pagead2.googlesyndication.com/pagead/show_ads.js"> \
-						\n</script> \
-						\n</div>\n')
 			if tierbuy and tier in [0,75,150,225,300]:
 				tt = 0
 				tc = tier+75
@@ -901,7 +900,7 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList
 		t = (t+1)%2
 		f.write("<div class=\"s"+str(t)+"\">Nothing.	You are done!</div>\n")
 		# adword
-		f.write('<div style="display:block;text-align:Right;"> \
+		f.write('<br /><div style="display:block;text-align:Right;"> \
 				\n<script type="text/javascript"><!-- \
 				\ngoogle_ad_client = "ca-pub-6865907345688710"; \
 				\n/* half page banner 2 */ \
