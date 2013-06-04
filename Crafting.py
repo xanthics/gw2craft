@@ -469,7 +469,8 @@ def makeQueuecraft(recipes,items,craftcount,tier,ignore_mixed,xp_to_level):
 	non_item = [u'Refinement', u'Insignia', u'Inscription', u'Component']
 
 	for recipe in recipes.keys():
-		if not items[recipe]['type'] in non_item:# or int(items[i]['tier']) > int(tier)-25:
+		# uncomment the rest of this line if you want guides that include "make 83 epaulets" for 25 copper savings
+		if not items[recipe]['type'] in non_item:# or int(items[recipe]['tier']) > int(tier)-24:
 			cost, xptotal, make, buy = calcRecipecraft(recipe,items,craftcount,tier,1,tier,ignore_mixed,xp_to_level)
 			if xptotal:
 				outdict[float(xptotal)/float(cost)+0.00001*random()] = {'item_id':recipe,'w':xptotal,'make':make,'buy':buy,'cost':cost}
