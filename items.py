@@ -5490,6 +5490,7 @@ ilist = {
 	38376:{u'name': u"Giver's Iron Rifle", u'output_item_count': u'1', u'rarity': u'Masterwork', u'vendor_value': 102, u'type': u'Rifle'},
 	38377:{u'name': u"Giver's Steel Rifle", u'output_item_count': u'1', u'rarity': u'Masterwork', u'vendor_value': 135, u'type': u'Rifle'},
 	38378:{u'name': u"Giver's Ogre Blaster", u'output_item_count': u'1', u'rarity': u'Rare', u'vendor_value': 248, u'type': u'Rifle'},
+	38379:{u'name': u"Giver's Krait Shooter", u'output_item_count': u'1', u'rarity': u'Rare', u'vendor_value': 297, u'type': u'Rifle'},
 	38381:{u'name': u"Giver's Crude Short Bow", u'output_item_count': u'1', u'rarity': u'Fine', u'vendor_value': 30, u'type': u'ShortBow'},
 	38382:{u'name': u"Giver's Simple Short Bow", u'output_item_count': u'1', u'rarity': u'Masterwork', u'vendor_value': 102, u'type': u'ShortBow'},
 	38383:{u'name': u"Giver's Short Bow", u'output_item_count': u'1', u'rarity': u'Masterwork', u'vendor_value': 135, u'type': u'ShortBow'},
