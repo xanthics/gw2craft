@@ -25,7 +25,7 @@ Purpose: Generates a crafting guide for all crafts in Guild Wars 2 based on curr
 Note: Requires Python 2.7.x
 '''
 
-import urllib, json, time, datetime, math, os
+import urllib, json, datetime, math, os
 # recipe and item lists
 import Armorsmith, Artificer, Chef, Chef_karma, Huntsman, Jeweler, Leatherworker, Tailor, Weaponsmith, items
 from multiprocessing import Process, Queue
@@ -33,7 +33,6 @@ from copy import deepcopy
 from collections import defaultdict
 from itertools import chain
 from ftplib import FTP
-from random import random
 # FTP Login
 from ftp_info import ftp_url, ftp_user, ftp_pass
 
@@ -100,20 +99,29 @@ cright = u'''<footer>
 </footer>'''
 
 # helper function to get data via item_id
-def search(name, people):
-    return [element for element in people if name == int(element['data_id'])]
+def search(item_id, itemlist):
+    return next( (element for element in itemlist if item_id == int(element['data_id'])), None)
 
 def itemlistworker(_itemList, temp, out_q):
 
     outdict = {}
     for item in _itemList:
-        val = search(item, temp)[0]
+        # Get our item from the gw2spidy list
+        val = search(item, temp)
+
+		# set value to greater of buy and vendor.  If 0 set to minimum sell value
         w = items.ilist[item][u'vendor_value']
         if val['max_offer_unit_price'] > w:
             w = val['max_offer_unit_price']
         if w == 0:
             w = val['min_sale_unit_price']
+
+        # Save all the information we care about
         outdict[item] = {u'w':w,u'cost':val['min_sale_unit_price'],u'recipe':None,u'rarity':items.ilist[item][u'rarity'],u'type':items.ilist[item][u'type'],u'icon':val['img'], u'name':items.ilist[item][u'name'],u'output_item_count':items.ilist[item][u'output_item_count']} 
+
+        if u"discover" in items.ilist[item]:
+            outdict[item][u'discover'] = 0
+
         # if the item has a low supply, ignore it
         if val['sale_availability'] <= 50:
             outdict[item][u'cost'] = 99999999
@@ -264,10 +272,11 @@ def xp_calc(refines,parts,item,discoveries,mod,base_level,actu_level):
 # Hold our 5 most popular renown heart karma items for cooking
 karmin = {}
 
-# Compute a non-cooking guide
+# Compute a guide
 def costCraft(filename,c_recipes,fast,ignore_mixed,cList,mytime,header,cright,xp_to_level):
     print "Start", filename
     # TODO Hack, fix this
+	# This is changing the recipe for Bronze Ingot to use 2 Copper Ore.
     if 19679 in c_recipes[0]:
         c_recipes[0][19679][19697] = 2
 
@@ -290,8 +299,6 @@ def costCraft(filename,c_recipes,fast,ignore_mixed,cList,mytime,header,cright,xp
                 print u"Missing Item from itemlist: " + item
                 exit(-1)
             cList[item][u'tier'] = tier
-            if u"discover" in items.ilist[item]:
-                cList[item][u'discover'] = 0
 
     # Cooking guides don't use tierbuy, but they do care about karma items
     if "cook" in filename:
@@ -324,7 +331,7 @@ def costCraft(filename,c_recipes,fast,ignore_mixed,cList,mytime,header,cright,xp
         if fast and (not tier == 375 or "cook" in filename):
             bucket = makeQueuecraft(c_recipes[tier], cList,craftcount,tier,ignore_mixed,xp_to_level)
             bkey = sorted(bucket, reverse=True)
-            # If we already made something for cooking at this tier from another recipe, keep making that item
+            # If we already made an "Item" this tier from another recipe, keep making that item
             if make[tier] and "cook" in filename: 
                 bkey = []
                 for item in bucket:
@@ -335,10 +342,9 @@ def costCraft(filename,c_recipes,fast,ignore_mixed,cList,mytime,header,cright,xp
                 while cList[bucket[bkey[0]][u'item_id']][u'type'] in non_item:
                     bkey.pop(0)
 
-        while compute_level(xp_to_level[tier], craftcount[tier],tier,xp_to_level) < xp_to_level[tier + 25]:
-            if not tier == 0:
-                if not compute_level(craftcount[tier-25]['current_xp'], craftcount[tier],tier,xp_to_level) < xp_to_level[tier + 25]:
-                    break
+        while craftcount[tier]['current_xp'] < xp_to_level[tier + 25]:
+
+            # We still want to compute every make on fast guides for the 375-400 range
             if fast and tier == 375 and not "cook" in filename:
                 bucket = {}
                 bucket = makeQueuecraft(c_recipes[tier], cList,craftcount,tier,ignore_mixed,xp_to_level)
@@ -352,13 +358,12 @@ def costCraft(filename,c_recipes,fast,ignore_mixed,cList,mytime,header,cright,xp
                 
             tcost += bucket[bkey[0]]['cost']
             treco += cList[bucket[bkey[0]]['item_id']]['w'] * int(cList[bucket[bkey[0]]['item_id']][u'output_item_count'])
-            # TODO fix this, all text formatting needs to be in printtofile
-            sell["<span class=\"%s\">%s</span> - Sold for %s per"%(cList[bucket[bkey[0]]['item_id']]['rarity'],cList[bucket[bkey[0]]['item_id']]['name'],mFormat(cList[bucket[bkey[0]]['item_id']]['w']))] += int(cList[bucket[bkey[0]]['item_id']][u'output_item_count'])
+            sell[bucket[bkey[0]]['item_id']] += int(cList[bucket[bkey[0]]['item_id']][u'output_item_count'])
             sole = 0
+            recalc = {tier:0} # always recalc the tier we are on
             for item in bucket[bkey[0]]['make']:
                 if item == bucket[bkey[0]]['item_id'] and int(cList[item]['tier']) < tier:
                     craftcount[tier]['ptitem'].append(rarityNum(cList[item]['rarity']))
-                    craftcount[tier]['current_xp'] = compute_level(xp_to_level[tier], craftcount[tier],tier,xp_to_level)
                     pmake[tier][item] += 1
                 elif not cList[item]['type'] in non_item and not 'discover' in cList[item]:
                     cList[item]['discover'] = 1
@@ -379,8 +384,11 @@ def costCraft(filename,c_recipes,fast,ignore_mixed,cList,mytime,header,cright,xp
                     else:
                         craftcount[int(cList[item]['tier'])]['part'].append(rarityNum(cList[item]['rarity']))
                     make[int(cList[item]['tier'])][item] += 1
-                ctier = int(cList[item]['tier'])
-                craftcount[ctier]['current_xp'] = compute_level(xp_to_level[ctier], craftcount[ctier],ctier,xp_to_level)
+                recalc[int(cList[item]['tier'])] = 0
+
+            for ctier in recalc:
+                craftcount[ctier]['current_xp'] = compute_level((xp_to_level[ctier] if ctier == 0 or xp_to_level[ctier] >= craftcount[ctier-25]['current_xp'] else craftcount[ctier-25]['current_xp']), craftcount[ctier],ctier,xp_to_level)
+
             t = int(math.floor(tier/75.0)*75)
             if t == 375:
                 t = 300
@@ -396,11 +404,12 @@ def costCraft(filename,c_recipes,fast,ignore_mixed,cList,mytime,header,cright,xp
                     else:
                         tierbuy[t][item] += 1
                         buy[item] += 1
+
     totals = {}
     totals.update(printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList, filename, mytime, header, cright))
     return totals    
 
-# given an item, determine if it is better to craft its sub items, or buy them.    return the recipe.
+# given an item, determine if it is better to craft its sub items, or buy them.  return the recipe.
 # include cost for current state, and xp generated.
 def calcRecipecraft(recipe,items,craftcount,tier,count,itier,ignore_mixed,xp_to_level):
     level = 0
@@ -473,9 +482,17 @@ def makeQueuecraft(recipes,items,craftcount,tier,ignore_mixed,xp_to_level):
         if not items[recipe]['type'] in non_item:# or int(items[recipe]['tier']) > int(tier)-24:
             cost, xptotal, make, buy = calcRecipecraft(recipe,items,craftcount,tier,1,tier,ignore_mixed,xp_to_level)
             if xptotal:
-                outdict[float(xptotal)/float(cost)+0.00001*random()] = {'item_id':recipe,'w':xptotal,'make':make,'buy':buy,'cost':cost}
+                weight = float(xptotal)/float(cost)
+                # don't want to collide keys
+                while weight in outdict:
+                    weight += 0.0001
+                outdict[weight] = {'item_id':recipe,'w':xptotal,'make':make,'buy':buy,'cost':cost}
             else:
-                outdict[-1.0*float(cost)-random()] = {'item_id':recipe,'w':xptotal,'make':make,'buy':buy,'cost':cost}
+                weight = -1.0*float(cost)
+                # don't want to collide keys
+                while weight in outdict:
+                    weight -= 0.0001
+                outdict[weight] = {'item_id':recipe,'w':xptotal,'make':make,'buy':buy,'cost':cost}
 
     return outdict
 
@@ -781,7 +798,10 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList
         f.write('<br /><button title=\"Click To Toggle\" class=\"arrow\" id=\"tcost\">Sell List:</button><div class=\"lsbutton\" id=\"1tcost\">')
         for line in sorted(sell):
             t = (t+1)%2
-            f.write("<div class=\"s"+str(t)+"\">%3i %s</div>\n"%(sell[line],line))
+            f.write("<div class=\"s"+str(t)+"\">%3i <span class=\"%s\">%s</span> - Sold for %s per</div>\n"%(sell[line],cList[line]['rarity'],cList[line]['name'],mFormat(cList[line]['w'])))
+
+            sell[""%()]
+
         f.write("</div><script type=\"text/javascript\">$('#1tcost').hide();</script><br />")
         buttonList.append('tcost')
 
@@ -1014,23 +1034,33 @@ def main():
     #TODO change the way flags are passed so it is easier to understand
 
     cooking_karma = join(Chef.recipes, Chef_karma.recipes)
-    rList.append([("cooking_karma_fast.html",cooking_karma,True,False),("cooking_karma_fast_light.html",cooking_karma,True,False)])
-    rList.append([("cooking_karma.html",cooking_karma,False,False),("cooking_karma_light.html",cooking_karma,False,False)])
-    rList.append([("cooking_fast.html",Chef.recipes,True,False),("cooking.html",Chef.recipes,False,False)])
-
-    rList.append([("jewelcraft_fast.html",Jeweler.recipes,True,False),("jewelcraft.html",Jeweler.recipes,False,False),("jewelcraft_craft_all.html",Jeweler.recipes,False,True)])
-
-    rList.append([("artificing_fast.html",Artificer.recipes,True,False),("artificing.html",Artificer.recipes,False,False),("artificing_craft_all.html",Artificer.recipes,False,True)])
-
-    rList.append([("weaponcraft_fast.html",Weaponsmith.recipes,True,False),("weaponcraft.html",Weaponsmith.recipes,False,False),("weaponcraft_craft_all.html",Weaponsmith.recipes,False,True)])
-
-    rList.append([("huntsman_fast.html",Huntsman.recipes,True,False),("huntsman.html",Huntsman.recipes,False,False),("huntsman_craft_all.html",Huntsman.recipes,False,True)])
-
-    rList.append([("armorcraft_fast.html",Armorsmith.recipes,True,False),("armorcraft.html",Armorsmith.recipes,False,False),("armorcraft_craft_all.html",Armorsmith.recipes,False,True)])
-
-    rList.append([("tailor_fast.html",Tailor.recipes,True,False),("tailor.html",Tailor.recipes,False,False),("tailor_craft_all.html",Tailor.recipes,False,True)])
-
-    rList.append([("leatherworking_fast.html",Leatherworker.recipes,True,False),("leatherworking.html",Leatherworker.recipes,False,False),("leatherworking_craft_all.html",Leatherworker.recipes,False,True)])
+    rList.append([("cooking_karma_fast.html",cooking_karma,True,False),
+                  ("cooking_karma_fast_light.html",cooking_karma,True,False),
+                  ("cooking_fast.html",Chef.recipes,True,False)])
+    rList.append([("cooking_karma.html",cooking_karma,False,False),
+                  ("cooking_karma_light.html",cooking_karma,False,False),
+                  ("cooking.html",Chef.recipes,False,False)])
+    rList.append([("jewelcraft_fast.html",Jeweler.recipes,True,False),
+                  ("jewelcraft.html",Jeweler.recipes,False,False),
+                  ("jewelcraft_craft_all.html",Jeweler.recipes,False,True)])
+    rList.append([("artificing_fast.html",Artificer.recipes,True,False),
+                  ("artificing.html",Artificer.recipes,False,False),
+                  ("artificing_craft_all.html",Artificer.recipes,False,True)])
+    rList.append([("weaponcraft_fast.html",Weaponsmith.recipes,True,False),
+                  ("weaponcraft.html",Weaponsmith.recipes,False,False),
+                  ("weaponcraft_craft_all.html",Weaponsmith.recipes,False,True)])
+    rList.append([("huntsman_fast.html",Huntsman.recipes,True,False),
+                  ("huntsman.html",Huntsman.recipes,False,False),
+                  ("huntsman_craft_all.html",Huntsman.recipes,False,True)])
+    rList.append([("armorcraft_fast.html",Armorsmith.recipes,True,False),
+                  ("armorcraft.html",Armorsmith.recipes,False,False),
+                  ("armorcraft_craft_all.html",Armorsmith.recipes,False,True)])
+    rList.append([("tailor_fast.html",Tailor.recipes,True,False),
+                  ("tailor.html",Tailor.recipes,False,False),
+                  ("tailor_craft_all.html",Tailor.recipes,False,True)])
+    rList.append([("leatherworking_fast.html",Leatherworker.recipes,True,False),
+                  ("leatherworking.html",Leatherworker.recipes,False,False),
+                  ("leatherworking_craft_all.html",Leatherworker.recipes,False,True)])
 
     nprocs = len(rList)
 
@@ -1055,7 +1085,16 @@ def main():
     print "Starting upload"
     myFtp = FTP(ftp_url)
     myFtp.login(ftp_user,ftp_pass)
-    for item in ["cooking_fast.html", "cooking_karma_fast.html", "cooking_karma_fast_light.html", "leatherworking_fast.html", "tailor_fast.html", "artificing_fast.html", "jewelcraft_fast.html", "weaponcraft_fast.html", "huntsman_fast.html", "armorcraft_fast.html", "cooking.html", "cooking_karma.html", "cooking_karma_light.html", "leatherworking.html", "tailor.html", "artificing.html", "jewelcraft.html", "weaponcraft.html", "huntsman.html", "armorcraft.html", "leatherworking_craft_all.html", "tailor_craft_all.html", "artificing_craft_all.html", "jewelcraft_craft_all.html", "weaponcraft_craft_all.html", "huntsman_craft_all.html", "armorcraft_craft_all.html", "total.html"]:
+    for item in ["cooking_fast.html", "cooking_karma_fast.html", "cooking_karma_fast_light.html",
+                 "cooking.html", "cooking_karma.html", "cooking_karma_light.html",
+                 "leatherworking_fast.html", "leatherworking.html", "leatherworking_craft_all.html",
+                 "tailor_fast.html", "tailor.html", "tailor_craft_all.html",
+                 "artificing_fast.html", "artificing.html", "artificing_craft_all.html",
+                 "jewelcraft_fast.html", "jewelcraft.html", "jewelcraft_craft_all.html",
+                 "weaponcraft_fast.html", "weaponcraft.html", "weaponcraft_craft_all.html",
+                 "huntsman_fast.html", "huntsman.html", "huntsman_craft_all.html",
+                 "armorcraft_fast.html", "armorcraft.html", "armorcraft_craft_all.html",
+                 "total.html"]:
         with open(item,'rb') as f:
             myFtp.storbinary('STOR /gw2crafts.net/'+item,f)
         os.remove(item)
