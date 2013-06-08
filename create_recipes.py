@@ -68,19 +68,6 @@ def get_recipes():
 # Get the recipes we want and put them in recipe sheets while also gathering
 # all the item_id we need
 def parse_recipes(recipes):
-    # We don't care about feasts
-    # key is item_id
-    feasts = [12551, 12552, 12554, 12555, 12556, 12557, 12558, 12560, 12561,
-              12562, 12564, 12565, 12570, 12571, 12572, 12573, 12574, 12575,
-              12577, 12578, 12579, 12580, 12581, 12582, 12583, 12584, 12594,
-              12595, 12596, 12597, 12599, 12601, 12604, 12605, 12607, 12608,
-              12609, 12611, 12615, 12617, 12618, 12620, 12622, 12624, 12625,
-              12627, 12628, 12629, 12630, 12631, 12632, 12644, 12647, 12648,
-              12649, 12650, 12651, 12652, 12654, 12655, 12661, 12664, 12665,
-              12669, 12672, 12673, 12674, 12677, 12690, 12691, 12698, 12699,
-              12707, 12708, 12711, 12712, 12713, 12719, 12563, 12566, 12602,
-              12603, 12645]
-
     # Karma items so cooking lists are built properly
     # key is item_id
     karma = [12165, 12232, 12237, 12239, 12240, 12249, 12251, 12252, 12256,
@@ -112,8 +99,9 @@ def parse_recipes(recipes):
               u'Leatherworker':{}}
     item_ids = {}
 
-    new_recipes = {r[0]:r[1] for r in recipes.items() if
-                   not int(r[1][u'output_item_id']) in (bad_recipes + feasts)}
+    new_recipes = {r[0]:r[1] for r in recipes.items()
+                   if not int(r[1][u'output_item_id']) in bad_recipes
+                   and not r[1][u'type'] == u'Feast'}
     for recipe, data in new_recipes.items():
         min_rating = data[u'min_rating']
         item_id = data[u'output_item_id']
