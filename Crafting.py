@@ -800,8 +800,6 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList
             t = (t+1)%2
             f.write("<div class=\"s"+str(t)+"\">%3i <span class=\"%s\">%s</span> - Sold for %s per</div>\n"%(sell[line],cList[line]['rarity'],cList[line]['name'],mFormat(cList[line]['w'])))
 
-            sell[""%()]
-
         f.write("</div><script type=\"text/javascript\">$('#1tcost').hide();</script><br />")
         buttonList.append('tcost')
 
