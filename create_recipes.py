@@ -102,6 +102,7 @@ def parse_recipes(recipes):
     new_recipes = {r[0]:r[1] for r in recipes.items()
                    if not int(r[1][u'output_item_id']) in bad_recipes
                    and not r[1][u'type'] == u'Feast'}
+
     for recipe, data in new_recipes.items():
         min_rating = data[u'min_rating']
         item_id = data[u'output_item_id']
@@ -129,11 +130,11 @@ def parse_recipes(recipes):
     for craft in crafts:
         with open(craft+".py","wb") as f:
             f.write(u'# coding=unicode-escape\nrecipes = {\n')
-            for lvl in crafts[craft]:
+            for lvl in sorted(crafts[craft]):
                 f.write(u"\t" + lvl + ":{\n")
-                for obj in crafts[craft][lvl]:
+                for obj in sorted(crafts[craft][lvl]):
                     mystr = u""
-                    for part in crafts[craft][lvl][obj]:
+                    for part in sorted(crafts[craft][lvl][obj]):
                         if not part[u'item_id'] in item_ids:
                             item_ids[part[u'item_id']] = {u'type':u'Other',u'output_item_count':u'0',u'flags':[]}
                         mystr += part[u'item_id']+":"+part[u'count'] +","

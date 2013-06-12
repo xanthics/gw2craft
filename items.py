@@ -5454,6 +5454,7 @@ ilist = {
 	38332:{u'name': u"Giver's Ogre Bulwark", u'output_item_count': u'1', u'rarity': u'Rare', u'vendor_value': 165, u'type': u'Shield'},
 	38333:{u'name': u"Giver's Steel Shield", u'output_item_count': u'1', u'rarity': u'Masterwork', u'vendor_value': 90, u'type': u'Shield'},
 	38334:{u'name': u"Giver's Iron Shield", u'output_item_count': u'1', u'rarity': u'Masterwork', u'vendor_value': 68, u'type': u'Shield'},
+	38336:{u'name': u"Giver's Mithril Mace", u'output_item_count': u'1', u'rarity': u'Rare', u'vendor_value': 198, u'type': u'Mace'},
 	38337:{u'name': u"Giver's Darksteel Mace", u'output_item_count': u'1', u'rarity': u'Rare', u'vendor_value': 165, u'type': u'Mace'},
 	38338:{u'name': u"Giver's Steel Mace", u'output_item_count': u'1', u'rarity': u'Masterwork', u'vendor_value': 90, u'type': u'Mace'},
 	38339:{u'name': u"Giver's Bandit Mallet", u'output_item_count': u'1', u'rarity': u'Masterwork', u'vendor_value': 68, u'type': u'Mace'},
