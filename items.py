@@ -5505,6 +5505,7 @@ ilist = {
 	38394:{u'name': u"Giver's Simple Torch", u'output_item_count': u'1', u'rarity': u'Masterwork', u'vendor_value': 68, u'type': u'Torch'},
 	38395:{u'name': u"Giver's Torch", u'output_item_count': u'1', u'rarity': u'Masterwork', u'vendor_value': 90, u'type': u'Torch'},
 	38396:{u'name': u"Giver's Ogre Torch", u'output_item_count': u'1', u'rarity': u'Rare', u'vendor_value': 165, u'type': u'Torch'},
+	38397:{u'name': u"Giver's Krait Brazier", u'output_item_count': u'1', u'rarity': u'Rare', u'vendor_value': 198, u'type': u'Torch'},
 	38399:{u'name': u"Giver's Crude Warhorn", u'output_item_count': u'1', u'rarity': u'Fine', u'vendor_value': 20, u'type': u'Warhorn'},
 	38400:{u'name': u"Giver's Simple Warhorn", u'output_item_count': u'1', u'rarity': u'Masterwork', u'vendor_value': 68, u'type': u'Warhorn'},
 	38401:{u'name': u"Giver's Warhorn", u'output_item_count': u'1', u'rarity': u'Masterwork', u'vendor_value': 90, u'type': u'Warhorn'},
