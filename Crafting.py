@@ -273,7 +273,7 @@ def xp_calc(refines,parts,item,discoveries,mod,base_level,actu_level):
 karmin = {}
 
 # Compute a guide
-def costCraft(filename,c_recipes,fast,ignore_mixed,cList,mytime,header,cright,xp_to_level):
+def costCraft(filename,c_recipes,fast,ignoreMixed,cList,mytime,header,cright,xp_to_level):
     print "Start", filename
     # TODO Hack, fix this
 	# This is changing the recipe for Bronze Ingot to use 2 Copper Ore.
@@ -329,7 +329,7 @@ def costCraft(filename,c_recipes,fast,ignore_mixed,cList,mytime,header,cright,xp
         bkey = []
         # if this is a fast guide, choose our 1 item to craft
         if fast and (not tier == 375 or "cook" in filename):
-            bucket = makeQueuecraft(c_recipes[tier], cList,craftcount,tier,ignore_mixed,xp_to_level)
+            bucket = makeQueuecraft(c_recipes[tier], cList,craftcount,tier,ignoreMixed,xp_to_level)
             bkey = sorted(bucket, reverse=True)
             # If we already made an "Item" this tier from another recipe, keep making that item
             if make[tier] and "cook" in filename: 
@@ -347,13 +347,13 @@ def costCraft(filename,c_recipes,fast,ignore_mixed,cList,mytime,header,cright,xp
             # We still want to compute every make on fast guides for the 375-400 range
             if fast and tier == 375 and not "cook" in filename:
                 bucket = {}
-                bucket = makeQueuecraft(c_recipes[tier], cList,craftcount,tier,ignore_mixed,xp_to_level)
+                bucket = makeQueuecraft(c_recipes[tier], cList,craftcount,tier,ignoreMixed,xp_to_level)
                 bkey = sorted(bucket, reverse=True)
             elif not fast:
                 if not tier == 0 and craftcount[tier]['current_xp'] <= xp_to_level[tier+10]:
-                    bucket = makeQueuecraft(dict(chain(c_recipes[tier].iteritems(),c_recipes[tier-25].iteritems())), cList,craftcount,tier,ignore_mixed,xp_to_level)
+                    bucket = makeQueuecraft(dict(chain(c_recipes[tier].iteritems(),c_recipes[tier-25].iteritems())), cList,craftcount,tier,ignoreMixed,xp_to_level)
                 else:
-                    bucket = makeQueuecraft(c_recipes[tier], cList,craftcount,tier,ignore_mixed,xp_to_level)
+                    bucket = makeQueuecraft(c_recipes[tier], cList,craftcount,tier,ignoreMixed,xp_to_level)
                 bkey = sorted(bucket, reverse=True)
                 
             tcost += bucket[bkey[0]]['cost']
@@ -411,7 +411,7 @@ def costCraft(filename,c_recipes,fast,ignore_mixed,cList,mytime,header,cright,xp
 
 # given an item, determine if it is better to craft its sub items, or buy them.  return the recipe.
 # include cost for current state, and xp generated.
-def calcRecipecraft(recipe,items,craftcount,tier,count,itier,ignore_mixed,xp_to_level):
+def calcRecipecraft(recipe,items,craftcount,tier,count,itier,ignoreMixed,xp_to_level):
     level = 0
     while xp_to_level[int(level)] < craftcount[int(tier)]['current_xp']:
         level += 1
@@ -453,8 +453,8 @@ def calcRecipecraft(recipe,items,craftcount,tier,count,itier,ignore_mixed,xp_to_
     mycost *= count
     for item in items[recipe]['recipe']:
         if not items[item]['recipe'] == None:
-            tcost, txptotal, tmake, tbuy = calcRecipecraft(item,items,craftcount,items[item]['tier'],items[recipe]['recipe'][item]*count,int(items[recipe]['tier']),ignore_mixed,xp_to_level)
-            if (ignore_mixed and item not in gemss) or tcost < items[item]['cost']*items[recipe]['recipe'][item]*count or float(xptotal+txptotal)/float(mycost-items[item]['cost']*items[recipe]['recipe'][item]*count+tcost) >= float(xptotal)/float(mycost):
+            tcost, txptotal, tmake, tbuy = calcRecipecraft(item,items,craftcount,items[item]['tier'],items[recipe]['recipe'][item]*count,int(items[recipe]['tier']),ignoreMixed,xp_to_level)
+            if (ignoreMixed and item not in gemss) or tcost < items[item]['cost']*items[recipe]['recipe'][item]*count or float(xptotal+txptotal)/float(mycost-items[item]['cost']*items[recipe]['recipe'][item]*count+tcost) >= float(xptotal)/float(mycost):
                 xptotal += txptotal*.85
                 cost += tcost
                 buy += tbuy
@@ -469,7 +469,7 @@ def calcRecipecraft(recipe,items,craftcount,tier,count,itier,ignore_mixed,xp_to_
             cost += items[item]['cost']*count*items[recipe]['recipe'][item]
     return cost, xptotal, make, buy
 
-def makeQueuecraft(recipes,items,craftcount,tier,ignore_mixed,xp_to_level):
+def makeQueuecraft(recipes,items,craftcount,tier,ignoreMixed,xp_to_level):
     outdict = {}
     cost = 0
     xptotal = 0
@@ -480,7 +480,7 @@ def makeQueuecraft(recipes,items,craftcount,tier,ignore_mixed,xp_to_level):
     for recipe in recipes.keys():
         # uncomment the rest of this line if you want guides that include "make 83 epaulets" for 25 copper savings
         if not items[recipe]['type'] in non_item:# or int(items[recipe]['tier']) > int(tier)-24:
-            cost, xptotal, make, buy = calcRecipecraft(recipe,items,craftcount,tier,1,tier,ignore_mixed,xp_to_level)
+            cost, xptotal, make, buy = calcRecipecraft(recipe,items,craftcount,tier,1,tier,ignoreMixed,xp_to_level)
             if xptotal:
                 weight = float(xptotal)/float(cost)
                 # don't want to collide keys
@@ -758,11 +758,11 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList
         f.write('    <title>'+filename.split('.')[0].replace("_"," ").title()+'</title>\n')
         f.write('    <meta name="description" content="Guild Wars 2 always current crafting guide for '+filename.split('.')[0].replace("_"," ").title()+'">\n')
         f.write('    <meta http-equiv="content-type" content="text/html;charset=UTF-8">\n')
-        f.write('    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>\n')
-        f.write('    <script>(window.jQuery || document.write(\'<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"><\/script>\'));</script>\n')
-        f.write('    <script src="js/menu.js" type="text/javascript"></script>\n')
         f.write('    <link href="css/layout.css" rel="stylesheet" type="text/css" />') 
         f.write('    <link rel="icon" type="image/png" href="/fi.gif">')
+        f.write('    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>\n')
+        f.write('    <script>(window.jQuery || document.write(\'<script async src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"><\/script>\'));</script>\n')
+        f.write('    <script async src="js/menu.js" type="text/javascript"></script>\n')
         f.write('</head>\n')
         f.write('<body>\n'+header+'\n<section>')
         f.write('<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n')
@@ -772,7 +772,7 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList
         f.write('<div style="display:block;float:Right;"> \
                 \n<script type="text/javascript"><!-- \
                 \ngoogle_ad_client = "ca-pub-6865907345688710"; \
-                \n/* half page banner last */ \
+                \n/* half page banner 2 */ \
                 \ngoogle_ad_slot = "9379048580"; \
                 \ngoogle_ad_width = 234; \
                 \ngoogle_ad_height = 60; \
@@ -922,10 +922,10 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList
         f.write('<br /><div style="display:block;text-align:Right;"> \
                 \n<script type="text/javascript"><!-- \
                 \ngoogle_ad_client = "ca-pub-6865907345688710"; \
-                \n/* half page banner 2 */ \
-                \ngoogle_ad_slot = "9379048580"; \
-                \ngoogle_ad_width = 234; \
-                \ngoogle_ad_height = 60; \
+                \n/* Tail ad */ \
+                \ngoogle_ad_slot = "9889445788"; \
+                \ngoogle_ad_width = 336; \
+                \ngoogle_ad_height = 280; \
                 \n//--> \
                 \n</script> \
                 \n<script type="text/javascript" \
