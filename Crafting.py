@@ -956,11 +956,11 @@ def maketotals(totals, mytime):
     <meta name="description" content="Guild Wars 2 always current crafting guide price totals">
     <meta http-equiv="content-type" content="text/html;charset=UTF-8">
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script src="js/menu.js" type="text/javascript"></script>
     <link href="css/layout.css" rel="stylesheet" type="text/css" />
-
     <link rel="icon" type="image/png" href="/fi.gif">
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script async src="js/menu.js" type="text/javascript"></script>
 </head>
 <body>'''
     page += header
