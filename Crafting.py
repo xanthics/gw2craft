@@ -111,10 +111,10 @@ def itemlistworker(_itemList, temp, out_q):
 
 		# set value to greater of buy and vendor.  If 0 set to minimum sell value
         w = items.ilist[item][u'vendor_value']
-        if val['max_offer_unit_price'] > w:
-            w = val['max_offer_unit_price']
+        if val['max_offer_unit_price']*.85 > w:
+            w = val['max_offer_unit_price']*.85
         if w == 0:
-            w = val['min_sale_unit_price']
+            w = val['min_sale_unit_price']*.85
 
         # Save all the information we care about
         outdict[item] = {u'w':w,u'cost':val['min_sale_unit_price'],u'recipe':None,u'rarity':items.ilist[item][u'rarity'],u'type':items.ilist[item][u'type'],u'icon':val['img'], u'name':items.ilist[item][u'name'],u'output_item_count':items.ilist[item][u'output_item_count']} 
@@ -481,18 +481,19 @@ def makeQueuecraft(recipes,items,craftcount,tier,ignoreMixed,xp_to_level):
         # uncomment the rest of this line if you want guides that include "make 83 epaulets" for 25 copper savings
         if not items[recipe]['type'] in non_item:# or int(items[recipe]['tier']) > int(tier)-24:
             cost, xptotal, make, buy = calcRecipecraft(recipe,items,craftcount,tier,1,tier,ignoreMixed,xp_to_level)
+            # Uncomment these 3 lines and comment the 4th if you want guides that try to make the lowest total price after sellback
+#            if items[recipe]['w'] > cost:
+#               weight = float(items[recipe]['w'] - cost)*100000.0
+#            elif xptotal:
             if xptotal:
                 weight = float(xptotal)/float(cost)
-                # don't want to collide keys
-                while weight in outdict:
-                    weight += 0.0001
-                outdict[weight] = {'item_id':recipe,'w':xptotal,'make':make,'buy':buy,'cost':cost}
             else:
                 weight = -1.0*float(cost)
-                # don't want to collide keys
-                while weight in outdict:
-                    weight -= 0.0001
-                outdict[weight] = {'item_id':recipe,'w':xptotal,'make':make,'buy':buy,'cost':cost}
+
+            # don't want to collide keys
+            while weight in outdict:
+                weight -= 0.0001
+            outdict[weight] = {'item_id':recipe,'w':xptotal,'make':make,'buy':buy,'cost':cost}
 
     return outdict
 
@@ -760,9 +761,9 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList
         f.write('    <meta http-equiv="content-type" content="text/html;charset=UTF-8">\n')
         f.write('    <link href="css/layout.css" rel="stylesheet" type="text/css" />') 
         f.write('    <link rel="icon" type="image/png" href="/fi.gif">')
-        f.write('    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>\n')
-        f.write('    <script>(window.jQuery || document.write(\'<script async src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"><\/script>\'));</script>\n')
-        f.write('    <script async src="js/menu.js" type="text/javascript"></script>\n')
+        f.write('    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>\n')
+        f.write('    <script>(window.jQuery || document.write(\'<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"><\/script>\'));</script>\n')
+        f.write('    <script src="js/menu.js" type="text/javascript"></script>\n')
         f.write('</head>\n')
         f.write('<body>\n'+header+'\n<section>')
         f.write('<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n')
@@ -957,10 +958,10 @@ def maketotals(totals, mytime):
     <meta http-equiv="content-type" content="text/html;charset=UTF-8">
 
     <link href="css/layout.css" rel="stylesheet" type="text/css" />
-    <link rel="icon" type="image/png" href="/fi.gif">
+    <link rel="icon" type="image/png" href="/fi.gif" />
 
-    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script async src="js/menu.js" type="text/javascript"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="js/menu.js" type="text/javascript"></script>
 </head>
 <body>'''
     page += header
