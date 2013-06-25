@@ -111,13 +111,16 @@ def itemlistworker(_itemList, temp, out_q):
 
 		# set value to greater of buy and vendor.  If 0 set to minimum sell value
         w = items.ilist[item][u'vendor_value']
+        sellMethod = "Vendor"
         if val['max_offer_unit_price']*.85 > w:
             w = val['max_offer_unit_price']*.85
+            sellMethod = "Max Buyout"
         if w == 0:
             w = val['min_sale_unit_price']*.85
+            sellMethod = "Minimum Sale Price"
 
         # Save all the information we care about
-        outdict[item] = {u'w':w,u'cost':val['min_sale_unit_price'],u'recipe':None,u'rarity':items.ilist[item][u'rarity'],u'type':items.ilist[item][u'type'],u'icon':val['img'], u'name':items.ilist[item][u'name'],u'output_item_count':items.ilist[item][u'output_item_count']} 
+        outdict[item] = {u'w':w,u'cost':val['min_sale_unit_price'],u'recipe':None,u'rarity':items.ilist[item][u'rarity'],u'type':items.ilist[item][u'type'],u'icon':val['img'], u'name':items.ilist[item][u'name'],u'output_item_count':items.ilist[item][u'output_item_count'],u'sellMethod':sellMethod} 
 
         if u"discover" in items.ilist[item]:
             outdict[item][u'discover'] = 0
@@ -799,7 +802,7 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList
         f.write('<br /><button title=\"Click To Toggle\" class=\"arrow\" id=\"tcost\">Sell List:</button><div class=\"lsbutton\" id=\"1tcost\">')
         for line in sorted(sell):
             t = (t+1)%2
-            f.write("<div class=\"s"+str(t)+"\">%3i <span class=\"%s\">%s</span> - Sold for %s per</div>\n"%(sell[line],cList[line]['rarity'],cList[line]['name'],mFormat(cList[line]['w'])))
+            f.write("<div class=\"s"+str(t)+"\">%3i <span class=\"%s\">%s</span> - Sold for %s per via %s</div>\n"%(sell[line],cList[line]['rarity'],cList[line]['name'],mFormat(cList[line]['w']),cList[line]['sellMethod']))
 
         f.write("</div><script type=\"text/javascript\">$('#1tcost').hide();</script><br />")
         buttonList.append('tcost')
