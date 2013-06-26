@@ -481,8 +481,9 @@ def makeQueuecraft(recipes,items,craftcount,tier,ignoreMixed,xp_to_level):
     non_item = [u'Refinement', u'Insignia', u'Inscription', u'Component']
 
     for recipe in recipes.keys():
-        # uncomment the rest of this line if you want guides that include "make 83 epaulets" for 25 copper savings
-        if not items[recipe]['type'] in non_item:# or int(items[recipe]['tier']) > int(tier)-24:
+        # swap which line is commented if you want guides that include "make 83 epaulets" for 25 copper savings
+        if not items[recipe]['type'] in non_item:
+#        if int(items[recipe]['tier']) > int(tier)-24:
             cost, xptotal, make, buy = calcRecipecraft(recipe,items,craftcount,tier,1,tier,ignoreMixed,xp_to_level)
             # Uncomment these 3 lines and comment the 4th if you want guides that try to make the lowest total price after sellback
 #            if items[recipe]['w'] > cost:
@@ -820,7 +821,8 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList
 
             for item in sorted(b_karma_c):
                 t = (t+1)%2
-                f.write(("<div class=\"s"+str(t)+"\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url("+cList[item]['icon']+");\"></span><span class=\"quantity\">%i</span> <span class=\"%s\">%s</span> (%i <span class=\"karmaIcon\"></span> per 25, %s)</div>\n")%(buy[item],cList[item]['rarity'],cList[item][u'name'],karma_chef[item]['cost'],karma_chef[item]['note']))
+                f.write(("<div class=\"s"+str(t)+"\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url("+cList[item]['icon']+");\"></span><span class=\"quantity\">%i</span> <button title=\"Click To Toggle\" class=\"%s arrow\" id=\""+str(item)+"\">%s</button><div class=\"lsbutton\" id=\"1"+str(item)+"\">%i <span class=\"karmaIcon\"></span> per 25 <br /> %s</div></div>\n")%(buy[item],cList[item]['rarity'],cList[item][u'name'],karma_chef[item]['cost'],karma_chef[item]['note']))
+                buttonList.append(item)
                 kt += int(math.ceil(buy[item]/25.0)*karma_chef[item]['cost'])
 
             for item in sorted(b_vendor):
