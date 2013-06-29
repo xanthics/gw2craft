@@ -773,6 +773,8 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList
         f.write('<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n')
         f.write('<img src="css/warning-icon.png" width="24px" height="24px" style="padding: 0 8px 0 8px; float: left;"><span style="position: relative; top: 4px;"><span style="color: red">Do not refresh this page.</span>    It may change. Updated: '+mytime+'</b></span>\n')
         f.write('</div><br />\n')
+        f.write("Wherever you see this  <img src=\"/img/arrow.png\"></img> you can click for more information <br />")
+        f.write('<h1>'+filename.split('.')[0].replace("_"," ").title()+'</h1>')
         # adword
         f.write('<div style="display:block;float:Right;"> \
                 \n<script type="text/javascript"><!-- \
@@ -787,10 +789,6 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList
                 \nsrc="http://pagead2.googlesyndication.com/pagead/show_ads.js"> \
                 \n</script> \
                 \n</div>\n')
-        f.write("<button title=\"Click To Show All Discovery Recipes\" class =\"info\" id=\"show_all\">Show All Discovery</button><br />")
-        f.write("<button title=\"Click To Hide All Discovery Recipes\" class =\"info\" id=\"hide_all\">Hide All Discovery</button><br />")
-        f.write("<br />Wherever you see this  <img src=\"/img/arrow.png\"></img> you can click for more information <br />")
-        f.write('<h1>'+filename.split('.')[0].replace("_"," ").title()+'</h1>')
         f.write('<dl>\n')
         f.write('    <dt>Initial Cost</dt>\n')
         f.write('    <dd>'+mFormat(tcost)+'</dd>\n')
@@ -867,6 +865,8 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList
                 f.write("<div class=\"s"+str(t)+"\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url("+cList[item]['icon']+");\"></span><span class=\"quantity\">%i</span> <span class=\"%s\">%s</span> (%4s per)</div>\n"%(buy[item],cList[item]['rarity'],cList[item][u'name'],mFormat(cList[item]['cost'])))
 
         f.write("<br />\n<br />\n<h2>MAKE</h2>\n")
+        f.write("<button title=\"Click To Show All Discovery Recipes\" class =\"info\" id=\"show_all\">Expand All Discovery Recipes</button><br />")
+        f.write("<button title=\"Click To Hide All Discovery Recipes\" class =\"info\" id=\"hide_all\">Collapse All Discovery Recipes</button>")
         rt = 0
         for tier in [0,25,50,75,100,125,150,175,200,225,250,275,300,325,350,375]:
             if tierbuy and tier in [0,75,150,225,300]:
