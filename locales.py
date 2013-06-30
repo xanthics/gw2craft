@@ -52,6 +52,14 @@ header = u"""<nav>
         </li>
         <li><a href="http://gw2crafts.net/es/total.html">Totals</a></li>
         <li><a href="http://gw2crafts.net/es/faq.html">About</a></li>
+        <li><a href="#" hreflang="es">Spanish</a>
+        <ul>
+          <li><a href="http://gw2crafts.net/%s" hreflang="en">English</a></li>
+          <li><a href="http://gw2crafts.net/fr/%s" hreflang="fr">French</a></li>
+          <li><a href="http://gw2crafts.net/de/%s" hreflang="de">German</a></li>
+          <li><a href="#" hreflang="es">Spanish</a></li>
+        </ul>
+        </li>
     </ul>
 </nav>
 """
