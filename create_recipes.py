@@ -24,7 +24,7 @@ Author: Jeremy Parks
 Purpose: Generates(or updates) all the recipes and the item list used by Crafting.py
 Note: Requires Python 2.7.x
 '''
-import urllib, json, math
+import urllib, json, math, codecs, re
 from collections import defaultdict
 from multiprocessing import Process, Queue
 
@@ -45,7 +45,7 @@ def recipelistWorker(items, out_q):
 def get_recipes():
     temp = _api_call('recipes.json')
     out_q = Queue()
-    nprocs = 32
+    nprocs = 4
     lister = temp['recipes']
     chunksize = int(math.ceil(len(lister) / float(nprocs)))
     procs = []
@@ -128,8 +128,8 @@ def parse_recipes(recipes):
                                  u'flags': data[u'flags']}
 
     for craft in crafts:
-        with open(craft+".py","wb") as f:
-            f.write(u'# coding=unicode-escape\nrecipes = {\n')
+        with codecs.open(craft+".py", "wb", encoding='utf-8') as f:
+            f.write(u'# -*- coding: utf-8 -*-\nrecipes = {\n')
             for lvl in sorted(crafts[craft]):
                 f.write(u"\t" + lvl + ":{\n")
                 for obj in sorted(crafts[craft][lvl]):
@@ -145,18 +145,19 @@ def parse_recipes(recipes):
     return item_ids
 
 # helper function
-def itemlistWorker(items, out_q):
+def itemlistWorker(items, lang, out_q):
     outdict = {}
     for index, i in enumerate(items, 1):
-        print index, len(items)
-        item = _api_call('item_details.json?item_id=%s' % i)
+        print index, len(items), lang
+        item = _api_call('item_details.json?item_id=%s&lang=%s' % (i, lang))
         outdict[i] = item
     out_q.put(outdict)
 
 # get more information on every item the recipes use
-def itemlist(item_list):
+# Currently supported languages: en, fr, de, es
+def itemlist(item_list, lang="en"):
     out_q = Queue()
-    nprocs = 32
+    nprocs = 4
     lister = item_list.keys()
 
     chunksize = int(math.ceil(len(lister) / float(nprocs)))
@@ -164,7 +165,7 @@ def itemlist(item_list):
 
     for i in range(nprocs):
         p = Process(target=itemlistWorker,
-                    args=(lister[chunksize * i:chunksize * (i + 1)], out_q))
+                    args=(lister[chunksize * i:chunksize * (i + 1)], lang, out_q))
         procs.append(p)
         p.start()
 
@@ -175,17 +176,24 @@ def itemlist(item_list):
     for p in procs:
         p.join()
 
-    with open("items.py","wb") as f:
-        f.write('# coding=unicode-escape\nilist = {\n')
+    if lang == "en":
+        with codecs.open("items.py","wb", encoding='utf-8') as f:
+            f.write('# -*- coding: utf-8 -*-\nilist = {\n')
+            # sorted is only so we can easily spot new items with diff
+            for i in sorted(flags): # otherwise output is semi random order
+                item_list[i][u'rarity'] = flags[i][u'rarity']
+                item_list[i][u'vendor_value'] = int(flags[i][u'vendor_value'])
+                if item_list[i][u'flags']:
+                    item_list[i][u'discover'] = 0
+                del(item_list[i][u'flags'])
+                f.write("\t"+ str(i) +":"+ str(item_list[i])+",\n")
+            f.write('}')
+
+    with codecs.open("Items_%s.py" % lang,"wb", encoding='utf-8') as f:
+        f.write('# -*- coding: utf-8 -*-\nilist = {\n')
         # sorted is only so we can easily spot new items with diff
         for i in sorted(flags): # otherwise output is semi random order
-            item_list[i][u'name'] = flags[i][u'name']
-            item_list[i][u'rarity'] = flags[i][u'rarity']
-            item_list[i][u'vendor_value'] = int(flags[i][u'vendor_value'])
-            if item_list[i][u'flags']:
-                item_list[i][u'discover'] = 0
-            del(item_list[i][u'flags'])
-            f.write("\t"+ str(i) +":"+ str(item_list[i])+",\n")
+            f.write("\t"+ str(i) +":u\""+ flags[i][u'name'].replace('"','\'') +"\",\n")
         f.write('}')
 
 def _api_call(endpoint):
@@ -202,6 +210,9 @@ def main():
     recipes = get_recipes()
     item_list = parse_recipes(recipes)
     itemlist(item_list)
+    itemlist(item_list, "fr")
+    itemlist(item_list, "de")
+    itemlist(item_list, "es")
 
 # If ran directly, call main
 if __name__ == '__main__':
