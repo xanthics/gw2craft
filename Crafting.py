@@ -579,7 +579,7 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, filename, 
         f.write(u'    <script>(window.jQuery || document.write(\'<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"><\/script>\'));</script>\n')
         f.write(u'    <script src="/js/menu.js" type="text/javascript"></script>\n')
         f.write(u'</head>\n')
-        f.write(u'<body>\n'+localText.header+'\n<section>')
+        f.write(u'<body>\n'+localText.header%(filename,filename,filename)+'\n<section>')
         f.write(u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n')
         f.write(u'<img src="/css/warning-icon.png" width="24px" height="24px" style="padding: 0 8px 0 8px; float: left;"><span style="position: relative; top: 4px;"><span style="color: red">Do not refresh this page.</span>    It may change. Updated: '+mytime+'</b></span>\n')
         f.write(u'</div><br />\n')
@@ -776,7 +776,7 @@ def maketotals(totals, mytime, localText, path=""):
     <script src="/js/menu.js" type="text/javascript"></script>
 </head>
 <body>'''
-    page += localText.header
+    page += localText.header%('total.html','total.html','total.html')
 
     page += "<section>\n<h5 style=\"text-align:center;\">Updated: " + mytime + "</h5>"
     page += '''
