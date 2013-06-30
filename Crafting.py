@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 '''
 * Copyright (c) 2013 Jeremy Parks. All rights reserved.
 *
@@ -25,9 +26,11 @@ Purpose: Generates a crafting guide for all crafts in Guild Wars 2 based on curr
 Note: Requires Python 2.7.x
 '''
 
-import urllib, json, datetime, math, os
+import urllib, json, datetime, math, os, codecs
 # recipe and item lists
 import Armorsmith, Artificer, Chef, Chef_karma, Huntsman, Jeweler, Leatherworker, Tailor, Weaponsmith, items
+# Localized text
+import Items_en, Items_de, Items_fr, Items_es, localen, localde, localfr, locales
 from multiprocessing import Process, Queue
 from copy import deepcopy
 from collections import defaultdict
@@ -36,71 +39,9 @@ from ftplib import FTP
 # FTP Login
 from ftp_info import ftp_url, ftp_user, ftp_pass
 
-#Navigation bar for each guide and totals page
-header = u"""<nav>
-    <ul>
-        <li><a href="http://gw2crafts.net/">Home</a></li>
-        <li><a href="http://gw2crafts.net/nav.html">Normal Guides</a>
-        <ul>
-            <li><a href="#">Cooking</a>
-            <ul>
-                <li><a href="http://gw2crafts.net/cooking.html">No Hearts</a></li>
-                <li><a href="http://gw2crafts.net/cooking_karma_light.html">Top 5 Hearts</a></li>
-                <li><a href="http://gw2crafts.net/cooking_karma.html">All Hearts</a></li>
-            </ul>
-            </li>
-            <li><a href="http://gw2crafts.net/jewelcraft.html">Jewelcrafting</a></li>
-            <li><a href="http://gw2crafts.net/artificing.html">Artificing</a></li>
-            <li><a href="http://gw2crafts.net/huntsman.html">Huntsman</a></li>
-            <li><a href="http://gw2crafts.net/weaponcraft.html">Weaponcrafting</a></li>
-            <li><a href="http://gw2crafts.net/armorcraft.html">Armorcrafting</a></li>
-            <li><a href="http://gw2crafts.net/leatherworking.html">Leatherworking</a></li>
-            <li><a href="http://gw2crafts.net/tailor.html">Tailoring</a></li>
-        </ul>
-        </li>
-        <li><a href="http://gw2crafts.net/nav.html">Fast Guides</a>
-        <ul>
-            <li><a href="#">Cooking</a>
-            <ul>
-                <li><a href="http://gw2crafts.net/cooking_fast.html">No Hearts</a></li>
-                <li><a href="http://gw2crafts.net/cooking_karma_fast_light.html">Top 5 Hearts</a></li>
-                <li><a href="http://gw2crafts.net/cooking_karma_fast.html">All Hearts</a></li>
-            </ul>
-            </li>
-            <li><a href="http://gw2crafts.net/jewelcraft_fast.html">Jewelcrafting</a></li>
-            <li><a href="http://gw2crafts.net/artificing_fast.html">Artificing</a></li>
-            <li><a href="http://gw2crafts.net/huntsman_fast.html">Huntsman</a></li>
-            <li><a href="http://gw2crafts.net/weaponcraft_fast.html">Weaponcrafting</a></li>
-            <li><a href="http://gw2crafts.net/armorcraft_fast.html">Armorcrafting</a></li>
-            <li><a href="http://gw2crafts.net/leatherworking_fast.html">Leatherworking</a></li>
-            <li><a href="http://gw2crafts.net/tailor_fast.html">Tailoring</a></li>
-        </ul>
-        </li>
-        <li><a href="http://gw2crafts.net/nav.html">Traditional Guides</a>
-        <ul>
-            <li><a href="http://gw2crafts.net/jewelcraft_craft_all.html">Jewelcrafting</a></li>
-            <li><a href="http://gw2crafts.net/artificing_craft_all.html">Artificing</a></li>
-            <li><a href="http://gw2crafts.net/huntsman_craft_all.html">Huntsman</a></li>
-            <li><a href="http://gw2crafts.net/weaponcraft_craft_all.html">Weaponcrafting</a></li>
-            <li><a href="http://gw2crafts.net/armorcraft_craft_all.html">Armorcrafting</a></li>
-            <li><a href="http://gw2crafts.net/leatherworking_craft_all.html">Leatherworking</a></li>
-            <li><a href="http://gw2crafts.net/tailor_craft_all.html">Tailoring</a></li>
-        </ul>
-        </li>
-        <li><a href="http://gw2crafts.net/total.html">Totals</a></li>
-        <li><a href="http://gw2crafts.net/faq.html">About</a></li>
-    </ul>
-</nav>
-"""
-
-# Copyright notice for GW2 IP
-cright = u'''<footer>
-    Guild Wars 2 &#0169; 2012 ArenaNet, Inc. All rights reserved. NCsoft, the interlocking NC logo, ArenaNet, Guild Wars, Guild Wars Factions, Guild Wars Nightfall, Guild Wars: Eye of the North, Guild Wars 2, and all associated logos and designs are trademarks or registered trademarks of NCsoft Corporation. All other trademarks are the property of their respective owners.
-</footer>'''
-
 # helper function to get data via item_id
 def search(item_id, itemlist):
-    return next( (element for element in itemlist if item_id == int(element['data_id'])), None)
+    return next( (element for element in itemlist if item_id == int(element[u'data_id'])), None)
 
 def itemlistworker(_itemList, temp, out_q):
 
@@ -112,21 +53,21 @@ def itemlistworker(_itemList, temp, out_q):
 		# set value to greater of buy and vendor.  If 0 set to minimum sell value
         w = items.ilist[item][u'vendor_value']
         sellMethod = "Vendor"
-        if val['max_offer_unit_price']*.85 > w:
-            w = val['max_offer_unit_price']*.85
+        if val[u'max_offer_unit_price']*.85 > w:
+            w = val[u'max_offer_unit_price']*.85
             sellMethod = "Max Buyout"
         if w == 0:
-            w = val['min_sale_unit_price']*.85
+            w = val[u'min_sale_unit_price']*.85
             sellMethod = "Minimum Sale Price"
 
         # Save all the information we care about
-        outdict[item] = {u'w':w,u'cost':val['min_sale_unit_price'],u'recipe':None,u'rarity':items.ilist[item][u'rarity'],u'type':items.ilist[item][u'type'],u'icon':val['img'], u'name':items.ilist[item][u'name'],u'output_item_count':items.ilist[item][u'output_item_count'],u'sellMethod':sellMethod} 
+        outdict[item] = {u'w':w,u'cost':val[u'min_sale_unit_price'],u'recipe':None,u'rarity':items.ilist[item][u'rarity'],u'type':items.ilist[item][u'type'],u'icon':val[u'img'],u'output_item_count':items.ilist[item][u'output_item_count'],u'sellMethod':sellMethod} 
 
         if u"discover" in items.ilist[item]:
             outdict[item][u'discover'] = 0
 
         # if the item has a low supply, ignore it
-        if val['sale_availability'] <= 50:
+        if val[u'sale_availability'] <= 50:
             outdict[item][u'cost'] = 99999999
     out_q.put(outdict)
 
@@ -165,38 +106,38 @@ def appendCosts():
         print u'ERROR: %s.\n' % str(err)
         exit(-1)
 
-    print len(temp['results']) # print total items returned from gw2spidy
+    print len(temp[u'results']) # print total items returned from gw2spidy
 
     cList = {}
-    cList = cItemlist(items.ilist.keys(),temp['results'])
+    cList = cItemlist(items.ilist.keys(),temp[u'results'])
 
-    cList[19792]['cost'] = 8 # Spool of Jute Thread
-    cList[19789]['cost'] = 16 # Spool of Wool Thread
-    cList[19794]['cost'] = 24 # Spool of Cotton Thread
-    cList[19793]['cost'] = 32 # Spool of Linen Thread
-    cList[19791]['cost'] = 48 # Spool of Silk Thread
-    cList[19704]['cost'] = 8 # Lump of Tin
-    cList[19750]['cost'] = 16 # Lump of Coal
-    cList[19924]['cost'] = 48 # Lump of Primordium
-    cList[12157]['cost'] = 8 # Jar of Vinegar
-    cList[12151]['cost'] = 8 # Packet of Baking Powder
-    cList[12158]['cost'] = 8 # Jar of Vegetable Oil
-    cList[12153]['cost'] = 8 # Packet of Salt
-    cList[12155]['cost'] = 8 # Bag of Sugar
-    cList[12156]['cost'] = 8 # Jug of Water
-    cList[12324]['cost'] = 8 # Bag of Starch
-    cList[12136]['cost'] = 8 # Bag of Flour
-    cList[8576]['cost'] = 16 # Bottle of Rice Wine
-    cList[12271]['cost'] = 8 # Bottle of Soy Sauce
-    cList[13010]['cost'] = 496 # "Minor Rune of Holding"
-    cList[13006]['cost'] = 1480 # "Rune of Holding"
-    cList[13007]['cost'] = 5000 # "Major Rune of Holding"
-    cList[13008]['cost'] = 20000 # "Greater Rune of Holding"
+    cList[19792][u'cost'] = 8 # Spool of Jute Thread
+    cList[19789][u'cost'] = 16 # Spool of Wool Thread
+    cList[19794][u'cost'] = 24 # Spool of Cotton Thread
+    cList[19793][u'cost'] = 32 # Spool of Linen Thread
+    cList[19791][u'cost'] = 48 # Spool of Silk Thread
+    cList[19704][u'cost'] = 8 # Lump of Tin
+    cList[19750][u'cost'] = 16 # Lump of Coal
+    cList[19924][u'cost'] = 48 # Lump of Primordium
+    cList[12157][u'cost'] = 8 # Jar of Vinegar
+    cList[12151][u'cost'] = 8 # Packet of Baking Powder
+    cList[12158][u'cost'] = 8 # Jar of Vegetable Oil
+    cList[12153][u'cost'] = 8 # Packet of Salt
+    cList[12155][u'cost'] = 8 # Bag of Sugar
+    cList[12156][u'cost'] = 8 # Jug of Water
+    cList[12324][u'cost'] = 8 # Bag of Starch
+    cList[12136][u'cost'] = 8 # Bag of Flour
+    cList[8576][u'cost'] = 16 # Bottle of Rice Wine
+    cList[12271][u'cost'] = 8 # Bottle of Soy Sauce
+    cList[13010][u'cost'] = 496 # "Minor Rune of Holding"
+    cList[13006][u'cost'] = 1480 # "Rune of Holding"
+    cList[13007][u'cost'] = 5000 # "Major Rune of Holding"
+    cList[13008][u'cost'] = 20000 # "Greater Rune of Holding"
     #[u'Bell Pepper',u'Basil Leaf',u'Ginger Root',u'Tomato',u'Bowl of Sour Cream',u'Rice Ball',u'Packet of Yeast',u'Glass of Buttermilk',u'Cheese Wedge',u"Almond",u"Apple",u"Avocado",u"Banana",u"Black Bean",u"Celery Stalk",u"Cherry",u"Chickpea",u"Coconut",u"Cumin",u"Eggplant",u"Green Bean",u"Horseradish Root",u"Kidney Bean",u"Lemon",u"Lime",u"Mango",u"Nutmeg Seed",u"Peach",u"Pear",u"Pinenut",u"Shallot"]
     karma = [12235,  12245,  12328,  12141,  12325,  12145,  12152,  12137,  12159,  12337,  12165,  12340,  12251,  12237,  12240,  12338,  12515,  12350,  12256,  12502,  12232,  12518,  12239,  12252,  12339,  12543,  12249,  12503,  12514,  12516,  12517]
     for item in karma:
-        cList[item]['cost'] = 0
-    cList[12132]['cost'] = 99999999 # Loaf of Bread is soulbound, cheat to make it not purchased
+        cList[item][u'cost'] = 0
+    cList[12132][u'cost'] = 99999999 # Loaf of Bread is soulbound, cheat to make it not purchased
 
     print len(cList.keys()) # print number of items used by the guides
 
@@ -241,23 +182,23 @@ def compute_level(_xp, craftlist, tlvl, xp_to_level):
     level = tlvl
     while xp_to_level[level+1] < _xp:
         level += 1
-    for i in craftlist['ptitem']:
+    for i in craftlist[u'ptitem']:
         _xp += int(i*xpgain(level,3,tlvl-25))
         while xp_to_level[level+1] < _xp:
             level += 1
-    for i in range(0,int(math.ceil(craftlist['refine']))):
+    for i in range(0,int(math.ceil(craftlist[u'refine']))):
         _xp += int(xpgain(level,1,tlvl))
         while xp_to_level[level+1] < _xp:
             level += 1
-    for i in craftlist['part']:
+    for i in craftlist[u'part']:
         _xp += int(i*xpgain(level,2,tlvl))
         while xp_to_level[level+1] < _xp:
             level += 1
-    for i in craftlist['discovery']:
+    for i in craftlist[u'discovery']:
         _xp += int((i+1)*xpgain(level,3,tlvl))
         while xp_to_level[level+1] < _xp:
             level += 1
-    for i in craftlist['item']:
+    for i in craftlist[u'item']:
         _xp += int(i*xpgain(level,3,tlvl))
         while xp_to_level[level+1] < _xp:
             level += 1
@@ -276,14 +217,13 @@ def xp_calc(refines,parts,item,discoveries,mod,base_level,actu_level):
 karmin = {}
 
 # Compute a guide
-def costCraft(filename,c_recipes,fast,ignoreMixed,cList,mytime,header,cright,xp_to_level):
+def costCraft(filename,c_recipes,fast,ignoreMixed,cList,mytime,xp_to_level):
     print "Start", filename
     # TODO Hack, fix this
 	# This is changing the recipe for Bronze Ingot to use 2 Copper Ore.
     if 19679 in c_recipes[0]:
         c_recipes[0][19679][19697] = 2
 
-    buttonList = [] # Buttons for discovery
     craftcount = {} # Used to track current xp per tier
     make = {} # make list per tier
     pmake = {} # make list of "prior tier" items per tier
@@ -313,7 +253,7 @@ def costCraft(filename,c_recipes,fast,ignoreMixed,cList,mytime,header,cright,xp_
             # "Almond","Apple","Avocado","Banana","Black Bean","Celery Stalk","Cherry","Chickpea","Coconut","Cumin","Eggplant","Green Bean","Horseradish Root","Kidney Bean","Lemon","Lime","Mango","Nutmeg Seed","Peach","Pear","Pinenut","Shallot"
             for i in [12337,  12165,  12340,  12251,  12237,  12240,  12338,  12515,  12350,  12256,  12502,  12232,  12518,  12239,  12252,  12339,  12543,  12249,  12503,  12514,  12516,  12517]:
                 if not i in topl:
-                    cList[i]['cost'] = 99999999
+                    cList[i][u'cost'] = 99999999
     else:
         tierbuy = {0:defaultdict(int),75:defaultdict(int),150:defaultdict(int),225:defaultdict(int),300:defaultdict(int)}
         buy[19704] = 0.0 # Lump of Tin
@@ -345,7 +285,7 @@ def costCraft(filename,c_recipes,fast,ignoreMixed,cList,mytime,header,cright,xp_
                 while cList[bucket[bkey[0]][u'item_id']][u'type'] in non_item:
                     bkey.pop(0)
 
-        while craftcount[tier]['current_xp'] < xp_to_level[tier + 25]:
+        while craftcount[tier][u'current_xp'] < xp_to_level[tier + 25]:
 
             # We still want to compute every make on fast guides for the 375-400 range
             if fast and tier == 375 and not "cook" in filename:
@@ -353,70 +293,73 @@ def costCraft(filename,c_recipes,fast,ignoreMixed,cList,mytime,header,cright,xp_
                 bucket = makeQueuecraft(c_recipes[tier], cList,craftcount,tier,ignoreMixed,xp_to_level)
                 bkey = sorted(bucket, reverse=True)
             elif not fast:
-                if not tier == 0 and craftcount[tier]['current_xp'] <= xp_to_level[tier+10]:
+                if not tier == 0 and craftcount[tier][u'current_xp'] <= xp_to_level[tier+10]:
                     bucket = makeQueuecraft(dict(chain(c_recipes[tier].iteritems(),c_recipes[tier-25].iteritems())), cList,craftcount,tier,ignoreMixed,xp_to_level)
                 else:
                     bucket = makeQueuecraft(c_recipes[tier], cList,craftcount,tier,ignoreMixed,xp_to_level)
                 bkey = sorted(bucket, reverse=True)
                 
-            tcost += bucket[bkey[0]]['cost']
-            treco += cList[bucket[bkey[0]]['item_id']]['w'] * int(cList[bucket[bkey[0]]['item_id']][u'output_item_count'])
-            sell[bucket[bkey[0]]['item_id']] += int(cList[bucket[bkey[0]]['item_id']][u'output_item_count'])
+            tcost += bucket[bkey[0]][u'cost']
+            treco += cList[bucket[bkey[0]][u'item_id']][u'w'] * int(cList[bucket[bkey[0]][u'item_id']][u'output_item_count'])
+            sell[bucket[bkey[0]][u'item_id']] += int(cList[bucket[bkey[0]][u'item_id']][u'output_item_count'])
             sole = 0
             recalc = {tier:0} # always recalc the tier we are on
-            for item in bucket[bkey[0]]['make']:
-                if item == bucket[bkey[0]]['item_id'] and int(cList[item]['tier']) < tier:
-                    craftcount[tier]['ptitem'].append(rarityNum(cList[item]['rarity']))
+            for item in bucket[bkey[0]][u'make']:
+                if item == bucket[bkey[0]][u'item_id'] and int(cList[item][u'tier']) < tier:
+                    craftcount[tier][u'ptitem'].append(rarityNum(cList[item][u'rarity']))
                     pmake[tier][item] += 1
-                elif not cList[item]['type'] in non_item and not 'discover' in cList[item]:
-                    cList[item]['discover'] = 1
-                    craftcount[int(cList[item]['tier'])]['discovery'].append(rarityNum(cList[item]['rarity']))
-                    make[int(cList[item]['tier'])][item] += 1
-                elif not cList[item]['type'] in non_item:
-                    craftcount[int(cList[item]['tier'])]['item'].append(rarityNum(cList[item]['rarity']))
-                    make[int(cList[item]['tier'])][item] += 1
-                elif cList[item]['type'] == u'Refinement':
+                elif not cList[item][u'type'] in non_item and not 'discover' in cList[item]:
+                    cList[item][u'discover'] = 1
+                    craftcount[int(cList[item][u'tier'])][u'discovery'].append(rarityNum(cList[item][u'rarity']))
+                    make[int(cList[item][u'tier'])][item] += 1
+                elif not cList[item][u'type'] in non_item:
+                    craftcount[int(cList[item][u'tier'])][u'item'].append(rarityNum(cList[item][u'rarity']))
+                    make[int(cList[item][u'tier'])][item] += 1
+                elif cList[item][u'type'] == u'Refinement':
                     if item == 19679: # Bronze Ingot
-                        craftcount[int(cList[item]['tier'])]['refine'] += 0.2
+                        craftcount[int(cList[item][u'tier'])][u'refine'] += 0.2
                     else:
-                        craftcount[int(cList[item]['tier'])]['refine'] += 1.0
-                    make[int(cList[item]['tier'])][item] += 1
+                        craftcount[int(cList[item][u'tier'])][u'refine'] += 1.0
+                    make[int(cList[item][u'tier'])][item] += 1
                 else:
                     if item in [13063,  13189,  13207,  13219,  13045,  13022,  13075,  13177,  13096,  13033] and not sole: # Sole IDs
                         sole +=1
                     else:
-                        craftcount[int(cList[item]['tier'])]['part'].append(rarityNum(cList[item]['rarity']))
-                    make[int(cList[item]['tier'])][item] += 1
-                recalc[int(cList[item]['tier'])] = 0
+                        craftcount[int(cList[item][u'tier'])][u'part'].append(rarityNum(cList[item][u'rarity']))
+                    make[int(cList[item][u'tier'])][item] += 1
+                recalc[int(cList[item][u'tier'])] = 0
 
             for ctier in recalc:
-                craftcount[ctier]['current_xp'] = compute_level((xp_to_level[ctier] if ctier == 0 or xp_to_level[ctier] >= craftcount[ctier-25]['current_xp'] else craftcount[ctier-25]['current_xp']), craftcount[ctier],ctier,xp_to_level)
+                craftcount[ctier][u'current_xp'] = compute_level((xp_to_level[ctier] if ctier == 0 or xp_to_level[ctier] >= craftcount[ctier-25][u'current_xp'] else craftcount[ctier-25][u'current_xp']), craftcount[ctier],ctier,xp_to_level)
 
             t = int(math.floor(tier/75.0)*75)
             if t == 375:
                 t = 300
             if "cook" in filename:
-                for item in bucket[bkey[0]]['buy']:
+                for item in bucket[bkey[0]][u'buy']:
                     buy[item] += 1
             else:
-                for item in bucket[bkey[0]]['buy']:
+                for item in bucket[bkey[0]][u'buy']:
                     # Lump of Tin and Bronze Ingot
-                    if t == 0 and item == 19704 and 19679 in bucket[bkey[0]]['make']:
+                    if t == 0 and item == 19704 and 19679 in bucket[bkey[0]][u'make']:
                         tierbuy[t][item] += .2
                         buy[item] += .2
                     else:
                         tierbuy[t][item] += 1
                         buy[item] += 1
 
+    printtofile(tcost, treco, sell, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_de.ilist, localde, "de/")
+    printtofile(tcost, treco, sell, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_fr.ilist, localfr, "fr/")
+    printtofile(tcost, treco, sell, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_es.ilist, locales, "es/")
     totals = {}
-    totals.update(printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList, filename, mytime, header, cright))
+    totals.update(printtofile(tcost, treco, sell, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_en.ilist, localen))
     return totals    
 
 # given an item, determine if it is better to craft its sub items, or buy them.  return the recipe.
 # include cost for current state, and xp generated.
 def calcRecipecraft(recipe,items,craftcount,tier,count,itier,ignoreMixed,xp_to_level):
     level = 0
-    while xp_to_level[int(level)] < craftcount[int(tier)]['current_xp']:
+    while xp_to_level[int(level)] < craftcount[int(tier)][u'current_xp']:
         level += 1
     xptotal = 0
     make = []
@@ -427,49 +370,49 @@ def calcRecipecraft(recipe,items,craftcount,tier,count,itier,ignoreMixed,xp_to_l
     # "Amber Pebble","Garnet Pebble","Malachite Pebble","Pearl","Tiger's Eye Pebble","Turquoise Pebble","Amethyst Nugget","Carnelian Nugget","Lapis Nugget","Peridot Nugget","Spinel Nugget","Sunstone Nugget","Topaz Nugget","Amethyst Lump","Carnelian Lump","Lapis Lump","Peridot Lump","Spinel Lump","Sunstone Lump","Topaz Lump","Beryl Shard","Chrysocola Shard","Coral Chunk","Emerald Shard","Opal Shard","Ruby Shard","Sapphire Shard","Beryl Crystal","Chrysocola Crystal","Coral Tentacle","Emerald Crystal","Opal Crystal","Ruby Crystal","Sapphire Crystal","Passion Flower"
     gemss = [24534,  24464,  24466,  24500,  24467,  24465,  24501,  24469,  24470,  24468,  24889,  24471,  24535,  24527,  24472,  24507,  24504,  24526,  24503,  24506,  24872,  24870,  24874,  24871,  24875,  24873,  24876,  24519,  24511,  24509,  24473,  24521,  24474,  24475,  37907]
     # impossible to make item at this point.
-    if int(items[recipe]['tier']) > int(itier):
+    if int(items[recipe][u'tier']) > int(itier):
 #        print recipe
         return 9999999999, -99999999999, make, buy
     for i in range(0,count):
         make.append(recipe)
-    if int(items[recipe]['tier']) < int(tier) and not items[recipe]['type'] in non_item:
-        xptotal = xp_calc(0,0,count,0,rarityNum(items[recipe]['rarity']),int(items[recipe]['tier']),level)*.85
-    elif not items[recipe]['type'] in non_item and not 'discover' in items[recipe]:
-        xptotal = xp_calc(0,0,count-1,1,rarityNum(items[recipe]['rarity']),int(items[recipe]['tier']),level)
-    elif not items[recipe]['type'] in non_item:
-        xptotal = xp_calc(0,0,count,0,rarityNum(items[recipe]['rarity']),int(items[recipe]['tier']),level)
-    elif items[recipe]['type'] == u'Refinement':
+    if int(items[recipe][u'tier']) < int(tier) and not items[recipe][u'type'] in non_item:
+        xptotal = xp_calc(0,0,count,0,rarityNum(items[recipe][u'rarity']),int(items[recipe][u'tier']),level)*.85
+    elif not items[recipe][u'type'] in non_item and not 'discover' in items[recipe]:
+        xptotal = xp_calc(0,0,count-1,1,rarityNum(items[recipe][u'rarity']),int(items[recipe][u'tier']),level)
+    elif not items[recipe][u'type'] in non_item:
+        xptotal = xp_calc(0,0,count,0,rarityNum(items[recipe][u'rarity']),int(items[recipe][u'tier']),level)
+    elif items[recipe][u'type'] == u'Refinement':
         if 19679 == recipe:
-            xptotal = math.ceil(xp_calc(count,0,0,0,1.0,int(items[recipe]['tier']),level)*0.2)
+            xptotal = math.ceil(xp_calc(count,0,0,0,1.0,int(items[recipe][u'tier']),level)*0.2)
         else:
-            xptotal = xp_calc(count,0,0,0,1.0,int(items[recipe]['tier']),level)
+            xptotal = xp_calc(count,0,0,0,1.0,int(items[recipe][u'tier']),level)
     else:
         if recipe in [13063,  13189,  13207,  13219,  13045,  13022,  13075,  13177,  13096,  13033]: # Sole
-            xptotal = xp_calc(0,count,0,0,1.0,int(items[recipe]['tier']),level)*0.5
+            xptotal = xp_calc(0,count,0,0,1.0,int(items[recipe][u'tier']),level)*0.5
         else:
-            xptotal = xp_calc(0,count,0,0,1.0,int(items[recipe]['tier']),level)
+            xptotal = xp_calc(0,count,0,0,1.0,int(items[recipe][u'tier']),level)
 
     mycost = 0
-    for item in items[recipe]['recipe']:
-        mycost += items[item]['cost']*items[recipe]['recipe'][item]
+    for item in items[recipe][u'recipe']:
+        mycost += items[item][u'cost']*items[recipe][u'recipe'][item]
 
     mycost *= count
-    for item in items[recipe]['recipe']:
-        if not items[item]['recipe'] == None:
-            tcost, txptotal, tmake, tbuy = calcRecipecraft(item,items,craftcount,items[item]['tier'],items[recipe]['recipe'][item]*count,int(items[recipe]['tier']),ignoreMixed,xp_to_level)
-            if (ignoreMixed and item not in gemss) or tcost < items[item]['cost']*items[recipe]['recipe'][item]*count or float(xptotal+txptotal)/float(mycost-items[item]['cost']*items[recipe]['recipe'][item]*count+tcost) >= float(xptotal)/float(mycost):
+    for item in items[recipe][u'recipe']:
+        if not items[item][u'recipe'] == None:
+            tcost, txptotal, tmake, tbuy = calcRecipecraft(item,items,craftcount,items[item][u'tier'],items[recipe][u'recipe'][item]*count,int(items[recipe][u'tier']),ignoreMixed,xp_to_level)
+            if (ignoreMixed and item not in gemss) or tcost < items[item][u'cost']*items[recipe][u'recipe'][item]*count or float(xptotal+txptotal)/float(mycost-items[item][u'cost']*items[recipe][u'recipe'][item]*count+tcost) >= float(xptotal)/float(mycost):
                 xptotal += txptotal*.85
                 cost += tcost
                 buy += tbuy
                 make += tmake
             else:
-                for i in range(0,int(math.ceil(count*items[recipe]['recipe'][item]))):
+                for i in range(0,int(math.ceil(count*items[recipe][u'recipe'][item]))):
                     buy.append(item)
-                cost += items[item]['cost']*count*items[recipe]['recipe'][item]
+                cost += items[item][u'cost']*count*items[recipe][u'recipe'][item]
         else:
-            for i in range(0,int(math.ceil(count*items[recipe]['recipe'][item]))):
+            for i in range(0,int(math.ceil(count*items[recipe][u'recipe'][item]))):
                 buy.append(item)
-            cost += items[item]['cost']*count*items[recipe]['recipe'][item]
+            cost += items[item][u'cost']*count*items[recipe][u'recipe'][item]
     return cost, xptotal, make, buy
 
 def makeQueuecraft(recipes,items,craftcount,tier,ignoreMixed,xp_to_level):
@@ -482,12 +425,12 @@ def makeQueuecraft(recipes,items,craftcount,tier,ignoreMixed,xp_to_level):
 
     for recipe in recipes.keys():
         # swap which line is commented if you want guides that include "make 83 epaulets" for 25 copper savings
-        if not items[recipe]['type'] in non_item:
-#        if int(items[recipe]['tier']) > int(tier)-24:
+        if not items[recipe][u'type'] in non_item:
+#        if int(items[recipe][u'tier']) > int(tier)-24:
             cost, xptotal, make, buy = calcRecipecraft(recipe,items,craftcount,tier,1,tier,ignoreMixed,xp_to_level)
             # Uncomment these 3 lines and comment the 4th if you want guides that try to make the lowest total price after sellback
-#            if items[recipe]['w'] > cost:
-#               weight = float(items[recipe]['w'] - cost)*100000.0
+#            if items[recipe][u'w'] > cost:
+#               weight = float(items[recipe][u'w'] - cost)*100000.0
 #            elif xptotal:
             if xptotal:
                 weight = float(xptotal)/float(cost)
@@ -528,9 +471,9 @@ def mFormat(line):
 
     return tmp + rStr
 
-# TODO Replace all "duplicate" f.write statements with function calls for easier reading
-def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList, filename, mytime, header, cright):
-    discbutton = buttonList[:]
+# TODO localize text strings for supported languages. -- modify to take a file with all the language sensitive strings
+def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, filename, mytime, cListName, localText, path=""):
+    buttonList = []
     totals = {}
     if tierbuy:
         totals[filename.split('.')[0]] = {0:defaultdict(int),75:defaultdict(int),150:defaultdict(int),225:defaultdict(int),300:defaultdict(int),'total':int(tcost)}
@@ -539,148 +482,10 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList
 
     non_item = [u'Refinement', u'Insignia', u'Inscription', u'Component']
 
-    karma_items  = {12337:{'note':"Lieutenant Pickins - Greystone Rise(Harathi Hinterlands 35-45) <br /> Disa - Snowslide Ravine(Dredgehaunt Cliffs 40-50)",'cost':77}, # Almond
-                    12165:{'note':"Farmer Eda - Shaemoor Fields(Queensdale 1-15) <br /> Apple Jack(16c per) - Cornucopian Fields(Gendarran Fields 25-35)",'cost':35}, # Apple
-                    12340:{'note':"Fallen Angel Makayla - Stronghold of Ebonhawke(Fields of Ruin 30-40)",'cost':77}, # Avocado
-                    12251:{'note':"Deputy Jenks - Giant's Passage (Kessex Hills 15-25) <br /> Sangdo Swiftwing - Cereboth Canyon(Kessex Hills 15-25) <br /> Seraph Soldier Goran - The Wendon Steps(Brisban Wildlands 15-25) <br /> Security Captain Vejj - Almuten Estates(Gendarran Fields 25-35)",'cost':49}, # Banana
-                    12237:{'note':"Deputy Jenks - Overlake Haven(Kessex Hills 15-25) <br /> Field Medic Leius - Nebo Terrace(Gendarran Fields 25-35)",'cost':49}, # Black Bean
-                    12240:{'note':"Bjarni - Hangrammr Climb(Wayfayer Foothills 1-15) <br /> Milton Book - Cornucopian Fields(Gendarran Fields 25-35)",'cost':35}, # Celery Stalk
-                    12338:{'note':"Lieutenant Summers - Nightguard Beach(Harathi Hinterlands 35-45) <br /> Disa - Snowslide Ravine(Dredgehaunt Cliffs 35-45)",'cost':77}, # Cherry
-                    12515:{'note':"Naknar - Ebbing Heart Run(Iron Marches 50-60)",'cost':112}, # Chickpea
-                    12350:{'note':"Lionscout Tunnira - Archen Foreland(Bloodtide Coast 45-55)",'cost':112}, # Coconut
-                    12256:{'note':"Sagum Relicseeker - Agnos Gorge(Plains of Ashford 1-15) <br /> Milton Book - Cornucopian Fields(Gendarran Fields 25-35)",'cost':35}, # Cumin
-                    12502:{'note':"Environmental Activist Jenrys - Judgement Rock(Mount Maelstrom 60-70)",'cost':154}, # Eggplant
-                    12232:{'note':"Albin Chronicler - The Icesteppes(Wayfarer Foothills 1-15)",'cost':35}, # Green Bean
-                    12518:{'note':"Laudren - Thundertroll Swamp(Sparkfly Fen 55-65) <br /> Wupwup Chief - Apostate Wastes(Fireheart Rise 60-70)",'cost':112}, # Horseradish Root
-                    12239:{'note':"Seraph Archer Brian - Ossencrest Climb(Snowden Drifts 15-25) <br /> Kastaz Strongpaw - Noxin Dells(Diessa Plateau 15-25) <br /> Hune - The Thunderhorns(Lornar's Pass 25-40)",'cost':49}, # Kidney Bean
-                    12252:{'note':"Eona - Mabon Market(Caledon Forest 1-15) <br /> Researcher Hrappa - Voloxian Passage(Metrica Province 1-15) <br /> Milton Book - Cornucopian Fields(Gendarran Fields 25-35)",'cost':35}, # Lemon
-                    12339:{'note':"Shelp - Degun Shun(Blazeridge Steppes 40-50)",'cost':77}, # Lime
-                    12543:{'note':"Agent Crandle - Fort Trinity(Straits of Devastation 70-75)",'cost':203}, # Mango
-                    12249:{'note':"Farmer Eda - Shaemoor Fields(Queensdale 1-15) <br /> Deputy Jenks - Overlake Haven(Kessex Hills 15-25) <br /> Milton Book - Cornucopian Fields(Gendarran Fields 25-35)",'cost':35}, # Nutmeg Seed
-                    12503:{'note':"Nrocroc Chief - Apostate Wastes(Fireheart Rise 60-70)",'cost':154}, # Peach
-                    12514:{'note':"Braxa Scalehunter - Champion's Shield(Iron Marches 50-60)",'cost':112}, # Pear
-                    12516:{'note':"Scholar Tholin - Krongar Pass(Timberline Falls 50-60)",'cost':112}, # Pinenut
-                    12517:{'note':"Ichtaca - Hunting Banks(Timberline Falls 50-60)",'cost':112}} # Shallot
-
-    karma_chef = {12159:{'note':"Master Chef or vendor near cooking area",'cost':35}, # Cheese Wedge
-                    12137:{'note':"Master Chef or vendor near cooking area",'cost':35}, # Glass of Buttermilk
-                    12152:{'note':"Master Chef or vendor near cooking area",'cost':35}, # Packet of Yeast
-                    12145:{'note':"Master Chef or vendor near cooking area",'cost':49}, # Rice Ball
-                    12325:{'note':"Master Chef or vendor near cooking area",'cost':77}, # Bowl of Sour Cream
-                    12141:{'note':"Master Chef or vendor near cooking area",'cost':35}, # Tomato
-                    12328:{'note':"Master Chef or vendor near cooking area",'cost':77}, # Ginger Root
-                    12245:{'note':"Master Chef or vendor near cooking area",'cost':49}, # Basil Leaf
-                    12235:{'note':"Master Chef or vendor near cooking area",'cost':49}} # Bell Pepper
-
-    karma_recipe = {12131:{'note':"Elain - Grenbrack Delves(Caledon Forest 1-15)",'cost':35}, # Bowl of Watery Mushroom Soup
-                    12185:{'note':"Bjarni - Breakneck Pass(Wayfarer Foothills 1-15)",'cost':35}, # Handful of Bjarni's Rabbit Food
-                    12140:{'note':"PR&T Senior Investigator Hrouda - Akk Wilds(Metrica Province 1-15)",'cost':35}, # Bowl of Gelatinous Ooze Custard
-                    8587:{'note':"Drottot Lashtail - Devourer's Mouth(Plains of Ashford 1-15)",'cost':35}, # Poached Egg
-                    12211:{'note':"Lodge Keeper Kevach - Dolyak Pass(Wayfarer Foothills 1-15)",'cost':35}, # Bowl of Cold Wurm Stew
-                    12198:{'note':"Vaastas Meatslayer - Village of Butcher's Block(Diessa Plateau 15-25)",'cost':35}, # Celebratory Steak
-                    12133:{'note':"Laewyn - Wychmire Swamp(Caledon Forest 1-15)",'cost':35}, # Warden Ration
-                    12149:{'note':"Veteran Krug - Taminn Foothills(Queensdale 1-15)",'cost':35}, # Bowl of Ettin Stew
-                    12203:{'note':"Maxtar Rapidstep - Dolyak Pass(Wayfarer Foothills 1-15)",'cost':35}, # Bowl of Dolyak Stew
-                    12139:{'note':"Aidem Finlay - Hidden Lake(Brisban Wildlands 15-25)",'cost':35}, # Bowl of Front Line Stew
-                    12150:{'note':"Farmer Eda - Shaemoor Fields(Queensdale 1-15)",'cost':35}, # Eda's Apple Pie
-                    12343:{'note':"Kastaz Strongpaw - Noxin Dells(Diessa Plateau 15-25)",'cost':35}, # Kastaz Roasted Poultry
-                    12160:{'note':"Lionguard Auda - Dragon's Rising(Silverpeak Mountains 15-25)",'cost':35}, # Loaf of Walnut Sticky Bread
-                    12154:{'note':"Seraph Archer Brian - Ossencrest Climb(Snowden Drifts 15-25)",'cost':35}, # Bowl of Outrider Stew
-                    12292:{'note':"Glubb - Degun Shun(Blazeridge Steppes 40-50)",'cost':35}, # Bowl of Degun Shun Stew
-                    12233:{'note':"Scholar Tholin - Krongar Pass(Timberline Falls 50-60)",'cost':35}, # Handful of Trail Mix
-                    12739:{'note':"Sentry Triktiki - Arcallion Digs(Harathi Hinterlands 35-45)",'cost':35}, # Triktiki Omelet
-                    12352:{'note':"Pochtecatl - Jelako Cliffrise(Bloodtide Coast 45-55)",'cost':35}, # Griffon Egg Omelet
-                    12264:{'note':"Nrocroc Chief - Apostate Wastes(Fireheart Rise 60-70)",'cost':35}, # Raspberry Pie
-                    12192:{'note':"Assistant Chef Victor- Scaver Plateau(Queensdale 1-15)",'cost':35}, # Beetletun Omelette
-                    19955:{'note':"Master Craftsman or Vendor",'cost':350}, # Ravaging Intricate Wool Insignia
-                    19956:{'note':"Master Craftsman or Vendor",'cost':350}, # Rejuvenating Intricate Wool Insignia
-                    19957:{'note':"Master Craftsman or Vendor",'cost':350}, # Honed Intricate Wool Insignia
-                    19958:{'note':"Master Craftsman or Vendor",'cost':350}, # Pillaging Intricate Wool Insignia
-                    19959:{'note':"Master Craftsman or Vendor",'cost':350}, # Strong Intricate Wool Insignia
-                    19960:{'note':"Master Craftsman or Vendor",'cost':350}, # Vigorous Intricate Wool Insignia
-                    19961:{'note':"Master Craftsman or Vendor",'cost':350}, # Hearty Intricate Wool Insignia
-                    19962:{'note':"Master Craftsman or Vendor",'cost':455}, # Ravaging Intricate Cotton Insignia
-                    19963:{'note':"Master Craftsman or Vendor",'cost':455}, # Rejuvenating Intricate Cotton Insignia
-                    19964:{'note':"Master Craftsman or Vendor",'cost':455}, # Honed Intricate Cotton Insignia
-                    19965:{'note':"Master Craftsman or Vendor",'cost':455}, # Pillaging Intricate Cotton Insignia
-                    19966:{'note':"Master Craftsman or Vendor",'cost':455}, # Strong Intricate Cotton Insignia
-                    19967:{'note':"Master Craftsman or Vendor",'cost':455}, # Vigorous Intricate Cotton Insignia
-                    19968:{'note':"Master Craftsman or Vendor",'cost':455}, # Hearty Intricate Cotton Insignia
-                    19969:{'note':"Master Craftsman or Vendor",'cost':567}, # Carrion Intricate Linen Insignia
-                    19970:{'note':"Master Craftsman or Vendor",'cost':567}, # Cleric's Intricate Linen Insignia
-                    19971:{'note':"Master Craftsman or Vendor",'cost':567}, # Explorer's Intricate Linen Insignia
-                    19972:{'note':"Master Craftsman or Vendor",'cost':567}, # Berserker's Intricate Linen Insignia
-                    19973:{'note':"Master Craftsman or Vendor",'cost':567}, # Valkyrie Intricate Linen Insignia
-                    19974:{'note':"Master Craftsman or Vendor",'cost':567}, # Rampager's Intricate Linen Insignia
-                    19975:{'note':"Master Craftsman or Vendor",'cost':567}, # Knight's Intricate Linen Insignia
-                    19880:{'note':"Master Craftsman or Vendor",'cost':672}, # Carrion Intricate Silk Insignia
-                    19881:{'note':"Master Craftsman or Vendor",'cost':672}, # Cleric's Intricate Silk Insignia
-                    19882:{'note':"Master Craftsman or Vendor",'cost':672}, # Explorer's Intricate Silk Insignia
-                    19883:{'note':"Master Craftsman or Vendor",'cost':672}, # Berserker's Intricate Silk Insignia
-                    19886:{'note':"Master Craftsman or Vendor",'cost':672}, # Valkyrie Intricate Silk Insignia
-                    19884:{'note':"Master Craftsman or Vendor",'cost':672}, # Rampager's Intricate Silk Insignia
-                    19885:{'note':"Master Craftsman or Vendor",'cost':672}, # Knight's Intricate Silk Insignia
-                    19934:{'note':"Master Craftsman or Vendor",'cost':350}, # Ravaging Iron Imbued Inscription
-                    19935:{'note':"Master Craftsman or Vendor",'cost':350}, # Rejuvenating Iron Imbued Inscription
-                    19936:{'note':"Master Craftsman or Vendor",'cost':350}, # Honed Iron Imbued Inscription
-                    19937:{'note':"Master Craftsman or Vendor",'cost':350}, # Pillaging Iron Imbued Inscription
-                    19938:{'note':"Master Craftsman or Vendor",'cost':350}, # Strong Iron Imbued Inscription
-                    19939:{'note':"Master Craftsman or Vendor",'cost':350}, # Vigorous Iron Imbued Inscription
-                    19940:{'note':"Master Craftsman or Vendor",'cost':350}, # Hearty Iron Imbued Inscription
-                    19941:{'note':"Master Craftsman or Vendor",'cost':455}, # Ravaging Steel Imbued Inscription
-                    19942:{'note':"Master Craftsman or Vendor",'cost':455}, # Rejuvenating Steel Imbued Inscription
-                    19943:{'note':"Master Craftsman or Vendor",'cost':455}, # Honed Steel Imbued Inscription
-                    19944:{'note':"Master Craftsman or Vendor",'cost':455}, # Pillaging Steel Imbued Inscription
-                    19945:{'note':"Master Craftsman or Vendor",'cost':455}, # Strong Steel Imbued Inscription
-                    19946:{'note':"Master Craftsman or Vendor",'cost':455}, # Vigorous Steel Imbued Inscription
-                    19947:{'note':"Master Craftsman or Vendor",'cost':455}, # Hearty Steel Imbued Inscription
-                    19948:{'note':"Master Craftsman or Vendor",'cost':567}, # Carrion Darksteel Imbued Inscription
-                    19949:{'note':"Master Craftsman or Vendor",'cost':567}, # Cleric's Darksteel Imbued Inscription
-                    19950:{'note':"Master Craftsman or Vendor",'cost':567}, # Explorer's Darksteel Imbued Inscription
-                    19951:{'note':"Master Craftsman or Vendor",'cost':567}, # Berserker's Darksteel Imbued Inscription
-                    19952:{'note':"Master Craftsman or Vendor",'cost':567}, # Valkyrie Darksteel Imbued Inscription
-                    19953:{'note':"Master Craftsman or Vendor",'cost':567}, # Rampager's Darksteel Imbued Inscription
-                    19954:{'note':"Master Craftsman or Vendor",'cost':567}, # Knight's Darksteel Imbued Inscription
-                    19897:{'note':"Master Craftsman or Vendor",'cost':672}, # Carrion Mithril Imbued Inscription
-                    19898:{'note':"Master Craftsman or Vendor",'cost':672}, # Cleric's Mithril Imbued Inscription
-                    19899:{'note':"Master Craftsman or Vendor",'cost':672}, # Explorer's Mithril Imbued Inscription
-                    19900:{'note':"Master Craftsman or Vendor",'cost':672}, # Berserker's Mithril Imbued Inscription
-                    19903:{'note':"Master Craftsman or Vendor",'cost':672}, # Valkyrie Mithril Imbued Inscription
-                    19901:{'note':"Master Craftsman or Vendor",'cost':672}, # Rampager's Mithril Imbued Inscription
-                    19902:{'note':"Master Craftsman or Vendor",'cost':672}, # Knight's Mithril Imbued Inscription
-                    24904:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Intricate Topaz Jewel
-                    24902:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Intricate Spinel Jewel
-                    24901:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Intricate Peridot Jewel
-                    24903:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Intricate Sunstone Jewel
-                    24899:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Intricate Carnelian Jewel
-                    24898:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Intricate Amethyst Jewel
-                    24900:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Intricate Lapis Jewel
-                    24911:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Gilded Topaz Jewel
-                    24905:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Gilded Amethyst Jewel
-                    24906:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Gilded Carnelian Jewel
-                    24907:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Gilded Lapis Jewel
-                    24908:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Gilded Peridot Jewel
-                    24909:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Gilded Spinel Jewel
-                    24910:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Gilded Sunstone Jewel
-                    24912:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Ornate Beryl Jewel
-                    24913:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Ornate Chrysocola Jewel
-                    24914:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Ornate Coral Jewel
-                    24915:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Ornate Emerald Jewel
-                    24916:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Ornate Opal Jewel
-                    24917:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Ornate Ruby Jewel
-                    24918:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Ornate Sapphire Jewel
-                    24919:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Brilliant Beryl Jewel
-                    24920:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Brilliant Chrysocola Jewel
-                    24921:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Brilliant Coral Jewel
-                    24922:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Brilliant Emerald Jewel
-                    24923:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Brilliant Opal Jewel
-                    24924:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Brilliant Ruby Jewel
-                    24925:{'note':"Master Craftsman or Vendor",'cost':231}} # Embellished Brilliant Sapphire Jewel
-
     recipebuy = []
     for tier in [0,25,50,75,100,125,150,175,200,225,250,275,300,325,350,375]:
         for item in make[tier]:
-            if item in karma_recipe:
+            if item in localText.karma_recipe:
                 recipebuy.append(item)
 
     # 'Spool of Jute Thread','Spool of Wool Thread','Spool of Cotton Thread','Spool of Linen Thread','Spool of Silk Thread','Lump of Tin','Lump of Coal','Lump of Primordium','Jar of Vinegar','Packet of Baking Powder','Jar of Vegetable Oil','Packet of Salt','Bag of Sugar','Jug of Water','Bag of Starch','Bag of Flour','Bottle of Soy Sauce',"Bottle of Rice Wine", "Minor Rune of Holding", "Rune of Holding", "Major Rune of Holding", "Greater Rune of Holding"
@@ -713,7 +518,7 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList
             tierbuy[0][19704] += 0.2*var
             buy[19697] += 2*var
             buy[19704] += 0.2*var
-            tcost += cList[19697]['cost']*var+8.0*(0.2*var)
+            tcost += cList[19697][u'cost']*var+8.0*(0.2*var)
         make[0][19679] = make[0][19679]/5
 
     if 19704 in buy and buy[19704] == 0.0:
@@ -732,10 +537,11 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList
     b_mix = defaultdict(int)
 
     for item in buy:    
-            if item in karma_chef:
+            if item in localText.karma_chef:
                 b_karma_c[item] = buy[item]
-            elif item in karma_items:
-                karmin[item] = buy[item] # used by cooking to make a top 5 list
+            elif item in localText.karma_items:
+                if path == "":
+                    karmin[item] = buy[item] # used by cooking to make a top 5 list
                 b_karma_w[item] = buy[item]
             elif item in vendor:
                 b_vendor[item] = buy[item]
@@ -754,29 +560,33 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList
             else:
                 b_mix[item] = buy[item]
 
+    karma_str = u"<div class=\"s%d\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><span class=\"quantity\">%d</span> <button title=\"Click To Toggle\" class=\"%s arrow\" id=\"%d\">%s</button><div class=\"lsbutton\" id=\"1%d\">%d <span class=\"karmaIcon\"></span> per 25 <br /> %s</div></div>\n"
+    collectable_str = u"<div class=\"s%d\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><span class=\"quantity\">%d</span> <span class=\"%s\">%s</span> (%4s per)</div>\n"
+
+
     t = 0 # used to control div background color
     kt = 0 # karma total
-    with open(filename,'wb') as f:
-        f.write('<!DOCTYPE html>\n')
-        f.write('<html>\n')
-        f.write('<head>\n')
-        f.write('    <title>'+filename.split('.')[0].replace("_"," ").title()+'</title>\n')
-        f.write('    <meta name="description" content="Guild Wars 2 always current crafting guide for '+filename.split('.')[0].replace("_"," ").title()+'">\n')
-        f.write('    <meta http-equiv="content-type" content="text/html;charset=UTF-8">\n')
-        f.write('    <link href="css/layout.css" rel="stylesheet" type="text/css" />') 
-        f.write('    <link rel="icon" type="image/png" href="/fi.gif">')
-        f.write('    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>\n')
-        f.write('    <script>(window.jQuery || document.write(\'<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"><\/script>\'));</script>\n')
-        f.write('    <script src="js/menu.js" type="text/javascript"></script>\n')
-        f.write('</head>\n')
-        f.write('<body>\n'+header+'\n<section>')
-        f.write('<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n')
-        f.write('<img src="css/warning-icon.png" width="24px" height="24px" style="padding: 0 8px 0 8px; float: left;"><span style="position: relative; top: 4px;"><span style="color: red">Do not refresh this page.</span>    It may change. Updated: '+mytime+'</b></span>\n')
-        f.write('</div><br />\n')
-        f.write("Wherever you see this  <img src=\"/img/arrow.png\"></img> you can click for more information <br />")
-        f.write('<h1>'+filename.split('.')[0].replace("_"," ").title()+'</h1>')
+    with codecs.open(path+filename, 'wb', encoding='utf-8') as f:
+        f.write(u'<!DOCTYPE html>\n')
+        f.write(u'<html>\n')
+        f.write(u'<head>\n')
+        f.write(u'    <title>'+filename.split('.')[0].replace("_"," ").title()+'</title>\n')
+        f.write(u'    <meta name="description" content="Guild Wars 2 always current crafting guide for '+filename.split('.')[0].replace("_"," ").title()+'">\n')
+        f.write(u'    <meta http-equiv="content-type" content="text/html;charset=UTF-8">\n')
+        f.write(u'    <link href="/css/layout.css" rel="stylesheet" type="text/css" />') 
+        f.write(u'    <link rel="icon" type="image/png" href="/fi.gif">')
+        f.write(u'    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>\n')
+        f.write(u'    <script>(window.jQuery || document.write(\'<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"><\/script>\'));</script>\n')
+        f.write(u'    <script src="/js/menu.js" type="text/javascript"></script>\n')
+        f.write(u'</head>\n')
+        f.write(u'<body>\n'+localText.header+'\n<section>')
+        f.write(u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n')
+        f.write(u'<img src="/css/warning-icon.png" width="24px" height="24px" style="padding: 0 8px 0 8px; float: left;"><span style="position: relative; top: 4px;"><span style="color: red">Do not refresh this page.</span>    It may change. Updated: '+mytime+'</b></span>\n')
+        f.write(u'</div><br />\n')
+        f.write(u'Wherever you see this  <img src=\"/img/arrow.png\"></img> you can click for more information <br />')
+        f.write(u'<h1>'+filename.split('.')[0].replace("_"," ").title()+'</h1>')
         # adword
-        f.write('<div style="display:block;float:Right;"> \
+        f.write(u'<div style="display:block;float:Right;"> \
                 \n<script type="text/javascript"><!-- \
                 \ngoogle_ad_client = "ca-pub-6865907345688710"; \
                 \n/* half page banner 2 */ \
@@ -789,84 +599,83 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList
                 \nsrc="http://pagead2.googlesyndication.com/pagead/show_ads.js"> \
                 \n</script> \
                 \n</div>\n')
-        f.write('<dl>\n')
-        f.write('    <dt>Initial Cost</dt>\n')
-        f.write('    <dd>'+mFormat(tcost)+'</dd>\n')
-        f.write('    <dt>Expected Recovery</dt>\n')
-        f.write('    <dd><span style="position: relative; left: -9px;">- '+mFormat(treco)+'</span></dd>\n')
-        f.write('    <dt>Expected Final Cost</dt>\n')
-        f.write('    <dd style="border-top: 1px #666 solid;">'+mFormat(tcost-treco)+'</dd>\n')
-        f.write('</dl>')
-        f.write('<div class="clear"></div>')
-        f.write('<br /><button title=\"Click To Toggle\" class=\"arrow\" id=\"tcost\">Sell List:</button><div class=\"lsbutton\" id=\"1tcost\">')
+        f.write(u'<dl>\n')
+        f.write(u'    <dt>Initial Cost</dt>\n')
+        f.write(u'    <dd>'+mFormat(tcost)+'</dd>\n')
+        f.write(u'    <dt>Expected Recovery</dt>\n')
+        f.write(u'    <dd><span style="position: relative; left: -9px;">- '+mFormat(treco)+'</span></dd>\n')
+        f.write(u'    <dt>Expected Final Cost</dt>\n')
+        f.write(u'    <dd style="border-top: 1px #666 solid;">'+mFormat(tcost-treco)+'</dd>\n')
+        f.write(u'</dl>')
+        f.write(u'<div class="clear"></div>')
+        f.write(u'<br /><button title=\"Click To Toggle\" class=\"arrow\" id=\"tcost\">Sell List:</button><div class=\"lsbutton\" id=\"1tcost\">')
         for line in sorted(sell):
             t = (t+1)%2
-            f.write("<div class=\"s"+str(t)+"\">%3i <span class=\"%s\">%s</span> - Sold for %s per via %s</div>\n"%(sell[line],cList[line]['rarity'],cList[line]['name'],mFormat(cList[line]['w']),cList[line]['sellMethod']))
+            f.write(u'<div class=\"s%i\">%3i <span class=\"%s\">%s</span> - Sold for %s per via %s</div>\n'%(t,sell[line],cList[line][u'rarity'],cListName[line],mFormat(cList[line][u'w']),cList[line][u'sellMethod']))
 
-        f.write("</div><script type=\"text/javascript\">$('#1tcost').hide();</script><br />")
+        f.write(u"</div><script type=\"text/javascript\">$('#1tcost').hide();</script><br />")
         buttonList.append('tcost')
 
         if b_vendor or b_karma_c or b_karma_w:
-            f.write("<h2>BUY VENDOR</h2>\n")
+            f.write(u"<h2>BUY VENDOR</h2>\n")
             if b_karma_c or b_karma_w:
-                f.write("<span class=\"karmaIcon\"></span> Note: 11 Basil Leaf(e.g.) means buy 1 bulk Basil Leaf and you will have 14 left over<br /><br />\n")
+                f.write(u"<span class=\"karmaIcon\"></span> Note: 11 Basil Leaf(e.g.) means buy 1 bulk Basil Leaf and you will have 14 left over<br /><br />\n")
 
             for item in sorted(b_karma_w):
                 t = (t+1)%2
-                f.write(("<div class=\"s"+str(t)+"\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url("+cList[item]['icon']+");\"></span><span class=\"quantity\">%i</span> <button title=\"Click To Toggle\" class=\"%s arrow\" id=\""+str(item)+"\">%s</button><div class=\"lsbutton\" id=\"1"+str(item)+"\">%i <span class=\"karmaIcon\"></span> per 25 <br /> %s</div></div>\n")%(buy[item],cList[item]['rarity'],cList[item][u'name'],karma_items[item]['cost'],karma_items[item]['note']))
+                f.write(karma_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],item,cListName[item],item,localText.karma_items[item][u'cost'],localText.karma_items[item][u'note']))
                 buttonList.append(item)
-                kt += int(math.ceil(buy[item]/25.0)*karma_items[item]['cost'])
+                kt += int(math.ceil(buy[item]/25.0)*localText.karma_items[item][u'cost'])
 
             for item in sorted(b_karma_c):
                 t = (t+1)%2
-                f.write(("<div class=\"s"+str(t)+"\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url("+cList[item]['icon']+");\"></span><span class=\"quantity\">%i</span> <button title=\"Click To Toggle\" class=\"%s arrow\" id=\""+str(item)+"\">%s</button><div class=\"lsbutton\" id=\"1"+str(item)+"\">%i <span class=\"karmaIcon\"></span> per 25 <br /> %s</div></div>\n")%(buy[item],cList[item]['rarity'],cList[item][u'name'],karma_chef[item]['cost'],karma_chef[item]['note']))
+                f.write(karma_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],item,cListName[item],item,localText.karma_chef[item][u'cost'],localText.karma_chef[item][u'note']))
                 buttonList.append(item)
-                kt += int(math.ceil(buy[item]/25.0)*karma_chef[item]['cost'])
+                kt += int(math.ceil(buy[item]/25.0)*localText.karma_chef[item][u'cost'])
 
             for item in sorted(b_vendor):
                 t = (t+1)%2
-
-                f.write("<div class=\"s"+str(t)+"\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url("+cList[item]['icon']+");\"></span><span class=\"quantity\">%i</span> <span class=\"%s\">%s</span> (%4s per from Vendor)</div>\n"%(buy[item],cList[item]['rarity'],cList[item][u'name'],mFormat(cList[item]['cost'])))
+                f.write(u"<div class=\"s%i\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><span class=\"quantity\">%i</span> <span class=\"%s\">%s</span> (%4s per from Vendor)</div>\n"%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost'])))
 
         if recipebuy:
-            f.write("<h2>BUY RECIPES</h2>\n")
+            f.write(u"<h2>BUY RECIPES</h2>\n")
             for item in recipebuy:
                 t = (t+1)%2
-                f.write(("<div class=\"s"+str(t)+"\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url("+cList[item]['icon']+");\"></span><button title=\"Click To Toggle\" class=\"arrow %s\" id=\""+str(item)+"\">%s</button><div class=\"lsbutton\" id=\"1"+str(item)+"\">%i <span class=\"karmaIcon\"></span>, %s</div></div>\n")%(cList[item]['rarity'],cList[item][u'name'],karma_recipe[item]['cost'],karma_recipe[item]['note']))
+                f.write((u"<div class=\"s%d\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><button title=\"Click To Toggle\" class=\"arrow %s\" id=\"%d\">%s</button><div class=\"lsbutton\" id=\"1%d\">%i <span class=\"karmaIcon\"></span>, %s</div></div>\n")%(t,cList[item]['icon'],cList[item]['rarity'],item,cListName[item],item,localText.karma_recipe[item]['cost'],localText.karma_recipe[item]['note']))
                 buttonList.append(item)
-                kt += int(karma_recipe[item]['cost'])
+                kt += int(localText.karma_recipe[item][u'cost'])
         if kt:
-            f.write('<br />\nTotal <span class=\"karmaIcon\"></span>: '+str(kt)+'<br />\n')
+            f.write(u'<br />\nTotal <span class=\"karmaIcon\"></span>: '+str(kt)+'<br />\n')
         if b_common or b_fine or b_rare or b_gem or b_holiday or b_food:
-            f.write('<h2>COLLECTIBLES(Check Bank First or Buy on TP)</h2>\n')
+            f.write(u'<h2>COLLECTIBLES(Check Bank First or Buy on TP)</h2>\n')
             for item in sorted(b_common):
                 t = (t+1)%2
-                f.write("<div class=\"s"+str(t)+"\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url("+cList[item]['icon']+");\"></span><span class=\"quantity\">%i</span> <span class=\"%s\">%s</span> (%4s per)</div>\n"%(buy[item],cList[item]['rarity'],cList[item][u'name'],mFormat(cList[item]['cost'])))
+                f.write(collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost'])))
             for item in sorted(b_fine):
                 t = (t+1)%2
-                f.write("<div class=\"s"+str(t)+"\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url("+cList[item]['icon']+");\"></span><span class=\"quantity\">%i</span> <span class=\"%s\">%s</span> (%4s per)</div>\n"%(buy[item],cList[item]['rarity'],cList[item][u'name'],mFormat(cList[item]['cost'])))
+                f.write(collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost'])))
             for item in sorted(b_rare):
                 t = (t+1)%2
-                f.write("<div class=\"s"+str(t)+"\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url("+cList[item]['icon']+");\"></span><span class=\"quantity\">%i</span> <span class=\"%s\">%s</span> (%4s per)</div>\n"%(buy[item],cList[item]['rarity'],cList[item][u'name'],mFormat(cList[item]['cost'])))
+                f.write(collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost'])))
             for item in sorted(b_gem):
                 t = (t+1)%2
-                f.write("<div class=\"s"+str(t)+"\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url("+cList[item]['icon']+");\"></span><span class=\"quantity\">%i</span> <span class=\"%s\">%s</span> (%4s per)</div>\n"%(buy[item],cList[item]['rarity'],cList[item][u'name'],mFormat(cList[item]['cost'])))
+                f.write(collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost'])))
             for item in sorted(b_holiday):
                 t = (t+1)%2
-                f.write("<div class=\"s"+str(t)+"\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url("+cList[item]['icon']+");\"></span><span class=\"quantity\">%i</span> <span class=\"%s\">%s</span> (%4s per)</div>\n"%(buy[item],cList[item]['rarity'],cList[item][u'name'],mFormat(cList[item]['cost'])))
+                f.write(collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost'])))
             for item in sorted(b_food):
                 t = (t+1)%2
-                f.write("<div class=\"s"+str(t)+"\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url("+cList[item]['icon']+");\"></span><span class=\"quantity\">%i</span> <span class=\"%s\">%s</span> (%4s per)</div>\n"%(buy[item],cList[item]['rarity'],cList[item][u'name'],mFormat(cList[item]['cost'])))
+                f.write(collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost'])))
 
         if b_mix:
-            f.write('<h2>MIXED(Buy on TP)</h2>\n')
+            f.write(u'<h2>MIXED(Buy on TP)</h2>\n')
             for item in sorted(b_mix):
                 t = (t+1)%2
-                f.write("<div class=\"s"+str(t)+"\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url("+cList[item]['icon']+");\"></span><span class=\"quantity\">%i</span> <span class=\"%s\">%s</span> (%4s per)</div>\n"%(buy[item],cList[item]['rarity'],cList[item][u'name'],mFormat(cList[item]['cost'])))
+                f.write(collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost'])))
 
-        f.write("<br />\n<br />\n<h2>MAKE</h2>\n")
-        f.write("<button title=\"Click To Show All Discovery Recipes\" class =\"info\" id=\"show_all\">Expand All Discovery Recipes</button><br />")
-        f.write("<button title=\"Click To Hide All Discovery Recipes\" class =\"info\" id=\"hide_all\">Collapse All Discovery Recipes</button>")
+        f.write(u"<br />\n<br />\n<h2>MAKE</h2>\n")
+        f.write(u"<button title=\"Click To Show All Discovery Recipes\" class =\"info\" id=\"show_all\">Expand All Discovery Recipes</button><br />")
+        f.write(u"<button title=\"Click To Hide All Discovery Recipes\" class =\"info\" id=\"hide_all\">Collapse All Discovery Recipes</button>")
         rt = 0
         for tier in [0,25,50,75,100,125,150,175,200,225,250,275,300,325,350,375]:
             if tierbuy and tier in [0,75,150,225,300]:
@@ -874,58 +683,58 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList
                 tc = tier+75
                 if tier == 300:
                     tc += 25
-                f.write(("<br /><br /><h4>Tier %i, Levels %i-%i:<button title=\"Click To Toggle\" class =\"info\" id=\""+str(tier)+"tier\">Buy List(Only Tier %i)</button></h4>\n<div class=\"lsbutton\" id=\"1"+str(tier)+"tier\">")%(tier/75+1,tier,tc,tier/75+1))
-                f.write("<h5>Notice: If you are following the full guide then you already purchased these materials.</h5>")
+                f.write((u"<br /><br /><h4>Tier %i, Levels %i-%i:<button title=\"Click To Toggle\" class =\"info\" id=\""+str(tier)+"tier\">Buy List(Only Tier %i)</button></h4>\n<div class=\"lsbutton\" id=\"1"+str(tier)+"tier\">")%(tier/75+1,tier,tc,tier/75+1))
+                f.write(u"<h5>Notice: If you are following the full guide then you already purchased these materials.</h5>")
                 for item in sorted(tierbuy[tier]):
                     t = (t+1)%2
-                    f.write("<div class=\"s"+str(t)+"\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url("+cList[item]['icon']+");\"></span><span class=\"quantity\">%i</span> <span class=\"%s\">%s</span> (%4s per)</div>\n"%(tierbuy[tier][item],cList[item]['rarity'],cList[item][u'name'],mFormat(cList[item]['cost'])))
-                    tt += tierbuy[tier][item]*cList[item]['cost']
+                    f.write(u"<div class=\"s"+str(t)+"\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url("+cList[item][u'icon']+");\"></span><span class=\"quantity\">%i</span> <span class=\"%s\">%s</span> (%4s per)</div>\n"%(tierbuy[tier][item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost'])))
+                    tt += tierbuy[tier][item]*cList[item][u'cost']
                 buttonList.append(str(tier)+'tier')
                 rt += tt
                 totals[filename.split('.')[0]][tier] = tt
-                f.write("</div><h4>Cost: %s ( Rolling Total: %s)</h4>\n"% (mFormat(tt),mFormat(rt)))        
-            f.write(("<br />\n<h3>Level:%3i</h3>\n")%(tier))
+                f.write(u"</div><h4>Cost: %s ( Rolling Total: %s)</h4>\n"% (mFormat(tt),mFormat(rt)))        
+            f.write((u"<br />\n<h3>Level:%3i</h3>\n")%(tier))
             if pmake[tier]:
                 for item in sorted(pmake[tier]):
                     t = (t+1)%2
-                    f.write("<div class=\"s"+str(t)+"\">Make:%3i <span class=\"%s\">%s</span> (From %i tier) </div>\n"%(pmake[tier][item],cList[item]['rarity'],cList[item][u'name'],tier-25))
+                    f.write(u"<div class=\"s"+str(t)+"\">Make:%3i <span class=\"%s\">%s</span> (From %i tier) </div>\n"%(pmake[tier][item],cList[item][u'rarity'],cListName[item],tier-25))
             for item in sorted(make[tier], key=make[tier].get,reverse=True):
                 if cList[item][u'type'] == u'Refinement':
                     t = (t+1)%2
                     if item == 19679: # Bronze Ingot
-                        f.write("<div class=\"s"+str(t)+"\">Make:%3i <span class=\"%s\">%s</span> (Produces 5 Ingot per make)</div>\n"%(make[tier][item],cList[item]['rarity'],cList[item][u'name']))
+                        f.write(u"<div class=\"s"+str(t)+"\">Make:%3i <span class=\"%s\">%s</span> (Produces 5 Ingot per make)</div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
                     else:
-                        f.write("<div class=\"s"+str(t)+"\">Make:%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item]['rarity'],cList[item][u'name']))
+                        f.write(u"<div class=\"s"+str(t)+"\">Make:%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
             for item in sorted(make[tier], key=make[tier].get,reverse=True):
-                if cList[item]['type'] in non_item and not cList[item]['type'] == u'Refinement':
+                if cList[item][u'type'] in non_item and not cList[item][u'type'] == u'Refinement':
                     t = (t+1)%2
                     if item in [13063,  13189,  13207,  13219,  13045,  13022,  13075,  13177,  13096,  13033]: # Sole
-                        f.write("<div class=\"s"+str(t)+"\">Make:%3i <span class=\"%s\">%s</span> (Produces 2 Soles per make)</div>\n"%(make[tier][item]/2,cList[item]['rarity'],cList[item][u'name']))
+                        f.write(u"<div class=\"s"+str(t)+"\">Make:%3i <span class=\"%s\">%s</span> (Produces 2 Soles per make)</div>\n"%(make[tier][item]/2,cList[item][u'rarity'],cListName[item]))
                     else:
-                        f.write("<div class=\"s"+str(t)+"\">Make:%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item]['rarity'],cList[item][u'name']))
+                        f.write(u"<div class=\"s"+str(t)+"\">Make:%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
             for item in sorted(make[tier]):
 
-                if 'discover' in cList[item] and cList[item]['discover'] == 1:
+                if 'discover' in cList[item] and cList[item][u'discover'] == 1:
                     if make[tier][item] > 1:
                         make[tier][item] -= 1
                     else:
                         del(make[tier][item])
                     t = (t+1)%2
                     tstr = "<div class=\"sbutton\" id=\"1"+str(item)+"\">"
-                    for s in cList[item]['recipe']:
-                        tstr += "\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s]['icon']+");\"></span> <span class=\""+cList[s]['rarity']+'\">'+cList[s]['name']+"</span> ("+str(cList[item]['recipe'][s])+")"
+                    for s in cList[item][u'recipe']:
+                        tstr += "\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+");\"></span> <span class=\""+cList[s][u'rarity']+'\">'+cListName[s]+"</span> ("+str(cList[item][u'recipe'][s])+")"
                     tstr += "</div><br />"
-                    f.write("<div class=\"s"+str(t)+"\">Discover: <button class=\"arrow "+cList[item]['rarity']+'\" title=\"Click To Toggle\" id=\"'+str(item)+'\">'+cList[item]['name']+"</button> "+tstr+"\n</div>\n")
+                    f.write(u"<div class=\"s"+str(t)+"\">Discover: <button class=\"arrow "+cList[item][u'rarity']+'\" title=\"Click To Toggle\" id=\"'+str(item)+'\">'+cListName[item]+"</button> "+tstr+"\n</div>\n")
                     buttonList.append(item)
             for item in sorted(make[tier]):
                 if not cList[item][u'type'] in non_item:
                     t = (t+1)%2
-                    f.write("<div class=\"s"+str(t)+"\">Make:%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item]['rarity'],cList[item][u'name']))
-        f.write('<br />\n<h3>Level:400</h3>\n')
+                    f.write(u"<div class=\"s"+str(t)+"\">Make:%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
+        f.write(u'<br />\n<h3>Level:400</h3>\n')
         t = (t+1)%2
-        f.write("<div class=\"s"+str(t)+"\">Nothing.    You are done!</div>\n")
+        f.write(u"<div class=\"s"+str(t)+"\">Nothing.    You are done!</div>\n")
         # adword
-        f.write('<br /><div style="display:block;text-align:Right;"> \
+        f.write(u'<br /><div style="display:block;text-align:Right;"> \
                 \n<script type="text/javascript"><!-- \
                 \ngoogle_ad_client = "ca-pub-6865907345688710"; \
                 \n/* Tail ad */ \
@@ -938,21 +747,19 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, buttonList
                 \nsrc="http://pagead2.googlesyndication.com/pagead/show_ads.js"> \
                 \n</script> \
                 \n</div>\n')
-        f.write('</section>\n'+cright+'\n<script type="text/javascript">\n')
+        f.write(u'</section>\n'+localText.cright+'\n<script type="text/javascript">\n')
         for item in buttonList:
-            f.write("$(\"#"+str(item)+"\").click(function () {\n\t$(\"#1"+str(item)+"\").toggle();});\n")
-        f.write("$(\".sbutton\").hide();\n")
-        f.write("$(\".lsbutton\").hide();\n")
-        f.write("$(\"#show_all\").click(function () {$(\".sbutton\").show();")
-        f.write("});\n$(\"#hide_all\").click(function () {$(\".sbutton\").hide();")
-        f.write('});\n</script>\n')
-        f.write('</body>\n')
-        f.write('</html>\n')
+            f.write(u"$(\"#"+str(item)+"\").click(function () {\n\t$(\"#1"+str(item)+"\").toggle();});\n")
+        f.write(u"$(\".sbutton\").hide();\n")
+        f.write(u"$(\".lsbutton\").hide();\n")
+        f.write(u"$(\"#show_all\").click(function () {$(\".sbutton\").show();")
+        f.write(u"});\n$(\"#hide_all\").click(function () {$(\".sbutton\").hide();")
+        f.write(u'});\n</script>\n')
+        f.write(u'</body>\n')
+        f.write(u'</html>\n')
     return totals
 
-def maketotals(totals, mytime):
-    global header
-    global cright
+def maketotals(totals, mytime, localText, path=""):
 
     page = '''
 <!DOCTYPE html>
@@ -962,51 +769,51 @@ def maketotals(totals, mytime):
     <meta name="description" content="Guild Wars 2 always current crafting guide price totals">
     <meta http-equiv="content-type" content="text/html;charset=UTF-8">
 
-    <link href="css/layout.css" rel="stylesheet" type="text/css" />
+    <link href="/css/layout.css" rel="stylesheet" type="text/css" />
     <link rel="icon" type="image/png" href="/fi.gif" />
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script src="js/menu.js" type="text/javascript"></script>
+    <script src="/js/menu.js" type="text/javascript"></script>
 </head>
 <body>'''
-    page += header
+    page += localText.header
 
     page += "<section>\n<h5 style=\"text-align:center;\">Updated: " + mytime + "</h5>"
     page += '''
 <strong>Note:</strong> The prices show here are initial costs and do not take sellback into account.
     <table>
     <tr><th>Craft</th><th>Total - Normal</th><th>Total - Fast</th></tr>\n'''
-    page += '<tr><td>cooking_karma</td><td>'+mFormat(totals['cooking_karma'])+'</td><td>'+mFormat(totals['cooking_karma_fast'])+'</td></tr>\n'
-    page += '<tr><td>cooking_karma_light</td><td>'+mFormat(totals['cooking_karma_light'])+'</td><td>'+mFormat(totals['cooking_karma_fast_light'])+'</td></tr>\n'
-    page += '<tr><td>cooking</td><td>'+mFormat(totals['cooking'])+'</td><td>'+mFormat(totals['cooking_fast'])+'</td></tr>\n'
+    page += '<tr><td>cooking_karma</td><td>'+mFormat(totals[u'cooking_karma'])+'</td><td>'+mFormat(totals[u'cooking_karma_fast'])+'</td></tr>\n'
+    page += '<tr><td>cooking_karma_light</td><td>'+mFormat(totals[u'cooking_karma_light'])+'</td><td>'+mFormat(totals[u'cooking_karma_fast_light'])+'</td></tr>\n'
+    page += '<tr><td>cooking</td><td>'+mFormat(totals[u'cooking'])+'</td><td>'+mFormat(totals[u'cooking_fast'])+'</td></tr>\n'
     
     page += "</table>\n<br />\n<table>\n<tr><th>Craft</th><th>Total Cost</th><th>Tier 0-75</th><th>Tier 75-150</th><th>Tier 150-225</th><th>Tier 225-300</th><th>Tier 300-400</th></tr>\n"
     cttl = 0
-    for i in ['armorcraft','artificing','huntsman','jewelcraft','leatherworking','tailor','weaponcraft']:
-        page += '<tr><td>'+i+'</td><td>'+mFormat(totals[i]['total'])+'</td><td>'+mFormat(totals[i][0])+'</td><td>'+mFormat(totals[i][75])+'</td><td>'+mFormat(totals[i][150])+'</td><td>'+mFormat(totals[i][225])+'</td><td>'+mFormat(totals[i][300])+'</td></tr>\n'
-        cttl += totals[i]['total']
+    for i in [u'armorcraft','artificing','huntsman','jewelcraft','leatherworking','tailor','weaponcraft']:
+        page += '<tr><td>'+i+'</td><td>'+mFormat(totals[i][u'total'])+'</td><td>'+mFormat(totals[i][0])+'</td><td>'+mFormat(totals[i][75])+'</td><td>'+mFormat(totals[i][150])+'</td><td>'+mFormat(totals[i][225])+'</td><td>'+mFormat(totals[i][300])+'</td></tr>\n'
+        cttl += totals[i][u'total']
 
     page += ' </table>\n<br /><strong>Total for non-cooking normal: </strong>' + mFormat(cttl)
 
     page += "<br /><br /></table>\n<br />\n<table>\n<tr><th>Craft</th><th>Total Cost</th><th>Tier 0-75</th><th>Tier 75-150</th><th>Tier 150-225</th><th>Tier 225-300</th><th>Tier 300-400</th></tr>\n"
     cttl = 0
-    for i in ['armorcraft_fast','artificing_fast','huntsman_fast','jewelcraft_fast','leatherworking_fast','tailor_fast','weaponcraft_fast']:
-        page += '<tr><td>'+i+'</td><td>'+mFormat(totals[i]['total'])+'</td><td>'+mFormat(totals[i][0])+'</td><td>'+mFormat(totals[i][75])+'</td><td>'+mFormat(totals[i][150])+'</td><td>'+mFormat(totals[i][225])+'</td><td>'+mFormat(totals[i][300])+'</td></tr>\n'
-        cttl += totals[i]['total']
+    for i in [u'armorcraft_fast','artificing_fast','huntsman_fast','jewelcraft_fast','leatherworking_fast','tailor_fast','weaponcraft_fast']:
+        page += '<tr><td>'+i+'</td><td>'+mFormat(totals[i][u'total'])+'</td><td>'+mFormat(totals[i][0])+'</td><td>'+mFormat(totals[i][75])+'</td><td>'+mFormat(totals[i][150])+'</td><td>'+mFormat(totals[i][225])+'</td><td>'+mFormat(totals[i][300])+'</td></tr>\n'
+        cttl += totals[i][u'total']
 
     page += ' </table>\n<br /><strong>Total for non-cooking fast: </strong>' + mFormat(cttl)
 
     page += "<br /><br /></table>\n<br />\n<table>\n<tr><th>Craft</th><th>Total Cost</th><th>Tier 0-75</th><th>Tier 75-150</th><th>Tier 150-225</th><th>Tier 225-300</th><th>Tier 300-400</th></tr>\n"
     cttl = 0
-    for i in ['armorcraft_craft_all','artificing_craft_all','huntsman_craft_all','jewelcraft_craft_all','leatherworking_craft_all','tailor_craft_all','weaponcraft_craft_all']:
-        page += '<tr><td>'+i+'</td><td>'+mFormat(totals[i]['total'])+'</td><td>'+mFormat(totals[i][0])+'</td><td>'+mFormat(totals[i][75])+'</td><td>'+mFormat(totals[i][150])+'</td><td>'+mFormat(totals[i][225])+'</td><td>'+mFormat(totals[i][300])+'</td></tr>\n'
-        cttl += totals[i]['total']
+    for i in [u'armorcraft_craft_all','artificing_craft_all','huntsman_craft_all','jewelcraft_craft_all','leatherworking_craft_all','tailor_craft_all','weaponcraft_craft_all']:
+        page += '<tr><td>'+i+'</td><td>'+mFormat(totals[i][u'total'])+'</td><td>'+mFormat(totals[i][0])+'</td><td>'+mFormat(totals[i][75])+'</td><td>'+mFormat(totals[i][150])+'</td><td>'+mFormat(totals[i][225])+'</td><td>'+mFormat(totals[i][300])+'</td></tr>\n'
+        cttl += totals[i][u'total']
 
     page += ' </table>\n<br /><strong>Total for non-cooking traditional: </strong>' + mFormat(cttl)
 
-    page += '\n</section>\n' + cright + '\n</body>\n</html>'
+    page += '\n</section>\n' + localText.cright + '\n</body>\n</html>'
 
-    with open('total.html','wb') as f:
+    with codecs.open(path+'total.html', 'wb', encoding='utf-8') as f:
         f.write(page)
 
 # Join 2 recipe dicts
@@ -1015,10 +822,10 @@ def join(A, B):
                 return A or B
         return dict([(a, join(A.get(a), B.get(a))) for a in set(A.keys()) | set(B.keys())])
 
-def recipeworker(cmds, cList, mytime, header, cright, xp_to_level, out_q):
+def recipeworker(cmds, cList, mytime, xp_to_level, out_q):
     totals = {}
     for cmd in cmds:
-        totals.update(costCraft(cmd[0],cmd[1],cmd[2],cmd[3],deepcopy(cList),mytime,header,cright,xp_to_level))
+        totals.update(costCraft(cmd[0],cmd[1],cmd[2],cmd[3],deepcopy(cList),mytime,xp_to_level))
     out_q.put(totals)
 
 def main():
@@ -1073,7 +880,7 @@ def main():
     global cright
 
     for i in range(nprocs):
-        p = Process(target=recipeworker,args=(rList[i],cList,mytime,header,cright,xp_to_level,out_q))
+        p = Process(target=recipeworker,args=(rList[i],cList,mytime,xp_to_level,out_q))
         procs.append(p)
         p.start()
 
@@ -1084,24 +891,29 @@ def main():
     for p in procs:
         p.join()
 
-    maketotals(totals,mytime)
+    maketotals(totals,mytime,localen)
+    maketotals(totals,mytime,localde,'de/')
+    maketotals(totals,mytime,localfr,'fr/')
+    maketotals(totals,mytime,locales,'es/')
+
     print datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
     print "Starting upload"
     myFtp = FTP(ftp_url)
     myFtp.login(ftp_user,ftp_pass)
-    for item in ["cooking_fast.html", "cooking_karma_fast.html", "cooking_karma_fast_light.html",
-                 "cooking.html", "cooking_karma.html", "cooking_karma_light.html",
-                 "leatherworking_fast.html", "leatherworking.html", "leatherworking_craft_all.html",
-                 "tailor_fast.html", "tailor.html", "tailor_craft_all.html",
-                 "artificing_fast.html", "artificing.html", "artificing_craft_all.html",
-                 "jewelcraft_fast.html", "jewelcraft.html", "jewelcraft_craft_all.html",
-                 "weaponcraft_fast.html", "weaponcraft.html", "weaponcraft_craft_all.html",
-                 "huntsman_fast.html", "huntsman.html", "huntsman_craft_all.html",
-                 "armorcraft_fast.html", "armorcraft.html", "armorcraft_craft_all.html",
-                 "total.html"]:
-        with open(item,'rb') as f:
-            myFtp.storbinary('STOR /gw2crafts.net/'+item,f)
-        os.remove(item)
+    for lang in ['','de/','fr/','es/']:
+        for item in [u"cooking_fast.html", "cooking_karma_fast.html", "cooking_karma_fast_light.html",
+                     "cooking.html", "cooking_karma.html", "cooking_karma_light.html",
+                     "leatherworking_fast.html", "leatherworking.html", "leatherworking_craft_all.html",
+                     "tailor_fast.html", "tailor.html", "tailor_craft_all.html",
+                     "artificing_fast.html", "artificing.html", "artificing_craft_all.html",
+                     "jewelcraft_fast.html", "jewelcraft.html", "jewelcraft_craft_all.html",
+                     "weaponcraft_fast.html", "weaponcraft.html", "weaponcraft_craft_all.html",
+                     "huntsman_fast.html", "huntsman.html", "huntsman_craft_all.html",
+                     "armorcraft_fast.html", "armorcraft.html", "armorcraft_craft_all.html",
+                     "total.html"]:
+            with codecs.open(lang+item,'rb') as f:
+                myFtp.storbinary(u'STOR /gw2crafts.net/'+lang+item,f)
+            os.remove(lang+item)
     myFtp.close()
 
 
