@@ -2,7 +2,7 @@
 # es Localized text
 header = u"""<nav>
     <ul>
-        <li><a href="http://gw2crafts.net/es/">Casa</a></li>
+        <li><a href="http://gw2crafts.net/es/">Inicio</a></li>
         <li><a href="http://gw2crafts.net/es/nav.html">Guías Normales</a>
         <ul>
             <li><a href="#">Cocinar</a>
@@ -50,7 +50,7 @@ header = u"""<nav>
             <li><a href="http://gw2crafts.net/es/tailor_craft_all.html">Sastrería</a></li>
         </ul>
         </li>
-        <li><a href="http://gw2crafts.net/es/total.html">Totals</a></li>
+        <li><a href="http://gw2crafts.net/es/total.html">Totales</a></li>
         <li><a href="http://gw2crafts.net/es/faq.html">Acerca De</a></li>
         <li><a href="#" hreflang="es">Español</a>
         <ul>
@@ -207,3 +207,9 @@ karma_recipe = {12131:{'note':"Elain - Grenbrack Delves(Caledon Forest 1-15)",'c
                 24924:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Brilliant Ruby Jewel
                 24925:{'note':"Master Craftsman or Vendor",'cost':231}} # Embellished Brilliant Sapphire Jewel
 
+iCost = "Coste Inicial"
+eRecovery = "Beneficios"
+fCost = "Coste Final"
+sList = "Lista De Venta"
+bRecipes = "COMPRAR RECETAS"
+collectibles = "COLECCIONABLES(en el banco o en el bazar)"
