@@ -2,62 +2,62 @@
 # de Localized text
 header = u"""<nav>
     <ul>
-        <li><a href="http://gw2crafts.net/de/">Home</a></li>
-        <li><a href="http://gw2crafts.net/de/nav.html">Normal Guides</a>
+        <li><a href="http://gw2crafts.net/de/">Zuhause</a></li>
+        <li><a href="http://gw2crafts.net/de/nav.html">Normale Guides</a>
         <ul>
-            <li><a href="#">Cooking</a>
+            <li><a href="#">Kochen</a>
             <ul>
-                <li><a href="http://gw2crafts.net/de/cooking.html">No Hearts</a></li>
-                <li><a href="http://gw2crafts.net/de/cooking_karma_light.html">Top 5 Hearts</a></li>
-                <li><a href="http://gw2crafts.net/de/cooking_karma.html">All Hearts</a></li>
+                <li><a href="http://gw2crafts.net/de/cooking.html">Keine Herzen</a></li>
+                <li><a href="http://gw2crafts.net/de/cooking_karma_light.html">Top 5 Herzen</a></li>
+                <li><a href="http://gw2crafts.net/de/cooking_karma.html">Alle Herzen</a></li>
             </ul>
             </li>
-            <li><a href="http://gw2crafts.net/de/jewelcraft.html">Jewelcrafting</a></li>
-            <li><a href="http://gw2crafts.net/de/artificing.html">Artificing</a></li>
+            <li><a href="http://gw2crafts.net/de/jewelcraft.html">Juwelenschleifen</a></li>
+            <li><a href="http://gw2crafts.net/de/artificing.html">Kunsthandwerker</a></li>
             <li><a href="http://gw2crafts.net/de/huntsman.html">Huntsman</a></li>
-            <li><a href="http://gw2crafts.net/de/weaponcraft.html">Weaponcrafting</a></li>
-            <li><a href="http://gw2crafts.net/de/armorcraft.html">Armorcrafting</a></li>
-            <li><a href="http://gw2crafts.net/de/leatherworking.html">Leatherworking</a></li>
-            <li><a href="http://gw2crafts.net/de/tailor.html">Tailoring</a></li>
+            <li><a href="http://gw2crafts.net/de/weaponcraft.html">Waffenschmied</a></li>
+            <li><a href="http://gw2crafts.net/de/armorcraft.html">Rüstungsschied</a></li>
+            <li><a href="http://gw2crafts.net/de/leatherworking.html">Lederverarbeitung</a></li>
+            <li><a href="http://gw2crafts.net/de/tailor.html">Schneiderei</a></li>
         </ul>
         </li>
-        <li><a href="http://gw2crafts.net/de/nav.html">Fast Guides</a>
+        <li><a href="http://gw2crafts.net/de/nav.html">Schnelle Guides</a>
         <ul>
-            <li><a href="#">Cooking</a>
+            <li><a href="#">Kochen</a>
             <ul>
-                <li><a href="http://gw2crafts.net/de/cooking_fast.html">No Hearts</a></li>
-                <li><a href="http://gw2crafts.net/de/cooking_karma_fast_light.html">Top 5 Hearts</a></li>
-                <li><a href="http://gw2crafts.net/de/cooking_karma_fast.html">All Hearts</a></li>
+                <li><a href="http://gw2crafts.net/de/cooking_fast.html">Keine Herzen</a></li>
+                <li><a href="http://gw2crafts.net/de/cooking_karma_fast_light.html">Top 5 Herzen</a></li>
+                <li><a href="http://gw2crafts.net/de/cooking_karma_fast.html">Alle Herzen</a></li>
             </ul>
             </li>
-            <li><a href="http://gw2crafts.net/de/jewelcraft_fast.html">Jewelcrafting</a></li>
-            <li><a href="http://gw2crafts.net/de/artificing_fast.html">Artificing</a></li>
+            <li><a href="http://gw2crafts.net/de/jewelcraft_fast.html">Juwelenschleifen</a></li>
+            <li><a href="http://gw2crafts.net/de/artificing_fast.html">Kunsthandwerker</a></li>
             <li><a href="http://gw2crafts.net/de/huntsman_fast.html">Huntsman</a></li>
-            <li><a href="http://gw2crafts.net/de/weaponcraft_fast.html">Weaponcrafting</a></li>
-            <li><a href="http://gw2crafts.net/de/armorcraft_fast.html">Armorcrafting</a></li>
-            <li><a href="http://gw2crafts.net/de/leatherworking_fast.html">Leatherworking</a></li>
-            <li><a href="http://gw2crafts.net/de/tailor_fast.html">Tailoring</a></li>
+            <li><a href="http://gw2crafts.net/de/weaponcraft_fast.html">Waffenschmied</a></li>
+            <li><a href="http://gw2crafts.net/de/armorcraft_fast.html">Rüstungsschied</a></li>
+            <li><a href="http://gw2crafts.net/de/leatherworking_fast.html">Lederverarbeitung</a></li>
+            <li><a href="http://gw2crafts.net/de/tailor_fast.html">Schneiderei</a></li>
         </ul>
         </li>
-        <li><a href="http://gw2crafts.net/de/nav.html">Traditional Guides</a>
+        <li><a href="http://gw2crafts.net/de/nav.html">Traditionelle Guides</a>
         <ul>
-            <li><a href="http://gw2crafts.net/de/jewelcraft_craft_all.html">Jewelcrafting</a></li>
-            <li><a href="http://gw2crafts.net/de/artificing_craft_all.html">Artificing</a></li>
+            <li><a href="http://gw2crafts.net/de/jewelcraft_craft_all.html">Juwelenschleifen</a></li>
+            <li><a href="http://gw2crafts.net/de/artificing_craft_all.html">Kunsthandwerker</a></li>
             <li><a href="http://gw2crafts.net/de/huntsman_craft_all.html">Huntsman</a></li>
-            <li><a href="http://gw2crafts.net/de/weaponcraft_craft_all.html">Weaponcrafting</a></li>
-            <li><a href="http://gw2crafts.net/de/armorcraft_craft_all.html">Armorcrafting</a></li>
-            <li><a href="http://gw2crafts.net/de/leatherworking_craft_all.html">Leatherworking</a></li>
-            <li><a href="http://gw2crafts.net/de/tailor_craft_all.html">Tailoring</a></li>
+            <li><a href="http://gw2crafts.net/de/weaponcraft_craft_all.html">Waffenschmied</a></li>
+            <li><a href="http://gw2crafts.net/de/armorcraft_craft_all.html">Rüstungsschied</a></li>
+            <li><a href="http://gw2crafts.net/de/leatherworking_craft_all.html">Lederverarbeitung</a></li>
+            <li><a href="http://gw2crafts.net/de/tailor_craft_all.html">Schneiderei</a></li>
         </ul>
         </li>
-        <li><a href="http://gw2crafts.net/de/total.html">Totals</a></li>
-        <li><a href="http://gw2crafts.net/de/faq.html">About</a></li>
-        <li><a href="#" hreflang="de">German</a>
+        <li><a href="http://gw2crafts.net/de/total.html">Insgesamts</a></li>
+        <li><a href="http://gw2crafts.net/de/faq.html">Über</a></li>
+        <li><a href="#" hreflang="de">Deutsch</a>
         <ul>
-          <li><a href="http://gw2crafts.net/%s" hreflang="en">English</a></li>
-          <li><a href="http://gw2crafts.net/fr/%s" hreflang="fr">French</a></li>
-          <li><a href="#" hreflang="de">German</a></li>
-          <li><a href="http://gw2crafts.net/es/%s" hreflang="es">Spanish</a></li>
+          <li><a href="http://gw2crafts.net/%s" hreflang="en">Englisch</a></li>
+          <li><a href="http://gw2crafts.net/fr/%s" hreflang="fr">Französisch</a></li>
+          <li><a href="#" hreflang="de">Deutsch</a></li>
+          <li><a href="http://gw2crafts.net/es/%s" hreflang="es">Spanisch</a></li>
         </ul>
         </li>
     </ul>
@@ -66,7 +66,7 @@ header = u"""<nav>
 
 # Copyright notice for GW2 IP
 cright = u'''<footer>
-    Guild Wars 2 &#0169; 2012 ArenaNet, Inc. All rights reserved. NCsoft, the interlocking NC logo, ArenaNet, Guild Wars, Guild Wars Factions, Guild Wars Nightfall, Guild Wars: Eye of the North, Guild Wars 2, and all associated logos and designs are trademarks or registered trademarks of NCsoft Corporation. All other trademarks are the property of their respective owners.
+    Guild Wars 2 © 2012 ArenaNet, Inc. Alle Rechte vorbehalten. NCsoft, das ineinander greifende NC-Logo, ArenaNet, Guild Wars, Guild Wars Factions, Guild Wars Nightfall, Guild Wars: Eye sind der Norden, Guild Wars 2 und alle in Verbindung stehenden Logos und Designs sind Warenzeichen oder eingetragene Warenzeichen der NCsoft Corporation. Alle anderen Warenzeichen sind das Eigentum ihrer jeweiligen Eigentümer.
 </footer>'''
 
 karma_items  = {12337:{'note':"Lieutenant Pickins - Greystone Rise(Harathi Hinterlands 35-45) <br /> Disa - Snowslide Ravine(Dredgehaunt Cliffs 40-50)",'cost':77}, # Almond
@@ -121,7 +121,7 @@ karma_recipe = {12131:{'note':"Elain - Grenbrack Delves(Caledon Forest 1-15)",'c
                 12739:{'note':"Sentry Triktiki - Arcallion Digs(Harathi Hinterlands 35-45)",'cost':35}, # Triktiki Omelet
                 12352:{'note':"Pochtecatl - Jelako Cliffrise(Bloodtide Coast 45-55)",'cost':35}, # Griffon Egg Omelet
                 12264:{'note':"Nrocroc Chief - Apostate Wastes(Fireheart Rise 60-70)",'cost':35}, # Raspberry Pie
-                12192:{'note':"Assistant Chef Victor- Scaver Plateau(Queensdale 1-15)",'cost':35}, # Beetletun Omelette
+                12192:{'note':"Assistant Chef Victor - Scaver Plateau(Queensdale 1-15)",'cost':35}, # Beetletun Omelette
                 19955:{'note':"Master Craftsman or Vendor",'cost':350}, # Ravaging Intricate Wool Insignia
                 19956:{'note':"Master Craftsman or Vendor",'cost':350}, # Rejuvenating Intricate Wool Insignia
                 19957:{'note':"Master Craftsman or Vendor",'cost':350}, # Honed Intricate Wool Insignia

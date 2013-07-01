@@ -2,62 +2,62 @@
 # fr Localized text
 header = u"""<nav>
     <ul>
-        <li><a href="http://gw2crafts.net/fr/">Home</a></li>
-        <li><a href="http://gw2crafts.net/fr/nav.html">Normal Guides</a>
+        <li><a href="http://gw2crafts.net/fr/">Maison</a></li>
+        <li><a href="http://gw2crafts.net/fr/nav.html">Guides normales</a>
         <ul>
-            <li><a href="#">Cooking</a>
+            <li><a href="#">Cuisiner</a>
             <ul>
-                <li><a href="http://gw2crafts.net/fr/cooking.html">No Hearts</a></li>
-                <li><a href="http://gw2crafts.net/fr/cooking_karma_light.html">Top 5 Hearts</a></li>
-                <li><a href="http://gw2crafts.net/fr/cooking_karma.html">All Hearts</a></li>
+                <li><a href="http://gw2crafts.net/fr/cooking.html">Pas de coeurs</a></li>
+                <li><a href="http://gw2crafts.net/fr/cooking_karma_light.html">Top 5 Des Coeurs</a></li>
+                <li><a href="http://gw2crafts.net/fr/cooking_karma.html">Tous Les Coeurs</a></li>
             </ul>
             </li>
-            <li><a href="http://gw2crafts.net/fr/jewelcraft.html">Jewelcrafting</a></li>
+            <li><a href="http://gw2crafts.net/fr/jewelcraft.html">Joaillerie</a></li>
             <li><a href="http://gw2crafts.net/fr/artificing.html">Artificing</a></li>
             <li><a href="http://gw2crafts.net/fr/huntsman.html">Huntsman</a></li>
             <li><a href="http://gw2crafts.net/fr/weaponcraft.html">Weaponcrafting</a></li>
-            <li><a href="http://gw2crafts.net/fr/armorcraft.html">Armorcrafting</a></li>
-            <li><a href="http://gw2crafts.net/fr/leatherworking.html">Leatherworking</a></li>
-            <li><a href="http://gw2crafts.net/fr/tailor.html">Tailoring</a></li>
+            <li><a href="http://gw2crafts.net/fr/armorcraft.html">Armurerie</a></li>
+            <li><a href="http://gw2crafts.net/fr/leatherworking.html">Travail du cuir</a></li>
+            <li><a href="http://gw2crafts.net/fr/tailor.html">Couture</a></li>
         </ul>
         </li>
-        <li><a href="http://gw2crafts.net/fr/nav.html">Fast Guides</a>
+        <li><a href="http://gw2crafts.net/fr/nav.html">Guides Rapides</a>
         <ul>
-            <li><a href="#">Cooking</a>
+            <li><a href="#">Cuisiner</a>
             <ul>
-                <li><a href="http://gw2crafts.net/fr/cooking_fast.html">No Hearts</a></li>
-                <li><a href="http://gw2crafts.net/fr/cooking_karma_fast_light.html">Top 5 Hearts</a></li>
-                <li><a href="http://gw2crafts.net/fr/cooking_karma_fast.html">All Hearts</a></li>
+                <li><a href="http://gw2crafts.net/fr/cooking_fast.html">Pas de coeurs</a></li>
+                <li><a href="http://gw2crafts.net/fr/cooking_karma_fast_light.html">Top 5 Des Coeurs</a></li>
+                <li><a href="http://gw2crafts.net/fr/cooking_karma_fast.html">Tous Les Coeurs</a></li>
             </ul>
             </li>
-            <li><a href="http://gw2crafts.net/fr/jewelcraft_fast.html">Jewelcrafting</a></li>
+            <li><a href="http://gw2crafts.net/fr/jewelcraft_fast.html">Joaillerie</a></li>
             <li><a href="http://gw2crafts.net/fr/artificing_fast.html">Artificing</a></li>
             <li><a href="http://gw2crafts.net/fr/huntsman_fast.html">Huntsman</a></li>
             <li><a href="http://gw2crafts.net/fr/weaponcraft_fast.html">Weaponcrafting</a></li>
-            <li><a href="http://gw2crafts.net/fr/armorcraft_fast.html">Armorcrafting</a></li>
-            <li><a href="http://gw2crafts.net/fr/leatherworking_fast.html">Leatherworking</a></li>
-            <li><a href="http://gw2crafts.net/fr/tailor_fast.html">Tailoring</a></li>
+            <li><a href="http://gw2crafts.net/fr/armorcraft_fast.html">Armurerie</a></li>
+            <li><a href="http://gw2crafts.net/fr/leatherworking_fast.html">Travail du cuir</a></li>
+            <li><a href="http://gw2crafts.net/fr/tailor_fast.html">Couture</a></li>
         </ul>
         </li>
-        <li><a href="http://gw2crafts.net/fr/nav.html">Traditional Guides</a>
+        <li><a href="http://gw2crafts.net/fr/nav.html">Guides Traditionnels</a>
         <ul>
-            <li><a href="http://gw2crafts.net/fr/jewelcraft_craft_all.html">Jewelcrafting</a></li>
+            <li><a href="http://gw2crafts.net/fr/jewelcraft_craft_all.html">Joaillerie</a></li>
             <li><a href="http://gw2crafts.net/fr/artificing_craft_all.html">Artificing</a></li>
             <li><a href="http://gw2crafts.net/fr/huntsman_craft_all.html">Huntsman</a></li>
             <li><a href="http://gw2crafts.net/fr/weaponcraft_craft_all.html">Weaponcrafting</a></li>
-            <li><a href="http://gw2crafts.net/fr/armorcraft_craft_all.html">Armorcrafting</a></li>
-            <li><a href="http://gw2crafts.net/fr/leatherworking_craft_all.html">Leatherworking</a></li>
-            <li><a href="http://gw2crafts.net/fr/tailor_craft_all.html">Tailoring</a></li>
+            <li><a href="http://gw2crafts.net/fr/armorcraft_craft_all.html">Armurerie</a></li>
+            <li><a href="http://gw2crafts.net/fr/leatherworking_craft_all.html">Travail du cuir</a></li>
+            <li><a href="http://gw2crafts.net/fr/tailor_craft_all.html">Couture</a></li>
         </ul>
         </li>
-        <li><a href="http://gw2crafts.net/fr/total.html">Totals</a></li>
-        <li><a href="http://gw2crafts.net/fr/faq.html">About</a></li>
-        <li><a href="#" hreflang="fr">French</a>
+        <li><a href="http://gw2crafts.net/fr/total.html">Totales</a></li>
+        <li><a href="http://gw2crafts.net/fr/faq.html">Sur</a></li>
+        <li><a href="#" hreflang="fr">Français</a>
         <ul>
-          <li><a href="http://gw2crafts.net/%s" hreflang="en">English</a></li>
-          <li><a href="#" hreflang="fr">French</a></li>
-          <li><a href="http://gw2crafts.net/de/%s" hreflang="de">German</a></li>
-          <li><a href="http://gw2crafts.net/es/%s" hreflang="es">Spanish</a></li>
+          <li><a href="http://gw2crafts.net/%s" hreflang="en">Anglais</a></li>
+          <li><a href="#" hreflang="fr">Français</a></li>
+          <li><a href="http://gw2crafts.net/de/%s" hreflang="de">Allemand</a></li>
+          <li><a href="http://gw2crafts.net/es/%s" hreflang="es">Espagnol</a></li>
         </ul>
         </li>
     </ul>
@@ -66,7 +66,7 @@ header = u"""<nav>
 
 # Copyright notice for GW2 IP
 cright = u'''<footer>
-    Guild Wars 2 &#0169; 2012 ArenaNet, Inc. All rights reserved. NCsoft, the interlocking NC logo, ArenaNet, Guild Wars, Guild Wars Factions, Guild Wars Nightfall, Guild Wars: Eye of the North, Guild Wars 2, and all associated logos and designs are trademarks or registered trademarks of NCsoft Corporation. All other trademarks are the property of their respective owners.
+    Guild Wars 2 © 2012 ArenaNet, Inc. Tous droits réservés. NCsoft, le logo NC, ArenaNet, Guild Wars, Guild Wars Factions, Guild Wars Nightfall, Guild Wars: Eye of the North, Guild Wars 2 et tous les logos et dessins associés sont des marques commerciales ou déposées de NCsoft Corporation. Toutes les autres marques sont la propriété de leurs propriétaires respectifs.
 </footer>'''
 
 karma_items  = {12337:{'note':"Lieutenant Pickins - Greystone Rise(Harathi Hinterlands 35-45) <br /> Disa - Snowslide Ravine(Dredgehaunt Cliffs 40-50)",'cost':77}, # Almond
