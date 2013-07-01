@@ -45,7 +45,7 @@ def recipelistWorker(items, out_q):
 def get_recipes():
     temp = _api_call('recipes.json')
     out_q = Queue()
-    nprocs = 4
+    nprocs = 64
     lister = temp['recipes']
     chunksize = int(math.ceil(len(lister) / float(nprocs)))
     procs = []
@@ -157,7 +157,7 @@ def itemlistWorker(items, lang, out_q):
 # Currently supported languages: en, fr, de, es
 def itemlist(item_list, lang="en"):
     out_q = Queue()
-    nprocs = 4
+    nprocs = 64
     lister = item_list.keys()
 
     chunksize = int(math.ceil(len(lister) / float(nprocs)))
@@ -182,7 +182,10 @@ def itemlist(item_list, lang="en"):
             # sorted is only so we can easily spot new items with diff
             for i in sorted(flags): # otherwise output is semi random order
                 item_list[i][u'rarity'] = flags[i][u'rarity']
-                item_list[i][u'vendor_value'] = int(flags[i][u'vendor_value'])
+                if "NoSell" in flags[i][u"flags"]:
+                    item_list[i][u'vendor_value'] = 0
+                else:
+                    item_list[i][u'vendor_value'] = int(flags[i][u'vendor_value'])
                 if item_list[i][u'flags']:
                     item_list[i][u'discover'] = 0
                 del(item_list[i][u'flags'])
