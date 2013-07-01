@@ -50,14 +50,14 @@ def itemlistworker(_itemList, temp, out_q):
         # Get our item from the gw2spidy list
         val = search(item, temp)
 
-		# set value to greater of buy and vendor.  If 0 set to minimum sell value
+        # set value to greater of buy and vendor.  If 0 set to minimum sell value
         w = items.ilist[item][u'vendor_value']
         sellMethod = "Vendor"
         if val[u'max_offer_unit_price']*.85 > w:
-            w = val[u'max_offer_unit_price']*.85
+            w = int(val[u'max_offer_unit_price']*.85)
             sellMethod = "Max Buyout"
         if w == 0:
-            w = val[u'min_sale_unit_price']*.85
+            w = int(val[u'min_sale_unit_price']*.85)
             sellMethod = "Minimum Sale Price"
 
         # Save all the information we care about
@@ -220,7 +220,7 @@ karmin = {}
 def costCraft(filename,c_recipes,fast,ignoreMixed,cList,mytime,xp_to_level):
     print "Start", filename
     # TODO Hack, fix this
-	# This is changing the recipe for Bronze Ingot to use 2 Copper Ore.
+    # This is changing the recipe for Bronze Ingot to use 2 Copper Ore.
     if 19679 in c_recipes[0]:
         c_recipes[0][19679][19697] = 2
 
@@ -610,8 +610,9 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, filename, 
         f.write(u'<div class="clear"></div>')
         f.write(u'<br /><button title=\"Click To Toggle\" class=\"arrow\" id=\"tcost\">Sell List:</button><div class=\"lsbutton\" id=\"1tcost\">')
         for line in sorted(sell):
-            t = (t+1)%2
-            f.write(u'<div class=\"s%i\">%3i <span class=\"%s\">%s</span> - Sold for %s per via %s</div>\n'%(t,sell[line],cList[line][u'rarity'],cListName[line],mFormat(cList[line][u'w']),cList[line][u'sellMethod']))
+            if cList[line][u'w'] > 0:
+                t = (t+1)%2
+                f.write(u'<div class=\"s%i\">%3i <span class=\"%s\">%s</span> - Sold for %s per via %s</div>\n'%(t,sell[line],cList[line][u'rarity'],cListName[line],mFormat(cList[line][u'w']),cList[line][u'sellMethod']))
 
         f.write(u"</div><script type=\"text/javascript\">$('#1tcost').hide();</script><br />")
         buttonList.append('tcost')

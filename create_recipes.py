@@ -45,7 +45,7 @@ def recipelistWorker(items, out_q):
 def get_recipes():
     temp = _api_call('recipes.json')
     out_q = Queue()
-    nprocs = 64
+    nprocs = 4
     lister = temp['recipes']
     chunksize = int(math.ceil(len(lister) / float(nprocs)))
     procs = []
@@ -157,7 +157,7 @@ def itemlistWorker(items, lang, out_q):
 # Currently supported languages: en, fr, de, es
 def itemlist(item_list, lang="en"):
     out_q = Queue()
-    nprocs = 64
+    nprocs = 4
     lister = item_list.keys()
 
     chunksize = int(math.ceil(len(lister) / float(nprocs)))
