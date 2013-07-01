@@ -207,3 +207,9 @@ karma_recipe = {12131:{'note':"Elain - Grenbrack Delves(Caledon Forest 1-15)",'c
                 24924:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Brilliant Ruby Jewel
                 24925:{'note':"Master Craftsman or Vendor",'cost':231}} # Embellished Brilliant Sapphire Jewel
 
+iCost = "Initial Cost"
+eRecovery = "Expected Recovery"
+fCost = "Expected Final Cost"
+sList = "Sell List"
+bRecipes = "BUY RECIPES"
+collectibles = "COLLECTIBLES(Check Bank First or Buy on TP)"

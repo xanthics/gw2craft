@@ -600,15 +600,15 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, filename, 
                 \n</script> \
                 \n</div>\n')
         f.write(u'<dl>\n')
-        f.write(u'    <dt>Initial Cost</dt>\n')
+        f.write(u'    <dt>'+localText.iCost+'</dt>\n')
         f.write(u'    <dd>'+mFormat(tcost)+'</dd>\n')
-        f.write(u'    <dt>Expected Recovery</dt>\n')
+        f.write(u'    <dt>'+localText.eRecovery+'</dt>\n')
         f.write(u'    <dd><span style="position: relative; left: -9px;">- '+mFormat(treco)+'</span></dd>\n')
-        f.write(u'    <dt>Expected Final Cost</dt>\n')
+        f.write(u'    <dt>'+localText.fCost+'</dt>\n')
         f.write(u'    <dd style="border-top: 1px #666 solid;">'+mFormat(tcost-treco)+'</dd>\n')
         f.write(u'</dl>')
         f.write(u'<div class="clear"></div>')
-        f.write(u'<br /><button title=\"Click To Toggle\" class=\"arrow\" id=\"tcost\">Sell List:</button><div class=\"lsbutton\" id=\"1tcost\">')
+        f.write(u'<br /><button title=\"Click To Toggle\" class=\"arrow\" id=\"tcost\">'+localText.sList+':</button><div class=\"lsbutton\" id=\"1tcost\">')
         for line in sorted(sell):
             if cList[line][u'w'] > 0:
                 t = (t+1)%2
@@ -639,7 +639,7 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, filename, 
                 f.write(u"<div class=\"s%i\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><span class=\"quantity\">%i</span> <span class=\"%s\">%s</span> (%4s per from Vendor)</div>\n"%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost'])))
 
         if recipebuy:
-            f.write(u"<h2>BUY RECIPES</h2>\n")
+            f.write(u"<h2>"+localText.bRecipes+"</h2>\n")
             for item in recipebuy:
                 t = (t+1)%2
                 f.write((u"<div class=\"s%d\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><button title=\"Click To Toggle\" class=\"arrow %s\" id=\"%d\">%s</button><div class=\"lsbutton\" id=\"1%d\">%i <span class=\"karmaIcon\"></span>, %s</div></div>\n")%(t,cList[item]['icon'],cList[item]['rarity'],item,cListName[item],item,localText.karma_recipe[item]['cost'],localText.karma_recipe[item]['note']))
@@ -648,7 +648,7 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, filename, 
         if kt:
             f.write(u'<br />\nTotal <span class=\"karmaIcon\"></span>: '+str(kt)+'<br />\n')
         if b_common or b_fine or b_rare or b_gem or b_holiday or b_food:
-            f.write(u'<h2>COLLECTIBLES(Check Bank First or Buy on TP)</h2>\n')
+            f.write(u'<h2>'+localText.collectibles+'</h2>\n')
             for item in sorted(b_common):
                 t = (t+1)%2
                 f.write(collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost'])))
