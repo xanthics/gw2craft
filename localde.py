@@ -2,55 +2,55 @@
 # de Localized text
 header = u"""<nav>
     <ul>
-        <li><a href="http://gw2crafts.net/de/">Zuhause</a></li>
-        <li><a href="http://gw2crafts.net/de/nav.html">Normale Guides</a>
+        <li><a href="http://gw2crafts.net/de/">Startseite</a></li>
+        <li><a href="http://gw2crafts.net/de/nav.html">Normale Anleitung</a>
         <ul>
-            <li><a href="#">Kochen</a>
+            <li><a href="#">Küchenmeister</a>
             <ul>
-                <li><a href="http://gw2crafts.net/de/cooking.html">Keine Herzen</a></li>
+                <li><a href="http://gw2crafts.net/de/cooking.html">Ohne Herzen</a></li>
                 <li><a href="http://gw2crafts.net/de/cooking_karma_light.html">Top 5 Herzen</a></li>
                 <li><a href="http://gw2crafts.net/de/cooking_karma.html">Alle Herzen</a></li>
             </ul>
             </li>
-            <li><a href="http://gw2crafts.net/de/jewelcraft.html">Juwelenschleifen</a></li>
-            <li><a href="http://gw2crafts.net/de/artificing.html">Kunsthandwerker</a></li>
-            <li><a href="http://gw2crafts.net/de/huntsman.html">Huntsman</a></li>
+            <li><a href="http://gw2crafts.net/de/jewelcraft.html">Juwelier</a></li>
+            <li><a href="http://gw2crafts.net/de/artificing.html">Konstrukteur</a></li>
+            <li><a href="http://gw2crafts.net/de/huntsman.html">Waidmann</a></li>
             <li><a href="http://gw2crafts.net/de/weaponcraft.html">Waffenschmied</a></li>
             <li><a href="http://gw2crafts.net/de/armorcraft.html">Rüstungsschied</a></li>
-            <li><a href="http://gw2crafts.net/de/leatherworking.html">Lederverarbeitung</a></li>
-            <li><a href="http://gw2crafts.net/de/tailor.html">Schneiderei</a></li>
+            <li><a href="http://gw2crafts.net/de/leatherworking.html">Lederer</a></li>
+            <li><a href="http://gw2crafts.net/de/tailor.html">Schneider</a></li>
         </ul>
         </li>
-        <li><a href="http://gw2crafts.net/de/nav.html">Schnelle Guides</a>
+        <li><a href="http://gw2crafts.net/de/nav.html">Schnelle Anleitung</a>
         <ul>
-            <li><a href="#">Kochen</a>
+            <li><a href="#">Küchenmeister</a>
             <ul>
-                <li><a href="http://gw2crafts.net/de/cooking_fast.html">Keine Herzen</a></li>
+                <li><a href="http://gw2crafts.net/de/cooking_fast.html">Ohne Herzen</a></li>
                 <li><a href="http://gw2crafts.net/de/cooking_karma_fast_light.html">Top 5 Herzen</a></li>
                 <li><a href="http://gw2crafts.net/de/cooking_karma_fast.html">Alle Herzen</a></li>
             </ul>
             </li>
-            <li><a href="http://gw2crafts.net/de/jewelcraft_fast.html">Juwelenschleifen</a></li>
-            <li><a href="http://gw2crafts.net/de/artificing_fast.html">Kunsthandwerker</a></li>
-            <li><a href="http://gw2crafts.net/de/huntsman_fast.html">Huntsman</a></li>
+            <li><a href="http://gw2crafts.net/de/jewelcraft_fast.html">Juwelier</a></li>
+            <li><a href="http://gw2crafts.net/de/artificing_fast.html">Konstrukteur</a></li>
+            <li><a href="http://gw2crafts.net/de/huntsman_fast.html">Waidmann</a></li>
             <li><a href="http://gw2crafts.net/de/weaponcraft_fast.html">Waffenschmied</a></li>
             <li><a href="http://gw2crafts.net/de/armorcraft_fast.html">Rüstungsschied</a></li>
-            <li><a href="http://gw2crafts.net/de/leatherworking_fast.html">Lederverarbeitung</a></li>
-            <li><a href="http://gw2crafts.net/de/tailor_fast.html">Schneiderei</a></li>
+            <li><a href="http://gw2crafts.net/de/leatherworking_fast.html">Lederer</a></li>
+            <li><a href="http://gw2crafts.net/de/tailor_fast.html">Schneider</a></li>
         </ul>
         </li>
-        <li><a href="http://gw2crafts.net/de/nav.html">Traditionelle Guides</a>
+        <li><a href="http://gw2crafts.net/de/nav.html">Traditionelle Anleitung</a>
         <ul>
-            <li><a href="http://gw2crafts.net/de/jewelcraft_craft_all.html">Juwelenschleifen</a></li>
-            <li><a href="http://gw2crafts.net/de/artificing_craft_all.html">Kunsthandwerker</a></li>
-            <li><a href="http://gw2crafts.net/de/huntsman_craft_all.html">Huntsman</a></li>
+            <li><a href="http://gw2crafts.net/de/jewelcraft_craft_all.html">Juwelier</a></li>
+            <li><a href="http://gw2crafts.net/de/artificing_craft_all.html">Konstrukteur</a></li>
+            <li><a href="http://gw2crafts.net/de/huntsman_craft_all.html">Waidmann</a></li>
             <li><a href="http://gw2crafts.net/de/weaponcraft_craft_all.html">Waffenschmied</a></li>
             <li><a href="http://gw2crafts.net/de/armorcraft_craft_all.html">Rüstungsschied</a></li>
-            <li><a href="http://gw2crafts.net/de/leatherworking_craft_all.html">Lederverarbeitung</a></li>
-            <li><a href="http://gw2crafts.net/de/tailor_craft_all.html">Schneiderei</a></li>
+            <li><a href="http://gw2crafts.net/de/leatherworking_craft_all.html">Lederer</a></li>
+            <li><a href="http://gw2crafts.net/de/tailor_craft_all.html">Schneider</a></li>
         </ul>
         </li>
-        <li><a href="http://gw2crafts.net/de/total.html">Insgesamts</a></li>
+        <li><a href="http://gw2crafts.net/de/total.html">Insgesamt</a></li>
         <li><a href="http://gw2crafts.net/de/faq.html">Über</a></li>
         <li><a href="#" hreflang="de">Deutsch</a>
         <ul>
