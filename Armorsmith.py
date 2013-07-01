@@ -1,4 +1,4 @@
-# coding=unicode-escape
+# -*- coding: utf-8 -*-
 recipes = {
 	0:{
 		10262:{13105:1,13106:1,19795:1},
