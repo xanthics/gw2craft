@@ -2,62 +2,62 @@
 # es Localized text
 header = u"""<nav>
     <ul>
-        <li><a href="http://gw2crafts.net/es/">Home</a></li>
-        <li><a href="http://gw2crafts.net/es/nav.html">Normal Guides</a>
+        <li><a href="http://gw2crafts.net/es/">Casa</a></li>
+        <li><a href="http://gw2crafts.net/es/nav.html">Guías Normales</a>
         <ul>
-            <li><a href="#">Cooking</a>
+            <li><a href="#">Cocinar</a>
             <ul>
-                <li><a href="http://gw2crafts.net/es/cooking.html">No Hearts</a></li>
-                <li><a href="http://gw2crafts.net/es/cooking_karma_light.html">Top 5 Hearts</a></li>
-                <li><a href="http://gw2crafts.net/es/cooking_karma.html">All Hearts</a></li>
+                <li><a href="http://gw2crafts.net/es/cooking.html">No Corazones</a></li>
+                <li><a href="http://gw2crafts.net/es/cooking_karma_light.html">Top 5 Corazones</a></li>
+                <li><a href="http://gw2crafts.net/es/cooking_karma.html">Todos Los Corazones</a></li>
             </ul>
             </li>
-            <li><a href="http://gw2crafts.net/es/jewelcraft.html">Jewelcrafting</a></li>
+            <li><a href="http://gw2crafts.net/es/jewelcraft.html">Joyería</a></li>
             <li><a href="http://gw2crafts.net/es/artificing.html">Artificing</a></li>
-            <li><a href="http://gw2crafts.net/es/huntsman.html">Huntsman</a></li>
+            <li><a href="http://gw2crafts.net/es/huntsman.html">Montero</a></li>
             <li><a href="http://gw2crafts.net/es/weaponcraft.html">Weaponcrafting</a></li>
             <li><a href="http://gw2crafts.net/es/armorcraft.html">Armorcrafting</a></li>
-            <li><a href="http://gw2crafts.net/es/leatherworking.html">Leatherworking</a></li>
-            <li><a href="http://gw2crafts.net/es/tailor.html">Tailoring</a></li>
+            <li><a href="http://gw2crafts.net/es/leatherworking.html">Peletería</a></li>
+            <li><a href="http://gw2crafts.net/es/tailor.html">Sastrería</a></li>
         </ul>
         </li>
-        <li><a href="http://gw2crafts.net/es/nav.html">Fast Guides</a>
+        <li><a href="http://gw2crafts.net/es/nav.html">Guías Rápidas</a>
         <ul>
-            <li><a href="#">Cooking</a>
+            <li><a href="#">Cocinar</a>
             <ul>
-                <li><a href="http://gw2crafts.net/es/cooking_fast.html">No Hearts</a></li>
-                <li><a href="http://gw2crafts.net/es/cooking_karma_fast_light.html">Top 5 Hearts</a></li>
-                <li><a href="http://gw2crafts.net/es/cooking_karma_fast.html">All Hearts</a></li>
+                <li><a href="http://gw2crafts.net/es/cooking_fast.html">No Corazones</a></li>
+                <li><a href="http://gw2crafts.net/es/cooking_karma_fast_light.html">Top 5 Corazones</a></li>
+                <li><a href="http://gw2crafts.net/es/cooking_karma_fast.html">Todos Los Corazones</a></li>
             </ul>
             </li>
-            <li><a href="http://gw2crafts.net/es/jewelcraft_fast.html">Jewelcrafting</a></li>
+            <li><a href="http://gw2crafts.net/es/jewelcraft_fast.html">Joyería</a></li>
             <li><a href="http://gw2crafts.net/es/artificing_fast.html">Artificing</a></li>
-            <li><a href="http://gw2crafts.net/es/huntsman_fast.html">Huntsman</a></li>
+            <li><a href="http://gw2crafts.net/es/huntsman_fast.html">Montero</a></li>
             <li><a href="http://gw2crafts.net/es/weaponcraft_fast.html">Weaponcrafting</a></li>
             <li><a href="http://gw2crafts.net/es/armorcraft_fast.html">Armorcrafting</a></li>
-            <li><a href="http://gw2crafts.net/es/leatherworking_fast.html">Leatherworking</a></li>
-            <li><a href="http://gw2crafts.net/es/tailor_fast.html">Tailoring</a></li>
+            <li><a href="http://gw2crafts.net/es/leatherworking_fast.html">Peletería</a></li>
+            <li><a href="http://gw2crafts.net/es/tailor_fast.html">Sastrería</a></li>
         </ul>
         </li>
-        <li><a href="http://gw2crafts.net/es/nav.html">Traditional Guides</a>
+        <li><a href="http://gw2crafts.net/es/nav.html">Guías tradicionales</a>
         <ul>
-            <li><a href="http://gw2crafts.net/es/jewelcraft_craft_all.html">Jewelcrafting</a></li>
+            <li><a href="http://gw2crafts.net/es/jewelcraft_craft_all.html">Joyería</a></li>
             <li><a href="http://gw2crafts.net/es/artificing_craft_all.html">Artificing</a></li>
-            <li><a href="http://gw2crafts.net/es/huntsman_craft_all.html">Huntsman</a></li>
+            <li><a href="http://gw2crafts.net/es/huntsman_craft_all.html">Montero</a></li>
             <li><a href="http://gw2crafts.net/es/weaponcraft_craft_all.html">Weaponcrafting</a></li>
             <li><a href="http://gw2crafts.net/es/armorcraft_craft_all.html">Armorcrafting</a></li>
-            <li><a href="http://gw2crafts.net/es/leatherworking_craft_all.html">Leatherworking</a></li>
-            <li><a href="http://gw2crafts.net/es/tailor_craft_all.html">Tailoring</a></li>
+            <li><a href="http://gw2crafts.net/es/leatherworking_craft_all.html">Peletería</a></li>
+            <li><a href="http://gw2crafts.net/es/tailor_craft_all.html">Sastrería</a></li>
         </ul>
         </li>
         <li><a href="http://gw2crafts.net/es/total.html">Totals</a></li>
-        <li><a href="http://gw2crafts.net/es/faq.html">About</a></li>
-        <li><a href="#" hreflang="es">Spanish</a>
+        <li><a href="http://gw2crafts.net/es/faq.html">Acerca De</a></li>
+        <li><a href="#" hreflang="es">Español</a>
         <ul>
-          <li><a href="http://gw2crafts.net/%s" hreflang="en">English</a></li>
-          <li><a href="http://gw2crafts.net/fr/%s" hreflang="fr">French</a></li>
-          <li><a href="http://gw2crafts.net/de/%s" hreflang="de">German</a></li>
-          <li><a href="#" hreflang="es">Spanish</a></li>
+          <li><a href="http://gw2crafts.net/%s" hreflang="en">Inglés</a></li>
+          <li><a href="http://gw2crafts.net/fr/%s" hreflang="fr">Francés</a></li>
+          <li><a href="http://gw2crafts.net/de/%s" hreflang="de">Alemán</a></li>
+          <li><a href="#" hreflang="es">Español</a></li>
         </ul>
         </li>
     </ul>
@@ -66,7 +66,7 @@ header = u"""<nav>
 
 # Copyright notice for GW2 IP
 cright = u'''<footer>
-    Guild Wars 2 &#0169; 2012 ArenaNet, Inc. All rights reserved. NCsoft, the interlocking NC logo, ArenaNet, Guild Wars, Guild Wars Factions, Guild Wars Nightfall, Guild Wars: Eye of the North, Guild Wars 2, and all associated logos and designs are trademarks or registered trademarks of NCsoft Corporation. All other trademarks are the property of their respective owners.
+    Guild Wars 2 © 2012 ArenaNet, Inc. Todos los derechos reservados. NCsoft, el logotipo de las NC entrelazadas, ArenaNet, Guild Wars, Factions Clan Wars, Guild Wars Nightfall, Guild Wars: Eye of the North, Guild Wars 2, y todos los logotipos y diseños asociados son marcas comerciales o marcas comerciales registradas de NCsoft Corporation. Todas las demás marcas son propiedad de sus respectivos dueños.
 </footer>'''
 
 karma_items  = {12337:{'note':"Lieutenant Pickins - Greystone Rise(Harathi Hinterlands 35-45) <br /> Disa - Snowslide Ravine(Dredgehaunt Cliffs 40-50)",'cost':77}, # Almond
@@ -121,7 +121,7 @@ karma_recipe = {12131:{'note':"Elain - Grenbrack Delves(Caledon Forest 1-15)",'c
                 12739:{'note':"Sentry Triktiki - Arcallion Digs(Harathi Hinterlands 35-45)",'cost':35}, # Triktiki Omelet
                 12352:{'note':"Pochtecatl - Jelako Cliffrise(Bloodtide Coast 45-55)",'cost':35}, # Griffon Egg Omelet
                 12264:{'note':"Nrocroc Chief - Apostate Wastes(Fireheart Rise 60-70)",'cost':35}, # Raspberry Pie
-                12192:{'note':"Assistant Chef Victor- Scaver Plateau(Queensdale 1-15)",'cost':35}, # Beetletun Omelette
+                12192:{'note':"Assistant Chef Victor - Scaver Plateau(Queensdale 1-15)",'cost':35}, # Beetletun Omelette
                 19955:{'note':"Master Craftsman or Vendor",'cost':350}, # Ravaging Intricate Wool Insignia
                 19956:{'note':"Master Craftsman or Vendor",'cost':350}, # Rejuvenating Intricate Wool Insignia
                 19957:{'note':"Master Craftsman or Vendor",'cost':350}, # Honed Intricate Wool Insignia
