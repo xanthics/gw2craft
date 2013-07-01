@@ -7,7 +7,7 @@ header = u"""<nav>
         <ul>
             <li><a href="#">Cuisiner</a>
             <ul>
-                <li><a href="http://gw2crafts.net/fr/cooking.html">Pas de coeurs</a></li>
+                <li><a href="http://gw2crafts.net/fr/cooking.html">Pas De Coeurs</a></li>
                 <li><a href="http://gw2crafts.net/fr/cooking_karma_light.html">Top 5 Des Coeurs</a></li>
                 <li><a href="http://gw2crafts.net/fr/cooking_karma.html">Tous Les Coeurs</a></li>
             </ul>
@@ -25,7 +25,7 @@ header = u"""<nav>
         <ul>
             <li><a href="#">Cuisiner</a>
             <ul>
-                <li><a href="http://gw2crafts.net/fr/cooking_fast.html">Pas de coeurs</a></li>
+                <li><a href="http://gw2crafts.net/fr/cooking_fast.html">Pas De Coeurs</a></li>
                 <li><a href="http://gw2crafts.net/fr/cooking_karma_fast_light.html">Top 5 Des Coeurs</a></li>
                 <li><a href="http://gw2crafts.net/fr/cooking_karma_fast.html">Tous Les Coeurs</a></li>
             </ul>
