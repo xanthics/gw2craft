@@ -560,8 +560,8 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, filename, 
             else:
                 b_mix[item] = buy[item]
 
-    karma_str = u"<div class=\"s%d\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><span class=\"quantity\">%d</span> <button title=\"Click To Toggle\" class=\"%s arrow\" id=\"%d\">%s</button><div class=\"lsbutton\" id=\"1%d\">%d <span class=\"karmaIcon\"></span> per 25 <br /> %s</div></div>\n"
-    collectable_str = u"<div class=\"s%d\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><span class=\"quantity\">%d</span> <span class=\"%s\">%s</span> (%4s per)</div>\n"
+    karma_str = u"<div class=\"s%d\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><span class=\"quantity\">%d</span> <button title=\"Click To Toggle\" class=\"%s arrow\" id=\"%d\">%s</button><div class=\"lsbutton\" id=\"1%d\">%d <span class=\"karmaIcon\"></span> "+localText.valuePer+u" 25 <br /> %s</div></div>\n"
+    collectable_str = u"<div class=\"s%d\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><span class=\"quantity\">%d</span> <span class=\"%s\">%s</span> (%4s "+localText.valuePer+u")</div>\n"
 
 
     t = 0 # used to control div background color
@@ -581,9 +581,9 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, filename, 
         f.write(u'</head>\n')
         f.write(u'<body>\n%s\n<section>'%(localText.header%(filename,filename,filename)))
         f.write(u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n')
-        f.write(u'<img src="/css/warning-icon.png" width="24px" height="24px" style="padding: 0 8px 0 8px; float: left;"><span style="position: relative; top: 4px;"><span style="color: red">Do not refresh this page.</span>    It may change. Updated: '+mytime+u'</b></span>\n')
+        f.write(u'<img src="/css/warning-icon.png" width="24px" height="24px" style="padding: 0 8px 0 8px; float: left;"><span style="position: relative; top: 4px;"><span style="color: red">%s</span>    %s: %s</b></span>\n'%(localText.warning1,localText.warning2,mytime))
         f.write(u'</div><br />\n')
-        f.write(u'Wherever you see this  <img src=\"/img/arrow.png\"></img> you can click for more information <br />')
+        f.write(localText.moreInfo%(u"<img src=\"/img/arrow.png\"></img>"))
         f.write(u'<h1>'+filename.split('.')[0].replace("_"," ").title()+u'</h1>')
         # adword
         f.write(u'<div style="display:block;float:Right;"> \
@@ -612,13 +612,13 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, filename, 
         for line in sorted(sell):
             if cList[line][u'w'] > 0:
                 t = (t+1)%2
-                f.write(u'<div class=\"s%i\">%3i <span class=\"%s\">%s</span> - Sold for %s per via %s</div>\n'%(t,sell[line],cList[line][u'rarity'],cListName[line],mFormat(cList[line][u'w']),cList[line][u'sellMethod']))
+                f.write(u'<div class=\"s%i\">%3i <span class=\"%s\">%s</span> - %s %s</div>\n'%(t,sell[line],cList[line][u'rarity'],cListName[line],(localText.soldVia%mFormat(cList[line][u'w'])),cList[line][u'sellMethod']))
 
         f.write(u"</div><script type=\"text/javascript\">$('#1tcost').hide();</script><br />")
         buttonList.append('tcost')
 
         if b_vendor or b_karma_c or b_karma_w:
-            f.write(u"<h2>BUY VENDOR</h2>\n")
+            f.write(u"<h2>%s</h2>\n"%localText.buyVendor)
             if b_karma_c or b_karma_w:
                 f.write(u"<span class=\"karmaIcon\"></span> Note: 11 Basil Leaf(e.g.) means buy 1 bulk Basil Leaf and you will have 14 left over<br /><br />\n")
 
@@ -636,7 +636,7 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, filename, 
 
             for item in sorted(b_vendor):
                 t = (t+1)%2
-                f.write(u"<div class=\"s%i\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><span class=\"quantity\">%i</span> <span class=\"%s\">%s</span> (%4s per from Vendor)</div>\n"%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost'])))
+                f.write((u"<div class=\"s%i\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><span class=\"quantity\">%i</span> <span class=\"%s\">%s</span> (%4s "+localText.valuePer+u" from Vendor)</div>\n")%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost'])))
 
         if recipebuy:
             f.write(u"<h2>%s</h2>\n"%localText.bRecipes)
@@ -669,14 +669,14 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, filename, 
                 f.write(collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost'])))
 
         if b_mix:
-            f.write(u'<h2>MIXED(Buy on TP)</h2>\n')
+            f.write(u'<h2>%s</h2>\n'%localText.mixedTP)
             for item in sorted(b_mix):
                 t = (t+1)%2
                 f.write(collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost'])))
 
-        f.write(u"<br />\n<br />\n<h2>MAKE</h2>\n")
-        f.write(u"<button title=\"Click To Show All Discovery Recipes\" class =\"info\" id=\"show_all\">Expand All Discovery Recipes</button><br />")
-        f.write(u"<button title=\"Click To Hide All Discovery Recipes\" class =\"info\" id=\"hide_all\">Collapse All Discovery Recipes</button>")
+        f.write(u"<br />\n<br />\n<h2>%s</h2>\n"%localText.make)
+        f.write(u"<button title=\"Click To Show All Discovery Recipes\" class =\"info\" id=\"show_all\">%s</button><br />"%localText.expand)
+        f.write(u"<button title=\"Click To Hide All Discovery Recipes\" class =\"info\" id=\"hide_all\">%s</button>"%localText.expand)
         rt = 0
         for tier in [0,25,50,75,100,125,150,175,200,225,250,275,300,325,350,375]:
             if tierbuy and tier in [0,75,150,225,300]:
@@ -684,35 +684,35 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, filename, 
                 tc = tier+75
                 if tier == 300:
                     tc += 25
-                f.write((u"<br /><br /><h4>Tier %i, Levels %i-%i:<button title=\"Click To Toggle\" class =\"info\" id=\""+str(tier)+u"tier\">Buy List(Only Tier %i)</button></h4>\n<div class=\"lsbutton\" id=\"1"+str(tier)+u"tier\">")%(tier/75+1,tier,tc,tier/75+1))
-                f.write(u"<h5>Notice: If you are following the full guide then you already purchased these materials.</h5>")
+                f.write((u"<br /><br /><h4>%s:<button title=\"Click To Toggle\" class =\"info\" id=\""+str(tier)+u"tier\">%s</button></h4>\n<div class=\"lsbutton\" id=\"1"+str(tier)+u"tier\">")%((localText.tier%(tier/75+1,tier,tc)),localText.buyList%(tier/75+1)))
+                f.write(u"<h5>%s</h5>"%localText.blNotice)
                 for item in sorted(tierbuy[tier]):
                     t = (t+1)%2
-                    f.write(u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url("+cList[item][u'icon']+u");\"></span><span class=\"quantity\">%i</span> <span class=\"%s\">%s</span> (%4s per)</div>\n"%(tierbuy[tier][item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost'])))
+                    f.write((u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url("+cList[item][u'icon']+u");\"></span><span class=\"quantity\">%i</span> <span class=\"%s\">%s</span> (%4s "+localText.valuePer+u")</div>\n")%(tierbuy[tier][item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost'])))
                     tt += tierbuy[tier][item]*cList[item][u'cost']
                 buttonList.append(str(tier)+u'tier')
                 rt += tt
                 totals[filename.split('.')[0]][tier] = tt
-                f.write(u"</div><h4>Cost: %s ( Rolling Total: %s)</h4>\n"% (mFormat(tt),mFormat(rt)))        
-            f.write((u"<br />\n<h3>Level:%3i</h3>\n")%(tier))
+                f.write(u"</div><h4>%s</h4>\n"%(localText.costRT%(mFormat(tt),mFormat(rt))))        
+            f.write((u"<br />\n<h3>%s:%3i</h3>\n")%(localText.level,tier))
             if pmake[tier]:
                 for item in sorted(pmake[tier]):
                     t = (t+1)%2
-                    f.write(u"<div class=\"s"+str(t)+u"\">Make:%3i <span class=\"%s\">%s</span> (From %i tier) </div>\n"%(pmake[tier][item],cList[item][u'rarity'],cListName[item],tier-25))
+                    f.write(u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span> (From %i tier) </div>\n"%(pmake[tier][item],cList[item][u'rarity'],cListName[item],tier-25))
             for item in sorted(make[tier], key=make[tier].get,reverse=True):
                 if cList[item][u'type'] == u'Refinement':
                     t = (t+1)%2
                     if item == 19679: # Bronze Ingot
-                        f.write(u"<div class=\"s"+str(t)+u"\">Make:%3i <span class=\"%s\">%s</span> (Produces 5 Ingot per make)</div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
+                        f.write((u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span> (Produces 5 Ingot "+localText.valuePer+u" make)</div>\n")%(make[tier][item],cList[item][u'rarity'],cListName[item]))
                     else:
-                        f.write(u"<div class=\"s"+str(t)+u"\">Make:%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
+                        f.write(u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
             for item in sorted(make[tier], key=make[tier].get,reverse=True):
                 if cList[item][u'type'] in non_item and not cList[item][u'type'] == u'Refinement':
                     t = (t+1)%2
                     if item in [13063,  13189,  13207,  13219,  13045,  13022,  13075,  13177,  13096,  13033]: # Sole
-                        f.write(u"<div class=\"s"+str(t)+u"\">Make:%3i <span class=\"%s\">%s</span> (Produces 2 Soles per make)</div>\n"%(make[tier][item]/2,cList[item][u'rarity'],cListName[item]))
+                        f.write((u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span> (Produces 2 Soles "+localText.valuePer+u" make)</div>\n")%(make[tier][item]/2,cList[item][u'rarity'],cListName[item]))
                     else:
-                        f.write(u"<div class=\"s"+str(t)+u"\">Make:%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
+                        f.write(u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
             for item in sorted(make[tier]):
 
                 if 'discover' in cList[item] and cList[item][u'discover'] == 1:
@@ -725,15 +725,15 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, filename, 
                     for s in cList[item][u'recipe']:
                         tstr += "\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u'\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][s])+u")"
                     tstr += "</div><br />"
-                    f.write(u"<div class=\"s"+str(t)+u"\">Discover: <button class=\"arrow "+cList[item][u'rarity']+u'\" title=\"Click To Toggle\" id=\"'+str(item)+u'\">'+cListName[item]+u"</button> "+tstr+u"\n</div>\n")
+                    f.write(u"<div class=\"s"+str(t)+u"\">"+localText.discover+u": <button class=\"arrow "+cList[item][u'rarity']+u'\" title=\"Click To Toggle\" id=\"'+str(item)+u'\">'+cListName[item]+u"</button> "+tstr+u"\n</div>\n")
                     buttonList.append(item)
             for item in sorted(make[tier]):
                 if not cList[item][u'type'] in non_item:
                     t = (t+1)%2
-                    f.write(u"<div class=\"s"+str(t)+u"\">Make:%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
-        f.write(u'<br />\n<h3>Level:400</h3>\n')
+                    f.write(u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
+        f.write(u'<br />\n<h3>%s:400</h3>\n'%localText.level)
         t = (t+1)%2
-        f.write(u"<div class=\"s"+str(t)+u"\">Nothing.    You are done!</div>\n")
+        f.write(u"<div class=\"s"+str(t)+u"\">%s</div>\n"%localText.finish)
         # adword
         f.write(u'<br /><div style="display:block;text-align:Right;"> \
                 \n<script type="text/javascript"><!-- \
