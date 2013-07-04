@@ -12,13 +12,13 @@ header = u"""<nav>
                 <li><a href="http://gw2crafts.net/es/cooking_karma.html">Todos Los Corazones</a></li>
             </ul>
             </li>
-            <li><a href="http://gw2crafts.net/es/jewelcraft.html">Joyería</a></li>
-            <li><a href="http://gw2crafts.net/es/artificing.html">Artificing</a></li>
-            <li><a href="http://gw2crafts.net/es/huntsman.html">Montero</a></li>
-            <li><a href="http://gw2crafts.net/es/weaponcraft.html">Weaponcrafting</a></li>
-            <li><a href="http://gw2crafts.net/es/armorcraft.html">Armorcrafting</a></li>
-            <li><a href="http://gw2crafts.net/es/leatherworking.html">Peletería</a></li>
-            <li><a href="http://gw2crafts.net/es/tailor.html">Sastrería</a></li>
+            <li><a href="http://gw2crafts.net/es/jewelcraft.html">Joyero</a></li>
+            <li><a href="http://gw2crafts.net/es/artificing.html">Artificiero</a></li>
+            <li><a href="http://gw2crafts.net/es/huntsman.html">Cazador</a></li>
+            <li><a href="http://gw2crafts.net/es/weaponcraft.html">Armero</a></li>
+            <li><a href="http://gw2crafts.net/es/armorcraft.html">Forjador de Armaduras</a></li>
+            <li><a href="http://gw2crafts.net/es/leatherworking.html">Peletero</a></li>
+            <li><a href="http://gw2crafts.net/es/tailor.html">Sastre</a></li>
         </ul>
         </li>
         <li><a href="http://gw2crafts.net/es/nav.html">Guías Rápidas</a>
@@ -30,24 +30,24 @@ header = u"""<nav>
                 <li><a href="http://gw2crafts.net/es/cooking_karma_fast.html">Todos Los Corazones</a></li>
             </ul>
             </li>
-            <li><a href="http://gw2crafts.net/es/jewelcraft_fast.html">Joyería</a></li>
-            <li><a href="http://gw2crafts.net/es/artificing_fast.html">Artificing</a></li>
-            <li><a href="http://gw2crafts.net/es/huntsman_fast.html">Montero</a></li>
-            <li><a href="http://gw2crafts.net/es/weaponcraft_fast.html">Weaponcrafting</a></li>
-            <li><a href="http://gw2crafts.net/es/armorcraft_fast.html">Armorcrafting</a></li>
-            <li><a href="http://gw2crafts.net/es/leatherworking_fast.html">Peletería</a></li>
-            <li><a href="http://gw2crafts.net/es/tailor_fast.html">Sastrería</a></li>
+            <li><a href="http://gw2crafts.net/es/jewelcraft_fast.html">Joyero</a></li>
+            <li><a href="http://gw2crafts.net/es/artificing_fast.html">Artificiero</a></li>
+            <li><a href="http://gw2crafts.net/es/huntsman_fast.html">Cazador</a></li>
+            <li><a href="http://gw2crafts.net/es/weaponcraft_fast.html">Armero</a></li>
+            <li><a href="http://gw2crafts.net/es/armorcraft_fast.html">Forjador de Armaduras</a></li>
+            <li><a href="http://gw2crafts.net/es/leatherworking_fast.html">Peletero</a></li>
+            <li><a href="http://gw2crafts.net/es/tailor_fast.html">Sastre</a></li>
         </ul>
         </li>
         <li><a href="http://gw2crafts.net/es/nav.html">Guías tradicionales</a>
         <ul>
-            <li><a href="http://gw2crafts.net/es/jewelcraft_craft_all.html">Joyería</a></li>
-            <li><a href="http://gw2crafts.net/es/artificing_craft_all.html">Artificing</a></li>
-            <li><a href="http://gw2crafts.net/es/huntsman_craft_all.html">Montero</a></li>
-            <li><a href="http://gw2crafts.net/es/weaponcraft_craft_all.html">Weaponcrafting</a></li>
-            <li><a href="http://gw2crafts.net/es/armorcraft_craft_all.html">Armorcrafting</a></li>
-            <li><a href="http://gw2crafts.net/es/leatherworking_craft_all.html">Peletería</a></li>
-            <li><a href="http://gw2crafts.net/es/tailor_craft_all.html">Sastrería</a></li>
+            <li><a href="http://gw2crafts.net/es/jewelcraft_craft_all.html">Joyero</a></li>
+            <li><a href="http://gw2crafts.net/es/artificing_craft_all.html">Artificiero</a></li>
+            <li><a href="http://gw2crafts.net/es/huntsman_craft_all.html">Cazador</a></li>
+            <li><a href="http://gw2crafts.net/es/weaponcraft_craft_all.html">Armero</a></li>
+            <li><a href="http://gw2crafts.net/es/armorcraft_craft_all.html">Forjador de Armaduras</a></li>
+            <li><a href="http://gw2crafts.net/es/leatherworking_craft_all.html">Peletero</a></li>
+            <li><a href="http://gw2crafts.net/es/tailor_craft_all.html">Sastre</a></li>
         </ul>
         </li>
         <li><a href="http://gw2crafts.net/es/total.html">Totales</a></li>
@@ -66,7 +66,7 @@ header = u"""<nav>
 
 # Copyright notice for GW2 IP
 cright = u'''<footer>
-    Guild Wars 2 © 2012 ArenaNet, Inc. Todos los derechos reservados. NCsoft, el logotipo de las NC entrelazadas, ArenaNet, Guild Wars, Factions Clan Wars, Guild Wars Nightfall, Guild Wars: Eye of the North, Guild Wars 2, y todos los logotipos y diseños asociados son marcas comerciales o marcas comerciales registradas de NCsoft Corporation. Todas las demás marcas son propiedad de sus respectivos dueños.
+    Guild Wars 2 © 2012 ArenaNet, Inc. Todos los derechos reservados. NCsoft, el logotipo entrelazado de NC, ArenaNet, Guild Wars, Guild Wars Factions, Guild Wars Nightfall, Guild Wars: Eye of the North, Guild Wars 2, y todos los logos y diseños asociados son marcas registradas o marcas de NCsoft Corporation. Todas las otras marcas son propiedad de sus respectivos dueños.
 </footer>'''
 
 karma_items  = {12337:{'note':"Lieutenant Pickins - Greystone Rise(Harathi Hinterlands 35-45) <br /> Disa - Snowslide Ravine(Dredgehaunt Cliffs 40-50)",'cost':77}, # Almond
@@ -213,3 +213,24 @@ fCost = u"Coste Final"
 sList = u"Lista De Venta"
 bRecipes = u"COMPRAR RECETAS"
 collectibles = u"COLECCIONABLES(en el banco o en el bazar)"
+
+warning1 = u"No actualizes esta página. "
+warning2 = u"Puede cambiar. Actualizada"
+moreInfo = u"Haz click en %s para ver más información"
+soldVia = u"Cada unidad a %s en"
+vendor = u"un Mercader"
+maxBuy = u"el Bazar"
+minSell = u"Precio Mínimo de Venta"
+valuePer = u"unidad"
+buyVendor = u"Comprar a Proveedores"
+mixedTP = u"Mixto (comprar en el bazar)"
+make = u"Crea"
+discover = u"Descubre"
+expand = u"Desplegar descubrimientos"
+collapse = u"Cerrar descubrimientos"
+tier = u"Rango %i, Niveles %i-%i:"
+buyList = u"Lista de compra - Rango %i"
+blNotice = u"Nota: Si usas la guía entera ya has comprado estos materiales."
+costRT = u"Coste: %s (Coste acumulado: %s)"
+level = u"Nivel"
+finish = u"Nada. Has terminado!"
