@@ -6,6 +6,8 @@ These are all the python files that generate http://gw2crafts.net
 Requires Python 2.7.x.  You will need to define a ftp_info.py file.
 
 Crafting.py is the main file.
+gen_ifn.py generates the localized FAQ, nav and index pages
+localxx.py are the localized language files
 create_recipes.py creates all the other files you will need.  A recent snapshot of those files is also included.
 
 How-To

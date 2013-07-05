@@ -1,236 +1,262 @@
 # -*- coding: utf-8 -*-
-# es Localized text
-header = u"""<nav>
-    <ul>
-        <li><a href="http://gw2crafts.net/es/">Inicio</a></li>
-        <li><a href="http://gw2crafts.net/es/nav.html">Guías Normales</a>
-        <ul>
-            <li><a href="#">Cocinar</a>
-            <ul>
-                <li><a href="http://gw2crafts.net/es/cooking.html">No Corazones</a></li>
-                <li><a href="http://gw2crafts.net/es/cooking_karma_light.html">Top 5 Corazones</a></li>
-                <li><a href="http://gw2crafts.net/es/cooking_karma.html">Todos Los Corazones</a></li>
-            </ul>
-            </li>
-            <li><a href="http://gw2crafts.net/es/jewelcraft.html">Joyero</a></li>
-            <li><a href="http://gw2crafts.net/es/artificing.html">Artificiero</a></li>
-            <li><a href="http://gw2crafts.net/es/huntsman.html">Cazador</a></li>
-            <li><a href="http://gw2crafts.net/es/weaponcraft.html">Armero</a></li>
-            <li><a href="http://gw2crafts.net/es/armorcraft.html">Forjador de Armaduras</a></li>
-            <li><a href="http://gw2crafts.net/es/leatherworking.html">Peletero</a></li>
-            <li><a href="http://gw2crafts.net/es/tailor.html">Sastre</a></li>
-        </ul>
-        </li>
-        <li><a href="http://gw2crafts.net/es/nav.html">Guías Rápidas</a>
-        <ul>
-            <li><a href="#">Cocinar</a>
-            <ul>
-                <li><a href="http://gw2crafts.net/es/cooking_fast.html">No Corazones</a></li>
-                <li><a href="http://gw2crafts.net/es/cooking_karma_fast_light.html">Top 5 Corazones</a></li>
-                <li><a href="http://gw2crafts.net/es/cooking_karma_fast.html">Todos Los Corazones</a></li>
-            </ul>
-            </li>
-            <li><a href="http://gw2crafts.net/es/jewelcraft_fast.html">Joyero</a></li>
-            <li><a href="http://gw2crafts.net/es/artificing_fast.html">Artificiero</a></li>
-            <li><a href="http://gw2crafts.net/es/huntsman_fast.html">Cazador</a></li>
-            <li><a href="http://gw2crafts.net/es/weaponcraft_fast.html">Armero</a></li>
-            <li><a href="http://gw2crafts.net/es/armorcraft_fast.html">Forjador de Armaduras</a></li>
-            <li><a href="http://gw2crafts.net/es/leatherworking_fast.html">Peletero</a></li>
-            <li><a href="http://gw2crafts.net/es/tailor_fast.html">Sastre</a></li>
-        </ul>
-        </li>
-        <li><a href="http://gw2crafts.net/es/nav.html">Guías tradicionales</a>
-        <ul>
-            <li><a href="http://gw2crafts.net/es/jewelcraft_craft_all.html">Joyero</a></li>
-            <li><a href="http://gw2crafts.net/es/artificing_craft_all.html">Artificiero</a></li>
-            <li><a href="http://gw2crafts.net/es/huntsman_craft_all.html">Cazador</a></li>
-            <li><a href="http://gw2crafts.net/es/weaponcraft_craft_all.html">Armero</a></li>
-            <li><a href="http://gw2crafts.net/es/armorcraft_craft_all.html">Forjador de Armaduras</a></li>
-            <li><a href="http://gw2crafts.net/es/leatherworking_craft_all.html">Peletero</a></li>
-            <li><a href="http://gw2crafts.net/es/tailor_craft_all.html">Sastre</a></li>
-        </ul>
-        </li>
-        <li><a href="http://gw2crafts.net/es/total.html">Totales</a></li>
-        <li><a href="http://gw2crafts.net/es/faq.html">Acerca De</a></li>
-        <li><a href="#" hreflang="es">Español</a>
-        <ul>
-          <li><a href="http://gw2crafts.net/%s" hreflang="en">Inglés</a></li>
-          <li><a href="http://gw2crafts.net/fr/%s" hreflang="fr">Francés</a></li>
-          <li><a href="http://gw2crafts.net/de/%s" hreflang="de">Alemán</a></li>
-          <li><a href="#" hreflang="es">Español</a></li>
-        </ul>
-        </li>
-    </ul>
-</nav>
-"""
+'''
+* Copyright (c) 2013 Jeremy Parks. All rights reserved.
+*
+* Permission is hereby granted, free of charge, to any person obtaining a
+* copy of this software and associated documentation files (the "Software"),
+* to deal in the Software without restriction, including without limitation
+* the rights to use, copy, modify, merge, publish, distribute, sublicense,
+* and/or sell copies of the Software, and to permit persons to whom the
+* Software is furnished to do so, subject to the following conditions:
+*
+* The above copyright notice and this permission notice shall be included in
+* all copies or substantial portions of the Software.
+*
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+* FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+* DEALINGS IN THE SOFTWARE.
+
+Author: Jeremy Parks
+Purpose: es Localized text
+Note: Requires Python 2.7.x
+'''
+
 
 # Copyright notice for GW2 IP
 cright = u'''<footer>
     Guild Wars 2 © 2012 ArenaNet, Inc. Todos los derechos reservados. NCsoft, el logotipo entrelazado de NC, ArenaNet, Guild Wars, Guild Wars Factions, Guild Wars Nightfall, Guild Wars: Eye of the North, Guild Wars 2, y todos los logos y diseños asociados son marcas registradas o marcas de NCsoft Corporation. Todas las otras marcas son propiedad de sus respectivos dueños.
 </footer>'''
 
-karma_items  = {12337:{'note':"Lieutenant Pickins - Greystone Rise(Harathi Hinterlands 35-45) <br /> Disa - Snowslide Ravine(Dredgehaunt Cliffs 40-50)",'cost':77}, # Almond
-                12165:{'note':"Farmer Eda - Shaemoor Fields(Queensdale 1-15) <br /> Apple Jack(16c per) - Cornucopian Fields(Gendarran Fields 25-35)",'cost':35}, # Apple
-                12340:{'note':"Fallen Angel Makayla - Stronghold of Ebonhawke(Fields of Ruin 30-40)",'cost':77}, # Avocado
-                12251:{'note':"Deputy Jenks - Giant's Passage (Kessex Hills 15-25) <br /> Sangdo Swiftwing - Cereboth Canyon(Kessex Hills 15-25) <br /> Seraph Soldier Goran - The Wendon Steps(Brisban Wildlands 15-25) <br /> Security Captain Vejj - Almuten Estates(Gendarran Fields 25-35)",'cost':49}, # Banana
-                12237:{'note':"Deputy Jenks - Overlake Haven(Kessex Hills 15-25) <br /> Field Medic Leius - Nebo Terrace(Gendarran Fields 25-35)",'cost':49}, # Black Bean
-                12240:{'note':"Bjarni - Hangrammr Climb(Wayfayer Foothills 1-15) <br /> Milton Book - Cornucopian Fields(Gendarran Fields 25-35)",'cost':35}, # Celery Stalk
-                12338:{'note':"Lieutenant Summers - Nightguard Beach(Harathi Hinterlands 35-45) <br /> Disa - Snowslide Ravine(Dredgehaunt Cliffs 35-45)",'cost':77}, # Cherry
-                12515:{'note':"Naknar - Ebbing Heart Run(Iron Marches 50-60)",'cost':112}, # Chickpea
-                12350:{'note':"Lionscout Tunnira - Archen Foreland(Bloodtide Coast 45-55)",'cost':112}, # Coconut
-                12256:{'note':"Sagum Relicseeker - Agnos Gorge(Plains of Ashford 1-15) <br /> Milton Book - Cornucopian Fields(Gendarran Fields 25-35)",'cost':35}, # Cumin
-                12502:{'note':"Environmental Activist Jenrys - Judgement Rock(Mount Maelstrom 60-70)",'cost':154}, # Eggplant
-                12232:{'note':"Albin Chronicler - The Icesteppes(Wayfarer Foothills 1-15)",'cost':35}, # Green Bean
-                12518:{'note':"Laudren - Thundertroll Swamp(Sparkfly Fen 55-65) <br /> Wupwup Chief - Apostate Wastes(Fireheart Rise 60-70)",'cost':112}, # Horseradish Root
-                12239:{'note':"Seraph Archer Brian - Ossencrest Climb(Snowden Drifts 15-25) <br /> Kastaz Strongpaw - Noxin Dells(Diessa Plateau 15-25) <br /> Hune - The Thunderhorns(Lornar's Pass 25-40)",'cost':49}, # Kidney Bean
-                12252:{'note':"Eona - Mabon Market(Caledon Forest 1-15) <br /> Researcher Hrappa - Voloxian Passage(Metrica Province 1-15) <br /> Milton Book - Cornucopian Fields(Gendarran Fields 25-35)",'cost':35}, # Lemon
-                12339:{'note':"Shelp - Degun Shun(Blazeridge Steppes 40-50)",'cost':77}, # Lime
-                12543:{'note':"Agent Crandle - Fort Trinity(Straits of Devastation 70-75)",'cost':203}, # Mango
-                12249:{'note':"Farmer Eda - Shaemoor Fields(Queensdale 1-15) <br /> Deputy Jenks - Overlake Haven(Kessex Hills 15-25) <br /> Milton Book - Cornucopian Fields(Gendarran Fields 25-35)",'cost':35}, # Nutmeg Seed
-                12503:{'note':"Nrocroc Chief - Apostate Wastes(Fireheart Rise 60-70)",'cost':154}, # Peach
-                12514:{'note':"Braxa Scalehunter - Champion's Shield(Iron Marches 50-60)",'cost':112}, # Pear
-                12516:{'note':"Scholar Tholin - Krongar Pass(Timberline Falls 50-60)",'cost':112}, # Pinenut
-                12517:{'note':"Ichtaca - Hunting Banks(Timberline Falls 50-60)",'cost':112}} # Shallot
+# renown heart vendors
+crandle    = u"Agent Crandle - Fort Trinity(Straits of Devastation 70-75)"
+aidem      = u"Aidem Finlay - Hidden Lake(Brisban Wildlands 15-25)"
+albin      = u"Albin Chronicler - The Icesteppes(Wayfarer Foothills 1-15)"
+jack       = u"Apple Jack(16c per) - Cornucopian Fields(Gendarran Fields 25-35)"
+victor     = u"Assistant Chef Victor - Scaver Plateau(Queensdale 1-15)"
+bjarni     = u"Bjarni - Breakneck Pass(Wayfarer Foothills 1-15)"
+braxa      = u"Braxa Scalehunter - Champion's Shield(Iron Marches 50-60)"
+jenks      = u"Deputy Jenks - Giant's Passage (Kessex Hills 15-25)"
+disa       = u"Disa - Snowslide Ravine(Dredgehaunt Cliffs 40-50)"
+drottot    = u"Drottot Lashtail - Devourer's Mouth(Plains of Ashford 1-15)"
+elain      = u"Elain - Grenbrack Delves(Caledon Forest 1-15)"
+jenrys     = u"Environmental Activist Jenrys - Judgement Rock(Mount Maelstrom 60-70)"
+eona       = u"Eona - Mabon Market(Caledon Forest 1-15)"
+makayla    = u"Fallen Angel Makayla - Stronghold of Ebonhawke(Fields of Ruin 30-40)"
+eda        = u"Farmer Eda - Shaemoor Fields(Queensdale 1-15)"
+leius      = u"Field Medic Leius - Nebo Terrace(Gendarran Fields 25-35)"
+glubb      = u"Glubb - Degun Shun(Blazeridge Steppes 40-50)"
+hune       = u"Hune - The Thunderhorns(Lornar's Pass 25-40)"
+ichtaca    = u"Ichtaca - Hunting Banks(Timberline Falls 50-60)"
+kastaz     = u"Kastaz Strongpaw - Noxin Dells(Diessa Plateau 15-25)"
+laewyn     = u"Laewyn - Wychmire Swamp(Caledon Forest 1-15)"
+laudren    = u"Laudren - Thundertroll Swamp(Sparkfly Fen 55-65)"
+pickins    = u"Lieutenant Pickins - Greystone Rise(Harathi Hinterlands 35-45)"
+summers    = u"Lieutenant Summers - Nightguard Beach(Harathi Hinterlands 35-45)"
+auda       = u"Lionguard Auda - Dragon's Rising(Silverpeak Mountains 15-25)"
+tunnira    = u"Lionscout Tunnira - Archen Foreland(Bloodtide Coast 45-55)"
+kevach     = u"Lodge Keeper Kevach - Dolyak Pass(Wayfarer Foothills 1-15)"
+mcov       = u"Master Craftsman or Vendor"
+maxtar     = u"Maxtar Rapidstep - Dolyak Pass(Wayfarer Foothills 1-15)"
+milton     = u"Milton Book - Cornucopian Fields(Gendarran Fields 25-35)"
+naknar     = u"Naknar - Ebbing Heart Run(Iron Marches 50-60)"
+nrocroc    = u"Nrocroc Chief - Apostate Wastes(Fireheart Rise 60-70)"
+hrouda     = u"PR&T Senior Investigator Hrouda - Akk Wilds(Metrica Province 1-15)"
+pochtecatl = u"Pochtecatl - Jelako Cliffrise(Bloodtide Coast 45-55)"
+hrappa     = u"Researcher Hrappa - Voloxian Passage(Metrica Province 1-15)"
+sagum      = u"Sagum Relicseeker - Agnos Gorge(Plains of Ashford 1-15)"
+sangdo     = u"Sangdo Swiftwing - Cereboth Canyon(Kessex Hills 15-25)"
+tholin     = u"Scholar Tholin - Krongar Pass(Timberline Falls 50-60)"
+vejj       = u"Security Captain Vejj - Almuten Estates(Gendarran Fields 25-35)"
+triktiki   = u"Sentry Triktiki - Arcallion Digs(Harathi Hinterlands 35-45)"
+brian      = u"Seraph Archer Brian - Ossencrest Climb(Snowden Drifts 15-25)"
+goran      = u"Seraph Soldier Goran - The Wendon Steps(Brisban Wildlands 15-25)"
+shelp      = u"Shelp - Degun Shun(Blazeridge Steppes 40-50)"
+vaastas    = u"Vaastas Meatslayer - Village of Butcher's Block(Diessa Plateau 15-25)"
+krug       = u"Veteran Krug - Taminn Foothills(Queensdale 1-15)"
+wupwup     = u"Wupwup Chief - Apostate Wastes(Fireheart Rise 60-70)"
 
-karma_chef   = {12159:{'note':"Master Chef or vendor near cooking area",'cost':35}, # Cheese Wedge
-                12137:{'note':"Master Chef or vendor near cooking area",'cost':35}, # Glass of Buttermilk
-                12152:{'note':"Master Chef or vendor near cooking area",'cost':35}, # Packet of Yeast
-                12145:{'note':"Master Chef or vendor near cooking area",'cost':49}, # Rice Ball
-                12325:{'note':"Master Chef or vendor near cooking area",'cost':77}, # Bowl of Sour Cream
-                12141:{'note':"Master Chef or vendor near cooking area",'cost':35}, # Tomato
-                12328:{'note':"Master Chef or vendor near cooking area",'cost':77}, # Ginger Root
-                12245:{'note':"Master Chef or vendor near cooking area",'cost':49}, # Basil Leaf
-                12235:{'note':"Master Chef or vendor near cooking area",'cost':49}} # Bell Pepper
-
-karma_recipe = {12131:{'note':"Elain - Grenbrack Delves(Caledon Forest 1-15)",'cost':35}, # Bowl of Watery Mushroom Soup
-                12185:{'note':"Bjarni - Breakneck Pass(Wayfarer Foothills 1-15)",'cost':35}, # Handful of Bjarni's Rabbit Food
-                12140:{'note':"PR&T Senior Investigator Hrouda - Akk Wilds(Metrica Province 1-15)",'cost':35}, # Bowl of Gelatinous Ooze Custard
-                 8587:{'note':"Drottot Lashtail - Devourer's Mouth(Plains of Ashford 1-15)",'cost':35}, # Poached Egg
-                12211:{'note':"Lodge Keeper Kevach - Dolyak Pass(Wayfarer Foothills 1-15)",'cost':35}, # Bowl of Cold Wurm Stew
-                12198:{'note':"Vaastas Meatslayer - Village of Butcher's Block(Diessa Plateau 15-25)",'cost':35}, # Celebratory Steak
-                12133:{'note':"Laewyn - Wychmire Swamp(Caledon Forest 1-15)",'cost':35}, # Warden Ration
-                12149:{'note':"Veteran Krug - Taminn Foothills(Queensdale 1-15)",'cost':35}, # Bowl of Ettin Stew
-                12203:{'note':"Maxtar Rapidstep - Dolyak Pass(Wayfarer Foothills 1-15)",'cost':35}, # Bowl of Dolyak Stew
-                12139:{'note':"Aidem Finlay - Hidden Lake(Brisban Wildlands 15-25)",'cost':35}, # Bowl of Front Line Stew
-                12150:{'note':"Farmer Eda - Shaemoor Fields(Queensdale 1-15)",'cost':35}, # Eda's Apple Pie
-                12343:{'note':"Kastaz Strongpaw - Noxin Dells(Diessa Plateau 15-25)",'cost':35}, # Kastaz Roasted Poultry
-                12160:{'note':"Lionguard Auda - Dragon's Rising(Silverpeak Mountains 15-25)",'cost':35}, # Loaf of Walnut Sticky Bread
-                12154:{'note':"Seraph Archer Brian - Ossencrest Climb(Snowden Drifts 15-25)",'cost':35}, # Bowl of Outrider Stew
-                12292:{'note':"Glubb - Degun Shun(Blazeridge Steppes 40-50)",'cost':35}, # Bowl of Degun Shun Stew
-                12233:{'note':"Scholar Tholin - Krongar Pass(Timberline Falls 50-60)",'cost':35}, # Handful of Trail Mix
-                12739:{'note':"Sentry Triktiki - Arcallion Digs(Harathi Hinterlands 35-45)",'cost':35}, # Triktiki Omelet
-                12352:{'note':"Pochtecatl - Jelako Cliffrise(Bloodtide Coast 45-55)",'cost':35}, # Griffon Egg Omelet
-                12264:{'note':"Nrocroc Chief - Apostate Wastes(Fireheart Rise 60-70)",'cost':35}, # Raspberry Pie
-                12192:{'note':"Assistant Chef Victor - Scaver Plateau(Queensdale 1-15)",'cost':35}, # Beetletun Omelette
-                19955:{'note':"Master Craftsman or Vendor",'cost':350}, # Ravaging Intricate Wool Insignia
-                19956:{'note':"Master Craftsman or Vendor",'cost':350}, # Rejuvenating Intricate Wool Insignia
-                19957:{'note':"Master Craftsman or Vendor",'cost':350}, # Honed Intricate Wool Insignia
-                19958:{'note':"Master Craftsman or Vendor",'cost':350}, # Pillaging Intricate Wool Insignia
-                19959:{'note':"Master Craftsman or Vendor",'cost':350}, # Strong Intricate Wool Insignia
-                19960:{'note':"Master Craftsman or Vendor",'cost':350}, # Vigorous Intricate Wool Insignia
-                19961:{'note':"Master Craftsman or Vendor",'cost':350}, # Hearty Intricate Wool Insignia
-                19962:{'note':"Master Craftsman or Vendor",'cost':455}, # Ravaging Intricate Cotton Insignia
-                19963:{'note':"Master Craftsman or Vendor",'cost':455}, # Rejuvenating Intricate Cotton Insignia
-                19964:{'note':"Master Craftsman or Vendor",'cost':455}, # Honed Intricate Cotton Insignia
-                19965:{'note':"Master Craftsman or Vendor",'cost':455}, # Pillaging Intricate Cotton Insignia
-                19966:{'note':"Master Craftsman or Vendor",'cost':455}, # Strong Intricate Cotton Insignia
-                19967:{'note':"Master Craftsman or Vendor",'cost':455}, # Vigorous Intricate Cotton Insignia
-                19968:{'note':"Master Craftsman or Vendor",'cost':455}, # Hearty Intricate Cotton Insignia
-                19969:{'note':"Master Craftsman or Vendor",'cost':567}, # Carrion Intricate Linen Insignia
-                19970:{'note':"Master Craftsman or Vendor",'cost':567}, # Cleric's Intricate Linen Insignia
-                19971:{'note':"Master Craftsman or Vendor",'cost':567}, # Explorer's Intricate Linen Insignia
-                19972:{'note':"Master Craftsman or Vendor",'cost':567}, # Berserker's Intricate Linen Insignia
-                19973:{'note':"Master Craftsman or Vendor",'cost':567}, # Valkyrie Intricate Linen Insignia
-                19974:{'note':"Master Craftsman or Vendor",'cost':567}, # Rampager's Intricate Linen Insignia
-                19975:{'note':"Master Craftsman or Vendor",'cost':567}, # Knight's Intricate Linen Insignia
-                19880:{'note':"Master Craftsman or Vendor",'cost':672}, # Carrion Intricate Silk Insignia
-                19881:{'note':"Master Craftsman or Vendor",'cost':672}, # Cleric's Intricate Silk Insignia
-                19882:{'note':"Master Craftsman or Vendor",'cost':672}, # Explorer's Intricate Silk Insignia
-                19883:{'note':"Master Craftsman or Vendor",'cost':672}, # Berserker's Intricate Silk Insignia
-                19886:{'note':"Master Craftsman or Vendor",'cost':672}, # Valkyrie Intricate Silk Insignia
-                19884:{'note':"Master Craftsman or Vendor",'cost':672}, # Rampager's Intricate Silk Insignia
-                19885:{'note':"Master Craftsman or Vendor",'cost':672}, # Knight's Intricate Silk Insignia
-                19934:{'note':"Master Craftsman or Vendor",'cost':350}, # Ravaging Iron Imbued Inscription
-                19935:{'note':"Master Craftsman or Vendor",'cost':350}, # Rejuvenating Iron Imbued Inscription
-                19936:{'note':"Master Craftsman or Vendor",'cost':350}, # Honed Iron Imbued Inscription
-                19937:{'note':"Master Craftsman or Vendor",'cost':350}, # Pillaging Iron Imbued Inscription
-                19938:{'note':"Master Craftsman or Vendor",'cost':350}, # Strong Iron Imbued Inscription
-                19939:{'note':"Master Craftsman or Vendor",'cost':350}, # Vigorous Iron Imbued Inscription
-                19940:{'note':"Master Craftsman or Vendor",'cost':350}, # Hearty Iron Imbued Inscription
-                19941:{'note':"Master Craftsman or Vendor",'cost':455}, # Ravaging Steel Imbued Inscription
-                19942:{'note':"Master Craftsman or Vendor",'cost':455}, # Rejuvenating Steel Imbued Inscription
-                19943:{'note':"Master Craftsman or Vendor",'cost':455}, # Honed Steel Imbued Inscription
-                19944:{'note':"Master Craftsman or Vendor",'cost':455}, # Pillaging Steel Imbued Inscription
-                19945:{'note':"Master Craftsman or Vendor",'cost':455}, # Strong Steel Imbued Inscription
-                19946:{'note':"Master Craftsman or Vendor",'cost':455}, # Vigorous Steel Imbued Inscription
-                19947:{'note':"Master Craftsman or Vendor",'cost':455}, # Hearty Steel Imbued Inscription
-                19948:{'note':"Master Craftsman or Vendor",'cost':567}, # Carrion Darksteel Imbued Inscription
-                19949:{'note':"Master Craftsman or Vendor",'cost':567}, # Cleric's Darksteel Imbued Inscription
-                19950:{'note':"Master Craftsman or Vendor",'cost':567}, # Explorer's Darksteel Imbued Inscription
-                19951:{'note':"Master Craftsman or Vendor",'cost':567}, # Berserker's Darksteel Imbued Inscription
-                19952:{'note':"Master Craftsman or Vendor",'cost':567}, # Valkyrie Darksteel Imbued Inscription
-                19953:{'note':"Master Craftsman or Vendor",'cost':567}, # Rampager's Darksteel Imbued Inscription
-                19954:{'note':"Master Craftsman or Vendor",'cost':567}, # Knight's Darksteel Imbued Inscription
-                19897:{'note':"Master Craftsman or Vendor",'cost':672}, # Carrion Mithril Imbued Inscription
-                19898:{'note':"Master Craftsman or Vendor",'cost':672}, # Cleric's Mithril Imbued Inscription
-                19899:{'note':"Master Craftsman or Vendor",'cost':672}, # Explorer's Mithril Imbued Inscription
-                19900:{'note':"Master Craftsman or Vendor",'cost':672}, # Berserker's Mithril Imbued Inscription
-                19903:{'note':"Master Craftsman or Vendor",'cost':672}, # Valkyrie Mithril Imbued Inscription
-                19901:{'note':"Master Craftsman or Vendor",'cost':672}, # Rampager's Mithril Imbued Inscription
-                19902:{'note':"Master Craftsman or Vendor",'cost':672}, # Knight's Mithril Imbued Inscription
-                24904:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Intricate Topaz Jewel
-                24902:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Intricate Spinel Jewel
-                24901:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Intricate Peridot Jewel
-                24903:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Intricate Sunstone Jewel
-                24899:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Intricate Carnelian Jewel
-                24898:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Intricate Amethyst Jewel
-                24900:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Intricate Lapis Jewel
-                24911:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Gilded Topaz Jewel
-                24905:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Gilded Amethyst Jewel
-                24906:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Gilded Carnelian Jewel
-                24907:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Gilded Lapis Jewel
-                24908:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Gilded Peridot Jewel
-                24909:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Gilded Spinel Jewel
-                24910:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Gilded Sunstone Jewel
-                24912:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Ornate Beryl Jewel
-                24913:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Ornate Chrysocola Jewel
-                24914:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Ornate Coral Jewel
-                24915:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Ornate Emerald Jewel
-                24916:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Ornate Opal Jewel
-                24917:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Ornate Ruby Jewel
-                24918:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Ornate Sapphire Jewel
-                24919:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Brilliant Beryl Jewel
-                24920:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Brilliant Chrysocola Jewel
-                24921:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Brilliant Coral Jewel
-                24922:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Brilliant Emerald Jewel
-                24923:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Brilliant Opal Jewel
-                24924:{'note':"Master Craftsman or Vendor",'cost':231}, # Embellished Brilliant Ruby Jewel
-                24925:{'note':"Master Craftsman or Vendor",'cost':231}} # Embellished Brilliant Sapphire Jewel
-
-iCost = u"Coste Inicial"
-eRecovery = u"Beneficios"
-fCost = u"Coste Final"
-sList = u"Lista De Venta"
-bRecipes = u"COMPRAR RECETAS"
+# guide variables
+iCost        = u"Coste Inicial"
+eRecovery    = u"Beneficios"
+fCost        = u"Coste Final"
+sList        = u"Lista De Venta"
+bRecipes     = u"COMPRAR RECETAS"
 collectibles = u"COLECCIONABLES(en el banco o en el bazar)"
+warning1     = u"No actualizes esta página. "
+warning2     = u"Puede cambiar. Actualizada"
+moreInfo     = u"Haz click en %s para ver más información"
+soldVia      = u"Cada unidad a %s en"
+method       = [u"un Mercader",
+                u"el Bazar",
+                u"Precio Mínimo de Venta"]
+valuePer     = u"unidad"
+buyVendor    = u"Comprar a Proveedores"
+mixedTP      = u"Mixto (comprar en el bazar)"
+make         = u"Crea"
+discover     = u"Descubre"
+expand       = u"Desplegar descubrimientos"
+collapse     = u"Cerrar descubrimientos"
+tier         = u"Rango %i, Niveles %i-%i"
+buyList      = u"Lista de compra - Rango %i"
+blNotice     = u"Nota: Si usas la guía entera ya has comprado estos materiales."
+costRT       = u"Coste: %s (Coste acumulado: %s)"
+level        = u"Nivel"
+finish       = u"Nada. Has terminado!"
+updated      = u"Actualizada"
+note         = u"<strong>Nota:</strong> Estos precios son el coste inicial y no tienen en cuenta los beneficios de vender los productos."
+craft        = u"Artesanía"
+tiers        = u"Rango"
+toggle       = u"Click To Toggle"
+kNote        = u"Note: 11 Basil Leaf(e.g.) means buy 1 bulk Basil Leaf and you will have 14 left over"
+bNote        = u"Produces 5 Ingot per make"
+sNote        = u"Produces 2 Soles per make"
 
-warning1 = u"No actualizes esta página. "
-warning2 = u"Puede cambiar. Actualizada"
-moreInfo = u"Haz click en %s para ver más información"
-soldVia = u"Cada unidad a %s en"
-vendor = u"un Mercader"
-maxBuy = u"el Bazar"
-minSell = u"Precio Mínimo de Venta"
-valuePer = u"unidad"
-buyVendor = u"Comprar a Proveedores"
-mixedTP = u"Mixto (comprar en el bazar)"
-make = u"Crea"
-discover = u"Descubre"
-expand = u"Desplegar descubrimientos"
-collapse = u"Cerrar descubrimientos"
-tier = u"Rango %i, Niveles %i-%i:"
-buyList = u"Lista de compra - Rango %i"
-blNotice = u"Nota: Si usas la guía entera ya has comprado estos materiales."
-costRT = u"Coste: %s (Coste acumulado: %s)"
-level = u"Nivel"
-finish = u"Nada. Has terminado!"
+# FAQ strings
+costs    = u"El coste de la web está cubierto, pero se aceptan donaciones"
+gw2spidy = u"Estas guías no serian possibles sin <a href=\"http://www.gw2spidy.com\"> gw2spidy </a> y su API."
+oThread  = u"Hilo en el forum oficial de GW2"
+rThread  = u"Hilo en reddit"
+gThread  = u"Hilo en guildwars2guru"
+twitter  = u"Twitter"
+email    = u"Email"
+contact  = u"Si tienes cualquier pregunta, comentario, dudas o crees que has encontrado un error, contacta conmigo usando cualquiera de estos métodos."
+faq      = u"PREGUNTAS FRECUENTES"
+question = u"P"
+answer   = u"R"
+source   = u"¿El código fuente?"
+q1       = u"¿Cuantos niveles puedo ganar con artesanía?"
+a11      = u"La experiencia ganada depende del rango en el que te encuentres:"
+a12      = u"1-100 1% del nivel por cada nivel de artesanía"
+a13      = u"101-200 2% del nivel por cada nivel de artesanía"
+a14      = u"201-300 3% del nivel por cada nivel de artesanía"
+a15      = u"301-400 4% del nivel por cada nivel de artesanía"
+a16      = u"Estos niveles se escalan a niveles parciales, por ejemplo nivel 1, media barra es 1.5% de un nivel. Subir de 0 a 400 siempre da 10 niveles."
+a17      = u"La única excepción son los niveles 1-15, en el que se gana más experiencia (<a Href=\"http://wiki.guildwars2.com/wiki/Experience#Total_experience_gain_per_level\"> fuente </a>), con lo cual se ganan 13 niveles, más o menos. "
+a18      = u"Se puede subir de 2 a 80 sólo con artesanía."
+q2       = u"¿No seran erróneas estas guías cuando alguien compre todos los objetos de un tipo?"
+a2       = u"Estas guías usan como referencia los precios del bazar, y se actualizan automáticamente cuando los precios cambian. Casi todas las recetas se tienen en cuenta al generar las guías."
+q3       = u"Sobre éxitos cruciales y Potenciadores."
+a31      = u"El código asume una posibilidad de crítico de 0%, y los éxitos cruciales reducen el número de objetos a crear y materiales necesarios."
+a32      = u"Los potenciadores de artesanía añaden 50% de crítico, que sumado al bonus de WvW puede llegar al 70%.  Los críticos hacen el proceso más rápido y reducen el número de objetos a crear, pero no dan más experiencia total. No se pueden ganar más de 10 niveles por cada artesanía."
+q4       = u"¿Puedo reusar o enlazar estas guías?"
+a4       = u"Sí, aunque los resultados pueden variar y no ofrezco soporte en ese caso. Por favor atribuye crédito (xanthic.9478 y un enlace a esta página)."
+q5       = u"Sobre los precios del bazar o mercaderes para recuperar coste, o usar recetas para subir artesanía y ganar dinero."
+a51      = u"Equilibrar todos esos datos agregan riesgo, además de que el impacto de las guías también harían cambiar los precios. Ahora mismo la guía provee la \"mejor aproximación\"."
+a52      = u"Tampoco es posible saber si un objeto creado en estas guías se va a vender o no."
+q6       = u"¿Cómo haces estas guías?"
+a6       = u"Código multi-parte de Python 2.7.3 que usa un algoritmo voraz y los datos de precios de gw2spidy para calcular el método más barato para subir una artesanía."
+q7       = u"No, quiero decir, ¿cómo haces estas guías? (respuesta simple)"
+a7       = u"Para cada rango genero una lista de objetos, calculo el método de mejor experiencia y menos coste segun se pueden crear sus partes o sale más rentable comprarlas en el bazar y luego elijo los mejores objetos."
+q8       = u"No, quiero decir, ¿cómo haces estas guías? (respuesta elaborada)"
+a8       = u"Primero divido cada artesanía en 16 grupos de 25 puntos (0-24, 24-49,...). Luego empiezo en 375 hacia abajo y calculo (por cada objeto que da experiencia) la ratio xp/coste base, y lo mismo para cada ingrediente que se pueda crear. Los ingredientes aparecen en la guía como crear si sale más barato que comprarlos en el bazar. Con todos estos datos, el código calcula las mejores opciones para cada grupo."
+thanks   = u"Quiero dar las gracias a la gente que creó guías anteriores a esta: Qorthos, pwnuniversity, gw2wiz y guildwars-2-crafting. No habría tenido la idea de escribir estas guías sin poder usar las suyas como plantilla."
+
+# index strings
+fThings = u"4 cosas que debes saber"
+t1      = u"Haz clic en <img src=\"/img/arrow.png\"> </ img> para ver recetas y precios de venta"
+t2      = u"Usa <input type=\"checkbox\"/> para marcar los ingredientes que ya tienes"
+t3      = u"Cada rango tiene su propia lista de compra (excepto cocina)"
+t4      = u"Si el menu de navegación no funciona, usa <a href=\"/es/nav.html\"> esta página</a>"
+nge     = u"toma decisiones inteligentes entre crear o comprar ingredientes. Generalmente el método más barato, pero ocupa más espacio en el inventario."
+fge     = u"crea el mismo objeto cada 25 puntos. Más rápida y fácil que las otras guías, pero más cara."
+tge     = u"siempre crea ingredientes (si es possible) en lugar de comprarlos. Normalmente más caras que las guías normales, pero menos complicadas. Similar a las guías que existian antes que las guías rápidas y normales de ACCG."
+wit     = u"<strong> Sobre ACCG </ strong> Guías de artesanía autoactualizadas (del inglés, Always Current Crafting Guides) para Guild Wars 2. Todas las guías se actualizan automáticamente cada hora usando los precios del bazar (siempre que el ordenador que ejecuta el código funcione y la web gw2spidy sea accesible). Estas guías fueron creadas originalmente para amigos, pero debido a su popularidad dentro de la comunidad de GW2, he seguido trabajando en ellas. El código asume que hay una cantidad “inifinita” de objetos a un precio determinado, con lo cual si todos son comprados o hay pocos de una cantidad, los precios de cada guía pueden variar ligeramente hasta la próxima actualización automática."
+nWarn   = u"<strong> [Importante] </ strong> Si no vas a completar la guía en una única sesión, guardala en tu ordenador, debido a la actualización automática la mayoría de ingredientes y recetas seran distintos cada vez que abras la página."
+rCost   = u"<strong> Consejo para reducir coste: </ strong> guarda una copia de la guía y crea ofertas de compra en el bazar."
+thanks2 = u"Gracias a bkohli, TimeBomb y Saladon por parte del CSS de estas páginas. Gracias a @figgityfigs por los nuevos iconoes (favicon y appletouch-icon) y el alojamiento web."
+
+# nav strings
+navNotice = u"Bienvenido a la página de navegación simple, en caso de que el menú de navegación no funcione. Si estás traduciendo la página, mándame un email a gw2crafts@live.com indicando el idioma y la página traducida e intentaré corregirlo."
+navLang   = u"Idioma"
+
+#nav page headers and guide names
+home    = u"Inicio"
+nGuides = u"Guías Normales"
+fGuides = u"Guías Rápidas"
+tGuides = u"Guías Tradicionales"
+cooking = u"Cocinar"
+nHearts = u"No Corazones"
+tHearts = u"Top 5 Corazones"
+aHearts = u"Todos Los Corazones"
+jc      = u"Joyero"
+art     = u"Artificiero"
+hunt    = u"Cazador"
+wc      = u"Armero"
+ac      = u"Forjador de Armaduras"
+lw      = u"Peletero"
+tailor  = u"Sastre"
+totals  = u"Totales"
+about   = u"Acerca De"
+lang    = u"Español"
+
+# directory path
+path = "es/"
+
+# don't change this
+header = u"""<nav>
+    <ul>
+        <li><a href="http://gw2crafts.net/"""+path+u"""">"""+home+u"""</a></li>
+        <li><a href="http://gw2crafts.net/"""+path+u"""nav.html">"""+nGuides+u"""</a>
+        <ul>
+            <li><a href="#">"""+cooking+u"""</a>
+            <ul>
+                <li><a href="http://gw2crafts.net/"""+path+u"""cooking.html">"""+nHearts+u"""</a></li>
+                <li><a href="http://gw2crafts.net/"""+path+u"""cooking_karma_light.html">"""+tHearts+u"""</a></li>
+                <li><a href="http://gw2crafts.net/"""+path+u"""cooking_karma.html">"""+aHearts+u"""</a></li>
+            </ul>
+            </li>
+            <li><a href="http://gw2crafts.net/"""+path+u"""jewelcraft.html">"""+jc+u"""</a></li>
+            <li><a href="http://gw2crafts.net/"""+path+u"""artificing.html">"""+art+u"""</a></li>
+            <li><a href="http://gw2crafts.net/"""+path+u"""huntsman.html">"""+hunt+u"""</a></li>
+            <li><a href="http://gw2crafts.net/"""+path+u"""weaponcraft.html">"""+wc+u"""</a></li>
+            <li><a href="http://gw2crafts.net/"""+path+u"""armorcraft.html">"""+ac+u"""</a></li>
+            <li><a href="http://gw2crafts.net/"""+path+u"""leatherworking.html">"""+lw+u"""</a></li>
+            <li><a href="http://gw2crafts.net/"""+path+u"""tailor.html">"""+tailor+u"""</a></li>
+        </ul>
+        </li>
+        <li><a href="http://gw2crafts.net/"""+path+u"""nav.html">"""+fGuides+u"""</a>
+        <ul>
+            <li><a href="#">"""+cooking+u"""</a>
+            <ul>
+                <li><a href="http://gw2crafts.net/"""+path+u"""cooking_fast.html">"""+nHearts+u"""</a></li>
+                <li><a href="http://gw2crafts.net/"""+path+u"""cooking_karma_fast_light.html">"""+tHearts+u"""</a></li>
+                <li><a href="http://gw2crafts.net/"""+path+u"""cooking_karma_fast.html">"""+aHearts+u"""</a></li>
+            </ul>
+            </li>
+            <li><a href="http://gw2crafts.net/"""+path+u"""jewelcraft_fast.html">"""+jc+u"""</a></li>
+            <li><a href="http://gw2crafts.net/"""+path+u"""artificing_fast.html">"""+art+u"""</a></li>
+            <li><a href="http://gw2crafts.net/"""+path+u"""huntsman_fast.html">"""+hunt+u"""</a></li>
+            <li><a href="http://gw2crafts.net/"""+path+u"""weaponcraft_fast.html">"""+wc+u"""</a></li>
+            <li><a href="http://gw2crafts.net/"""+path+u"""armorcraft_fast.html">"""+ac+u"""</a></li>
+            <li><a href="http://gw2crafts.net/"""+path+u"""leatherworking_fast.html">"""+lw+u"""</a></li>
+            <li><a href="http://gw2crafts.net/"""+path+u"""tailor_fast.html">"""+tailor+u"""</a></li>
+        </ul>
+        </li>
+        <li><a href="http://gw2crafts.net/"""+path+u"""nav.html">"""+tGuides+u"""</a>
+        <ul>
+            <li><a href="http://gw2crafts.net/"""+path+u"""jewelcraft_craft_all.html">"""+jc+u"""</a></li>
+            <li><a href="http://gw2crafts.net/"""+path+u"""artificing_craft_all.html">"""+art+u"""</a></li>
+            <li><a href="http://gw2crafts.net/"""+path+u"""huntsman_craft_all.html">"""+hunt+u"""</a></li>
+            <li><a href="http://gw2crafts.net/"""+path+u"""weaponcraft_craft_all.html">"""+wc+u"""</a></li>
+            <li><a href="http://gw2crafts.net/"""+path+u"""armorcraft_craft_all.html">"""+ac+u"""</a></li>
+            <li><a href="http://gw2crafts.net/"""+path+u"""leatherworking_craft_all.html">"""+lw+u"""</a></li>
+            <li><a href="http://gw2crafts.net/"""+path+u"""tailor_craft_all.html">"""+tailor+u"""</a></li>
+        </ul>
+        </li>
+        <li><a href="http://gw2crafts.net/"""+path+u"""total.html">"""+totals+u"""</a></li>
+        <li><a href="http://gw2crafts.net/"""+path+u"""faq.html">"""+about+u"""</a></li>
+        <li><a href="#" hreflang="en">"""+lang+u"""</a>
+        <ul>
+          <li><a href="http://gw2crafts.net/%s" hreflang="en">English</a></li>
+          <li><a href="http://gw2crafts.net/fr/%s" hreflang="fr">Français</a></li>
+          <li><a href="http://gw2crafts.net/de/%s" hreflang="de">Deutsch</a></li>
+          <li><a href="#" hreflang="es">Español</a></li>
+        </ul>
+        </li>
+    </ul>
+</nav>
+"""
