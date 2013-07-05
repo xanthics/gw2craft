@@ -707,7 +707,34 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, filename, 
         f.write(u'<!DOCTYPE html>\n')
         f.write(u'<html>\n')
         f.write(u'<head>\n')
-        f.write(u'    <title>'+filename.split('.')[0].replace("_"," ").title()+u'</title>\n')
+        # Title Part 1
+        if u"fast" in filename:
+            f.write(u'    <title>'+localText.fGuides)
+        elif u"all" in filename:
+            f.write(u'    <title>'+localText.tGuides)
+        else: # normal
+            f.write(u'    <title>'+localText.nGuides)
+        # Title Part 2
+        if filename in [u"cooking_fast.html",u"cooking.html"]:
+            f.write(u': '+localText.cooking+u' - '+localText.nHearts+u'</title>\n')
+        elif filename in [u"cooking_karma_fast.html",u"cooking_karma.html"]:
+            f.write(u': '+localText.cooking+u' - '+localText.aHearts+u'</title>\n')
+        elif filename in [u"cooking_karma_fast_light.html",u"cooking_karma_light.html"]:
+            f.write(u': '+localText.cooking+u' - '+localText.tHearts+u'</title>\n')
+        elif filename in [u"leatherworking_fast.html", u"leatherworking.html", u"leatherworking_craft_all.html"]:
+            f.write(u': '+localText.lw+u'</title>\n')
+        elif filename in [u"tailor_fast.html", u"tailor.html", u"tailor_craft_all.html"]:
+            f.write(u': '+localText.tailor+u'</title>\n')
+        elif filename in [u"artificing_fast.html", u"artificing.html", u"artificing_craft_all.html"]:
+            f.write(u': '+localText.art+u'</title>\n>')
+        elif filename in [u"jewelcraft_fast.html", u"jewelcraft.html", u"jewelcraft_craft_all.html"]:
+            f.write(u': '+localText.jc+u'</title>\n')
+        elif filename in [u"weaponcraft_fast.html", u"weaponcraft.html", u"weaponcraft_craft_all.html"]:
+            f.write(u': '+localText.wc+u'</title>\n')
+        elif filename in [u"huntsman_fast.html", u"huntsman.html", u"huntsman_craft_all.html"]:
+            f.write(u': '+localText.hunt+u'</title>\n>')
+        elif filename in [u"armorcraft_fast.html", u"armorcraft.html", u"armorcraft_craft_all.html"]:
+            f.write(u': '+localText.ac+u'</title>\n')
         f.write(u'    <meta name="description" content="Guild Wars 2 always current crafting guide for '+filename.split('.')[0].replace("_"," ").title()+u'">\n')
         f.write(u'    <meta http-equiv="content-type" content="text/html;charset=UTF-8">\n')
         f.write(u'    <link href="/css/layout.css" rel="stylesheet" type="text/css" />') 
@@ -725,9 +752,9 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, filename, 
         if u"fast" in filename:
             f.write(u'<h1>'+localText.fGuides)
         elif u"all" in filename:
-            f.write(u'<h1>'+localText.fGuides)
+            f.write(u'<h1>'+localText.tGuides)
         else: # normal
-            f.write(u'<h1>'+localText.fGuides)
+            f.write(u'<h1>'+localText.nGuides)
         # Page Title Part 2
         if filename in [u"cooking_fast.html",u"cooking.html"]:
             f.write(u': '+localText.cooking+u' - '+localText.nHearts+u'</h1>')

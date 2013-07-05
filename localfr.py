@@ -176,7 +176,7 @@ navLang   = u"Langue"
 #nav page headers and guide names
 home    = u"Maison"
 nGuides = u"Guides Normales"
-fGuides = u"Guides Rapides<"
+fGuides = u"Guides Rapides"
 tGuides = u"Guides Traditionnels"
 cooking = u"Cuisiner"
 nHearts = u"Pas De Coeurs"
