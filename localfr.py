@@ -56,7 +56,7 @@ laewyn     = u"Laewyn - Wychmire Swamp(Caledon Forest 1-15)"
 laudren    = u"Laudren - Thundertroll Swamp(Sparkfly Fen 55-65)"
 pickins    = u"Lieutenant Pickins - Greystone Rise(Harathi Hinterlands 35-45)"
 summers    = u"Lieutenant Summers - Nightguard Beach(Harathi Hinterlands 35-45)"
-auda       = u"Lionguard Auda - Dragon's Rising(Silverpeak Mountains 15-25)"
+auda       = u"Lionguard Auda - Dragon's Rising(Snowden Drifts 15-25)"
 tunnira    = u"Lionscout Tunnira - Archen Foreland(Bloodtide Coast 45-55)"
 kevach     = u"Lodge Keeper Kevach - Dolyak Pass(Wayfarer Foothills 1-15)"
 mcov       = u"Master Craftsman or Vendor"
@@ -167,7 +167,7 @@ tge     = u"sera l'artisan des sous parties d'un article si possible au lieu d'a
 wit     = u"<strong> C'est quoi? </strong> Toujours guides d'artisanat actuelles pour Guild Wars 2. Tous les guides sont recalculés sur la base des prix actuels de TP chaque heure en supposant que l'ordinateur exécutant le script est en marche et gw2spidy est accessible. Ces guides ont été créés à l'origine pour des amis, mais basés sur la popularité de ces derniers dans la communauté de Guild Wars 2, j'ai continué à les améliorer à ce que vous voyez aujourd'hui. Ce script ne suppose qu'il ya «infinie» d'un point à un coût donné, donc si ils ont tous se rachetés, ou il ya très peu disponibles dans les prix de la fenêtre de mise à jour peut être mal jusqu'à la prochaine mise à jour."
 nWarn   = u"<strong> [Avis] </strong> Si vous n'allez pas faire le guide dans une séance assurez-vous de l'enregistrer sur votre machine. Comme ces guides peut et va changer."
 rCost   = u"<strong> Conseils pour réduire les coûts: </strong> Enregistrer une copie du guide et de placer des ordres d'achat pour les matériaux."
-thanks2 = u"Merci à bkohli, TimeBomb et saladon pour certains du style CSS sur ces pages. Et merci à @ figgityfigs pour la nouvelle icône du design (favicon et apple-touch-icon) et l'hébergement"
+thanks2 = u"Merci à bkohli, TimeBomb et saladon pour certains du style CSS sur ces pages. Merci à Marc Ramos (desmodium.3745) pour la traduction en Espagnol.  Et merci à @ figgityfigs pour la nouvelle icône du design (favicon et apple-touch-icon) et l'hébergement"
 
 # nav strings
 navNotice = u"C'est une page de nav simple, vous ne devriez l'atteindre si vous ne pouvez pas utiliser la barre de navigation. Si vous traduisez ce site s'il vous plaît écrivez-moi à gw2crafts@live.com avec la langue source et la page de traduction utilisés et je vais essayer d'y remédier."

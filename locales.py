@@ -23,6 +23,8 @@
 Author: Jeremy Parks
 Purpose: es Localized text
 Note: Requires Python 2.7.x
+
+Thanks to Marc Ramos(desmodium.3745) for the Spanish translation.
 '''
 
 
