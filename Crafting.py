@@ -293,7 +293,7 @@ def costCraft(filename,c_recipes,fast,ignoreMixed,cList,mytime,xp_to_level):
                 bucket = makeQueuecraft(c_recipes[tier], cList,craftcount,tier,ignoreMixed,xp_to_level)
                 bkey = sorted(bucket, reverse=True)
             elif not fast:
-                if not tier == 0 and craftcount[tier][u'current_xp'] <= xp_to_level[tier+10]:
+                if 0:#not tier == 0 and craftcount[tier][u'current_xp'] <= xp_to_level[tier+10]:
                     bucket = makeQueuecraft(dict(chain(c_recipes[tier].iteritems(),c_recipes[tier-25].iteritems())), cList,craftcount,tier,ignoreMixed,xp_to_level)
                 else:
                     bucket = makeQueuecraft(c_recipes[tier], cList,craftcount,tier,ignoreMixed,xp_to_level)

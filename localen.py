@@ -56,7 +56,7 @@ laewyn     = u"Laewyn - Wychmire Swamp(Caledon Forest 1-15)"
 laudren    = u"Laudren - Thundertroll Swamp(Sparkfly Fen 55-65)"
 pickins    = u"Lieutenant Pickins - Greystone Rise(Harathi Hinterlands 35-45)"
 summers    = u"Lieutenant Summers - Nightguard Beach(Harathi Hinterlands 35-45)"
-auda       = u"Lionguard Auda - Dragon's Rising(Silverpeak Mountains 15-25)"
+auda       = u"Lionguard Auda - Dragon's Rising(Snowden Drifts 15-25)"
 tunnira    = u"Lionscout Tunnira - Archen Foreland(Bloodtide Coast 45-55)"
 kevach     = u"Lodge Keeper Kevach - Dolyak Pass(Wayfarer Foothills 1-15)"
 mcov       = u"Master Craftsman or Vendor"
@@ -167,7 +167,7 @@ tge     = u"Will craft sub parts of an item if possible instead of buying.  Usua
 wit     = u"<strong>What is this?</strong> Always current crafting guides for Guild Wars 2. All guides are recalculated based on current TP prices every hour assuming the computer running the script is on and gw2spidy is reachable. These guides were originally created for friends, but based on the popularity of these within the Guild Wars 2 community, I continued to improve them to what you see today.  This script does assume there are \"infinite\" of an item at a given cost, so if they all get bought up, or there is very few available during the update window prices may be wrong until the next update."
 nWarn   = u"<strong>[Notice]</strong> If you are not going to do the guide in 1 sitting make sure to save it to your machine. As these guides can and will change."
 rCost   = u"<strong>Hints to reduce costs:</strong> Save a copy of the guide and place buy orders for the materials."
-thanks2 = u"Thank you to bkohli, TimeBomb and saladon for some of the CSS styling on these pages.  And thank you to @figgityfigs for the new icon design(favicon and apple-touch-icon) and hosting"
+thanks2 = u"Thank you to bkohli, TimeBomb and saladon for some of the CSS styling on these pages.  Thanks to Marc Ramos(desmodium.3745) for the Spanish translation.  And thank you to @figgityfigs for the new icon design(favicon and apple-touch-icon) and hosting"
 
 # nav strings
 navNotice = u"This is a simple nav page, you should only be reaching it if you cannot use the nav bar.  If you are translating this site please email me at gw2crafts@live.com with the source language and translation page used and I will try to fix it."
