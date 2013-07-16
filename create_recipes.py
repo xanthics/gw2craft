@@ -25,8 +25,7 @@ Author: Jeremy Parks
 Purpose: Generates(or updates) all the recipes and the item list used by Crafting.py
 Note: Requires Python 2.7.x
 '''
-import urllib, json, math, codecs, re
-from collections import defaultdict
+import urllib, json, math, codecs
 from multiprocessing import Process, Queue
 
 API_ROOT = "https://api.guildwars2.com/v1/"
@@ -104,7 +103,7 @@ def parse_recipes(recipes):
                    if not int(r[1][u'output_item_id']) in bad_recipes
                    and not r[1][u'type'] == u'Feast'}
 
-    for recipe, data in new_recipes.items():
+    for _recipe, data in new_recipes.items():
         min_rating = data[u'min_rating']
         item_id = data[u'output_item_id']
         item_count = data[u'output_item_count']
@@ -116,9 +115,9 @@ def parse_recipes(recipes):
             
         for it in data[u'disciplines']:
             key = it
-			# We don't want recipe items.  Except for karma cooking and known good recipes
+            # We don't want recipe items.  Except for karma cooking and known good recipes
             if u'LearnedFromItem' in data[u'flags'] and not (it == u'Chef' or int(item_id) in good_recipes):
-                 continue
+                continue
             if it == u'Chef' and (set(karma) & ingredient_set or u'LearnedFromItem' in data[u'flags']):
                 key = u'Chef_karma'
 
@@ -201,14 +200,14 @@ def itemlist(item_list, lang="en"):
         f.write('}')
 
 def _api_call(endpoint):
-    try:
-        f = urllib.urlopen(API_ROOT + endpoint)
-        item = json.load(f)
-    except Exception, err:
-        print 'Error: %s.\n' % str(err)
-        exit(-1)
+    while(1):
+        try:
+            f = urllib.urlopen(API_ROOT + endpoint)
+            item = json.load(f)
+            return item
+        except Exception, err:
+            print 'Error: %s.\n' % str(err)
 
-    return item
     
 def main():
     recipes = get_recipes()

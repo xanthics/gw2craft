@@ -1858,7 +1858,7 @@ ilist = {
 	12253:u"Erdbeere",
 	12254:u"Himbeere",
 	12255:u"Blaubeere",
-	12256:u"Kümmel",
+	12256:u"Kreuzkümmel",
 	12258:u"Zimtstange",
 	12260:u"Schüssel mit einfacher Chilibasis",
 	12261:u"Schüssel mit Füllung für Kirschkuchen",
