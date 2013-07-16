@@ -108,7 +108,6 @@ def appendCosts():
 
     print len(temp[u'results']) # print total items returned from gw2spidy
 
-    cList = {}
     cList = cItemlist(items.ilist.keys(),temp[u'results'])
 
     cList[19792][u'cost'] = 8 # Spool of Jute Thread
@@ -154,14 +153,14 @@ def rarityNum(num):
 
 def xpreq(level):
     tmp = 500
-    for i in range(1,level):
+    for _i in range(1,level):
         tmp = math.floor(tmp * 1.01)
     return tmp
 
 # compute the xp gain of a single craft
 def xpgain(level,typ,minlvl):
     span = 0.0
-    gain = 0.0
+    mult = 0.0
     if typ == 1: # refinement
         span = 25.0 
         mult = .3
@@ -373,7 +372,7 @@ def calcRecipecraft(recipe,items,craftcount,tier,count,itier,ignoreMixed,xp_to_l
     if int(items[recipe][u'tier']) > int(itier):
 #        print recipe
         return 9999999999, -99999999999, make, buy
-    for i in range(0,count):
+    for _i in range(0,count):
         make.append(recipe)
     if int(items[recipe][u'tier']) < int(tier) and not items[recipe][u'type'] in non_item:
         xptotal = xp_calc(0,0,count,0,rarityNum(items[recipe][u'rarity']),int(items[recipe][u'tier']),level)*.85
@@ -406,11 +405,11 @@ def calcRecipecraft(recipe,items,craftcount,tier,count,itier,ignoreMixed,xp_to_l
                 buy += tbuy
                 make += tmake
             else:
-                for i in range(0,int(math.ceil(count*items[recipe][u'recipe'][item]))):
+                for _i in range(0,int(math.ceil(count*items[recipe][u'recipe'][item]))):
                     buy.append(item)
                 cost += items[item][u'cost']*count*items[recipe][u'recipe'][item]
         else:
-            for i in range(0,int(math.ceil(count*items[recipe][u'recipe'][item]))):
+            for _i in range(0,int(math.ceil(count*items[recipe][u'recipe'][item]))):
                 buy.append(item)
             cost += items[item][u'cost']*count*items[recipe][u'recipe'][item]
     return cost, xptotal, make, buy
@@ -1041,7 +1040,6 @@ def main():
     for i in range(1,410):
         xp_to_level.append(xpreq(i)+xp_to_level[i-1])
 
-    cList = {}
     cList = appendCosts()
 
     out_q = Queue()
