@@ -157,7 +157,7 @@ thanks   = u"Thank you to the people that created guides before me; Qorthos, pwn
 
 # index strings
 fThings = u"4 things you should know"
-t1      = u"<img src=\"/img/arrow.png\"></img> can be clicked for all discovery recipes as well as sold item list"
+t1      = u"<img src=\"/img/arrow.png\" alt=\"ARROW\"> can be clicked for all discovery recipes as well as sold item list"
 t2      = u"<input type=\"checkbox\"/> exist so you can track your location in the buy list"
 t3      = u"Tier specific buy lists exist for non-cooking guides(click the button)"
 t4      = u"<a href=\"nav.html\">Nav page</a> if you can't use the nav bar"
@@ -200,7 +200,7 @@ path = ""
 header = u"""<nav>
     <ul>
         <li><a href="http://gw2crafts.net/"""+path+u"""">"""+home+u"""</a></li>
-        <li><a href="http://gw2crafts.net/"""+path+u"""nav.html">"""+nGuides+u"""</a>
+        <li><a href="#">"""+nGuides+u"""</a>
         <ul>
             <li><a href="#">"""+cooking+u"""</a>
             <ul>
@@ -218,7 +218,7 @@ header = u"""<nav>
             <li><a href="http://gw2crafts.net/"""+path+u"""tailor.html">"""+tailor+u"""</a></li>
         </ul>
         </li>
-        <li><a href="http://gw2crafts.net/"""+path+u"""nav.html">"""+fGuides+u"""</a>
+        <li><a href="#">"""+fGuides+u"""</a>
         <ul>
             <li><a href="#">"""+cooking+u"""</a>
             <ul>
@@ -236,7 +236,7 @@ header = u"""<nav>
             <li><a href="http://gw2crafts.net/"""+path+u"""tailor_fast.html">"""+tailor+u"""</a></li>
         </ul>
         </li>
-        <li><a href="http://gw2crafts.net/"""+path+u"""nav.html">"""+tGuides+u"""</a>
+        <li><a href="#">"""+tGuides+u"""</a>
         <ul>
             <li><a href="http://gw2crafts.net/"""+path+u"""jewelcraft_craft_all.html">"""+jc+u"""</a></li>
             <li><a href="http://gw2crafts.net/"""+path+u"""artificing_craft_all.html">"""+art+u"""</a></li>
