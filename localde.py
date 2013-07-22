@@ -157,7 +157,7 @@ thanks   = u"Vielen Dank an die Menschen, die Guides vor mir geschaffen haben; Q
 
 # index strings
 fThings = u"Vier Dinge, die Sie wissen sollten"
-t1      = u"<img src=\"/img/arrow.png\"> </ img> kann für alle Rezeptentdeckungen sowie für Verkaufslisten geklickt werden"
+t1      = u"<img src=\"/img/arrow.png\" alt=\"ARROW\"> kann für alle Rezeptentdeckungen sowie für Verkaufslisten geklickt werden"
 t2      = u"<input type=\"checkbox\"/> hilft, den Überblick über den Fortschritt in der Liste zu bewahren"
 t3      = u"Für alle Anleitungen (außer dem Küchenmeister) existieren Tier-spezifische Einkauflisten, die über gesonderte Schaltflächen zu erreichen sind"
 t4      = u"<a href=\"/de/nav.html\"> Navigation </a>, solltet ihr das Navigationsmenü nicht verwenden können"
@@ -200,7 +200,7 @@ path = "de/"
 header = u"""<nav>
     <ul>
         <li><a href="http://gw2crafts.net/"""+path+u"""">"""+home+u"""</a></li>
-        <li><a href="http://gw2crafts.net/"""+path+u"""nav.html">"""+nGuides+u"""</a>
+        <li><a href="#">"""+nGuides+u"""</a>
         <ul>
             <li><a href="#">"""+cooking+u"""</a>
             <ul>
@@ -218,7 +218,7 @@ header = u"""<nav>
             <li><a href="http://gw2crafts.net/"""+path+u"""tailor.html">"""+tailor+u"""</a></li>
         </ul>
         </li>
-        <li><a href="http://gw2crafts.net/"""+path+u"""nav.html">"""+fGuides+u"""</a>
+        <li><a href="#">"""+fGuides+u"""</a>
         <ul>
             <li><a href="#">"""+cooking+u"""</a>
             <ul>
@@ -236,7 +236,7 @@ header = u"""<nav>
             <li><a href="http://gw2crafts.net/"""+path+u"""tailor_fast.html">"""+tailor+u"""</a></li>
         </ul>
         </li>
-        <li><a href="http://gw2crafts.net/"""+path+u"""nav.html">"""+tGuides+u"""</a>
+        <li><a href="#">"""+tGuides+u"""</a>
         <ul>
             <li><a href="http://gw2crafts.net/"""+path+u"""jewelcraft_craft_all.html">"""+jc+u"""</a></li>
             <li><a href="http://gw2crafts.net/"""+path+u"""artificing_craft_all.html">"""+art+u"""</a></li>

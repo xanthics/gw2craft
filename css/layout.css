@@ -198,18 +198,21 @@ button.info:active {
 section {
 	text-align: justify;
 	top: 3em;
-	z-index: 1;
-	position: relative;
 	background-color: rgb(200,200,200);
 	padding:10px;
 	margin-left: auto;
 	margin-right: auto;
-	width: 42em;
     -moz-border-radius: 3px;
     border-radius: 3px;
 	border-style:solid;
 	border-width:1px;
 	border-color: rgb(75,75,75);}
+
+section.main {
+	z-index: 1;
+	width: 42em;
+	position: relative;
+}
 
 /* Alternating list background Styles */
 

@@ -159,7 +159,7 @@ thanks   = u"Quiero dar las gracias a la gente que creó guías anteriores a est
 
 # index strings
 fThings = u"4 cosas que debes saber"
-t1      = u"Haz clic en <img src=\"/img/arrow.png\"> </ img> para ver recetas y precios de venta"
+t1      = u"Haz clic en <img src=\"/img/arrow.png\" alt=\"ARROW\"> para ver recetas y precios de venta"
 t2      = u"Usa <input type=\"checkbox\"/> para marcar los ingredientes que ya tienes"
 t3      = u"Cada rango tiene su propia lista de compra (excepto cocina)"
 t4      = u"Si el menu de navegación no funciona, usa <a href=\"/es/nav.html\"> esta página</a>"
@@ -202,7 +202,7 @@ path = "es/"
 header = u"""<nav>
     <ul>
         <li><a href="http://gw2crafts.net/"""+path+u"""">"""+home+u"""</a></li>
-        <li><a href="http://gw2crafts.net/"""+path+u"""nav.html">"""+nGuides+u"""</a>
+        <li><a href="#">"""+nGuides+u"""</a>
         <ul>
             <li><a href="#">"""+cooking+u"""</a>
             <ul>
@@ -220,7 +220,7 @@ header = u"""<nav>
             <li><a href="http://gw2crafts.net/"""+path+u"""tailor.html">"""+tailor+u"""</a></li>
         </ul>
         </li>
-        <li><a href="http://gw2crafts.net/"""+path+u"""nav.html">"""+fGuides+u"""</a>
+        <li><a href="#">"""+fGuides+u"""</a>
         <ul>
             <li><a href="#">"""+cooking+u"""</a>
             <ul>
@@ -238,7 +238,7 @@ header = u"""<nav>
             <li><a href="http://gw2crafts.net/"""+path+u"""tailor_fast.html">"""+tailor+u"""</a></li>
         </ul>
         </li>
-        <li><a href="http://gw2crafts.net/"""+path+u"""nav.html">"""+tGuides+u"""</a>
+        <li><a href="#">"""+tGuides+u"""</a>
         <ul>
             <li><a href="http://gw2crafts.net/"""+path+u"""jewelcraft_craft_all.html">"""+jc+u"""</a></li>
             <li><a href="http://gw2crafts.net/"""+path+u"""artificing_craft_all.html">"""+art+u"""</a></li>

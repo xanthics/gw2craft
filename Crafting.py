@@ -375,7 +375,7 @@ def calcRecipecraft(recipe,items,craftcount,tier,count,itier,ignoreMixed,xp_to_l
     for _i in range(0,count):
         make.append(recipe)
     if int(items[recipe][u'tier']) < int(tier) and not items[recipe][u'type'] in non_item:
-        xptotal = xp_calc(0,0,count,0,rarityNum(items[recipe][u'rarity']),int(items[recipe][u'tier']),level)*.85
+        xptotal = xp_calc(0,0,count,0,rarityNum(items[recipe][u'rarity']),int(items[recipe][u'tier']),level)
     elif not items[recipe][u'type'] in non_item and not 'discover' in items[recipe]:
         xptotal = xp_calc(0,0,count-1,1,rarityNum(items[recipe][u'rarity']),int(items[recipe][u'tier']),level)
     elif not items[recipe][u'type'] in non_item:
@@ -400,7 +400,7 @@ def calcRecipecraft(recipe,items,craftcount,tier,count,itier,ignoreMixed,xp_to_l
         if not items[item][u'recipe'] == None:
             tcost, txptotal, tmake, tbuy = calcRecipecraft(item,items,craftcount,items[item][u'tier'],items[recipe][u'recipe'][item]*count,int(items[recipe][u'tier']),ignoreMixed,xp_to_level)
             if (ignoreMixed and item not in gemss) or tcost < items[item][u'cost']*items[recipe][u'recipe'][item]*count or float(xptotal+txptotal)/float(mycost-items[item][u'cost']*items[recipe][u'recipe'][item]*count+tcost) >= float(xptotal)/float(mycost):
-                xptotal += txptotal*.85
+                xptotal += txptotal
                 cost += tcost
                 buy += tbuy
                 make += tmake
@@ -742,11 +742,26 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, filename, 
         f.write(u'    <script>(window.jQuery || document.write(\'<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"><\/script>\'));</script>\n')
         f.write(u'    <script src="/js/menu.js" type="text/javascript"></script>\n')
         f.write(u'</head>\n')
-        f.write(u'<body>\n%s\n<section>'%(localText.header%(filename,filename,filename)))
+        f.write(u'<body>\n%s\n'%(localText.header%(filename,filename,filename)))
+        f.write(u'<section class=\"main\">')
         f.write(u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n')
-        f.write(u'<img src="/css/warning-icon.png" width="24px" height="24px" style="padding: 0 8px 0 8px; float: left;"><span style="position: relative; top: 4px;"><span style="color: red">%s</span>    %s: %s</b></span>\n'%(localText.warning1,localText.warning2,mytime))
+        f.write(u'<img src="/css/warning-icon.png" width="24" height="24" style="padding: 0 8px 0 8px; float: left;" alt="WARNING"><span style="position: relative; top: 4px;"><span style="color: red">%s</span>    %s: %s</span>\n'%(localText.warning1,localText.warning2,mytime))
         f.write(u'</div><br />\n')
-        f.write(localText.moreInfo%(u"<img src=\"/img/arrow.png\"></img>"))
+        # adword
+        f.write(u'<div style="float:right;position:absolute;right:-180px;"> \
+                \n<script type="text/javascript"><!-- \
+                \ngoogle_ad_client = "ca-pub-6865907345688710"; \
+                \n/* sidebar */ \
+                \ngoogle_ad_slot = "5664174986"; \
+                \ngoogle_ad_width = 160; \
+                \ngoogle_ad_height = 600; \
+                \n//--> \
+                \n</script> \
+                \n<script type="text/javascript" \
+                \nsrc="http://pagead2.googlesyndication.com/pagead/show_ads.js"> \
+                \n</script> \
+                \n</div>\n')
+        f.write(localText.moreInfo%(u"<img src=\"/img/arrow.png\" alt=ARROW>"))
         # Page Title Part 1
         if u"fast" in filename:
             f.write(u'<h1>'+localText.fGuides)
@@ -775,20 +790,6 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, filename, 
             f.write(u': '+localText.hunt+u'</h1>')
         elif filename in [u"armorcraft_fast.html", u"armorcraft.html", u"armorcraft_craft_all.html"]:
             f.write(u': '+localText.ac+u'</h1>')
-        # adword
-        f.write(u'<div style="display:block;float:Right;"> \
-                \n<script type="text/javascript"><!-- \
-                \ngoogle_ad_client = "ca-pub-6865907345688710"; \
-                \n/* half page banner 2 */ \
-                \ngoogle_ad_slot = "9379048580"; \
-                \ngoogle_ad_width = 234; \
-                \ngoogle_ad_height = 60; \
-                \n//--> \
-                \n</script> \
-                \n<script type="text/javascript" \
-                \nsrc="http://pagead2.googlesyndication.com/pagead/show_ads.js"> \
-                \n</script> \
-                \n</div>\n')
         f.write(u'<dl>\n')
         f.write(u'    <dt>%s</dt>\n'%localText.iCost)
         f.write(u'    <dd>'+mFormat(tcost)+u'</dd>\n')
@@ -938,7 +939,8 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, filename, 
                 \nsrc="http://pagead2.googlesyndication.com/pagead/show_ads.js"> \
                 \n</script> \
                 \n</div>\n')
-        f.write(u'</section>\n%s\n<script type="text/javascript">\n'%localText.cright)
+        f.write(u'</section>\n')
+        f.write('%s\n<script type="text/javascript">\n'%localText.cright)
         for item in buttonList:
             f.write(u"$(\"#"+str(item)+u"\").click(function () {\n\t$(\"#1"+str(item)+u"\").toggle();});\n")
         f.write(u"$(\".sbutton\").hide();\n")
@@ -972,7 +974,7 @@ def maketotals(totals, mytime, localText):
 <body>'''
     page += localText.header%('total.html',u'total.html',u'total.html')
 
-    page += u"<section>\n<h5 style=\"text-align:center;\">"+localText.updated+u": " + mytime + u"</h5>"
+    page += u"<section class=\"main\">\n<h5 style=\"text-align:center;\">"+localText.updated+u": " + mytime + u"</h5>"
     page += localText.note
     page += u'    <table>'
     page += u'<tr><th>'+localText.craft+u'</th><th>'+localText.nGuides+u'</th><th>'+localText.fGuides+u'</th></tr>\n'
@@ -983,9 +985,9 @@ def maketotals(totals, mytime, localText):
     page += u"</table>\n<br />\n<table>\n<tr><th>"+localText.craft+u"</th><th>"+localText.nGuides+u"</th><th>"+localText.fGuides+u"</th><th>"+localText.tGuides+u"</th></tr>\n"
 
 
-    tpage1 += u"</table>\n<br />\n<table>\n<tr><th>"+localText.nGuides+u"</th><th>"+localText.totals+u"</th><th>"+localText.tiers+u" 1</th><th>"+localText.tiers+u" 2</th><th>"+localText.tiers+u" 3</th><th>"+localText.tiers+u" 4</th><th>"+localText.tiers+u" 5</th></tr>\n"
-    tpage2 += u"</table>\n<br />\n<table>\n<tr><th>"+localText.fGuides+u"</th><th>"+localText.totals+u"</th><th>"+localText.tiers+u" 1</th><th>"+localText.tiers+u" 2</th><th>"+localText.tiers+u" 3</th><th>"+localText.tiers+u" 4</th><th>"+localText.tiers+u" 5</th></tr>\n"
-    tpage3 += u"</table>\n<br />\n<table>\n<tr><th>"+localText.tGuides+u"</th><th>"+localText.totals+u"</th><th>"+localText.tiers+u" 1</th><th>"+localText.tiers+u" 2</th><th>"+localText.tiers+u" 3</th><th>"+localText.tiers+u" 4</th><th>"+localText.tiers+u" 5</th></tr>\n"
+    tpage1 += u"</table>\n<br />\n<table>\n<tr><th>"+localText.nGuides+u"</th><th>"+localText.tiers+u" 1</th><th>"+localText.tiers+u" 2</th><th>"+localText.tiers+u" 3</th><th>"+localText.tiers+u" 4</th><th>"+localText.tiers+u" 5</th></tr>\n"
+    tpage2 += u"</table>\n<br />\n<table>\n<tr><th>"+localText.fGuides+u"</th><th>"+localText.tiers+u" 1</th><th>"+localText.tiers+u" 2</th><th>"+localText.tiers+u" 3</th><th>"+localText.tiers+u" 4</th><th>"+localText.tiers+u" 5</th></tr>\n"
+    tpage3 += u"</table>\n<br />\n<table>\n<tr><th>"+localText.tGuides+u"</th><th>"+localText.tiers+u" 1</th><th>"+localText.tiers+u" 2</th><th>"+localText.tiers+u" 3</th><th>"+localText.tiers+u" 4</th><th>"+localText.tiers+u" 5</th></tr>\n"
 
     ctnc = 0
     ctfc = 0
@@ -998,9 +1000,9 @@ def maketotals(totals, mytime, localText):
               (u'leatherworking',u'leatherworking_fast',u'leatherworking_craft_all',localText.lw),
               (u'tailor',u'tailor_fast',u'tailor_craft_all',localText.tailor)]:
         page += u'<tr><td>'+i[3]+u'</td><td>'+mFormat(totals[i[0]][u'total'])+u'</td><td>'+mFormat(totals[i[1]][u'total'])+u'</td><td>'+mFormat(totals[i[2]][u'total'])+u'</td></tr>\n'
-        tpage1 += u'<tr><td>'+i[3]+u'</td><td>'+mFormat(totals[i[0]][u'total'])+u'</td><td>'+mFormat(totals[i[0]][0])+u'</td><td>'+mFormat(totals[i[0]][75])+u'</td><td>'+mFormat(totals[i[0]][150])+u'</td><td>'+mFormat(totals[i[0]][225])+u'</td><td>'+mFormat(totals[i[0]][300])+u'</td></tr>\n'
-        tpage2 += u'<tr><td>'+i[3]+u'</td><td>'+mFormat(totals[i[1]][u'total'])+u'</td><td>'+mFormat(totals[i[1]][0])+u'</td><td>'+mFormat(totals[i[1]][75])+u'</td><td>'+mFormat(totals[i[1]][150])+u'</td><td>'+mFormat(totals[i[1]][225])+u'</td><td>'+mFormat(totals[i[1]][300])+u'</td></tr>\n'
-        tpage3 += u'<tr><td>'+i[3]+u'</td><td>'+mFormat(totals[i[2]][u'total'])+u'</td><td>'+mFormat(totals[i[2]][0])+u'</td><td>'+mFormat(totals[i[2]][75])+u'</td><td>'+mFormat(totals[i[2]][150])+u'</td><td>'+mFormat(totals[i[2]][225])+u'</td><td>'+mFormat(totals[i[2]][300])+u'</td></tr>\n'
+        tpage1 += u'<tr><td>'+i[3]+u'</td><td>'+mFormat(totals[i[0]][0])+u'</td><td>'+mFormat(totals[i[0]][75])+u'</td><td>'+mFormat(totals[i[0]][150])+u'</td><td>'+mFormat(totals[i[0]][225])+u'</td><td>'+mFormat(totals[i[0]][300])+u'</td></tr>\n'
+        tpage2 += u'<tr><td>'+i[3]+u'</td><td>'+mFormat(totals[i[1]][0])+u'</td><td>'+mFormat(totals[i[1]][75])+u'</td><td>'+mFormat(totals[i[1]][150])+u'</td><td>'+mFormat(totals[i[1]][225])+u'</td><td>'+mFormat(totals[i[1]][300])+u'</td></tr>\n'
+        tpage3 += u'<tr><td>'+i[3]+u'</td><td>'+mFormat(totals[i[2]][0])+u'</td><td>'+mFormat(totals[i[2]][75])+u'</td><td>'+mFormat(totals[i[2]][150])+u'</td><td>'+mFormat(totals[i[2]][225])+u'</td><td>'+mFormat(totals[i[2]][300])+u'</td></tr>\n'
 
         ctnc += totals[i[0]][u'total']
         ctfc += totals[i[1]][u'total']

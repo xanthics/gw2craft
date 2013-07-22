@@ -157,7 +157,7 @@ thanks   = u"Merci aux personnes qui ont créé des guides avant moi; Qorthos, p
 
 # index strings
 fThings = u"4 choses que vous devez savoir"
-t1      = u"<img src=\"/img/arrow.png\"></img> peut être cliqué pour toutes les recettes de découverte ainsi que la liste des objets vendus"
+t1      = u"<img src=\"/img/arrow.png\" alt=\"ARROW\"> peut être cliqué pour toutes les recettes de découverte ainsi que la liste des objets vendus"
 t2      = u"<input type=\"checkbox\"/> existe afin que vous puissiez suivre votre position dans la liste buy"
 t3      = u"listes d'achat spécifiques de niveau existent pour les guides non-cuisson (cliquez sur le bouton) "
 t4      = u"<a href=\"nav.html\">la page Nav</a> si vous ne pouvez pas utiliser la barre de navigation"
@@ -200,7 +200,7 @@ path = "fr/"
 header = u"""<nav>
     <ul>
         <li><a href="http://gw2crafts.net/"""+path+u"""">"""+home+u"""</a></li>
-        <li><a href="http://gw2crafts.net/"""+path+u"""nav.html">"""+nGuides+u"""</a>
+        <li><a href="#">"""+nGuides+u"""</a>
         <ul>
             <li><a href="#">"""+cooking+u"""</a>
             <ul>
@@ -218,7 +218,7 @@ header = u"""<nav>
             <li><a href="http://gw2crafts.net/"""+path+u"""tailor.html">"""+tailor+u"""</a></li>
         </ul>
         </li>
-        <li><a href="http://gw2crafts.net/"""+path+u"""nav.html">"""+fGuides+u"""</a>
+        <li><a href="#">"""+fGuides+u"""</a>
         <ul>
             <li><a href="#">"""+cooking+u"""</a>
             <ul>
@@ -236,7 +236,7 @@ header = u"""<nav>
             <li><a href="http://gw2crafts.net/"""+path+u"""tailor_fast.html">"""+tailor+u"""</a></li>
         </ul>
         </li>
-        <li><a href="http://gw2crafts.net/"""+path+u"""nav.html">"""+tGuides+u"""</a>
+        <li><a href="#">"""+tGuides+u"""</a>
         <ul>
             <li><a href="http://gw2crafts.net/"""+path+u"""jewelcraft_craft_all.html">"""+jc+u"""</a></li>
             <li><a href="http://gw2crafts.net/"""+path+u"""artificing_craft_all.html">"""+art+u"""</a></li>
