@@ -748,12 +748,12 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, filename, 
         f.write(u'<img src="/css/warning-icon.png" width="24" height="24" style="padding: 0 8px 0 8px; float: left;" alt="WARNING"><span style="position: relative; top: 4px;"><span style="color: red">%s</span>    %s: %s</span>\n'%(localText.warning1,localText.warning2,mytime))
         f.write(u'</div><br />\n')
         # adword
-        f.write(u'<div style="float:right;position:absolute;right:-180px;"> \
+        f.write(u'<div style="float:right;position:absolute;right:-320px;"> \
                 \n<script type="text/javascript"><!-- \
                 \ngoogle_ad_client = "ca-pub-6865907345688710"; \
-                \n/* sidebar */ \
-                \ngoogle_ad_slot = "5664174986"; \
-                \ngoogle_ad_width = 160; \
+                \n/* large sidebar */ \
+                \ngoogle_ad_slot = "9285292589"; \
+                \ngoogle_ad_width = 300; \
                 \ngoogle_ad_height = 600; \
                 \n//--> \
                 \n</script> \
