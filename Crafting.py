@@ -236,11 +236,15 @@ def costCraft(filename,c_recipes,fast,ignoreMixed,cList,mytime,xp_to_level):
     for tier in c_recipes:
         for item in c_recipes[tier]:
             if item in cList:
-                cList[item][u'recipe'] = c_recipes[tier][item]
+                if not cList[item][u'recipe']:
+                    cList[item][u'recipe'] = []
+                cList[item][u'recipe'].append(c_recipes[tier][item])
             else: 
                 print u"Missing Item from itemlist: " + item
                 exit(-1)
-            cList[item][u'tier'] = tier
+            if not u'tier' in cList[item]:
+                cList[item][u'tier'] = []
+            cList[item][u'tier'].append(tier)
 
     # Cooking guides don't use tierbuy, but they do care about karma items
     if "cook" in filename:
@@ -304,29 +308,35 @@ def costCraft(filename,c_recipes,fast,ignoreMixed,cList,mytime,xp_to_level):
             sole = 0
             recalc = {tier:0} # always recalc the tier we are on
             for item in bucket[bkey[0]][u'make']:
-                if item == bucket[bkey[0]][u'item_id'] and int(cList[item][u'tier']) < tier:
+                index = 0
+                if tier in cList[item][u'tier']:
+                    index = cList[item][u'tier'].index(tier)
+                else:
+                    while len(cList[item][u'tier']) > index+1 and int(cList[item][u'tier'][index]) > tier:
+                        index += 1
+                if item == bucket[bkey[0]][u'item_id'] and int(cList[item][u'tier'][index]) < tier:
                     craftcount[tier][u'ptitem'].append(rarityNum(cList[item][u'rarity']))
                     pmake[tier][item] += 1
                 elif not cList[item][u'type'] in non_item and not 'discover' in cList[item]:
                     cList[item][u'discover'] = 1
-                    craftcount[int(cList[item][u'tier'])][u'discovery'].append(rarityNum(cList[item][u'rarity']))
-                    make[int(cList[item][u'tier'])][item] += 1
+                    craftcount[int(cList[item][u'tier'][index])][u'discovery'].append(rarityNum(cList[item][u'rarity']))
+                    make[int(cList[item][u'tier'][index])][item] += 1
                 elif not cList[item][u'type'] in non_item:
-                    craftcount[int(cList[item][u'tier'])][u'item'].append(rarityNum(cList[item][u'rarity']))
-                    make[int(cList[item][u'tier'])][item] += 1
+                    craftcount[int(cList[item][u'tier'][index])][u'item'].append(rarityNum(cList[item][u'rarity']))
+                    make[int(cList[item][u'tier'][index])][item] += 1
                 elif cList[item][u'type'] == u'Refinement':
                     if item == 19679: # Bronze Ingot
-                        craftcount[int(cList[item][u'tier'])][u'refine'] += 0.2
+                        craftcount[int(cList[item][u'tier'][index])][u'refine'] += 0.2
                     else:
-                        craftcount[int(cList[item][u'tier'])][u'refine'] += 1.0
-                    make[int(cList[item][u'tier'])][item] += 1
+                        craftcount[int(cList[item][u'tier'][index])][u'refine'] += 1.0
+                    make[int(cList[item][u'tier'][index])][item] += 1
                 else:
                     if item in [13063,  13189,  13207,  13219,  13045,  13022,  13075,  13177,  13096,  13033] and not sole: # Sole IDs
                         sole +=1
                     else:
-                        craftcount[int(cList[item][u'tier'])][u'part'].append(rarityNum(cList[item][u'rarity']))
-                    make[int(cList[item][u'tier'])][item] += 1
-                recalc[int(cList[item][u'tier'])] = 0
+                        craftcount[int(cList[item][u'tier'][index])][u'part'].append(rarityNum(cList[item][u'rarity']))
+                    make[int(cList[item][u'tier'][index])][item] += 1
+                recalc[int(cList[item][u'tier'][index])] = 0
 
             for ctier in recalc:
                 craftcount[ctier][u'current_xp'] = compute_level((xp_to_level[ctier] if ctier == 0 or xp_to_level[ctier] >= craftcount[ctier-25][u'current_xp'] else craftcount[ctier-25][u'current_xp']), craftcount[ctier],ctier,xp_to_level)
@@ -365,53 +375,59 @@ def calcRecipecraft(recipe,items,craftcount,tier,count,itier,ignoreMixed,xp_to_l
     buy = []
     cost = 0
     non_item = [u'Refinement', u'Insignia', u'Inscription', u'Component']
+    # Find the recipe we are looking for
+    index = 0
+    for i in range(len(items[recipe][u'tier'])):
+        if items[recipe][u'tier'][i] == int(itier):
+            index = i
+            break
     # For our traditional style guides, we still want to consider buying gems even though you can refine.    This is a list of those gems
     # "Amber Pebble","Garnet Pebble","Malachite Pebble","Pearl","Tiger's Eye Pebble","Turquoise Pebble","Amethyst Nugget","Carnelian Nugget","Lapis Nugget","Peridot Nugget","Spinel Nugget","Sunstone Nugget","Topaz Nugget","Amethyst Lump","Carnelian Lump","Lapis Lump","Peridot Lump","Spinel Lump","Sunstone Lump","Topaz Lump","Beryl Shard","Chrysocola Shard","Coral Chunk","Emerald Shard","Opal Shard","Ruby Shard","Sapphire Shard","Beryl Crystal","Chrysocola Crystal","Coral Tentacle","Emerald Crystal","Opal Crystal","Ruby Crystal","Sapphire Crystal","Passion Flower"
     gemss = [24534,  24464,  24466,  24500,  24467,  24465,  24501,  24469,  24470,  24468,  24889,  24471,  24535,  24527,  24472,  24507,  24504,  24526,  24503,  24506,  24872,  24870,  24874,  24871,  24875,  24873,  24876,  24519,  24511,  24509,  24473,  24521,  24474,  24475,  37907]
     # impossible to make item at this point.
-    if int(items[recipe][u'tier']) > int(itier):
+    if int(items[recipe][u'tier'][index]) > int(itier):
 #        print recipe
         return 9999999999, -99999999999, make, buy
     for _i in range(0,count):
         make.append(recipe)
-    if int(items[recipe][u'tier']) < int(tier) and not items[recipe][u'type'] in non_item:
-        xptotal = xp_calc(0,0,count,0,rarityNum(items[recipe][u'rarity']),int(items[recipe][u'tier']),level)
+    if int(items[recipe][u'tier'][index]) < int(tier) and not items[recipe][u'type'] in non_item:
+        xptotal = xp_calc(0,0,count,0,rarityNum(items[recipe][u'rarity']),int(items[recipe][u'tier'][index]),level)
     elif not items[recipe][u'type'] in non_item and not 'discover' in items[recipe]:
-        xptotal = xp_calc(0,0,count-1,1,rarityNum(items[recipe][u'rarity']),int(items[recipe][u'tier']),level)
+        xptotal = xp_calc(0,0,count-1,1,rarityNum(items[recipe][u'rarity']),int(items[recipe][u'tier'][index]),level)
     elif not items[recipe][u'type'] in non_item:
-        xptotal = xp_calc(0,0,count,0,rarityNum(items[recipe][u'rarity']),int(items[recipe][u'tier']),level)
+        xptotal = xp_calc(0,0,count,0,rarityNum(items[recipe][u'rarity']),int(items[recipe][u'tier'][index]),level)
     elif items[recipe][u'type'] == u'Refinement':
         if 19679 == recipe:
-            xptotal = math.ceil(xp_calc(count,0,0,0,1.0,int(items[recipe][u'tier']),level)*0.2)
+            xptotal = math.ceil(xp_calc(count,0,0,0,1.0,int(items[recipe][u'tier'][index]),level)*0.2)
         else:
-            xptotal = xp_calc(count,0,0,0,1.0,int(items[recipe][u'tier']),level)
+            xptotal = xp_calc(count,0,0,0,1.0,int(items[recipe][u'tier'][index]),level)
     else:
         if recipe in [13063,  13189,  13207,  13219,  13045,  13022,  13075,  13177,  13096,  13033]: # Sole
-            xptotal = xp_calc(0,count,0,0,1.0,int(items[recipe][u'tier']),level)*0.5
+            xptotal = xp_calc(0,count,0,0,1.0,int(items[recipe][u'tier'][index]),level)*0.5
         else:
-            xptotal = xp_calc(0,count,0,0,1.0,int(items[recipe][u'tier']),level)
+            xptotal = xp_calc(0,count,0,0,1.0,int(items[recipe][u'tier'][index]),level)
 
     mycost = 0
-    for item in items[recipe][u'recipe']:
-        mycost += items[item][u'cost']*items[recipe][u'recipe'][item]
+    for item in items[recipe][u'recipe'][index]:
+        mycost += items[item][u'cost']*items[recipe][u'recipe'][index][item]
 
     mycost *= count
-    for item in items[recipe][u'recipe']:
+    for item in items[recipe][u'recipe'][index]:
         if not items[item][u'recipe'] == None:
-            tcost, txptotal, tmake, tbuy = calcRecipecraft(item,items,craftcount,items[item][u'tier'],items[recipe][u'recipe'][item]*count,int(items[recipe][u'tier']),ignoreMixed,xp_to_level)
-            if (ignoreMixed and item not in gemss) or tcost < items[item][u'cost']*items[recipe][u'recipe'][item]*count or float(xptotal+txptotal)/float(mycost-items[item][u'cost']*items[recipe][u'recipe'][item]*count+tcost) >= float(xptotal)/float(mycost):
+            tcost, txptotal, tmake, tbuy = calcRecipecraft(item,items,craftcount,items[item][u'tier'][0],items[recipe][u'recipe'][index][item]*count,int(items[recipe][u'tier'][index]),ignoreMixed,xp_to_level)
+            if (ignoreMixed and item not in gemss) or tcost < items[item][u'cost']*items[recipe][u'recipe'][index][item]*count or float(xptotal+txptotal)/float(mycost-items[item][u'cost']*items[recipe][u'recipe'][index][item]*count+tcost) >= float(xptotal)/float(mycost):
                 xptotal += txptotal
                 cost += tcost
                 buy += tbuy
                 make += tmake
             else:
-                for _i in range(0,int(math.ceil(count*items[recipe][u'recipe'][item]))):
+                for _i in range(0,int(math.ceil(count*items[recipe][u'recipe'][index][item]))):
                     buy.append(item)
-                cost += items[item][u'cost']*count*items[recipe][u'recipe'][item]
+                cost += items[item][u'cost']*count*items[recipe][u'recipe'][index][item]
         else:
-            for _i in range(0,int(math.ceil(count*items[recipe][u'recipe'][item]))):
+            for _i in range(0,int(math.ceil(count*items[recipe][u'recipe'][index][item]))):
                 buy.append(item)
-            cost += items[item][u'cost']*count*items[recipe][u'recipe'][item]
+            cost += items[item][u'cost']*count*items[recipe][u'recipe'][index][item]
     return cost, xptotal, make, buy
 
 def makeQueuecraft(recipes,items,craftcount,tier,ignoreMixed,xp_to_level):
@@ -912,12 +928,12 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, filename, 
                     else:
                         del(make[tier][item])
                     t = (t+1)%2
-                    tstr = "<div class=\"sbutton\" id=\"1"+str(item)+u"\">"
-                    for s in cList[item][u'recipe']:
-                        tstr += "\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u'\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][s])+u")"
+                    tstr = "<div class=\"sbutton\" id=\"1"+str(item)+str(tier)+u"\">"
+                    for s in cList[item][u'recipe'][cList[item][u'tier'].index(tier)]:
+                        tstr += "\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u'\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][cList[item][u'tier'].index(tier)][s])+u")"
                     tstr += "</div><br />"
-                    f.write(u"<div class=\"s"+str(t)+u"\">"+localText.discover+u": <button class=\"arrow "+cList[item][u'rarity']+u'\" title=\"'+localText.toggle+u'\" id=\"'+str(item)+u'\">'+cListName[item]+u"</button> "+tstr+u"\n</div>\n")
-                    buttonList.append(item)
+                    f.write(u"<div class=\"s"+str(t)+u"\">"+localText.discover+u": <button class=\"arrow "+cList[item][u'rarity']+u'\" title=\"'+localText.toggle+u'\" id=\"'+str(item)+str(tier)+u'\">'+cListName[item]+u"</button> "+tstr+u"\n</div>\n")
+                    buttonList.append(str(item)+str(tier))
             for item in sorted(make[tier]):
                 if not cList[item][u'type'] in non_item:
                     t = (t+1)%2
