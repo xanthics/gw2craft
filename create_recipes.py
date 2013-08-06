@@ -45,8 +45,8 @@ def recipelistWorker(items, out_q):
 def get_recipes():
     temp = _api_call('recipes.json')
     out_q = Queue()
-    nprocs = 4
     lister = temp['recipes']
+    nprocs = len(lister)/10
     chunksize = int(math.ceil(len(lister) / float(nprocs)))
     procs = []
 
@@ -157,8 +157,8 @@ def itemlistWorker(items, lang, out_q):
 # Currently supported languages: en, fr, de, es
 def itemlist(item_list, lang="en"):
     out_q = Queue()
-    nprocs = 4
     lister = item_list.keys()
+    nprocs = len(lister)/10
 
     chunksize = int(math.ceil(len(lister) / float(nprocs)))
     procs = []
@@ -188,6 +188,7 @@ def itemlist(item_list, lang="en"):
                     item_list[i][u'vendor_value'] = int(flags[i][u'vendor_value'])
                 if item_list[i][u'flags']:
                     item_list[i][u'discover'] = 0
+                item_list[i][u'img_url'] = u'https://render.guildwars2.com/file/'+ flags[i][u'icon_file_signature'] +u'/' + flags[i][u'icon_file_id'] +u'.jpg'
                 del(item_list[i][u'flags'])
                 f.write("\t"+ str(i) +":"+ str(item_list[i])+",\n")
             f.write('}')

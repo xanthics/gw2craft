@@ -61,7 +61,7 @@ def itemlistworker(_itemList, temp, out_q):
             sellMethod = 2
 
         # Save all the information we care about
-        outdict[item] = {u'w':w,u'cost':val[u'min_sale_unit_price'],u'recipe':None,u'rarity':items.ilist[item][u'rarity'],u'type':items.ilist[item][u'type'],u'icon':val[u'img'],u'output_item_count':items.ilist[item][u'output_item_count'],u'sellMethod':sellMethod} 
+        outdict[item] = {u'w':w,u'cost':val[u'min_sale_unit_price'],u'recipe':None,u'rarity':items.ilist[item][u'rarity'],u'type':items.ilist[item][u'type'],u'icon':items.ilist[item][u'img_url'],u'output_item_count':items.ilist[item][u'output_item_count'],u'sellMethod':sellMethod} 
 
         if u"discover" in items.ilist[item]:
             outdict[item][u'discover'] = 0
