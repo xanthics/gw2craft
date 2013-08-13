@@ -213,7 +213,6 @@ def index(localText):
         f.write(localText.header%('index.html','index.html','index.html'))
         f.write(u"<section class=\"main\">\n")
         f.write(u"<strong>%s</strong>: <a href=\"/\" hreflang=\"en\">English</a>, <a href=\"/fr/\" hreflang=\"fr\">Français</a>, <a href=\"/de/\" hreflang=\"de\">Deutsch</a>, <a href=\"/es/\" hreflang=\"es\">Español</a> (temporary to draw attention)\n<br />"%(localText.navLang))
-        f.write(u"<a href=\"https://github.com/xanthics/gw2craft/blob/master/localde.py\">German</a> and <a href=\"https://github.com/xanthics/gw2craft/blob/master/localfr.py\">French</a> still need help translating.\n <br /><br />")
         f.write(u"<strong>%s:</strong>\n"%(localText.fThings))
         f.write(u"<ul>\n")
         f.write(u"<li>%s</li>\n"%(localText.t1))
