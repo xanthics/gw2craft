@@ -46,7 +46,7 @@ def faq(localText):
         f.write(u"	<script src=\"/js/menu.js\" type=\"text/javascript\"></script>\n")
         f.write(u"</head>\n")
         f.write(u"<body>\n")
-        f.write(localText.header%(u'faqs.html',u'faqs.html',u'faqs.html'))
+        f.write(localText.header%(u'faq.html',u'faq.html',u'faq.html'))
         f.write(u"<section class=\"main\">\n")
         f.write(u"%s: <br />\n"%(localText.costs))
         f.write(u"<form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\">\n")
