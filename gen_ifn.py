@@ -212,7 +212,7 @@ def index(localText):
         f.write(u"<body>\n")
         f.write(localText.header%('index.html','index.html','index.html'))
         f.write(u"<section class=\"main\">\n")
-        f.write(u"<strong>%s</strong>: <a href=\"/\" hreflang=\"en\">English</a>, <a href=\"/fr/\" hreflang=\"fr\">Français</a>, <a href=\"/de/\" hreflang=\"de\">Deutsch</a>, <a href=\"/es/\" hreflang=\"es\">Español</a> (temporary to draw attention)\n<br />"%(localText.navLang))
+#        f.write(u"<strong>%s</strong>: <a href=\"/\" hreflang=\"en\">English</a>, <a href=\"/fr/\" hreflang=\"fr\">Français</a>, <a href=\"/de/\" hreflang=\"de\">Deutsch</a>, <a href=\"/es/\" hreflang=\"es\">Español</a> (temporary to draw attention)\n<br />"%(localText.navLang))
         f.write(u"<strong>%s:</strong>\n"%(localText.fThings))
         f.write(u"<ul>\n")
         f.write(u"<li>%s</li>\n"%(localText.t1))

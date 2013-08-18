@@ -272,7 +272,7 @@ nav ul li:hover > ul {
 nav ul {
 	background: rgb(150, 150, 150); 
 	box-shadow: 0px 0px 10px rgba(0,0,0,0.15);
-	padding: 0 8px;
+	padding: 0 0;
 	margin: 0;
 	list-style: none;
 	position: relative;
@@ -312,7 +312,7 @@ nav ul ul li {
 	float: none; 
 	border-top: 1px solid rgb(80, 80, 80);
 	position: relative;
-	top: -4px;}
+	top: -1px;}
 
 nav ul ul li a {
 	padding: 5px 20px;}	
@@ -329,3 +329,6 @@ nav ul ul ul {
 
 nav ul ul ul li {
 	top: -1px;}
+
+.language {
+	background: rgb(125,55,55);}
