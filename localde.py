@@ -118,11 +118,11 @@ sNote        = u"Ergibt 2 Sohlen pro Herstellung"
 # FAQ strings
 costs    = u"Die Kosten werden abgedeckt, aber Spenden sind willkommen"
 gw2spidy = u"Auch diese Guides wären ohne <a möglich href=\"http://www.gw2spidy.com\">gw2spidy</a> und dessen API nicht möglich."
-oThread  = u"GW2 Offizieller Thread"
-rThread  = u"reddit Thread"
-gThread  = u"guildwars2guru Thread"
-twitter  = u"Twitter"
-email    = u"eMail"
+oThread  = u"GW2 Offizieller Thread (En)"
+rThread  = u"reddit Thread (En)"
+gThread  = u"guildwars2guru Thread (En)"
+twitter  = u"Twitter (En)"
+email    = u"eMail (En)"
 contact  = u"Wenn Sie irgendwelche Fragen, Kommentare, Anliegen oder das Gefühl haben, einen Fehler gefunden zu haben, kontaktieren Sie mich bitte auf eine dieser Arten."
 faq      = u"FAQ"
 question = u"F"
@@ -135,7 +135,7 @@ a13      = u"101-200 2% des aktuellen Levels pro Handwerksstufe"
 a14      = u"201-300 3% des aktuellen Levels pro Handwerksstufe"
 a15      = u"301-400 4% des aktuellen Levels pro Handwerksstufe"
 a16      = u"Und diese Werte skalieren zu Teilleveln. So ist bei Level 1 und einem halbvollen XP-Balken der Fortschritt 1,5% des Levels. Crafting von 0-400 gibt Dir 10 Level, egal von welchem Level Du startest."
-a17      = u"Es gibt eine Ausnahme: bis Level 15 ist der XP-Gewinn größer (<a href=\"http://wiki.guildwars2.com/wiki/Experience#Total_experience_gain_per_level\">Quelle</ a>), so dass Du auf etwa 13 Level beim Craften kommst."
+a17      = u"Es gibt eine Ausnahme: bis Level 15 ist der XP-Gewinn größer (<a href=\"http://wiki.guildwars2.com/wiki/Experience#Total_experience_gain_per_level\">Quelle</a>), so dass Du auf etwa 13 Level beim Craften kommst."
 a18      = u"Das bedeutet, Du kannst von Level 1 auf 80 nur durchs Craften kommen, da es 8 Berufe gibt."
 q2       = u"Werden die Guides nicht inkorrekt, wenn jeder die Items im HP kauft?"
 a2       = u"Diese Guides berechnen die herzustellenden oder zu kaufenden Gegenstände anhand des gegenwärtigen HP-Preises. Sie passen sich an, sobald sie die Preise ändern. (Fast) alle möglichen Rezepte werden in Erwägung gezogen, wenn diese Guides erstellt werden."
@@ -164,8 +164,8 @@ t4      = u"<a href=\"/de/nav.html\"> Navigation </a>, solltet ihr das Navigatio
 nge     = u"Wägt das Herstellen und Einkaufen von Zutaten und Elementen eines Gegenstandes ab. Meist die kostengünstigste Methode aber stellt komplexere Anforderungen an das Inventar."
 fge     = u"Macht den gleichen Gegenstand für 25 Handwerkspunkte. Schneller und einfacher als andere Anleitungen dafür kostenaufwendiger."
 tge     = u"Versucht die Zutaten wenn möglich herzustellen als sie zu kaufen. In der Regel teurer als normale Anleitungen, aber weniger komplex. Vergleichbar mit Anleitungen die vor ACCG existierten."
-wit     = u"<strong> Was ist das hier überhaupt? </ strong> Immer aktuelle Handwerksanleitungen für Guild Wars 2. Alle Anleitungen werden jede Stunde auf Basis der aktuellen Handelspostenpreise neu berechnet, sofern der Server läuft und gw2spidy erreichbar ist. Diese Anleitungen wurden ursprünglich für Freunde erstellt, doch die Popularität meiner Arbeit brachte mich dazu noch mehr daran zu arbeiten - Das Ergebnis seht ihr hier. Dieses Skript setzt allerdings voraus, dass es eine \"unendliche\" Menge der Artikel zu einem bestimmten Preis im Handelsposten gibt. Wurden also alle aufgekauft oder es sind weniger vorhanden als angenommen können die Preise bis zum nächten Update abweichen."
-nWarn   = u"<strong> [Hinweis] </ strong> Wenn du nicht vorhast die Anleitung in einem Rutsch durchzuziehen, dann speichere Sie bitte auf deinem PC, dann Sie ist ständigen Änderungen unterworfen und wird stündlich aktualisiert."
+wit     = u"<strong> Was ist das hier überhaupt? </strong> Immer aktuelle Handwerksanleitungen für Guild Wars 2. Alle Anleitungen werden jede Stunde auf Basis der aktuellen Handelspostenpreise neu berechnet, sofern der Server läuft und gw2spidy erreichbar ist. Diese Anleitungen wurden ursprünglich für Freunde erstellt, doch die Popularität meiner Arbeit brachte mich dazu noch mehr daran zu arbeiten - Das Ergebnis seht ihr hier. Dieses Skript setzt allerdings voraus, dass es eine \"unendliche\" Menge der Artikel zu einem bestimmten Preis im Handelsposten gibt. Wurden also alle aufgekauft oder es sind weniger vorhanden als angenommen können die Preise bis zum nächten Update abweichen."
+nWarn   = u"<strong> [Hinweis] </strong> Wenn du nicht vorhast die Anleitung in einem Rutsch durchzuziehen, dann speichere Sie bitte auf deinem PC, dann Sie ist ständigen Änderungen unterworfen und wird stündlich aktualisiert."
 rCost   = u"<strong> Hinweis, um Kosten zu senken:</strong> Speichere dir eine Kopie der Anleitung und platziere Kaufgeobte im Handelsposten für die Materialien."
 thanks2 = u"Ich danke  bkohli, TimeBomb und saladon für einige der CSS-Styles auf diesen Seiten. Dank Marc Ramos (desmodium.3745) für die Spanische Übersetzung.  Und danke an @figgityfigs für das neue Icon-Design (Favicon und apple-touch-icon) und Hosting"
 
@@ -249,7 +249,7 @@ header = u"""<nav>
         </li>
         <li><a href="http://gw2crafts.net/"""+path+u"""total.html">"""+totals+u"""</a></li>
         <li><a href="http://gw2crafts.net/"""+path+u"""faq.html">"""+about+u"""</a></li>
-        <li><a href="#" hreflang="en">"""+lang+u"""</a>
+        <li><a href="#" class="language" hreflang="en">"""+lang+u"""</a>
         <ul>
           <li><a href="http://gw2crafts.net/%s" hreflang="en">English</a></li>
           <li><a href="http://gw2crafts.net/fr/%s" hreflang="fr">Français</a></li>

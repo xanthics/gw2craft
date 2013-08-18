@@ -121,8 +121,8 @@ gw2spidy = u"Aussi ces guides ne serait pas possible sans <a href=\"http://www.g
 oThread  = u"Fil de discussion sur le forum officiel GW2 (En)"
 rThread  = u"Fil de discussion reddit (En)"
 gThread  = u"Fil de discussion guildwars2guru (En)"
-twitter  = u"Twitter"
-email    = u"Email"
+twitter  = u"Twitter (En)"
+email    = u"Email (En)"
 contact  = u"Si vous avez des questions, des commentaires, des préoccupations ou sentez que vous avez remarqué un bug, merci de me contacter en utilisant l'une de ces méthodes."
 faq      = u"FAQ"
 question = u"Q"
@@ -249,7 +249,7 @@ header = u"""<nav>
         </li>
         <li><a href="http://gw2crafts.net/"""+path+u"""total.html">"""+totals+u"""</a></li>
         <li><a href="http://gw2crafts.net/"""+path+u"""faq.html">"""+about+u"""</a></li>
-        <li><a href="#" hreflang="en">"""+lang+u"""</a>
+        <li><a href="#" class="language" hreflang="en">"""+lang+u"""</a>
         <ul>
           <li><a href="http://gw2crafts.net/%s" hreflang="en">English</a></li>
           <li><a href="#" hreflang="fr">Français</a></li>

@@ -120,11 +120,11 @@ sNote        = u"Produce 2 Suelas"
 # FAQ strings
 costs    = u"El coste de la web está cubierto, pero se aceptan donaciones"
 gw2spidy = u"Estas guías no serian possibles sin <a href=\"http://www.gw2spidy.com\"> gw2spidy </a> y su API."
-oThread  = u"Hilo en el forum oficial de GW2"
-rThread  = u"Hilo en reddit"
-gThread  = u"Hilo en guildwars2guru"
-twitter  = u"Twitter"
-email    = u"Email"
+oThread  = u"Hilo en el forum oficial de GW2 (En)"
+rThread  = u"Hilo en reddit (En)"
+gThread  = u"Hilo en guildwars2guru (En)"
+twitter  = u"Twitter (En)"
+email    = u"Email (En)"
 contact  = u"Si tienes cualquier pregunta, comentario, dudas o crees que has encontrado un error, contacta conmigo usando cualquiera de estos métodos."
 faq      = u"PREGUNTAS FRECUENTES"
 question = u"P"
@@ -166,9 +166,9 @@ t4      = u"Si el menu de navegación no funciona, usa <a href=\"/es/nav.html\">
 nge     = u"toma decisiones inteligentes entre crear o comprar ingredientes. Generalmente el método más barato, pero ocupa más espacio en el inventario."
 fge     = u"crea el mismo objeto cada 25 puntos. Más rápida y fácil que las otras guías, pero más cara."
 tge     = u"siempre crea ingredientes (si es possible) en lugar de comprarlos. Normalmente más caras que las guías normales, pero menos complicadas. Similar a las guías que existian antes que las guías rápidas y normales de ACCG."
-wit     = u"<strong> Sobre ACCG </ strong> Guías de artesanía autoactualizadas (del inglés, Always Current Crafting Guides) para Guild Wars 2. Todas las guías se actualizan automáticamente cada hora usando los precios del bazar (siempre que el ordenador que ejecuta el código funcione y la web gw2spidy sea accesible). Estas guías fueron creadas originalmente para amigos, pero debido a su popularidad dentro de la comunidad de GW2, he seguido trabajando en ellas. El código asume que hay una cantidad “inifinita” de objetos a un precio determinado, con lo cual si todos son comprados o hay pocos de una cantidad, los precios de cada guía pueden variar ligeramente hasta la próxima actualización automática."
-nWarn   = u"<strong> [Importante] </ strong> Si no vas a completar la guía en una única sesión, guardala en tu ordenador, debido a la actualización automática la mayoría de ingredientes y recetas seran distintos cada vez que abras la página."
-rCost   = u"<strong> Consejo para reducir coste: </ strong> guarda una copia de la guía y crea ofertas de compra en el bazar."
+wit     = u"<strong> Sobre ACCG </strong> Guías de artesanía autoactualizadas (del inglés, Always Current Crafting Guides) para Guild Wars 2. Todas las guías se actualizan automáticamente cada hora usando los precios del bazar (siempre que el ordenador que ejecuta el código funcione y la web gw2spidy sea accesible). Estas guías fueron creadas originalmente para amigos, pero debido a su popularidad dentro de la comunidad de GW2, he seguido trabajando en ellas. El código asume que hay una cantidad “inifinita” de objetos a un precio determinado, con lo cual si todos son comprados o hay pocos de una cantidad, los precios de cada guía pueden variar ligeramente hasta la próxima actualización automática."
+nWarn   = u"<strong> [Importante] </strong> Si no vas a completar la guía en una única sesión, guardala en tu ordenador, debido a la actualización automática la mayoría de ingredientes y recetas seran distintos cada vez que abras la página."
+rCost   = u"<strong> Consejo para reducir coste: </strong> guarda una copia de la guía y crea ofertas de compra en el bazar."
 thanks2 = u"Gracias a bkohli, TimeBomb y Saladon por parte del CSS de estas páginas. Gracias a Marc Ramos (desmodium.3745) para la traducción en Español.  Gracias a @figgityfigs por los nuevos iconoes (favicon y appletouch-icon) y el alojamiento web."
 
 # nav strings
@@ -251,7 +251,7 @@ header = u"""<nav>
         </li>
         <li><a href="http://gw2crafts.net/"""+path+u"""total.html">"""+totals+u"""</a></li>
         <li><a href="http://gw2crafts.net/"""+path+u"""faq.html">"""+about+u"""</a></li>
-        <li><a href="#" hreflang="en">"""+lang+u"""</a>
+        <li><a href="#" class="language" hreflang="en">"""+lang+u"""</a>
         <ul>
           <li><a href="http://gw2crafts.net/%s" hreflang="en">English</a></li>
           <li><a href="http://gw2crafts.net/fr/%s" hreflang="fr">Français</a></li>
