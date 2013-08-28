@@ -546,7 +546,7 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, filename, 
                     12292:{u'note':localText.glubb,u'cost':35}, # Bowl of Degun Shun Stew    
                     12233:{u'note':localText.tholin,u'cost':35}, # Handful of Trail Mix
                     12739:{u'note':localText.triktiki,u'cost':35}, # Triktiki Omelet
-                    12352:{u'note':localText.pochtecatl,u'cost':35}, # Griffon Egg Omelet
+                    12352:{u'note':"%s (%s %s)"%(localText.pochtecatl,mFormat(368),localText.valuePer),u'cost':0}, # Griffon Egg Omelet
                     12264:{u'note':localText.nrocroc,u'cost':35}, # Raspberry Pie
                     12192:{u'note':localText.victor,u'cost':35}, # Beetletun Omelette
                     19955:{u'note':localText.mcov,u'cost':350}, # Ravaging Intricate Wool Insignia
