@@ -27,6 +27,8 @@ Note: Requires Python 2.7.x
 '''
 
 import urllib, json, datetime, math, os, codecs
+# so we can set custom headers
+from urllib import FancyURLopener
 # recipe and item lists
 import Armorsmith, Artificer, Chef, Chef_karma, Huntsman, Jeweler, Leatherworker, Tailor, Weaponsmith, items
 # Localized text
@@ -93,22 +95,24 @@ def cItemlist(itemList,temp):
 
     return resultdict
 
+class MyOpener(FancyURLopener):
+    version = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; it; rv:1.8.1.11) Gecko/20071127 Firefox/2.0.0.11'
 
 # add some costs data to gcList
 def appendCosts():
     temp = []
+    cList = {}
+    myopener = MyOpener()
     # This could be in a while loop and keep trying until success, but unnecessary
     try:
         baseURL = "http://gw2spidy.com/api/v0.9/json/all-items/all"
-        f = urllib.urlopen(baseURL)
+        f = myopener.open(baseURL)
         temp = json.load(f)
+        print len(temp[u'results']) # print total items returned from gw2spidy
+        cList = cItemlist(items.ilist.keys(),temp[u'results'])
     except Exception, err:
         print u'ERROR: %s.\n' % str(err)
         exit(-1)
-
-    print len(temp[u'results']) # print total items returned from gw2spidy
-
-    cList = cItemlist(items.ilist.keys(),temp[u'results'])
 
     cList[19792][u'cost'] = 8 # Spool of Jute Thread
     cList[19789][u'cost'] = 16 # Spool of Wool Thread
