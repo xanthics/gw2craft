@@ -26,7 +26,7 @@ Purpose: Generates a crafting guide for all crafts in Guild Wars 2 based on curr
 Note: Requires Python 2.7.x
 '''
 
-import urllib, json, datetime, math, os, codecs
+import json, datetime, math, os, codecs
 # so we can set custom headers
 from urllib import FancyURLopener
 # recipe and item lists
@@ -233,7 +233,7 @@ def costCraft(filename,c_recipes,fast,ignoreMixed,cList,mytime,xp_to_level):
     buy = defaultdict(int) # buy list
     sell = defaultdict(int) # sell list
     tierbuy = None # buy list per tier, not used by cooking
-    tiers = [375,350,325,300,275,250,225,200,175,150,125,100,75,50,25,0]
+    tiers = range(0,400,25)[::-1]
     non_item = [u'Refinement', u'Insignia', u'Inscription', u'Component']
 
     # add recipes to cList
@@ -889,7 +889,7 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, filename, 
         f.write(u"<button title=\""+localText.toggle+u"\" class =\"info\" id=\"show_all\">%s</button><br />"%localText.expand)
         f.write(u"<button title=\""+localText.toggle+u"\" class =\"info\" id=\"hide_all\">%s</button>"%localText.collapse)
         rt = 0
-        for tier in [0,25,50,75,100,125,150,175,200,225,250,275,300,325,350,375]:
+        for tier in range(0,400,25):
             if tierbuy and tier in [0,75,150,225,300]:
                 tt = 0
                 tc = tier+75
@@ -968,6 +968,19 @@ def printtofile(tcost, treco, sell, make, pmake, buy, tierbuy, cList, filename, 
         f.write(u"$(\"#show_all\").click(function () {$(\".sbutton\").show();")
         f.write(u"});\n$(\"#hide_all\").click(function () {$(\".sbutton\").hide();")
         f.write(u'});\n</script>\n')
+        # analytics
+        f.write(u'<!-- Piwik --> ')
+        f.write(u'<script type="text/javascript">')
+        f.write(u'var pkBaseURL = (("https:" == document.location.protocol) ? "https://gw2crafts.net/analytics/" : "http://gw2crafts.net/analytics/");')
+        f.write(u'document.write(unescape("%3Cscript src=\'" + pkBaseURL + "piwik.js\' type=\'text/javascript\'%3E%3C/script%3E"));')
+        f.write(u'</script><script type="text/javascript">')
+        f.write(u'try {')
+        f.write(u'var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);')
+        f.write(u'piwikTracker.trackPageView();')
+        f.write(u'piwikTracker.enableLinkTracking();')
+        f.write(u'} catch( err ) {}')
+        f.write(u'</script><noscript><p><img src="http://gw2crafts.net/analytics/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>')
+        f.write(u'<!-- End Piwik Tracking Code -->')
         f.write(u'</body>\n')
         f.write(u'</html>\n')
     return totals
@@ -1036,7 +1049,20 @@ def maketotals(totals, mytime, localText):
 
     page += tpage1 + tpage2 + tpage3
 
-    page += u'\n</section>\n' + localText.cright + u'\n</body>\n</html>'
+    page += u'\n</section>\n' + localText.cright
+    # analytics
+    page += u'<!-- Piwik --> '
+    page += u'<script type="text/javascript">'
+    page += u'var pkBaseURL = (("https:" == document.location.protocol) ? "https://gw2crafts.net/analytics/" : "http://gw2crafts.net/analytics/");'
+    page += u'document.write(unescape("%3Cscript src=\'" + pkBaseURL + "piwik.js\' type=\'text/javascript\'%3E%3C/script%3E"));'
+    page += u'</script><script type="text/javascript">'
+    page += u'try {'
+    page += u'var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);'
+    page += u'piwikTracker.trackPageView();'
+    page += u'piwikTracker.enableLinkTracking();'
+    page += u'} catch( err ) {}'
+    page += u'</script><noscript><p><img src="http://gw2crafts.net/analytics/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>'
+    page += u'<!-- End Piwik Tracking Code -->\n</body>\n</html>'
 
     with codecs.open(localText.path+u'total.html', 'wb', encoding='utf-8') as f:
         f.write(page)
