@@ -161,7 +161,7 @@ t1      = u"<img src=\"/img/arrow.png\" alt=\"ARROW\"> kann für alle Rezeptentd
 t2      = u"<input type=\"checkbox\"/> hilft, den Überblick über den Fortschritt in der Liste zu bewahren"
 t3      = u"Für alle Anleitungen (außer dem Küchenmeister) existieren Tier-spezifische Einkauflisten, die über gesonderte Schaltflächen zu erreichen sind"
 t4      = u"<a href=\"/de/nav.html\"> Navigation </a>, solltet ihr das Navigationsmenü nicht verwenden können"
-nge     = u"Wägt das Herstellen und Einkaufen von Zutaten und Elementen eines Gegenstandes ab. Meist die kostengünstigste Methode aber stellt komplexere Anforderungen an das Inventar."
+nge     = u"Wägt das Herstellen und Einkaufen von Zutaten und Elementen eines Gegenstandes ab."
 fge     = u"Macht den gleichen Gegenstand für 25 Handwerkspunkte. Schneller und einfacher als andere Anleitungen dafür kostenaufwendiger."
 tge     = u"Versucht die Zutaten wenn möglich herzustellen als sie zu kaufen. In der Regel teurer als normale Anleitungen, aber weniger komplex. Vergleichbar mit Anleitungen die vor ACCG existierten."
 wit     = u"<strong> Was ist das hier überhaupt? </strong> Immer aktuelle Handwerksanleitungen für Guild Wars 2. Alle Anleitungen werden jede Stunde auf Basis der aktuellen Handelspostenpreise neu berechnet, sofern der Server läuft und gw2spidy erreichbar ist. Diese Anleitungen wurden ursprünglich für Freunde erstellt, doch die Popularität meiner Arbeit brachte mich dazu noch mehr daran zu arbeiten - Das Ergebnis seht ihr hier. Dieses Skript setzt allerdings voraus, dass es eine \"unendliche\" Menge der Artikel zu einem bestimmten Preis im Handelsposten gibt. Wurden also alle aufgekauft oder es sind weniger vorhanden als angenommen können die Preise bis zum nächten Update abweichen."
@@ -236,15 +236,11 @@ header = u"""<nav>
             <li><a href="http://gw2crafts.net/"""+path+u"""tailor_fast.html">"""+tailor+u"""</a></li>
         </ul>
         </li>
-        <li><a href="#">"""+tGuides+u"""</a>
+        <li><a href="#">400+</a>
         <ul>
-            <li><a href="http://gw2crafts.net/"""+path+u"""jewelcraft_craft_all.html">"""+jc+u"""</a></li>
-            <li><a href="http://gw2crafts.net/"""+path+u"""artificing_craft_all.html">"""+art+u"""</a></li>
-            <li><a href="http://gw2crafts.net/"""+path+u"""huntsman_craft_all.html">"""+hunt+u"""</a></li>
-            <li><a href="http://gw2crafts.net/"""+path+u"""weaponcraft_craft_all.html">"""+wc+u"""</a></li>
-            <li><a href="http://gw2crafts.net/"""+path+u"""armorcraft_craft_all.html">"""+ac+u"""</a></li>
-            <li><a href="http://gw2crafts.net/"""+path+u"""leatherworking_craft_all.html">"""+lw+u"""</a></li>
-            <li><a href="http://gw2crafts.net/"""+path+u"""tailor_craft_all.html">"""+tailor+u"""</a></li>
+            <li><a href="http://gw2crafts.net/"""+path+u"""artificing_400.html">"""+art+u"""</a></li>
+            <li><a href="http://gw2crafts.net/"""+path+u"""huntsman_400.html">"""+hunt+u"""</a></li>
+            <li><a href="http://gw2crafts.net/"""+path+u"""weaponcraft_400.html">"""+wc+u"""</a></li>
         </ul>
         </li>
         <li><a href="http://gw2crafts.net/"""+path+u"""total.html">"""+totals+u"""</a></li>
