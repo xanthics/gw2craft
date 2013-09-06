@@ -92,7 +92,8 @@ def parse_recipes(recipes):
                     24899, 24900, 24901, 24902, 24903, 24904, 24905, 24906,
                     24907, 24908, 24909, 24910, 24911, 24912, 24913, 24914,
                     24915, 24916, 24917, 24919, 24920, 24921, 24922, 24923,
-                    24924, 24898, 24918, 24925]
+                    24924, 24898, 24918, 24925, 19923, 19920, 19917, 19918,
+                    19922, 19921]
 
     crafts = {u'Weaponsmith':{}, u'Chef':{}, u'Chef_karma':{}, u'Huntsman':{},
               u'Armorsmith':{}, u'Jeweler':{}, u'Artificer':{}, u'Tailor':{},
@@ -110,7 +111,7 @@ def parse_recipes(recipes):
         ingredient_set = set(int(i[u'item_id']) for i in data[u'ingredients'])
 
         # Sun Beads
-        if min_rating == u'400' or 19717 in ingredient_set:
+        if min_rating == u'500' or (min_rating == u'400' and not set(data[u'disciplines']).intersection( set([u'Weaponsmith', u'Huntsman', u'Artificer']) )) or 19717 in ingredient_set:
             continue
             
         for it in data[u'disciplines']:
@@ -181,23 +182,29 @@ def itemlist(item_list, lang="en"):
             f.write('# -*- coding: utf-8 -*-\nilist = {\n')
             # sorted is only so we can easily spot new items with diff
             for i in sorted(flags): # otherwise output is semi random order
-                item_list[i][u'rarity'] = flags[i][u'rarity']
-                if "NoSell" in flags[i][u"flags"]:
-                    item_list[i][u'vendor_value'] = 0
-                else:
-                    item_list[i][u'vendor_value'] = int(flags[i][u'vendor_value'])
-                if item_list[i][u'flags']:
-                    item_list[i][u'discover'] = 0
-                item_list[i][u'img_url'] = u'https://render.guildwars2.com/file/'+ flags[i][u'icon_file_signature'] +u'/' + flags[i][u'icon_file_id'] +u'.jpg'
-                del(item_list[i][u'flags'])
-                f.write("\t"+ str(i) +":"+ str(item_list[i])+",\n")
+                try:
+                    item_list[i][u'rarity'] = flags[i][u'rarity']
+                    if "NoSell" in flags[i][u"flags"]:
+                        item_list[i][u'vendor_value'] = 0
+                    else:
+                        item_list[i][u'vendor_value'] = int(flags[i][u'vendor_value'])
+                    if item_list[i][u'flags']:
+                        item_list[i][u'discover'] = 0
+                    item_list[i][u'img_url'] = u'https://render.guildwars2.com/file/'+ flags[i][u'icon_file_signature'] +u'/' + flags[i][u'icon_file_id'] +u'.jpg'
+                    del(item_list[i][u'flags'])
+                    f.write("\t"+ str(i) +":"+ str(item_list[i])+",\n")
+                except Exception, err:
+                    print 'Error: %s.\n' % str(err)
             f.write('}')
 
     with codecs.open("Items_%s.py" % lang,"wb", encoding='utf-8') as f:
         f.write('# -*- coding: utf-8 -*-\nilist = {\n')
         # sorted is only so we can easily spot new items with diff
         for i in sorted(flags): # otherwise output is semi random order
-            f.write("\t"+ str(i) +":u\""+ flags[i][u'name'].replace('"','\'') +"\",\n")
+            try:
+                f.write("\t"+ str(i) +":u\""+ flags[i][u'name'].replace('"','\'') +"\",\n")
+            except Exception, err:
+                print 'Error: %s.\n' % str(err)
         f.write('}')
 
 def _api_call(endpoint):

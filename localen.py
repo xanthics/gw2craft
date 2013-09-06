@@ -161,7 +161,7 @@ t1      = u"<img src=\"/img/arrow.png\" alt=\"ARROW\"> can be clicked for all di
 t2      = u"<input type=\"checkbox\"/> exist so you can track your location in the buy list"
 t3      = u"Tier specific buy lists exist for non-cooking guides(click the button)"
 t4      = u"<a href=\"nav.html\">Nav page</a> if you can't use the nav bar"
-nge     = u"Will make smart choices between crafting or buying sub parts of an item.  Almost always the cheapest method but more complex with inventory requirements."
+nge     = u"Will make smart choices between crafting or buying sub parts of an item."
 fge     = u"Makes the same item for 25 points.  Faster and easier than other guides but more expensive."
 tge     = u"Will craft sub parts of an item if possible instead of buying.  Usually more expensive than normal guides, but can be less complex.  This is similar to crafting guides that existed before ACCG."
 wit     = u"<strong>What is this?</strong> Always current crafting guides for Guild Wars 2. All guides are recalculated based on current TP prices every hour assuming the computer running the script is on and gw2spidy is reachable. These guides were originally created for friends, but based on the popularity of these within the Guild Wars 2 community, I continued to improve them to what you see today.  This script does assume there are \"infinite\" of an item at a given cost, so if they all get bought up, or there is very few available during the update window prices may be wrong until the next update."
@@ -236,15 +236,11 @@ header = u"""<nav>
             <li><a href="http://gw2crafts.net/"""+path+u"""tailor_fast.html">"""+tailor+u"""</a></li>
         </ul>
         </li>
-        <li><a href="#">"""+tGuides+u"""</a>
+        <li><a href="#">400+</a>
         <ul>
-            <li><a href="http://gw2crafts.net/"""+path+u"""jewelcraft_craft_all.html">"""+jc+u"""</a></li>
-            <li><a href="http://gw2crafts.net/"""+path+u"""artificing_craft_all.html">"""+art+u"""</a></li>
-            <li><a href="http://gw2crafts.net/"""+path+u"""huntsman_craft_all.html">"""+hunt+u"""</a></li>
-            <li><a href="http://gw2crafts.net/"""+path+u"""weaponcraft_craft_all.html">"""+wc+u"""</a></li>
-            <li><a href="http://gw2crafts.net/"""+path+u"""armorcraft_craft_all.html">"""+ac+u"""</a></li>
-            <li><a href="http://gw2crafts.net/"""+path+u"""leatherworking_craft_all.html">"""+lw+u"""</a></li>
-            <li><a href="http://gw2crafts.net/"""+path+u"""tailor_craft_all.html">"""+tailor+u"""</a></li>
+            <li><a href="http://gw2crafts.net/"""+path+u"""artificing_400.html">"""+art+u"""</a></li>
+            <li><a href="http://gw2crafts.net/"""+path+u"""huntsman_400.html">"""+hunt+u"""</a></li>
+            <li><a href="http://gw2crafts.net/"""+path+u"""weaponcraft_400.html">"""+wc+u"""</a></li>
         </ul>
         </li>
         <li><a href="http://gw2crafts.net/"""+path+u"""total.html">"""+totals+u"""</a></li>
