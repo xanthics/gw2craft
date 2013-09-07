@@ -110,8 +110,8 @@ def parse_recipes(recipes):
         item_count = data[u'output_item_count']
         ingredient_set = set(int(i[u'item_id']) for i in data[u'ingredients'])
 
-        # Sun Beads
-        if min_rating == u'500' or (min_rating == u'400' and not set(data[u'disciplines']).intersection( set([u'Weaponsmith', u'Huntsman', u'Artificer']) )) or 19717 in ingredient_set:
+        # Sun Beads and obsidian shard
+        if min_rating == u'500' or (min_rating == u'400' and not set(data[u'disciplines']).intersection( set([u'Weaponsmith', u'Huntsman', u'Artificer']) )) or set([19717,19925]).intersection(set(ingredient_set)):
             continue
             
         for it in data[u'disciplines']:
