@@ -71,7 +71,7 @@ def itemlistworker(_itemList, temp, out_q):
 
         # gw2spidy doesn't have the item indexed yet
         except Exception, err:
-            print u'ERROR: %s.' % str(err)
+            print u'ERROR: %s. %i, %s' % (str(err),item,Items_en.ilist[item])
             # Save all the information we care about
             outdict[item] = {u'w':0,u'cost':99999999,u'recipe':None,u'rarity':items.ilist[item][u'rarity'],u'type':items.ilist[item][u'type'],u'icon':items.ilist[item][u'img_url'],u'output_item_count':items.ilist[item][u'output_item_count'],u'sellMethod':sellMethod} 
 
@@ -321,10 +321,10 @@ def costCraft(filename,c_recipes,fast,craftexo,cList,mytime,xp_to_level):
                             index += 1
                     if not cList[item][u'type'] in non_item and not 'discover' in cList[item]:
                         cList[item][u'discover'] = 1
-                        craftcount[tier][u'discovery'].append((rarityNum(cList[item][u'rarity']),4 if craftexo and not cList[item][u'type'] == u'UpgradeComponent' and cList[item][u'rarity'] == u'Exotic' else 3))
+                        craftcount[tier][u'discovery'].append((rarityNum(cList[item][u'rarity']),4 if craftexo and cList[item][u'rarity'] == u'Exotic' else 3))
                         make[tier][item] += 1
                     elif not cList[item][u'type'] in non_item:
-                        craftcount[tier][u'item'].append((rarityNum(cList[item][u'rarity']),4 if craftexo and not cList[item][u'type'] == u'UpgradeComponent' and cList[item][u'rarity'] == u'Exotic' else 3))
+                        craftcount[tier][u'item'].append((rarityNum(cList[item][u'rarity']),4 if craftexo and cList[item][u'rarity'] == u'Exotic' else 3))
                         make[tier][item] += 1
                     elif cList[item][u'type'] == u'Refinement':
                         if item == 19679: # Bronze Ingot
@@ -482,19 +482,19 @@ def calcRecipecraft(recipe,items,craftcount,tier,count,itier,xp_to_level,craftex
     if int(items[recipe][u'tier'][index]) < int(tier) and not items[recipe][u'type'] in non_item and not craftexo:
         xptotal = xp_calc(0,0,count,0,rarityNum(items[recipe][u'rarity']),int(items[recipe][u'tier'][index]),level,3)
     elif not items[recipe][u'type'] in non_item and not 'discover' in items[recipe]:
-        xptotal = xp_calc(0,0,count-1,1,rarityNum(items[recipe][u'rarity']),int(items[recipe][u'tier'][index]),level,4 if craftexo and not items[recipe][u'type'] == u'UpgradeComponent' and items[recipe][u'rarity'] == u'Exotic' else 3)
+        xptotal = xp_calc(0,0,count-1,1,rarityNum(items[recipe][u'rarity']),int(items[recipe][u'tier'][index]),level,4 if craftexo and items[recipe][u'rarity'] == u'Exotic' else 3)
     elif not items[recipe][u'type'] in non_item:
-        xptotal = xp_calc(0,0,count,0,rarityNum(items[recipe][u'rarity']),int(items[recipe][u'tier'][index]),level,4 if craftexo and not items[recipe][u'type'] == u'UpgradeComponent' and items[recipe][u'rarity'] == u'Exotic' else 3)
+        xptotal = xp_calc(0,0,count,0,rarityNum(items[recipe][u'rarity']),int(items[recipe][u'tier'][index]),level,4 if craftexo and items[recipe][u'rarity'] == u'Exotic' else 3)
     elif items[recipe][u'type'] == u'Refinement':
         if 19679 == recipe:
             xptotal = math.ceil(xp_calc(count,0,0,0,1.0,int(items[recipe][u'tier'][index]),level,3)*0.2)
         else:
-            xptotal = xp_calc(count,0,0,0,1.0,int(items[recipe][u'tier'][index]),level,4 if craftexo and not items[recipe][u'type'] == u'UpgradeComponent' and items[recipe][u'rarity'] == u'Exotic' else 3)
+            xptotal = xp_calc(count,0,0,0,1.0,int(items[recipe][u'tier'][index]),level,4 if craftexo and items[recipe][u'rarity'] == u'Exotic' else 3)
     else:
         if recipe in [13063,  13189,  13207,  13219,  13045,  13022,  13075,  13177,  13096,  13033]: # Sole
-            xptotal = xp_calc(0,count,0,0,1.0,int(items[recipe][u'tier'][index]),level,4 if craftexo and not items[recipe][u'type'] == u'UpgradeComponent' and items[recipe][u'rarity'] == u'Exotic' else 3)*0.5
+            xptotal = xp_calc(0,count,0,0,1.0,int(items[recipe][u'tier'][index]),level,4 if craftexo and items[recipe][u'rarity'] == u'Exotic' else 3)*0.5
         else:
-            xptotal = xp_calc(0,count,0,0,1.0,int(items[recipe][u'tier'][index]),level,4 if craftexo and not items[recipe][u'type'] == u'UpgradeComponent' and items[recipe][u'rarity'] == u'Exotic' else 3)
+            xptotal = xp_calc(0,count,0,0,1.0,int(items[recipe][u'tier'][index]),level,4 if craftexo and items[recipe][u'rarity'] == u'Exotic' else 3)
 
     mycost = 0
     for item in items[recipe][u'recipe'][index]:
@@ -529,7 +529,7 @@ def makeQueuecraft(recipes,items,craftcount,tier,xp_to_level,craftexo):
 
     for recipe in recipes.keys():
         # swap which line is commented if you want guides that include "make 83 epaulets" for 25 copper savings
-        if not items[recipe][u'type'] in non_item and not (tier == 425 and (items[recipe][u'type'] == u'UpgradeComponent' or not items[recipe][u'rarity'] == u'Exotic')):
+        if not items[recipe][u'type'] in non_item:# and not (tier == 425 and (items[recipe][u'type'] == u'UpgradeComponent' or not items[recipe][u'rarity'] == u'Exotic')):
 #        if int(items[recipe][u'tier']) > int(tier)-24:
             cost, xptotal, make, buy = calcRecipecraft(recipe,items,craftcount,tier,1,tier,xp_to_level,craftexo)
             # Uncomment these 3 lines and comment the 4th if you want guides that try to make the lowest total price after sellback
@@ -959,10 +959,6 @@ def printtofile(tcost, treco, sell, craftexo, make, pmake, buy, tierbuy, cList, 
         rnge = []
         if craftexo:
             rnge = range(400,500,25)
-            temp = deepcopy(make[475])
-            make[475] = deepcopy(make[450])
-            make[450] = deepcopy(make[425])
-            make[425] = deepcopy(temp)
         else: 
             rnge = range(0,400,25)
         for tier in rnge:
@@ -1000,30 +996,78 @@ def printtofile(tcost, treco, sell, craftexo, make, pmake, buy, tierbuy, cList, 
                         f.write((u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span> (%s)</div>\n")%(make[tier][item]/2,cList[item][u'rarity'],cListName[item],localText.sNote))
                     else:
                         f.write(u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
-            for item in sorted(make[tier]):
 
-                if 'discover' in cList[item] and cList[item][u'discover'] == 1:
-                    cList[item][u'discover'] = 0
-                    if make[tier][item] > 1:
-                        make[tier][item] -= 1
-                    else:
-                        del(make[tier][item])
-                    t = (t+1)%2
-                    tstr = "<div class=\"sbutton\" id=\"1"+str(item)+str(tier)+u"\">"
-                    inde = 0
-                    if craftexo:
-                        inde = 400
-                    else:
-                        inde = tier
-                    for s in cList[item][u'recipe'][cList[item][u'tier'].index(inde)]:
-                        tstr += "\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u'\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][cList[item][u'tier'].index(inde)][s])+u")"
-                    tstr += "</div><br />"
-                    f.write(u"<div class=\"s"+str(t)+u"\">"+localText.discover+u": <button class=\"arrow "+cList[item][u'rarity']+u'\" title=\"'+localText.toggle+u'\" id=\"'+str(item)+str(tier)+u'\">'+cListName[item]+u"</button> "+tstr+u"\n</div>\n")
-                    buttonList.append(str(item)+str(tier))
-            for item in sorted(make[tier]):
-                if not cList[item][u'type'] in non_item:
-                    t = (t+1)%2
-                    f.write(u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
+            if tier == 425:
+                for item in sorted(make[tier]):
+                    if 'discover' in cList[item] and cList[item][u'discover'] == 1 and not cList[item][u'rarity'] == u'Exotic':
+                        cList[item][u'discover'] = 0
+                        if make[tier][item] > 1:
+                            make[tier][item] -= 1
+                        else:
+                            del(make[tier][item])
+                        t = (t+1)%2
+                        tstr = "<div class=\"sbutton\" id=\"1"+str(item)+str(tier)+u"\">"
+                        inde = 0
+                        if craftexo:
+                            inde = 400
+                        else:
+                            inde = tier
+                        for s in cList[item][u'recipe'][cList[item][u'tier'].index(inde)]:
+                            tstr += "\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u'\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][cList[item][u'tier'].index(inde)][s])+u")"
+                        tstr += "</div><br />"
+                        f.write(u"<div class=\"s"+str(t)+u"\">"+localText.discover+u": <button class=\"arrow "+cList[item][u'rarity']+u'\" title=\"'+localText.toggle+u'\" id=\"'+str(item)+str(tier)+u'\">'+cListName[item]+u"</button> "+tstr+u"\n</div>\n")
+                        buttonList.append(str(item)+str(tier))
+                for item in sorted(make[tier]):
+                    if not cList[item][u'type'] in non_item and not cList[item][u'rarity'] == u'Exotic':
+                        t = (t+1)%2
+                        f.write(u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
+                for item in sorted(make[tier]):
+                    if 'discover' in cList[item] and cList[item][u'discover'] == 1 and cList[item][u'rarity'] == u'Exotic':
+                        cList[item][u'discover'] = 0
+                        if make[tier][item] > 1:
+                            make[tier][item] -= 1
+                        else:
+                            del(make[tier][item])
+                        t = (t+1)%2
+                        tstr = "<div class=\"sbutton\" id=\"1"+str(item)+str(tier)+u"\">"
+                        inde = 0
+                        if craftexo:
+                            inde = 400
+                        else:
+                            inde = tier
+                        for s in cList[item][u'recipe'][cList[item][u'tier'].index(inde)]:
+                            tstr += "\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u'\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][cList[item][u'tier'].index(inde)][s])+u")"
+                        tstr += "</div><br />"
+                        f.write(u"<div class=\"s"+str(t)+u"\">"+localText.discover+u": <button class=\"arrow "+cList[item][u'rarity']+u'\" title=\"'+localText.toggle+u'\" id=\"'+str(item)+str(tier)+u'\">'+cListName[item]+u"</button> "+tstr+u"\n</div>\n")
+                        buttonList.append(str(item)+str(tier))
+                for item in sorted(make[tier]):
+                    if not cList[item][u'type'] in non_item and cList[item][u'rarity'] == u'Exotic':
+                        t = (t+1)%2
+                        f.write(u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
+            else:
+                for item in sorted(make[tier]):
+                    if 'discover' in cList[item] and cList[item][u'discover'] == 1:
+                        cList[item][u'discover'] = 0
+                        if make[tier][item] > 1:
+                            make[tier][item] -= 1
+                        else:
+                            del(make[tier][item])
+                        t = (t+1)%2
+                        tstr = "<div class=\"sbutton\" id=\"1"+str(item)+str(tier)+u"\">"
+                        inde = 0
+                        if craftexo:
+                            inde = 400
+                        else:
+                            inde = tier
+                        for s in cList[item][u'recipe'][cList[item][u'tier'].index(inde)]:
+                            tstr += "\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u'\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][cList[item][u'tier'].index(inde)][s])+u")"
+                        tstr += "</div><br />"
+                        f.write(u"<div class=\"s"+str(t)+u"\">"+localText.discover+u": <button class=\"arrow "+cList[item][u'rarity']+u'\" title=\"'+localText.toggle+u'\" id=\"'+str(item)+str(tier)+u'\">'+cListName[item]+u"</button> "+tstr+u"\n</div>\n")
+                        buttonList.append(str(item)+str(tier))
+                for item in sorted(make[tier]):
+                    if not cList[item][u'type'] in non_item:
+                        t = (t+1)%2
+                        f.write(u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
         if craftexo:
             f.write(u'<br />\n<h3>%s:500</h3>\n'%localText.level)
         else:
@@ -1100,7 +1144,7 @@ def maketotals(totals, mytime, localText):
     page += u'<tr><td>'+localText.tHearts+u'</td><td>'+mFormat(totals[u'cooking_karma_light'])+u'</td><td>'+mFormat(totals[u'cooking_karma_fast_light'])+u'</td></tr>\n'
     page += u'<tr><td>'+localText.aHearts+u'</td><td>'+mFormat(totals[u'cooking_karma'])+u'</td><td>'+mFormat(totals[u'cooking_karma_fast'])+u'</td></tr>\n'
      
-    page += u"</table>\n<br />\n<table>\n<tr><th>"+localText.craft+u"</th><th>"+localText.nGuides+u"</th><th>"+localText.fGuides+u"</th></tr>\n"
+    page += u"</table>\n<br />\n<table>\n<tr><th>"+localText.craft+u"</th><th>"+localText.nGuides+u"</th><th>"+localText.fGuides+u"</th><th>400+</th></tr>\n"
 
 
     tpage1 += u"</table>\n<br />\n<table>\n<tr><th>"+localText.nGuides+u"</th><th>"+localText.tiers+u" 1</th><th>"+localText.tiers+u" 2</th><th>"+localText.tiers+u" 3</th><th>"+localText.tiers+u" 4</th><th>"+localText.tiers+u" 5</th></tr>\n"
@@ -1109,21 +1153,29 @@ def maketotals(totals, mytime, localText):
     ctnc = 0
     ctfc = 0
     cttc = 0
+    ct4c = 0
     for i in [(u'jewelcraft',u'jewelcraft_fast',localText.jc),
-              (u'artificing',u'artificing_fast',localText.art),
-              (u'huntsman',u'huntsman_fast',localText.hunt),
-              (u'weaponcraft',u'weaponcraft_fast',localText.wc),
+              (u'artificing',u'artificing_fast',u'artificing_400',localText.art),
+              (u'huntsman',u'huntsman_fast',u'huntsman_400',localText.hunt),
+              (u'weaponcraft',u'weaponcraft_fast',u'weaponcraft_400',localText.wc),
               (u'armorcraft',u'armorcraft_fast',localText.ac),
               (u'leatherworking',u'leatherworking_fast',localText.lw),
               (u'tailor',u'tailor_fast',localText.tailor)]:
-        page += u'<tr><td>'+i[2]+u'</td><td>'+mFormat(totals[i[0]][u'total'])+u'</td><td>'+mFormat(totals[i[1]][u'total'])+u'</td></tr>\n'
-        tpage1 += u'<tr><td>'+i[2]+u'</td><td>'+mFormat(totals[i[0]][0])+u'</td><td>'+mFormat(totals[i[0]][75])+u'</td><td>'+mFormat(totals[i[0]][150])+u'</td><td>'+mFormat(totals[i[0]][225])+u'</td><td>'+mFormat(totals[i[0]][300])+u'</td></tr>\n'
-        tpage2 += u'<tr><td>'+i[2]+u'</td><td>'+mFormat(totals[i[1]][0])+u'</td><td>'+mFormat(totals[i[1]][75])+u'</td><td>'+mFormat(totals[i[1]][150])+u'</td><td>'+mFormat(totals[i[1]][225])+u'</td><td>'+mFormat(totals[i[1]][300])+u'</td></tr>\n'
+        ind = 2
+        if len(i) == 3:
+            page += u'<tr><td>'+i[ind]+u'</td><td>'+mFormat(totals[i[0]][u'total'])+u'</td><td>'+mFormat(totals[i[1]][u'total'])+u'</td></tr>\n'
+        else:
+            ind = 3
+            page += u'<tr><td>'+i[ind]+u'</td><td>'+mFormat(totals[i[0]][u'total'])+u'</td><td>'+mFormat(totals[i[1]][u'total'])+u'</td><td>'+mFormat(totals[i[2]])+u'</td></tr>\n'
+            ct4c += totals[i[2]]
+
+        tpage1 += u'<tr><td>'+i[ind]+u'</td><td>'+mFormat(totals[i[0]][0])+u'</td><td>'+mFormat(totals[i[0]][75])+u'</td><td>'+mFormat(totals[i[0]][150])+u'</td><td>'+mFormat(totals[i[0]][225])+u'</td><td>'+mFormat(totals[i[0]][300])+u'</td></tr>\n'
+        tpage2 += u'<tr><td>'+i[ind]+u'</td><td>'+mFormat(totals[i[1]][0])+u'</td><td>'+mFormat(totals[i[1]][75])+u'</td><td>'+mFormat(totals[i[1]][150])+u'</td><td>'+mFormat(totals[i[1]][225])+u'</td><td>'+mFormat(totals[i[1]][300])+u'</td></tr>\n'
 
         ctnc += totals[i[0]][u'total']
         ctfc += totals[i[1]][u'total']
 
-    page += u'<tr><td><strong>'+localText.totals+u'</strong></td><td><strong>'+ mFormat(ctnc)+u'</strong></td><td><strong>'+ mFormat(ctfc)+u'</strong></td></tr></table>\n<br />\n'
+    page += u'<tr><td><strong>'+localText.totals+u'</strong></td><td><strong>'+ mFormat(ctnc)+u'</strong></td><td><strong>'+ mFormat(ctfc)+u'</strong></td><td><strong>'+ mFormat(ct4c)+u'</strong></td></tr></table>\n<br />\n'
 
     tpage1 += u' </table>\n<br />'
     tpage2 += u' </table>\n<br />'
@@ -1186,20 +1238,20 @@ def main():
     rList.append([(u"jewelcraft_fast.html",Jeweler.recipes,True,False),
                   (u"jewelcraft.html",Jeweler.recipes,False,False)])
     rList.append([(u"artificing_fast.html",Artificer.recipes,True,False),
-                  (u"artificing.html",Artificer.recipes,False,False)])
+                  (u"artificing.html",Artificer.recipes,False,False),
+                  (u"artificing_400.html",Artificer.recipes,False,True)])
     rList.append([(u"weaponcraft_fast.html",Weaponsmith.recipes,True,False),
-                  (u"weaponcraft.html",Weaponsmith.recipes,False,False)])
+                  (u"weaponcraft.html",Weaponsmith.recipes,False,False),
+                  (u"weaponcraft_400.html",Weaponsmith.recipes,False,True)])
     rList.append([(u"huntsman_fast.html",Huntsman.recipes,True,False),
-                  (u"huntsman.html",Huntsman.recipes,False,False)])
+                  (u"huntsman.html",Huntsman.recipes,False,False),
+                  (u"huntsman_400.html",Huntsman.recipes,False,True)])
     rList.append([(u"armorcraft_fast.html",Armorsmith.recipes,True,False),
                   (u"armorcraft.html",Armorsmith.recipes,False,False)])
     rList.append([(u"tailor_fast.html",Tailor.recipes,True,False),
                   (u"tailor.html",Tailor.recipes,False,False)])
     rList.append([(u"leatherworking_fast.html",Leatherworker.recipes,True,False),
                   (u"leatherworking.html",Leatherworker.recipes,False,False)])
-    rList.append([(u"artificing_400.html",Artificer.recipes,False,True),
-                  (u"weaponcraft_400.html",Weaponsmith.recipes,False,True),
-                  (u"huntsman_400.html",Huntsman.recipes,False,True)])
 
     nprocs = len(rList)
 
