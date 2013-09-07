@@ -1,5 +1,11 @@
 # -*- coding: utf-8 -*-
 ilist = {
+	38207:u"Receta: Insignia de gasa intrincada de repartidor",
+	38208:u"Receta: Insignia de seda intrincada de repartidor",
+	38209:u"Receta: Insignia de lino intrincada de repartidor",
+	38295:u"Receta: Inscripción imbuida de aceroscuro de repartidor",
+	38296:u"Receta: Inscripción imbuida de mithril de repartidor",
+	38297:u"Receta: Inscripción imbuida de oricalco de repartidor",
 	10262:u"Abrigo de cadenas poderoso",
 	10263:u"Abrigo de cadenas vital",
 	10264:u"Abrigo de cadenas poderoso",
@@ -5246,6 +5252,7 @@ ilist = {
 	38132:u"Copo de nieve brillante",
 	38133:u"Copo de nieve único",
 	38134:u"Copo de nieve prístino",
+	38135:u"Copo de nieve perfecto",
 	38138:u"Copo de nieve ornado",
 	38139:u"Copo de nieve intrincado",
 	38140:u"Copo de nieve adornado dorado",

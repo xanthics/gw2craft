@@ -1,5 +1,11 @@
 # -*- coding: utf-8 -*-
 ilist = {
+	38207:u"Recipe: Giver's Intricate Gossamer Insignia",
+	38208:u"Recipe: Giver's Intricate Silk Insignia",
+	38209:u"Recipe: Giver's Intricate Linen Insignia",
+	38295:u"Recipe: Giver's Darksteel Imbued Inscription",
+	38296:u"Recipe: Giver's Mithril Imbued Inscription",
+	38297:u"Recipe: Giver's Orichalcum Imbued Inscription",
 	10262:u"Mighty Chain Coat",
 	10263:u"Vital Chain Coat",
 	10264:u"Mighty Chain Coat",
@@ -5246,6 +5252,7 @@ ilist = {
 	38132:u"Glittering Snowflake",
 	38133:u"Unique Snowflake",
 	38134:u"Pristine Snowflake",
+	38135:u"Flawless Snowflake",
 	38138:u"Adorned Snowflake",
 	38139:u"Intricate Snowflake",
 	38140:u"Gilded Snowflake",

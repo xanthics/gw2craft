@@ -98,6 +98,7 @@ method       = [u"un Mercader",
 valuePer     = u"unidad"
 buyVendor    = u"Comprar a Mercader"
 mixedTP      = u"Mixto (comprar en el bazar)"
+rTP          = u"comprar en el bazar"
 make         = u"Crea"
 discover     = u"Descubre"
 expand       = u"Desplegar descubrimientos"
