@@ -95,6 +95,10 @@ def parse_recipes(recipes):
                     24924, 24898, 24918, 24925, 19923, 19920, 19917, 19918,
                     19922, 19921]
 
+    # Karma and account bound items that we don't want to save the recipe of items that use
+    # Sun Beads, Obsidian Shard, Essence of Luck, Essence of Luck, Essence of Luck, Essence of Luck, Essence of Luck
+    bad_karma = [19717, 19925, 45175, 45176, 45177, 45178]
+
     crafts = {u'Weaponsmith':{}, u'Chef':{}, u'Chef_karma':{}, u'Huntsman':{},
               u'Armorsmith':{}, u'Jeweler':{}, u'Artificer':{}, u'Tailor':{},
               u'Leatherworker':{}}
@@ -110,8 +114,8 @@ def parse_recipes(recipes):
         item_count = data[u'output_item_count']
         ingredient_set = set(int(i[u'item_id']) for i in data[u'ingredients'])
 
-        # Sun Beads and obsidian shard
-        if min_rating == u'500' or (min_rating == u'400' and not set(data[u'disciplines']).intersection( set([u'Weaponsmith', u'Huntsman', u'Artificer']) )) or set([19717,19925]).intersection(set(ingredient_set)):
+        # We don't want cap level recipes or recipes that use items the player can't buy off the tp or make
+        if min_rating == u'500' or (min_rating == u'400' and not set(data[u'disciplines']).intersection( set([u'Weaponsmith', u'Huntsman', u'Artificer']) )) or set(bad_karma).intersection(set(ingredient_set)):
             continue
             
         for it in data[u'disciplines']:
