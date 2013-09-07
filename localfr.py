@@ -96,6 +96,7 @@ method       = [u"Marchand",
 valuePer     = u"/u"
 buyVendor    = u"ACHETER MARCHAND"
 mixedTP      = u"Mixte (Acheter à l'HV)"
+rTP          = u"Acheter à l'HV"
 make         = u"Faire"
 discover     = u"Découvrir"
 expand       = u"Expand all discovery recipes"

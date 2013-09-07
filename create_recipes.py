@@ -82,6 +82,7 @@ def parse_recipes(recipes):
 
     # Recipes learned from Master Craftsmen that we still want to consider
     # key is item_id
+    # 38162, 38166, 38167, 38434, 38432, 38433 are giver recipes
     good_recipes = [19880, 19881, 19882, 19883, 19884, 19885, 19886, 19897,
                     19898, 19899, 19900, 19901, 19902, 19903, 19934, 19935,
                     19936, 19937, 19938, 19939, 19940, 19941, 19942, 19943,
@@ -93,7 +94,10 @@ def parse_recipes(recipes):
                     24907, 24908, 24909, 24910, 24911, 24912, 24913, 24914,
                     24915, 24916, 24917, 24919, 24920, 24921, 24922, 24923,
                     24924, 24898, 24918, 24925, 19923, 19920, 19917, 19918,
-                    19922, 19921]
+                    19922, 19921, 19919, 38162, 38166, 38167, 38434, 38432, 
+                    38433]
+
+
 
     # Karma and account bound items that we don't want to save the recipe of items that use
     # Sun Beads, Obsidian Shard, Essence of Luck, Essence of Luck, Essence of Luck, Essence of Luck, Essence of Luck
@@ -146,6 +150,9 @@ def parse_recipes(recipes):
                     f.write(u"\t\t" + obj +u":{"+ mystr[:-1] +u"},\n" )
                 f.write(u"\t},\n")
             f.write(u"}")
+
+    for item in [38207, 38208, 38209, 38295, 38296, 38297]:
+        item_ids[item] = {u'type':u'Recipe',u'output_item_count':u'1',u'flags':[]}
 
     return item_ids
 

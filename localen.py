@@ -96,6 +96,7 @@ method       = [u"Vendor",
 valuePer     = u"per"
 buyVendor    = u"BUY VENDOR"
 mixedTP      = u"Mixed (Buy on TP)"
+rTP          = u"Buy on TP"
 make         = u"Make"
 discover     = u"Discover"
 expand       = u"Expand all discovery recipes"

@@ -1,5 +1,11 @@
 # -*- coding: utf-8 -*-
 ilist = {
+	38207:u"Recette : insigne de bienfaiteur en tulle entrelacé",
+	38208:u"Recette : insigne de bienfaiteur en soie entrelacé",
+	38209:u"Recette : insigne de bienfaiteur en lin entrelacé",
+	38295:u"Recette : inscription de bienfaiteur enchantée sur plaque d'acier sombre",
+	38296:u"Recette : inscription de bienfaiteur enchantée sur plaque en mithril",
+	38297:u"Recette : inscription de bienfaiteur enchantée sur plaque d'orichalque",
 	10262:u"Manteau à chaînes puissant",
 	10263:u"Manteau à chaînes vital",
 	10264:u"Manteau à chaînes puissant",
@@ -5246,6 +5252,7 @@ ilist = {
 	38132:u"Flocon de neige scintillant",
 	38133:u"Flocon de neige unique",
 	38134:u"Flocon de neige immaculé",
+	38135:u"Flocon de neige sans défaut",
 	38138:u"Flocon de neige ouvragé",
 	38139:u"Flocon de neige entrelacé",
 	38140:u"Flocon de neige vermeil",

@@ -272,6 +272,13 @@ def costCraft(filename,c_recipes,fast,craftexo,cList,mytime,xp_to_level):
                 cList[item][u'tier'] = []
             cList[item][u'tier'].append(tier)
 
+    # if a giver recipe costs more than 5% of the insc remove it
+    for i, r in [(38166, 38208), (38167, 38209), (38434, 38297), (38432, 38296), (38433, 38295)]: # (38162, 38207), gos insc, after ascended armor
+        if cList[r][u'cost'] > cList[i][u'cost']*0.05:
+            print r, i
+            cList[item][u'recipe'] = None
+ 
+
     # Cooking guides don't use tierbuy, but they do care about karma items
     if "cook" in filename:
         global karmin
@@ -697,6 +704,7 @@ def printtofile(tcost, treco, sell, craftexo, make, pmake, buy, tierbuy, cList, 
                     19920:{u'note':localText.mcov,u'cost':896},
                     19917:{u'note':localText.mcov,u'cost':896},
                     19918:{u'note':localText.mcov,u'cost':896},
+                    19919:{u'note':localText.mcov,u'cost':896},
                     19922:{u'note':localText.mcov,u'cost':896},
                     19921:{u'note':localText.mcov,u'cost':896},
                     24904:{u'note':localText.mcov,u'cost':231}, # Embellished Intricate Topaz Jewel
@@ -726,7 +734,14 @@ def printtofile(tcost, treco, sell, craftexo, make, pmake, buy, tierbuy, cList, 
                     24922:{u'note':localText.mcov,u'cost':231}, # Embellished Brilliant Emerald Jewel
                     24923:{u'note':localText.mcov,u'cost':231}, # Embellished Brilliant Opal Jewel
                     24924:{u'note':localText.mcov,u'cost':231}, # Embellished Brilliant Ruby Jewel
-                    24925:{u'note':localText.mcov,u'cost':231}} # Embellished Brilliant Sapphire Jewel
+                    24925:{u'note':localText.mcov,u'cost':231}, # Embellished Brilliant Sapphire Jewel
+                    38162:{u'note':"%s (%s %s)"%(localText.rTP,mFormat(cList[38207][u'cost']),localText.valuePer),u'cost':0}, # Giver's Intricate Gossamer Insignia
+                    38166:{u'note':"%s (%s %s)"%(localText.rTP,mFormat(cList[38208][u'cost']),localText.valuePer),u'cost':0}, # Giver's Embroidered Silk Insignia
+                    38167:{u'note':"%s (%s %s)"%(localText.rTP,mFormat(cList[38209][u'cost']),localText.valuePer),u'cost':0}, # Giver's Embroidered Linen Insignia
+                    38434:{u'note':"%s (%s %s)"%(localText.rTP,mFormat(cList[38297][u'cost']),localText.valuePer),u'cost':0}, # Giver's Orichalcum-Imbued Inscription
+                    38432:{u'note':"%s (%s %s)"%(localText.rTP,mFormat(cList[38296][u'cost']),localText.valuePer),u'cost':0}, # Giver's Mithril-Imbued Inscription
+                    38433:{u'note':"%s (%s %s)"%(localText.rTP,mFormat(cList[38295][u'cost']),localText.valuePer),u'cost':0}, # Giver's Darksteel-Imbued Inscription
+                    }
 
     recipebuy = []
     for tier in range(0,500,25):

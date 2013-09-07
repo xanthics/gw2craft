@@ -96,6 +96,7 @@ method       = [u"Händler",
 valuePer     = u"pro Stück"
 buyVendor    = u"BEIM HÄNDLER KAUFEN"
 mixedTP      = u"Verschiedenes (Beim Handelsposten kaufen)"
+rTP          = u"Beim Handelsposten kaufen"
 make         = u"Stelle her"
 discover     = u"Entdecke"
 expand       = u"Alle Rezepte zum Entdecken aufklappen"

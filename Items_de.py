@@ -1,5 +1,11 @@
 # -*- coding: utf-8 -*-
 ilist = {
+	38207:u"Rezept: Aufwändige Gaze-Insignie des Spenders",
+	38208:u"Rezept: Aufwändige Seiden-Insignie des Spenders",
+	38209:u"Rezept: Aufwändige Leinen-Insignie des Spenders",
+	38295:u"Rezept: Dunkelstahldurchdrungene Inschrift des Spenders",
+	38296:u"Rezept: Mithrildurchdrungene Inschrift des Spenders",
+	38297:u"Rezept: Orichalcumdurchdrungene Inschrift des Spenders",
 	10262:u"Mächtiger Ketten-Wams",
 	10263:u"Vitaler Ketten-Wams",
 	10264:u"Mächtiger Ketten-Wams",
@@ -5246,6 +5252,7 @@ ilist = {
 	38132:u"Glitzernde Schneeflocke",
 	38133:u"Einzigartige Schneeflocke",
 	38134:u"Unberührte Schneeflocke",
+	38135:u"Makellose Schneeflocke",
 	38138:u"Geschmückte Schneeflocke",
 	38139:u"Aufwändige Schneeflocke",
 	38140:u"Vergoldete Schneeflocke",
