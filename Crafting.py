@@ -242,6 +242,7 @@ def costCraft(filename,c_recipes,fast,craftexo,cList,mytime,xp_to_level):
     if 19679 in c_recipes[0]:
         c_recipes[0][19679][19697] = 2
 
+    rsps = dict([(38166, 38208), (38167, 38209), (38434, 38297), (38432, 38296), (38433, 38295)]) # (38162, 38207), gos insc, after ascended armor
     craftcount = {} # Used to track current xp per tier
     make = {} # make list per tier
     pmake = {} # make list of "prior tier" items per tier
@@ -270,14 +271,7 @@ def costCraft(filename,c_recipes,fast,craftexo,cList,mytime,xp_to_level):
 #                exit(-1)
             if not u'tier' in cList[item]:
                 cList[item][u'tier'] = []
-            cList[item][u'tier'].append(tier)
-
-    # if a giver recipe costs more than 5% of the insc remove it
-    for i, r in [(38166, 38208), (38167, 38209), (38434, 38297), (38432, 38296), (38433, 38295)]: # (38162, 38207), gos insc, after ascended armor
-        if cList[r][u'cost'] > cList[i][u'cost']*0.05:
-            print r, i
-            cList[item][u'recipe'] = None
- 
+            cList[item][u'tier'].append(tier) 
 
     # Cooking guides don't use tierbuy, but they do care about karma items
     if "cook" in filename:
@@ -367,6 +361,8 @@ def costCraft(filename,c_recipes,fast,craftexo,cList,mytime,xp_to_level):
                             tierbuy[t][item] += 1
                             buy[item] += 1
 
+                if set(rsps.keys()).intersection(set(bucket[bkey[0]][u'make'])):
+                   cList[set(rsps.keys()).intersection(set(bucket[bkey[0]][u'make'])).pop()][u'RecipeLearned'] = True
     else: 
     # start at last bucket(375) and fill towards 0 bucket
         for tier in tiers:
@@ -455,6 +451,8 @@ def costCraft(filename,c_recipes,fast,craftexo,cList,mytime,xp_to_level):
                         else:
                             tierbuy[t][item] += 1
                             buy[item] += 1
+                if set(rsps.keys()).intersection(set(bucket[bkey[0]][u'make'])):
+                    cList[set(rsps.keys()).intersection(set(bucket[bkey[0]][u'make'])).pop()][u'RecipeLearned'] = True
 
     printtofile(tcost, treco, sell, craftexo, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_de.ilist, localde)
     printtofile(tcost, treco, sell, craftexo, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_fr.ilist, localfr)
@@ -511,6 +509,12 @@ def calcRecipecraft(recipe,items,craftcount,tier,count,itier,xp_to_level,craftex
     for item in items[recipe][u'recipe'][index]:
         if not items[item][u'recipe'] == None:
             tcost, txptotal, tmake, tbuy = calcRecipecraft(item,items,craftcount,items[item][u'tier'][0],items[recipe][u'recipe'][index][item]*count,int(items[recipe][u'tier'][index]),xp_to_level,craftexo)
+
+            # Add the cost of the recipe to the inscription
+            rsps = dict([(38166, 38208), (38167, 38209), (38434, 38297), (38432, 38296), (38433, 38295)]) # (38162, 38207), gos insc, after ascended armor
+            if item in rsps.keys() and not u'RecipeLearned' in items[item]:
+                tcost += items[rsps[item]][u'cost']
+
             if tcost < items[item][u'cost']*items[recipe][u'recipe'][index][item]*count or float(xptotal+txptotal)/float(mycost-items[item][u'cost']*items[recipe][u'recipe'][index][item]*count+tcost) >= float(xptotal)/float(mycost):
                 xptotal += txptotal
                 cost += tcost
@@ -752,23 +756,23 @@ def printtofile(tcost, treco, sell, craftexo, make, pmake, buy, tierbuy, cList, 
     # 'Spool of Jute Thread',u'Spool of Wool Thread',u'Spool of Cotton Thread',u'Spool of Linen Thread',u'Spool of Silk Thread',u'Lump of Tin',u'Lump of Coal',u'Lump of Primordium',u'Jar of Vinegar',u'Packet of Baking Powder',u'Jar of Vegetable Oil',u'Packet of Salt',u'Bag of Sugar',u'Jug of Water',u'Bag of Starch',u'Bag of Flour',u'Bottle of Soy Sauce',"Bottle of Rice Wine", "Minor Rune of Holding", "Rune of Holding", "Major Rune of Holding", "Greater Rune of Holding"
     vendor = [19792,  19789,  19794,  19793,  19791,  19704,  19750,  19924,  12157,  12151,  12158,  12153,  12155,  12156,  12324,  12136,  12271,  8576,  13010,  13006,  13007,  13008]
 
-    # "Jute Scrap","Bolt of Jute","Copper Ore","Copper Ingot","Bronze Ingot","Rawhide Leather Section","Stretched Rawhide Leather Square","Green Wood Log","Green Wood Plank","Wool Scrap","Bolt of Wool","Iron Ore","Silver Ore","Iron Ingot","Silver Ingot","Thin Leather Section","Cured Thin Leather Square","Soft Wood Log","Soft Wood Plank","Cotton Scrap","Bolt of Cotton","Spool of Cotton Thread","Iron Ore","Gold Ore","Gold Ingot","Steel Ingot","Coarse Leather Section","Cured Coarse Leather Square","Seasoned Wood Log","Seasoned Wood Plank","Linen Scrap","Bolt of Linen","Platinum Ore","Platinum Ingot","Darksteel Ingot","Rugged Leather Section","Cured Rugged Leather Square","Hard Wood Log","Hard Wood Plank","Silk Scrap","Bolt of Silk","Mithril Ore","Mithril Ingot","Thick Leather Section","Cured Thick Leather Square","Elder Wood Log","Elder Wood Plank"
-    basic = [19718,  19720,  19697,  19680,  19679,  19719,  19738,  19723,  19710,  19739,  19740,  19699,  19703,  19683,  19687,  19728,  19733,  19726,  19713,  19741,  19742,  19794,  19699,  19698,  19682,  19688,  19730,  19734,  19727,  19714,  19743,  19744,  19702,  19686,  19681,  19731,  19736,  19724,  19711,  19748,  19747,  19700,  19684,  19729,  19735,  19722,  19709]
+    # "Jute Scrap","Bolt of Jute","Copper Ore","Copper Ingot","Bronze Ingot","Rawhide Leather Section","Stretched Rawhide Leather Square","Green Wood Log","Green Wood Plank","Wool Scrap","Bolt of Wool","Iron Ore","Silver Ore","Iron Ingot","Silver Ingot","Thin Leather Section","Cured Thin Leather Square","Soft Wood Log","Soft Wood Plank","Cotton Scrap","Bolt of Cotton","Spool of Cotton Thread","Iron Ore","Gold Ore","Gold Ingot","Steel Ingot","Coarse Leather Section","Cured Coarse Leather Square","Seasoned Wood Log","Seasoned Wood Plank","Linen Scrap","Bolt of Linen","Platinum Ore","Platinum Ingot","Darksteel Ingot","Rugged Leather Section","Cured Rugged Leather Square","Hard Wood Log","Hard Wood Plank","Silk Scrap","Bolt of Silk","Mithril Ore","Mithril Ingot","Thick Leather Section","Cured Thick Leather Square","Elder Wood Log","Elder Wood Plank", Orichalcum Ore, Ancient Wood Log
+    basic = [19718,  19720,  19697,  19680,  19679,  19719,  19738,  19723,  19710,  19739,  19740,  19699,  19703,  19683,  19687,  19728,  19733,  19726,  19713,  19741,  19742,  19794,  19699,  19698,  19682,  19688,  19730,  19734,  19727,  19714,  19743,  19744,  19702,  19686,  19681,  19731,  19736,  19724,  19711,  19748,  19747,  19700,  19684,  19729,  19735,  19722,  19709,  19701,  19725, 19685, 19712, 19732, 19737]
 
-    # "Bone Chip","Tiny Claw","Pile of Glittering Dust","Tiny Fang","Tiny Scale","Tiny Totem","Tiny Venom Sac","Vial of Weak Blood","Bone Shard","Small Claw","Pile of Shimmering Dust","Small Fang","Small Scale","Small Totem","Small Venom Sac","Vial of Thin Blood","Bone","Claw","Pile of Radiant Dust","Fang","Scale","Totem","Venom Sac","Vial of Blood","Heavy Bone","Sharp Claw","Pile of Luminous Dust","Sharp Fang","Smooth Scale","Engraved Totem","Full Venom Sac","Vial of Thick Blood","Large Bone","Large Claw","Pile of Incandescent Dust","Large Fang","Large Scale","Intricate Totem","Potent Venom Sac","Vial of Potent Blood","Karka Shell"
-    basic_f = [24342,  24346,  24272,  24352,  24284,  24296,  24278,  24290,  24343,  24347,  24273,  24353,  24285,  24297,  24279,  24291,  24344,  24348,  24274,  24354,  24286,  24298,  24280,  24292,  24345,  24349,  24275,  24355,  24287,  24363,  24281,  24293,  24341,  24350,  24276,  24356,  24288,  24299,  24282,  24294,  37897]
+    # Fine Materials
+    basic_f = range(24272,24301) + [37897,24363] + range(24341,24359)
 
-    # "Pile of Soiled Essence","Onyx Sliver","Molten Sliver","Glacial Sliver","Destroyer Sliver","Crystal Sliver","Corrupted Sliver","Charged Sliver","Pile of Foul Essence","Onyx Fragment","Molten Fragment","Glacial Fragment","Destroyer Fragment","Crystal Fragment","Corrupted Fragment","Charged Fragment","Pile of Filthy Essence","Onyx Shard","Molten Shard","Glacial Shard","Destroyer Shard","Crystal Shard","Corrupted Shard","Charged Shard","Pile of Vile Essence","Onyx Core","Molten Core","Glacial Core","Destroyer Core","Crystal Core","Corrupted Core","Charged Core","Glob of Ectoplasm"
-    basic_r = [24331,  24306,  24311,  24316,  24321,  24326,  24336,  24301,  24332,  24307,  24312,  24317,  24322,  24327,  24337,  24302,  24333,  24308,  24313,  24318,  24323,  24328,  24338,  24303,  24334,  24309,  24314,  24319,  24324,  24329,  24339,  24304,  19721]
+    # Rare Materials and Ectoplasm
+    basic_r = range(24301,24341) + [19721]
 
-    # "Amber Pebble","Garnet Pebble","Malachite Pebble","Pearl","Tiger's Eye Pebble","Turquoise Pebble","Amethyst Nugget","Carnelian Nugget","Lapis Nugget","Peridot Nugget","Spinel Nugget","Sunstone Nugget","Topaz Nugget","Amethyst Lump","Carnelian Lump","Lapis Lump","Peridot Lump","Spinel Lump","Sunstone Lump","Topaz Lump","Beryl Shard","Chrysocola Shard","Coral Chunk","Emerald Shard","Opal Shard","Ruby Shard","Sapphire Shard","Beryl Crystal","Chrysocola Crystal","Coral Tentacle","Emerald Crystal","Opal Crystal","Ruby Crystal","Sapphire Crystal","Passion Flower"
-    basic_g = [24534,  24464,  24466,  24500,  24467,  24465,  24501,  24469,  24470,  24468,  24889,  24471,  24535,  24527,  24472,  24507,  24504,  24526,  24503,  24506,  24872,  24870,  24874,  24871,  24875,  24873,  24876,  24519,  24511,  24509,  24473,  24521,  24474,  24475,  37907]
+    # Gems
+    basic_g = range(24500,24536) + [37907,24889] + range(24464,24476) + range(24870,24877)
 
     # "Tiny Snowflake","Delicate Snowflake","Glittering Snowflake","Unique Snowflake","Pristine Snowflake","Piece of Candy Corn","Chattering Skull","Nougat Center","Plastic Fang"
-    basic_h = [38130,  38131,  38132,  38133,  38134,  36041,  36060,  36061,  36059]
+    basic_h = range(38130,38136) + [36041,36060,36061,36059]
 
-    # "Artichoke","Asparagus Spear","Basil Leaf","Bay Leaf","Beet","Black Peppercorn","Blackberry","Blueberry","Butternut Squash","Carrot","Cayenne Pepper","Chili Pepper","Chocolate Bar","Cinnamon Stick","Clam","Clove","Coriander Seed","Dill Sprig","Egg","Head of Cabbage","Head of Cauliflower","Head of Garlic","Head of Lettuce","Kale Leaf","Leek","Mint Leaf","Mushroom","Onion","Orange","Oregano Leaf","Parsley Leaf","Parsnip","Passion Fruit","Piece of Candy Corn","Portobello Mushroom","Potato","Raspberry","Rosemary Sprig","Rutabaga","Sage Leaf","Sesame Seed","Slab of Poultry Meat","Slab of Red Meat","Snow Truffle","Spinach Leaf","Stick of Butter","Strawberry","Sugar Pumpkin","Tarragon Leaves","Thyme Leaf","Turnip","Vanilla Bean","Walnut","Yam","Zucchini","Green Onion"
-    basic_fo = [12512,  12505,  12245,  12247,  12161,  12236,  12537,  12255,  12511,  12134,  12504,  12331,  12229,  12258,  12327,  12534,  12531,  12336,  12143,  12332,  12532,  12163,  12238,  12333,  12508,  12536,  12147,  12142,  12351,  12244,  12246,  12507,  36731,  36041,  12334,  12135,  12254,  12335,  12535,  12243,  12342,  24360,  24359,  12144,  12241,  12138,  12253,  12538,  12506,  12248,  12162,  12234,  12250,  12329,  12330,  12533]
+    # "Artichoke","Asparagus Spear","Basil Leaf","Bay Leaf","Beet","Black Peppercorn","Blackberry","Blueberry","Butternut Squash","Carrot","Cayenne Pepper","Chili Pepper","Chocolate Bar","Cinnamon Stick","Clam","Clove","Coriander Seed","Dill Sprig","Egg","Head of Cabbage","Head of Cauliflower","Head of Garlic","Head of Lettuce","Kale Leaf","Leek","Mint Leaf","Mushroom","Onion","Orange","Oregano Leaf","Parsley Leaf","Parsnip","Passion Fruit","Piece of Candy Corn","Portobello Mushroom","Potato","Raspberry","Rosemary Sprig","Rutabaga","Sage Leaf","Sesame Seed","Slab of Poultry Meat","Slab of Red Meat","Snow Truffle","Spinach Leaf","Stick of Butter","Strawberry","Sugar Pumpkin","Tarragon Leaves","Thyme Leaf","Turnip","Vanilla Bean","Walnut","Yam","Zucchini","Green Onion", Omnomberry 
+    basic_fo = [12512,  12505,  12245,  12247,  12161,  12236,  12537,  12255,  12511,  12134,  12504,  12331,  12229,  12258,  12327,  12534,  12531,  12336,  12143,  12332,  12532,  12163,  12238,  12333,  12508,  12536,  12147,  12142,  12351,  12244,  12246,  12507,  36731,  36041,  12334,  12135,  12254,  12335,  12535,  12243,  12342,  24360,  24359,  12144,  12241,  12138,  12253,  12538,  12506,  12248,  12162,  12234,  12250,  12329,  12330,  12533,  12128]
 
     # TODO add check for buying bronze ingot and reduce by amount we add, remove if <0
     if 19679 in make[0]:
