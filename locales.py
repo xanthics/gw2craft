@@ -241,9 +241,21 @@ header = u"""<nav>
         </li>
         <li><a href="#">400+</a>
         <ul>
-            <li><a href="http://gw2crafts.net/"""+path+u"""artificing_400.html">"""+art+u"""</a></li>
-            <li><a href="http://gw2crafts.net/"""+path+u"""huntsman_400.html">"""+hunt+u"""</a></li>
-            <li><a href="http://gw2crafts.net/"""+path+u"""weaponcraft_400.html">"""+wc+u"""</a></li>
+            <li><a href="#">"""+art+u"""</a>
+            <ul>
+                <li><a href="http://gw2crafts.net/"""+path+u"""artificing_450.html">450</a></li>
+                <li><a href="http://gw2crafts.net/"""+path+u"""artificing_400.html">500</a></li>
+            </ul>
+            <li><a href="#">"""+hunt+u"""</a>
+            <ul>
+                <li><a href="http://gw2crafts.net/"""+path+u"""huntsman_450.html">450</a></li>
+                <li><a href="http://gw2crafts.net/"""+path+u"""huntsman_400.html">500</a></li>
+            </ul>
+            <li><a href="#">"""+wc+u"""</a>
+            <ul>
+                <li><a href="http://gw2crafts.net/"""+path+u"""weaponcraft_450.html">450</a></li>
+                <li><a href="http://gw2crafts.net/"""+path+u"""weaponcraft_400.html">500</a></li>
+            </ul>
         </ul>
         </li>
         <li><a href="http://gw2crafts.net/"""+path+u"""total.html">"""+totals+u"""</a></li>
