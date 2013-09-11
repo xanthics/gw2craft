@@ -300,17 +300,23 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level):
             bucket = {}
             bkey = []
 
+            bkeyOffset = 0
+#            if tier == 475:
+#                bkeyOffset = 11
+#            elif tier == 450:
+#                bkeyOffset = 5
             while craftcount[tier][u'current_xp'] < xp_to_level[tier + 25]:
                 # We still want to compute every make on fast guides for the 375-400 range
                 bucket = makeQueuecraft(c_recipes[400], cList,craftcount,tier,xp_to_level,craftexo)
                 bkey = sorted(bucket, reverse=True)
+
                 
-                tcost += bucket[bkey[0]][u'cost']
-                treco += cList[bucket[bkey[0]][u'item_id']][u'w'] * int(cList[bucket[bkey[0]][u'item_id']][u'output_item_count'])
-                sell[bucket[bkey[0]][u'item_id']] += int(cList[bucket[bkey[0]][u'item_id']][u'output_item_count'])
+                tcost += bucket[bkey[bkeyOffset]][u'cost']
+                treco += cList[bucket[bkey[bkeyOffset]][u'item_id']][u'w'] * int(cList[bucket[bkey[bkeyOffset]][u'item_id']][u'output_item_count'])
+                sell[bucket[bkey[bkeyOffset]][u'item_id']] += int(cList[bucket[bkey[bkeyOffset]][u'item_id']][u'output_item_count'])
                 sole = 0
                 recalc = {tier:0} # always recalc the tier we are on
-                for item in bucket[bkey[0]][u'make']:
+                for item in bucket[bkey[bkeyOffset]][u'make']:
                     index = 0
                     if tier in cList[item][u'tier']:
                         index = cList[item][u'tier'].index(tier)
@@ -341,11 +347,11 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level):
                 for ctier in recalc:
                     craftcount[ctier][u'current_xp'] = compute_level((xp_to_level[ctier] if ctier == 0 or xp_to_level[ctier] >= craftcount[ctier-25][u'current_xp'] else craftcount[ctier-25][u'current_xp']), craftcount[ctier],400,xp_to_level)
 
-                for item in bucket[bkey[0]][u'buy']:
+                for item in bucket[bkey[bkeyOffset]][u'buy']:
                     buy[item] += 1
 
-                if set(rsps.keys()).intersection(set(bucket[bkey[0]][u'make'])):
-                   cList[set(rsps.keys()).intersection(set(bucket[bkey[0]][u'make'])).pop()][u'RecipeLearned'] = True
+                if set(rsps.keys()).intersection(set(bucket[bkey[bkeyOffset]][u'make'])):
+                   cList[set(rsps.keys()).intersection(set(bucket[bkey[bkeyOffset]][u'make'])).pop()][u'RecipeLearned'] = True
     else: 
     # start at last bucket(375) and fill towards 0 bucket
         for tier in tiers:
@@ -626,7 +632,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
                     12160:{u'note':localText.auda,u'cost':35}, # Loaf of Walnut Sticky Bread
                     12154:{u'note':localText.brian,u'cost':35}, # Bowl of Outrider Stew
                     12292:{u'note':localText.glubb,u'cost':35}, # Bowl of Degun Shun Stew    
-                    12233:{u'note':localText.tholin,u'cost':35}, # Handful of Trail Mix
+                    12233:{u'note':localText.tholin,u'cost':154}, # Handful of Trail Mix
                     12739:{u'note':localText.triktiki,u'cost':35}, # Triktiki Omelet
                     12352:{u'note':"%s (%s %s)"%(localText.pochtecatl,mFormat(368),localText.valuePer),u'cost':0}, # Griffon Egg Omelet
                     12264:{u'note':localText.nrocroc,u'cost':35}, # Raspberry Pie
@@ -958,6 +964,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
         f.write(u"<button title=\""+localText.toggle+u"\" class =\"info\" id=\"show_all\">%s</button><br />"%localText.expand)
         f.write(u"<button title=\""+localText.toggle+u"\" class =\"info\" id=\"hide_all\">%s</button>"%localText.collapse)
         rt = 0
+        # TODO if tier 475 exists, swap items from 475>425>450 so that price order is correct for people that finish early
         for tier in mTiers:
             if tierbuy and tier in [0,75,150,225,300]:
                 tt = 0
