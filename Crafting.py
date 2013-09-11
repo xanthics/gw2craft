@@ -235,7 +235,7 @@ def xp_calc(refines,parts,item,discoveries,mod,base_level,actu_level,typ):
 karmin = {}
 
 # Compute a guide
-def costCraft(filename,c_recipes,fast,craftexo,cList,mytime,xp_to_level):
+def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level):
     print "Start", filename
     # TODO Hack, fix this
     # This is changing the recipe for Bronze Ingot to use 2 Copper Ore.
@@ -249,10 +249,7 @@ def costCraft(filename,c_recipes,fast,craftexo,cList,mytime,xp_to_level):
     buy = defaultdict(int) # buy list
     sell = defaultdict(int) # sell list
     tierbuy = None # buy list per tier, not used by cooking
-    if craftexo:
-        tiers = range(400,500,25)[::-1]
-    else:
-        tiers = range(0,400,25)[::-1]
+    tiers = mTiers[::-1]
     non_item = [u'Refinement', u'Insignia', u'Inscription', u'Component']
 
     # add recipes to cList
@@ -322,10 +319,10 @@ def costCraft(filename,c_recipes,fast,craftexo,cList,mytime,xp_to_level):
                             index += 1
                     if not cList[item][u'type'] in non_item and not 'discover' in cList[item]:
                         cList[item][u'discover'] = 1
-                        craftcount[tier][u'discovery'].append((rarityNum(cList[item][u'rarity']),4 if craftexo and cList[item][u'rarity'] == u'Exotic' else 3))
+                        craftcount[tier][u'discovery'].append((rarityNum(cList[item][u'rarity']),4 if cList[item][u'rarity'] == u'Exotic' else 3))
                         make[tier][item] += 1
                     elif not cList[item][u'type'] in non_item:
-                        craftcount[tier][u'item'].append((rarityNum(cList[item][u'rarity']),4 if craftexo and cList[item][u'rarity'] == u'Exotic' else 3))
+                        craftcount[tier][u'item'].append((rarityNum(cList[item][u'rarity']),4 if cList[item][u'rarity'] == u'Exotic' else 3))
                         make[tier][item] += 1
                     elif cList[item][u'type'] == u'Refinement':
                         if item == 19679: # Bronze Ingot
@@ -342,24 +339,10 @@ def costCraft(filename,c_recipes,fast,craftexo,cList,mytime,xp_to_level):
                     recalc[int(cList[item][u'tier'][index])] = 0
 
                 for ctier in recalc:
-                    craftcount[ctier][u'current_xp'] = compute_level((xp_to_level[ctier] if ctier == 0 or xp_to_level[ctier] >= craftcount[ctier-25][u'current_xp'] else craftcount[ctier-25][u'current_xp']), craftcount[ctier],ctier,xp_to_level)
+                    craftcount[ctier][u'current_xp'] = compute_level((xp_to_level[ctier] if ctier == 0 or xp_to_level[ctier] >= craftcount[ctier-25][u'current_xp'] else craftcount[ctier-25][u'current_xp']), craftcount[ctier],400,xp_to_level)
 
-                t = int(math.floor(tier/75.0)*75)
-                if t == 375:
-                    t = 300
-
-                if "cook" in filename or craftexo:
-                    for item in bucket[bkey[0]][u'buy']:
-                        buy[item] += 1
-                else:
-                    for item in bucket[bkey[0]][u'buy']:
-                        # Lump of Tin and Bronze Ingot
-                        if t == 0 and item == 19704 and 19679 in bucket[bkey[0]][u'make']:
-                            tierbuy[t][item] += .2
-                            buy[item] += .2
-                        else:
-                            tierbuy[t][item] += 1
-                            buy[item] += 1
+                for item in bucket[bkey[0]][u'buy']:
+                    buy[item] += 1
 
                 if set(rsps.keys()).intersection(set(bucket[bkey[0]][u'make'])):
                    cList[set(rsps.keys()).intersection(set(bucket[bkey[0]][u'make'])).pop()][u'RecipeLearned'] = True
@@ -454,11 +437,11 @@ def costCraft(filename,c_recipes,fast,craftexo,cList,mytime,xp_to_level):
                 if set(rsps.keys()).intersection(set(bucket[bkey[0]][u'make'])):
                     cList[set(rsps.keys()).intersection(set(bucket[bkey[0]][u'make'])).pop()][u'RecipeLearned'] = True
 
-    printtofile(tcost, treco, sell, craftexo, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_de.ilist, localde)
-    printtofile(tcost, treco, sell, craftexo, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_fr.ilist, localfr)
-    printtofile(tcost, treco, sell, craftexo, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_es.ilist, locales)
+    printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_de.ilist, localde)
+    printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_fr.ilist, localfr)
+    printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_es.ilist, locales)
     totals = {}
-    totals.update(printtofile(tcost, treco, sell, craftexo, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_en.ilist, localen))
+    totals.update(printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_en.ilist, localen))
     return totals    
 
 # given an item, determine if it is better to craft its sub items, or buy them.  return the recipe.
@@ -585,7 +568,7 @@ def mFormat(line):
 
     return tmp + rStr
 
-def printtofile(tcost, treco, sell, craftexo, make, pmake, buy, tierbuy, cList, filename, mytime, cListName, localText):
+def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy, cList, filename, mytime, cListName, localText):
     buttonList = []
     totals = {}
     if tierbuy:
@@ -847,13 +830,13 @@ def printtofile(tcost, treco, sell, craftexo, make, pmake, buy, tierbuy, cList, 
         title += u': '+localText.lw
     elif filename in [u"tailor_fast.html", u"tailor.html", u"tailor_400.html"]:
         title += u': '+localText.tailor
-    elif filename in [u"artificing_fast.html", u"artificing.html", u"artificing_400.html"]:
+    elif filename in [u"artificing_fast.html", u"artificing.html", u"artificing_400.html", u"artificing_450.html"]:
         title += u': '+localText.art
     elif filename in [u"jewelcraft_fast.html", u"jewelcraft.html", u"jewelcraft_400.html"]:
         title += u': '+localText.jc
-    elif filename in [u"weaponcraft_fast.html", u"weaponcraft.html", u"weaponcraft_400.html"]:
+    elif filename in [u"weaponcraft_fast.html", u"weaponcraft.html", u"weaponcraft_400.html", u"weaponcraft_450.html"]:
         title += u': '+localText.wc
-    elif filename in [u"huntsman_fast.html", u"huntsman.html", u"huntsman_400.html"]:
+    elif filename in [u"huntsman_fast.html", u"huntsman.html", u"huntsman_400.html", u"huntsman_450.html"]:
         title += u': '+localText.hunt
     elif filename in [u"armorcraft_fast.html", u"armorcraft.html", u"armorcraft_400.html"]:
         title += u': '+localText.ac
@@ -975,12 +958,7 @@ def printtofile(tcost, treco, sell, craftexo, make, pmake, buy, tierbuy, cList, 
         f.write(u"<button title=\""+localText.toggle+u"\" class =\"info\" id=\"show_all\">%s</button><br />"%localText.expand)
         f.write(u"<button title=\""+localText.toggle+u"\" class =\"info\" id=\"hide_all\">%s</button>"%localText.collapse)
         rt = 0
-        rnge = []
-        if craftexo:
-            rnge = range(400,500,25)
-        else: 
-            rnge = range(0,400,25)
-        for tier in rnge:
+        for tier in mTiers:
             if tierbuy and tier in [0,75,150,225,300]:
                 tt = 0
                 tc = tier+75
@@ -1087,10 +1065,7 @@ def printtofile(tcost, treco, sell, craftexo, make, pmake, buy, tierbuy, cList, 
                     if not cList[item][u'type'] in non_item:
                         t = (t+1)%2
                         f.write(u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
-        if craftexo:
-            f.write(u'<br />\n<h3>%s:500</h3>\n'%localText.level)
-        else:
-            f.write(u'<br />\n<h3>%s:400</h3>\n'%localText.level)
+        f.write(u'<br />\n<h3>%s:%i</h3>\n'%(localText.level,tier+25))
         t = (t+1)%2
         f.write(u"<div class=\"s"+str(t)+u"\">%s</div>\n"%localText.finish)
         # adword
@@ -1163,7 +1138,7 @@ def maketotals(totals, mytime, localText):
     page += u'<tr><td>'+localText.tHearts+u'</td><td>'+mFormat(totals[u'cooking_karma_light'])+u'</td><td>'+mFormat(totals[u'cooking_karma_fast_light'])+u'</td></tr>\n'
     page += u'<tr><td>'+localText.aHearts+u'</td><td>'+mFormat(totals[u'cooking_karma'])+u'</td><td>'+mFormat(totals[u'cooking_karma_fast'])+u'</td></tr>\n'
      
-    page += u"</table>\n<br />\n<table>\n<tr><th>"+localText.craft+u"</th><th>"+localText.nGuides+u"</th><th>"+localText.fGuides+u"</th><th>400+</th></tr>\n"
+    page += u"</table>\n<br />\n<table>\n<tr><th>"+localText.craft+u"</th><th>"+localText.nGuides+u"</th><th>"+localText.fGuides+u"</th><th>400+450</th><th>400+500</th></tr>\n"
 
 
     tpage1 += u"</table>\n<br />\n<table>\n<tr><th>"+localText.nGuides+u"</th><th>"+localText.tiers+u" 1</th><th>"+localText.tiers+u" 2</th><th>"+localText.tiers+u" 3</th><th>"+localText.tiers+u" 4</th><th>"+localText.tiers+u" 5</th></tr>\n"
@@ -1173,10 +1148,11 @@ def maketotals(totals, mytime, localText):
     ctfc = 0
     cttc = 0
     ct4c = 0
+    ct45c = 0
     for i in [(u'jewelcraft',u'jewelcraft_fast',localText.jc),
-              (u'artificing',u'artificing_fast',u'artificing_400',localText.art),
-              (u'huntsman',u'huntsman_fast',u'huntsman_400',localText.hunt),
-              (u'weaponcraft',u'weaponcraft_fast',u'weaponcraft_400',localText.wc),
+              (u'artificing',u'artificing_fast',u'artificing_450',u'artificing_400',localText.art),
+              (u'huntsman',u'huntsman_fast',u'huntsman_450',u'huntsman_400',localText.hunt),
+              (u'weaponcraft',u'weaponcraft_fast',u'weaponcraft_450',u'weaponcraft_400',localText.wc),
               (u'armorcraft',u'armorcraft_fast',localText.ac),
               (u'leatherworking',u'leatherworking_fast',localText.lw),
               (u'tailor',u'tailor_fast',localText.tailor)]:
@@ -1184,9 +1160,10 @@ def maketotals(totals, mytime, localText):
         if len(i) == 3:
             page += u'<tr><td>'+i[ind]+u'</td><td>'+mFormat(totals[i[0]][u'total'])+u'</td><td>'+mFormat(totals[i[1]][u'total'])+u'</td></tr>\n'
         else:
-            ind = 3
-            page += u'<tr><td>'+i[ind]+u'</td><td>'+mFormat(totals[i[0]][u'total'])+u'</td><td>'+mFormat(totals[i[1]][u'total'])+u'</td><td>'+mFormat(totals[i[2]])+u'</td></tr>\n'
-            ct4c += totals[i[2]]
+            ind = 4
+            page += u'<tr><td>'+i[ind]+u'</td><td>'+mFormat(totals[i[0]][u'total'])+u'</td><td>'+mFormat(totals[i[1]][u'total'])+u'</td><td>'+mFormat(totals[i[2]])+u'</td><td>'+mFormat(totals[i[3]])+u'</td></tr>\n'
+            ct45c += totals[i[2]]
+            ct4c += totals[i[3]]
 
         tpage1 += u'<tr><td>'+i[ind]+u'</td><td>'+mFormat(totals[i[0]][0])+u'</td><td>'+mFormat(totals[i[0]][75])+u'</td><td>'+mFormat(totals[i[0]][150])+u'</td><td>'+mFormat(totals[i[0]][225])+u'</td><td>'+mFormat(totals[i[0]][300])+u'</td></tr>\n'
         tpage2 += u'<tr><td>'+i[ind]+u'</td><td>'+mFormat(totals[i[1]][0])+u'</td><td>'+mFormat(totals[i[1]][75])+u'</td><td>'+mFormat(totals[i[1]][150])+u'</td><td>'+mFormat(totals[i[1]][225])+u'</td><td>'+mFormat(totals[i[1]][300])+u'</td></tr>\n'
@@ -1194,7 +1171,7 @@ def maketotals(totals, mytime, localText):
         ctnc += totals[i[0]][u'total']
         ctfc += totals[i[1]][u'total']
 
-    page += u'<tr><td><strong>'+localText.totals+u'</strong></td><td><strong>'+ mFormat(ctnc)+u'</strong></td><td><strong>'+ mFormat(ctfc)+u'</strong></td><td><strong>'+ mFormat(ct4c)+u'</strong></td></tr></table>\n<br />\n'
+    page += u'<tr><td><strong>'+localText.totals+u'</strong></td><td><strong>'+ mFormat(ctnc)+u'</strong></td><td><strong>'+ mFormat(ctfc)+u'</strong></td><td><strong>'+ mFormat(ct45c)+u'</strong></td><td><strong>'+ mFormat(ct4c)+u'</strong></td></tr></table>\n<br />\n'
 
     tpage1 += u' </table>\n<br />'
     tpage2 += u' </table>\n<br />'
@@ -1229,7 +1206,7 @@ def join(A, B):
 def recipeworker(cmds, cList, mytime, xp_to_level, out_q):
     totals = {}
     for cmd in cmds:
-        totals.update(costCraft(cmd[0],cmd[1],cmd[2],cmd[3],deepcopy(cList),mytime,xp_to_level))
+        totals.update(costCraft(cmd[0],cmd[1],cmd[2],cmd[3],cmd[4],deepcopy(cList),mytime,xp_to_level))
     out_q.put(totals)
 
 def main():
@@ -1248,29 +1225,32 @@ def main():
     #TODO change the way flags are passed so it is easier to understand
 
     cooking_karma = join(Chef.recipes, Chef_karma.recipes)
-    rList.append([(u"cooking_karma_fast.html",cooking_karma,True,False),
-                  (u"cooking_karma_fast_light.html",cooking_karma,True,False),
-                  (u"cooking_fast.html",Chef.recipes,True,False)])
-    rList.append([(u"cooking_karma.html",cooking_karma,False,False),
-                  (u"cooking_karma_light.html",cooking_karma,False,False),
-                  (u"cooking.html",Chef.recipes,False,False)])
-    rList.append([(u"jewelcraft_fast.html",Jeweler.recipes,True,False),
-                  (u"jewelcraft.html",Jeweler.recipes,False,False)])
-    rList.append([(u"artificing_fast.html",Artificer.recipes,True,False),
-                  (u"artificing.html",Artificer.recipes,False,False),
-                  (u"artificing_400.html",Artificer.recipes,False,True)])
-    rList.append([(u"weaponcraft_fast.html",Weaponsmith.recipes,True,False),
-                  (u"weaponcraft.html",Weaponsmith.recipes,False,False),
-                  (u"weaponcraft_400.html",Weaponsmith.recipes,False,True)])
-    rList.append([(u"huntsman_fast.html",Huntsman.recipes,True,False),
-                  (u"huntsman.html",Huntsman.recipes,False,False),
-                  (u"huntsman_400.html",Huntsman.recipes,False,True)])
-    rList.append([(u"armorcraft_fast.html",Armorsmith.recipes,True,False),
-                  (u"armorcraft.html",Armorsmith.recipes,False,False)])
-    rList.append([(u"tailor_fast.html",Tailor.recipes,True,False),
-                  (u"tailor.html",Tailor.recipes,False,False)])
-    rList.append([(u"leatherworking_fast.html",Leatherworker.recipes,True,False),
-                  (u"leatherworking.html",Leatherworker.recipes,False,False)])
+    rList.append([(u"cooking_karma_fast.html",cooking_karma,True,False,range(0,400,25)),
+                  (u"cooking_karma_fast_light.html",cooking_karma,True,False,range(0,400,25)),
+                  (u"cooking_fast.html",Chef.recipes,True,False,range(0,400,25))])
+    rList.append([(u"cooking_karma.html",cooking_karma,False,False,range(0,400,25)),
+                  (u"cooking_karma_light.html",cooking_karma,False,False,range(0,400,25)),
+                  (u"cooking.html",Chef.recipes,False,False,range(0,400,25))])
+    rList.append([(u"jewelcraft_fast.html",Jeweler.recipes,True,False,range(0,400,25)),
+                  (u"jewelcraft.html",Jeweler.recipes,False,False,range(0,400,25))])
+    rList.append([(u"artificing_fast.html",Artificer.recipes,True,False,range(0,400,25)),
+                  (u"artificing.html",Artificer.recipes,False,False,range(0,400,25)),
+                  (u"artificing_400.html",Artificer.recipes,False,True,range(400,500,25)),
+                  (u"artificing_450.html",Artificer.recipes,False,True,range(400,450,25))])
+    rList.append([(u"weaponcraft_fast.html",Weaponsmith.recipes,True,False,range(0,400,25)),
+                  (u"weaponcraft.html",Weaponsmith.recipes,False,False,range(0,400,25)),
+                  (u"weaponcraft_400.html",Weaponsmith.recipes,False,True,range(400,500,25)),
+                  (u"weaponcraft_450.html",Weaponsmith.recipes,False,True,range(400,450,25))])
+    rList.append([(u"huntsman_fast.html",Huntsman.recipes,True,False,range(0,400,25)),
+                  (u"huntsman.html",Huntsman.recipes,False,False,range(0,400,25)),
+                  (u"huntsman_400.html",Huntsman.recipes,False,True,range(400,500,25)),
+                  (u"huntsman_450.html",Huntsman.recipes,False,True,range(400,450,25))])
+    rList.append([(u"armorcraft_fast.html",Armorsmith.recipes,True,False,range(0,400,25)),
+                  (u"armorcraft.html",Armorsmith.recipes,False,False,range(0,400,25))])
+    rList.append([(u"tailor_fast.html",Tailor.recipes,True,False,range(0,400,25)),
+                  (u"tailor.html",Tailor.recipes,False,False,range(0,400,25))])
+    rList.append([(u"leatherworking_fast.html",Leatherworker.recipes,True,False,range(0,400,25)),
+                  (u"leatherworking.html",Leatherworker.recipes,False,False,range(0,400,25))])
 
     nprocs = len(rList)
 
@@ -1304,10 +1284,10 @@ def main():
                      u"cooking.html", u"cooking_karma.html", u"cooking_karma_light.html",
                      u"leatherworking_fast.html", u"leatherworking.html",# u"leatherworking_craft_all.html",
                      u"tailor_fast.html", u"tailor.html",# u"tailor_craft_all.html",
-                     u"artificing_fast.html", u"artificing.html", u"artificing_400.html",
+                     u"artificing_fast.html", u"artificing.html", u"artificing_400.html", u"artificing_450.html",
                      u"jewelcraft_fast.html", u"jewelcraft.html",# u"jewelcraft_craft_all.html",
-                     u"weaponcraft_fast.html", u"weaponcraft.html", u"weaponcraft_400.html",
-                     u"huntsman_fast.html", u"huntsman.html", u"huntsman_400.html",
+                     u"weaponcraft_fast.html", u"weaponcraft.html", u"weaponcraft_400.html", u"weaponcraft_450.html",
+                     u"huntsman_fast.html", u"huntsman.html", u"huntsman_400.html", u"huntsman_450.html",
                      u"armorcraft_fast.html", u"armorcraft.html",# u"armorcraft_craft_all.html",
                      u"total.html"]:
             with codecs.open(lang+item,u'rb') as f:
