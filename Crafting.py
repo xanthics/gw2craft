@@ -296,27 +296,24 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level):
 
     if craftexo:
     # start at last bucket(375) and fill towards 0 bucket
+        if 475 in tiers:
+            tiers = [425,450,475,400]
         for tier in tiers:
             bucket = {}
             bkey = []
 
-            bkeyOffset = 0
-#            if tier == 475:
-#                bkeyOffset = 11
-#            elif tier == 450:
-#                bkeyOffset = 5
             while craftcount[tier][u'current_xp'] < xp_to_level[tier + 25]:
                 # We still want to compute every make on fast guides for the 375-400 range
                 bucket = makeQueuecraft(c_recipes[400], cList,craftcount,tier,xp_to_level,craftexo)
                 bkey = sorted(bucket, reverse=True)
 
                 
-                tcost += bucket[bkey[bkeyOffset]][u'cost']
-                treco += cList[bucket[bkey[bkeyOffset]][u'item_id']][u'w'] * int(cList[bucket[bkey[bkeyOffset]][u'item_id']][u'output_item_count'])
-                sell[bucket[bkey[bkeyOffset]][u'item_id']] += int(cList[bucket[bkey[bkeyOffset]][u'item_id']][u'output_item_count'])
+                tcost += bucket[bkey[0]][u'cost']
+                treco += cList[bucket[bkey[0]][u'item_id']][u'w'] * int(cList[bucket[bkey[0]][u'item_id']][u'output_item_count'])
+                sell[bucket[bkey[0]][u'item_id']] += int(cList[bucket[bkey[0]][u'item_id']][u'output_item_count'])
                 sole = 0
                 recalc = {tier:0} # always recalc the tier we are on
-                for item in bucket[bkey[bkeyOffset]][u'make']:
+                for item in bucket[bkey[0]][u'make']:
                     index = 0
                     if tier in cList[item][u'tier']:
                         index = cList[item][u'tier'].index(tier)
@@ -347,11 +344,11 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level):
                 for ctier in recalc:
                     craftcount[ctier][u'current_xp'] = compute_level((xp_to_level[ctier] if ctier == 0 or xp_to_level[ctier] >= craftcount[ctier-25][u'current_xp'] else craftcount[ctier-25][u'current_xp']), craftcount[ctier],400,xp_to_level)
 
-                for item in bucket[bkey[bkeyOffset]][u'buy']:
+                for item in bucket[bkey[0]][u'buy']:
                     buy[item] += 1
 
-                if set(rsps.keys()).intersection(set(bucket[bkey[bkeyOffset]][u'make'])):
-                   cList[set(rsps.keys()).intersection(set(bucket[bkey[bkeyOffset]][u'make'])).pop()][u'RecipeLearned'] = True
+                if set(rsps.keys()).intersection(set(bucket[bkey[0]][u'make'])):
+                   cList[set(rsps.keys()).intersection(set(bucket[bkey[0]][u'make'])).pop()][u'RecipeLearned'] = True
     else: 
     # start at last bucket(375) and fill towards 0 bucket
         for tier in tiers:
@@ -1098,19 +1095,6 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
         f.write(u"$(\"#show_all\").click(function () {$(\".sbutton\").show();")
         f.write(u"});\n$(\"#hide_all\").click(function () {$(\".sbutton\").hide();")
         f.write(u'});\n</script>\n')
-        # analytics
-        f.write(u'<!-- Piwik --> ')
-        f.write(u'<script type="text/javascript">')
-        f.write(u'var pkBaseURL = (("https:" == document.location.protocol) ? "https://gw2crafts.net/analytics/" : "http://gw2crafts.net/analytics/");')
-        f.write(u'document.write(unescape("%3Cscript src=\'" + pkBaseURL + "piwik.js\' type=\'text/javascript\'%3E%3C/script%3E"));')
-        f.write(u'</script><script type="text/javascript">')
-        f.write(u'try {')
-        f.write(u'var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);')
-        f.write(u'piwikTracker.trackPageView();')
-        f.write(u'piwikTracker.enableLinkTracking();')
-        f.write(u'} catch( err ) {}')
-        f.write(u'</script><noscript><p><img src="http://gw2crafts.net/analytics/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>')
-        f.write(u'<!-- End Piwik Tracking Code -->')
         f.write(u'</body>\n')
         f.write(u'</html>\n')
     return totals
@@ -1187,19 +1171,6 @@ def maketotals(totals, mytime, localText):
     page += tpage1 + tpage2
 
     page += u'\n</section>\n' + localText.cright
-    # analytics
-    page += u'<!-- Piwik --> '
-    page += u'<script type="text/javascript">'
-    page += u'var pkBaseURL = (("https:" == document.location.protocol) ? "https://gw2crafts.net/analytics/" : "http://gw2crafts.net/analytics/");'
-    page += u'document.write(unescape("%3Cscript src=\'" + pkBaseURL + "piwik.js\' type=\'text/javascript\'%3E%3C/script%3E"));'
-    page += u'</script><script type="text/javascript">'
-    page += u'try {'
-    page += u'var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);'
-    page += u'piwikTracker.trackPageView();'
-    page += u'piwikTracker.enableLinkTracking();'
-    page += u'} catch( err ) {}'
-    page += u'</script><noscript><p><img src="http://gw2crafts.net/analytics/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>'
-    page += u'<!-- End Piwik Tracking Code -->\n</body>\n</html>'
 
     with codecs.open(localText.path+u'total.html', 'wb', encoding='utf-8') as f:
         f.write(page)
