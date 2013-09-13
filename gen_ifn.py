@@ -243,7 +243,7 @@ def index(localText):
         f.write(u"</form> \n")
         f.write(u"<a href=\"bitcoin:18Muvgz2zYeUYcAwrqM24awXkv2WqsLukt\" style=\"line-height:150%%;\">bitcoin:18Muvgz2zYeUYcAwrqM24awXkv2WqsLukt</a>\n<br />")
 #        f.write(u"<br />\n")
-        f.write(u"%s\n"%(localText.gw2spidy))
+        f.write(u"<br />%s\n"%(localText.gw2spidy))
         f.write(u"</section>\n")
         f.write(localText.cright)
         f.write(u"</body>\n")

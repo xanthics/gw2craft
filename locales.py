@@ -120,7 +120,7 @@ sNote        = u"Produce 2 Suelas"
 
 # FAQ strings
 costs    = u"El coste de la web está cubierto, pero se aceptan donaciones"
-gw2spidy = u"Estas guías no serian possibles sin <a href=\"http://www.gw2spidy.com\"> gw2spidy </a> y su API."
+gw2spidy = u"Estas guías no serian possibles sin <a href=\"http://www.gw2spidy.com\"> gw2spidy </a> y <a href=\"http://www.guildwarstrade.com/\">guildwarstrade</a>."
 oThread  = u"Hilo en el forum oficial de GW2 (En)"
 rThread  = u"Hilo en reddit (En)"
 gThread  = u"Hilo en guildwars2guru (En)"
