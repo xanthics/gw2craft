@@ -118,7 +118,7 @@ sNote        = u"Produces 2 Soles per make"
 
 # FAQ strings
 costs    = u"Costs are covered, but donations are appreciated"
-gw2spidy = u"Also these guides would not be possible without <a href=\"http://www.gw2spidy.com\">gw2spidy</a> and his api."
+gw2spidy = u"Also these guides would not be possible without <a href=\"http://www.gw2spidy.com\">gw2spidy</a> and <a href=\"http://www.guildwarstrade.com/\">guildwarstrade</a>."
 oThread  = u"GW2 Official Forum Discussion Thread"
 rThread  = u"reddit Discussion Thread"
 gThread  = u"guildwars2guru Discussion Thread"
