@@ -42,6 +42,69 @@ from ftplib import FTP
 from ftp_info import ftp_url, ftp_user, ftp_pass
 
 # helper function to get data via item_id
+def searchGWT(item_id, itemlist, idIndex):
+    return next( (element for element in itemlist if item_id == int(element[idIndex])), None)
+
+def itemlistworkerGWT(_itemList, temp, idIndex, buyIndex, sellIndex, supplyIndex, out_q):
+
+    outdict = {}
+    for item in _itemList:
+        # Get our item from the gw2spidy list
+        val = searchGWT(item, temp, idIndex)
+
+        try:
+            # set value to greater of buy and vendor.  If 0 set to minimum sell value
+            w = items.ilist[item][u'vendor_value']
+            sellMethod = 0
+            if val[buyIndex]*.85 > w:
+                w = int(val[buyIndex]*.85)
+                sellMethod = 1
+            if w == 0:
+                w = int(val[sellIndex]*.85)
+                sellMethod = 2
+
+            # Save all the information we care about
+            outdict[item] = {u'w':w,u'cost':val[sellIndex],u'recipe':None,u'rarity':items.ilist[item][u'rarity'],u'type':items.ilist[item][u'type'],u'icon':items.ilist[item][u'img_url'],u'output_item_count':items.ilist[item][u'output_item_count'],u'sellMethod':sellMethod} 
+            # if the item has a low supply, ignore it
+            if val[supplyIndex] <= 50:
+                outdict[item][u'cost'] = 99999999
+
+        # gw2spidy doesn't have the item indexed yet
+        except Exception, err:
+            print u'ERROR: %s. %i, %s' % (str(err),item,Items_en.ilist[item])
+            # Save all the information we care about
+            outdict[item] = {u'w':0,u'cost':99999999,u'recipe':None,u'rarity':items.ilist[item][u'rarity'],u'type':items.ilist[item][u'type'],u'icon':items.ilist[item][u'img_url'],u'output_item_count':items.ilist[item][u'output_item_count'],u'sellMethod':sellMethod} 
+
+        if u"discover" in items.ilist[item]:
+            outdict[item][u'discover'] = 0
+        if outdict[item][u'type'] == u'UpgradeComponent' and outdict[item][u'rarity'] == u'Exotic':
+            outdict[item][u'rarity'] = u'Exotic UpgradeComponent'
+
+    out_q.put(outdict)
+
+# helper function to parse out only the items we care about from gw2spidy
+def cItemlistGWT(itemList,temp,key):
+    out_q = Queue()
+    nprocs = 8
+
+    chunksize = int(math.ceil(len(itemList) / float(nprocs)))
+    procs = []
+
+    for i in range(nprocs):
+        p = Process(target=itemlistworkerGWT,args=(itemList[chunksize * i:chunksize * (i + 1)],temp,key.index(u'id'),key.index(u'buy'),key.index(u'sell'),key.index(u'supply'),out_q))
+        procs.append(p)
+        p.start()
+
+    resultdict = {}
+    for i in range(nprocs):
+        resultdict.update(out_q.get())
+
+    for p in procs:
+        p.join()
+
+    return resultdict
+
+# helper function to get data via item_id
 def search(item_id, itemlist):
     return next( (element for element in itemlist if item_id == int(element[u'data_id'])), None)
 
@@ -122,7 +185,14 @@ def appendCosts():
         cList = cItemlist(items.ilist.keys(),temp[u'results'])
     except Exception, err:
         print u'ERROR: %s.' % str(err)
-        exit(-1)
+        try:
+            baseURL = "http://api.guildwarstrade.com/1/bulk/items.json"
+            f = myopener.open(baseURL)
+            temp = json.load(f)
+            print len(temp[u'items']) # print total items returned from GWT
+            cList = cItemlistGWT(items.ilist.keys(),temp[u'items'],temp[u'columns'])
+        except Exception, err:
+            print u'ERROR: %s.' % str(err)
 
     cList[19792][u'cost'] = 8 # Spool of Jute Thread
     cList[19789][u'cost'] = 16 # Spool of Wool Thread
