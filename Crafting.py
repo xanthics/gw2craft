@@ -26,7 +26,7 @@ Purpose: Generates a crafting guide for all crafts in Guild Wars 2 based on curr
 Note: Requires Python 2.7.x
 '''
 
-import json, datetime, math, os, codecs
+import json, datetime, math, os, codecs, sys
 # so we can set custom headers
 from urllib import FancyURLopener
 # recipe and item lists
@@ -64,7 +64,7 @@ def itemlistworkerGWT(_itemList, temp, idIndex, buyIndex, sellIndex, supplyIndex
                 sellMethod = 2
 
             # Save all the information we care about
-            outdict[item] = {u'w':w,u'cost':val[sellIndex],u'recipe':None,u'rarity':items.ilist[item][u'rarity'],u'type':items.ilist[item][u'type'],u'icon':items.ilist[item][u'img_url'],u'output_item_count':items.ilist[item][u'output_item_count'],u'sellMethod':sellMethod} 
+            outdict[item] = {u'w':w,u'cost':val[sellIndex],u'recipe':None,u'rarity':items.ilist[item][u'rarity'],u'type':items.ilist[item][u'type'],u'icon':items.ilist[item][u'img_url'],u'output_item_count':items.ilist[item][u'output_item_count'],u'sellMethod':sellMethod,u"discover":[]} 
             # if the item has a low supply, ignore it
             if val[supplyIndex] <= 50:
                 outdict[item][u'cost'] = 99999999
@@ -73,10 +73,8 @@ def itemlistworkerGWT(_itemList, temp, idIndex, buyIndex, sellIndex, supplyIndex
         except Exception, err:
             print u'ERROR: %s. %i, %s' % (str(err),item,Items_en.ilist[item])
             # Save all the information we care about
-            outdict[item] = {u'w':0,u'cost':99999999,u'recipe':None,u'rarity':items.ilist[item][u'rarity'],u'type':items.ilist[item][u'type'],u'icon':items.ilist[item][u'img_url'],u'output_item_count':items.ilist[item][u'output_item_count'],u'sellMethod':sellMethod} 
+            outdict[item] = {u'w':0,u'cost':99999999,u'recipe':None,u'rarity':items.ilist[item][u'rarity'],u'type':items.ilist[item][u'type'],u'icon':items.ilist[item][u'img_url'],u'output_item_count':items.ilist[item][u'output_item_count'],u'sellMethod':sellMethod,u"discover":[]} 
 
-        if u"discover" in items.ilist[item]:
-            outdict[item][u'discover'] = 0
         if outdict[item][u'type'] == u'UpgradeComponent' and outdict[item][u'rarity'] == u'Exotic':
             outdict[item][u'rarity'] = u'Exotic UpgradeComponent'
 
@@ -127,7 +125,7 @@ def itemlistworker(_itemList, temp, out_q):
                 sellMethod = 2
 
             # Save all the information we care about
-            outdict[item] = {u'w':w,u'cost':val[u'min_sale_unit_price'],u'recipe':None,u'rarity':items.ilist[item][u'rarity'],u'type':items.ilist[item][u'type'],u'icon':items.ilist[item][u'img_url'],u'output_item_count':items.ilist[item][u'output_item_count'],u'sellMethod':sellMethod} 
+            outdict[item] = {u'w':w,u'cost':val[u'min_sale_unit_price'],u'recipe':None,u'rarity':items.ilist[item][u'rarity'],u'type':items.ilist[item][u'type'],u'icon':items.ilist[item][u'img_url'],u'output_item_count':items.ilist[item][u'output_item_count'],u'sellMethod':sellMethod,u"discover":[]} 
             # if the item has a low supply, ignore it
             if val[u'sale_availability'] <= 50:
                 outdict[item][u'cost'] = 99999999
@@ -136,10 +134,8 @@ def itemlistworker(_itemList, temp, out_q):
         except Exception, err:
             print u'ERROR: %s. %i, %s' % (str(err),item,Items_en.ilist[item])
             # Save all the information we care about
-            outdict[item] = {u'w':0,u'cost':99999999,u'recipe':None,u'rarity':items.ilist[item][u'rarity'],u'type':items.ilist[item][u'type'],u'icon':items.ilist[item][u'img_url'],u'output_item_count':items.ilist[item][u'output_item_count'],u'sellMethod':sellMethod} 
+            outdict[item] = {u'w':0,u'cost':99999999,u'recipe':None,u'rarity':items.ilist[item][u'rarity'],u'type':items.ilist[item][u'type'],u'icon':items.ilist[item][u'img_url'],u'output_item_count':items.ilist[item][u'output_item_count'],u'sellMethod':sellMethod,u"discover":[]} 
 
-        if u"discover" in items.ilist[item]:
-            outdict[item][u'discover'] = 0
         if outdict[item][u'type'] == u'UpgradeComponent' and outdict[item][u'rarity'] == u'Exotic':
             outdict[item][u'rarity'] = u'Exotic UpgradeComponent'
 
@@ -181,7 +177,8 @@ def appendCosts():
         baseURL = "http://gw2spidy.com/api/v0.9/json/all-items/all"
         f = myopener.open(baseURL)
         temp = json.load(f)
-        print len(temp[u'results']) # print total items returned from gw2spidy
+        if os.isatty(sys.stdin.fileno()):
+            print len(temp[u'results']) # print total items returned from gw2spidy
         cList = cItemlist(items.ilist.keys(),temp[u'results'])
     except Exception, err:
         print u'ERROR: %s.' % str(err)
@@ -189,7 +186,8 @@ def appendCosts():
             baseURL = "http://api.guildwarstrade.com/1/bulk/items.json"
             f = myopener.open(baseURL)
             temp = json.load(f)
-            print len(temp[u'items']) # print total items returned from GWT
+            if os.isatty(sys.stdin.fileno()):
+                print len(temp[u'items']) # print total items returned from GWT
             cList = cItemlistGWT(items.ilist.keys(),temp[u'items'],temp[u'columns'])
         except Exception, err:
             print u'ERROR: %s.' % str(err)
@@ -222,7 +220,8 @@ def appendCosts():
         cList[item][u'cost'] = 0
     cList[12132][u'cost'] = 99999999 # Loaf of Bread is soulbound, cheat to make it not purchased
 
-    print len(cList.keys()) # print number of items used by the guides
+    if os.isatty(sys.stdin.fileno()):
+        print len(cList.keys()) # print number of items used by the guides
 
     return cList
 
@@ -306,7 +305,8 @@ karmin = {}
 
 # Compute a guide
 def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level):
-    print "Start", filename
+    if os.isatty(sys.stdin.fileno()):
+        print "Start", filename
     # TODO Hack, fix this
     # This is changing the recipe for Bronze Ingot to use 2 Copper Ore.
     if 19679 in c_recipes[0]:
@@ -329,6 +329,14 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level):
                 if not cList[item][u'recipe']:
                     cList[item][u'recipe'] = []
                 cList[item][u'recipe'].append(c_recipes[tier][item])
+                if u"discover" in items.ilist[item]:
+                     cList[item][u'discover'].append(-1)
+                else:
+                     cList[item][u'discover'].append(0)
+                if not u'tier' in cList[item]:
+                    cList[item][u'tier'] = []
+                cList[item][u'tier'].append(tier) 
+
             else: 
                 # gw2 api didn't have information about the api yet.
                 # This should only happen when items are recently added to game
@@ -336,9 +344,6 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level):
                 del(c_recipes[tier][item])
                 continue
 #                exit(-1)
-            if not u'tier' in cList[item]:
-                cList[item][u'tier'] = []
-            cList[item][u'tier'].append(tier) 
 
     # Cooking guides don't use tierbuy, but they do care about karma items
     if "cook" in filename:
@@ -390,8 +395,8 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level):
                     else:
                         while len(cList[item][u'tier']) > index+1 and int(cList[item][u'tier'][index]) > tier:
                             index += 1
-                    if not cList[item][u'type'] in non_item and not 'discover' in cList[item]:
-                        cList[item][u'discover'] = 1
+                    if not cList[item][u'type'] in non_item and not cList[item][u'discover'][index]:
+                        cList[item][u'discover'][index] = 1
                         craftcount[tier][u'discovery'].append((rarityNum(cList[item][u'rarity']),4 if cList[item][u'rarity'] == u'Exotic' else 3))
                         make[tier][item] += 1
                     elif not cList[item][u'type'] in non_item:
@@ -467,8 +472,8 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level):
                     if item == bucket[bkey[0]][u'item_id'] and int(cList[item][u'tier'][index]) < tier:
                         craftcount[tier][u'ptitem'].append(rarityNum(cList[item][u'rarity']),3)
                         pmake[tier][item] += 1
-                    elif not cList[item][u'type'] in non_item and not 'discover' in cList[item]:
-                        cList[item][u'discover'] = 1
+                    elif not cList[item][u'type'] in non_item and not cList[item][u'discover'][index]:
+                        cList[item][u'discover'][index] = 1
                         craftcount[int(cList[item][u'tier'][index])][u'discovery'].append((rarityNum(cList[item][u'rarity']),3))
                         make[int(cList[item][u'tier'][index])][item] += 1
                     elif not cList[item][u'type'] in non_item:
@@ -542,7 +547,7 @@ def calcRecipecraft(recipe,items,craftcount,tier,count,itier,xp_to_level,craftex
         make.append(recipe)
     if int(items[recipe][u'tier'][index]) < int(tier) and not items[recipe][u'type'] in non_item and not craftexo:
         xptotal = xp_calc(0,0,count,0,rarityNum(items[recipe][u'rarity']),int(items[recipe][u'tier'][index]),level,3)
-    elif not items[recipe][u'type'] in non_item and not 'discover' in items[recipe]:
+    elif not items[recipe][u'type'] in non_item and not items[recipe][u'discover'][index]:
         xptotal = xp_calc(0,0,count-1,1,rarityNum(items[recipe][u'rarity']),int(items[recipe][u'tier'][index]),level,4 if craftexo and items[recipe][u'rarity'] == u'Exotic' else 3)
     elif not items[recipe][u'type'] in non_item:
         xptotal = xp_calc(0,0,count,0,rarityNum(items[recipe][u'rarity']),int(items[recipe][u'tier'][index]),level,4 if craftexo and items[recipe][u'rarity'] == u'Exotic' else 3)
@@ -1068,23 +1073,20 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
                     else:
                         f.write(u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
 
+            index = 0
             if tier == 425:
                 for item in sorted(make[tier]):
-                    if 'discover' in cList[item] and cList[item][u'discover'] == 1 and not cList[item][u'rarity'] == u'Exotic':
-                        cList[item][u'discover'] = 0
+                    index = cList[item][u'tier'].index(400)
+                    if cList[item][u'discover'][index] == 1 and not cList[item][u'rarity'] == u'Exotic':
+                        cList[item][u'discover'][index] = 0
                         if make[tier][item] > 1:
                             make[tier][item] -= 1
                         else:
                             del(make[tier][item])
                         t = (t+1)%2
                         tstr = "<div class=\"sbutton\" id=\"1"+str(item)+str(tier)+u"\">"
-                        inde = 0
-                        if craftexo:
-                            inde = 400
-                        else:
-                            inde = tier
-                        for s in cList[item][u'recipe'][cList[item][u'tier'].index(inde)]:
-                            tstr += "\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u'\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][cList[item][u'tier'].index(inde)][s])+u")"
+                        for s in cList[item][u'recipe'][index]:
+                            tstr += "\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u'\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][index][s])+u")"
                         tstr += "</div><br />"
                         f.write(u"<div class=\"s"+str(t)+u"\">"+localText.discover+u": <button class=\"arrow "+cList[item][u'rarity']+u'\" title=\"'+localText.toggle+u'\" id=\"'+str(item)+str(tier)+u'\">'+cListName[item]+u"</button> "+tstr+u"\n</div>\n")
                         buttonList.append(str(item)+str(tier))
@@ -1093,21 +1095,21 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
                         t = (t+1)%2
                         f.write(u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
                 for item in sorted(make[tier]):
-                    if 'discover' in cList[item] and cList[item][u'discover'] == 1 and cList[item][u'rarity'] == u'Exotic':
-                        cList[item][u'discover'] = 0
+                    index = cList[item][u'tier'].index(400)
+                    if cList[item][u'discover'][index] == 1 and cList[item][u'rarity'] == u'Exotic':
+                        cList[item][u'discover'][index] = 0
                         if make[tier][item] > 1:
                             make[tier][item] -= 1
                         else:
                             del(make[tier][item])
                         t = (t+1)%2
                         tstr = "<div class=\"sbutton\" id=\"1"+str(item)+str(tier)+u"\">"
-                        inde = 0
                         if craftexo:
                             inde = 400
                         else:
                             inde = tier
-                        for s in cList[item][u'recipe'][cList[item][u'tier'].index(inde)]:
-                            tstr += "\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u'\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][cList[item][u'tier'].index(inde)][s])+u")"
+                        for s in cList[item][u'recipe'][index]:
+                            tstr += "\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u'\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][index][s])+u")"
                         tstr += "</div><br />"
                         f.write(u"<div class=\"s"+str(t)+u"\">"+localText.discover+u": <button class=\"arrow "+cList[item][u'rarity']+u'\" title=\"'+localText.toggle+u'\" id=\"'+str(item)+str(tier)+u'\">'+cListName[item]+u"</button> "+tstr+u"\n</div>\n")
                         buttonList.append(str(item)+str(tier))
@@ -1117,21 +1119,20 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
                         f.write(u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
             else:
                 for item in sorted(make[tier]):
-                    if 'discover' in cList[item] and cList[item][u'discover'] == 1:
-                        cList[item][u'discover'] = 0
+                    if craftexo:
+                        index = cList[item][u'tier'].index(400)
+                    else:
+                        index = cList[item][u'tier'].index(tier)
+                    if cList[item][u'discover'][index] == 1:
+                        cList[item][u'discover'][index] = 0
                         if make[tier][item] > 1:
                             make[tier][item] -= 1
                         else:
                             del(make[tier][item])
                         t = (t+1)%2
                         tstr = "<div class=\"sbutton\" id=\"1"+str(item)+str(tier)+u"\">"
-                        inde = 0
-                        if craftexo:
-                            inde = 400
-                        else:
-                            inde = tier
-                        for s in cList[item][u'recipe'][cList[item][u'tier'].index(inde)]:
-                            tstr += "\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u'\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][cList[item][u'tier'].index(inde)][s])+u")"
+                        for s in cList[item][u'recipe'][index]:
+                            tstr += "\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u'\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][index][s])+u")"
                         tstr += "</div><br />"
                         f.write(u"<div class=\"s"+str(t)+u"\">"+localText.discover+u": <button class=\"arrow "+cList[item][u'rarity']+u'\" title=\"'+localText.toggle+u'\" id=\"'+str(item)+str(tier)+u'\">'+cListName[item]+u"</button> "+tstr+u"\n</div>\n")
                         buttonList.append(str(item)+str(tier))
@@ -1259,7 +1260,7 @@ def recipeworker(cmds, cList, mytime, xp_to_level, out_q):
 
 def main():
     mytime = "<span class=\"localtime\">" + datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S')+u'+00:00</span>'
-    print datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
+    print "Start: ", datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
     # Will hold level:total xp pairs (array)
     xp_to_level = [0]
     # populate the xp chart
@@ -1323,8 +1324,9 @@ def main():
     maketotals(totals,mytime,localfr)
     maketotals(totals,mytime,locales)
 
-    print datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
-    print "Starting upload"
+    print "End: ", datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
+    if os.isatty(sys.stdin.fileno()):
+        print "Starting upload"
     myFtp = FTP(ftp_url)
     myFtp.login(ftp_user,ftp_pass)
     for lang in ['',u'de/',u'fr/',u'es/']:
