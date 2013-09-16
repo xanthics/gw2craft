@@ -928,256 +928,260 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 
     t = 0 # used to control div background color
     kt = 0 # karma total
-    with codecs.open(localText.path+filename, 'wb', encoding='utf-8') as f:
-        f.write(u'<!DOCTYPE html>\n')
-        f.write(u'<html>\n')
-        f.write(u'<head>\n')
-        # Title Part 1
-        f.write(u'    <title>'+title+u'</title>\n')
-        f.write(u'    <meta name="description" content="Guild Wars 2 always current crafting guide for '+filename.split('.')[0].replace("_"," ").title()+u'">\n')
-        f.write(u'    <meta http-equiv="content-type" content="text/html;charset=UTF-8">\n')
-        f.write(u'    <link href="/css/layout.css" rel="stylesheet" type="text/css" />') 
-        f.write(u'    <link rel="icon" type="image/png" href="/fi.gif">')
-        f.write(u'    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>\n')
-        f.write(u'    <script>(window.jQuery || document.write(\'<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"><\/script>\'));</script>\n')
-        f.write(u'    <script src="/js/menu.js" type="text/javascript"></script>\n')
-        f.write(u'</head>\n')
-        f.write(u'<body>\n%s\n'%(localText.header%(filename,filename,filename)))
-        f.write(u'<section class=\"main\">')
-        f.write(u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n')
-        f.write(u'<img src="/css/warning-icon.png" width="24" height="24" style="padding: 0 8px 0 8px; float: left;" alt="WARNING"><span style="position: relative; top: 4px;"><span style="color: red">%s</span>    %s: %s</span>\n'%(localText.warning1,localText.warning2,mytime))
-        f.write(u'</div><br />\n')
-        # adword
-        f.write(u'<div style="float:right;position:absolute;right:-320px;"> \
-                \n<script type="text/javascript"><!-- \
-                \ngoogle_ad_client = "ca-pub-6865907345688710"; \
-                \n/* large sidebar */ \
-                \ngoogle_ad_slot = "9285292589"; \
-                \ngoogle_ad_width = 300; \
-                \ngoogle_ad_height = 600; \
-                \n//--> \
-                \n</script> \
-                \n<script type="text/javascript" \
-                \nsrc="http://pagead2.googlesyndication.com/pagead/show_ads.js"> \
-                \n</script> \
-                \n</div>\n')
-        f.write(localText.moreInfo%(u"<img src=\"/img/arrow.png\" alt=ARROW>"))
-        # Page Title Part 1
-        f.write(u'<h1>'+title+u'</h1>')
-        f.write(u'<dl>\n')
-        f.write(u'    <dt>%s</dt>\n'%localText.iCost)
-        f.write(u'    <dd>'+mFormat(tcost)+u'</dd>\n')
-        f.write(u'    <dt>%s</dt>\n'%localText.eRecovery)
-        f.write(u'    <dd><span style="position: relative; left: -9px;">- '+mFormat(treco)+u'</span></dd>\n')
-        f.write(u'    <dt>%s</dt>\n'%localText.fCost)
-        f.write(u'    <dd style="border-top: 1px #666 solid;">'+mFormat(tcost-treco)+u'</dd>\n')
-        f.write(u'</dl>')
-        f.write(u'<div class="clear"></div>')
-        f.write(u'<br /><button title=\"%s\" class=\"arrow\" id=\"tcost\">%s:</button><div class=\"lsbutton\" id=\"1tcost\">'%(localText.toggle,localText.sList))
-        for line in sorted(sell):
-            if cList[line][u'w'] > 0:
-                t = (t+1)%2
-                f.write(u'<div class=\"s%i\">%3i <span class=\"%s\">%s</span> - %s %s</div>\n'%(t,sell[line],cList[line][u'rarity'],cListName[line],(localText.soldVia%mFormat(cList[line][u'w'])),localText.method[cList[line][u'sellMethod']]))
+    page = ""
+    page += u'<!DOCTYPE html>\n'
+    page += u'<html>\n'
+    page += u'<head>\n'
+    # Title Part 1
+    page += u'    <title>'+title+u' - Guild War 2 Crafting Guide</title>\n'
+    page += u'    <meta name="description" content="Guild Wars 2 always current crafting guide for '+filename.split('.')[0].replace("_"," ").title()+u'">\n'
+    page += u'    <meta http-equiv="content-type" content="text/html;charset=UTF-8">\n'
+    page += u'    <link href="/css/layout.css" rel="stylesheet" type="text/css" />'
+    page += u'    <link rel="icon" type="image/png" href="/fi.gif">'
+    page += u'    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>\n'
+    page += u'    <script>(window.jQuery || document.write(\'<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"><\/script>\'));</script>\n'
+    page += u'    <script src="/js/menu.js" type="text/javascript"></script>\n'
+    page += u'</head>\n'
+    page += u'<body>\n%s\n'%(localText.header%(filename,filename,filename))
+    page += u'<section class=\"main\">'
+    page += u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n'
+    page += u'<img src="/css/warning-icon.png" width="24" height="24" style="padding: 0 8px 0 8px; float: left;" alt="WARNING"><span style="position: relative; top: 4px;"><span style="color: red">%s</span>    %s: %s</span>\n'%(localText.warning1,localText.warning2,mytime)
+    page += u'</div><br />\n'
+    # adword
+    page += u'<div style="float:right;position:absolute;right:-320px;"> \
+            \n<script type="text/javascript"><!-- \
+            \ngoogle_ad_client = "ca-pub-6865907345688710"; \
+            \n/* large sidebar */ \
+            \ngoogle_ad_slot = "9285292589"; \
+            \ngoogle_ad_width = 300; \
+            \ngoogle_ad_height = 600; \
+            \n//--> \
+            \n</script> \
+            \n<script type="text/javascript" \
+            \nsrc="http://pagead2.googlesyndication.com/pagead/show_ads.js"> \
+            \n</script> \
+            \n</div>\n'
+    page += localText.moreInfo%(u"<img src=\"/img/arrow.png\" alt=ARROW>")
+    # Page Title Part 1
+    page += u'<h1>'+title+u'</h1>'
+    page += u'<dl>\n'
+    page += u'    <dt>%s</dt>\n'%localText.iCost
+    page += u'    <dd>'+mFormat(tcost)+u'</dd>\n'
+    page += u'    <dt>%s</dt>\n'%localText.eRecovery
+    page += u'    <dd><span style="position: relative; left: -9px;">- '+mFormat(treco)+u'</span></dd>\n'
+    page += u'    <dt>%s</dt>\n'%localText.fCost
+    page += u'    <dd style="border-top: 1px #666 solid;">'+mFormat(tcost-treco)+u'</dd>\n'
+    page += u'</dl>'
+    page += u'<div class="clear"></div>'
+    page += u'<br /><button title=\"%s\" class=\"arrow\" id=\"tcost\">%s:</button><div class=\"lsbutton\" id=\"1tcost\">'%(localText.toggle,localText.sList)
+    for line in sorted(sell):
+        if cList[line][u'w'] > 0:
+            t = (t+1)%2
+            page += u'<div class=\"s%i\">%3i <span class=\"%s\">%s</span> - %s %s</div>\n'%(t,sell[line],cList[line][u'rarity'],cListName[line],(localText.soldVia%mFormat(cList[line][u'w'])),localText.method[cList[line][u'sellMethod']])
 
-        f.write(u"</div><script type=\"text/javascript\">$('#1tcost').hide();</script><br />")
-        buttonList.append('tcost')
+    page += u"</div><script type=\"text/javascript\">$('#1tcost').hide();</script><br />"
+    buttonList.append('tcost')
 
-        if b_vendor or b_karma_c or b_karma_w:
-            f.write(u"<h2>%s</h2>\n"%localText.buyVendor)
-            if b_karma_c or b_karma_w:
-                f.write(u"<span class=\"karmaIcon\"></span> %s<br /><br />\n"%(localText.kNote))
+    if b_vendor or b_karma_c or b_karma_w:
+        page += u"<h2>%s</h2>\n"%localText.buyVendor
+        if b_karma_c or b_karma_w:
+            page += u"<span class=\"karmaIcon\"></span> %s<br /><br />\n"%(localText.kNote)
 
-            for item in sorted(b_karma_w):
-                t = (t+1)%2
-                f.write(karma_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],item,cListName[item],item,karma_items[item][u'cost'],karma_items[item][u'note']))
-                buttonList.append(item)
-                kt += int(math.ceil(buy[item]/25.0)*karma_items[item][u'cost'])
+        for item in sorted(b_karma_w):
+            t = (t+1)%2
+            page += karma_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],item,cListName[item],item,karma_items[item][u'cost'],karma_items[item][u'note'])
+            buttonList.append(item)
+            kt += int(math.ceil(buy[item]/25.0)*karma_items[item][u'cost'])
 
-            for item in sorted(b_karma_c):
-                t = (t+1)%2
-                f.write(karma_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],item,cListName[item],item,karma_chef[item][u'cost'],karma_chef[item][u'note']))
-                buttonList.append(item)
-                kt += int(math.ceil(buy[item]/25.0)*karma_chef[item][u'cost'])
+        for item in sorted(b_karma_c):
+            t = (t+1)%2
+            page += karma_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],item,cListName[item],item,karma_chef[item][u'cost'],karma_chef[item][u'note'])
+            buttonList.append(item)
+            kt += int(math.ceil(buy[item]/25.0)*karma_chef[item][u'cost'])
 
-            for item in sorted(b_vendor):
-                t = (t+1)%2
-                f.write((u"<div class=\"s%i\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><span class=\"quantity\">%i</span> <span class=\"%s\">%s</span> (%4s %s from %s)</div>\n")%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']),localText.valuePer,localText.method[0]))
+        for item in sorted(b_vendor):
+            t = (t+1)%2
+            page += (u"<div class=\"s%i\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><span class=\"quantity\">%i</span> <span class=\"%s\">%s</span> (%4s %s from %s)</div>\n")%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']),localText.valuePer,localText.method[0])
 
-        if recipebuy:
-            f.write(u"<h2>%s</h2>\n"%localText.bRecipes)
-            for item in recipebuy:
-                t = (t+1)%2
-                if karma_recipe[item]['cost']:
-                    f.write((u"<div class=\"s%d\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><button title=\""+localText.toggle+u"\" class=\"arrow %s\" id=\"%d\">%s</button><div class=\"lsbutton\" id=\"1%d\">%i <span class=\"karmaIcon\"></span>, %s</div></div>\n")%(t,cList[item]['icon'],cList[item]['rarity'],item,cListName[item],item,karma_recipe[item]['cost'],karma_recipe[item]['note']))
-                else:
-                    f.write((u"<div class=\"s%d\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><button title=\""+localText.toggle+u"\" class=\"arrow %s\" id=\"%d\">%s</button><div class=\"lsbutton\" id=\"1%d\">%s</div></div>\n")%(t,cList[item]['icon'],cList[item]['rarity'],item,cListName[item],item,karma_recipe[item]['note']))
-                buttonList.append(item)
-                kt += int(karma_recipe[item][u'cost'])
-        if kt:
-            f.write(u'<br />\nTotal <span class=\"karmaIcon\"></span>: '+str(kt)+u'<br />\n')
-        if b_common or b_fine or b_rare or b_gem or b_holiday or b_food:
-            f.write(u'<h2>%s</h2>\n'%localText.collectibles)
-            for item in sorted(b_common):
-                t = (t+1)%2
-                f.write(collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost'])))
-            for item in sorted(b_fine):
-                t = (t+1)%2
-                f.write(collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost'])))
-            for item in sorted(b_rare):
-                t = (t+1)%2
-                f.write(collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost'])))
-            for item in sorted(b_gem):
-                t = (t+1)%2
-                f.write(collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost'])))
-            for item in sorted(b_holiday):
-                t = (t+1)%2
-                f.write(collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost'])))
-            for item in sorted(b_food):
-                t = (t+1)%2
-                f.write(collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost'])))
-
-        if b_mix:
-            f.write(u'<h2>%s</h2>\n'%localText.mixedTP)
-            for item in sorted(b_mix):
-                t = (t+1)%2
-                f.write(collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost'])))
-
-        f.write(u"<br />\n<br />\n<h2>%s</h2>\n"%localText.make)
-        f.write(u"<button title=\""+localText.toggle+u"\" class =\"info\" id=\"show_all\">%s</button><br />"%localText.expand)
-        f.write(u"<button title=\""+localText.toggle+u"\" class =\"info\" id=\"hide_all\">%s</button>"%localText.collapse)
-        rt = 0
-        # TODO if tier 475 exists, swap items from 475>425>450 so that price order is correct for people that finish early
-        for tier in mTiers:
-            if tierbuy and tier in [0,75,150,225,300]:
-                tt = 0
-                tc = tier+75
-                if tier == 300:
-                    tc += 25
-                f.write((u"<br /><br /><h4>%s:<button title=\""+localText.toggle+u"\" class =\"info\" id=\""+str(tier)+u"tier\">%s</button></h4>\n<div class=\"lsbutton\" id=\"1"+str(tier)+u"tier\">")%((localText.tier%(tier/75+1,tier,tc)),localText.buyList%(tier/75+1)))
-                f.write(u"<h5>%s</h5>"%localText.blNotice)
-                for item in sorted(tierbuy[tier]):
-                    t = (t+1)%2
-                    f.write((u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url("+cList[item][u'icon']+u");\"></span><span class=\"quantity\">%i</span> <span class=\"%s\">%s</span> (%4s "+localText.valuePer+u")</div>\n")%(tierbuy[tier][item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost'])))
-                    tt += tierbuy[tier][item]*cList[item][u'cost']
-                buttonList.append(str(tier)+u'tier')
-                rt += tt
-                totals[filename.split('.')[0]][tier] = tt
-                f.write(u"</div><h4>%s</h4>\n"%(localText.costRT%(mFormat(tt),mFormat(rt))))        
-            f.write((u"<br />\n<h3>%s:%3i</h3>\n")%(localText.level,tier))
-            if pmake[tier]:
-                for item in sorted(pmake[tier]):
-                    t = (t+1)%2
-                    f.write(u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span> (From %i tier) </div>\n"%(pmake[tier][item],cList[item][u'rarity'],cListName[item],tier-25))
-            for item in sorted(make[tier], key=make[tier].get,reverse=True):
-                if cList[item][u'type'] == u'Refinement':
-                    t = (t+1)%2
-                    if item == 19679: # Bronze Ingot
-                        f.write((u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span> (%s)</div>\n")%(make[tier][item],cList[item][u'rarity'],cListName[item],localText.bNote))
-                    else:
-                        f.write(u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
-            for item in sorted(make[tier], key=make[tier].get,reverse=True):
-                if cList[item][u'type'] in non_item and not cList[item][u'type'] == u'Refinement':
-                    t = (t+1)%2
-                    if item in [13063,  13189,  13207,  13219,  13045,  13022,  13075,  13177,  13096,  13033]: # Sole
-                        f.write((u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span> (%s)</div>\n")%(make[tier][item]/2,cList[item][u'rarity'],cListName[item],localText.sNote))
-                    else:
-                        f.write(u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
-
-            index = 0
-            if tier == 425:
-                for item in sorted(make[tier]):
-                    index = cList[item][u'tier'].index(400)
-                    if cList[item][u'discover'][index] == 1 and not cList[item][u'rarity'] == u'Exotic':
-                        cList[item][u'discover'][index] = 0
-                        if make[tier][item] > 1:
-                            make[tier][item] -= 1
-                        else:
-                            del(make[tier][item])
-                        t = (t+1)%2
-                        tstr = "<div class=\"sbutton\" id=\"1"+str(item)+str(tier)+u"\">"
-                        for s in cList[item][u'recipe'][index]:
-                            tstr += "\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u'\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][index][s])+u")"
-                        tstr += "</div><br />"
-                        f.write(u"<div class=\"s"+str(t)+u"\">"+localText.discover+u": <button class=\"arrow "+cList[item][u'rarity']+u'\" title=\"'+localText.toggle+u'\" id=\"'+str(item)+str(tier)+u'\">'+cListName[item]+u"</button> "+tstr+u"\n</div>\n")
-                        buttonList.append(str(item)+str(tier))
-                for item in sorted(make[tier]):
-                    if not cList[item][u'type'] in non_item and not cList[item][u'rarity'] == u'Exotic':
-                        t = (t+1)%2
-                        f.write(u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
-                for item in sorted(make[tier]):
-                    index = cList[item][u'tier'].index(400)
-                    if cList[item][u'discover'][index] == 1 and cList[item][u'rarity'] == u'Exotic':
-                        cList[item][u'discover'][index] = 0
-                        if make[tier][item] > 1:
-                            make[tier][item] -= 1
-                        else:
-                            del(make[tier][item])
-                        t = (t+1)%2
-                        tstr = "<div class=\"sbutton\" id=\"1"+str(item)+str(tier)+u"\">"
-                        if craftexo:
-                            inde = 400
-                        else:
-                            inde = tier
-                        for s in cList[item][u'recipe'][index]:
-                            tstr += "\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u'\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][index][s])+u")"
-                        tstr += "</div><br />"
-                        f.write(u"<div class=\"s"+str(t)+u"\">"+localText.discover+u": <button class=\"arrow "+cList[item][u'rarity']+u'\" title=\"'+localText.toggle+u'\" id=\"'+str(item)+str(tier)+u'\">'+cListName[item]+u"</button> "+tstr+u"\n</div>\n")
-                        buttonList.append(str(item)+str(tier))
-                for item in sorted(make[tier]):
-                    if not cList[item][u'type'] in non_item and cList[item][u'rarity'] == u'Exotic':
-                        t = (t+1)%2
-                        f.write(u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
+    if recipebuy:
+        page += u"<h2>%s</h2>\n"%localText.bRecipes
+        for item in recipebuy:
+            t = (t+1)%2
+            if karma_recipe[item]['cost']:
+                page += (u"<div class=\"s%d\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><button title=\""+localText.toggle+u"\" class=\"arrow %s\" id=\"%d\">%s</button><div class=\"lsbutton\" id=\"1%d\">%i <span class=\"karmaIcon\"></span>, %s</div></div>\n")%(t,cList[item]['icon'],cList[item]['rarity'],item,cListName[item],item,karma_recipe[item]['cost'],karma_recipe[item]['note'])
             else:
-                for item in sorted(make[tier]):
-                    if craftexo:
-                        index = cList[item][u'tier'].index(400)
+                page += (u"<div class=\"s%d\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><button title=\""+localText.toggle+u"\" class=\"arrow %s\" id=\"%d\">%s</button><div class=\"lsbutton\" id=\"1%d\">%s</div></div>\n")%(t,cList[item]['icon'],cList[item]['rarity'],item,cListName[item],item,karma_recipe[item]['note'])
+            buttonList.append(item)
+            kt += int(karma_recipe[item][u'cost'])
+    if kt:
+        page += u'<br />\nTotal <span class=\"karmaIcon\"></span>: '+str(kt)+u'<br />\n'
+    if b_common or b_fine or b_rare or b_gem or b_holiday or b_food:
+        page += u'<h2>%s</h2>\n'%localText.collectibles
+        for item in sorted(b_common):
+            t = (t+1)%2
+            page += collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']))
+        for item in sorted(b_fine):
+            t = (t+1)%2
+            page += collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']))
+        for item in sorted(b_rare):
+            t = (t+1)%2
+            page += collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']))
+        for item in sorted(b_gem):
+            t = (t+1)%2
+            page += collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']))
+        for item in sorted(b_holiday):
+            t = (t+1)%2
+            page += collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']))
+        for item in sorted(b_food):
+            t = (t+1)%2
+            page += collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']))
+
+    if b_mix:
+        page += u'<h2>%s</h2>\n'%localText.mixedTP
+        for item in sorted(b_mix):
+            t = (t+1)%2
+            page += collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']))
+
+    page += u"<br />\n<br />\n<h2>%s</h2>\n"%localText.make
+    page += u"<button title=\""+localText.toggle+u"\" class =\"info\" id=\"show_all\">%s</button><br />"%localText.expand
+    page += u"<button title=\""+localText.toggle+u"\" class =\"info\" id=\"hide_all\">%s</button>"%localText.collapse
+    rt = 0
+    # TODO if tier 475 exists, swap items from 475>425>450 so that price order is correct for people that finish early
+    for tier in mTiers:
+        if tierbuy and tier in [0,75,150,225,300]:
+            tt = 0
+            tc = tier+75
+            if tier == 300:
+                tc += 25
+            page += (u"<br /><br /><h4>%s:<button title=\""+localText.toggle+u"\" class =\"info\" id=\""+str(tier)+u"tier\">%s</button></h4>\n<div class=\"lsbutton\" id=\"1"+str(tier)+u"tier\">")%((localText.tier%(tier/75+1,tier,tc)),localText.buyList%(tier/75+1))
+            page += u"<h5>%s</h5>"%localText.blNotice
+            for item in sorted(tierbuy[tier]):
+                t = (t+1)%2
+                page += (u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url("+cList[item][u'icon']+u");\"></span><span class=\"quantity\">%i</span> <span class=\"%s\">%s</span> (%4s "+localText.valuePer+u")</div>\n")%(tierbuy[tier][item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']))
+                tt += tierbuy[tier][item]*cList[item][u'cost']
+            buttonList.append(str(tier)+u'tier')
+            rt += tt
+            totals[filename.split('.')[0]][tier] = tt
+            page += u"</div><h4>%s</h4>\n"%(localText.costRT%(mFormat(tt),mFormat(rt)))        
+        page += (u"<br />\n<h3>%s:%3i</h3>\n")%(localText.level,tier)
+        if pmake[tier]:
+            for item in sorted(pmake[tier]):
+                t = (t+1)%2
+                page += u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span> (From %i tier) </div>\n"%(pmake[tier][item],cList[item][u'rarity'],cListName[item],tier-25)
+        for item in sorted(make[tier], key=make[tier].get,reverse=True):
+            if cList[item][u'type'] == u'Refinement':
+                t = (t+1)%2
+                if item == 19679: # Bronze Ingot
+                    page += (u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span> (%s)</div>\n")%(make[tier][item],cList[item][u'rarity'],cListName[item],localText.bNote)
+                else:
+                    page += u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item])
+        for item in sorted(make[tier], key=make[tier].get,reverse=True):
+            if cList[item][u'type'] in non_item and not cList[item][u'type'] == u'Refinement':
+                t = (t+1)%2
+                if item in [13063,  13189,  13207,  13219,  13045,  13022,  13075,  13177,  13096,  13033]: # Sole
+                    page += (u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span> (%s)</div>\n")%(make[tier][item]/2,cList[item][u'rarity'],cListName[item],localText.sNote)
+                else:
+                    page += u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item])
+
+        index = 0
+        if tier == 425:
+            for item in sorted(make[tier]):
+                index = cList[item][u'tier'].index(400)
+                if cList[item][u'discover'][index] == 1 and not cList[item][u'rarity'] == u'Exotic':
+                    cList[item][u'discover'][index] = 0
+                    if make[tier][item] > 1:
+                        make[tier][item] -= 1
                     else:
-                        index = cList[item][u'tier'].index(tier)
-                    if cList[item][u'discover'][index] == 1:
-                        cList[item][u'discover'][index] = 0
-                        if make[tier][item] > 1:
-                            make[tier][item] -= 1
-                        else:
-                            del(make[tier][item])
-                        t = (t+1)%2
-                        tstr = "<div class=\"sbutton\" id=\"1"+str(item)+str(tier)+u"\">"
-                        for s in cList[item][u'recipe'][index]:
-                            tstr += "\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u'\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][index][s])+u")"
-                        tstr += "</div><br />"
-                        f.write(u"<div class=\"s"+str(t)+u"\">"+localText.discover+u": <button class=\"arrow "+cList[item][u'rarity']+u'\" title=\"'+localText.toggle+u'\" id=\"'+str(item)+str(tier)+u'\">'+cListName[item]+u"</button> "+tstr+u"\n</div>\n")
-                        buttonList.append(str(item)+str(tier))
-                for item in sorted(make[tier]):
-                    if not cList[item][u'type'] in non_item:
-                        t = (t+1)%2
-                        f.write(u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
-        f.write(u'<br />\n<h3>%s:%i</h3>\n'%(localText.level,tier+25))
-        t = (t+1)%2
-        f.write(u"<div class=\"s"+str(t)+u"\">%s</div>\n"%localText.finish)
-        # adword
-        f.write(u'<br /><div style="display:block;text-align:Right;"> \
-                \n<script type="text/javascript"><!-- \
-                \ngoogle_ad_client = "ca-pub-6865907345688710"; \
-                \n/* Tail ad */ \
-                \ngoogle_ad_slot = "9889445788"; \
-                \ngoogle_ad_width = 336; \
-                \ngoogle_ad_height = 280; \
-                \n//--> \
-                \n</script> \
-                \n<script type="text/javascript" \
-                \nsrc="http://pagead2.googlesyndication.com/pagead/show_ads.js"> \
-                \n</script> \
-                \n</div>\n')
-        f.write(u'</section>\n')
-        f.write('%s\n<script type="text/javascript">\n'%localText.cright)
-        for item in buttonList:
-            f.write(u"$(\"#"+str(item)+u"\").click(function () {\n\t$(\"#1"+str(item)+u"\").toggle();});\n")
-        f.write(u"$(\".sbutton\").hide();\n")
-        f.write(u"$(\".lsbutton\").hide();\n")
-        f.write(u"$(\"#show_all\").click(function () {$(\".sbutton\").show();")
-        f.write(u"});\n$(\"#hide_all\").click(function () {$(\".sbutton\").hide();")
-        f.write(u'});\n</script>\n')
-        f.write(u'</body>\n')
-        f.write(u'</html>\n')
+                        del(make[tier][item])
+                    t = (t+1)%2
+                    tstr = "<div class=\"sbutton\" id=\"1"+str(item)+str(tier)+u"\">"
+                    for s in cList[item][u'recipe'][index]:
+                        tstr += "\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u'\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][index][s])+u")"
+                    tstr += "</div><br />"
+                    page += u"<div class=\"s"+str(t)+u"\">"+localText.discover+u": <button class=\"arrow "+cList[item][u'rarity']+u'\" title=\"'+localText.toggle+u'\" id=\"'+str(item)+str(tier)+u'\">'+cListName[item]+u"</button> "+tstr+u"\n</div>\n"
+                    buttonList.append(str(item)+str(tier))
+            for item in sorted(make[tier]):
+                if not cList[item][u'type'] in non_item and not cList[item][u'rarity'] == u'Exotic':
+                    t = (t+1)%2
+                    page += u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item])
+            for item in sorted(make[tier]):
+                index = cList[item][u'tier'].index(400)
+                if cList[item][u'discover'][index] == 1 and cList[item][u'rarity'] == u'Exotic':
+                    cList[item][u'discover'][index] = 0
+                    if make[tier][item] > 1:
+                        make[tier][item] -= 1
+                    else:
+                        del(make[tier][item])
+                    t = (t+1)%2
+                    tstr = "<div class=\"sbutton\" id=\"1"+str(item)+str(tier)+u"\">"
+                    if craftexo:
+                        inde = 400
+                    else:
+                        inde = tier
+                    for s in cList[item][u'recipe'][index]:
+                        tstr += "\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u'\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][index][s])+u")"
+                    tstr += "</div><br />"
+                    page += u"<div class=\"s"+str(t)+u"\">"+localText.discover+u": <button class=\"arrow "+cList[item][u'rarity']+u'\" title=\"'+localText.toggle+u'\" id=\"'+str(item)+str(tier)+u'\">'+cListName[item]+u"</button> "+tstr+u"\n</div>\n"
+                    buttonList.append(str(item)+str(tier))
+            for item in sorted(make[tier]):
+                if not cList[item][u'type'] in non_item and cList[item][u'rarity'] == u'Exotic':
+                    t = (t+1)%2
+                    page += u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item])
+        else:
+            for item in sorted(make[tier]):
+                if craftexo:
+                    index = cList[item][u'tier'].index(400)
+                else:
+                    index = cList[item][u'tier'].index(tier)
+                if cList[item][u'discover'][index] == 1:
+                    cList[item][u'discover'][index] = 0
+                    if make[tier][item] > 1:
+                        make[tier][item] -= 1
+                    else:
+                        del(make[tier][item])
+                    t = (t+1)%2
+                    tstr = "<div class=\"sbutton\" id=\"1"+str(item)+str(tier)+u"\">"
+                    for s in cList[item][u'recipe'][index]:
+                        tstr += "\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u'\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][index][s])+u")"
+                    tstr += "</div><br />"
+                    page += u"<div class=\"s"+str(t)+u"\">"+localText.discover+u": <button class=\"arrow "+cList[item][u'rarity']+u'\" title=\"'+localText.toggle+u'\" id=\"'+str(item)+str(tier)+u'\">'+cListName[item]+u"</button> "+tstr+u"\n</div>\n"
+                    buttonList.append(str(item)+str(tier))
+            for item in sorted(make[tier]):
+                if not cList[item][u'type'] in non_item:
+                    t = (t+1)%2
+                    page += u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item])
+    page += u'<br />\n<h3>%s:%i</h3>\n'%(localText.level,tier+25)
+    t = (t+1)%2
+    page += u"<div class=\"s"+str(t)+u"\">%s</div>\n"%localText.finish
+    # adword
+    page += u'<br /><div style="display:block;text-align:Right;"> \
+            \n<script type="text/javascript"><!-- \
+            \ngoogle_ad_client = "ca-pub-6865907345688710"; \
+            \n/* Tail ad */ \
+            \ngoogle_ad_slot = "9889445788"; \
+            \ngoogle_ad_width = 336; \
+            \ngoogle_ad_height = 280; \
+            \n//--> \
+            \n</script> \
+            \n<script type="text/javascript" \
+            \nsrc="http://pagead2.googlesyndication.com/pagead/show_ads.js"> \
+            \n</script> \
+            \n</div>\n'
+    page += u'</section>\n'
+    page += u'%s\n<script type="text/javascript">\n'%localText.cright
+    for item in buttonList:
+        page += u"$(\"#"+str(item)+u"\").click(function () {\n\t$(\"#1"+str(item)+u"\").toggle();});\n"
+    page += u"$(\".sbutton\").hide();\n"
+    page += u"$(\".lsbutton\").hide();\n"
+    page += u"$(\"#show_all\").click(function () {$(\".sbutton\").show();"
+    page += u"});\n$(\"#hide_all\").click(function () {$(\".sbutton\").hide();"
+    page += u'});\n</script>\n'
+    page += u'</body>\n'
+    page += u'</html>\n'
+
+    with codecs.open(localText.path+filename, 'wb', encoding='utf-8') as f:
+        f.write(page)
+
     return totals
 
 def maketotals(totals, mytime, localText):
