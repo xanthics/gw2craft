@@ -28,7 +28,7 @@ Note: Requires Python 2.7.x
 import urllib, json, math, codecs
 from multiprocessing import Process, Queue
 
-API_ROOT = "https://api.guildwars2.com/v1/"
+API_ROOT = u"https://api.guildwars2.com/v1/"
 
 # Helper Function
 def recipelistWorker(items, out_q):
@@ -36,16 +36,16 @@ def recipelistWorker(items, out_q):
 
 	for index, i in enumerate(items, 1):
 		print index, len(items)
-		item = _api_call('recipe_details.json?recipe_id=%d' % i)
+		item = _api_call(u'recipe_details.json?recipe_id=%d' % i)
 		outdict[i] = item
 
 	out_q.put(outdict)
 
 # Get and return all available recipes from the API
 def get_recipes():
-	temp = _api_call('recipes.json')
+	temp = _api_call(u'recipes.json')
 	out_q = Queue()
-	lister = temp['recipes']
+	lister = temp[u'recipes']
 	nprocs = len(lister)/10
 	chunksize = int(math.ceil(len(lister) / float(nprocs)))
 	procs = []
@@ -137,19 +137,20 @@ def parse_recipes(recipes):
 								 u'flags': data[u'flags']}
 
 	for craft in crafts:
+		page = u'# -*- coding: utf-8 -*-\nrecipes = {\n'
+		for lvl in sorted(crafts[craft]):
+			page += u"\t" + lvl + u":{\n"
+			for obj in sorted(crafts[craft][lvl]):
+				mystr = u""
+				for part in sorted(crafts[craft][lvl][obj]):
+					if not part[u'item_id'] in item_ids:
+						item_ids[part[u'item_id']] = {u'type':u'Other',u'output_item_count':u'0',u'flags':[]}
+					mystr += part[u'item_id']+u":"+part[u'count'] +","
+				page += u"\t\t" + obj +u":{"+ mystr[:-1] +u"},\n"
+			page += u"\t},\n"
+		page += u"}"
 		with codecs.open(craft+".py", "wb", encoding='utf-8') as f:
-			f.write(u'# -*- coding: utf-8 -*-\nrecipes = {\n')
-			for lvl in sorted(crafts[craft]):
-				f.write(u"\t" + lvl + ":{\n")
-				for obj in sorted(crafts[craft][lvl]):
-					mystr = u""
-					for part in sorted(crafts[craft][lvl][obj]):
-						if not part[u'item_id'] in item_ids:
-							item_ids[part[u'item_id']] = {u'type':u'Other',u'output_item_count':u'0',u'flags':[]}
-						mystr += part[u'item_id']+":"+part[u'count'] +","
-					f.write(u"\t\t" + obj +u":{"+ mystr[:-1] +u"},\n" )
-				f.write(u"\t},\n")
-			f.write(u"}")
+			f.write(page)
 
 	for item in [38207, 38208, 38209, 38295, 38296, 38297]:
 		item_ids[item] = {u'type':u'Recipe',u'output_item_count':u'1',u'flags':[]}
@@ -161,13 +162,13 @@ def itemlistWorker(items, lang, out_q):
 	outdict = {}
 	for index, i in enumerate(items, 1):
 		print index, len(items), lang
-		item = _api_call('item_details.json?item_id=%s&lang=%s' % (i, lang))
+		item = _api_call(u'item_details.json?item_id=%s&lang=%s' % (i, lang))
 		outdict[i] = item
 	out_q.put(outdict)
 
 # get more information on every item the recipes use
 # Currently supported languages: en, fr, de, es
-def itemlist(item_list, lang="en"):
+def itemlist(item_list, lang=u"en"):
 	out_q = Queue()
 	lister = item_list.keys()
 	nprocs = len(lister)/10
@@ -188,35 +189,37 @@ def itemlist(item_list, lang="en"):
 	for p in procs:
 		p.join()
 
-	if lang == "en":
-		with codecs.open("items.py","wb", encoding='utf-8') as f:
-			f.write('# -*- coding: utf-8 -*-\nilist = {\n')
-			# sorted is only so we can easily spot new items with diff
-			for i in sorted(flags): # otherwise output is semi random order
-				try:
-					item_list[i][u'rarity'] = flags[i][u'rarity']
-					if "NoSell" in flags[i][u"flags"]:
-						item_list[i][u'vendor_value'] = 0
-					else:
-						item_list[i][u'vendor_value'] = int(flags[i][u'vendor_value'])
-					if item_list[i][u'flags']:
-						item_list[i][u'discover'] = 0
-					item_list[i][u'img_url'] = u'https://render.guildwars2.com/file/'+ flags[i][u'icon_file_signature'] +u'/' + flags[i][u'icon_file_id'] +u'.jpg'
-					del(item_list[i][u'flags'])
-					f.write("\t"+ str(i) +":"+ str(item_list[i])+",\n")
-				except Exception, err:
-					print 'Error: %s.\n' % str(err)
-			f.write('}')
-
-	with codecs.open("Items_%s.py" % lang,"wb", encoding='utf-8') as f:
-		f.write('# -*- coding: utf-8 -*-\nilist = {\n')
+	if lang == u"en":
+		page = u'# -*- coding: utf-8 -*-\nilist = {\n'
 		# sorted is only so we can easily spot new items with diff
 		for i in sorted(flags): # otherwise output is semi random order
 			try:
-				f.write("\t"+ str(i) +":u\""+ flags[i][u'name'].replace('"','\'') +"\",\n")
+				item_list[i][u'rarity'] = flags[i][u'rarity']
+				if u"NoSell" in flags[i][u"flags"]:
+					item_list[i][u'vendor_value'] = 0
+				else:
+					item_list[i][u'vendor_value'] = int(flags[i][u'vendor_value'])
+				if item_list[i][u'flags']:
+					item_list[i][u'discover'] = 0
+				item_list[i][u'img_url'] = u'https://render.guildwars2.com/file/'+ flags[i][u'icon_file_signature'] +u'/' + flags[i][u'icon_file_id'] +u'.jpg'
+				del(item_list[i][u'flags'])
+				page += u"\t"+ str(i) +u":"+ str(item_list[i])+",\n"
 			except Exception, err:
 				print 'Error: %s.\n' % str(err)
-		f.write('}')
+		page += u'}'
+		with codecs.open("items.py","wb", encoding='utf-8') as f:
+			f.write(page)
+
+	page = u'# -*- coding: utf-8 -*-\nilist = {\n'
+	# sorted is only so we can easily spot new items with diff
+	for i in sorted(flags): # otherwise output is semi random order
+		try:
+			page += u"\t"+ str(i) +u":u\""+ flags[i][u'name'].replace('"','\'') +"\",\n"
+		except Exception, err:
+			print 'Error: %s.\n' % str(err)
+	page += u'}'
+	with codecs.open("Items_%s.py" % lang,"wb", encoding='utf-8') as f:
+		f.write(page)
 
 def _api_call(endpoint):
 	while(1):
@@ -232,9 +235,9 @@ def main():
 	recipes = get_recipes()
 	item_list = parse_recipes(recipes)
 	itemlist(item_list)
-	itemlist(item_list, "fr")
-	itemlist(item_list, "de")
-	itemlist(item_list, "es")
+	itemlist(item_list, u"fr")
+	itemlist(item_list, u"de")
+	itemlist(item_list, u"es")
 
 # If ran directly, call main
 if __name__ == '__main__':
