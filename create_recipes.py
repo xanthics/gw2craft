@@ -95,7 +95,8 @@ def parse_recipes(recipes):
 					24915, 24916, 24917, 24919, 24920, 24921, 24922, 24923,
 					24924, 24898, 24918, 24925, 19923, 19920, 19917, 19918,
 					19922, 19921, 19919, 38162, 38166, 38167, 38434, 38432, 
-					38433]
+					38433, 19912, 19913, 19910, 19911, 19915, 19914, 19916, 
+					24543, 24496, 24544, 24497, 24545, 24498, 24499]
 
 
 
@@ -119,7 +120,7 @@ def parse_recipes(recipes):
 		ingredient_set = set(int(i[u'item_id']) for i in data[u'ingredients'])
 
 		# We don't want cap level recipes or recipes that use items the player can't buy off the tp or make
-		if min_rating == u'500' or (min_rating == u'400' and not set(data[u'disciplines']).intersection( set([u'Weaponsmith', u'Huntsman', u'Artificer']) )) or set(bad_karma).intersection(set(ingredient_set)):
+		if min_rating == u'500' or (min_rating == u'400' and u'Chef' in data[u'disciplines']) or set(bad_karma).intersection(set(ingredient_set)):
 			continue
 			
 		for it in data[u'disciplines']:

@@ -204,6 +204,7 @@ def appendCosts():
 	cList[19794][u'cost'] = 24 # Spool of Cotton Thread
 	cList[19793][u'cost'] = 32 # Spool of Linen Thread
 	cList[19791][u'cost'] = 48 # Spool of Silk Thread
+	cList[19790][u'cost'] = 64 # Spool of Gossamer Thread
 	cList[19704][u'cost'] = 8 # Lump of Tin
 	cList[19750][u'cost'] = 16 # Lump of Coal
 	cList[19924][u'cost'] = 48 # Lump of Primordium
@@ -267,7 +268,7 @@ def xpgain(level,typ,minlvl):
 		mult = 1.85
 	# xp_gain(N) = xp_req(N+1) * multiplier * (1.0 - (N - N_min) / span)
 	gain = xpreq(level+1) * mult * (1.0 - (level - minlvl) / span)
-	if gain < 0.0 or level - minlvl >= span:
+	if gain < 0.0 or level - minlvl >= span or (typ == 3 and level - minlvl > 35):
 		return 0.0
 	return math.ceil(gain)
 
@@ -377,7 +378,9 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level):
 	treco = 0 # total recovery
 
 	if craftexo:
-	# start at last bucket(375) and fill towards 0 bucket
+		for i in range(0,400,25):
+			craftcount[i][u'current_xp'] = xp_to_level[i+25]
+
 		if 475 in tiers:
 			tiers = [425,450,475,400]
 		for tier in tiers:
@@ -394,8 +397,14 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level):
 				treco += cList[bucket[bkey[0]][u'item_id']][u'w'] * int(cList[bucket[bkey[0]][u'item_id']][u'output_item_count'])
 				sell[bucket[bkey[0]][u'item_id']] += int(cList[bucket[bkey[0]][u'item_id']][u'output_item_count'])
 				sole = 0
+				ttier = tier
 				recalc = {tier:0} # always recalc the tier we are on
 				for item in bucket[bkey[0]][u'make']:
+					val = 4 if cList[item][u'rarity'] == u'Exotic' else 3
+					if val == 3 and tier > 425:
+						ttier = 425
+					else:
+						ttier = tier
 					index = 0
 					if tier in cList[item][u'tier']:
 						index = cList[item][u'tier'].index(tier)
@@ -404,11 +413,11 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level):
 							index += 1
 					if not cList[item][u'type'] in non_item and not cList[item][u'discover'][index]:
 						cList[item][u'discover'][index] = 1
-						craftcount[tier][u'discovery'].append((rarityNum(cList[item][u'rarity']),4 if cList[item][u'rarity'] == u'Exotic' else 3))
-						make[tier][item] += 1
+						craftcount[ttier][u'discovery'].append((rarityNum(cList[item][u'rarity']),val))
+						make[ttier][item] += 1
 					elif not cList[item][u'type'] in non_item:
-						craftcount[tier][u'item'].append((rarityNum(cList[item][u'rarity']),4 if cList[item][u'rarity'] == u'Exotic' else 3))
-						make[tier][item] += 1
+						craftcount[ttier][u'item'].append((rarityNum(cList[item][u'rarity']),val))
+						make[ttier][item] += 1
 					elif cList[item][u'type'] == u'Refinement':
 						if item == 19679: # Bronze Ingot
 							craftcount[int(cList[item][u'tier'][index])][u'refine'] += 0.2
@@ -772,13 +781,27 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 					19903:{u'note':localText.mcov,u'cost':672}, # Valkyrie Mithril Imbued Inscription
 					19901:{u'note':localText.mcov,u'cost':672}, # Rampager's Mithril Imbued Inscription
 					19902:{u'note':localText.mcov,u'cost':672}, # Knight's Mithril Imbued Inscription
-					19923:{u'note':localText.mcov,u'cost':896},
+					19923:{u'note':localText.mcov,u'cost':896}, # inscr
 					19920:{u'note':localText.mcov,u'cost':896},
 					19917:{u'note':localText.mcov,u'cost':896},
 					19918:{u'note':localText.mcov,u'cost':896},
 					19919:{u'note':localText.mcov,u'cost':896},
 					19922:{u'note':localText.mcov,u'cost':896},
 					19921:{u'note':localText.mcov,u'cost':896},
+					19912:{u'note':localText.mcov,u'cost':896}, # insig
+					19913:{u'note':localText.mcov,u'cost':896},
+					19910:{u'note':localText.mcov,u'cost':896},
+					19911:{u'note':localText.mcov,u'cost':896},
+					19915:{u'note':localText.mcov,u'cost':896},
+					19914:{u'note':localText.mcov,u'cost':896},
+					19916:{u'note':localText.mcov,u'cost':896},
+					24543:{u'note':localText.mcov,u'cost':896}, # jewel
+					24496:{u'note':localText.mcov,u'cost':896},
+					24544:{u'note':localText.mcov,u'cost':896},
+					24497:{u'note':localText.mcov,u'cost':896},
+					24545:{u'note':localText.mcov,u'cost':896},
+					24498:{u'note':localText.mcov,u'cost':896},
+					24499:{u'note':localText.mcov,u'cost':896},
 					24904:{u'note':localText.mcov,u'cost':231}, # Embellished Intricate Topaz Jewel
 					24902:{u'note':localText.mcov,u'cost':231}, # Embellished Intricate Spinel Jewel
 					24901:{u'note':localText.mcov,u'cost':231}, # Embellished Intricate Peridot Jewel
@@ -822,7 +845,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 				recipebuy.append(item)
 
 	# 'Spool of Jute Thread',u'Spool of Wool Thread',u'Spool of Cotton Thread',u'Spool of Linen Thread',u'Spool of Silk Thread',u'Lump of Tin',u'Lump of Coal',u'Lump of Primordium',u'Jar of Vinegar',u'Packet of Baking Powder',u'Jar of Vegetable Oil',u'Packet of Salt',u'Bag of Sugar',u'Jug of Water',u'Bag of Starch',u'Bag of Flour',u'Bottle of Soy Sauce',"Bottle of Rice Wine", "Minor Rune of Holding", "Rune of Holding", "Major Rune of Holding", "Greater Rune of Holding"
-	vendor = [19792,  19789,  19794,  19793,  19791,  19704,  19750,  19924,  12157,  12151,  12158,  12153,  12155,  12156,  12324,  12136,  12271,  8576,  13010,  13006,  13007,  13008]
+	vendor = [19792,  19789,  19794,  19793,  19791,  19704,  19750,  19924,  12157,  12151,  12158,  12153,  12155,  12156,  12324,  12136,  12271,  8576,  13010,  13006,  13007,  13008,  19790]
 
 	# "Jute Scrap","Bolt of Jute","Copper Ore","Copper Ingot","Bronze Ingot","Rawhide Leather Section","Stretched Rawhide Leather Square","Green Wood Log","Green Wood Plank","Wool Scrap","Bolt of Wool","Iron Ore","Silver Ore","Iron Ingot","Silver Ingot","Thin Leather Section","Cured Thin Leather Square","Soft Wood Log","Soft Wood Plank","Cotton Scrap","Bolt of Cotton","Spool of Cotton Thread","Iron Ore","Gold Ore","Gold Ingot","Steel Ingot","Coarse Leather Section","Cured Coarse Leather Square","Seasoned Wood Log","Seasoned Wood Plank","Linen Scrap","Bolt of Linen","Platinum Ore","Platinum Ingot","Darksteel Ingot","Rugged Leather Section","Cured Rugged Leather Square","Hard Wood Log","Hard Wood Plank","Silk Scrap","Bolt of Silk","Mithril Ore","Mithril Ingot","Thick Leather Section","Cured Thick Leather Square","Elder Wood Log","Elder Wood Plank", Orichalcum Ore, Ancient Wood Log
 	basic = [19718,  19720,  19697,  19680,  19679,  19719,  19738,  19723,  19710,  19739,  19740,  19699,  19703,  19683,  19687,  19728,  19733,  19726,  19713,  19741,  19742,  19794,  19699,  19698,  19682,  19688,  19730,  19734,  19727,  19714,  19743,  19744,  19702,  19686,  19681,  19731,  19736,  19724,  19711,  19748,  19747,  19700,  19684,  19729,  19735,  19722,  19709,  19701,  19725, 19685, 19712, 19732, 19737]
@@ -1275,6 +1298,8 @@ def recipeworker(cmds, cList, mytime, xp_to_level, out_q):
 def main():
 	mytime = "<span class=\"localtime\">" + datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S')+u'+00:00</span>'
 	print "Start: ", datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
+	# will hold our guide names, so no more manually creating upload list
+	guides = []
 	# Will hold level:total xp pairs (array)
 	xp_to_level = [0]
 	# populate the xp chart
@@ -1295,7 +1320,9 @@ def main():
 				  (u"cooking_karma_light.html",cooking_karma,False,False,range(0,400,25)),
 				  (u"cooking.html",Chef.recipes,False,False,range(0,400,25))])
 	rList.append([(u"jewelcraft_fast.html",Jeweler.recipes,True,False,range(0,400,25)),
-				  (u"jewelcraft.html",Jeweler.recipes,False,False,range(0,400,25))])
+				  (u"jewelcraft.html",Jeweler.recipes,False,False,range(0,400,25)),
+				  (u"jewelcraft_400.html",Jeweler.recipes,False,True,range(400,500,25)),
+				  (u"jewelcraft_450.html",Jeweler.recipes,False,True,range(400,450,25))])
 	rList.append([(u"artificing_fast.html",Artificer.recipes,True,False,range(0,400,25)),
 				  (u"artificing.html",Artificer.recipes,False,False,range(0,400,25)),
 				  (u"artificing_400.html",Artificer.recipes,False,True,range(400,500,25)),
@@ -1309,11 +1336,22 @@ def main():
 				  (u"huntsman_400.html",Huntsman.recipes,False,True,range(400,500,25)),
 				  (u"huntsman_450.html",Huntsman.recipes,False,True,range(400,450,25))])
 	rList.append([(u"armorcraft_fast.html",Armorsmith.recipes,True,False,range(0,400,25)),
-				  (u"armorcraft.html",Armorsmith.recipes,False,False,range(0,400,25))])
+				  (u"armorcraft.html",Armorsmith.recipes,False,False,range(0,400,25)),
+				  (u"armorcraft_400.html",Armorsmith.recipes,False,True,range(400,500,25)),
+				  (u"armorcraft_450.html",Armorsmith.recipes,False,True,range(400,450,25))])
 	rList.append([(u"tailor_fast.html",Tailor.recipes,True,False,range(0,400,25)),
-				  (u"tailor.html",Tailor.recipes,False,False,range(0,400,25))])
+				  (u"tailor.html",Tailor.recipes,False,False,range(0,400,25)),
+				  (u"tailor_400.html",Tailor.recipes,False,True,range(400,500,25)),
+				  (u"tailor_450.html",Tailor.recipes,False,True,range(400,450,25))])
 	rList.append([(u"leatherworking_fast.html",Leatherworker.recipes,True,False,range(0,400,25)),
-				  (u"leatherworking.html",Leatherworker.recipes,False,False,range(0,400,25))])
+				  (u"leatherworking.html",Leatherworker.recipes,False,False,range(0,400,25)),
+				  (u"leatherworking_400.html",Leatherworker.recipes,False,True,range(400,500,25)),
+				  (u"leatherworking_450.html",Leatherworker.recipes,False,True,range(400,450,25))])
+
+	for a in rList:
+		for b in a:
+			guides.append(b[0])
+	guides.append(u"total.html")
 
 	nprocs = len(rList)
 
@@ -1344,16 +1382,7 @@ def main():
 	myFtp = FTP(ftp_url)
 	myFtp.login(ftp_user,ftp_pass)
 	for lang in ['',u'de/',u'fr/',u'es/']:
-		for item in [u"cooking_fast.html", u"cooking_karma_fast.html", u"cooking_karma_fast_light.html",
-					 u"cooking.html", u"cooking_karma.html", u"cooking_karma_light.html",
-					 u"leatherworking_fast.html", u"leatherworking.html",# u"leatherworking_craft_all.html",
-					 u"tailor_fast.html", u"tailor.html",# u"tailor_craft_all.html",
-					 u"artificing_fast.html", u"artificing.html", u"artificing_400.html", u"artificing_450.html",
-					 u"jewelcraft_fast.html", u"jewelcraft.html",# u"jewelcraft_craft_all.html",
-					 u"weaponcraft_fast.html", u"weaponcraft.html", u"weaponcraft_400.html", u"weaponcraft_450.html",
-					 u"huntsman_fast.html", u"huntsman.html", u"huntsman_400.html", u"huntsman_450.html",
-					 u"armorcraft_fast.html", u"armorcraft.html",# u"armorcraft_craft_all.html",
-					 u"total.html"]:
+		for item in guides:
 			with codecs.open(lang+item,u'rb') as f:
 				myFtp.storbinary(u'STOR /gw2crafts.net/'+lang+item,f)
 			os.remove(lang+item)
