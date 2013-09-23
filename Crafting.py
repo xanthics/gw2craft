@@ -268,7 +268,7 @@ def xpgain(level,typ,minlvl):
 		mult = 1.85
 	# xp_gain(N) = xp_req(N+1) * multiplier * (1.0 - (N - N_min) / span)
 	gain = xpreq(level+1) * mult * (1.0 - (level - minlvl) / span)
-	if gain < 0.0 or level - minlvl >= span or (typ == 3 and level - minlvl > 35):
+	if gain < 0.0 or level - minlvl >= span:
 		return 0.0
 	return math.ceil(gain)
 
@@ -289,11 +289,21 @@ def compute_level(_xp, craftlist, tlvl, xp_to_level):
 		_xp += int(i*xpgain(level,2,tlvl))
 		while xp_to_level[level+1] < _xp:
 			level += 1
-	for i,d in craftlist[u'discovery']:
+	# Non exotic weapon/armor crafts
+	for i,d in (x for x in craftlist[u'discovery'] if not x[1] == 4):
 		_xp += int((i+1)*xpgain(level,d,tlvl))
 		while xp_to_level[level+1] < _xp:
 			level += 1
-	for i,d in craftlist[u'item']:
+	for i,d in (x for x in craftlist[u'item'] if not x[1] == 4):
+		_xp += int(i*xpgain(level,d,tlvl))
+		while xp_to_level[level+1] < _xp:
+			level += 1
+	# Exotic weapon/armor crafts
+	for i,d in (x for x in craftlist[u'discovery'] if x[1] == 4):
+		_xp += int((i+1)*xpgain(level,d,tlvl))
+		while xp_to_level[level+1] < _xp:
+			level += 1
+	for i,d in (x for x in craftlist[u'item'] if x[1] == 4):
 		_xp += int(i*xpgain(level,d,tlvl))
 		while xp_to_level[level+1] < _xp:
 			level += 1
@@ -320,7 +330,7 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level):
 	if 19679 in c_recipes[0]:
 		c_recipes[0][19679][19697] = 2
 
-	rsps = dict([(38166, 38208), (38167, 38209), (38434, 38297), (38432, 38296), (38433, 38295)]) # (38162, 38207), gos insc, after ascended armor
+	rsps = dict([(38166, 38208), (38167, 38209), (38434, 38297), (38432, 38296), (38433, 38295), (38162, 38207)])
 	craftcount = {} # Used to track current xp per tier
 	make = {} # make list per tier
 	pmake = {} # make list of "prior tier" items per tier
@@ -383,6 +393,7 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level):
 
 		if 475 in tiers:
 			tiers = [425,450,475,400]
+
 		for tier in tiers:
 			bucket = {}
 			bkey = []
@@ -391,7 +402,6 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level):
 				# We still want to compute every make on fast guides for the 375-400 range
 				bucket = makeQueuecraft(c_recipes[400], cList,craftcount,tier,xp_to_level,craftexo)
 				bkey = sorted(bucket, reverse=True)
-
 				
 				tcost += bucket[bkey[0]][u'cost']
 				treco += cList[bucket[bkey[0]][u'item_id']][u'w'] * int(cList[bucket[bkey[0]][u'item_id']][u'output_item_count'])
@@ -615,9 +625,17 @@ def makeQueuecraft(recipes,items,craftcount,tier,xp_to_level,craftexo):
 	buy = []
 	non_item = [u'Refinement', u'Insignia', u'Inscription', u'Component']
 
+	level = 0
+	while xp_to_level[int(level)] < craftcount[int(tier)][u'current_xp']:
+		level += 1
 	for recipe in recipes.keys():
+		index = 0
+		for i in range(len(items[recipe][u'tier'])):
+			if items[recipe][u'tier'][i] == int(tier):
+				index = i
+				break
 		# swap which line is commented if you want guides that include "make 83 epaulets" for 25 copper savings
-		if not items[recipe][u'type'] in non_item:# and not (tier == 425 and (items[recipe][u'type'] == u'UpgradeComponent' or not items[recipe][u'rarity'] == u'Exotic')):
+		if not items[recipe][u'type'] in non_item and xp_calc(0,0,1,0,rarityNum(items[recipe][u'rarity']),int(items[recipe][u'tier'][index]),level,4 if items[recipe][u'rarity'] == u'Exotic' else 3):
 #		if int(items[recipe][u'tier']) > int(tier)-24:
 			cost, xptotal, make, buy = calcRecipecraft(recipe,items,craftcount,tier,1,tier,xp_to_level,craftexo)
 			# Uncomment these 3 lines and comment the 4th if you want guides that try to make the lowest total price after sellback
@@ -633,6 +651,7 @@ def makeQueuecraft(recipes,items,craftcount,tier,xp_to_level,craftexo):
 			while weight in outdict:
 				weight -= 0.0001
 			outdict[weight] = {u'item_id':recipe,u'w':xptotal,u'make':make,u'buy':buy,u'cost':cost}
+
 	return outdict
 
 # Format copper values so they are easier to read
