@@ -392,7 +392,10 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level):
 			craftcount[i][u'current_xp'] = xp_to_level[i+25]
 
 		if 475 in tiers:
-			tiers = [425,450,475,400]
+			if filename == u"jewelcraft_400.html":
+				tiers = [450,425,475,400]
+			else:
+				tiers = [425,450,475,400]
 
 		for tier in tiers:
 			bucket = {}
