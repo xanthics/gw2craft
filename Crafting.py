@@ -1318,6 +1318,12 @@ def recipeworker(cmds, cList, mytime, xp_to_level, out_q):
 	out_q.put(totals)
 
 def main():
+	if not os.path.exists("de"):
+		os.makedirs("de")
+	if not os.path.exists("es"):
+		os.makedirs("es")
+	if not os.path.exists("fr"):
+		os.makedirs("fr")
 	mytime = "<span class=\"localtime\">" + datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S')+u'+00:00</span>'
 	print "Start: ", datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
 	# will hold our guide names, so no more manually creating upload list
