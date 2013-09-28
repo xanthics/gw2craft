@@ -222,7 +222,7 @@ div.s1 {
 	background-color: rgb(185,185,185);
 	padding:6px;
 	margin: 1px
-	line-height: 1;}
+	line-height: 1px;}
 
 div.s0 {
     -moz-border-radius: 3px;
@@ -230,7 +230,7 @@ div.s0 {
 	background-color: rgb(220,220,220);
 	padding:6px;
 	margin: 1px
-	line-height: 1;}
+	line-height: 1px;}
 
 /* GW2 copyright notice Style */
 
