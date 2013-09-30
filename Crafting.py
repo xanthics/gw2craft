@@ -1226,6 +1226,12 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 
 	with codecs.open(localText.path+filename, 'wb', encoding='utf-8') as f:
 		f.write(page)
+	myFtp = FTP(ftp_url)
+	myFtp.login(ftp_user,ftp_pass)
+	with codecs.open(localText.path+filename,u'rb') as f:
+		myFtp.storbinary(u'STOR /gw2crafts.net/'+localText.path+filename,f)
+	os.remove(localText.path+filename)
+	myFtp.close()
 
 	return totals
 
@@ -1304,6 +1310,13 @@ def maketotals(totals, mytime, localText):
 
 	with codecs.open(localText.path+u'total.html', 'wb', encoding='utf-8') as f:
 		f.write(page)
+		
+	myFtp = FTP(ftp_url)
+	myFtp.login(ftp_user,ftp_pass)
+	with codecs.open(localText.path+u'total.html',u'rb') as f:
+		myFtp.storbinary(u'STOR /gw2crafts.net/'+localText.path+u'total.html',f)
+	os.remove(localText.path+u'total.html')
+	myFtp.close()
 
 # Join 2 recipe dicts
 def join(A, B):
@@ -1407,14 +1420,6 @@ def main():
 	print "End: ", datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
 	if os.isatty(sys.stdin.fileno()):
 		print "Starting upload"
-	myFtp = FTP(ftp_url)
-	myFtp.login(ftp_user,ftp_pass)
-	for lang in ['',u'de/',u'fr/',u'es/']:
-		for item in guides:
-			with codecs.open(lang+item,u'rb') as f:
-				myFtp.storbinary(u'STOR /gw2crafts.net/'+lang+item,f)
-			os.remove(lang+item)
-	myFtp.close()
 
 
 # If ran directly, call main
