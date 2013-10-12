@@ -1418,8 +1418,6 @@ def main():
 	maketotals(totals,mytime,locales)
 
 	print "End: ", datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
-	if os.isatty(sys.stdin.fileno()):
-		print "Starting upload"
 
 
 # If ran directly, call main
