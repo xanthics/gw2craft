@@ -1755,7 +1755,7 @@ ilist = {
 	12225:u"Pomme à la cannelle",
 	12226:u"Fraises et biscuits",
 	12227:u"Biscuit au sucre",
-	12228:u"Tasse de garniture pour tarte à la crème de banane",
+	12228:u"Tasse de farce pour tarte à la crème de banane",
 	12229:u"Barre chocolatée",
 	12230:u"Tarte à la crème de banane",
 	12232:u"Haricot vert",
