@@ -35,7 +35,7 @@ def recipelistWorker(items, out_q):
 	outdict = {}
 
 	for index, i in enumerate(items, 1):
-		print index, len(items)
+#		print index, len(items)
 		item = _api_call(u'recipe_details.json?recipe_id=%d' % i)
 		outdict[i] = item
 
@@ -162,7 +162,7 @@ def parse_recipes(recipes):
 def itemlistWorker(items, lang, out_q):
 	outdict = {}
 	for index, i in enumerate(items, 1):
-		print index, len(items), lang
+#		print index, len(items), lang
 		item = _api_call(u'item_details.json?item_id=%s&lang=%s' % (i, lang))
 		outdict[i] = item
 	out_q.put(outdict)
