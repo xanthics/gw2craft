@@ -98,7 +98,7 @@ h3 {
 
 body {
 	background-color: rgb(100,100,100);
-	background-image: url('sbg.gif');
+	background-image: url('/img/sbg.gif');
 	background-attachment: fixed;
 	font-family: Arial, Helvetica, sans-serif;}
 
