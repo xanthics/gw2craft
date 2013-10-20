@@ -990,7 +990,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page += u'<body>\n%s\n'%(localText.header%(filename,filename,filename))
 	page += u'<section class=\"main\">'
 	page += u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n'
-	page += u'<img src="/css/warning-icon.png" width="24" height="24" style="padding: 0 8px 0 8px; float: left;" alt="WARNING"><span style="position: relative; top: 4px;"><span style="color: red">%s</span>	%s: %s</span>\n'%(localText.warning1,localText.warning2,mytime)
+	page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">%s</span>	%s: %s</span>\n'%(localText.warning1,localText.warning2,mytime)
 	page += u'</div><br />\n'
 	# adword
 	page += u'<div style="float:right;position:absolute;right:-320px;"> \
@@ -1226,14 +1226,20 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 
 	with codecs.open(localText.path+filename, 'wb', encoding='utf-8') as f:
 		f.write(page)
-	myFtp = FTP(ftp_url)
-	myFtp.login(ftp_user,ftp_pass)
-	with codecs.open(localText.path+filename,u'rb') as f:
-		myFtp.storbinary(u'STOR /gw2crafts.net/'+localText.path+filename,f)
-	os.remove(localText.path+filename)
-	myFtp.close()
+	
+	while True:
+		try:
+			myFtp = FTP(ftp_url)
+			myFtp.login(ftp_user,ftp_pass)
+			with codecs.open(localText.path+filename,u'rb') as f:
+				myFtp.storbinary(u'STOR /gw2crafts.net/'+localText.path+filename,f)
+			os.remove(localText.path+filename)
+			myFtp.close()
 
-	return totals
+			return totals
+		except Exception, err:
+			print u'ERROR: %s.' % str(err)
+	
 
 def maketotals(totals, mytime, localText):
 	tpage1 = u""
@@ -1311,12 +1317,17 @@ def maketotals(totals, mytime, localText):
 	with codecs.open(localText.path+u'total.html', 'wb', encoding='utf-8') as f:
 		f.write(page)
 		
-	myFtp = FTP(ftp_url)
-	myFtp.login(ftp_user,ftp_pass)
-	with codecs.open(localText.path+u'total.html',u'rb') as f:
-		myFtp.storbinary(u'STOR /gw2crafts.net/'+localText.path+u'total.html',f)
-	os.remove(localText.path+u'total.html')
-	myFtp.close()
+	while True:
+		try:
+			myFtp = FTP(ftp_url)
+			myFtp.login(ftp_user,ftp_pass)
+			with codecs.open(localText.path+u'total.html',u'rb') as f:
+				myFtp.storbinary(u'STOR /gw2crafts.net/'+localText.path+u'total.html',f)
+			os.remove(localText.path+u'total.html')
+			myFtp.close()
+			return
+		except Exception, err:
+			print u'ERROR: %s.' % str(err)
 
 # Join 2 recipe dicts
 def join(A, B):
