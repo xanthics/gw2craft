@@ -53,15 +53,26 @@ span.itemIcon {
 	margin-right: 0px;
 	width: 24px;
 	height: 24px;}
-
+	
+span.warning{
+	background: url() no-repeat left bottom;
+	width: 24px;
+	height: 24px;
+	padding: 0 8px 0 8px;
+	float: left;
+	background-image: url(/img/warning-icon.gif);}
+/*
+span.warning::after  { 
+	content:"WARNING";}
+*/
 span.goldIcon{
-  background-image: url(http://wiki.guildwars2.com/images/d/d1/Gold_coin.png);}
+  background-image: url(/img/Gold_coin.gif);}
 span.silverIcon{
-  background-image: url(http://wiki.guildwars2.com/images/3/3c/Silver_coin.png);}
+  background-image: url(/img/Silver_coin.gif);}
 span.copperIcon{
-  background-image: url(http://wiki.guildwars2.com/images/e/eb/Copper_coin.png);}
+  background-image: url(/img/Copper_coin.gif);}
 span.karmaIcon{
-  background-image: url(http://wiki.guildwars2.com/images/a/af/Karma.png);}
+  background-image: url(/img/Karma.gif);}
 
 span.quantity {
 	width: 2em;
