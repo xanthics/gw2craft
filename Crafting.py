@@ -994,16 +994,14 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page += u'</div><br />\n'
 	# adword
 	page += u'<div style="float:right;position:absolute;right:-320px;"> \
-			\n<script type="text/javascript"><!-- \
-			\ngoogle_ad_client = "ca-pub-6865907345688710"; \
-			\n/* large sidebar */ \
-			\ngoogle_ad_slot = "9285292589"; \
-			\ngoogle_ad_width = 300; \
-			\ngoogle_ad_height = 600; \
-			\n//--> \
-			\n</script> \
-			\n<script type="text/javascript" \
-			\nsrc="http://pagead2.googlesyndication.com/pagead/show_ads.js"> \
+			\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
+			\n<!-- large sidebar --> \
+			\n<ins class=\"adsbygoogle\" \
+			\n     style=\"display:inline-block;width:300px;height:600px\" \
+			\n     data-ad-client=\"ca-pub-6865907345688710\" \
+			\n     data-ad-slot=\"9285292589\"></ins> \
+			\n<script> \
+			\n(adsbygoogle = window.adsbygoogle || []).push({}); \
 			\n</script> \
 			\n</div>\n'
 	page += localText.moreInfo%(u"<img src=\"/img/arrow.png\" alt=ARROW>")
@@ -1091,8 +1089,21 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page += u"<button title=\""+localText.toggle+u"\" class =\"info\" id=\"show_all\">%s</button><br />"%localText.expand
 	page += u"<button title=\""+localText.toggle+u"\" class =\"info\" id=\"hide_all\">%s</button>"%localText.collapse
 	rt = 0
-	# TODO if tier 475 exists, swap items from 475>425>450 so that price order is correct for people that finish early
 	for tier in mTiers:
+		if tier == 150:
+			# adword 2
+			page += u'<div style="float:right;position:absolute;right:-320px;"> \
+				\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
+				\n<!-- large side ad 2 --> \
+				\n<ins class=\"adsbygoogle\" \
+				\n     style=\"display:inline-block;width:300px;height:600px\" \
+				\n     data-ad-client=\"ca-pub-6865907345688710\" \
+				\n     data-ad-slot=\"4410765382\"></ins> \
+				\n<script> \
+				\n(adsbygoogle = window.adsbygoogle || []).push({}); \
+				\n</script> \
+				\n</div>\n'
+
 		if tierbuy and tier in [0,75,150,225,300]:
 			tt = 0
 			tc = tier+75
@@ -1200,16 +1211,14 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page += u"<div class=\"s"+str(t)+u"\">%s</div>\n"%localText.finish
 	# adword
 	page += u'<br /><div style="display:block;text-align:Right;"> \
-			\n<script type="text/javascript"><!-- \
-			\ngoogle_ad_client = "ca-pub-6865907345688710"; \
-			\n/* Tail ad */ \
-			\ngoogle_ad_slot = "9889445788"; \
-			\ngoogle_ad_width = 336; \
-			\ngoogle_ad_height = 280; \
-			\n//--> \
-			\n</script> \
-			\n<script type="text/javascript" \
-			\nsrc="http://pagead2.googlesyndication.com/pagead/show_ads.js"> \
+			\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
+			\n<!-- Tail ad --> \
+			\n<ins class=\"adsbygoogle\" \
+			\n     style=\"display:inline-block;width:336px;height:280px\" \
+			\n     data-ad-client=\"ca-pub-6865907345688710\" \
+			\n     data-ad-slot=\"9889445788\"></ins> \
+			\n<script> \
+			\n(adsbygoogle = window.adsbygoogle || []).push({}); \
 			\n</script> \
 			\n</div>\n'
 	page += u'</section>\n'
@@ -1264,6 +1273,18 @@ def maketotals(totals, mytime, localText):
 	page += localText.header%('total.html',u'total.html',u'total.html')
 
 	page += u"<section class=\"main\">\n<h5 style=\"text-align:center;\">"+localText.updated+u": " + mytime + u"</h5>"
+	# adword
+	page += u'<div style="float:right;position:absolute;right:-320px;"> \
+			\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
+			\n<!-- large sidebar --> \
+			\n<ins class=\"adsbygoogle\" \
+			\n     style=\"display:inline-block;width:300px;height:600px\" \
+			\n     data-ad-client=\"ca-pub-6865907345688710\" \
+			\n     data-ad-slot=\"9285292589\"></ins> \
+			\n<script> \
+			\n(adsbygoogle = window.adsbygoogle || []).push({}); \
+			\n</script> \
+			\n</div>\n'
 	page += localText.note
 	page += u'	<table>'
 	page += u'<tr><th>'+localText.craft+u'</th><th>'+localText.nGuides+u'</th><th>'+localText.fGuides+u'</th></tr>\n'
