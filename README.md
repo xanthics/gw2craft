@@ -1,7 +1,7 @@
 gw2craft
 ========
 
-Note: This readme needs to be updated, including using pypy instead of python to generate the guides and providing more information
+Note: This readme needs to be updated, including using pypy instead of python to generate the guides and providing more information.  I am currently in the process of porting the code to python3
 
 These are all the python files that generate http://gw2crafts.net
 
