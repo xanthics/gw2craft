@@ -1307,9 +1307,10 @@ def maketotals(totals, mytime, localText):
 			  (u'artificing',u'artificing_fast',u'artificing_450',u'artificing_400',localText.art),
 			  (u'huntsman',u'huntsman_fast',u'huntsman_450',u'huntsman_400',localText.hunt),
 			  (u'weaponcraft',u'weaponcraft_fast',u'weaponcraft_450',u'weaponcraft_400',localText.wc),
-			  (u'armorcraft',u'armorcraft_fast',localText.ac),
-			  (u'leatherworking',u'leatherworking_fast',localText.lw),
-			  (u'tailor',u'tailor_fast',localText.tailor)]:
+			  (u'armorcraft',u'armorcraft_fast',u'armorcraft_450',u'armorcraft_400',localText.ac),
+			  (u'leatherworking',u'leatherworking_fast',u'leatherworking_450',u'leatherworking_400',localText.lw),
+			  (u'tailor',u'tailor_fast',u'tailor_450',u'tailor_400',localText.tailor)]:
+			  
 		ind = 2
 		if len(i) == 3:
 			page += u'<tr><td>'+i[ind]+u'</td><td>'+mFormat(totals[i[0]][u'total'])+u'</td><td>'+mFormat(totals[i[1]][u'total'])+u'</td></tr>\n'

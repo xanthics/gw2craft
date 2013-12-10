@@ -1,0 +1,6 @@
+*.xml
+*.pyc
+*.html
+/ftp_info.py
+.cache/*
+.idea/*
