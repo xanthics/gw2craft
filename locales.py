@@ -256,6 +256,21 @@ header = u"""<nav>
                 <li><a href="http://gw2crafts.net/"""+path+u"""weaponcraft_450.html">450</a></li>
                 <li><a href="http://gw2crafts.net/"""+path+u"""weaponcraft_400.html">500</a></li>
             </ul>
+            <li><a href="#">"""+ac+u"""</a>
+            <ul>
+                <li><a href="http://gw2crafts.net/"""+path+u"""armorcraft_450.html">450</a></li>
+                <li><a href="http://gw2crafts.net/"""+path+u"""armorcraft_400.html">500</a></li>
+            </ul>
+            <li><a href="#">"""+lw+u"""</a>
+            <ul>
+                <li><a href="http://gw2crafts.net/"""+path+u"""leatherworking_450.html">450</a></li>
+                <li><a href="http://gw2crafts.net/"""+path+u"""leatherworking_400.html">500</a></li>
+            </ul>
+            <li><a href="#">"""+tailor+u"""</a>
+            <ul>
+                <li><a href="http://gw2crafts.net/"""+path+u"""tailor_450.html">450</a></li>
+                <li><a href="http://gw2crafts.net/"""+path+u"""tailor_400.html">500</a></li>
+            </ul>
         </ul>
         </li>
         <li><a href="http://gw2crafts.net/"""+path+u"""total.html">"""+totals+u"""</a></li>
