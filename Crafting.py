@@ -852,12 +852,12 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 					24923:{u'note':localText.mcov,u'cost':231}, # Embellished Brilliant Opal Jewel
 					24924:{u'note':localText.mcov,u'cost':231}, # Embellished Brilliant Ruby Jewel
 					24925:{u'note':localText.mcov,u'cost':231}, # Embellished Brilliant Sapphire Jewel
-					38162:{u'note':"%s (%s %s)"%(localText.rTP,mFormat(cList[38207][u'cost']),localText.valuePer),u'cost':0}, # Giver's Intricate Gossamer Insignia
-					38166:{u'note':"%s (%s %s)"%(localText.rTP,mFormat(cList[38208][u'cost']),localText.valuePer),u'cost':0}, # Giver's Embroidered Silk Insignia
-					38167:{u'note':"%s (%s %s)"%(localText.rTP,mFormat(cList[38209][u'cost']),localText.valuePer),u'cost':0}, # Giver's Embroidered Linen Insignia
-					38434:{u'note':"%s (%s %s)"%(localText.rTP,mFormat(cList[38297][u'cost']),localText.valuePer),u'cost':0}, # Giver's Orichalcum-Imbued Inscription
-					38432:{u'note':"%s (%s %s)"%(localText.rTP,mFormat(cList[38296][u'cost']),localText.valuePer),u'cost':0}, # Giver's Mithril-Imbued Inscription
-					38433:{u'note':"%s (%s %s)"%(localText.rTP,mFormat(cList[38295][u'cost']),localText.valuePer),u'cost':0}, # Giver's Darksteel-Imbued Inscription
+					38162:{u'note':"%s (%s: %s %s)"%(localText.bRecipes,localText.rTP,mFormat(cList[38207][u'cost']),localText.valuePer),u'cost':0}, # Giver's Intricate Gossamer Insignia
+					38166:{u'note':"%s (%s: %s %s)"%(localText.bRecipes,localText.rTP,mFormat(cList[38208][u'cost']),localText.valuePer),u'cost':0}, # Giver's Embroidered Silk Insignia
+					38167:{u'note':"%s (%s: %s %s)"%(localText.bRecipes,localText.rTP,mFormat(cList[38209][u'cost']),localText.valuePer),u'cost':0}, # Giver's Embroidered Linen Insignia
+					38434:{u'note':"%s (%s: %s %s)"%(localText.bRecipes,localText.rTP,mFormat(cList[38297][u'cost']),localText.valuePer),u'cost':0}, # Giver's Orichalcum-Imbued Inscription
+					38432:{u'note':"%s (%s: %s %s)"%(localText.bRecipes,localText.rTP,mFormat(cList[38296][u'cost']),localText.valuePer),u'cost':0}, # Giver's Mithril-Imbued Inscription
+					38433:{u'note':"%s (%s: %s %s)"%(localText.bRecipes,localText.rTP,mFormat(cList[38295][u'cost']),localText.valuePer),u'cost':0}, # Giver's Darksteel-Imbued Inscription
 					}
 
 	recipebuy = []
