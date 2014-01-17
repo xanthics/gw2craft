@@ -26,7 +26,7 @@ Purpose: Generates a crafting guide for all crafts in Guild Wars 2 based on curr
 Note: Requires Python 2.7.x
 '''
 
-import json, datetime, math, os, codecs, sys
+import json, datetime, math, os, codecs, sys, threading
 # so we can set custom headers
 from urllib import FancyURLopener
 from random import choice
@@ -551,9 +551,12 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level):
 	totals.update(printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_en.ilist, localen))
 	return totals	
 
+TLcache = threading.local()
+
 # given an item, determine if it is better to craft its sub items, or buy them.  return the recipe.
 # include cost for current state, and xp generated.
 def calcRecipecraft(recipe,items,craftcount,tier,count,itier,xp_to_level,craftexo):
+	global TLcache
 	level = 0
 	while xp_to_level[int(level)] < craftcount[int(tier)][u'current_xp']:
 		level += 1
@@ -598,7 +601,21 @@ def calcRecipecraft(recipe,items,craftcount,tier,count,itier,xp_to_level,craftex
 	mycost *= count
 	for item in items[recipe][u'recipe'][index]:
 		if not items[item][u'recipe'] == None:
-			tcost, txptotal, tmake, tbuy = calcRecipecraft(item,items,craftcount,items[item][u'tier'][0],items[recipe][u'recipe'][index][item]*count,int(items[recipe][u'tier'][index]),xp_to_level,craftexo)
+			# if we have seen this item before, return its cached value
+			if item in TLcache.hash and count in TLcache.hash[item]:
+				tcost = TLcache.hash[item][count]["cost"]
+				txptotal = TLcache.hash[item][count]["xptotal"]
+				tmake = TLcache.hash[item][count]["make"]
+				tbuy = TLcache.hash[item][count]["buy"]
+			else:
+				tcost, txptotal, tmake, tbuy = calcRecipecraft(item,items,craftcount,items[item][u'tier'][0],items[recipe][u'recipe'][index][item]*count,int(items[recipe][u'tier'][index]),xp_to_level,craftexo)
+				if not item in TLcache.hash:
+					TLcache.hash[item] = {}
+				TLcache.hash[item][count] = {}
+				TLcache.hash[item][count]["cost"] = tcost
+				TLcache.hash[item][count]["xptotal"] = txptotal
+				TLcache.hash[item][count]["make"] = tmake
+				TLcache.hash[item][count]["buy"] = tbuy
 
 			# Add the cost of the recipe to the inscription
 			rsps = dict([(38166, 38208), (38167, 38209), (38434, 38297), (38432, 38296), (38433, 38295)]) # (38162, 38207), gos insc, after ascended armor
@@ -621,6 +638,8 @@ def calcRecipecraft(recipe,items,craftcount,tier,count,itier,xp_to_level,craftex
 	return cost, xptotal, make, buy
 
 def makeQueuecraft(recipes,items,craftcount,tier,xp_to_level,craftexo):
+	global TLcache
+	TLcache.hash = {} # clear the item cache
 	outdict = {}
 	cost = 0
 	xptotal = 0
@@ -1235,7 +1254,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 
 	with codecs.open(localText.path+filename, 'wb', encoding='utf-8') as f:
 		f.write(page)
-	
+
 	while True:
 		try:
 			myFtp = FTP(ftp_url)
@@ -1248,7 +1267,6 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 			return totals
 		except Exception, err:
 			print u'ERROR: %s.' % str(err)
-	
 
 def maketotals(totals, mytime, localText):
 	tpage1 = u""
