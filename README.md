@@ -1,7 +1,7 @@
 gw2craft
 ========
 
-These are all the python files that generate http://gw2crafts.net
+These are all the Python files that generate http://gw2crafts.net
 
 Requires Python 2.7.x.  You will need to define a ftp_info.py file which contains 3 strings; ftp_url, ftp_user, and ftp_pass.
 
@@ -21,7 +21,7 @@ create_recipes -- creates all the secondary .py files you will need.  A recent s
 
 **Secondary .py Files:**
 
-Armorsmith, Artificer, Chef, Chef_karma, Huntsman, Jeweler, Leatherworker, Tailor -- Contain all recpes used by Crafting.py indexed by itemid(int).
+Armorsmith, Artificer, Chef, Chef_karma, Huntsman, Jeweler, Leatherworker, Tailor -- Contain all recipes used by Crafting.py indexed by itemid(int).
 
 Items_xx -- Contains itemid:name pairs for outputting item names in the correct language
 
