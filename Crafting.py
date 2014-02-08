@@ -555,7 +555,7 @@ TLcache = threading.local()
 
 # given an item, determine if it is better to craft its sub items, or buy them.  return the recipe.
 # include cost for current state, and xp generated.
-def calcRecipecraft(recipe,items,craftcount,tier,count,itier,xp_to_level,craftexo):
+def calcRecipecraft(recipe,items,craftcount,tier,itier,xp_to_level,craftexo):
 	global TLcache
 	level = 0
 	while xp_to_level[int(level)] < craftcount[int(tier)][u'current_xp']:
@@ -575,66 +575,60 @@ def calcRecipecraft(recipe,items,craftcount,tier,count,itier,xp_to_level,craftex
 	# impossible to make item at this point.
 	if int(items[recipe][u'tier'][index]) > int(itier):
 		return 9999999999, -99999999999, make, buy
-	for _i in range(0,count):
-		make.append(recipe)
+	make.append(recipe)
 	if int(items[recipe][u'tier'][index]) < int(tier) and not items[recipe][u'type'] in non_item and not craftexo:
-		xptotal = xp_calc(0,0,count,0,rarityNum(items[recipe][u'rarity']),int(items[recipe][u'tier'][index]),level,3)
+		xptotal = xp_calc(0,0,1,0,rarityNum(items[recipe][u'rarity']),int(items[recipe][u'tier'][index]),level,3)
 	elif not items[recipe][u'type'] in non_item and not items[recipe][u'discover'][index]:
-		xptotal = xp_calc(0,0,count-1,1,rarityNum(items[recipe][u'rarity']),int(items[recipe][u'tier'][index]),level,4 if craftexo and items[recipe][u'rarity'] == u'Exotic' else 3)
+		xptotal = xp_calc(0,0,0,1,rarityNum(items[recipe][u'rarity']),int(items[recipe][u'tier'][index]),level,4 if craftexo and items[recipe][u'rarity'] == u'Exotic' else 3)
 	elif not items[recipe][u'type'] in non_item:
-		xptotal = xp_calc(0,0,count,0,rarityNum(items[recipe][u'rarity']),int(items[recipe][u'tier'][index]),level,4 if craftexo and items[recipe][u'rarity'] == u'Exotic' else 3)
+		xptotal = xp_calc(0,0,1,0,rarityNum(items[recipe][u'rarity']),int(items[recipe][u'tier'][index]),level,4 if craftexo and items[recipe][u'rarity'] == u'Exotic' else 3)
 	elif items[recipe][u'type'] == u'Refinement':
 		if 19679 == recipe:
-			xptotal = math.ceil(xp_calc(count,0,0,0,1.0,int(items[recipe][u'tier'][index]),level,3)*0.2)
+			xptotal = math.ceil(xp_calc(1,0,0,0,1.0,int(items[recipe][u'tier'][index]),level,3)*0.2)
 		else:
-			xptotal = xp_calc(count,0,0,0,1.0,int(items[recipe][u'tier'][index]),level,4 if craftexo and items[recipe][u'rarity'] == u'Exotic' else 3)
+			xptotal = xp_calc(1,0,0,0,1.0,int(items[recipe][u'tier'][index]),level,4 if craftexo and items[recipe][u'rarity'] == u'Exotic' else 3)
 	else:
 		if recipe in [13063,  13189,  13207,  13219,  13045,  13022,  13075,  13177,  13096,  13033]: # Sole
-			xptotal = xp_calc(0,count,0,0,1.0,int(items[recipe][u'tier'][index]),level,4 if craftexo and items[recipe][u'rarity'] == u'Exotic' else 3)*0.5
+			xptotal = xp_calc(0,1,0,0,1.0,int(items[recipe][u'tier'][index]),level,4 if craftexo and items[recipe][u'rarity'] == u'Exotic' else 3)*0.5
 		else:
-			xptotal = xp_calc(0,count,0,0,1.0,int(items[recipe][u'tier'][index]),level,4 if craftexo and items[recipe][u'rarity'] == u'Exotic' else 3)
+			xptotal = xp_calc(0,1,0,0,1.0,int(items[recipe][u'tier'][index]),level,4 if craftexo and items[recipe][u'rarity'] == u'Exotic' else 3)
 
 	mycost = 0
 	for item in items[recipe][u'recipe'][index]:
 		mycost += items[item][u'cost']*items[recipe][u'recipe'][index][item]
 
-	mycost *= count
 	for item in items[recipe][u'recipe'][index]:
 		if not items[item][u'recipe'] == None:
 			# if we have seen this item before, return its cached value
-			if item in TLcache.hash and count in TLcache.hash[item]:
-				tcost = TLcache.hash[item][count]["cost"]
-				txptotal = TLcache.hash[item][count]["xptotal"]
-				tmake = TLcache.hash[item][count]["make"]
-				tbuy = TLcache.hash[item][count]["buy"]
+			if item in TLcache.hash:
+				tcost = TLcache.hash[item]["cost"]
+				txptotal = TLcache.hash[item]["xptotal"]
+				tmake = TLcache.hash[item]["make"]
+				tbuy = TLcache.hash[item]["buy"]
 			else:
-				tcost, txptotal, tmake, tbuy = calcRecipecraft(item,items,craftcount,items[item][u'tier'][0],items[recipe][u'recipe'][index][item]*count,int(items[recipe][u'tier'][index]),xp_to_level,craftexo)
-				if not item in TLcache.hash:
-					TLcache.hash[item] = {}
-				TLcache.hash[item][count] = {}
-				TLcache.hash[item][count]["cost"] = tcost
-				TLcache.hash[item][count]["xptotal"] = txptotal
-				TLcache.hash[item][count]["make"] = tmake
-				TLcache.hash[item][count]["buy"] = tbuy
+				tcost, txptotal, tmake, tbuy = calcRecipecraft(item,items,craftcount,items[item][u'tier'][0],int(items[recipe][u'tier'][index]),xp_to_level,craftexo)
+				TLcache.hash[item] = {}
+				TLcache.hash[item]["cost"] = tcost
+				TLcache.hash[item]["xptotal"] = txptotal
+				TLcache.hash[item]["make"] = tmake
+				TLcache.hash[item]["buy"] = tbuy
 
 			# Add the cost of the recipe to the inscription
-			rsps = dict([(38166, 38208), (38167, 38209), (38434, 38297), (38432, 38296), (38433, 38295)]) # (38162, 38207), gos insc, after ascended armor
+			rsps = dict([(38166, 38208), (38167, 38209), (38434, 38297), (38432, 38296), (38433, 38295), (38162, 38207)])
 			if item in rsps.keys() and not u'RecipeLearned' in items[item]:
 				tcost += items[rsps[item]][u'cost']
 
-			if tcost < items[item][u'cost']*items[recipe][u'recipe'][index][item]*count or float(xptotal+txptotal)/float(mycost-items[item][u'cost']*items[recipe][u'recipe'][index][item]*count+tcost) >= float(xptotal)/float(mycost):
-				xptotal += txptotal
-				cost += tcost
-				buy += tbuy
-				make += tmake
+			if tcost < items[item][u'cost'] or float(xptotal+txptotal)/float(mycost+(tcost-items[item][u'cost'])*items[recipe][u'recipe'][index][item]) >= float(xptotal)/float(mycost):
+				xptotal += txptotal*items[recipe][u'recipe'][index][item]
+				cost += tcost*items[recipe][u'recipe'][index][item]
+				buy += tbuy*items[recipe][u'recipe'][index][item]
+				make += tmake*items[recipe][u'recipe'][index][item]
 			else:
-				for _i in range(0,int(math.ceil(count*items[recipe][u'recipe'][index][item]))):
-					buy.append(item)
-				cost += items[item][u'cost']*count*items[recipe][u'recipe'][index][item]
+				buy += [item]*items[recipe][u'recipe'][index][item]
+				cost += items[item][u'cost']*items[recipe][u'recipe'][index][item]
 		else:
-			for _i in range(0,int(math.ceil(count*items[recipe][u'recipe'][index][item]))):
-				buy.append(item)
-			cost += items[item][u'cost']*count*items[recipe][u'recipe'][index][item]
+			buy += [item]*items[recipe][u'recipe'][index][item]
+			cost += items[item][u'cost']*items[recipe][u'recipe'][index][item]
 	return cost, xptotal, make, buy
 
 def makeQueuecraft(recipes,items,craftcount,tier,xp_to_level,craftexo):
@@ -659,7 +653,7 @@ def makeQueuecraft(recipes,items,craftcount,tier,xp_to_level,craftexo):
 		# swap which line is commented if you want guides that include "make 83 epaulets" for 25 copper savings
 		if not items[recipe][u'type'] in non_item and xp_calc(0,0,1,0,rarityNum(items[recipe][u'rarity']),int(items[recipe][u'tier'][index]),level,4 if items[recipe][u'rarity'] == u'Exotic' else 3):
 #		if int(items[recipe][u'tier']) > int(tier)-24:
-			cost, xptotal, make, buy = calcRecipecraft(recipe,items,craftcount,tier,1,tier,xp_to_level,craftexo)
+			cost, xptotal, make, buy = calcRecipecraft(recipe,items,craftcount,tier,tier,xp_to_level,craftexo)
 			# Uncomment these 3 lines and comment the 4th if you want guides that try to make the lowest total price after sellback
 #			if items[recipe][u'w'] > cost:
 #			   weight = float(items[recipe][u'w'] - cost)*100000.0
