@@ -6724,6 +6724,7 @@ ilist = {
 	49436:u"Infusión de +13 de Resistencia a la Agonía",
 	49437:u"Infusión de +14 de Resistencia a la Agonía",
 	49438:u"Infusión de +15 de Resistencia a la Agonía",
+	49439:u"Infusión de +16 de Resistencia a la Agonía",
 	49522:u"Insignia de gasa intrincada nefastac",
 	49782:u"Mecanismo mecánico",
 	49801:u"Macuto de armadura engalanada de zelote",
