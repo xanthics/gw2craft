@@ -35,7 +35,7 @@ def recipelistWorker(items, out_q):
 	outdict = {}
 
 	for index, i in enumerate(items, 1):
-#		print index, len(items)
+		print index, len(items)
 		item = _api_call(u'recipe_details.json?recipe_id=%d' % i)
 		outdict[i] = item
 
@@ -46,7 +46,7 @@ def get_recipes():
 	temp = _api_call(u'recipes.json')
 	out_q = Queue()
 	lister = temp[u'recipes']
-	nprocs = len(lister)/10
+	nprocs = len(lister)/100
 	chunksize = int(math.ceil(len(lister) / float(nprocs)))
 	procs = []
 
@@ -162,7 +162,7 @@ def parse_recipes(recipes):
 def itemlistWorker(items, lang, out_q):
 	outdict = {}
 	for index, i in enumerate(items, 1):
-#		print index, len(items), lang
+		print index, len(items), lang
 		item = _api_call(u'item_details.json?item_id=%s&lang=%s' % (i, lang))
 		outdict[i] = item
 	out_q.put(outdict)
@@ -172,7 +172,7 @@ def itemlistWorker(items, lang, out_q):
 def itemlist(item_list, lang=u"en"):
 	out_q = Queue()
 	lister = item_list.keys()
-	nprocs = len(lister)/10
+	nprocs = len(lister)/100
 
 	chunksize = int(math.ceil(len(lister) / float(nprocs)))
 	procs = []
