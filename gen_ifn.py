@@ -54,7 +54,7 @@ def faq(localText):
 		f.write(u"<br />\n")
 		f.write(u"<a href=\"http://www.guildwars2guru.com/topic/80318-dynamic-crafting-guides-for-all-crafts-httpgw2craftssaladonnet/\" style=\"line-height:150%%;\"><strong>%s</strong></a>\n"%(localText.gThread))
 		f.write(u"<br />\n")
-		f.write(u"<a href=\"https://twitter.com/Xanthic42\" style=\"line-height:150%%;\"><strong>%s</strong></a>\n"%(localText.twitter))
+		f.write(u"<a href=\"https://twitter.com/gw2crafts\" style=\"line-height:150%%;\"><strong>%s</strong></a>\n"%(localText.twitter))
 		f.write(u"<br />\n")
 		f.write(u"<a href=\"mailto:gw2crafts@live.com\" style=\"line-height:150%%;\"><strong>%s</strong></a></br/> \n"%(localText.email))
 #		f.write(u"<a href=\"http://gw2crafts.net/analytics/\" style=\"line-height:150%%;\"><strong>Analytics</strong></a>\n")
@@ -233,6 +233,7 @@ def index(localText):
 
 
 #		f.write(u"<strong>%s</strong>: <a href=\"/\" hreflang=\"en\">English</a>, <a href=\"/fr/\" hreflang=\"fr\">Français</a>, <a href=\"/de/\" hreflang=\"de\">Deutsch</a>, <a href=\"/es/\" hreflang=\"es\">Español</a> (temporary to draw attention)\n<br />"%(localText.navLang))
+		f.write(u"<strong>%s</strong><br /><br />\n"%(localText.region))
 		f.write(u"<strong>%s:</strong>\n"%(localText.fThings))
 		f.write(u"<ul>\n")
 		f.write(u"<li>%s</li>\n"%(localText.t1))
