@@ -26,10 +26,10 @@ Purpose: Generates a crafting guide for all crafts in Guild Wars 2 based on curr
 Note: Requires Python 2.7.x
 '''
 
-import json, datetime, math, os, codecs, sys, threading
+import json, datetime, math, os, codecs, sys, threading, time
 # so we can set custom headers
 from urllib import FancyURLopener
-from random import choice
+from random import choice, randint
 # recipe and item lists
 import Armorsmith, Artificer, Chef, Chef_karma, Huntsman, Jeweler, Leatherworker, Tailor, Weaponsmith, items
 # Localized text
@@ -72,7 +72,7 @@ def itemlistworkerGWT(_itemList, temp, idIndex, buyIndex, sellIndex, supplyIndex
 
 		# gw2spidy doesn't have the item indexed yet
 		except Exception, err:
-			print u'ERROR: %s. %i, %s' % (str(err),item,Items_en.ilist[item])
+#			print u'ERROR: %s. %i, %s' % (str(err),item,Items_en.ilist[item])
 			# Save all the information we care about
 			outdict[item] = {u'w':0,u'cost':99999999,u'recipe':None,u'rarity':items.ilist[item][u'rarity'],u'type':items.ilist[item][u'type'],u'icon':items.ilist[item][u'img_url'],u'output_item_count':items.ilist[item][u'output_item_count'],u'sellMethod':sellMethod,u"discover":[]} 
 
@@ -133,7 +133,7 @@ def itemlistworker(_itemList, temp, out_q):
 
 		# gw2spidy doesn't have the item indexed yet
 		except Exception, err:
-			print u'ERROR: %s. %i, %s' % (str(err),item,Items_en.ilist[item])
+#			print u'ERROR: %s. %i, %s' % (str(err),item,Items_en.ilist[item])
 			# Save all the information we care about
 			outdict[item] = {u'w':0,u'cost':99999999,u'recipe':None,u'rarity':items.ilist[item][u'rarity'],u'type':items.ilist[item][u'type'],u'icon':items.ilist[item][u'img_url'],u'output_item_count':items.ilist[item][u'output_item_count'],u'sellMethod':sellMethod,u"discover":[]} 
 
@@ -179,16 +179,10 @@ def appendCosts():
 	temp = []
 	cList = {}
 	myopener = MyOpener()
+	getprices = True # loop variable to loop until we get a return
+	count = 10 # loop variable to terminate loop after x attempts
 	# This could be in a while loop and keep trying until success, but unnecessary
-	try:
-		baseURL = "http://gw2spidy.com/api/v0.9/json/all-items/all"
-		f = myopener.open(baseURL)
-		temp = json.load(f)
-		if os.isatty(sys.stdin.fileno()):
-			print len(temp[u'results']) # print total items returned from gw2spidy
-		cList = cItemlist(items.ilist.keys(),temp[u'results'])
-	except Exception, err:
-		print u'ERROR: %s.' % str(err)
+	while getprices and count:
 		try:
 			baseURL = "http://api.guildwarstrade.com/1/bulk/items.json"
 			f = myopener.open(baseURL)
@@ -196,8 +190,25 @@ def appendCosts():
 			if os.isatty(sys.stdin.fileno()):
 				print len(temp[u'items']) # print total items returned from GWT
 			cList = cItemlistGWT(items.ilist.keys(),temp[u'items'],temp[u'columns'])
+			getprices = False
 		except Exception, err:
 			print u'ERROR: %s.' % str(err)
+			try:
+				baseURL = "http://gw2spidy.com/api/v0.9/json/all-items/all"
+				f = myopener.open(baseURL)
+				temp = json.load(f)
+				if os.isatty(sys.stdin.fileno()):
+					print len(temp[u'results']) # print total items returned from gw2spidy
+				cList = cItemlist(items.ilist.keys(),temp[u'results'])
+				getprices = False
+			except Exception, err:
+				print u'ERROR: %s.' % str(err)
+				time.sleep(randint(1,10))
+				count -= 1
+
+	# if loop exited because of this variable we didn't get any data, terminate
+	if not count:
+		sys.exit(0)
 
 	cList[19792][u'cost'] = 8 # Spool of Jute Thread
 	cList[19789][u'cost'] = 16 # Spool of Wool Thread
@@ -1005,6 +1016,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page += u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n'
 	page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">%s</span>	%s: %s</span>\n'%(localText.warning1,localText.warning2,mytime)
 	page += u'</div><br />\n'
+	page += u"<strong>%s</strong><br />\n"%(localText.region)
 	# adword
 	page += u'<div style="float:right;position:absolute;right:-320px;"> \
 			\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
@@ -1260,7 +1272,8 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 
 			return totals
 		except Exception, err:
-			print u'ERROR: %s.' % str(err)
+#			print u'ERROR: %s.' % str(err)
+			time.sleep(randint(1,10))
 
 def maketotals(totals, mytime, localText):
 	tpage1 = u""
@@ -1283,8 +1296,8 @@ def maketotals(totals, mytime, localText):
 </head>
 <body>'''
 	page += localText.header%('total.html',u'total.html',u'total.html')
-
-	page += u"<section class=\"main\">\n<h5 style=\"text-align:center;\">"+localText.updated+u": " + mytime + u"</h5>"
+	page += u"<section class=\"main\">\n<strong>%s</strong><br />\n"%(localText.region)
+	page += u"<h5 style=\"text-align:center;\">"+localText.updated+u": " + mytime + u"</h5>"
 	# adword
 	page += u'<div style="float:right;position:absolute;right:-320px;"> \
 			\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
@@ -1361,7 +1374,8 @@ def maketotals(totals, mytime, localText):
 			myFtp.close()
 			return
 		except Exception, err:
-			print u'ERROR: %s.' % str(err)
+#			print u'ERROR: %s.' % str(err)
+			time.sleep(randint(1,10))
 
 # Join 2 recipe dicts
 def join(A, B):
@@ -1455,7 +1469,11 @@ def main():
 		totals.update(out_q.get())
 
 	for p in procs:
-		p.join()
+		p.join(180)
+		# if thread is still alive after 180 seconds, something is wrong.  Kill the script.
+		if p.is_alive():
+			sys.exit(0)
+
 
 	maketotals(totals,mytime,localen)
 	maketotals(totals,mytime,localde)
