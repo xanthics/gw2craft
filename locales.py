@@ -27,6 +27,7 @@ Note: Requires Python 2.7.x
 Thanks to Marc Ramos(desmodium.3745) for the Spanish translation.
 '''
 
+region = "NA/EU price data only"
 
 # Copyright notice for GW2 IP
 cright = u'''<footer>

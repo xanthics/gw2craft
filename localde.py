@@ -25,6 +25,7 @@ Purpose: de Localized text
 Note: Requires Python 2.7.x
 '''
 
+region = "NA/EU price data only"
 
 # Copyright notice for GW2 IP
 cright = u'''<footer>
