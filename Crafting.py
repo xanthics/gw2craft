@@ -1448,11 +1448,6 @@ def main():
 				  (u"leatherworking_400.html",Leatherworker.recipes,False,True,range(400,500,25)),
 				  (u"leatherworking_450.html",Leatherworker.recipes,False,True,range(400,450,25))])
 
-	for a in rList:
-		for b in a:
-			guides.append(b[0])
-	guides.append(u"total.html")
-
 	nprocs = len(rList)
 
 	procs = []
