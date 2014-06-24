@@ -29,6 +29,7 @@ Note: Requires Python 2.7.x
 import json, datetime, math, os, codecs, sys, threading, time
 # so we can set custom headers
 from urllib import FancyURLopener
+from StringIO import StringIO
 from random import choice, randint
 # recipe and item lists
 import Armorsmith, Artificer, Chef, Chef_karma, Huntsman, Jeweler, Leatherworker, Tailor, Weaponsmith, items
@@ -1258,16 +1259,16 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page += u'</body>\n'
 	page += u'</html>\n'
 
-	with codecs.open(localText.path+filename, 'wb', encoding='utf-8') as f:
-		f.write(page)
+	# Uncomment these two lines if you want a file written to disk
+#	with codecs.open(localText.path+filename, 'wb', encoding='utf-8') as f:
+#		f.write(page)
 
 	while True:
 		try:
 			myFtp = FTP(ftp_url)
 			myFtp.login(ftp_user,ftp_pass)
-			with codecs.open(localText.path+filename,u'rb') as f:
-				myFtp.storbinary(u'STOR /gw2crafts.net/'+localText.path+filename,f)
-			os.remove(localText.path+filename)
+			f = StringIO(page.encode('utf8'))
+			myFtp.storbinary(u'STOR /gw2crafts.net/'+localText.path+filename,f)
 			myFtp.close()
 
 			return totals
@@ -1361,16 +1362,16 @@ def maketotals(totals, mytime, localText):
 
 	page += u'\n</section>\n' + localText.cright
 
-	with codecs.open(localText.path+u'total.html', 'wb', encoding='utf-8') as f:
-		f.write(page)
+	# Uncomment these two lines if you want a file written to disk
+#	with codecs.open(localText.path+u'total.html', 'wb', encoding='utf-8') as f:
+#		f.write(page)
 		
 	while True:
 		try:
 			myFtp = FTP(ftp_url)
 			myFtp.login(ftp_user,ftp_pass)
-			with codecs.open(localText.path+u'total.html',u'rb') as f:
-				myFtp.storbinary(u'STOR /gw2crafts.net/'+localText.path+u'total.html',f)
-			os.remove(localText.path+u'total.html')
+			f = StringIO(page.encode('utf8'))
+			myFtp.storbinary(u'STOR /gw2crafts.net/'+localText.path+u'total.html',f)
 			myFtp.close()
 			return
 		except Exception, err:
@@ -1390,12 +1391,13 @@ def recipeworker(cmds, cList, mytime, xp_to_level, out_q):
 	out_q.put(totals)
 
 def main():
-	if not os.path.exists("de"):
-		os.makedirs("de")
-	if not os.path.exists("es"):
-		os.makedirs("es")
-	if not os.path.exists("fr"):
-		os.makedirs("fr")
+	# Uncomment these lines if you are writing files to disk
+#	if not os.path.exists("de"):
+#		os.makedirs("de")
+#	if not os.path.exists("es"):
+#		os.makedirs("es")
+#	if not os.path.exists("fr"):
+#		os.makedirs("fr")
 	mytime = "<span class=\"localtime\">" + datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S')+u'+00:00</span>'
 	print "Start: ", datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
 	# will hold our guide names, so no more manually creating upload list
