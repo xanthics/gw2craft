@@ -173,8 +173,7 @@ class MyOpener(FancyURLopener):
 	'Mozilla/5.0 (compatible; MSIE 10.6; Windows NT 6.1; Trident/5.0; InfoPath.2; SLCC1; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729; .NET CLR 2.0.50727) 3gpp-gba UNTRUSTED/1.0',
 	'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.17 Safari/537.36'
 ]
-	version = choice(user_agents)#'Mozilla/5.0 (Windows; U; Windows NT 5.1; it; rv:1.8.1.11) Gecko/20071127 Firefox/2.0.0.11'
-
+	version = choice(user_agents)
 # add some costs data to gcList
 def appendCosts():
 	temp = []
@@ -370,7 +369,7 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level):
 			else: 
 				# gw2 api didn't have information about the api yet.
 				# This should only happen when items are recently added to game
-				print u"Missing Item from itemlist: %i"%item
+				print u"Missing Item from itemlist: {}".format(item)
 				del(c_recipes[tier][item])
 				continue
 #				exit(-1)
@@ -685,29 +684,13 @@ def makeQueuecraft(recipes,items,craftcount,tier,xp_to_level,craftexo):
 # Format copper values so they are easier to read
 def mFormat(line):
 	line = int(line)
-	tmp = ''
-	rStr = ''
 
-	if line < 0:
-		tmp = '-'
-		line *= -1
-
-	mStr = str(line)
-	mLen = len(mStr)
-
-	if mLen > 4:
-		rStr += "%2d<span class=\"goldIcon\"></span>" % int(mStr[0:mLen-4])
-	if mLen > 3:
-		rStr += '%2d<span class=\"silverIcon\"></span>' % int(mStr[mLen-4:mLen-2])
-	elif mLen == 3:
-		rStr += '%2d<span class=\"silverIcon\"></span>' % int(mStr[mLen-3:mLen-2])
-
-	if mLen == 1:
-		rStr += '%2d<span class=\"copperIcon\"></span>' % int(mStr)
+	if abs(line) >= 10000:
+		return '{}<span class=\"goldIcon\"></span>{}<span class=\"silverIcon\"></span>{}<span class=\"copperIcon\"></span>'.format(int(line/10000),str(abs(int(line/100)))[-2:],str(abs(line))[-2:])
+	elif abs(line) >= 100:
+		return '{}<span class=\"silverIcon\"></span>{}<span class=\"copperIcon\"></span>'.format(str(int(line/100)),str(abs(line))[-2:])
 	else:
-		rStr += '%2d<span class=\"copperIcon\"></span>' % int(mStr[mLen-2:])
-
-	return tmp + rStr
+		return '{}<span class=\"copperIcon\"></span>'.format(line)
 
 def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy, cList, filename, mytime, cListName, localText):
 	buttonList = []
@@ -719,28 +702,28 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 
 	non_item = [u'Refinement', u'Insignia', u'Inscription', u'Component']
 
-	karma_items  = {12337:{u'note':u"%s <br /> %s"%(localText.pickins,localText.disa),u'cost':77}, # Almond
-					12165:{u'note':u"%s <br /> %s"%(localText.eda,localText.jack),u'cost':35}, # Apple
-					12340:{u'note':u"%s"%(localText.makayla),u'cost':77}, # Avocado
-					12251:{u'note':u"%s <br /> %s <br /> %s <br /> %s"%(localText.jenks,localText.sangdo,localText.goran,localText.vejj),u'cost':49}, # Banana
-					12237:{u'note':u"%s <br /> %s"%(localText.jenks,localText.leius),u'cost':49}, # Black Bean
-					12240:{u'note':u"%s <br /> %s"%(localText.bjarni,localText.milton),u'cost':35}, # Celery Stalk
-					12338:{u'note':u"%s <br /> %s"%(localText.summers,localText.disa),u'cost':77}, # Cherry
-					12515:{u'note':u"%s"%(localText.naknar),u'cost':112}, # Chickpea
-					12350:{u'note':u"%s"%(localText.tunnira),u'cost':112}, # Coconut
-					12256:{u'note':u"%s <br /> %s"%(localText.sagum,localText.milton),u'cost':35}, # Cumin
-					12502:{u'note':u"%s"%(localText.jenrys),u'cost':154}, # Eggplant
-					12232:{u'note':u"%s"%(localText.albin),u'cost':35}, # Green Bean
-					12518:{u'note':u"%s <br /> %s"%(localText.laudren,localText.wupwup),u'cost':112}, # Horseradish Root
-					12239:{u'note':u"%s <br /> %s <br /> %s"%(localText.brian,localText.kastaz,localText.hune),u'cost':49}, # Kidney Bean
-					12252:{u'note':u"%s <br /> %s <br /> %s"%(localText.eona,localText.hrappa,localText.milton),u'cost':35}, # Lemon
-					12339:{u'note':u"%s"%(localText.shelp),u'cost':77}, # Lime
-					12543:{u'note':u"%s"%(localText.crandle),u'cost':203}, # Mango
-					12249:{u'note':u"%s <br /> %s <br /> %s"%(localText.eda,localText.jenks,localText.milton),u'cost':35}, # Nutmeg Seed
-					12503:{u'note':u"%s"%(localText.nrocroc),u'cost':154}, # Peach
-					12514:{u'note':u"%s"%(localText.braxa),u'cost':112}, # Pear
-					12516:{u'note':u"%s"%(localText.tholin),u'cost':112}, # Pinenut
-					12517:{u'note':u"%s"%(localText.ichtaca),u'cost':112}} # Shallot
+	karma_items  = {12337:{u'note':u"{} <br />{}".format(localText.pickins,localText.disa),u'cost':77}, # Almond
+					12165:{u'note':u"{} <br />{}".format(localText.eda,localText.jack),u'cost':35}, # Apple
+					12340:{u'note':u"{}".format(localText.makayla),u'cost':77}, # Avocado
+					12251:{u'note':u"{} <br />{} <br />{} <br />{}".format(localText.jenks,localText.sangdo,localText.goran,localText.vejj),u'cost':49}, # Banana
+					12237:{u'note':u"{} <br />{}".format(localText.jenks,localText.leius),u'cost':49}, # Black Bean
+					12240:{u'note':u"{} <br />{}".format(localText.bjarni,localText.milton),u'cost':35}, # Celery Stalk
+					12338:{u'note':u"{} <br />{}".format(localText.summers,localText.disa),u'cost':77}, # Cherry
+					12515:{u'note':u"{}".format(localText.naknar),u'cost':112}, # Chickpea
+					12350:{u'note':u"{}".format(localText.tunnira),u'cost':112}, # Coconut
+					12256:{u'note':u"{} <br />{}".format(localText.sagum,localText.milton),u'cost':35}, # Cumin
+					12502:{u'note':u"{}".format(localText.jenrys),u'cost':154}, # Eggplant
+					12232:{u'note':u"{}".format(localText.albin),u'cost':35}, # Green Bean
+					12518:{u'note':u"{} <br />{}".format(localText.laudren,localText.wupwup),u'cost':112}, # Horseradish Root
+					12239:{u'note':u"{} <br />{} <br />{}".format(localText.brian,localText.kastaz,localText.hune),u'cost':49}, # Kidney Bean
+					12252:{u'note':u"{} <br />{} <br />{}".format(localText.eona,localText.hrappa,localText.milton),u'cost':35}, # Lemon
+					12339:{u'note':u"{}".format(localText.shelp),u'cost':77}, # Lime
+					12543:{u'note':u"{}".format(localText.crandle),u'cost':203}, # Mango
+					12249:{u'note':u"{} <br />{} <br />{}".format(localText.eda,localText.jenks,localText.milton),u'cost':35}, # Nutmeg Seed
+					12503:{u'note':u"{}".format(localText.nrocroc),u'cost':154}, # Peach
+					12514:{u'note':u"{}".format(localText.braxa),u'cost':112}, # Pear
+					12516:{u'note':u"{}".format(localText.tholin),u'cost':112}, # Pinenut
+					12517:{u'note':u"{}".format(localText.ichtaca),u'cost':112}} # Shallot
 
 	karma_chef   = {12159:{u'note':localText.mcov,u'cost':35}, # Cheese Wedge
 					12137:{u'note':localText.mcov,u'cost':35}, # Glass of Buttermilk
@@ -769,7 +752,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 					12292:{u'note':localText.glubb,u'cost':35}, # Bowl of Degun Shun Stew	
 					12233:{u'note':localText.tholin,u'cost':154}, # Handful of Trail Mix
 					12739:{u'note':localText.triktiki,u'cost':35}, # Triktiki Omelet
-					12352:{u'note':"%s (%s %s)"%(localText.pochtecatl,mFormat(368),localText.valuePer),u'cost':0}, # Griffon Egg Omelet
+					12352:{u'note':u"{} ({} {})".format(localText.pochtecatl,mFormat(368),localText.valuePer),u'cost':0}, # Griffon Egg Omelet
 					12264:{u'note':localText.nrocroc,u'cost':35}, # Raspberry Pie
 					12192:{u'note':localText.victor,u'cost':35}, # Beetletun Omelette
 					19955:{u'note':localText.mcov,u'cost':350}, # Ravaging Intricate Wool Insignia
@@ -877,12 +860,12 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 					24923:{u'note':localText.mcov,u'cost':231}, # Embellished Brilliant Opal Jewel
 					24924:{u'note':localText.mcov,u'cost':231}, # Embellished Brilliant Ruby Jewel
 					24925:{u'note':localText.mcov,u'cost':231}, # Embellished Brilliant Sapphire Jewel
-					38162:{u'note':"%s (%s: %s %s)"%(localText.bRecipes,localText.rTP,mFormat(cList[38207][u'cost']),localText.valuePer),u'cost':0}, # Giver's Intricate Gossamer Insignia
-					38166:{u'note':"%s (%s: %s %s)"%(localText.bRecipes,localText.rTP,mFormat(cList[38208][u'cost']),localText.valuePer),u'cost':0}, # Giver's Embroidered Silk Insignia
-					38167:{u'note':"%s (%s: %s %s)"%(localText.bRecipes,localText.rTP,mFormat(cList[38209][u'cost']),localText.valuePer),u'cost':0}, # Giver's Embroidered Linen Insignia
-					38434:{u'note':"%s (%s: %s %s)"%(localText.bRecipes,localText.rTP,mFormat(cList[38297][u'cost']),localText.valuePer),u'cost':0}, # Giver's Orichalcum-Imbued Inscription
-					38432:{u'note':"%s (%s: %s %s)"%(localText.bRecipes,localText.rTP,mFormat(cList[38296][u'cost']),localText.valuePer),u'cost':0}, # Giver's Mithril-Imbued Inscription
-					38433:{u'note':"%s (%s: %s %s)"%(localText.bRecipes,localText.rTP,mFormat(cList[38295][u'cost']),localText.valuePer),u'cost':0}, # Giver's Darksteel-Imbued Inscription
+					38162:{u'note':u"{} ({}: {} {})".format(localText.bRecipes,localText.rTP,mFormat(cList[38207][u'cost']),localText.valuePer),u'cost':0}, # Giver's Intricate Gossamer Insignia
+					38166:{u'note':u"{} ({}: {} {})".format(localText.bRecipes,localText.rTP,mFormat(cList[38208][u'cost']),localText.valuePer),u'cost':0}, # Giver's Embroidered Silk Insignia
+					38167:{u'note':u"{} ({}: {} {})".format(localText.bRecipes,localText.rTP,mFormat(cList[38209][u'cost']),localText.valuePer),u'cost':0}, # Giver's Embroidered Linen Insignia
+					38434:{u'note':u"{} ({}: {} {})".format(localText.bRecipes,localText.rTP,mFormat(cList[38297][u'cost']),localText.valuePer),u'cost':0}, # Giver's Orichalcum-Imbued Inscription
+					38432:{u'note':u"{} ({}: {} {})".format(localText.bRecipes,localText.rTP,mFormat(cList[38296][u'cost']),localText.valuePer),u'cost':0}, # Giver's Mithril-Imbued Inscription
+					38433:{u'note':u"{} ({}: {} {})".format(localText.bRecipes,localText.rTP,mFormat(cList[38295][u'cost']),localText.valuePer),u'cost':0}, # Giver's Darksteel-Imbued Inscription
 					}
 
 	recipebuy = []
