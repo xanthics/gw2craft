@@ -686,9 +686,9 @@ def mFormat(line):
 	line = int(line)
 
 	if abs(line) >= 10000:
-		return '{}<span class=\"goldIcon\"></span>{}<span class=\"silverIcon\"></span>{}<span class=\"copperIcon\"></span>'.format(int(line/10000),str(abs(int(line/100)))[-2:],str(abs(line))[-2:])
+		return '{}<span class=\"goldIcon\"></span>{:02d}<span class=\"silverIcon\"></span>{:02d}<span class=\"copperIcon\"></span>'.format(line//10000,(abs(line)%10000)//100,abs(line)%100)
 	elif abs(line) >= 100:
-		return '{}<span class=\"silverIcon\"></span>{}<span class=\"copperIcon\"></span>'.format(str(int(line/100)),str(abs(line))[-2:])
+		return '{}<span class=\"silverIcon\"></span>{:02d}<span class=\"copperIcon\"></span>'.format(str(line//100),abs(line)%100)
 	else:
 		return '{}<span class=\"copperIcon\"></span>'.format(line)
 
