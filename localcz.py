@@ -20,8 +20,8 @@
 * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 * DEALINGS IN THE SOFTWARE.
 
-Author: Jeremy Parks
-Purpose: en Localized text
+Author: Jeremy Parks, Vítězslav Jaroš (translation)
+Purpose: czech Localized text
 Note: Requires Python 2.7.x
 '''
 
