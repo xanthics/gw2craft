@@ -278,6 +278,7 @@ header = u"""<nav>
         <ul>
           <li><a href="http://gw2crafts.net/%s" hreflang="en">English</a></li>
           <li><a href="http://gw2crafts.net/fr/%s" hreflang="fr">Français</a></li>
+          <li><a href="http://gw2crafts.net/cz/%s" hreflang="fr">Čeština</a></li>
           <li><a href="# hreflang="de">Deutsch</a></li>
           <li><a href="http://gw2crafts.net/es/%s" hreflang="es">Español</a></li>
         </ul>

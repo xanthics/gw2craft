@@ -34,7 +34,7 @@ from random import choice, randint
 # recipe and item lists
 import Armorsmith, Artificer, Chef, Chef_karma, Huntsman, Jeweler, Leatherworker, Tailor, Weaponsmith, items
 # Localized text
-import Items_en, Items_de, Items_fr, Items_es, localen, localde, localfr, locales
+import Items_en, Items_de, Items_fr, Items_es, localen, localde, localfr, locales, localcz
 from multiprocessing import Process, Queue
 from copy import deepcopy
 from collections import defaultdict
@@ -558,6 +558,7 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level):
 	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_de.ilist, localde)
 	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_fr.ilist, localfr)
 	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_es.ilist, locales)
+	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_en.ilist, localcz)
 	totals = {}
 	totals.update(printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_en.ilist, localen))
 	return totals	
@@ -981,8 +982,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 
 	t = 0 # used to control div background color
 	kt = 0 # karma total
-	page = ""
-	page += u'<!DOCTYPE html>\n'
+	page = u'<!DOCTYPE html>\n'
 	page += u'<html>\n'
 	page += u'<head>\n'
 	# Title Part 1
@@ -995,7 +995,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page += u'	<script>(window.jQuery || document.write(\'<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"><\/script>\'));</script>\n'
 	page += u'	<script src="/js/menu.js" type="text/javascript"></script>\n'
 	page += u'</head>\n'
-	page += u'<body>\n%s\n'%(localText.header%(filename,filename,filename))
+	page += u'<body>\n%s\n'%(localText.header%(filename,filename,filename,filename))
 	page += u'<section class=\"main\">'
 	page += u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n'
 	page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">%s</span>	%s: %s</span>\n'%(localText.warning1,localText.warning2,mytime)
@@ -1279,7 +1279,7 @@ def maketotals(totals, mytime, localText):
 	<script src="/js/menu.js" type="text/javascript"></script>
 </head>
 <body>'''
-	page += localText.header%('total.html',u'total.html',u'total.html')
+	page += localText.header%('total.html',u'total.html',u'total.html',u'total.html')
 	page += u"<section class=\"main\">\n<strong>%s</strong><br />\n"%(localText.region)
 	page += u"<h5 style=\"text-align:center;\">"+localText.updated+u": " + mytime + u"</h5>"
 	# adword
@@ -1459,6 +1459,7 @@ def main():
 	maketotals(totals,mytime,localde)
 	maketotals(totals,mytime,localfr)
 	maketotals(totals,mytime,locales)
+	maketotals(totals,mytime,localcz)
 
 	print "End: ", datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
 
