@@ -25,7 +25,7 @@ Author: Jeremy Parks
 Purpose: Generate the index, faq and nav page for each language
 Note: Requires Python 2.7.x
 '''
-import localen, localde, localfr, locales
+import localen, localde, localfr, locales, localcz
 import codecs, os
 from ftplib import FTP
 from StringIO import StringIO
@@ -46,7 +46,7 @@ def faq(localText):
 	page += u"	<script src=\"/js/menu.js\" type=\"text/javascript\"></script>\n"
 	page += u"</head>\n"
 	page += u"<body>\n"
-	page += localText.header%(u'faq.html',u'faq.html',u'faq.html')
+	page += localText.header%(u'faq.html',u'faq.html',u'faq.html',u'faq.html')
 	page += u"<section class=\"main\">\n"
 	page += u"<a href=\"https://forum-en.guildwars2.com/forum/community/links/Dynamic-crafting-guides-for-all-8-crafts\" style=\"line-height:150%%;\"><strong>%s</strong></a>\n"%(localText.oThread)
 	page += u"<br />\n"
@@ -152,7 +152,7 @@ def nav(localText):
 	page += u"	<script src=\"/js/menu.js\" type=\"text/javascript\"></script>\n"
 	page += u"</head>\n"
 	page += u"<body>\n"
-	page += localText.header%('nav.html','nav.html','nav.html')
+	page += localText.header%('nav.html','nav.html','nav.html','nav.html')
 	page += u"<section class=\"main\">\n"
 	page += u"%s\n"%(localText.navNotice)
 	page += u"<br /><br />\n"
@@ -204,8 +204,9 @@ def nav(localText):
 	page += u"<li><a href=\"weaponcraft_400.html\">500</a><br /></li>\n"
 	page += u"</ul>\n"
 	page += u"<h3>%s:%s</h3>\n"%(localText.navLang,localText.lang)
-	page += u"<a href=\"/\" hreflang=\"en\">English</a><br />\n"
+	page += u"<a href=\"/nav.html\" hreflang=\"en\">English</a><br />\n"
 	page += u"<a href=\"/fr/nav.html\" hreflang=\"fr\">Français</a><br />\n"
+	page += u"<a href=\"/cz/nav.html\" hreflang=\"cz\">Čeština</a><br />\n"
 	page += u"<a href=\"/de/nav.html\" hreflang=\"de\">Deutsch</a><br />\n"
 	page += u"<a href=\"/es/nav.html\" hreflang=\"es\">Español</a><br />\n"
 	page += u"</section>\n"
@@ -240,7 +241,7 @@ def index(localText):
 	page += u"</head>\n"
 	page += u"<body>\n"
 #	page += u"<div id=\"fb-root\"></div><script>(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = \"//connect.facebook.net/en_US/all.js#xfbml=1\";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));</script>"
-	page += localText.header%('index.html','index.html','index.html')
+	page += localText.header%('index.html','index.html','index.html','index.html')
 	page += u"<section class=\"main\">\n"
 	page += u"<a href=\"https://twitter.com/gw2crafts\" class=\"twitter-follow-button\" data-show-count=\"true\" data-dnt=\"true\">Follow @gw2crafts</a>\n<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>"
 #	page += u"\t<div class=\"g-plusone\" data-size=\"medium\" data-href=\"http://gw2crafts.net\"></div><script type=\"text/javascript\">(function() {var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;po.src = 'https://apis.google.com/js/plusone.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);})();</script>\n"
@@ -286,7 +287,7 @@ def index(localText):
 
 
 def main():
-	for lang in [localen, localde, localfr, locales]:
+	for lang in [localen, localde, localfr, locales, localcz]:
 		faq(lang)
 		nav(lang)
 		index(lang)

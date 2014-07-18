@@ -24,8 +24,8 @@ Author: Jeremy Parks, Vítězslav Jaroš (translation)
 Purpose: czech Localized text
 Note: Requires Python 2.7.x
 '''
-
-region = "pouze NA/EU cenové data"
+# pypy doesn't like the é.  Should be fine after transition to .format is complete
+region = "NA/EU price data only"#"pouze NA/EU cenové data"
 
 # Copyright notice for GW2 IP
 cright = u'''<footer>
@@ -196,7 +196,7 @@ about   = u"O webu"
 lang    = u"Čeština"
 
 # directory path
-path = ""
+path = "cz/"
 
 # don't change this
 header = u"""<nav>
@@ -274,11 +274,11 @@ header = u"""<nav>
         </li>
         <li><a href="http://gw2crafts.net/"""+path+u"""total.html">"""+totals+u"""</a></li>
         <li><a href="http://gw2crafts.net/"""+path+u"""faq.html">"""+about+u"""</a></li>
-        <li><a href="#" class="language" hreflang="en">"""+lang+u"""</a>
+        <li><a href="#" class="language" hreflang="cz">"""+lang+u"""</a>
         <ul>
-          <li><a href="#" hreflang="cz">Čeština</a></li>
-          <li><a href="http://gw2crafts.net/en/%s" hreflang="en">English</a></li>
+          <li><a href="http://gw2crafts.net/%s" hreflang="en">English</a></li>
           <li><a href="http://gw2crafts.net/fr/%s" hreflang="fr">Français</a></li>
+          <li><a href="#" hreflang="cz">Čeština</a></li>
           <li><a href="http://gw2crafts.net/de/%s" hreflang="de">Deutsch</a></li>
           <li><a href="http://gw2crafts.net/es/%s" hreflang="es">Español</a></li>
         </ul>
