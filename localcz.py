@@ -29,7 +29,7 @@ region = "pouze NA/EU cenové data"
 
 # Copyright notice for GW2 IP
 cright = u'''<footer>
-    Guild Wars 2 © 2012 ArenaNet, Inc. All rights reserved. NCsoft, the interlocking NC logo, ArenaNet, Guild Wars, Guild Wars Factions, Guild Wars Nightfall, Guild Wars: Eye of the North, Guild Wars 2, and all associated logos and designs are trademarks or registered trademarks of NCsoft Corporation. All other trademarks are the property of their respective owners.
+    Guild Wars 2 © 2012 ArenaNet, Inc. Všechny práva vyhrazen. NCsoft, the interlocking NC logo, ArenaNet, Guild Wars, Guild Wars Factions, Guild Wars Nightfall, Guild Wars: Eye of the North, Guild Wars 2, a všechny přidružená loga a designy jsou ochranné známky nebo registrované ochranné známky společnosti NCsoft Corporation. Všechny další ochranné známky jsou majetkem příslušných vlastníků.
 </footer>'''
 
 # renown heart vendors
@@ -91,11 +91,11 @@ warning1     = u"Neobnovujte tuto stránku."
 warning2     = u"Může se změnit. Aktualizováno"
 moreInfo     = u"Kdykoliv uvidíte tuto ikonu %s můžete si rozkliknout více informací."
 soldVia      = u"Prodáváno za %s za pomocí"
-method       = [u"Vendor",
+method       = [u"Vendor (prodejce)",
                 u"Max Buyout",
                 u"Minimální prodejní cena"]
 valuePer     = u"za"
-buyVendor    = u"KUP U VENDORA"
+buyVendor    = u"KUP U VENDORA (prodejce)"
 mixedTP      = u"Předchystáno (Kup na tržišti)"
 rTP          = u"Kup na tržišti"
 make         = u"Vytvoř"
@@ -136,44 +136,44 @@ a12      = u"1-100 1% aktuálního levelu postavy na jeden crafting level"
 a13      = u"101-200 2% aktuálního levelu postavy na jeden crafting level"
 a14      = u"201-300 3% aktuálního levelu postavy na jeden crafting level"
 a15      = u"301-400 4% aktuálního levelu postavy na jeden crafting level"
-a16      = u"And these values scale to partial levels, like lvl 1, half full bar is 1.5% of a level. Going 0-400 will give you 10 levels from whatever level you started at, every time."
-a17      = u"There is 1 exception in that xp rewards from 1-15 are larger than the actual xp needed for those levels. ( <a href=\"http://wiki.guildwars2.com/wiki/Experience#Total_experience_gain_per_level\">source</a> ) so you will get about 13 levels while crafting."
+a16      = u"And these values scale to partial levels, like lvl 1, half full bar is 1.5% of a level. Získáním 400 bodů ve výrobě získáte teké 10 levelů na vaší postavě, je jedno na kterém levelu jste vyrábět začali."
+a17      = u"Existuje 1 vyjímka u xp odměn v rozmezí 1-15 jsou větší než aktuální xp potřebné pro tyto levely. ( <a href=\"http://wiki.guildwars2.com/wiki/Experience#Total_experience_gain_per_level\">zdroj</a> ) takže získáte okolo 13 levelů za dokončení veškeré výroby."
 a18      = u"This means you can level from 2-80 entirely from crafting as there are 8 crafts."
-q2       = u"Won't these guides be wrong once everyone buys out item X?"
-a2       = u"These guides suggest crafting or buying items based on current TP prices. They will adjust suggested items as prices change.  (Nearly) all possible recipes are considered when guides are generated."
-q3       = u"Various questions about crit rate/chance or crafting boosters."
-a31      = u"This script assumes a 0% crit rate, so crits may reduce the number of crafts and thus materials needed."
-a32      = u"Crafting boosters give you a +50%, additive with wvw bonus, chance to critical while doing a craft. Max bonus of 70%. What a critical does while crafting is give you 50% bonus crafting experience that is additive with other crafting bonuses(discovery, masterwork and rare crafts). Crafting boosters may make it so you need less crafts to reach 400 in a craft but it will not cause you to gain more than 10 character levels."
-q4       = u"Can I reuse or link to your guides?"
-a4       = u"Yes, just be aware the current output may change and I will not provide support. Also please provide proper attribution ( xanthic.9478 and a link to this site )."
-q5       = u"Various questions about considering TP sell values or adding vendor cost recovery."
-a51      = u"Balancing based on TP sell values would add risk to the guide price, as prices would even out and stagnate removing the ability for some people to recovery costs that way and thus making their run through the guide several silver more expensive. I currently provide a \"best guess\" cost recovery based on maximum bid or vendor price, whichever is greater, and if 0 minimum TP sale price."
-a52      = u"There also doesn't exist an \"automatic\" way to determine if an item will actually sell at the price listed either."
-q6       = u"How are you making these guides?"
-a6       = u"Multi-part Python 2.7.3 script that uses a greedy algorithm and price data from gw2spidy to calculate the lowest initial gold method of leveling a craft using in game formulas"
-q7       = u"No, I mean how are you making these guides? (Simple answer)"
-a7       = u"For each \"make\", I generate a list of items, calculate the highest xp/lowest cost way to make that item based on crafting or buying its parts and then choose the best item to make."
-q8       = u"No, I mean how are you making these guides? (Elaborate answer)"
-a8       = u"First I divide crafting up into 16 25 point buckets(ie 0-24, 25-49).  Then starting at the 375 I compute(for every item that gives xp) its xp/base_cost, and then for every sub part of that item I compute its xp/base_cost and if any of those items have sub parts I then compute their xp/base_cost until I reach items without recipes.  Sub parts are chosen to be made if they are cheaper than buying the part, or they increase the xp/cost ratio more than buying the part.  Which is why the guide may tell you to craft something even if it is slightly cheaper to buy it.  Then after the best choice is found, xp changes are calculated(across all buckets) and then the best choice is found again."
-thanks   = u"Thank you to the people that created guides before me; Qorthos, pwnuniversity, gw2wiz and guildwars-2-crafting. I wouldn't have had the idea to write this without your guides providing a template for me to build from."
+q2       = u"Budou tyto návody správné, když někdo vykoupí všechen materiál X?"
+a2       = u"Tyto návody navrhují výrobu nebo nakupování materiálů na základě aktuálních cen na tržišti. Upravuje tedy navrhované předměty podle toho jak se mění jejich cena.  (Téměř) všechny možné recepty jsou porovnány před vygenerováním průvodce."
+q3       = u"Otázka na critical rate/šanci nebo crafting boosters (ke zvýšení počtu získaných zkušeností)."
+a31      = u"Tento script předpokládá 0% crit rate, protože criticaly redukují množství potřebných surovin k výrobě."
+a32      = u"Crafting booster přidává +50%, plus wvw bonus, zvyšuje šanci na critical. Maximální bonus je 70%. Critical přidá 50% bonus výrobních zkušeností, který se sčítá s dalšími bonusy (objevení nového předmětu, masterwork a rare crafty). Crafting booster tak snižuje počet výrobních procesů k dosažení 400, ale nemá to vliv na počet získaných levlů na postavě (vždy 10 levelů)."
+q4       = u"Můžu použít nebo se odkazovat na tohoto průvodce?"
+a4       = u"Ano, ale berte v úvahu, že současný výstup se může změnit a já neposkytuji podporu. Také prosím o použití správných atributů ( xanthic.9478 a odkaz na tuto stránku)."
+q5       = u"Otázka zda brát ohled na ceny na tržišti nebo přidání hodnoty zisku při výkupu u prodejce."
+a51      = u"Zvažování tržních cen by přidalo risk při odhadování koncových cen, protože ceny jednotlivých materiálů jsou nestabilní a nakonec by se koncová cena mohla zvednout i o několik stříbrňáků. Momentálně poskytuji \"nejlepší odhad\" návratnosti nákladů založené na maximální nabídce nebo ceně u prodejce podle toho, která je větší."
+a52      = u"Taktéž neexistuje \"automatický\" způsob stanovení, že se daný předmět právě teď za tu cenu prodává."
+q6       = u"Jak je tento průvodce vytvořen?"
+a6       = u"Multi-part Python 2.7.3 script, který používá nenasytný algoritmus a cenné data z gw2spidy ke kalkulaci nejnižších počátečních nákladů a nejkratší cesty k získání konečného počtu zkušeností"
+q7       = u"Ne, já myslel jak funguje tento průvodce? (Jednoduchá odpověď)"
+a7       = u"Pro každou \"výrobu\", vygeneruji seznam materiálů, spočítám poměr nejvíc xp/nejmíň peněz, zvážím cesty výroby předmětu ze základních surovin nebo nákupu polotovarů a pak stanovým nejvýhodnější předmět k vytvoření."
+q8       = u"Ne, já myslel jak funguje tento průvodce? (Elaborát)"
+a8       = u"Nejdřív rozdělím výrobu na skupinky po 16 25 bodech(př. 0-24, 25-49).  Potom počínaje 375 spočítám (pro každý předmět, který dává xp) jeho poměr xp/základní cena a potom pro každou jeho součástku spočítám její poměr xp/základní cena a tak dále až se dostanu k součástce, která nemá recept na výrobu.  Součástky jsou určeny k výrobě, pokud není levnější je koupit, nebo se jejich výrobou nenavýší poměr xp/kupní cenu součástí.  A proto Vás někdy průvodce navede k výrobě ikdyž nákup je o něco levnější.  A potom co je vybrána nejlepší možnost, spočítají se změny xp (skrz všechny skupiny) a nejlepší možnost je znovu nalezena."
+thanks   = u"Děkuji lidem, kteří vytvořili průvodce předemnou; Qorthos, pwnuniversity, gw2wiz a guildwars-2-crafting. Bez vaší šablony bych tohle všechno nestvořil."
 
 # index strings
-fThings = u"4 things you should know"
-t1      = u"<img src=\"/img/arrow.png\" alt=\"ARROW\"> can be clicked for all discovery recipes as well as sold item list"
-t2      = u"<input type=\"checkbox\"/> exist so you can track your location in the buy list"
-t3      = u"Tier specific buy lists exist for non-cooking guides(click the button)"
-t4      = u"<a href=\"nav.html\">Nav page</a> if you can't use the nav bar"
-nge     = u"Will make smart choices between crafting or buying sub parts of an item."
-fge     = u"Makes the same item for 25 points.  Faster and easier than other guides but more expensive."
-tge     = u"Will craft sub parts of an item if possible instead of buying.  Usually more expensive than normal guides, but can be less complex.  This is similar to crafting guides that existed before ACCG."
-wit     = u"<strong>What is this?</strong> Always current crafting guides for Guild Wars 2. All guides are recalculated based on current TP prices every hour assuming the computer running the script is on and gw2spidy is reachable. These guides were originally created for friends, but based on the popularity of these within the Guild Wars 2 community, I continued to improve them to what you see today.  This script does assume there are \"infinite\" of an item at a given cost, so if they all get bought up, or there is very few available during the update window prices may be wrong until the next update."
-nWarn   = u"<strong>[Notice]</strong> If you are not going to do the guide in 1 sitting make sure to save it to your machine. As these guides can and will change."
-rCost   = u"<strong>Hints to reduce costs:</strong> Save a copy of the guide and place buy orders for the materials."
-thanks2 = u"Thank you to Chase, TimeBomb and saladon for some of the CSS styling on these pages.  Thanks to Marc Ramos(desmodium.3745) for the Spanish translation.  And thank you to @figgityfigs for the new icon design(favicon and apple-touch-icon) and hosting"
+fThings = u"4 věci o kterých by jste měli vědět"
+t1      = u"<img src=\"/img/arrow.png\" alt=\"ARROW\"> kliknutím na tuto ikonku si rozevřete recept, nebo nákupní seznam"
+t2      = u"<input type=\"checkbox\"/> zaškrtněte si získané předměty v seznamu"
+t3      = u"Tier specifický nákupní seznam se objeví u všech průvodců kromě Cooking (klikněte na tlačítko)"
+t4      = u"<a href=\"nav.html\">Stromová struktura webu</a> pokud nemůžete použít horní menu"
+nge     = u"Chytře vyberou mezi výrobou nebo nákupem součástí předmětu."
+fge     = u"Vytvoří tolikrát stejný předmět kolikrát je potřeba pro zisk 25 bodů.  Rychlejší a jednodušší, ale dražší než normální."
+tge     = u"Vytvoří součásti předmětu, pokud je to možné místo nákupu.  Obvykle dražší než normální průvodce, ale může být méně komplexní.  Toto je podobné výrobním průvodcům, kteří existovali před ACCG."
+wit     = u"<strong>Co je toto za stránku?</strong> Stále aktuální výrobní průvodce pro Guild Wars 2. Všechny průvodce jsou spočítány na základě aktuálních tržních cen jednou za hodinu za předpokladu, že počítač se skriptem běží a gw2spidy je dostupné. Tento průvodce byl původně určen kamarádům, ale na základě zájmu ze strany Guild Wars 2 komunity, pokračuji ve vylepšování až do současné podoby.  Skript bere v úvahu určité \"konečné\" množství daného předmětu za danou cenu, takže když se vyprodají, nebo jich je velmi málo během aktualizace, tabulka s cenami může být chybná až do další aktualizece."
+nWarn   = u"<strong>[Poznámka]</strong> Pokud nechcete projít celých výrobním procesem najednou, tak si ho prosím uložte do svého PC. Protože průvodce se neustále mění."
+rCost   = u"<strong>Tip na snížení nákladů:</strong> Uložte si průvodce a dejte si nabídky na materiál na tržiště."
+thanks2 = u"Děkuji Chase, TimeBomb a saladon drobné CSS nastylování těchto stránek.  Díky Marc Ramos(desmodium.3745) za španělský překlad.  A také díky @figgityfigs za novou ikonu (favicon a apple-touch-icon) a hosting"
 
 # nav strings
-navNotice = u"This is a simple nav page, you should only be reaching it if you cannot use the nav bar.  If you are translating this site please email me at gw2crafts@live.com with the source language and translation page used and I will try to fix it."
-navLang   = u"Language"
+navNotice = u"Tohle je stránka s navigací stránek, používejte ji pouze pokud Vám nefunguje horní navigační menu.  Pokud překládáte tuto stránku prosím napište mi na email gw2crafts@live.com, přiložte název jazyka a zdrojový soubor jazykové mutace a já se o zbytek postarám."
+navLang   = u"Jazyk"
 
 #nav page headers and guide names
 home    = u"Domů"
@@ -276,7 +276,8 @@ header = u"""<nav>
         <li><a href="http://gw2crafts.net/"""+path+u"""faq.html">"""+about+u"""</a></li>
         <li><a href="#" class="language" hreflang="en">"""+lang+u"""</a>
         <ul>
-          <li><a href="#" hreflang="en">English</a></li>
+          <li><a href="#" hreflang="cz">Čeština</a></li>
+          <li><a href="http://gw2crafts.net/en/%s" hreflang="en">English</a></li>
           <li><a href="http://gw2crafts.net/fr/%s" hreflang="fr">Français</a></li>
           <li><a href="http://gw2crafts.net/de/%s" hreflang="de">Deutsch</a></li>
           <li><a href="http://gw2crafts.net/es/%s" hreflang="es">Español</a></li>
