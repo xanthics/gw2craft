@@ -343,3 +343,7 @@ nav ul ul ul li {
 
 .language {
 	background: rgb(125,55,55);}
+
+input[type=checkbox]:checked+span {
+	opacity:0.3;
+}
