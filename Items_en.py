@@ -6728,8 +6728,6 @@ ilist = {
 	49439:u"+16 Agony Infusion",
 	49522:u"Dire Intricate Gossamer Insignia",
 	49782:u"Watchwork Mechanism",
-	49801:u"Satchel of Zealot's Emblazoned Armor",
-	49866:u"Zealot's Intricate Gossamer Insignia",
 	66610:u"Cleric's Adventurer's Spectacles",
 	66612:u"Rampager's Adventurer's Scarf",
 	66613:u"Cleric's Adventurer's Spectacles",
