@@ -31,7 +31,7 @@ import json
 import os
 import sys
 import math
-import items
+import Items
 # so we can set custom headers
 from multiprocessing import Process, Queue, cpu_count
 from urllib import FancyURLopener
@@ -50,7 +50,7 @@ def itemlistworkerGWT(_itemList, temp, idIndex, buyIndex, sellIndex, supplyIndex
 
 		try:
 			# set value to greater of buy and vendor.  If 0 set to minimum sell value
-			w = items.ilist[item][u'vendor_value']
+			w = Items.ilist[item][u'vendor_value']
 			sellMethod = 0
 			if val[buyIndex]*.85 > w:
 				w = int(val[buyIndex]*.85)
@@ -60,7 +60,7 @@ def itemlistworkerGWT(_itemList, temp, idIndex, buyIndex, sellIndex, supplyIndex
 				sellMethod = 2
 
 			# Save all the information we care about
-			outdict[item] = {u'w':w,u'cost':val[sellIndex],u'recipe':None,u'rarity':items.ilist[item][u'rarity'],u'type':items.ilist[item][u'type'],u'icon':items.ilist[item][u'img_url'],u'output_item_count':items.ilist[item][u'output_item_count'],u'sellMethod':sellMethod,u"discover":[]} 
+			outdict[item] = {u'w':w,u'cost':val[sellIndex],u'recipe':None,u'rarity':Items.ilist[item][u'rarity'],u'type':Items.ilist[item][u'type'],u'icon':Items.ilist[item][u'img_url'],u'output_item_count':Items.ilist[item][u'output_item_count'],u'sellMethod':sellMethod,u"discover":[]} 
 			# if the item has a low supply, ignore it
 			if val[supplyIndex] <= 50:
 				outdict[item][u'cost'] = 99999999
@@ -69,7 +69,7 @@ def itemlistworkerGWT(_itemList, temp, idIndex, buyIndex, sellIndex, supplyIndex
 		except Exception, err:
 #			print u'ERROR: %s. %i, %s' % (str(err),item,Items_en.ilist[item])
 			# Save all the information we care about
-			outdict[item] = {u'w':0,u'cost':99999999,u'recipe':None,u'rarity':items.ilist[item][u'rarity'],u'type':items.ilist[item][u'type'],u'icon':items.ilist[item][u'img_url'],u'output_item_count':items.ilist[item][u'output_item_count'],u'sellMethod':sellMethod,u"discover":[]} 
+			outdict[item] = {u'w':0,u'cost':99999999,u'recipe':None,u'rarity':Items.ilist[item][u'rarity'],u'type':Items.ilist[item][u'type'],u'icon':Items.ilist[item][u'img_url'],u'output_item_count':Items.ilist[item][u'output_item_count'],u'sellMethod':sellMethod,u"discover":[]} 
 
 		if outdict[item][u'type'] == u'UpgradeComponent' and outdict[item][u'rarity'] == u'Exotic':
 			outdict[item][u'rarity'] = u'Exotic UpgradeComponent'
@@ -111,7 +111,7 @@ def itemlistworker(_itemList, temp, out_q):
 
 		try:
 			# set value to greater of buy and vendor.  If 0 set to minimum sell value
-			w = items.ilist[item][u'vendor_value']
+			w = Items.ilist[item][u'vendor_value']
 			sellMethod = 0
 			if val[u'max_offer_unit_price']*.85 > w:
 				w = int(val[u'max_offer_unit_price']*.85)
@@ -121,7 +121,7 @@ def itemlistworker(_itemList, temp, out_q):
 				sellMethod = 2
 
 			# Save all the information we care about
-			outdict[item] = {u'w':w,u'cost':val[u'min_sale_unit_price'],u'recipe':None,u'rarity':items.ilist[item][u'rarity'],u'type':items.ilist[item][u'type'],u'icon':items.ilist[item][u'img_url'],u'output_item_count':items.ilist[item][u'output_item_count'],u'sellMethod':sellMethod,u"discover":[]} 
+			outdict[item] = {u'w':w,u'cost':val[u'min_sale_unit_price'],u'recipe':None,u'rarity':Items.ilist[item][u'rarity'],u'type':Items.ilist[item][u'type'],u'icon':Items.ilist[item][u'img_url'],u'output_item_count':Items.ilist[item][u'output_item_count'],u'sellMethod':sellMethod,u"discover":[]} 
 			# if the item has a low supply, ignore it
 			if val[u'sale_availability'] <= 50:
 				outdict[item][u'cost'] = 99999999
@@ -130,7 +130,7 @@ def itemlistworker(_itemList, temp, out_q):
 		except Exception, err:
 #			print u'ERROR: %s. %i, %s' % (str(err),item,Items_en.ilist[item])
 			# Save all the information we care about
-			outdict[item] = {u'w':0,u'cost':99999999,u'recipe':None,u'rarity':items.ilist[item][u'rarity'],u'type':items.ilist[item][u'type'],u'icon':items.ilist[item][u'img_url'],u'output_item_count':items.ilist[item][u'output_item_count'],u'sellMethod':sellMethod,u"discover":[]} 
+			outdict[item] = {u'w':0,u'cost':99999999,u'recipe':None,u'rarity':Items.ilist[item][u'rarity'],u'type':Items.ilist[item][u'type'],u'icon':Items.ilist[item][u'img_url'],u'output_item_count':Items.ilist[item][u'output_item_count'],u'sellMethod':sellMethod,u"discover":[]} 
 
 		if outdict[item][u'type'] == u'UpgradeComponent' and outdict[item][u'rarity'] == u'Exotic':
 			outdict[item][u'rarity'] = u'Exotic UpgradeComponent'
@@ -183,7 +183,7 @@ def appendCosts():
 			temp = json.load(f)
 			if os.isatty(sys.stdin.fileno()):
 				print len(temp[u'items']) # print total items returned from GWT
-			cList = cItemlistGWT(items.ilist.keys(),temp[u'items'],temp[u'columns'])
+			cList = cItemlistGWT(Items.ilist.keys(),temp[u'items'],temp[u'columns'])
 			getprices = False
 		except Exception, err:
 			print u'ERROR: %s.' % str(err)
@@ -193,7 +193,7 @@ def appendCosts():
 				temp = json.load(f)
 				if os.isatty(sys.stdin.fileno()):
 					print len(temp[u'results']) # print total items returned from gw2spidy
-				cList = cItemlist(items.ilist.keys(),temp[u'results'])
+				cList = cItemlist(Items.ilist.keys(),temp[u'results'])
 				getprices = False
 			except Exception, err:
 				print u'ERROR: %s.' % str(err)

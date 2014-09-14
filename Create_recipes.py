@@ -208,7 +208,7 @@ def itemlist(item_list, lang=u"en"):
 			except Exception, err:
 				print 'Error: %s.\n' % str(err)
 		page += u'}'
-		with codecs.open("items.py","wb", encoding='utf-8') as f:
+		with codecs.open("Items.py","wb", encoding='utf-8') as f:
 			f.write(page)
 
 	page = u'# -*- coding: utf-8 -*-\nilist = {\n'

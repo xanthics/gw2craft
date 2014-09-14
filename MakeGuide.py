@@ -30,9 +30,9 @@ import math
 import os
 import sys
 import Globals
-import items
+import Items
 # Localized text
-import Items_en, Items_de, Items_fr, Items_es, localen, localde, localfr, locales, localcz
+import Items_en, Items_de, Items_fr, Items_es, Localen, Localde, Localfr, Locales, Localcz
 from collections import defaultdict
 from copy import deepcopy
 from MyPrint import printtofile
@@ -140,7 +140,7 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level):
 				if not cList[item][u'recipe']:
 					cList[item][u'recipe'] = []
 				cList[item][u'recipe'].append(c_recipes[tier][item])
-				if u"discover" in items.ilist[item]:
+				if u"discover" in Items.ilist[item]:
 					 cList[item][u'discover'].append(-1)
 				else:
 					 cList[item][u'discover'].append(0)
@@ -336,12 +336,12 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level):
 				if set(rsps.keys()).intersection(set(bucket[bkey[0]][u'make'])):
 					cList[set(rsps.keys()).intersection(set(bucket[bkey[0]][u'make'])).pop()][u'RecipeLearned'] = True
 
-	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_de.ilist, localde)
-	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_fr.ilist, localfr)
-	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_es.ilist, locales)
-	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_en.ilist, localcz)
+	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_de.ilist, Localde)
+	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_fr.ilist, Localfr)
+	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_es.ilist, Locales)
+	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_en.ilist, Localcz)
 	totals = {}
-	totals.update(printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_en.ilist, localen))
+	totals.update(printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_en.ilist, Localen))
 	return totals	
 
 # given an item, determine if it is better to craft its sub items, or buy them.  return the recipe.
