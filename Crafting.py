@@ -34,9 +34,9 @@ import sys
 import threading
 import time
 # recipe and item lists
-import Armorsmith, Artificer, Chef, Chef_karma, Huntsman, Jeweler, Leatherworker, Tailor, Weaponsmith, items, Globals
+import Armorsmith, Artificer, Chef, Chef_karma, Huntsman, Jeweler, Leatherworker, Tailor, Weaponsmith, Items, Globals
 # Localized text
-import localen, localde, localfr, locales, localcz
+import Localen, Localde, Localfr, Locales, Localcz
 from multiprocessing import Process, Queue, cpu_count
 from copy import deepcopy
 from MyPrint import maketotals
@@ -145,11 +145,11 @@ def main():
 		if p.is_alive():
 			sys.exit(0)
 
-	maketotals(totals,mytime,localen)
-	maketotals(totals,mytime,localde)
-	maketotals(totals,mytime,localfr)
-	maketotals(totals,mytime,locales)
-	maketotals(totals,mytime,localcz)
+	maketotals(totals,mytime,Localen)
+	maketotals(totals,mytime,Localde)
+	maketotals(totals,mytime,Localfr)
+	maketotals(totals,mytime,Locales)
+	maketotals(totals,mytime,Localcz)
 
 	print "End: ", datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
 

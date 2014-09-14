@@ -33,7 +33,7 @@ from random import randint
 from ftplib import FTP
 from collections import defaultdict
 # FTP Login
-from ftp_info import ftp_url, ftp_user, ftp_pass
+from Ftp_info import ftp_url, ftp_user, ftp_pass
 
 
 # Format copper values so they are easier to read
