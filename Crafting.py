@@ -35,7 +35,7 @@ from random import choice, randint
 import Armorsmith, Artificer, Chef, Chef_karma, Huntsman, Jeweler, Leatherworker, Tailor, Weaponsmith, items
 # Localized text
 import Items_en, Items_de, Items_fr, Items_es, localen, localde, localfr, locales, localcz
-from multiprocessing import Process, Queue
+from multiprocessing import Process, Queue, cpu_count
 from copy import deepcopy
 from collections import defaultdict
 from itertools import chain
@@ -85,7 +85,7 @@ def itemlistworkerGWT(_itemList, temp, idIndex, buyIndex, sellIndex, supplyIndex
 # helper function to parse out only the items we care about from gw2spidy
 def cItemlistGWT(itemList,temp,key):
 	out_q = Queue()
-	nprocs = 8
+	nprocs = cpu_count() * 2
 
 	chunksize = int(math.ceil(len(itemList) / float(nprocs)))
 	procs = []
@@ -893,8 +893,8 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	# "Tiny Snowflake","Delicate Snowflake","Glittering Snowflake","Unique Snowflake","Pristine Snowflake","Piece of Candy Corn","Chattering Skull","Nougat Center","Plastic Fang"
 	basic_h = range(38130,38136) + [36041,36060,36061,36059]
 
-	# "Artichoke","Asparagus Spear","Basil Leaf","Bay Leaf","Beet","Black Peppercorn","Blackberry","Blueberry","Butternut Squash","Carrot","Cayenne Pepper","Chili Pepper","Chocolate Bar","Cinnamon Stick","Clam","Clove","Coriander Seed","Dill Sprig","Egg","Head of Cabbage","Head of Cauliflower","Head of Garlic","Head of Lettuce","Kale Leaf","Leek","Mint Leaf","Mushroom","Onion","Orange","Oregano Leaf","Parsley Leaf","Parsnip","Passion Fruit","Piece of Candy Corn","Portobello Mushroom","Potato","Raspberry","Rosemary Sprig","Rutabaga","Sage Leaf","Sesame Seed","Slab of Poultry Meat","Slab of Red Meat","Snow Truffle","Spinach Leaf","Stick of Butter","Strawberry","Sugar Pumpkin","Tarragon Leaves","Thyme Leaf","Turnip","Vanilla Bean","Walnut","Yam","Zucchini","Green Onion", Omnomberry 
-	basic_fo = [12512,  12505,  12245,  12247,  12161,  12236,  12537,  12255,  12511,  12134,  12504,  12331,  12229,  12258,  12327,  12534,  12531,  12336,  12143,  12332,  12532,  12163,  12238,  12333,  12508,  12536,  12147,  12142,  12351,  12244,  12246,  12507,  36731,  36041,  12334,  12135,  12254,  12335,  12535,  12243,  12342,  24360,  24359,  12144,  12241,  12138,  12253,  12538,  12506,  12248,  12162,  12234,  12250,  12329,  12330,  12533,  12128]
+	# "Artichoke","Asparagus Spear","Basil Leaf","Bay Leaf","Beet","Black Peppercorn","Blackberry","Blueberry","Butternut Squash","Carrot","Cayenne Pepper","Chili Pepper","Chocolate Bar","Cinnamon Stick","Clam","Clove","Coriander Seed","Dill Sprig","Egg","Head of Cabbage","Head of Cauliflower","Head of Garlic","Head of Lettuce","Kale Leaf","Leek","Mint Leaf","Mushroom","Onion","Orange","Oregano Leaf","Parsley Leaf","Parsnip","Passion Fruit","Piece of Candy Corn","Portobello Mushroom","Potato","Raspberry","Rosemary Sprig","Rutabaga","Sage Leaf","Sesame Seed","Slab of Poultry Meat","Slab of Red Meat","Snow Truffle","Spinach Leaf","Stick of Butter","Strawberry","Sugar Pumpkin","Tarragon Leaves","Thyme Leaf","Turnip","Vanilla Bean","Walnut","Yam","Zucchini","Green Onion", Omnomberry, Lotus Root
+	basic_fo = [12512,  12505,  12245,  12247,  12161,  12236,  12537,  12255,  12511,  12134,  12504,  12331,  12229,  12258,  12327,  12534,  12531,  12336,  12143,  12332,  12532,  12163,  12238,  12333,  12508,  12536,  12147,  12142,  12351,  12244,  12246,  12507,  36731,  36041,  12334,  12135,  12254,  12335,  12535,  12243,  12342,  24360,  24359,  12144,  12241,  12138,  12253,  12538,  12506,  12248,  12162,  12234,  12250,  12329,  12330,  12533,  12128, 12510]
 
 	# TODO add check for buying bronze ingot and reduce by amount we add, remove if <0
 	if 19679 in make[0]:
@@ -1099,6 +1099,16 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page += u"<button title=\""+localText.toggle+u"\" class =\"info\" id=\"hide_all\">%s</button>"%localText.collapse
 	rt = 0
 	for tier in mTiers:
+		if tier == 400:
+			precraft = sorted([i for i in make if make[i] and i < 400])
+			if precraft:
+				for lvl in precraft:
+					page += (u"<br />\n<h3>%s:%3i</h3>\n")%(localText.level,lvl)
+					for item in make[lvl]:
+						t = (t+1)%2
+						page += u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[lvl][item],cList[item][u'rarity'],cListName[item])
+
+
 		if tier == 150:
 			# adword 2
 			page += u'<div style="float:right;position:absolute;right:-320px;"> \
@@ -1379,7 +1389,13 @@ def join(A, B):
 def recipeworker(cmds, cList, mytime, xp_to_level, out_q):
 	totals = {}
 	for cmd in cmds:
-		totals.update(costCraft(cmd[0],cmd[1],cmd[2],cmd[3],cmd[4],deepcopy(cList),mytime,xp_to_level))
+		if len(cmd) == 2:
+			global karmin
+			karmin = {}
+			for subcmd in cmd:
+				totals.update(costCraft(subcmd[0],subcmd[1],subcmd[2],subcmd[3],subcmd[4],deepcopy(cList),mytime,xp_to_level))
+		else:
+			totals.update(costCraft(cmd[0],cmd[1],cmd[2],cmd[3],cmd[4],deepcopy(cList),mytime,xp_to_level))
 	out_q.put(totals)
 
 def main():
@@ -1403,53 +1419,56 @@ def main():
 	cList = appendCosts()
 
 	out_q = Queue()
-	rList = []
 	#TODO change the way flags are passed so it is easier to understand
 
 	cooking_karma = join(Chef.recipes, Chef_karma.recipes)
-	rList.append([(u"cooking_karma_fast.html",cooking_karma,True,False,range(0,400,25)),
-				  (u"cooking_karma_fast_light.html",cooking_karma,True,False,range(0,400,25)),
-				  (u"cooking_fast.html",Chef.recipes,True,False,range(0,400,25))])
-	rList.append([(u"cooking_karma.html",cooking_karma,False,False,range(0,400,25)),
-				  (u"cooking_karma_light.html",cooking_karma,False,False,range(0,400,25)),
-				  (u"cooking.html",Chef.recipes,False,False,range(0,400,25))])
-	rList.append([(u"jewelcraft_fast.html",Jeweler.recipes,True,False,range(0,400,25)),
-				  (u"jewelcraft.html",Jeweler.recipes,False,False,range(0,400,25)),
-				  (u"jewelcraft_400.html",Jeweler.recipes,False,True,range(400,500,25)),
-				  (u"jewelcraft_450.html",Jeweler.recipes,False,True,range(400,450,25))])
-	rList.append([(u"artificing_fast.html",Artificer.recipes,True,False,range(0,400,25)),
-				  (u"artificing.html",Artificer.recipes,False,False,range(0,400,25)),
-				  (u"artificing_400.html",Artificer.recipes,False,True,range(400,500,25)),
-				  (u"artificing_450.html",Artificer.recipes,False,True,range(400,450,25))])
-	rList.append([(u"weaponcraft_fast.html",Weaponsmith.recipes,True,False,range(0,400,25)),
-				  (u"weaponcraft.html",Weaponsmith.recipes,False,False,range(0,400,25)),
-				  (u"weaponcraft_400.html",Weaponsmith.recipes,False,True,range(400,500,25)),
-				  (u"weaponcraft_450.html",Weaponsmith.recipes,False,True,range(400,450,25))])
-	rList.append([(u"huntsman_fast.html",Huntsman.recipes,True,False,range(0,400,25)),
-				  (u"huntsman.html",Huntsman.recipes,False,False,range(0,400,25)),
-				  (u"huntsman_400.html",Huntsman.recipes,False,True,range(400,500,25)),
-				  (u"huntsman_450.html",Huntsman.recipes,False,True,range(400,450,25))])
-	rList.append([(u"armorcraft_fast.html",Armorsmith.recipes,True,False,range(0,400,25)),
-				  (u"armorcraft.html",Armorsmith.recipes,False,False,range(0,400,25)),
-				  (u"armorcraft_400.html",Armorsmith.recipes,False,True,range(400,500,25)),
-				  (u"armorcraft_450.html",Armorsmith.recipes,False,True,range(400,450,25))])
-	rList.append([(u"tailor_fast.html",Tailor.recipes,True,False,range(0,400,25)),
-				  (u"tailor.html",Tailor.recipes,False,False,range(0,400,25)),
-				  (u"tailor_400.html",Tailor.recipes,False,True,range(400,500,25)),
-				  (u"tailor_450.html",Tailor.recipes,False,True,range(400,450,25))])
-	rList.append([(u"leatherworking_fast.html",Leatherworker.recipes,True,False,range(0,400,25)),
-				  (u"leatherworking.html",Leatherworker.recipes,False,False,range(0,400,25)),
-				  (u"leatherworking_400.html",Leatherworker.recipes,False,True,range(400,500,25)),
-				  (u"leatherworking_450.html",Leatherworker.recipes,False,True,range(400,450,25))])
+	rList = [[(u"cooking_karma_fast.html",cooking_karma,True,False,range(0,400,25)),
+			 (u"cooking_karma_fast_light.html",cooking_karma,True,False,range(0,400,25))],
+			 [(u"cooking_karma.html",cooking_karma,False,False,range(0,400,25)),
+			 (u"cooking_karma_light.html",cooking_karma,False,False,range(0,400,25))],
+			 (u"cooking_fast.html",Chef.recipes,True,False,range(0,400,25)),
+			 (u"cooking.html",Chef.recipes,False,False,range(0,400,25)),
+			 (u"cooking_fast_200.html",Chef.recipes,True,False,range(0,200,25)),
+			 (u"cooking_karma_fast_200.html",cooking_karma,True,False,range(0,200,25)),
+			 (u"jewelcraft_fast.html",Jeweler.recipes,True,False,range(0,400,25)),
+			 (u"jewelcraft.html",Jeweler.recipes,False,False,range(0,400,25)),
+			 (u"jewelcraft_400.html",Jeweler.recipes,False,True,range(400,500,25)),
+			 (u"jewelcraft_450.html",Jeweler.recipes,False,True,range(400,450,25)),
+			 (u"artificing_fast.html",Artificer.recipes,True,False,range(0,400,25)),
+			 (u"artificing.html",Artificer.recipes,False,False,range(0,400,25)),
+			 (u"artificing_400.html",Artificer.recipes,False,True,range(400,500,25)),
+			 (u"artificing_450.html",Artificer.recipes,False,True,range(400,450,25)),
+			 (u"weaponcraft_fast.html",Weaponsmith.recipes,True,False,range(0,400,25)),
+			 (u"weaponcraft.html",Weaponsmith.recipes,False,False,range(0,400,25)),
+			 (u"weaponcraft_400.html",Weaponsmith.recipes,False,True,range(400,500,25)),
+			 (u"weaponcraft_450.html",Weaponsmith.recipes,False,True,range(400,450,25)),
+			 (u"huntsman_fast.html",Huntsman.recipes,True,False,range(0,400,25)),
+			 (u"huntsman.html",Huntsman.recipes,False,False,range(0,400,25)),
+			 (u"huntsman_400.html",Huntsman.recipes,False,True,range(400,500,25)),
+			 (u"huntsman_450.html",Huntsman.recipes,False,True,range(400,450,25)),
+			 (u"armorcraft_fast.html",Armorsmith.recipes,True,False,range(0,400,25)),
+			 (u"armorcraft.html",Armorsmith.recipes,False,False,range(0,400,25)),
+			 (u"armorcraft_400.html",Armorsmith.recipes,False,True,range(400,500,25)),
+			 (u"armorcraft_450.html",Armorsmith.recipes,False,True,range(400,450,25)),
+			 (u"tailor_fast.html",Tailor.recipes,True,False,range(0,400,25)),
+			 (u"tailor.html",Tailor.recipes,False,False,range(0,400,25)),
+			 (u"tailor_400.html",Tailor.recipes,False,True,range(400,500,25)),
+			 (u"tailor_450.html",Tailor.recipes,False,True,range(400,450,25)),
+			 (u"leatherworking_fast.html",Leatherworker.recipes,True,False,range(0,400,25)),
+			 (u"leatherworking.html",Leatherworker.recipes,False,False,range(0,400,25)),
+			 (u"leatherworking_400.html",Leatherworker.recipes,False,True,range(400,500,25)),
+			 (u"leatherworking_450.html",Leatherworker.recipes,False,True,range(400,450,25))]
 
-	nprocs = len(rList)
+	nprocs = cpu_count() * 2
 
 	procs = []
 	global header
 	global cright
 
+	chunksize = int(math.ceil(len(rList) / float(nprocs)))
+
 	for i in range(nprocs):
-		p = Process(target=recipeworker,args=(rList[i],cList,mytime,xp_to_level,out_q))
+		p = Process(target=recipeworker,args=(rList[chunksize * i:chunksize * (i + 1)],cList,mytime,xp_to_level,out_q))
 		procs.append(p)
 		p.start()
 
@@ -1462,7 +1481,6 @@ def main():
 		# if thread is still alive after 180 seconds, something is wrong.  Kill the script.
 		if p.is_alive():
 			sys.exit(0)
-
 
 	maketotals(totals,mytime,localen)
 	maketotals(totals,mytime,localde)
