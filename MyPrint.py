@@ -58,7 +58,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	non_item = [u'Refinement', u'Insignia', u'Inscription', u'Component']
 
 	karma_items  = {12337:{u'note':u"{} <br />{}".format(localText.pickins,localText.disa),u'cost':77}, # Almond
-					12165:{u'note':u"{} <br />{}".format(localText.eda,localText.jack),u'cost':35}, # Apple
+					12165:{u'note':u"<del>{}</del> <br />{}".format(localText.eda,localText.jack),u'cost':35}, # Apple
 					12340:{u'note':u"{}".format(localText.makayla),u'cost':77}, # Avocado
 					12251:{u'note':u"{} <br />{} <br />{} <br />{}".format(localText.jenks,localText.sangdo,localText.goran,localText.vejj),u'cost':49}, # Banana
 					12237:{u'note':u"{} <br />{}".format(localText.jenks,localText.leius),u'cost':49}, # Black Bean
@@ -669,10 +669,10 @@ def maketotals(totals, mytime, localText):
 			\n</div>\n'
 	page += localText.note
 	page += u'	<table>'
-	page += u'<tr><th>'+localText.craft+u'</th><th>'+localText.nGuides+u'</th><th>'+localText.fGuides+u'</th></tr>\n'
-	page += u'<tr><td>'+localText.nHearts+u'</td><td>'+mFormat(totals[u'cooking'])+u'</td><td>'+mFormat(totals[u'cooking_fast'])+u'</td></tr>\n'
+	page += u'<tr><th>'+localText.craft+u'</th><th>'+localText.nGuides+u'</th><th>'+localText.fGuides+u'</th><th>1-200</th></tr>\n'
+	page += u'<tr><td>'+localText.nHearts+u'</td><td>'+mFormat(totals[u'cooking'])+u'</td><td>'+mFormat(totals[u'cooking_fast'])+u'</td><td>'+mFormat(totals[u'cooking_fast_200'])+u'</td></tr>\n'
 	page += u'<tr><td>'+localText.tHearts+u'</td><td>'+mFormat(totals[u'cooking_karma_light'])+u'</td><td>'+mFormat(totals[u'cooking_karma_fast_light'])+u'</td></tr>\n'
-	page += u'<tr><td>'+localText.aHearts+u'</td><td>'+mFormat(totals[u'cooking_karma'])+u'</td><td>'+mFormat(totals[u'cooking_karma_fast'])+u'</td></tr>\n'
+	page += u'<tr><td>'+localText.aHearts+u'</td><td>'+mFormat(totals[u'cooking_karma'])+u'</td><td>'+mFormat(totals[u'cooking_karma_fast'])+u'</td><td>'+mFormat(totals[u'cooking_karma_fast_200'])+u'</td></tr>\n'
 	 
 	page += u"</table>\n<br />\n<table>\n<tr><th>"+localText.craft+u"</th><th>"+localText.nGuides+u"</th><th>"+localText.fGuides+u"</th><th>400-450</th><th>400-500</th></tr>\n"
 
