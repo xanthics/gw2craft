@@ -2,5 +2,6 @@
 *.pyc
 *.html
 /ftp_info.py
+/Ftp_info.py
 .cache/*
 .idea/*
