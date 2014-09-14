@@ -111,7 +111,7 @@ def parse_recipes(recipes):
 
 	new_recipes = {r[0]:r[1] for r in recipes.items()
 				   if not int(r[1][u'output_item_id']) in bad_recipes
-				   and not r[1][u'type'] == u'Feast'}
+				   and not r[1][u'type'] in [u'Feast',u'Backpack']}
 
 	for _recipe, data in new_recipes.items():
 		min_rating = data[u'min_rating']
