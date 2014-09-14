@@ -1151,7 +1151,10 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 		index = 0
 		if tier == 425:
 			for item in sorted(make[tier]):
-				index = cList[item][u'tier'].index(400)
+				try:
+					index = cList[item][u'tier'].index(400)
+				except:
+					index = 0
 				if cList[item][u'discover'][index] == 1 and not cList[item][u'rarity'] == u'Exotic':
 					cList[item][u'discover'][index] = 0
 					if make[tier][item] > 1:
@@ -1170,7 +1173,10 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 					t = (t+1)%2
 					page += u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item])
 			for item in sorted(make[tier]):
-				index = cList[item][u'tier'].index(400)
+				try:
+					index = cList[item][u'tier'].index(400)
+				except:
+					index = 0
 				if cList[item][u'discover'][index] == 1 and cList[item][u'rarity'] == u'Exotic':
 					cList[item][u'discover'][index] = 0
 					if make[tier][item] > 1:
@@ -1195,7 +1201,10 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 		else:
 			for item in sorted(make[tier]):
 				if craftexo:
-					index = cList[item][u'tier'].index(400)
+					try:
+						index = cList[item][u'tier'].index(400)
+					except:
+						index = 0
 				else:
 					index = cList[item][u'tier'].index(tier)
 				if cList[item][u'discover'][index] == 1:
