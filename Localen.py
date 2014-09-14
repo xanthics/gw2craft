@@ -36,7 +36,7 @@ cright = u'''<footer>
 crandle    = u"Agent Crandle - Fort Trinity(Straits of Devastation 70-75)"
 aidem      = u"Aidem Finlay - Hidden Lake(Brisban Wildlands 15-25)"
 albin      = u"Albin Chronicler - The Icesteppes(Wayfarer Foothills 1-15)"
-jack       = u"Apple Jack(16c per) - Cornucopian Fields(Gendarran Fields 25-35)"
+jack       = u"Apple Jack(16<span class=\"copperIcon\"></span> per) - Cornucopian Fields(Gendarran Fields 25-35)"
 victor     = u"Assistant Chef Victor - Scaver Plateau(Queensdale 1-15)"
 bjarni     = u"Bjarni - Breakneck Pass(Wayfarer Foothills 1-15)"
 braxa      = u"Braxa Scalehunter - Champion's Shield(Iron Marches 50-60)"
