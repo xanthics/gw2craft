@@ -38,7 +38,7 @@ cright = u'''<footer>
 crandle    = u"Agente Crandle - Fuerte Trinidad(Estrechos de la Devastación 70-75)"
 aidem      = u"Aidem Finlay - Lago Oculto(Selvas Brisbanas 15-25)"
 albin      = u"Cronista Albin - Las Estepasgélidas(Colinas del Caminante 1-15)"
-jack       = u"Ron Manzana - Campos de la Abundancia(Campos de Gendarran 25-35)"
+jack       = u"Ron Manzana(16<span class=\"copperIcon\"></span> per) - Campos de la Abundancia(Campos de Gendarran 25-35)"
 victor     = u"Ayudante de cocina Víctor - Meseta Scaver(Valle de la Reina 1-15)"
 bjarni     = u"Bjarni - Paso Precipitado(Colinas del Caminante 1-15)"
 braxa      = u"Braxa Cazaescamas - Escudo del Campeón(Fronteras de Hierro 50-60)"

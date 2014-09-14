@@ -36,7 +36,7 @@ cright = u'''<footer>
 crandle    = u"Agent Crandle - Fort Trinité (Détroit de la Dévastation 70-75)"
 aidem      = u"Aidem Finlay - Lac caché (Terres sauvages de Brisban 15-25)"
 albin      = u"Chroniqueur Albin - teppes glacées (Contreforts du Voyageur 1-15)"
-jack       = u"Jack la pomme(16c per) - Champs de Cornabonde (Champs de Gendarran 25-35)"
+jack       = u"Jack la pomme(16<span class=\"copperIcon\"></span> per) - Champs de Cornabonde (Champs de Gendarran 25-35)"
 victor     = u"Assistant Chef Victor - Plateau de Scaver (Vallée de la reine 1-15)"
 bjarni     = u"Bjarni - Col du Hardi (Contreforts du Voyageur 1-15)"
 braxa      = u"Braxa Chassécaille - Bouclier du Champion (Marais de fer 50-60)"
