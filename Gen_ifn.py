@@ -25,12 +25,12 @@ Author: Jeremy Parks
 Purpose: Generate the index, faq and nav page for each language
 Note: Requires Python 2.7.x
 '''
-import localen, localde, localfr, locales, localcz
+import Localen, Localde, Localfr, Locales, Localcz
 import codecs, os
 from ftplib import FTP
 from StringIO import StringIO
 # FTP Login
-from ftp_info import ftp_url, ftp_user, ftp_pass
+from Ftp_info import ftp_url, ftp_user, ftp_pass
 
 # Generate a faq using local strings
 def faq(localText):
@@ -287,7 +287,7 @@ def index(localText):
 
 
 def main():
-	for lang in [localen, localde, localfr, locales, localcz]:
+	for lang in [Localen, Localde, Localfr, Locales, Localcz]:
 		faq(lang)
 		nav(lang)
 		index(lang)
