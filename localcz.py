@@ -194,6 +194,7 @@ tailor  = u"Tailoring"
 totals  = u"Náklady"
 about   = u"O webu"
 lang    = u"Čeština"
+special = u"Special"
 
 # directory path
 path = "cz/"
@@ -238,38 +239,34 @@ header = u"""<nav>
             <li><a href="http://gw2crafts.net/"""+path+u"""tailor_fast.html">"""+tailor+u"""</a></li>
         </ul>
         </li>
-        <li><a href="#">400+</a>
+        <li><a href="#">400-500</a>
         <ul>
-            <li><a href="#">"""+art+u"""</a>
+            <li><a href="http://gw2crafts.net/"""+path+u"""artificing_400.html">"""+art+u"""</a></li>
+            <li><a href="http://gw2crafts.net/"""+path+u"""huntsman_400.html">"""+hunt+u"""</a></li>
+            <li><a href="http://gw2crafts.net/"""+path+u"""weaponcraft_400.html">"""+wc+u"""</a></li>
+            <li><a href="http://gw2crafts.net/"""+path+u"""armorcraft_400.html">"""+ac+u"""</a></li>
+            <li><a href="http://gw2crafts.net/"""+path+u"""leatherworking_400.html">"""+lw+u"""</a></li>
+            <li><a href="http://gw2crafts.net/"""+path+u"""tailor_400.html">"""+tailor+u"""</a></li>
+        </ul>
+        </li>
+        <li><a href="#">"""+special+u"""</a>
+        <ul>
+            <li><a href="#">"""+cooking+u""" 1-200</a>
             <ul>
-                <li><a href="http://gw2crafts.net/"""+path+u"""artificing_450.html">400-450</a></li>
-                <li><a href="http://gw2crafts.net/"""+path+u"""artificing_400.html">400-500</a></li>
+                <li><a href="http://gw2crafts.net/"""+path+u"""cooking_fast_200.html">"""+nHearts+u"""</a></li>
+                 <li><a href="http://gw2crafts.net/"""+path+u"""cooking_karma_fast_200.html">"""+aHearts+u"""</a></li>
             </ul>
-            <li><a href="#">"""+hunt+u"""</a>
+            </li>
+            <li><a href="#">400-450</a>
             <ul>
-                <li><a href="http://gw2crafts.net/"""+path+u"""huntsman_450.html">400-450</a></li>
-                <li><a href="http://gw2crafts.net/"""+path+u"""huntsman_400.html">400-500</a></li>
+		    <li><a href="http://gw2crafts.net/"""+path+u"""artificing_450.html">"""+art+u"""</a></li>
+		    <li><a href="http://gw2crafts.net/"""+path+u"""huntsman_450.html">"""+hunt+u"""</a></li>
+		    <li><a href="http://gw2crafts.net/"""+path+u"""weaponcraft_450.html">"""+wc+u"""</a></li>
+		    <li><a href="http://gw2crafts.net/"""+path+u"""armorcraft_450.html">"""+ac+u"""</a></li>
+		    <li><a href="http://gw2crafts.net/"""+path+u"""leatherworking_450.html">"""+lw+u"""</a></li>
+		    <li><a href="http://gw2crafts.net/"""+path+u"""tailor_450.html">"""+tailor+u"""</a></li>
             </ul>
-            <li><a href="#">"""+wc+u"""</a>
-            <ul>
-                <li><a href="http://gw2crafts.net/"""+path+u"""weaponcraft_450.html">400-450</a></li>
-                <li><a href="http://gw2crafts.net/"""+path+u"""weaponcraft_400.html">400-500</a></li>
-            </ul>
-            <li><a href="#">"""+ac+u"""</a>
-            <ul>
-                <li><a href="http://gw2crafts.net/"""+path+u"""armorcraft_450.html">400-450</a></li>
-                <li><a href="http://gw2crafts.net/"""+path+u"""armorcraft_400.html">400-500</a></li>
-            </ul>
-            <li><a href="#">"""+lw+u"""</a>
-            <ul>
-                <li><a href="http://gw2crafts.net/"""+path+u"""leatherworking_450.html">400-450</a></li>
-                <li><a href="http://gw2crafts.net/"""+path+u"""leatherworking_400.html">400-500</a></li>
-            </ul>
-            <li><a href="#">"""+tailor+u"""</a>
-            <ul>
-                <li><a href="http://gw2crafts.net/"""+path+u"""tailor_450.html">400-450</a></li>
-                <li><a href="http://gw2crafts.net/"""+path+u"""tailor_400.html">400-500</a></li>
-            </ul>
+            </li>
         </ul>
         </li>
         <li><a href="http://gw2crafts.net/"""+path+u"""total.html">"""+totals+u"""</a></li>
