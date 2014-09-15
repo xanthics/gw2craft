@@ -168,12 +168,98 @@ class MyOpener(FancyURLopener):
 	'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.17 Safari/537.36'
 ]
 	version = choice(user_agents)
+
+def gw2apilistworker(baseURL, ids, out_q):
+	outdict = {}
+	myopener = MyOpener()
+	f = myopener.open(baseURL+",".join(str(i) for i in ids))
+	temp = json.load(f)
+	for item in temp:
+		if item[u'sells']:
+			mymin, mysum, mymax = sys.maxint, 0, -sys.maxint
+			for listing in item[u'sells']:
+				mysum += listing[u'quantity']
+				mymin = min(mymin, listing[u'unit_price'])
+			if item[u'buys']:
+				mymax = max(listing[u'unit_price'] for listing in item[u'buys'])
+
+			# set value to greater of buy and vendor.  If 0 set to minimum sell value
+			w = Items.ilist[item["id"]][u'vendor_value']
+			sellMethod = 0
+			if mymax*.85 > w:
+				w = int(mymax*.85)
+				sellMethod = 1
+			if w == 0:
+				w = int(mymin*.85)
+				sellMethod = 2
+
+			# Save all the information we care about
+			outdict[item["id"]] = {u'w':w,u'cost':mymin,u'recipe':None,u'rarity':Items.ilist[item["id"]][u'rarity'],u'type':Items.ilist[item["id"]][u'type'],u'icon':Items.ilist[item["id"]][u'img_url'],u'output_item_count':Items.ilist[item["id"]][u'output_item_count'],u'sellMethod':sellMethod,u"discover":[]} 
+			# if the item has a low supply, ignore it
+			if mysum <= 50:
+				outdict[item["id"]][u'cost'] = sys.maxint
+
+
+		else:
+			outdict[item["id"]] = {u'w':0,u'cost':sys.maxint,u'recipe':None,u'rarity':Items.ilist[item["id"]][u'rarity'],u'type':Items.ilist[item["id"]][u'type'],u'icon':Items.ilist[item["id"]][u'img_url'],u'output_item_count':Items.ilist[item["id"]][u'output_item_count'],u'sellMethod':0,u"discover":[]}
+	out_q.put(outdict)
+
+def gw2api():
+	resultdict = {}
+	
+	listingURL = "https://api.guildwars2.com/v2/commerce/listings"
+	myopener = MyOpener()
+	f = myopener.open(listingURL)
+	temp = json.load(f)
+	valid = []
+	for item in Items.ilist.keys():
+		if item in temp:
+			valid.append(item)
+		else:
+			resultdict[item] = {u'w':0,u'cost':99999999,u'recipe':None,u'rarity':Items.ilist[item][u'rarity'],u'type':Items.ilist[item][u'type'],u'icon':Items.ilist[item][u'img_url'],u'output_item_count':Items.ilist[item][u'output_item_count'],u'sellMethod':0,u"discover":[]}
+
+	chunksize = 200
+
+	baseURL = "https://api.guildwars2.com/v2/commerce/listings?ids="
+
+	out_q = Queue()
+
+	procs = []
+
+	for i in range(int(len(valid)/chunksize)):
+		p = Process(target=gw2apilistworker,args=(baseURL,valid[chunksize * i:chunksize * (i + 1)],out_q))
+		procs.append(p)
+		p.start()
+
+	p = Process(target=gw2apilistworker,args=(baseURL,valid[chunksize * (i + 1):],out_q))
+	procs.append(p)
+	p.start()
+
+	for i in range(int(len(valid)/chunksize)+1):
+		resultdict.update(out_q.get())
+
+	for p in procs:
+		p.join()
+
+	return resultdict
+
 # add some costs data to gcList
 def appendCosts():
 	temp = []
 	cList = {}
 	myopener = MyOpener()
 	getprices = True # loop variable to loop until we get a return
+
+	count = 10 # loop variable to terminate loop after x attempts
+	while getprices and count:
+		try:
+			cList = gw2api()
+			getprices = False
+		except Exception, err:
+			print u'ERROR: %s.' % str(err)
+			time.sleep(randint(1,10))
+			count -= 1
+
 	count = 10 # loop variable to terminate loop after x attempts
 	# This could be in a while loop and keep trying until success, but unnecessary
 	while getprices and count:
