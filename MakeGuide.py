@@ -149,7 +149,7 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level):
 				cList[item][u'tier'].append(tier) 
 
 			else: 
-				# gw2 api didn't have information about the api yet.
+				# gw2 api didn't have information about the item yet.
 				# This should only happen when items are recently added to game
 				print u"Missing Item from itemlist: {}".format(item)
 				del(c_recipes[tier][item])
@@ -194,7 +194,6 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level):
 			bkey = []
 
 			while craftcount[tier][u'current_xp'] < xp_to_level[tier + 25]:
-				# We still want to compute every make on fast guides for the 375-400 range
 				bucket = makeQueuecraft(c_recipes[400], cList,craftcount,tier,xp_to_level,craftexo)
 				bkey = sorted(bucket, reverse=True)
 				
@@ -205,11 +204,13 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level):
 				ttier = tier
 				recalc = {tier:0} # always recalc the tier we are on
 				for item in bucket[bkey[0]][u'make']:
-					val = 4 if cList[item][u'rarity'] == u'Exotic' else 3
-					if val == 3 and tier > 425:
+					val = 4 if cList[item][u'rarity'] == u'Exotic'else 3
+					if val == 3 and tier > 425 and 400 in cList[item][u'tier']:
 						ttier = 425
-					else:
+					elif val == 4 or 400 in cList[item][u'tier']:
 						ttier = tier
+					else: 
+						ttier = cList[item][u'tier'][-1]
 					index = 0
 					if tier in cList[item][u'tier']:
 						index = cList[item][u'tier'].index(tier)

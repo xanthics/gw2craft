@@ -229,8 +229,8 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 			if item in karma_recipe:
 				recipebuy.append(item)
 
-	# 'Spool of Jute Thread',u'Spool of Wool Thread',u'Spool of Cotton Thread',u'Spool of Linen Thread',u'Spool of Silk Thread',u'Lump of Tin',u'Lump of Coal',u'Lump of Primordium',u'Jar of Vinegar',u'Packet of Baking Powder',u'Jar of Vegetable Oil',u'Packet of Salt',u'Bag of Sugar',u'Jug of Water',u'Bag of Starch',u'Bag of Flour',u'Bottle of Soy Sauce',"Bottle of Rice Wine", "Minor Rune of Holding", "Rune of Holding", "Major Rune of Holding", "Greater Rune of Holding"
-	vendor = [19792,  19789,  19794,  19793,  19791,  19704,  19750,  19924,  12157,  12151,  12158,  12153,  12155,  12156,  12324,  12136,  12271,  8576,  13010,  13006,  13007,  13008,  19790]
+	# 'Spool of Jute Thread',u'Spool of Wool Thread',u'Spool of Cotton Thread',u'Spool of Linen Thread',u'Spool of Silk Thread',u'Lump of Tin',u'Lump of Coal',u'Lump of Primordium',u'Jar of Vinegar',u'Packet of Baking Powder',u'Jar of Vegetable Oil',u'Packet of Salt',u'Bag of Sugar',u'Jug of Water',u'Bag of Starch',u'Bag of Flour',u'Bottle of Soy Sauce',"Bottle of Rice Wine", "Minor Rune of Holding", "Rune of Holding", "Major Rune of Holding", "Greater Rune of Holding", Crafter's Backpack Frame
+	vendor = [19792,  19789,  19794,  19793,  19791,  19704,  19750,  19924,  12157,  12151,  12158,  12153,  12155,  12156,  12324,  12136,  12271,  8576,  13010,  13006,  13007,  13008,  19790, 62942]
 
 	# "Jute Scrap","Bolt of Jute","Copper Ore","Copper Ingot","Bronze Ingot","Rawhide Leather Section","Stretched Rawhide Leather Square","Green Wood Log","Green Wood Plank","Wool Scrap","Bolt of Wool","Iron Ore","Silver Ore","Iron Ingot","Silver Ingot","Thin Leather Section","Cured Thin Leather Square","Soft Wood Log","Soft Wood Plank","Cotton Scrap","Bolt of Cotton","Spool of Cotton Thread","Iron Ore","Gold Ore","Gold Ingot","Steel Ingot","Coarse Leather Section","Cured Coarse Leather Square","Seasoned Wood Log","Seasoned Wood Plank","Linen Scrap","Bolt of Linen","Platinum Ore","Platinum Ingot","Darksteel Ingot","Rugged Leather Section","Cured Rugged Leather Square","Hard Wood Log","Hard Wood Plank","Silk Scrap","Bolt of Silk","Mithril Ore","Mithril Ingot","Thick Leather Section","Cured Thick Leather Square","Elder Wood Log","Elder Wood Plank", Orichalcum Ore, Ancient Wood Log
 	basic = [19718,  19720,  19697,  19680,  19679,  19719,  19738,  19723,  19710,  19739,  19740,  19699,  19703,  19683,  19687,  19728,  19733,  19726,  19713,  19741,  19742,  19794,  19699,  19698,  19682,  19688,  19730,  19734,  19727,  19714,  19743,  19744,  19702,  19686,  19681,  19731,  19736,  19724,  19711,  19748,  19747,  19700,  19684,  19729,  19735,  19722,  19709,  19701,  19725, 19685, 19712, 19732, 19737, 19745, 19746]
@@ -355,18 +355,6 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">%s</span>	%s: %s</span>\n'%(localText.warning1,localText.warning2,mytime)
 	page += u'</div><br />\n'
 	page += u"<strong>%s</strong><br />\n"%(localText.region)
-	# adword
-	page += u'<div style="float:right;position:absolute;right:-320px;"> \
-			\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
-			\n<!-- large sidebar --> \
-			\n<ins class=\"adsbygoogle\" \
-			\n     style=\"display:inline-block;width:300px;height:600px\" \
-			\n     data-ad-client=\"ca-pub-6865907345688710\" \
-			\n     data-ad-slot=\"9285292589\"></ins> \
-			\n<script> \
-			\n(adsbygoogle = window.adsbygoogle || []).push({}); \
-			\n</script> \
-			\n</div>\n'
 	page += localText.moreInfo%(u"<img src=\"/img/arrow.png\" alt=ARROW>")
 	# Page Title Part 1
 	page += u'<h1>'+title+u'</h1>'
@@ -448,7 +436,19 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 			t = (t+1)%2
 			page += collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']))
 
-	page += u"<br />\n<br />\n<h2>%s</h2>\n"%localText.make
+	# adword
+	page += u'<hr><br /><div style="display:block;text-align:Right;"> \
+			\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
+			\n<!-- Tail ad --> \
+			\n<ins class=\"adsbygoogle\" \
+			\n     style=\"display:inline-block;width:336px;height:280px\" \
+			\n     data-ad-client=\"ca-pub-6865907345688710\" \
+			\n     data-ad-slot=\"9889445788\"></ins> \
+			\n<script> \
+			\n(adsbygoogle = window.adsbygoogle || []).push({}); \
+			\n</script> \
+			\n</div>\n'
+	page += u"<hr><br />\n<br />\n<h2>%s</h2>\n"%localText.make
 	page += u"<button title=\""+localText.toggle+u"\" class =\"info\" id=\"show_all\">%s</button><br />"%localText.expand
 	page += u"<button title=\""+localText.toggle+u"\" class =\"info\" id=\"hide_all\">%s</button>"%localText.collapse
 	rt = 0
@@ -456,26 +456,11 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 		if tier == 400:
 			precraft = sorted([i for i in make if make[i] and i < 400])
 			if precraft:
+				page += (u"<br />\n<h3>%s:<400</h3>\n")%(localText.level)
 				for lvl in precraft:
-					page += (u"<br />\n<h3>%s:%3i</h3>\n")%(localText.level,lvl)
 					for item in make[lvl]:
 						t = (t+1)%2
 						page += u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[lvl][item],cList[item][u'rarity'],cListName[item])
-
-
-		if tier == 150:
-			# adword 2
-			page += u'<div style="float:right;position:absolute;right:-320px;"> \
-				\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
-				\n<!-- large side ad 2 --> \
-				\n<ins class=\"adsbygoogle\" \
-				\n     style=\"display:inline-block;width:300px;height:600px\" \
-				\n     data-ad-client=\"ca-pub-6865907345688710\" \
-				\n     data-ad-slot=\"4410765382\"></ins> \
-				\n<script> \
-				\n(adsbygoogle = window.adsbygoogle || []).push({}); \
-				\n</script> \
-				\n</div>\n'
 
 		if tierbuy and tier in [0,75,150,225,300]:
 			tt = 0
@@ -591,18 +576,33 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page += u'<br />\n<h3>%s:%i</h3>\n'%(localText.level,tier+25)
 	t = (t+1)%2
 	page += u"<div class=\"s"+str(t)+u"\">%s</div>\n"%localText.finish
+	page += "<hr><br /><table style=\"border-collapse:collapse;border:none;outline:none;\"><tr><td style=\"border:none;outline:none;\">"
 	# adword
-	page += u'<br /><div style="display:block;text-align:Right;"> \
+	page += u'<div style="display:block;"> \
 			\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
-			\n<!-- Tail ad --> \
+			\n<!-- large sidebar --> \
 			\n<ins class=\"adsbygoogle\" \
-			\n     style=\"display:inline-block;width:336px;height:280px\" \
+			\n     style=\"display:inline-block;width:300px;height:600px\" \
 			\n     data-ad-client=\"ca-pub-6865907345688710\" \
-			\n     data-ad-slot=\"9889445788\"></ins> \
+			\n     data-ad-slot=\"9285292589\"></ins> \
 			\n<script> \
 			\n(adsbygoogle = window.adsbygoogle || []).push({}); \
 			\n</script> \
 			\n</div>\n'
+	page += "</td><td style=\"border:none;outline:none;\">"
+	# adword 2
+	page += u'<div style="display:block;text-align:Right;"> \
+		\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
+		\n<!-- large side ad 2 --> \
+		\n<ins class=\"adsbygoogle\" \
+		\n     style=\"display:inline-block;width:300px;height:600px\" \
+		\n     data-ad-client=\"ca-pub-6865907345688710\" \
+		\n     data-ad-slot=\"4410765382\"></ins> \
+		\n<script> \
+		\n(adsbygoogle = window.adsbygoogle || []).push({}); \
+		\n</script> \
+		\n</div>\n'
+	page += "</td></tr></table>"
 	page += u'</section>\n'
 	page += u'%s\n<script type="text/javascript">\n'%localText.cright
 	for item in buttonList:
@@ -655,18 +655,6 @@ def maketotals(totals, mytime, localText):
 	page += localText.header%('total.html',u'total.html',u'total.html',u'total.html')
 	page += u"<section class=\"main\">\n<strong>%s</strong><br />\n"%(localText.region)
 	page += u"<h5 style=\"text-align:center;\">"+localText.updated+u": " + mytime + u"</h5>"
-	# adword
-	page += u'<div style="float:right;position:absolute;right:-320px;"> \
-			\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
-			\n<!-- large sidebar --> \
-			\n<ins class=\"adsbygoogle\" \
-			\n     style=\"display:inline-block;width:300px;height:600px\" \
-			\n     data-ad-client=\"ca-pub-6865907345688710\" \
-			\n     data-ad-slot=\"9285292589\"></ins> \
-			\n<script> \
-			\n(adsbygoogle = window.adsbygoogle || []).push({}); \
-			\n</script> \
-			\n</div>\n'
 	page += localText.note
 	page += u'	<table>'
 	page += u'<tr><th>'+localText.craft+u'</th><th>'+localText.nGuides+u'</th><th>'+localText.fGuides+u'</th><th>1-200</th></tr>\n'
@@ -716,6 +704,18 @@ def maketotals(totals, mytime, localText):
 
 	page += tpage1 + tpage2
 
+	# adword
+	page += u'<hr><br /><div style="display:block;text-align:Right;"> \
+			\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
+			\n<!-- Tail ad --> \
+			\n<ins class=\"adsbygoogle\" \
+			\n     style=\"display:inline-block;width:336px;height:280px\" \
+			\n     data-ad-client=\"ca-pub-6865907345688710\" \
+			\n     data-ad-slot=\"9889445788\"></ins> \
+			\n<script> \
+			\n(adsbygoogle = window.adsbygoogle || []).push({}); \
+			\n</script> \
+			\n</div>\n'
 	page += u'\n</section>\n' + localText.cright
 
 	# Uncomment these two lines if you want a file written to disk

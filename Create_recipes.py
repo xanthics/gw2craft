@@ -26,7 +26,7 @@ Purpose: Generates(or updates) all the recipes and the item list used by Craftin
 Note: Requires Python 2.7.x
 '''
 import urllib, json, math, codecs, socket
-from multiprocessing import Process, Queue
+from multiprocessing import Process, Queue, cpu_count
 
 API_ROOT = u"https://api.guildwars2.com/v1/"
 
@@ -46,7 +46,7 @@ def get_recipes():
 	temp = _api_call(u'recipes.json')
 	out_q = Queue()
 	lister = temp[u'recipes']
-	nprocs = len(lister)/100
+	nprocs = cpu_count() * 10
 	chunksize = int(math.ceil(len(lister) / float(nprocs)))
 	procs = []
 
@@ -172,7 +172,7 @@ def itemlistWorker(items, lang, out_q):
 def itemlist(item_list, lang=u"en"):
 	out_q = Queue()
 	lister = item_list.keys()
-	nprocs = len(lister)/100
+	nprocs = cpu_count() * 10
 
 	chunksize = int(math.ceil(len(lister) / float(nprocs)))
 	procs = []
