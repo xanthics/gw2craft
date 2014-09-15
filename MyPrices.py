@@ -169,77 +169,83 @@ class MyOpener(FancyURLopener):
 ]
 	version = choice(user_agents)
 
-def gw2apilistworker(baseURL, ids, out_q):
+def gw2apilistworker(baseURL, ids, out_q,myopener):
 	outdict = {}
-	myopener = MyOpener()
-	f = myopener.open(baseURL+",".join(str(i) for i in ids))
-	temp = json.load(f)
-	for item in temp:
-		if item[u'sells']:
-			mymin, mysum, mymax = sys.maxint, 0, -sys.maxint
-			for listing in item[u'sells']:
-				mysum += listing[u'quantity']
-				mymin = min(mymin, listing[u'unit_price'])
-			if item[u'buys']:
-				mymax = max(listing[u'unit_price'] for listing in item[u'buys'])
+	getdata = True
+	temp = []
+	while getdata:
+		try:
+			f = myopener.open(baseURL+",".join(str(i) for i in ids))
+			temp = json.load(f)
+			getdata = False
+		except Exception, err:
+			print u'ERROR: %s.' % str(err)
+			time.sleep(randint(1,10))
+	for sitem in temp:
+		item = sitem["id"]
+		# set value to greater of buy and vendor.  If 0 set to minimum sell value
+		w = Items.ilist[item][u'vendor_value']
+		sellMethod = 0
+		if sitem[u'buys'][u'unit_price']*.85 > w:
+			w = int(sitem[u'buys'][u'unit_price']*.85)
+			sellMethod = 1
+		if w == 0:
+			w = int(sitem[u'sells'][u'unit_price']*.85)
+			sellMethod = 2
 
-			# set value to greater of buy and vendor.  If 0 set to minimum sell value
-			w = Items.ilist[item["id"]][u'vendor_value']
-			sellMethod = 0
-			if mymax*.85 > w:
-				w = int(mymax*.85)
-				sellMethod = 1
-			if w == 0:
-				w = int(mymin*.85)
-				sellMethod = 2
+		# Save all the information we care about
+		outdict[item] = {u'w':w,u'cost':sitem[u'sells'][u'unit_price'],u'recipe':None,u'rarity':Items.ilist[item][u'rarity'],u'type':Items.ilist[item][u'type'],u'icon':Items.ilist[item][u'img_url'],u'output_item_count':Items.ilist[item][u'output_item_count'],u'sellMethod':sellMethod,u"discover":[]} 
 
-			# Save all the information we care about
-			outdict[item["id"]] = {u'w':w,u'cost':mymin,u'recipe':None,u'rarity':Items.ilist[item["id"]][u'rarity'],u'type':Items.ilist[item["id"]][u'type'],u'icon':Items.ilist[item["id"]][u'img_url'],u'output_item_count':Items.ilist[item["id"]][u'output_item_count'],u'sellMethod':sellMethod,u"discover":[]} 
-			# if the item has a low supply, ignore it
-			if mysum <= 50:
-				outdict[item["id"]][u'cost'] = sys.maxint
+		if outdict[item][u'type'] == u'UpgradeComponent' and outdict[item][u'rarity'] == u'Exotic':
+			outdict[item][u'rarity'] = u'Exotic UpgradeComponent'
 
+		# if the item has a low supply, ignore it
+		if sitem[u'sells'][u'quantity'] <= 50:
+			outdict[item][u'cost'] = sys.maxint
 
-		else:
-			outdict[item["id"]] = {u'w':0,u'cost':sys.maxint,u'recipe':None,u'rarity':Items.ilist[item["id"]][u'rarity'],u'type':Items.ilist[item["id"]][u'type'],u'icon':Items.ilist[item["id"]][u'img_url'],u'output_item_count':Items.ilist[item["id"]][u'output_item_count'],u'sellMethod':0,u"discover":[]}
 	out_q.put(outdict)
 
 def gw2api():
-	resultdict = {}
 	
 	listingURL = "https://api.guildwars2.com/v2/commerce/listings"
 	myopener = MyOpener()
 	f = myopener.open(listingURL)
 	temp = json.load(f)
 	valid = []
+	invalid = []
 	for item in Items.ilist.keys():
 		if item in temp:
 			valid.append(item)
 		else:
-			resultdict[item] = {u'w':0,u'cost':99999999,u'recipe':None,u'rarity':Items.ilist[item][u'rarity'],u'type':Items.ilist[item][u'type'],u'icon':Items.ilist[item][u'img_url'],u'output_item_count':Items.ilist[item][u'output_item_count'],u'sellMethod':0,u"discover":[]}
+			invalid.append(item)
 
-	chunksize = 200
 
-	baseURL = "https://api.guildwars2.com/v2/commerce/listings?ids="
+	baseURL = "https://api.guildwars2.com/v2/commerce/prices?ids="
 
 	out_q = Queue()
-
 	procs = []
+	chunksize = 200
 
 	for i in range(int(len(valid)/chunksize)):
-		p = Process(target=gw2apilistworker,args=(baseURL,valid[chunksize * i:chunksize * (i + 1)],out_q))
+		p = Process(target=gw2apilistworker,args=(baseURL,valid[chunksize * i:chunksize * (i + 1)],out_q,myopener))
 		procs.append(p)
 		p.start()
 
-	p = Process(target=gw2apilistworker,args=(baseURL,valid[chunksize * (i + 1):],out_q))
+	p = Process(target=gw2apilistworker,args=(baseURL,valid[chunksize * (i + 1):],out_q,myopener))
 	procs.append(p)
 	p.start()
 
+	resultdict = {}
 	for i in range(int(len(valid)/chunksize)+1):
 		resultdict.update(out_q.get())
 
 	for p in procs:
 		p.join()
+
+	for item in invalid:
+		resultdict[item] = {u'w':0,u'cost':sys.maxint,u'recipe':None,u'rarity':Items.ilist[item][u'rarity'],u'type':Items.ilist[item][u'type'],u'icon':Items.ilist[item][u'img_url'],u'output_item_count':Items.ilist[item][u'output_item_count'],u'sellMethod':0,u"discover":[]}
+		if resultdict[item][u'type'] == u'UpgradeComponent' and resultdict[item][u'rarity'] == u'Exotic':
+			resultdict[item][u'rarity'] = u'Exotic UpgradeComponent'
 
 	return resultdict
 
