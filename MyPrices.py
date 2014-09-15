@@ -227,6 +227,8 @@ def appendCosts():
 	cList[13006][u'cost'] = 1480 # "Rune of Holding"
 	cList[13007][u'cost'] = 5000 # "Major Rune of Holding"
 	cList[13008][u'cost'] = 20000 # "Greater Rune of Holding"
+	if 62942 in cList:
+		cList[62942][u'cost'] = 8 # Crafter's Backpack Frame
 	#[u'Bell Pepper',u'Basil Leaf',u'Ginger Root',u'Tomato',u'Bowl of Sour Cream',u'Rice Ball',u'Packet of Yeast',u'Glass of Buttermilk',u'Cheese Wedge',u"Almond",u"Apple",u"Avocado",u"Banana",u"Black Bean",u"Celery Stalk",u"Cherry",u"Chickpea",u"Coconut",u"Cumin",u"Eggplant",u"Green Bean",u"Horseradish Root",u"Kidney Bean",u"Lemon",u"Lime",u"Mango",u"Nutmeg Seed",u"Peach",u"Pear",u"Pinenut",u"Shallot"]
 	karma = [12235,  12245,  12328,  12141,  12325,  12145,  12152,  12137,  12159,  12337,  12165,  12340,  12251,  12237,  12240,  12338,  12515,  12350,  12256,  12502,  12232,  12518,  12239,  12252,  12339,  12543,  12249,  12503,  12514,  12516,  12517]
 	for item in karma:

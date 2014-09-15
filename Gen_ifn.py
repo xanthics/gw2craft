@@ -268,6 +268,18 @@ def index(localText):
 	page += u"<br /><hr>\n"
 	page += u"%s\n<br />"%(localText.thanks2)
 	page += u"<br />%s\n"%(localText.gw2spidy)
+	# adword
+	page += u'<br /><hr><br /><div style="display:block;text-align:Right;"> \
+			\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
+			\n<!-- Tail ad --> \
+			\n<ins class=\"adsbygoogle\" \
+			\n     style=\"display:inline-block;width:336px;height:280px\" \
+			\n     data-ad-client=\"ca-pub-6865907345688710\" \
+			\n     data-ad-slot=\"9889445788\"></ins> \
+			\n<script> \
+			\n(adsbygoogle = window.adsbygoogle || []).push({}); \
+			\n</script> \
+			\n</div>\n'
 	page += u"</section>\n"
 	page += localText.cright
 	page += u"</body>\n"
