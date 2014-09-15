@@ -204,7 +204,7 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level):
 				ttier = tier
 				recalc = {tier:0} # always recalc the tier we are on
 				for item in bucket[bkey[0]][u'make']:
-					val = 4 if cList[item][u'rarity'] == u'Exotic'else 3
+					val = 4 if cList[item][u'rarity'] == u'Exotic' else 3
 					if val == 3 and tier > 425 and 400 in cList[item][u'tier']:
 						ttier = 425
 					elif val == 4 or 400 in cList[item][u'tier']:
