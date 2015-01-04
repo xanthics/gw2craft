@@ -28,26 +28,24 @@ Note: Requires Python 2.7.x
 import urllib, json, math, codecs, socket
 from multiprocessing import Process, Queue, cpu_count
 
-API_ROOT = u"https://api.guildwars2.com/v1/"
+API_ROOT = u"https://api.guildwars2.com/v2/"
 
 # Helper Function
 def recipelistWorker(items, out_q):
 	outdict = {}
 
-	for index, i in enumerate(items, 1):
-		print index, len(items)
-		item = _api_call(u'recipe_details.json?recipe_id=%d' % i)
-		outdict[i] = item
+	items = _api_call(u'recipes.json?ids={}'.format(",".join(map(str,items))))
+	for i in items:
+		outdict[i[u'id']] = i
 
 	out_q.put(outdict)
 
 # Get and return all available recipes from the API
 def get_recipes():
-	temp = _api_call(u'recipes.json')
+	lister = _api_call(u'recipes.json')	
 	out_q = Queue()
-	lister = temp[u'recipes']
-	nprocs = cpu_count() * 10
-	chunksize = int(math.ceil(len(lister) / float(nprocs)))
+	chunksize = 200
+	nprocs = int(math.ceil(len(lister)/chunksize))+1
 	procs = []
 
 	for i in range(nprocs):
@@ -120,7 +118,7 @@ def parse_recipes(recipes):
 		ingredient_set = set(int(i[u'item_id']) for i in data[u'ingredients'])
 
 		# We don't want cap level recipes or recipes that use items the player can't buy off the tp or make
-		if min_rating == u'500' or (min_rating == u'400' and u'Chef' in data[u'disciplines']) or set(bad_karma).intersection(set(ingredient_set)):
+		if min_rating == 500 or (min_rating == 400 and u'Chef' in data[u'disciplines']) or set(bad_karma).intersection(set(ingredient_set)):
 			continue
 			
 		for it in data[u'disciplines']:
@@ -131,23 +129,24 @@ def parse_recipes(recipes):
 			if it == u'Chef' and (set(karma) & ingredient_set or u'LearnedFromItem' in data[u'flags']):
 				key = u'Chef_karma'
 
-			crafts[key].setdefault(str(min_rating), {})
+			crafts[key].setdefault(min_rating, {})
 			crafts[key][min_rating][item_id] = data[u'ingredients']
 			item_ids[item_id] = {u'output_item_count': item_count,
 								 u'type': data[u'type'],
 								 u'flags': data[u'flags']}
 
+
 	for craft in crafts:
 		page = u'# -*- coding: utf-8 -*-\nrecipes = {\n'
 		for lvl in sorted(crafts[craft]):
-			page += u"\t" + lvl + u":{\n"
+			page += u"\t{}:{{\n".format(lvl)
 			for obj in sorted(crafts[craft][lvl]):
 				mystr = u""
 				for part in sorted(crafts[craft][lvl][obj]):
 					if not part[u'item_id'] in item_ids:
 						item_ids[part[u'item_id']] = {u'type':u'Other',u'output_item_count':u'0',u'flags':[]}
-					mystr += part[u'item_id']+u":"+part[u'count'] +","
-				page += u"\t\t" + obj +u":{"+ mystr[:-1] +u"},\n"
+					mystr += u"{}:{},".format(part[u'item_id'],part[u'count'])
+				page += u"\t\t{}:{{{}}},\n".format(obj,mystr[:-1])
 			page += u"\t},\n"
 		page += u"}"
 		with codecs.open(craft+".py", "wb", encoding='utf-8') as f:
@@ -159,24 +158,22 @@ def parse_recipes(recipes):
 	return item_ids
 
 # helper function
-def itemlistWorker(items, lang, out_q):
+def itemlistWorker(ids, lang, out_q):
 	outdict = {}
-	for index, i in enumerate(items, 1):
-		print index, len(items), lang
-		item = _api_call(u'item_details.json?item_id=%s&lang=%s' % (i, lang))
-		outdict[i] = item
+	items = _api_call(u'items.json?ids={}&lang={}'.format(",".join(map(str,ids)), lang))
+	for i in items:
+		outdict[i[u'id']] = i
 	out_q.put(outdict)
 
 # get more information on every item the recipes use
 # Currently supported languages: en, fr, de, es
 def itemlist(item_list, lang=u"en"):
+	print "Starting {}".format(lang)
 	out_q = Queue()
 	lister = item_list.keys()
-	nprocs = cpu_count() * 10
-
-	chunksize = int(math.ceil(len(lister) / float(nprocs)))
+	chunksize = 200
+	nprocs = int(math.ceil(len(lister)/chunksize))+1
 	procs = []
-
 	for i in range(nprocs):
 		p = Process(target=itemlistWorker,
 					args=(lister[chunksize * i:chunksize * (i + 1)], lang, out_q))
@@ -202,22 +199,22 @@ def itemlist(item_list, lang=u"en"):
 					item_list[i][u'vendor_value'] = int(flags[i][u'vendor_value'])
 				if item_list[i][u'flags']:
 					item_list[i][u'discover'] = 0
-				item_list[i][u'img_url'] = u'https://render.guildwars2.com/file/'+ flags[i][u'icon_file_signature'] +u'/' + flags[i][u'icon_file_id'] +u'.jpg'
+				item_list[i][u'img_url'] = flags[i][u'icon']
 				del(item_list[i][u'flags'])
-				page += u"\t"+ str(i) +u":"+ str(item_list[i])+",\n"
+				page += u"\t{}:{},\n".format(i, item_list[i])
 			except Exception, err:
-				print 'Error: %s.\n' % str(err)
+				print 'Error: {}.\n'.format(str(err))
 		page += u'}'
 		with codecs.open("Items.py","wb", encoding='utf-8') as f:
-			f.write(page)
+			f.write(page.replace(u": ", ":"))
 
 	page = u'# -*- coding: utf-8 -*-\nilist = {\n'
 	# sorted is only so we can easily spot new items with diff
 	for i in sorted(flags): # otherwise output is semi random order
 		try:
-			page += u"\t"+ str(i) +u":u\""+ flags[i][u'name'].replace('"','\'') +"\",\n"
+			page += u"\t{}:u\"{}\",\n".format(i, flags[i][u'name'].replace('"','\''))
 		except Exception, err:
-			print 'Error: %s.\n' % str(err)
+			print 'Error: {}.\n'.format(str(err))
 	page += u'}'
 	with codecs.open("Items_%s.py" % lang,"wb", encoding='utf-8') as f:
 		f.write(page)
@@ -229,7 +226,7 @@ def _api_call(endpoint):
 			item = json.load(f)
 			return item
 		except Exception, err:
-			print 'Error: %s.\n' % str(err)
+			print 'Error: {}.\n'.format(str(err))
 
 	
 def main():
