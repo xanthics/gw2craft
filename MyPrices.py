@@ -266,31 +266,31 @@ def appendCosts():
 			time.sleep(randint(1,10))
 			count -= 1
 
-	count = 10 # loop variable to terminate loop after x attempts
+#	count = 10 # loop variable to terminate loop after x attempts
 	# This could be in a while loop and keep trying until success, but unnecessary
-	while getprices and count:
-		try:
-			baseURL = "http://api.guildwarstrade.com/1/bulk/items.json"
-			f = myopener.open(baseURL)
-			temp = json.load(f)
-			if os.isatty(sys.stdin.fileno()):
-				print len(temp[u'items']) # print total items returned from GWT
-			cList = cItemlistGWT(Items.ilist.keys(),temp[u'items'],temp[u'columns'])
-			getprices = False
-		except Exception, err:
-			print u'ERROR: %s.' % str(err)
-			try:
-				baseURL = "http://gw2spidy.com/api/v0.9/json/all-items/all"
-				f = myopener.open(baseURL)
-				temp = json.load(f)
-				if os.isatty(sys.stdin.fileno()):
-					print len(temp[u'results']) # print total items returned from gw2spidy
-				cList = cItemlist(Items.ilist.keys(),temp[u'results'])
-				getprices = False
-			except Exception, err:
-				print u'ERROR: %s.' % str(err)
-				time.sleep(randint(1,10))
-				count -= 1
+#	while getprices and count:
+#		try:
+#			baseURL = "http://api.guildwarstrade.com/1/bulk/items.json"
+#			f = myopener.open(baseURL)
+#			temp = json.load(f)
+#			if os.isatty(sys.stdin.fileno()):
+#				print len(temp[u'items']) # print total items returned from GWT
+#			cList = cItemlistGWT(Items.ilist.keys(),temp[u'items'],temp[u'columns'])
+#			getprices = False
+#		except Exception, err:
+#			print u'ERROR: %s.' % str(err)
+#			try:
+#				baseURL = "http://gw2spidy.com/api/v0.9/json/all-items/all"
+#				f = myopener.open(baseURL)
+#				temp = json.load(f)
+#				if os.isatty(sys.stdin.fileno()):
+#					print len(temp[u'results']) # print total items returned from gw2spidy
+#				cList = cItemlist(Items.ilist.keys(),temp[u'results'])
+#				getprices = False
+#			except Exception, err:
+#				print u'ERROR: %s.' % str(err)
+#				time.sleep(randint(1,10))
+#				count -= 1
 
 	# if loop exited because of this variable we didn't get any data, terminate
 	if not count:
