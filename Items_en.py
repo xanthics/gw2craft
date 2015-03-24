@@ -5807,7 +5807,7 @@ ilist = {
 	38393:u"Giver's Green Wood Torch",
 	38394:u"Giver's Soft Wood Torch",
 	38395:u"Giver's Soft Wood Torch",
-	38396:u"Giver's Hard Wood Torch",
+	38396:u"Giver's Ogre Blaze",
 	38397:u"Giver's Krait Brazier",
 	38398:u"Giver's Pearl Brazier",
 	38399:u"Giver's Green Wood Warhorn",

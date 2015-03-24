@@ -36,7 +36,7 @@ import time
 # recipe and item lists
 import Armorsmith, Artificer, Chef, Chef_karma, Huntsman, Jeweler, Leatherworker, Tailor, Weaponsmith, Items, Globals
 # Localized text
-import Localen, Localde, Localfr, Locales, Localcz
+import Localen, Localde, Localfr, Locales, Localcz, Localptbr
 from multiprocessing import Process, Queue, cpu_count
 from copy import deepcopy
 from MyPrint import maketotals
@@ -150,6 +150,7 @@ def main():
 	maketotals(totals,mytime,Localfr)
 	maketotals(totals,mytime,Locales)
 	maketotals(totals,mytime,Localcz)
+	maketotals(totals,mytime,Localptbr)
 
 	print "End: ", datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
 

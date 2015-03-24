@@ -25,12 +25,17 @@ Author: Jeremy Parks
 Purpose: Generate the index, faq and nav page for each language
 Note: Requires Python 2.7.x
 '''
-import Localen, Localde, Localfr, Locales, Localcz
+import Localen, Localde, Localfr, Locales, Localcz, Localptbr
 import codecs, os
+import time
+from random import randint
 from ftplib import FTP
+import boto
+import boto.s3
+from boto.s3.key import Key
 from StringIO import StringIO
 # FTP Login
-from Ftp_info import ftp_url, ftp_user, ftp_pass
+from Ftp_info import ftp_url, ftp_user, ftp_pass, amakey, amasec
 
 # Generate a faq using local strings
 def faq(localText):
@@ -46,7 +51,17 @@ def faq(localText):
 	page += u"	<script src=\"/js/menu.js\" type=\"text/javascript\"></script>\n"
 	page += u"</head>\n"
 	page += u"<body>\n"
-	page += localText.header%(u'faq.html',u'faq.html',u'faq.html',u'faq.html')
+	page += u"""<script> 
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38972433-1', 'auto');
+  ga('send', 'pageview');
+
+</script>"""
+	page += localText.header%(u'faq.html',u'faq.html',u'faq.html',u'faq.html',u'faq.html')
 	page += u"<section class=\"main\">\n"
 	page += u"<a href=\"https://forum-en.guildwars2.com/forum/community/links/Dynamic-crafting-guides-for-all-8-crafts\" style=\"line-height:150%%;\"><strong>%s</strong></a>\n"%(localText.oThread)
 	page += u"<br />\n"
@@ -119,21 +134,28 @@ def faq(localText):
 #	page += u"<img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/en_US/i/scr/pixel.gif\" width=\"1\" height=\"1\">\n"
 #	page += u"</form> \n"
 	page += u"<br /><br /><a href='https://www.pledgie.com/campaigns/19451'><img alt='Click here to lend your support to: gw2crafts.net donations. and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/19451.png?skin_name=chrome' border='0' ></a>"
-	page += u"<br /><br /><script src=\"http://coinwidget.com/widget/coin.js\"></script><script>CoinWidgetCom.go({wallet_address: \"18Muvgz2zYeUYcAwrqM24awXkv2WqsLukt\", currency: \"bitcoin\", counter: \"amount\", alignment: \"al\", qrcode: true, auto_show: false, lbl_button: \"Donate\", lbl_address: \"My Bitcoin Address:\", lbl_count: \"donations\", lbl_amount: \"BTC\"});</script>"
+#	page += u"<br /><br /><script src=\"http://coinwidget.com/widget/coin.js\"></script><script>CoinWidgetCom.go({wallet_address: \"18Muvgz2zYeUYcAwrqM24awXkv2WqsLukt\", currency: \"bitcoin\", counter: \"amount\", alignment: \"al\", qrcode: true, auto_show: false, lbl_button: \"Donate\", lbl_address: \"My Bitcoin Address:\", lbl_count: \"donations\", lbl_amount: \"BTC\"});</script>"
 	page += u"</section>\n"
 	page += localText.cright
 	page += u"</body>\n"
 	page += u"</html>\n"
 	while True:
 		try:
-			myFtp = FTP(ftp_url)
-			myFtp.login(ftp_user,ftp_pass)
-			f = StringIO(page.encode('utf8'))
-			myFtp.storbinary(u'STOR /gw2crafts.net/'+localText.path+u'faq.html',f)
-			myFtp.close()
+#			myFtp = FTP(ftp_url)
+#			myFtp.login(ftp_user,ftp_pass)
+#			f = StringIO(page.encode('utf8'))
+#			myFtp.storbinary(u'STOR /gw2crafts.net/'+localText.path+u'faq.html',f)
+#			myFtp.close()
+			keyname = os.path.join( '{}'.format(localText.path), u'faq.html')
+			conn = boto.connect_s3(amakey, amasec)
+			bucket = conn.get_bucket('gw2crafts.net')
+			k = Key(bucket)
+			k.key = keyname
+			k.metadata.update({'Content-Type':'text/html'})
+			k.set_contents_from_string(page.encode('utf8'))
 			return
 		except Exception, err:
-#			print u'ERROR: %s.' % str(err)
+			print u'ERROR: %s.' % str(err)
 			time.sleep(randint(1,10))
 
 
@@ -152,7 +174,17 @@ def nav(localText):
 	page += u"	<script src=\"/js/menu.js\" type=\"text/javascript\"></script>\n"
 	page += u"</head>\n"
 	page += u"<body>\n"
-	page += localText.header%('nav.html','nav.html','nav.html','nav.html')
+	page += u"""<script> 
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38972433-1', 'auto');
+  ga('send', 'pageview');
+
+</script>"""
+	page += localText.header%('nav.html','nav.html','nav.html','nav.html','nav.html')
 	page += u"<section class=\"main\">\n"
 	page += u"%s\n"%(localText.navNotice)
 	page += u"<br /><br />\n"
@@ -215,14 +247,21 @@ def nav(localText):
 	page += u"</html>\n"
 	while True:
 		try:
-			myFtp = FTP(ftp_url)
-			myFtp.login(ftp_user,ftp_pass)
-			f = StringIO(page.encode('utf8'))
-			myFtp.storbinary(u'STOR /gw2crafts.net/'+localText.path+u'nav.html',f)
-			myFtp.close()
+#			myFtp = FTP(ftp_url)
+#			myFtp.login(ftp_user,ftp_pass)
+#			f = StringIO(page.encode('utf8'))
+#			myFtp.storbinary(u'STOR /gw2crafts.net/'+localText.path+u'nav.html',f)
+#			myFtp.close()
+			keyname = os.path.join( '{}'.format(localText.path), u'nav.html')
+			conn = boto.connect_s3(amakey, amasec)
+			bucket = conn.get_bucket('gw2crafts.net')
+			k = Key(bucket)
+			k.key = keyname
+			k.metadata.update({'Content-Type':'text/html'})
+			k.set_contents_from_string(page.encode('utf8'))
 			return
 		except Exception, err:
-#			print u'ERROR: %s.' % str(err)
+			print u'ERROR: %s.' % str(err)
 			time.sleep(randint(1,10))
 
 # Generate and index using local strings
@@ -240,8 +279,18 @@ def index(localText):
 	page += u"	<script src=\"/js/menu.js\" type=\"text/javascript\"></script>\n"
 	page += u"</head>\n"
 	page += u"<body>\n"
+	page += u"""<script> 
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38972433-1', 'auto');
+  ga('send', 'pageview');
+
+</script>"""
 #	page += u"<div id=\"fb-root\"></div><script>(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = \"//connect.facebook.net/en_US/all.js#xfbml=1\";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));</script>"
-	page += localText.header%('index.html','index.html','index.html','index.html')
+	page += localText.header%('index.html','index.html','index.html','index.html','index.html')
 	page += u"<section class=\"main\">\n"
 	page += u"<a href=\"https://twitter.com/gw2crafts\" class=\"twitter-follow-button\" data-show-count=\"true\" data-dnt=\"true\">Follow @gw2crafts</a>\n<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>"
 #	page += u"\t<div class=\"g-plusone\" data-size=\"medium\" data-href=\"http://gw2crafts.net\"></div><script type=\"text/javascript\">(function() {var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;po.src = 'https://apis.google.com/js/plusone.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);})();</script>\n"
@@ -287,19 +336,27 @@ def index(localText):
 
 	while True:
 		try:
-			myFtp = FTP(ftp_url)
-			myFtp.login(ftp_user,ftp_pass)
-			f = StringIO(page.encode('utf8'))
-			myFtp.storbinary(u'STOR /gw2crafts.net/'+localText.path+u'index.html',f)
-			myFtp.close()
+#			myFtp = FTP(ftp_url)
+#			myFtp.login(ftp_user,ftp_pass)
+#			f = StringIO(page.encode('utf8'))
+#			myFtp.storbinary(u'STOR /gw2crafts.net/'+localText.path+u'index.html',f)
+#			myFtp.close()
+			keyname = os.path.join( '{}'.format(localText.path), u'index.html')
+			conn = boto.connect_s3(amakey, amasec)
+			bucket = conn.get_bucket('gw2crafts.net')
+			k = Key(bucket)
+			k.key = keyname
+			k.metadata.update({'Content-Type':'text/html'})
+			k.set_contents_from_string(page.encode('utf8'))
 			return
 		except Exception, err:
-#			print u'ERROR: %s.' % str(err)
+			print u'ERROR: %s.' % str(err)
 			time.sleep(randint(1,10))
 
 
 def main():
-	for lang in [Localen, Localde, Localfr, Locales, Localcz]:
+	for lang in [Localen, Localde, Localfr, Locales, Localcz, Localptbr]:
+		print lang
 		faq(lang)
 		nav(lang)
 		index(lang)

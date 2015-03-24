@@ -25,15 +25,19 @@ Author: Jeremy Parks
 Purpose: Contains all functions for printing guides
 Note: Requires Python 2.7.x
 '''
+import os
 import math
 import time
 import Globals
 from StringIO import StringIO
 from random import randint
 from ftplib import FTP
+import boto
+import boto.s3
+from boto.s3.key import Key
 from collections import defaultdict
 # FTP Login
-from Ftp_info import ftp_url, ftp_user, ftp_pass
+from Ftp_info import ftp_url, ftp_user, ftp_pass, amakey, amasec
 
 
 # Format copper values so they are easier to read
@@ -349,7 +353,17 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page += u'	<script>(window.jQuery || document.write(\'<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"><\/script>\'));</script>\n'
 	page += u'	<script src="/js/menu.js" type="text/javascript"></script>\n'
 	page += u'</head>\n'
-	page += u'<body>\n%s\n'%(localText.header%(filename,filename,filename,filename))
+	page += u'<body>\n%s\n'%(localText.header%(filename,filename,filename,filename,filename))
+	page += u"""<script> 
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38972433-1', 'auto');
+  ga('send', 'pageview');
+
+</script>"""
 	page += u'<section class=\"main\">'
 	page += u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n'
 	page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">%s</span>	%s: %s</span>\n'%(localText.warning1,localText.warning2,mytime)
@@ -621,15 +635,21 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 
 	while True:
 		try:
-			myFtp = FTP(ftp_url)
-			myFtp.login(ftp_user,ftp_pass)
-			f = StringIO(page.encode('utf8'))
-			myFtp.storbinary(u'STOR /gw2crafts.net/'+localText.path+filename,f)
-			myFtp.close()
-
+#			myFtp = FTP(ftp_url)
+#			myFtp.login(ftp_user,ftp_pass)
+#			f = StringIO(page.encode('utf8'))
+#			myFtp.storbinary(u'STOR /gw2crafts.net/'+localText.path+filename,f)
+#			myFtp.close()
+			keyname = os.path.join( '{}'.format(localText.path), filename)
+			conn = boto.connect_s3(amakey, amasec)
+			bucket = conn.get_bucket('gw2crafts.net')
+			k = Key(bucket)
+			k.key = keyname
+			k.metadata.update({'Content-Type':'text/html'})
+			k.set_contents_from_string(page.encode('utf8'))
 			return totals
 		except Exception, err:
-#			print u'ERROR: %s.' % str(err)
+			print u'ERROR: %s.' % str(err)
 			time.sleep(randint(1,10))
 
 def maketotals(totals, mytime, localText):
@@ -652,7 +672,17 @@ def maketotals(totals, mytime, localText):
 	<script src="/js/menu.js" type="text/javascript"></script>
 </head>
 <body>'''
-	page += localText.header%('total.html',u'total.html',u'total.html',u'total.html')
+	page += u"""<script> 
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38972433-1', 'auto');
+  ga('send', 'pageview');
+
+</script>"""
+	page += localText.header%('total.html',u'total.html',u'total.html',u'total.html',u'total.html')
 	page += u"<section class=\"main\">\n<strong>%s</strong><br />\n"%(localText.region)
 	page += u"<h5 style=\"text-align:center;\">"+localText.updated+u": " + mytime + u"</h5>"
 	# adword
@@ -724,12 +754,19 @@ def maketotals(totals, mytime, localText):
 		
 	while True:
 		try:
-			myFtp = FTP(ftp_url)
-			myFtp.login(ftp_user,ftp_pass)
-			f = StringIO(page.encode('utf8'))
-			myFtp.storbinary(u'STOR /gw2crafts.net/'+localText.path+u'total.html',f)
-			myFtp.close()
+#			myFtp = FTP(ftp_url)
+#			myFtp.login(ftp_user,ftp_pass)
+#			f = StringIO(page.encode('utf8'))
+#			myFtp.storbinary(u'STOR /gw2crafts.net/'+localText.path+u'total.html',f)
+#			myFtp.close()
+			keyname = os.path.join( '{}'.format(localText.path), u'total.html')
+			conn = boto.connect_s3(amakey, amasec)
+			bucket = conn.get_bucket('gw2crafts.net')
+			k = Key(bucket)
+			k.key = keyname
+			k.metadata.update({'Content-Type':'text/html'})
+			k.set_contents_from_string(page.encode('utf8'))
 			return
 		except Exception, err:
-#			print u'ERROR: %s.' % str(err)
+			print u'ERROR: %s.' % str(err)
 			time.sleep(randint(1,10))
