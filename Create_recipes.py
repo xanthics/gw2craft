@@ -26,40 +26,46 @@ Purpose: Generates(or updates) all the recipes and the item list used by Craftin
 Note: Requires Python 2.7.x
 '''
 import urllib, json, math, codecs, socket
-from multiprocessing import Process, Queue, cpu_count
+from multiprocessing import Process, Queue, cpu_count, Pool
 
 API_ROOT = u"https://api.guildwars2.com/v2/"
 
 # Helper Function
-def recipelistWorker(items, out_q):
+def recipelistWorker(items):#, out_q):
 	outdict = {}
 
 	items = _api_call(u'recipes.json?ids={}'.format(",".join(map(str,items))))
 	for i in items:
 		outdict[i[u'id']] = i
 
-	out_q.put(outdict)
+	return outdict
+#	out_q.put(outdict)
 
 # Get and return all available recipes from the API
 def get_recipes():
 	lister = _api_call(u'recipes.json')	
-	out_q = Queue()
-	chunksize = 200
-	nprocs = int(math.ceil(len(lister)/chunksize))+1
-	procs = []
+#	out_q = Queue()
+#	chunksize = 200
+#	nprocs = int(math.ceil(len(lister)/chunksize))+1
+#	procs = []
 
-	for i in range(nprocs):
-		p = Process(target=recipelistWorker,
-					args=(lister[chunksize * i:chunksize * (i + 1)],out_q))
-		procs.append(p)
-		p.start()
-
+#	for i in range(nprocs):
+#		p = Process(target=recipelistWorker,
+#					args=(lister[chunksize * i:chunksize * (i + 1)],out_q))
+#		procs.append(p)
+#		p.start()
+	p = Pool(2)
+	procs = [p.map(recipelistWorker, [lister[i:i+200] for i in range(0, len(lister), 200)])]
+	
 	flags = {}
-	for i in range(nprocs):
-		flags.update(out_q.get())
-
 	for p in procs:
-		p.join()
+		for i in p:
+			flags.update(i)
+#	for i in range(nprocs):
+#		flags.update(out_q.get())
+
+#	for p in procs:
+#		p.join()
 
 	return flags
 
@@ -158,34 +164,42 @@ def parse_recipes(recipes):
 	return item_ids
 
 # helper function
-def itemlistWorker(ids, lang, out_q):
+def itemlistWorker(vals):#, out_q):
+	ids = vals[0]
+	lang = vals[1]
 	outdict = {}
 	items = _api_call(u'items.json?ids={}&lang={}'.format(",".join(map(str,ids)), lang))
 	for i in items:
 		outdict[i[u'id']] = i
-	out_q.put(outdict)
+	return outdict
+#	out_q.put(outdict)
 
 # get more information on every item the recipes use
 # Currently supported languages: en, fr, de, es
 def itemlist(item_list, lang=u"en"):
 	print "Starting {}".format(lang)
-	out_q = Queue()
+#	out_q = Queue()
 	lister = item_list.keys()
-	chunksize = 200
-	nprocs = int(math.ceil(len(lister)/chunksize))+1
-	procs = []
-	for i in range(nprocs):
-		p = Process(target=itemlistWorker,
-					args=(lister[chunksize * i:chunksize * (i + 1)], lang, out_q))
-		procs.append(p)
-		p.start()
-
+#	chunksize = 200
+#	nprocs = int(math.ceil(len(lister)/chunksize))+1
+#	procs = []
+#	for i in range(nprocs):
+#		p = Process(target=itemlistWorker,
+#					args=(lister[chunksize * i:chunksize * (i + 1)], lang, out_q))
+#		procs.append(p)
+#		p.start()
+	p = Pool(2)
+	procs = [p.map(itemlistWorker, [(lister[i:i+200],lang) for i in range(0, len(lister), 200)])]
+	
 	flags = {}
-	for i in range(nprocs):
-		flags.update(out_q.get())
-
 	for p in procs:
-		p.join()
+		for i in p:
+			flags.update(i)
+#	for i in range(nprocs):
+#		flags.update(out_q.get())
+
+#	for p in procs:
+#		p.join()
 
 	if lang == u"en":
 		page = u'# -*- coding: utf-8 -*-\nilist = {\n'
@@ -212,7 +226,7 @@ def itemlist(item_list, lang=u"en"):
 	# sorted is only so we can easily spot new items with diff
 	for i in sorted(flags): # otherwise output is semi random order
 		try:
-			page += u"\t{}:u\"{}\",\n".format(i, flags[i][u'name'].replace('"','\''))
+			page += u"\t{}:u\"{}\",\n".format(i, flags[i][u'name'].replace('"','\'').strip())
 		except Exception, err:
 			print 'Error: {}.\n'.format(str(err))
 	page += u'}'

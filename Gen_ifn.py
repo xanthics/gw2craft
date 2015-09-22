@@ -29,13 +29,12 @@ import Localen, Localde, Localfr, Locales, Localcz, Localptbr
 import codecs, os
 import time
 from random import randint
-from ftplib import FTP
 import boto
 import boto.s3
 from boto.s3.key import Key
 from StringIO import StringIO
 # FTP Login
-from Ftp_info import ftp_url, ftp_user, ftp_pass, amakey, amasec
+from Ftp_info import amakey, amasec
 
 # Generate a faq using local strings
 def faq(localText):
@@ -316,7 +315,6 @@ def index(localText):
 	page += u"%s\n"%(localText.rCost)
 	page += u"<br /><hr>\n"
 	page += u"%s\n<br />"%(localText.thanks2)
-	page += u"<br />%s\n"%(localText.gw2spidy)
 	# adword
 	page += u'<br /><hr><br /><div style="display:block;text-align:Right;"> \
 			\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
