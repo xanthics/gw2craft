@@ -50,6 +50,7 @@ def join(A, B):
 		return dict([(a, join(A.get(a), B.get(a))) for a in set(A.keys()) | set(B.keys())])
 
 def recipeworker(cmds, cList, mytime, xp_to_level, out_q):
+	Globals.init()
 	totals = {}
 	for cmd in cmds:
 		if len(cmd) == 2:
@@ -61,7 +62,6 @@ def recipeworker(cmds, cList, mytime, xp_to_level, out_q):
 	out_q.put(totals)
 
 def main():
-	Globals.init()
 	# Uncomment these lines if you are writing files to disk
 #	if not os.path.exists("de"):
 #		os.makedirs("de")
