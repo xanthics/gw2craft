@@ -31,13 +31,12 @@ import time
 import Globals
 from StringIO import StringIO
 from random import randint
-from ftplib import FTP
 import boto
 import boto.s3
 from boto.s3.key import Key
 from collections import defaultdict
 # FTP Login
-from Ftp_info import ftp_url, ftp_user, ftp_pass, amakey, amasec
+from Ftp_info import amakey, amasec
 
 
 # Format copper values so they are easier to read
@@ -62,7 +61,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	non_item = [u'Refinement', u'Insignia', u'Inscription', u'Component']
 
 	karma_items  = {12337:{u'note':u"{} <br />{}".format(localText.pickins,localText.disa),u'cost':77}, # Almond
-					12165:{u'note':u"<del>{}</del> <br />{}".format(localText.eda,localText.jack),u'cost':35}, # Apple
+					12165:{u'note':u"{} <br />{}".format(localText.milton,localText.jack),u'cost':35}, # Apple
 					12340:{u'note':u"{}".format(localText.makayla),u'cost':77}, # Avocado
 					12251:{u'note':u"{} <br />{} <br />{} <br />{}".format(localText.jenks,localText.sangdo,localText.goran,localText.vejj),u'cost':49}, # Banana
 					12237:{u'note':u"{} <br />{}".format(localText.jenks,localText.leius),u'cost':49}, # Black Bean
@@ -78,7 +77,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 					12252:{u'note':u"{} <br />{} <br />{}".format(localText.eona,localText.hrappa,localText.milton),u'cost':35}, # Lemon
 					12339:{u'note':u"{}".format(localText.shelp),u'cost':77}, # Lime
 					12543:{u'note':u"{}".format(localText.crandle),u'cost':203}, # Mango
-					12249:{u'note':u"{} <br />{} <br />{}".format(localText.eda,localText.jenks,localText.milton),u'cost':35}, # Nutmeg Seed
+					12249:{u'note':u"{} <br />{}".format(localText.jenks,localText.milton),u'cost':35}, # Nutmeg Seed
 					12503:{u'note':u"{}".format(localText.nrocroc),u'cost':154}, # Peach
 					12514:{u'note':u"{}".format(localText.braxa),u'cost':112}, # Pear
 					12516:{u'note':u"{}".format(localText.tholin),u'cost':112}, # Pinenut
@@ -226,6 +225,15 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 					38432:{u'note':u"{} ({}: {} {})".format(localText.bRecipes,localText.rTP,mFormat(cList[38296][u'cost']),localText.valuePer),u'cost':0}, # Giver's Mithril-Imbued Inscription
 					38433:{u'note':u"{} ({}: {} {})".format(localText.bRecipes,localText.rTP,mFormat(cList[38295][u'cost']),localText.valuePer),u'cost':0}, # Giver's Darksteel-Imbued Inscription
 					}
+
+	# Insignia -> Recipe Mapping.
+	rsps = {38166:38208, # Giver's Embroidered Silk Insignia
+		    38167:38209, # Giver's Embroidered Linen Insignia
+			38434:38297, # Giver's Orichalcum-Imbued Inscription
+			38432:38296, # Giver's Mithril-Imbued Inscription
+			38433:38295, # Giver's Darksteel-Imbued Inscription
+			38162:38207 # Giver's Intricate Gossamer Insignia
+			}
 
 	recipebuy = []
 	for tier in range(0,500,25):
@@ -430,7 +438,10 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 			if karma_recipe[item]['cost']:
 				page += (u"<div class=\"s%d\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><button title=\""+localText.toggle+u"\" class=\"arrow %s\" id=\"%d\">%s</button><div class=\"lsbutton\" id=\"1%d\">%i <span class=\"karmaIcon\"></span>, %s</div></div>\n")%(t,cList[item]['icon'],cList[item]['rarity'],item,cListName[item],item,karma_recipe[item]['cost'],karma_recipe[item]['note'])
 			else:
-				page += (u"<div class=\"s%d\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><button title=\""+localText.toggle+u"\" class=\"arrow %s\" id=\"%d\">%s</button><div class=\"lsbutton\" id=\"1%d\">%s</div></div>\n")%(t,cList[item]['icon'],cList[item]['rarity'],item,cListName[item],item,karma_recipe[item]['note'])
+				if item in rsps:
+					page += (u"<div class=\"s%d\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><button title=\""+localText.toggle+u"\" class=\"arrow %s\" id=\"%d\">%s</button><div class=\"lsbutton\" id=\"1%d\">%s</div></div>\n")%(t,cList[item]['icon'],cList[item]['rarity'],item,cListName[rsps[item]],item,karma_recipe[item]['note'])
+				else:
+					page += (u"<div class=\"s%d\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><button title=\""+localText.toggle+u"\" class=\"arrow %s\" id=\"%d\">%s</button><div class=\"lsbutton\" id=\"1%d\">%s</div></div>\n")%(t,cList[item]['icon'],cList[item]['rarity'],item,cListName[item],item,karma_recipe[item]['note'])
 			buttonList.append(item)
 			kt += int(karma_recipe[item][u'cost'])
 	if kt:
@@ -521,7 +532,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 		for item in sorted(make[tier], key=make[tier].get,reverse=True):
 			if cList[item][u'type'] in non_item and not cList[item][u'type'] == u'Refinement':
 				t = (t+1)%2
-				if item in [13063,  13189,  13207,  13219,  13045,  13022,  13075,  13177,  13096,  13033]: # Sole
+				if item in [13063,  13189,  13207,  13219,  13045,  13022,  13075,  13177,  13096,  13033, 13201, 13231]: # Sole
 					page += (u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span> (%s)</div>\n")%(make[tier][item]/2,cList[item][u'rarity'],cListName[item],localText.sNote)
 				else:
 					page += u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item])
