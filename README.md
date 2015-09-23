@@ -35,21 +35,30 @@ Items -- contains item_id indexed dictionary of thumbnail url, item count, rarit
 How-To
 ======
 
-Update recipes:
+**Update recipes:**
+
 Run Create_recipes.py and when it finished you will have updated recipes for Crafting.py
 
-Generate guides:
-First create a ftp_info.py file will the variables ftp_url, ftp_user and ftp_pass.  All 3 variables should be strings.
+**Setup guide output:**
 
-If you don't want to upload the guides somewhere, search for (in 2 places, in MyPrint.py)
+If you want to upload the guides to AWS, create a ftp_info.py file with the variables amakey and amasec.  Both variables should be strings.
 
+If you want to output the guides locally, rather than uploading, open Output.py and comment out this line:
 ```python
-	myFtp = FTP(ftp_url)
-```
-And delete everything until 
-
-```python
-	myFtp.close()
+from output_aws import write_file		# For uploading files to AWS
 ```
 
-from Crafting.py.  Finally run Crafting.py, this step is much faster if you use pypy, and it will generate your guides.
+and uncomment this line:
+```python
+#from output_local import write_file	# For writing files to disk
+```
+
+If you want to upload the guides via FTP, comment out the same AWS line in output.py, and uncomment this line:
+```python
+#from output_ftp import write_file		# For uploading files via FTP
+```
+Additionally, create a ftp_info.py file with the variables ftp_url, ftp_user, and ftp_pass.  All 3 variables should be strings.
+
+**Generate guides:**
+
+Run Crafting.py, this step is much faster if you use pypy, and it will generate your guides.
