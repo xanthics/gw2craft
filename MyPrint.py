@@ -25,18 +25,10 @@ Author: Jeremy Parks
 Purpose: Contains all functions for printing guides
 Note: Requires Python 2.7.x
 '''
-import os
 import math
-import time
 import Globals
-from StringIO import StringIO
-from random import randint
-import boto
-import boto.s3
-from boto.s3.key import Key
 from collections import defaultdict
-# FTP Login
-from Ftp_info import amakey, amasec
+import output
 
 
 # Format copper values so they are easier to read
@@ -640,28 +632,8 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page += u'</body>\n'
 	page += u'</html>\n'
 
-	# Uncomment these two lines if you want a file written to disk
-#	with codecs.open(localText.path+filename, 'wb', encoding='utf-8') as f:
-#		f.write(page)
-
-	while True:
-		try:
-#			myFtp = FTP(ftp_url)
-#			myFtp.login(ftp_user,ftp_pass)
-#			f = StringIO(page.encode('utf8'))
-#			myFtp.storbinary(u'STOR /gw2crafts.net/'+localText.path+filename,f)
-#			myFtp.close()
-			keyname = os.path.join( '{}'.format(localText.path), filename)
-			conn = boto.connect_s3(amakey, amasec)
-			bucket = conn.get_bucket('gw2crafts.net')
-			k = Key(bucket)
-			k.key = keyname
-			k.metadata.update({'Content-Type':'text/html'})
-			k.set_contents_from_string(page.encode('utf8'))
-			return totals
-		except Exception, err:
-			print u'ERROR: %s.' % str(err)
-			time.sleep(randint(1,10))
+	output.write_file(localText.path,filename,page)
+	return totals
 
 def maketotals(totals, mytime, localText):
 	tpage1 = u""
@@ -759,25 +731,5 @@ def maketotals(totals, mytime, localText):
 
 	page += u'\n</section>\n' + localText.cright
 
-	# Uncomment these two lines if you want a file written to disk
-#	with codecs.open(localText.path+u'total.html', 'wb', encoding='utf-8') as f:
-#		f.write(page)
-		
-	while True:
-		try:
-#			myFtp = FTP(ftp_url)
-#			myFtp.login(ftp_user,ftp_pass)
-#			f = StringIO(page.encode('utf8'))
-#			myFtp.storbinary(u'STOR /gw2crafts.net/'+localText.path+u'total.html',f)
-#			myFtp.close()
-			keyname = os.path.join( '{}'.format(localText.path), u'total.html')
-			conn = boto.connect_s3(amakey, amasec)
-			bucket = conn.get_bucket('gw2crafts.net')
-			k = Key(bucket)
-			k.key = keyname
-			k.metadata.update({'Content-Type':'text/html'})
-			k.set_contents_from_string(page.encode('utf8'))
-			return
-		except Exception, err:
-			print u'ERROR: %s.' % str(err)
-			time.sleep(randint(1,10))
+	output.write_file(localText.path,u'total.html',page)
+	return
