@@ -26,15 +26,7 @@ Purpose: Generate the index, faq and nav page for each language
 Note: Requires Python 2.7.x
 '''
 import Localen, Localde, Localfr, Locales, Localcz, Localptbr
-import codecs, os
-import time
-from random import randint
-import boto
-import boto.s3
-from boto.s3.key import Key
-from StringIO import StringIO
-# FTP Login
-from Ftp_info import amakey, amasec
+import output
 
 # Generate a faq using local strings
 def faq(localText):
@@ -138,24 +130,9 @@ def faq(localText):
 	page += localText.cright
 	page += u"</body>\n"
 	page += u"</html>\n"
-	while True:
-		try:
-#			myFtp = FTP(ftp_url)
-#			myFtp.login(ftp_user,ftp_pass)
-#			f = StringIO(page.encode('utf8'))
-#			myFtp.storbinary(u'STOR /gw2crafts.net/'+localText.path+u'faq.html',f)
-#			myFtp.close()
-			keyname = os.path.join( '{}'.format(localText.path), u'faq.html')
-			conn = boto.connect_s3(amakey, amasec)
-			bucket = conn.get_bucket('gw2crafts.net')
-			k = Key(bucket)
-			k.key = keyname
-			k.metadata.update({'Content-Type':'text/html'})
-			k.set_contents_from_string(page.encode('utf8'))
-			return
-		except Exception, err:
-			print u'ERROR: %s.' % str(err)
-			time.sleep(randint(1,10))
+
+	output.write_file(localText.path,u'faq.html',page)
+	return
 
 
 
@@ -244,24 +221,9 @@ def nav(localText):
 	page += localText.cright
 	page += u"</body>\n"
 	page += u"</html>\n"
-	while True:
-		try:
-#			myFtp = FTP(ftp_url)
-#			myFtp.login(ftp_user,ftp_pass)
-#			f = StringIO(page.encode('utf8'))
-#			myFtp.storbinary(u'STOR /gw2crafts.net/'+localText.path+u'nav.html',f)
-#			myFtp.close()
-			keyname = os.path.join( '{}'.format(localText.path), u'nav.html')
-			conn = boto.connect_s3(amakey, amasec)
-			bucket = conn.get_bucket('gw2crafts.net')
-			k = Key(bucket)
-			k.key = keyname
-			k.metadata.update({'Content-Type':'text/html'})
-			k.set_contents_from_string(page.encode('utf8'))
-			return
-		except Exception, err:
-			print u'ERROR: %s.' % str(err)
-			time.sleep(randint(1,10))
+
+	output.write_file(localText.path,u'nav.html',page)
+	return
 
 # Generate and index using local strings
 def index(localText):
@@ -332,24 +294,8 @@ def index(localText):
 	page += u"</body>\n"
 	page += u"</html>\n"
 
-	while True:
-		try:
-#			myFtp = FTP(ftp_url)
-#			myFtp.login(ftp_user,ftp_pass)
-#			f = StringIO(page.encode('utf8'))
-#			myFtp.storbinary(u'STOR /gw2crafts.net/'+localText.path+u'index.html',f)
-#			myFtp.close()
-			keyname = os.path.join( '{}'.format(localText.path), u'index.html')
-			conn = boto.connect_s3(amakey, amasec)
-			bucket = conn.get_bucket('gw2crafts.net')
-			k = Key(bucket)
-			k.key = keyname
-			k.metadata.update({'Content-Type':'text/html'})
-			k.set_contents_from_string(page.encode('utf8'))
-			return
-		except Exception, err:
-			print u'ERROR: %s.' % str(err)
-			time.sleep(randint(1,10))
+	output.write_file(localText.path,u'index.html',page)
+	return
 
 
 def main():
