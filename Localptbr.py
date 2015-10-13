@@ -162,7 +162,8 @@ tge = u"Irá criar sub-partes de um item ao invés de comprar, se possível. Nor
 wit = u"<strong>O que é isso?</strong> Guias de crafting para Guild Wars 2 que são sempre atualizados. Todos os guias são recalculados baseados nos preços atuais do Trading Post a cada hora, assumindo que o computador que roda o script esteja ligado e que o gw2spidy está acessível. Esses guias foram originalmente criados para amigos, mas baseado em sua popularidade com a comunidade do jogo, continuei a melhorá-los até chegar ao ponto atual. Esse script assume que existem \"infinitos\" itens a qualquer preço, então se forem todos comprados, ou houver poucos durante o período de atualização os preços podem estar errados até a próxima atualização."
 nWarn = u"<strong>[Aviso]</strong> Se você não vai fazer todo o guia de uma vez só, tenha certeza de salvá-lo em seu computador, já que estes guias podem e irão mudar."
 rCost = u"<strong>Dicas para reduzir custos:</strong> Salve uma cópia do guia e coloque Buy Orders para os materiais."
-thanks2 = u"Agradecimentos a Chase, TimeBomb e saladon por parte do CSS nessas páginas. Agradecimentos a Marc Ramos (desmodium.3745) pela tradução para Espanhol. E obrigado a @figgityfigs pelo novo design de ícones (favicon e apple-touch-icon) e hosting."
+thanks2 = u"Agradecimentos à guilda Dragonbrand Heroes ( <a href=\"http://dh.fantasius.com.br\">http://dh.fantasius.com.br</a> ) pela tradução em português. "
+
 # nav strings
 navNotice = u"Essa é uma simples página de navegação, você só deve acessá-la se não puder usar a barra de navegação."
 navLang = u"Idioma"
