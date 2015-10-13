@@ -169,7 +169,7 @@ tge     = u"Vytvoří součásti předmětu, pokud je to možné místo nákupu.
 wit     = u"<strong>Co je toto za stránku?</strong> Stále aktuální výrobní průvodce pro Guild Wars 2. Všechny průvodce jsou spočítány na základě aktuálních tržních cen jednou za hodinu za předpokladu, že počítač se skriptem běží a gw2spidy je dostupné. Tento průvodce byl původně určen kamarádům, ale na základě zájmu ze strany Guild Wars 2 komunity, pokračuji ve vylepšování až do současné podoby.  Skript bere v úvahu určité \"konečné\" množství daného předmětu za danou cenu, takže když se vyprodají, nebo jich je velmi málo během aktualizace, tabulka s cenami může být chybná až do další aktualizece."
 nWarn   = u"<strong>[Poznámka]</strong> Pokud nechcete projít celých výrobním procesem najednou, tak si ho prosím uložte do svého PC. Protože průvodce se neustále mění."
 rCost   = u"<strong>Tip na snížení nákladů:</strong> Uložte si průvodce a dejte si nabídky na materiál na tržiště."
-thanks2 = u"Děkuji Chase, TimeBomb a saladon drobné CSS nastylování těchto stránek.  Díky Marc Ramos(desmodium.3745) za španělský překlad.  A také díky @figgityfigs za novou ikonu (favicon a apple-touch-icon) a hosting"
+thanks2 = u"Děkuji za překladů Vítězslav Jaroš."
 
 # nav strings
 navNotice = u"Tohle je stránka s navigací stránek, používejte ji pouze pokud Vám nefunguje horní navigační menu.  Pokud překládáte tuto stránku prosím napište mi na email gw2crafts@live.com, přiložte název jazyka a zdrojový soubor jazykové mutace a já se o zbytek postarám."

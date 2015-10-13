@@ -29,7 +29,7 @@ region = "NA/EU price data only"
 
 # Copyright notice for GW2 IP
 cright = u'''<footer>
-    Guild Wars 2 © 2012 ArenaNet, Inc. Alle Rechte vorbehalten. NCsoft, das ineinander greifende NC-Logo, ArenaNet, Guild Wars, Guild Wars Factions, Guild Wars Nightfall, Guild Wars: Eye sind der Norden, Guild Wars 2 und alle in Verbindung stehenden Logos und Designs sind Warenzeichen oder eingetragene Warenzeichen der NCsoft Corporation. Alle anderen Warenzeichen sind das Eigentum ihrer jeweiligen Eigentümer.
+    Guild Wars 2 © 2012 ArenaNet, Inc. Alle Rechte vorbehalten. NCsoft, das ineinandergreifende NC-Logo, ArenaNet, Guild Wars, Guild Wars Factions, Guild Wars Nightfall, Guild Wars: Eye of the North, Guild Wars 2 und alle in Verbindung stehenden Logos und Designs sind Warenzeichen oder eingetragene Warenzeichen der NCsoft Corporation. Alle anderen Warenzeichen sind das Eigentum ihrer jeweiligen Eigentümer.
 </footer>'''
 
 # renown heart vendors
@@ -169,7 +169,7 @@ tge     = u"Versucht die Zutaten wenn möglich herzustellen als sie zu kaufen. I
 wit     = u"<strong> Was ist das hier überhaupt? </strong> Immer aktuelle Handwerksanleitungen für Guild Wars 2. Alle Anleitungen werden jede Stunde auf Basis der aktuellen Handelspostenpreise neu berechnet, sofern der Server läuft und gw2spidy erreichbar ist. Diese Anleitungen wurden ursprünglich für Freunde erstellt, doch die Popularität meiner Arbeit brachte mich dazu noch mehr daran zu arbeiten - Das Ergebnis seht ihr hier. Dieses Skript setzt allerdings voraus, dass es eine \"unendliche\" Menge der Artikel zu einem bestimmten Preis im Handelsposten gibt. Wurden also alle aufgekauft oder es sind weniger vorhanden als angenommen können die Preise bis zum nächten Update abweichen."
 nWarn   = u"<strong> [Hinweis] </strong> Wenn du nicht vorhast die Anleitung in einem Rutsch durchzuziehen, dann speichere Sie bitte auf deinem PC, dann Sie ist ständigen Änderungen unterworfen und wird stündlich aktualisiert."
 rCost   = u"<strong> Hinweis, um Kosten zu senken:</strong> Speichere dir eine Kopie der Anleitung und platziere Kaufgeobte im Handelsposten für die Materialien."
-thanks2 = u"Ich danke Chase, TimeBomb und saladon für einige der CSS-Styles auf diesen Seiten. Dank Marc Ramos (desmodium.3745) für die Spanische Übersetzung.  Und danke an @figgityfigs für das neue Icon-Design (Favicon und apple-touch-icon) und Hosting"
+thanks2 = u"Weitere deutsche Übersetzungen und Korrekturen von Aaron Raff."
 
 # nav strings
 navNotice = u"Dies ist eine einfache nav Seite, sollten Sie nur dann erreichen, wenn Sie nicht verwenden können, die Navigationsleiste. Wenn Sie diese Seite übersetzen sind bitte mailen Sie mir an gw2crafts@live.com mit der Ausgangssprache und Übersetzung Seite verwendet und ich werde versuchen, es zu beheben."
@@ -188,7 +188,7 @@ jc      = u"Juwelier"
 art     = u"Konstrukteur"
 hunt    = u"Waidmann"
 wc      = u"Waffenschmied"
-ac      = u"Rüstungsschied"
+ac      = u"Rüstungsschmied"
 lw      = u"Lederer"
 tailor  = u"Schneider"
 totals  = u"Insgesamt"
