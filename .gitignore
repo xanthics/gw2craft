@@ -1,6 +1,6 @@
 *.xml
 *.pyc
-*.html
+#*.html
 /ftp_info.py
 /Ftp_info.py
 .cache/*
