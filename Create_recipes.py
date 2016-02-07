@@ -30,44 +30,31 @@ from multiprocessing import Process, Queue, cpu_count, Pool
 
 API_ROOT = u"https://api.guildwars2.com/v2/"
 
+
 # Helper Function
-def recipelistWorker(items):#, out_q):
+def recipelistWorker(items):
 	outdict = {}
 
-	items = _api_call(u'recipes.json?ids={}'.format(",".join(map(str,items))))
+	items = _api_call(u'recipes.json?ids={}'.format(",".join(map(str, items))))
 	for i in items:
 		outdict[i[u'id']] = i
 
 	return outdict
-#	out_q.put(outdict)
+
 
 # Get and return all available recipes from the API
 def get_recipes():
-	lister = _api_call(u'recipes.json')	
-#	out_q = Queue()
-#	chunksize = 200
-#	nprocs = int(math.ceil(len(lister)/chunksize))+1
-#	procs = []
-
-#	for i in range(nprocs):
-#		p = Process(target=recipelistWorker,
-#					args=(lister[chunksize * i:chunksize * (i + 1)],out_q))
-#		procs.append(p)
-#		p.start()
+	lister = _api_call(u'recipes.json')
 	p = Pool(2)
-	procs = [p.map(recipelistWorker, [lister[i:i+200] for i in range(0, len(lister), 200)])]
-	
+	procs = [p.map(recipelistWorker, [lister[i:i + 200] for i in range(0, len(lister), 200)])]
+
 	flags = {}
 	for p in procs:
 		for i in p:
 			flags.update(i)
-#	for i in range(nprocs):
-#		flags.update(out_q.get())
-
-#	for p in procs:
-#		p.join()
 
 	return flags
+
 
 # Get the recipes we want and put them in recipe sheets while also gathering
 # all the item_id we need
@@ -98,25 +85,23 @@ def parse_recipes(recipes):
 					24907, 24908, 24909, 24910, 24911, 24912, 24913, 24914,
 					24915, 24916, 24917, 24919, 24920, 24921, 24922, 24923,
 					24924, 24898, 24918, 24925, 19923, 19920, 19917, 19918,
-					19922, 19921, 19919, 38162, 38166, 38167, 38434, 38432, 
-					38433, 19912, 19913, 19910, 19911, 19915, 19914, 19916, 
+					19922, 19921, 19919, 38162, 38166, 38167, 38434, 38432,
+					38433, 19912, 19913, 19910, 19911, 19915, 19914, 19916,
 					24543, 24496, 24544, 24497, 24545, 24498, 24499]
-
-
 
 	# Karma and account bound items that we don't want to save the recipe of items that use
 	# Sun Beads, Obsidian Shard, Essence of Luck, Essence of Luck, Essence of Luck, Essence of Luck, Essence of Luck
-	bad_karma = [19717, 19925, 45175, 45176, 45177, 45178]
+	bad_karma = [19717, 19925, 45175, 45176, 45177, 45178] + list(range(49424, 49441))
 
-	crafts = {u'Weaponsmith':{}, u'Chef':{}, u'Chef_karma':{}, u'Huntsman':{},
-			  u'Armorsmith':{}, u'Jeweler':{}, u'Artificer':{}, u'Tailor':{},
-			  u'Leatherworker':{}}
+	crafts = {u'Weaponsmith': {}, u'Chef': {}, u'Chef_karma': {}, u'Huntsman': {},
+			  u'Armorsmith': {}, u'Jeweler': {}, u'Artificer': {}, u'Tailor': {},
+			  u'Leatherworker': {}, u'Scribe': {}}
 	item_ids = {}
 
-	new_recipes = {r[0]:r[1] for r in recipes.items()
+	new_recipes = {r[0]: r[1] for r in recipes.items()
 				   if not int(r[1][u'output_item_id']) in bad_recipes
-				   and not r[1][u'type'] in [u'Feast',u'Backpack']}
-
+				   and not r[1][u'type'] in [u'Feast', u'Backpack']}
+	nc = {}
 	for _recipe, data in new_recipes.items():
 		min_rating = data[u'min_rating']
 		item_id = data[u'output_item_id']
@@ -124,13 +109,17 @@ def parse_recipes(recipes):
 		ingredient_set = set(int(i[u'item_id']) for i in data[u'ingredients'])
 
 		# We don't want cap level recipes or recipes that use items the player can't buy off the tp or make
-		if min_rating == 500 or (min_rating == 400 and u'Chef' in data[u'disciplines']) or set(bad_karma).intersection(set(ingredient_set)):
+		if min_rating == 500 or (min_rating == 400 and (u'Chef' in data[u'disciplines'] or u'Scribe' in data[u'disciplines'])) or set(bad_karma).intersection(
+				set(ingredient_set)):
 			continue
-			
+
 		for it in data[u'disciplines']:
 			key = it
 			# We don't want recipe items.  Except for karma cooking and known good recipes
 			if u'LearnedFromItem' in data[u'flags'] and not (it == u'Chef' or int(item_id) in good_recipes):
+				if it == u'Scribe':
+					print _recipe
+					print data
 				continue
 			if it == u'Chef' and (set(karma) & ingredient_set or u'LearnedFromItem' in data[u'flags']):
 				key = u'Chef_karma'
@@ -140,7 +129,10 @@ def parse_recipes(recipes):
 			item_ids[item_id] = {u'output_item_count': item_count,
 								 u'type': data[u'type'],
 								 u'flags': data[u'flags']}
-
+			if it in nc:
+				nc[it] += 1
+			else:
+				nc[it] = 1
 
 	for craft in crafts:
 		page = u'# -*- coding: utf-8 -*-\nrecipes = {\n'
@@ -150,61 +142,72 @@ def parse_recipes(recipes):
 				mystr = u""
 				for part in sorted(crafts[craft][lvl][obj]):
 					if not part[u'item_id'] in item_ids:
-						item_ids[part[u'item_id']] = {u'type':u'Other',u'output_item_count':u'0',u'flags':[]}
-					mystr += u"{}:{},".format(part[u'item_id'],part[u'count'])
-				page += u"\t\t{}:{{{}}},\n".format(obj,mystr[:-1])
+						item_ids[part[u'item_id']] = {u'type': u'Other', u'output_item_count': u'0', u'flags': []}
+					mystr += u"{}:{},".format(part[u'item_id'], part[u'count'])
+				page += u"\t\t{}:{{{}}},\n".format(obj, mystr[:-1])
 			page += u"\t},\n"
 		page += u"}"
-		with codecs.open(craft+".py", "wb", encoding='utf-8') as f:
+		with codecs.open(craft + ".py", "wb", encoding='utf-8') as f:
 			f.write(page)
 
 	for item in [38207, 38208, 38209, 38295, 38296, 38297]:
-		item_ids[item] = {u'type':u'Recipe',u'output_item_count':u'1',u'flags':[]}
+		item_ids[item] = {u'type': u'Recipe', u'output_item_count': u'1', u'flags': []}
 
 	return item_ids
 
+
 # helper function
-def itemlistWorker(vals):#, out_q):
+def guilditemlistWorker(vals):
 	ids = vals[0]
 	lang = vals[1]
 	outdict = {}
-	items = _api_call(u'items.json?ids={}&lang={}'.format(",".join(map(str,ids)), lang))
+	items = _api_call(u'guild/upgrades.json?ids={}&lang={}'.format(",".join(map(str, ids)), lang))
 	for i in items:
 		outdict[i[u'id']] = i
 	return outdict
-#	out_q.put(outdict)
+
+
+# helper function
+def itemlistWorker(vals):
+	ids = vals[0]
+	lang = vals[1]
+	outdict = {}
+	items = _api_call(u'items.json?ids={}&lang={}'.format(",".join(map(str, ids)), lang))
+	for i in items:
+		outdict[i[u'id']] = i
+	return outdict
+
 
 # get more information on every item the recipes use
 # Currently supported languages: en, fr, de, es
-def itemlist(item_list, lang=u"en"):
+def itemlist(item_list, gulist, lang=u"en"):
 	print "Starting {}".format(lang)
-#	out_q = Queue()
-	lister = item_list.keys()
-#	chunksize = 200
-#	nprocs = int(math.ceil(len(lister)/chunksize))+1
-#	procs = []
-#	for i in range(nprocs):
-#		p = Process(target=itemlistWorker,
-#					args=(lister[chunksize * i:chunksize * (i + 1)], lang, out_q))
-#		procs.append(p)
-#		p.start()
+	lister = gulist
 	p = Pool(2)
-	procs = [p.map(itemlistWorker, [(lister[i:i+200],lang) for i in range(0, len(lister), 200)])]
-	
+	procs = [p.map(guilditemlistWorker, [(lister[i:i + 200], lang) for i in range(0, len(lister), 200)])]
+
+	guild_flags = {}
+	for p in procs:
+		for i in p:
+			guild_flags.update(i)
+
+	lister = item_list.keys()
+	p = Pool(2)
+	procs = [p.map(itemlistWorker, [(lister[i:i + 200], lang) for i in range(0, len(lister), 200)])]
+
 	flags = {}
 	for p in procs:
 		for i in p:
 			flags.update(i)
-#	for i in range(nprocs):
-#		flags.update(out_q.get())
 
-#	for p in procs:
-#		p.join()
+	for item in guild_flags.keys():
+		flags[item+1000000] = {u'name': guild_flags[item][u"name"], u"icon": guild_flags[item][u"icon"],
+							   u'rarity': u"Basic", u'flags': [u"NoSell"], u"vendor_value": 0}
 
 	if lang == u"en":
 		page = u'# -*- coding: utf-8 -*-\nilist = {\n'
 		# sorted is only so we can easily spot new items with diff
-		for i in sorted(flags): # otherwise output is semi random order
+		for i in sorted(flags):  # otherwise output is semi random order
 			try:
 				item_list[i][u'rarity'] = flags[i][u'rarity']
 				if u"NoSell" in flags[i][u"flags"]:
@@ -214,43 +217,66 @@ def itemlist(item_list, lang=u"en"):
 				if item_list[i][u'flags']:
 					item_list[i][u'discover'] = 0
 				item_list[i][u'img_url'] = flags[i][u'icon']
-				del(item_list[i][u'flags'])
+				del (item_list[i][u'flags'])
 				page += u"\t{}:{},\n".format(i, item_list[i])
 			except Exception, err:
-				print 'Error: {}.\n'.format(str(err))
+				print 'Error ilist: {}.\n'.format(str(err))
+				exit()
 		page += u'}'
-		with codecs.open("Items.py","wb", encoding='utf-8') as f:
+		with codecs.open("Items.py", "wb", encoding='utf-8') as f:
 			f.write(page.replace(u": ", ":"))
 
 	page = u'# -*- coding: utf-8 -*-\nilist = {\n'
 	# sorted is only so we can easily spot new items with diff
-	for i in sorted(flags): # otherwise output is semi random order
+	for i in sorted(flags):  # otherwise output is semi random order
 		try:
-			page += u"\t{}:u\"{}\",\n".format(i, flags[i][u'name'].replace('"','\'').strip())
+			page += u"\t{}:u\"{}\",\n".format(i, flags[i][u'name'].replace('"', '\'').strip())
 		except Exception, err:
-			print 'Error: {}.\n'.format(str(err))
+			print 'Error items: {}.\n'.format(str(err))
 	page += u'}'
-	with codecs.open("Items_%s.py" % lang,"wb", encoding='utf-8') as f:
+	with codecs.open("Items_%s.py" % lang, "wb", encoding='utf-8') as f:
 		f.write(page)
 
+
 def _api_call(endpoint):
-	while(1):
+	while (1):
 		try:
 			f = urllib.urlopen(API_ROOT + endpoint)
 			item = json.load(f)
 			return item
 		except Exception, err:
-			print 'Error: {}.\n'.format(str(err))
+			print 'Error api: {}.\n'.format(str(err))
 
-	
+
+# add guild_ingredient item_id to each item
+def guild_recipes(recipes):
+
+	gulist = []
+	for item in recipes.keys():
+		if recipes[item][u'min_rating'] < 400:
+			if u"guild_ingredients" in recipes[item]:
+				for i in recipes[item][u'guild_ingredients']:
+					if i[u'upgrade_id'] not in gulist:
+						gulist.append(i[u'upgrade_id'])
+					recipes[item][u'ingredients'].append({u"count": i[u'count'], u"item_id": i[u'upgrade_id']+1000000})
+			if u'output_upgrade_id' in recipes[item]:
+				if recipes[item][u'output_upgrade_id'] not in gulist:
+						gulist.append(recipes[item][u'output_upgrade_id'])
+				recipes[item][u'output_item_id'] = recipes[item][u'output_upgrade_id'] + 1000000
+	return gulist, recipes
+
+
 def main():
 	socket.setdefaulttimeout(15)
 	recipes = get_recipes()
+	gulist, recipes = guild_recipes(recipes)
 	item_list = parse_recipes(recipes)
-	itemlist(item_list)
-	itemlist(item_list, u"fr")
-	itemlist(item_list, u"de")
-	itemlist(item_list, u"es")
+
+	itemlist(item_list, gulist)
+	itemlist(item_list, gulist, u"fr")
+	itemlist(item_list, gulist, u"de")
+	itemlist(item_list, gulist, u"es")
+
 
 # If ran directly, call main
 if __name__ == '__main__':

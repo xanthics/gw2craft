@@ -52,7 +52,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 
 	non_item = [u'Refinement', u'Insignia', u'Inscription', u'Component']
 
-	karma_items  = {12337:{u'note':u"{} <br />{}".format(localText.pickins,localText.disa),u'cost':77}, # Almond
+	karma_items = {12337:{u'note':u"{} <br />{}".format(localText.pickins,localText.disa),u'cost':77}, # Almond
 					12165:{u'note':u"{} <br />{}".format(localText.milton,localText.jack),u'cost':35}, # Apple
 					12340:{u'note':u"{}".format(localText.makayla),u'cost':77}, # Avocado
 					12251:{u'note':u"{} <br />{} <br />{} <br />{}".format(localText.jenks,localText.sangdo,localText.goran,localText.vejj),u'cost':49}, # Banana
@@ -75,7 +75,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 					12516:{u'note':u"{}".format(localText.tholin),u'cost':112}, # Pinenut
 					12517:{u'note':u"{}".format(localText.ichtaca),u'cost':112}} # Shallot
 
-	karma_chef   = {12159:{u'note':localText.mcov,u'cost':35}, # Cheese Wedge
+	karma_chef = {12159:{u'note':localText.mcov,u'cost':35}, # Cheese Wedge
 					12137:{u'note':localText.mcov,u'cost':35}, # Glass of Buttermilk
 					12152:{u'note':localText.mcov,u'cost':35}, # Packet of Yeast
 					12145:{u'note':localText.mcov,u'cost':49}, # Rice Ball
@@ -99,7 +99,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 					12343:{u'note':localText.kastaz,u'cost':35}, # Kastaz Roasted Poultry
 					12160:{u'note':localText.auda,u'cost':35}, # Loaf of Walnut Sticky Bread
 					12154:{u'note':localText.brian,u'cost':35}, # Bowl of Outrider Stew
-					12292:{u'note':localText.glubb,u'cost':35}, # Bowl of Degun Shun Stew	
+					12292:{u'note':localText.glubb,u'cost':35}, # Bowl of Degun Shun Stew
 					12233:{u'note':localText.tholin,u'cost':154}, # Handful of Trail Mix
 					12739:{u'note':localText.triktiki,u'cost':35}, # Triktiki Omelet
 					12352:{u'note':u"{} ({} {})".format(localText.pochtecatl,mFormat(368),localText.valuePer),u'cost':0}, # Griffon Egg Omelet
@@ -108,7 +108,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 					19955:{u'note':localText.mcov,u'cost':350}, # Ravaging Intricate Wool Insignia
 					19956:{u'note':localText.mcov,u'cost':350}, # Rejuvenating Intricate Wool Insignia
 					19957:{u'note':localText.mcov,u'cost':350}, # Honed Intricate Wool Insignia
-					19958:{u'note':localText.mcov,u'cost':350}, # Pillaging Intricate Wool Insignia	
+					19958:{u'note':localText.mcov,u'cost':350}, # Pillaging Intricate Wool Insignia
 					19959:{u'note':localText.mcov,u'cost':350}, # Strong Intricate Wool Insignia
 					19960:{u'note':localText.mcov,u'cost':350}, # Vigorous Intricate Wool Insignia
 					19961:{u'note':localText.mcov,u'cost':350}, # Hearty Intricate Wool Insignia
@@ -233,11 +233,16 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 			if item in karma_recipe:
 				recipebuy.append(item)
 
-	# 'Spool of Jute Thread',u'Spool of Wool Thread',u'Spool of Cotton Thread',u'Spool of Linen Thread',u'Spool of Silk Thread',u'Lump of Tin',u'Lump of Coal',u'Lump of Primordium',u'Jar of Vinegar',u'Packet of Baking Powder',u'Jar of Vegetable Oil',u'Packet of Salt',u'Bag of Sugar',u'Jug of Water',u'Bag of Starch',u'Bag of Flour',u'Bottle of Soy Sauce',"Bottle of Rice Wine", "Minor Rune of Holding", "Rune of Holding", "Major Rune of Holding", "Greater Rune of Holding"
-	vendor = [19792,  19789,  19794,  19793,  19791,  19704,  19750,  19924,  12157,  12151,  12158,  12153,  12155,  12156,  12324,  12136,  12271,  8576,  13010,  13006,  13007,  13008,  19790, 62942]
+	vendor = [19792, 19789, 19794, 19793, 19791, 19704, 19750, 19924, 12157, 12151, 12158, 12153, 12155,
+			  12156, 12324, 12136, 12271, 8576, 13010, 13006, 13007, 13008, 19790, 62942, 70647, 75762,
+			  1000352, 1000589, 1000574, 1000601, 1000403, 1000376, 1000223, 1000548, 1000209, 1000516,
+			  1000620, 1000202, 1000582, 1000437, 1000413, 1000224]
 
 	# "Jute Scrap","Bolt of Jute","Copper Ore","Copper Ingot","Bronze Ingot","Rawhide Leather Section","Stretched Rawhide Leather Square","Green Wood Log","Green Wood Plank","Wool Scrap","Bolt of Wool","Iron Ore","Silver Ore","Iron Ingot","Silver Ingot","Thin Leather Section","Cured Thin Leather Square","Soft Wood Log","Soft Wood Plank","Cotton Scrap","Bolt of Cotton","Spool of Cotton Thread","Iron Ore","Gold Ore","Gold Ingot","Steel Ingot","Coarse Leather Section","Cured Coarse Leather Square","Seasoned Wood Log","Seasoned Wood Plank","Linen Scrap","Bolt of Linen","Platinum Ore","Platinum Ingot","Darksteel Ingot","Rugged Leather Section","Cured Rugged Leather Square","Hard Wood Log","Hard Wood Plank","Silk Scrap","Bolt of Silk","Mithril Ore","Mithril Ingot","Thick Leather Section","Cured Thick Leather Square","Elder Wood Log","Elder Wood Plank", Orichalcum Ore, Ancient Wood Log
-	basic = [19718,  19720,  19697,  19680,  19679,  19719,  19738,  19723,  19710,  19739,  19740,  19699,  19703,  19683,  19687,  19728,  19733,  19726,  19713,  19741,  19742,  19794,  19699,  19698,  19682,  19688,  19730,  19734,  19727,  19714,  19743,  19744,  19702,  19686,  19681,  19731,  19736,  19724,  19711,  19748,  19747,  19700,  19684,  19729,  19735,  19722,  19709,  19701,  19725, 19685, 19712, 19732, 19737, 19745, 19746]
+	basic = [19718, 19720, 19697, 19680, 19679, 19719, 19738, 19723, 19710, 19739, 19740, 19699, 19703, 19683, 19687,
+			 19728, 19733, 19726, 19713, 19741, 19742, 19794, 19699, 19698, 19682, 19688, 19730, 19734, 19727, 19714,
+			 19743, 19744, 19702, 19686, 19681, 19731, 19736, 19724, 19711, 19748, 19747, 19700, 19684, 19729, 19735,
+			 19722, 19709, 19701, 19725, 19685, 19712, 19732, 19737, 19745, 19746]
 
 	# Fine Materials
 	basic_f = range(24272,24301) + [37897,24363] + range(24341,24359)
@@ -281,7 +286,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	b_food = defaultdict(int)
 	b_mix = defaultdict(int)
 
-	for item in buy:	
+	for item in buy:
 			if item in karma_chef:
 				b_karma_c[item] = buy[item]
 			elif item in karma_items:
@@ -368,6 +373,10 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page += u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n'
 	page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">%s</span>	%s: %s</span>\n'%(localText.warning1,localText.warning2,mytime)
 	page += u'</div><br />\n'
+	if u'scribe' in filename:
+		page += u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n'
+		page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">Do not follow this guide.  It is a test</span></span>\n'
+		page += u'</div><br />\n'
 	page += u"<strong>%s</strong><br />\n"%(localText.region)
 	# adword
 	page += u'<div style="float:right;position:absolute;right:-320px;"> \
@@ -382,6 +391,10 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 			\n</script> \
 			\n</div>\n'
 	page += localText.moreInfo%(u"<img src=\"/img/arrow.png\" alt=ARROW>")
+	if u'scribe' in filename:
+		page += u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n'
+		page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">Do not follow this guide.  It is a test</span></span>\n'
+		page += u'</div><br />\n'
 	# Page Title Part 1
 	page += u'<h1>'+title+u'</h1>'
 	page += u'<dl>\n'
@@ -402,6 +415,10 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page += u"</div><script type=\"text/javascript\">$('#1tcost').hide();</script><br />"
 	buttonList.append('tcost')
 
+	if u'scribe' in filename:
+		page += u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n'
+		page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">Do not follow this guide.  It is a test</span></span>\n'
+		page += u'</div><br />\n'
 	if b_vendor or b_karma_c or b_karma_w:
 		page += u"<h2>%s</h2>\n"%localText.buyVendor
 		if b_karma_c or b_karma_w:
@@ -423,6 +440,10 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 			t = (t+1)%2
 			page += (u"<div class=\"s%i\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><span class=\"quantity\">%i</span> <span class=\"%s\">%s</span> (%4s %s from %s)</div>\n")%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']),localText.valuePer,localText.method[0])
 
+	if u'scribe' in filename:
+		page += u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n'
+		page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">Do not follow this guide.  It is a test</span></span>\n'
+		page += u'</div><br />\n'
 	if recipebuy:
 		page += u"<h2>%s</h2>\n"%localText.bRecipes
 		for item in recipebuy:
@@ -436,8 +457,16 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 					page += (u"<div class=\"s%d\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><button title=\""+localText.toggle+u"\" class=\"arrow %s\" id=\"%d\">%s</button><div class=\"lsbutton\" id=\"1%d\">%s</div></div>\n")%(t,cList[item]['icon'],cList[item]['rarity'],item,cListName[item],item,karma_recipe[item]['note'])
 			buttonList.append(item)
 			kt += int(karma_recipe[item][u'cost'])
+	if u'scribe' in filename:
+		page += u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n'
+		page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">Do not follow this guide.  It is a test</span></span>\n'
+		page += u'</div><br />\n'
 	if kt:
 		page += u'<br />\nTotal <span class=\"karmaIcon\"></span>: '+str(kt)+u'<br />\n'
+	if u'scribe' in filename:
+		page += u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n'
+		page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">Do not follow this guide.  It is a test</span></span>\n'
+		page += u'</div><br />\n'
 	if b_common or b_fine or b_rare or b_gem or b_holiday or b_food:
 		page += u'<h2>%s</h2>\n'%localText.collectibles
 		for item in sorted(b_common):
@@ -459,12 +488,20 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 			t = (t+1)%2
 			page += collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']))
 
+	if u'scribe' in filename:
+		page += u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n'
+		page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">Do not follow this guide.  It is a test</span></span>\n'
+		page += u'</div><br />\n'
 	if b_mix:
 		page += u'<h2>%s</h2>\n'%localText.mixedTP
 		for item in sorted(b_mix):
 			t = (t+1)%2
 			page += collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']))
 
+	if u'scribe' in filename:
+		page += u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n'
+		page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">Do not follow this guide.  It is a test</span></span>\n'
+		page += u'</div><br />\n'
 	page += u"<br />\n<br />\n<h2>%s</h2>\n"%localText.make
 	page += u"<button title=\""+localText.toggle+u"\" class =\"info\" id=\"show_all\">%s</button><br />"%localText.expand
 	page += u"<button title=\""+localText.toggle+u"\" class =\"info\" id=\"hide_all\">%s</button>"%localText.collapse
@@ -508,7 +545,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 			buttonList.append(str(tier)+u'tier')
 			rt += tt
 			totals[filename.split('.')[0]][tier] = tt
-			page += u"</div><h4>%s</h4>\n"%(localText.costRT%(mFormat(tt),mFormat(rt)))		
+			page += u"</div><h4>%s</h4>\n"%(localText.costRT%(mFormat(tt),mFormat(rt)))
 		page += (u"<br />\n<h3>%s:%3i</h3>\n")%(localText.level,tier)
 		if pmake[tier]:
 			for item in sorted(pmake[tier]):
@@ -686,7 +723,7 @@ def maketotals(totals, mytime, localText):
 	page += u'<tr><td>'+localText.nHearts+u'</td><td>'+mFormat(totals[u'cooking'])+u'</td><td>'+mFormat(totals[u'cooking_fast'])+u'</td><td>'+mFormat(totals[u'cooking_fast_200'])+u'</td></tr>\n'
 	page += u'<tr><td>'+localText.tHearts+u'</td><td>'+mFormat(totals[u'cooking_karma_light'])+u'</td><td>'+mFormat(totals[u'cooking_karma_fast_light'])+u'</td></tr>\n'
 	page += u'<tr><td>'+localText.aHearts+u'</td><td>'+mFormat(totals[u'cooking_karma'])+u'</td><td>'+mFormat(totals[u'cooking_karma_fast'])+u'</td><td>'+mFormat(totals[u'cooking_karma_fast_200'])+u'</td></tr>\n'
-	 
+
 	page += u"</table>\n<br />\n<table>\n<tr><th>"+localText.craft+u"</th><th>"+localText.nGuides+u"</th><th>"+localText.fGuides+u"</th><th>400-450</th><th>400-500</th></tr>\n"
 
 
@@ -705,7 +742,7 @@ def maketotals(totals, mytime, localText):
 			  (u'armorcraft',u'armorcraft_fast',u'armorcraft_450',u'armorcraft_400',localText.ac),
 			  (u'leatherworking',u'leatherworking_fast',u'leatherworking_450',u'leatherworking_400',localText.lw),
 			  (u'tailor',u'tailor_fast',u'tailor_450',u'tailor_400',localText.tailor)]:
-			  
+
 		ind = 2
 		if len(i) == 3:
 			page += u'<tr><td>'+i[ind]+u'</td><td>'+mFormat(totals[i[0]][u'total'])+u'</td><td>'+mFormat(totals[i[1]][u'total'])+u'</td></tr>\n'

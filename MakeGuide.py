@@ -156,6 +156,11 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level):
 				continue
 #				exit(-1)
 
+	# TODO Fix this, hack for scribe
+	if "scribe" in filename:
+			for i in [74768, 70454, 70489, 70926, 71146]:
+				cList[i][u'tier'][0] += 25
+
 	# Cooking guides don't use tierbuy, but they do care about karma items
 	if "cook" in filename:
 		if Globals.karmin: # this will be false the first time a cooking guide is called
@@ -278,7 +283,7 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level):
 					else:
 						bucket = makeQueuecraft(c_recipes[tier], cList,craftcount,tier,xp_to_level,craftexo)
 					bkey = sorted(bucket, reverse=True)
-				
+
 				tcost += bucket[bkey[0]][u'cost']
 				treco += cList[bucket[bkey[0]][u'item_id']][u'w'] * int(cList[bucket[bkey[0]][u'item_id']][u'output_item_count'])
 				sell[bucket[bkey[0]][u'item_id']] += int(cList[bucket[bkey[0]][u'item_id']][u'output_item_count'])
@@ -368,7 +373,10 @@ def calcRecipecraft(recipe,items,craftcount,tier,itier,xp_to_level,craftexo):
 	if int(items[recipe][u'tier'][index]) > int(itier):
 		return 9999999999, -99999999999, make, buy
 	make.append(recipe)
-	if int(items[recipe][u'tier'][index]) < int(tier) and not items[recipe][u'type'] in non_item and not craftexo:
+	# TODO hack for scribe
+	if recipe in [74768, 70454, 70489, 70926, 71146]:
+		xptotal = 0
+	elif int(items[recipe][u'tier'][index]) < int(tier) and not items[recipe][u'type'] in non_item and not craftexo:
 		xptotal = xp_calc(0,0,1,0,rarityNum(items[recipe][u'rarity']),int(items[recipe][u'tier'][index]),level,3)
 	elif not items[recipe][u'type'] in non_item and not items[recipe][u'discover'][index]:
 		xptotal = xp_calc(0,0,0,1,rarityNum(items[recipe][u'rarity']),int(items[recipe][u'tier'][index]),level,4 if craftexo and items[recipe][u'rarity'] == u'Exotic' else 3)
