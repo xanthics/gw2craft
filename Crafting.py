@@ -34,7 +34,7 @@ import sys
 import threading
 import time
 # recipe and item lists
-import Armorsmith, Artificer, Chef, Chef_karma, Huntsman, Jeweler, Leatherworker, Tailor, Weaponsmith, Items, Globals
+import Armorsmith, Artificer, Chef, Chef_karma, Huntsman, Jeweler, Leatherworker, Tailor, Weaponsmith, Scribe, Items, Globals
 # Localized text
 import Localen, Localde, Localfr, Locales, Localcz, Localptbr
 from multiprocessing import Process, Queue, cpu_count
@@ -113,7 +113,8 @@ def main():
 			 (u"leatherworking_fast.html",Leatherworker.recipes,True,False,range(0,400,25)),
 			 (u"leatherworking.html",Leatherworker.recipes,False,False,range(0,400,25)),
 			 (u"leatherworking_400.html",Leatherworker.recipes,False,True,range(400,500,25)),
-			 (u"leatherworking_450.html",Leatherworker.recipes,False,True,range(400,450,25))]
+			 (u"leatherworking_450.html",Leatherworker.recipes,False,True,range(400,450,25)),
+			 (u"scribe.html",Scribe.recipes,False,False,range(0,400,25))]
 
 	nprocs = cpu_count() * 2
 
@@ -138,12 +139,12 @@ def main():
 		if p.is_alive():
 			sys.exit(0)
 
-	maketotals(totals,mytime,Localen)
-	maketotals(totals,mytime,Localde)
-	maketotals(totals,mytime,Localfr)
-	maketotals(totals,mytime,Locales)
-	maketotals(totals,mytime,Localcz)
-	maketotals(totals,mytime,Localptbr)
+#	maketotals(totals,mytime,Localen)
+#	maketotals(totals,mytime,Localde)
+#	maketotals(totals,mytime,Localfr)
+#	maketotals(totals,mytime,Locales)
+#	maketotals(totals,mytime,Localcz)
+#	maketotals(totals,mytime,Localptbr)
 
 	print "End: ", datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
 
