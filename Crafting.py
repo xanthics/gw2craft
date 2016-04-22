@@ -139,12 +139,12 @@ def main():
 		if p.is_alive():
 			sys.exit(0)
 
-#	maketotals(totals,mytime,Localen)
-#	maketotals(totals,mytime,Localde)
-#	maketotals(totals,mytime,Localfr)
-#	maketotals(totals,mytime,Locales)
-#	maketotals(totals,mytime,Localcz)
-#	maketotals(totals,mytime,Localptbr)
+	maketotals(totals,mytime,Localen)
+	maketotals(totals,mytime,Localde)
+	maketotals(totals,mytime,Localfr)
+	maketotals(totals,mytime,Locales)
+	maketotals(totals,mytime,Localcz)
+	maketotals(totals,mytime,Localptbr)
 
 	print "End: ", datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
 

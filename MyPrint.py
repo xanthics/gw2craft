@@ -43,6 +43,7 @@ def mFormat(line):
 		return '{}<span class=\"copperIcon\"></span>'.format(line)
 
 def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy, cList, filename, mytime, cListName, localText):
+	scribewarn = 'This is a beta guide, read all steps before attempting.'
 	buttonList = []
 	totals = {}
 	if tierbuy:
@@ -236,7 +237,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	vendor = [19792, 19789, 19794, 19793, 19791, 19704, 19750, 19924, 12157, 12151, 12158, 12153, 12155,
 			  12156, 12324, 12136, 12271, 8576, 13010, 13006, 13007, 13008, 19790, 62942, 70647, 75762,
 			  1000352, 1000589, 1000574, 1000601, 1000403, 1000376, 1000223, 1000548, 1000209, 1000516,
-			  1000620, 1000202, 1000582, 1000437, 1000413, 1000224]
+			  1000620, 1000202, 1000582, 1000437, 1000413, 1000224, 46747]
 
 	# "Jute Scrap","Bolt of Jute","Copper Ore","Copper Ingot","Bronze Ingot","Rawhide Leather Section","Stretched Rawhide Leather Square","Green Wood Log","Green Wood Plank","Wool Scrap","Bolt of Wool","Iron Ore","Silver Ore","Iron Ingot","Silver Ingot","Thin Leather Section","Cured Thin Leather Square","Soft Wood Log","Soft Wood Plank","Cotton Scrap","Bolt of Cotton","Spool of Cotton Thread","Iron Ore","Gold Ore","Gold Ingot","Steel Ingot","Coarse Leather Section","Cured Coarse Leather Square","Seasoned Wood Log","Seasoned Wood Plank","Linen Scrap","Bolt of Linen","Platinum Ore","Platinum Ingot","Darksteel Ingot","Rugged Leather Section","Cured Rugged Leather Square","Hard Wood Log","Hard Wood Plank","Silk Scrap","Bolt of Silk","Mithril Ore","Mithril Ingot","Thick Leather Section","Cured Thick Leather Square","Elder Wood Log","Elder Wood Plank", Orichalcum Ore, Ancient Wood Log
 	basic = [19718, 19720, 19697, 19680, 19679, 19719, 19738, 19723, 19710, 19739, 19740, 19699, 19703, 19683, 19687,
@@ -375,7 +376,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page += u'</div><br />\n'
 	if u'scribe' in filename:
 		page += u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n'
-		page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">Do not follow this guide.  It is a test</span></span>\n'
+		page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">{}</span></span>\n'.format(scribewarn)
 		page += u'</div><br />\n'
 	page += u"<strong>%s</strong><br />\n"%(localText.region)
 	# adword
@@ -393,7 +394,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page += localText.moreInfo%(u"<img src=\"/img/arrow.png\" alt=ARROW>")
 	if u'scribe' in filename:
 		page += u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n'
-		page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">Do not follow this guide.  It is a test</span></span>\n'
+		page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">{}</span></span>\n'.format(scribewarn)
 		page += u'</div><br />\n'
 	# Page Title Part 1
 	page += u'<h1>'+title+u'</h1>'
@@ -417,7 +418,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 
 	if u'scribe' in filename:
 		page += u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n'
-		page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">Do not follow this guide.  It is a test</span></span>\n'
+		page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">{}</span></span>\n'.format(scribewarn)
 		page += u'</div><br />\n'
 	if b_vendor or b_karma_c or b_karma_w:
 		page += u"<h2>%s</h2>\n"%localText.buyVendor
@@ -442,7 +443,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 
 	if u'scribe' in filename:
 		page += u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n'
-		page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">Do not follow this guide.  It is a test</span></span>\n'
+		page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">{}</span></span>\n'.format(scribewarn)
 		page += u'</div><br />\n'
 	if recipebuy:
 		page += u"<h2>%s</h2>\n"%localText.bRecipes
@@ -459,13 +460,13 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 			kt += int(karma_recipe[item][u'cost'])
 	if u'scribe' in filename:
 		page += u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n'
-		page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">Do not follow this guide.  It is a test</span></span>\n'
+		page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">{}</span></span>\n'.format(scribewarn)
 		page += u'</div><br />\n'
 	if kt:
 		page += u'<br />\nTotal <span class=\"karmaIcon\"></span>: '+str(kt)+u'<br />\n'
 	if u'scribe' in filename:
 		page += u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n'
-		page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">Do not follow this guide.  It is a test</span></span>\n'
+		page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">{}</span></span>\n'.format(scribewarn)
 		page += u'</div><br />\n'
 	if b_common or b_fine or b_rare or b_gem or b_holiday or b_food:
 		page += u'<h2>%s</h2>\n'%localText.collectibles
@@ -490,7 +491,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 
 	if u'scribe' in filename:
 		page += u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n'
-		page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">Do not follow this guide.  It is a test</span></span>\n'
+		page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">{}</span></span>\n'.format(scribewarn)
 		page += u'</div><br />\n'
 	if b_mix:
 		page += u'<h2>%s</h2>\n'%localText.mixedTP
@@ -500,7 +501,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 
 	if u'scribe' in filename:
 		page += u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n'
-		page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">Do not follow this guide.  It is a test</span></span>\n'
+		page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">{}</span></span>\n'.format(scribewarn)
 		page += u'</div><br />\n'
 	page += u"<br />\n<br />\n<h2>%s</h2>\n"%localText.make
 	page += u"<button title=\""+localText.toggle+u"\" class =\"info\" id=\"show_all\">%s</button><br />"%localText.expand
