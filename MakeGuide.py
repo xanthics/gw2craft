@@ -115,7 +115,7 @@ def xp_calc(refines,parts,item,discoveries,mod,base_level,actu_level,typ):
 	return weight
 
 # Compute a guide
-def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level):
+def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level,modi=0.54):
 	if os.isatty(sys.stdin.fileno()):
 		print "Start", filename
 	# TODO Hack, fix this
@@ -136,14 +136,14 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level):
 	# add recipes to cList
 	for tier in c_recipes:
 		for item in c_recipes[tier].keys():
-			if item in cList:
+			if item in cList:# and item not in [1000190, 1000144, 1000277, 1000333]: # scribe recipes
 				if not cList[item][u'recipe']:
 					cList[item][u'recipe'] = []
 				cList[item][u'recipe'].append(c_recipes[tier][item])
 				if u"discover" in Items.ilist[item]:
-					 cList[item][u'discover'].append(-1)
+					cList[item][u'discover'].append(-1)
 				else:
-					 cList[item][u'discover'].append(0)
+					cList[item][u'discover'].append(0)
 				if not u'tier' in cList[item]:
 					cList[item][u'tier'] = []
 				cList[item][u'tier'].append(tier) 
@@ -157,9 +157,15 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level):
 #				exit(-1)
 
 	# TODO Fix this, hack for scribe
+	global mod
+	mod = modi
+	makeQueuecraft = makeQueuecraftnosub
 	if "scribe" in filename:
-			for i in [74768, 70454, 70489, 70926, 71146]:
-				cList[i][u'tier'][0] += 25
+		makeQueuecraft = makeQueuecraftwithsub
+		mod = 0.45
+		# increase book levels by 25 so they are valid to craft, later block sets xp to 0
+		for i in [74768, 70454, 70489, 70926, 71146]:
+			cList[i][u'tier'][0] += 25
 
 	# Cooking guides don't use tierbuy, but they do care about karma items
 	if "cook" in filename:
@@ -250,7 +256,7 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level):
 					buy[item] += 1
 
 				if set(rsps.keys()).intersection(set(bucket[bkey[0]][u'make'])):
-				   cList[set(rsps.keys()).intersection(set(bucket[bkey[0]][u'make'])).pop()][u'RecipeLearned'] = True
+					cList[set(rsps.keys()).intersection(set(bucket[bkey[0]][u'make'])).pop()][u'RecipeLearned'] = True
 	else: 
 	# start at last bucket(375) and fill towards 0 bucket
 		for tier in tiers:
@@ -349,7 +355,8 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level):
 	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_en.ilist, Localptbr)
 	totals = {}
 	totals.update(printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_en.ilist, Localen))
-	return totals	
+	return totals
+
 
 # given an item, determine if it is better to craft its sub items, or buy them.  return the recipe.
 # include cost for current state, and xp generated.
@@ -419,7 +426,8 @@ def calcRecipecraft(recipe,items,craftcount,tier,itier,xp_to_level,craftexo):
 				tcost += items[rsps[item]][u'cost']
 
 			if tcost < items[item][u'cost'] or float(xptotal+txptotal)/float(mycost+(tcost-items[item][u'cost'])*items[recipe][u'recipe'][index][item]) >= float(xptotal)/float(mycost):
-				xptotal += txptotal*items[recipe][u'recipe'][index][item]
+				global mod
+				xptotal += txptotal*items[recipe][u'recipe'][index][item]*mod
 				cost += tcost*items[recipe][u'recipe'][index][item]
 				buy += tbuy*items[recipe][u'recipe'][index][item]
 				make += tmake*items[recipe][u'recipe'][index][item]
@@ -431,7 +439,8 @@ def calcRecipecraft(recipe,items,craftcount,tier,itier,xp_to_level,craftexo):
 			cost += items[item][u'cost']*items[recipe][u'recipe'][index][item]
 	return cost, xptotal, make, buy
 
-def makeQueuecraft(recipes,items,craftcount,tier,xp_to_level,craftexo):
+
+def makeQueuecraftnosub(recipes,items,craftcount,tier,xp_to_level,craftexo):
 	Globals.TLcache.hash = {} # clear the item cache
 	outdict = {}
 	cost = 0
@@ -457,6 +466,34 @@ def makeQueuecraft(recipes,items,craftcount,tier,xp_to_level,craftexo):
 #			if items[recipe][u'w'] > cost:
 #			   weight = float(items[recipe][u'w'] - cost)*100000.0
 #			elif xptotal:
+			if xptotal:
+				weight = float(xptotal)/float(cost)
+			else:
+				weight = -1.0*float(cost)
+
+			# don't want to collide keys
+			while weight in outdict:
+				weight -= 0.0001
+			outdict[weight] = {u'item_id':recipe,u'w':xptotal,u'make':make,u'buy':buy,u'cost':cost}
+
+	return outdict
+
+
+def makeQueuecraftwithsub(recipes,items,craftcount,tier,xp_to_level,craftexo):
+	Globals.TLcache.hash = {}  # clear the item cache
+	outdict = {}
+
+	level = 0
+	while xp_to_level[int(level)] < craftcount[int(tier)][u'current_xp']:
+		level += 1
+	for recipe in recipes.keys():
+		index = 0
+		for i in range(len(items[recipe][u'tier'])):
+			if items[recipe][u'tier'][i] == int(tier):
+				index = i
+				break
+		if int(items[recipe][u'tier'][index]) > int(tier)-24:
+			cost, xptotal, make, buy = calcRecipecraft(recipe,items,craftcount,tier,tier,xp_to_level,craftexo)
 			if xptotal:
 				weight = float(xptotal)/float(cost)
 			else:

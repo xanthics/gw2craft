@@ -377,6 +377,7 @@ def appendCosts():
 	cList[1000437][u'cost'] = 5000  # Basic Candle Purchased from the basic decoration vendor.
 	cList[1000413][u'cost'] = 5000  # Basic Chair Purchased from the basic decoration vendor.
 	cList[1000224][u'cost'] = 5000  # Basic Bookshelf Purchased from the basic decoration vendor.
+	cList[46747][u'cost'] = 150  # Thermocatalytic Reagent.
 	if 62942 in cList:
 		cList[62942][u'cost'] = 8  # Crafter's Backpack Frame
 	# [u'Bell Pepper',u'Basil Leaf',u'Ginger Root',u'Tomato',u'Bowl of Sour Cream',u'Rice Ball',u'Packet of Yeast',u'Glass of Buttermilk',u'Cheese Wedge',u"Almond",u"Apple",u"Avocado",u"Banana",u"Black Bean",u"Celery Stalk",u"Cherry",u"Chickpea",u"Coconut",u"Cumin",u"Eggplant",u"Green Bean",u"Horseradish Root",u"Kidney Bean",u"Lemon",u"Lime",u"Mango",u"Nutmeg Seed",u"Peach",u"Pear",u"Pinenut",u"Shallot"]

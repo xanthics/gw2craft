@@ -27,6 +27,7 @@ Note: Requires Python 2.7.x
 '''
 import urllib, json, math, codecs, socket
 from multiprocessing import Process, Queue, cpu_count, Pool
+import os
 
 API_ROOT = u"https://api.guildwars2.com/v2/"
 
@@ -100,7 +101,8 @@ def parse_recipes(recipes):
 
 	new_recipes = {r[0]: r[1] for r in recipes.items()
 				   if not int(r[1][u'output_item_id']) in bad_recipes
-				   and not r[1][u'type'] in [u'Feast', u'Backpack']}
+				   and not r[1][u'type'] in [u'Feast', u'Backpack']
+				   or (r[1][u'type'] == u'Backpack' and u'Scribe' in r[1][u'disciplines'])}
 	nc = {}
 	for _recipe, data in new_recipes.items():
 		min_rating = data[u'min_rating']
@@ -117,9 +119,6 @@ def parse_recipes(recipes):
 			key = it
 			# We don't want recipe items.  Except for karma cooking and known good recipes
 			if u'LearnedFromItem' in data[u'flags'] and not (it == u'Chef' or int(item_id) in good_recipes):
-				if it == u'Scribe':
-					print _recipe
-					print data
 				continue
 			if it == u'Chef' and (set(karma) & ingredient_set or u'LearnedFromItem' in data[u'flags']):
 				key = u'Chef_karma'
@@ -245,7 +244,7 @@ def _api_call(endpoint):
 			item = json.load(f)
 			return item
 		except Exception, err:
-			print 'Error api: {}.\n'.format(str(err))
+			print 'Error api: {}. at {}\n'.format(str(err), API_ROOT + endpoint)
 
 
 # add guild_ingredient item_id to each item
@@ -267,6 +266,7 @@ def guild_recipes(recipes):
 
 
 def main():
+	os.environ['NO_PROXY'] = 'api.guildwars2.com'
 	socket.setdefaulttimeout(15)
 	recipes = get_recipes()
 	gulist, recipes = guild_recipes(recipes)
