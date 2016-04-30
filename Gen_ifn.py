@@ -54,12 +54,12 @@ def faq(localText):
 </script>"""
 	page += localText.header%(u'faq.html',u'faq.html',u'faq.html',u'faq.html',u'faq.html')
 	page += u"<section class=\"main\">\n"
-	page += u"<a href=\"https://forum-en.guildwars2.com/forum/community/links/Dynamic-crafting-guides-for-all-8-crafts\" style=\"line-height:150%%;\"><strong>%s</strong></a>\n"%(localText.oThread)
-	page += u"<br />\n"
-	page += u"<a href=\"http://www.reddit.com/r/Guildwars2/comments/179me8/dynamic_crafting_guides_for_all_crafts/\" style=\"line-height:150%%;\"><strong>%s</strong></a>\n"%(localText.rThread)
-	page += u"<br />\n"
-	page += u"<a href=\"http://www.guildwars2guru.com/topic/80318-dynamic-crafting-guides-for-all-crafts-httpgw2craftssaladonnet/\" style=\"line-height:150%%;\"><strong>%s</strong></a>\n"%(localText.gThread)
-	page += u"<br />\n"
+#	page += u"<a href=\"https://forum-en.guildwars2.com/forum/community/links/Dynamic-crafting-guides-for-all-8-crafts\" style=\"line-height:150%%;\"><strong>%s</strong></a>\n"%(localText.oThread)
+#	page += u"<br />\n"
+#	page += u"<a href=\"http://www.reddit.com/r/Guildwars2/comments/179me8/dynamic_crafting_guides_for_all_crafts/\" style=\"line-height:150%%;\"><strong>%s</strong></a>\n"%(localText.rThread)
+#	page += u"<br />\n"
+#	page += u"<a href=\"http://www.guildwars2guru.com/topic/80318-dynamic-crafting-guides-for-all-crafts-httpgw2craftssaladonnet/\" style=\"line-height:150%%;\"><strong>%s</strong></a>\n"%(localText.gThread)
+#	page += u"<br />\n"
 	page += u"<a href=\"https://twitter.com/gw2crafts\" style=\"line-height:150%%;\"><strong>%s</strong></a>\n"%(localText.twitter)
 	page += u"<br />\n"
 	page += u"<a href=\"mailto:gw2crafts@live.com\" style=\"line-height:150%%;\"><strong>%s</strong></a></br/> \n"%(localText.email)

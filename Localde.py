@@ -32,6 +32,37 @@ cright = u'''<footer>
     Guild Wars 2 © 2012 ArenaNet, Inc. Alle Rechte vorbehalten. NCsoft, das ineinandergreifende NC-Logo, ArenaNet, Guild Wars, Guild Wars Factions, Guild Wars Nightfall, Guild Wars: Eye of the North, Guild Wars 2 und alle in Verbindung stehenden Logos und Designs sind Warenzeichen oder eingetragene Warenzeichen der NCsoft Corporation. Alle anderen Warenzeichen sind das Eigentum ihrer jeweiligen Eigentümer.
 </footer>'''
 
+scribetease = u"Click here for important hints"
+
+scribeinfo = u"""Even though the guide shows you the cheapest way to level up, you might want to level up through decoration crafting so you get some nice decorations from leveling up. If you want to do this, you should ask the following permissions from your guild(leader)as you need them to do so:
+<br />
+<br />
+- Use placeable (so you can use decorations your guild has, including the basic ones you can buy)
+<br />
+<br />
+- edit assembly queue (so you can process your scribed decorations at the processing machine near the crafting stations and after processing use the finished decorations for the next step in crafting (for example for balloons, finish the basic balloons so they can build the balloon bundles).
+<br />
+<br />
+With these permissions you can craft and process decorations. Processing time in now only 30 seconds so that is something you can wait for.
+<br />
+<br />
+After crafting your decorations, go the the processor (near the crafting stations in both halls) and queue the decorations you just crafted to complete them. (takes 30 sec / item) after they have finished processing you can use them again for higher level decorations.
+<br />
+<br />
+Some additional tips:
+<br />
+<br />
+1 Buy basic decorations at the decorations vendor for 24 silver each if your guild has it unlocked. You can buy them at the master scribe as well but there they are 50 silver each (but these are always sold, even if your guild did not yet unlock any of the guild decorations merchant upgrades).
+<br />
+<br />
+2 Your guild must have the specific WvW upgrade unlocked in order for you to craft it. (so if that option is not listed as something you can craft, your guild probably misses the unlock)
+<br />
+<br />
+3 Some things can be uncraftable due to it requiring event items (snow piles from wintersday, pumpkins from halloween, red lanterns from lunar new year, super cloud from SAB festival) OR drops from bosses (basically for all the bronze, silver and gold tropies).
+<br />
+<br />
+Also if you need/like a guild to level up your scribe (due to trouble getting permissions or use cheaper basic decorations/possible WvW unlocks), RiFa is still accepting guests,and the contact details mentioned in the article are still correct."""
+
 # renown heart vendors
 crandle    = u"Agent Crandle - Fort Trinity(Straits of Devastation 70-75)"
 aidem      = u"Aidem Finlay - Hidden Lake(Brisban Wildlands 15-25)"
@@ -195,6 +226,7 @@ totals  = u"Insgesamt"
 about   = u"Über"
 lang    = u"Deutsch"
 special = u"Special"
+scribe  = u"Scribe"
 
 # directory path
 path = "de/"
@@ -219,6 +251,7 @@ header = u"""<nav>
             <li><a href="/"""+path+u"""armorcraft.html">"""+ac+u"""</a></li>
             <li><a href="/"""+path+u"""leatherworking.html">"""+lw+u"""</a></li>
             <li><a href="/"""+path+u"""tailor.html">"""+tailor+u"""</a></li>
+            <li><a href="/"""+path+u"""scribe.html">"""+scribe+u"""</a></li>
         </ul>
         </li>
         <li><a href="#">"""+fGuides+u"""</a>
