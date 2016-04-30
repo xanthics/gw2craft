@@ -37,6 +37,9 @@ from collections import defaultdict
 from copy import deepcopy
 from MyPrint import printtofile
 
+# scribe hack for single use recipes
+badrecipe = []
+
 # convert rarities to their xp multiplier
 def rarityNum(num):
 	if num == u'Rare':
@@ -163,9 +166,6 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level,m
 	if "scribe" in filename:
 		makeQueuecraft = makeQueuecraftwithsub
 		mod = 0.45
-		# increase book levels by 25 so they are valid to craft, later block sets xp to 0
-#		for i in [74768, 70454, 70489, 70926, 71146]:
-#			cList[i][u'tier'][0] += 25
 
 	# Cooking guides don't use tierbuy, but they do care about karma items
 	if "cook" in filename:
@@ -325,6 +325,9 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level,m
 							craftcount[int(cList[item][u'tier'][index])][u'part'].append(rarityNum(cList[item][u'rarity']))
 						make[int(cList[item][u'tier'][index])][item] += 1
 					recalc[int(cList[item][u'tier'][index])] = 0
+					if item in [78380, 78437, 78614, 78713]:
+						global badrecipe
+						badrecipe.append(item)
 
 				for ctier in recalc:
 					craftcount[ctier][u'current_xp'] = compute_level((xp_to_level[ctier] if ctier == 0 or xp_to_level[ctier] >= craftcount[ctier-25][u'current_xp'] else craftcount[ctier-25][u'current_xp']), craftcount[ctier],ctier,xp_to_level)
@@ -361,6 +364,7 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level,m
 # given an item, determine if it is better to craft its sub items, or buy them.  return the recipe.
 # include cost for current state, and xp generated.
 def calcRecipecraft(recipe,items,craftcount,tier,itier,xp_to_level,craftexo):
+	global badrecipe
 	level = 0
 	while xp_to_level[int(level)] < craftcount[int(tier)][u'current_xp']:
 		level += 1
@@ -381,9 +385,9 @@ def calcRecipecraft(recipe,items,craftcount,tier,itier,xp_to_level,craftexo):
 		return 9999999999, -99999999999, make, buy
 	make.append(recipe)
 	# TODO hack for scribe
-#	if recipe in [74768, 70454, 70489, 70926, 71146]:
-#		xptotal = 0
-	if int(items[recipe][u'tier'][index]) < int(tier) and not items[recipe][u'type'] in non_item and not craftexo:
+	if recipe in badrecipe:
+		xptotal = 0
+	elif int(items[recipe][u'tier'][index]) < int(tier) and not items[recipe][u'type'] in non_item and not craftexo:
 		xptotal = xp_calc(0,0,1,0,rarityNum(items[recipe][u'rarity']),int(items[recipe][u'tier'][index]),level,3)
 	elif not items[recipe][u'type'] in non_item and not items[recipe][u'discover'][index]:
 		xptotal = xp_calc(0,0,0,1,rarityNum(items[recipe][u'rarity']),int(items[recipe][u'tier'][index]),level,4 if craftexo and items[recipe][u'rarity'] == u'Exotic' else 3)
@@ -403,6 +407,8 @@ def calcRecipecraft(recipe,items,craftcount,tier,itier,xp_to_level,craftexo):
 	mycost = 0
 	for item in items[recipe][u'recipe'][index]:
 		mycost += items[item][u'cost']*items[recipe][u'recipe'][index][item]
+	if recipe in badrecipe:
+		mycost += 9999999999
 
 	for item in items[recipe][u'recipe'][index]:
 		if not items[item][u'recipe'] == None:

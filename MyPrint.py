@@ -375,9 +375,13 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">%s</span>	%s: %s</span>\n'%(localText.warning1,localText.warning2,mytime)
 	page += u'</div><br />\n'
 	if u'scribe' in filename:
-		page += u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n'
-		page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">{}</span></span>\n'.format(scribewarn)
-		page += u'</div><br />\n'
+		page += u'<div>\n'
+		page += u'<button title=\"{}\" class =\"arrow\" id=\"scribehint\">{}</button><div class=\"lsbutton\" id=\"1scribehint\">\n'.format(localText.toggle, localText.scribetease)
+		page += u'{}</div><br /></div><br />\n'.format(localText.scribeinfo)
+		buttonList.append('scribehint')
+
+#	page += u"<div class=\"s{}\">{}: <button class=\"arrow {}\" title=\"{}\" id=\"{}{}\">{}</button> {}\n</div>\n".format(
+#		t, localText.discover, cList[item][u'rarity'], localText.toggle, item, tier, cListName[item], tstr)
 	page += u"<strong>%s</strong><br />\n"%(localText.region)
 	# adword
 	page += u'<div style="float:right;position:absolute;right:-320px;"> \
@@ -392,10 +396,6 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 			\n</script> \
 			\n</div>\n'
 	page += localText.moreInfo%(u"<img src=\"/img/arrow.png\" alt=ARROW>")
-	if u'scribe' in filename:
-		page += u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n'
-		page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">{}</span></span>\n'.format(scribewarn)
-		page += u'</div><br />\n'
 	# Page Title Part 1
 	page += u'<h1>'+title+u'</h1>'
 	page += u'<dl>\n'
@@ -416,10 +416,6 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page += u"</div><script type=\"text/javascript\">$('#1tcost').hide();</script><br />"
 	buttonList.append('tcost')
 
-	if u'scribe' in filename:
-		page += u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n'
-		page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">{}</span></span>\n'.format(scribewarn)
-		page += u'</div><br />\n'
 	if b_vendor or b_karma_c or b_karma_w:
 		page += u"<h2>%s</h2>\n"%localText.buyVendor
 		if b_karma_c or b_karma_w:
@@ -441,10 +437,6 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 			t = (t+1)%2
 			page += (u"<div class=\"s%i\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><span class=\"quantity\">%i</span> <span class=\"%s\">%s</span> (%4s %s from %s)</div>\n")%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']),localText.valuePer,localText.method[0])
 
-	if u'scribe' in filename:
-		page += u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n'
-		page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">{}</span></span>\n'.format(scribewarn)
-		page += u'</div><br />\n'
 	if recipebuy:
 		page += u"<h2>%s</h2>\n"%localText.bRecipes
 		for item in recipebuy:
@@ -458,16 +450,8 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 					page += (u"<div class=\"s%d\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><button title=\""+localText.toggle+u"\" class=\"arrow %s\" id=\"%d\">%s</button><div class=\"lsbutton\" id=\"1%d\">%s</div></div>\n")%(t,cList[item]['icon'],cList[item]['rarity'],item,cListName[item],item,karma_recipe[item]['note'])
 			buttonList.append(item)
 			kt += int(karma_recipe[item][u'cost'])
-	if u'scribe' in filename:
-		page += u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n'
-		page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">{}</span></span>\n'.format(scribewarn)
-		page += u'</div><br />\n'
 	if kt:
 		page += u'<br />\nTotal <span class=\"karmaIcon\"></span>: '+str(kt)+u'<br />\n'
-	if u'scribe' in filename:
-		page += u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n'
-		page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">{}</span></span>\n'.format(scribewarn)
-		page += u'</div><br />\n'
 	if b_common or b_fine or b_rare or b_gem or b_holiday or b_food:
 		page += u'<h2>%s</h2>\n'%localText.collectibles
 		for item in sorted(b_common):
@@ -489,20 +473,12 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 			t = (t+1)%2
 			page += collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']))
 
-	if u'scribe' in filename:
-		page += u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n'
-		page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">{}</span></span>\n'.format(scribewarn)
-		page += u'</div><br />\n'
 	if b_mix:
 		page += u'<h2>%s</h2>\n'%localText.mixedTP
 		for item in sorted(b_mix):
 			t = (t+1)%2
 			page += collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']))
 
-	if u'scribe' in filename:
-		page += u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n'
-		page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">{}</span></span>\n'.format(scribewarn)
-		page += u'</div><br />\n'
 	page += u"<br />\n<br />\n<h2>%s</h2>\n"%localText.make
 	page += u"<button title=\""+localText.toggle+u"\" class =\"info\" id=\"show_all\">%s</button><br />"%localText.expand
 	page += u"<button title=\""+localText.toggle+u"\" class =\"info\" id=\"hide_all\">%s</button>"%localText.collapse
@@ -742,7 +718,7 @@ def maketotals(totals, mytime, localText):
 			  (u'weaponcraft',u'weaponcraft_fast',u'weaponcraft_450',u'weaponcraft_400',localText.wc),
 			  (u'armorcraft',u'armorcraft_fast',u'armorcraft_450',u'armorcraft_400',localText.ac),
 			  (u'leatherworking',u'leatherworking_fast',u'leatherworking_450',u'leatherworking_400',localText.lw),
-			  (u'tailor',u'tailor_fast',u'tailor_450',u'tailor_400',localText.tailor)]:
+			  (u'tailor', u'tailor_fast', u'tailor_450', u'tailor_400', localText.tailor)]:
 
 		ind = 2
 		if len(i) == 3:
@@ -760,6 +736,8 @@ def maketotals(totals, mytime, localText):
 		ctfc += totals[i[1]][u'total']
 
 	page += u'<tr><td><strong>'+localText.totals+u'</strong></td><td><strong>'+ mFormat(ctnc)+u'</strong></td><td><strong>'+ mFormat(ctfc)+u'</strong></td><td><strong>'+ mFormat(ct45c)+u'</strong></td><td><strong>'+ mFormat(ct4c)+u'</strong></td></tr></table>\n<br />\n'
+	page += u'<tr><td>'+localText.scribe+u'</td><td>'+mFormat(totals[u'scribe'][u'total'])+u'</td></tr>\n'
+	tpage1 += u'<tr><td>' + localText.scribe + u'</td><td>' + mFormat(totals[u'scribe'][0]) + u'</td><td>' + mFormat(totals[u'scribe'][75]) + u'</td><td>' + mFormat(totals[u'scribe'][150]) + u'</td><td>' + mFormat(totals[u'scribe'][225]) + u'</td><td>' + mFormat(totals[u'scribe'][300]) + u'</td></tr>\n'
 
 	tpage1 += u' </table>\n<br />'
 	tpage2 += u' </table>\n<br />'
