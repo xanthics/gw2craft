@@ -31,34 +31,52 @@ Guild Wars 2 © 2012 ArenaNet, Inc. All rights reserved. NCsoft, the interlockin
 
 scribetease = u"Click here for important hints"
 
-scribeinfo = u"""Even though the guide shows you the cheapest way to level up, you might want to level up through decoration crafting so you get some nice decorations from leveling up. If you want to do this, you should ask the following permissions from your guild(leader)as you need them to do so:
+scribeinfo = u"""Note, “Auto Turrets” in the guide are called “Gate Turrets” in game. (API error)<br />
 <br />
+Tip, If you are scribing a certain item but it does not complete (you do not get experience and no materials are used) the processing stack is full (250 of each item is max). To fix the issue, go to the processor and process the items you wanted to craft + wait until they are done. Then you can scribe your items. Keep in mind that you need to have the "edit assembly queue" guild permission in oder to be able to do this. Alternatively you can ask your guild leader (or someone with this permission) to do it for you. <br />
 <br />
-- Use placeable (so you can use decorations your guild has, including the basic ones you can buy)
+<strong>Guild unlocks</strong><br />
+Most of the items the guide recommends you to scribe are guild unlocked recipes (see below for a list + alternatives). Your guild needs to have these unlocked before you can see them as recipes and scribe them. If your guild does not have them unlocked yet, you temporarily join another guild (for example “The rising falcons [RiFa]”, see below) that has the unlocks and scribe them in their hall.  <br />
 <br />
+<strong>Decoration crafting, required guild permissions and tips</strong><br />
+The guide shows you the cheapest way to level up. Due to the recipes it is not likely decorations will be included, However if they are, OR if you want to level up through crafting decorations, you will need the following permissions form your guild leader to do so:<br />
+- Use placeable (so you use decorations that the guild has for scribing)<br />
+- edit assembly queue (so you can finish the decoration by adding it in the processor after which you can, depending on the decoration, also use it again for scribing at a higher level)<br />
+After scribing your decorations, go to the processor (near the crafting stations in both halls) and queue the decorations you just crafted to complete them (takes 30 sec / item).<br />
+<strong>Some additional decoration crafting tips:</strong><br />
+1 You can buy basic decorations at the decorations vendor for 24 silver each if your guild has it unlocked. You can always buy them at the master scribe for 50 silver each (even if your guild does not have any decoration vendor unlocked).<br />
+2 Some basic decorations can only be obtained from the guild trader (guild trader 4 or higher) for guild commendations.  <br />
+3 some basic decorations can only be obtained from the decoration trader during certain in game events, for example snow piles from wintersday, pumpkins from Halloween, red lanterns from lunar new year, furniture coins to buy super cloud from SAB festival OR drops from bosses (basically for all the bronze, silver and gold trophies).<br />
 <br />
-- edit assembly queue (so you can process your scribed decorations at the processing machine near the crafting stations and after processing use the finished decorations for the next step in crafting (for example for balloons, finish the basic balloons so they can build the balloon bundles).
+<strong>Guild unlock List and alternatives for each scribe level range:</strong><br />
+The guide will always show you the cheapest option. However, it could be that you lack that unlock in your guild but have another one that you could use instead. See this list for alternatives at each crafting level.<br />
+Lv 0-25 refine<br />
+Lv 25-50 WvW - Minor Supply Drop <discover/craft minor sigils as alternative><br />
+Lv 50-75 Guild Banquet Schematic <decorations as alternative><br />
+Lv 75-100 refine<br />
+Lv 100-125 Guild Gathering Boost Banner Schematic#, Guild World Event Schematic, Sabotage Depot<br />
+Lv 125-150 Guild Karma Banner Schematic*, Guild Experience Banner Schematic* <discover/craft major Sigils as alternative><br />
+Lv 150-175 refine  Guild Road Marker Schematic#<br />
+Lv 175-200 Guild Gold Gain Banner Schematic,  Hardened Gates, Invulnerable Dolyaks, Speedy Dolyaks<br />
+Lv200-225 Guild Karma and Experience Banner Schematic *, turtle Banner, Iron guards, Guild Ballista Blueprints, Guild Arrow cart Blue prints  <br />
+Lv 225-250 refine<br />
+Lv 250-275 Guild Gathering and Swiftness Banner Schematic#, Packed Dolyaks, Centaur Banner<br />
+Lv 275-300 no guild unlocked recipes at this level<br />
+Lv 300-325 refine<br />
+Lv 325-350 Invulnerable Fortifications. refine leather into book covers as alternative<br />
+Lv 350-375 Vault Transport, Emergency Waypoint, Gate Turrets (in guide listed as “Auto Turrets”)<br />
+ Lv375-400 Watchtower, Presence of the Keep<br />
+* = these are related, you need 1 karma and 1 experience banner to craft 1 karma and Experience banner<br />
+# = these are related, you need 1 Gathering boost banner and 1 Road marker to craft 1 Guild Gathering and swiftness banner.<br />
 <br />
+<strong>My guild lacks the unlocks/will not give me permissions to level up my scribe</strong><br />
+If your guild is missing the guild unlocks (and alternatives) you can “visit” (temporarily join) a guild that has them unlocked so you can level your scribe in their hall. Just keep in mind that all the guild related itmes (banners, WvW items and decorations) that your craft in that guild hall, will stay in the guildhall that you are visiting.<br />
 <br />
-With these permissions you can craft and process decorations. Processing time in now only 30 seconds so that is something you can wait for.
+<strong>The Rising Falcons[RiFa] and the scribe guide History</strong><br />
+Ever since <strong>Vin Lady Venture</strong> made the first static (now outdated) scribe together with <strong>Dulfy</strong> and found out that the guild unlocked scribe recipes could help leveling scribes safe a lot of gold  He opened up the guild “The rising Falcons[RiFa]” for scribes who wanted to level up and RiFa has continued to run this service ever since. While the original guide has now been replaced by the much more advanced and up to date guide that you see here, made by <strong>xanthic.9478</strong>, RiFa is still accepting scribes who do not have access to (all of) the guild unlocked recipes. It is a casual relaxed guild that offers this service to anyone who likes to level his/her scribe, free of charge. While RiFa is an EU based guild, US based players can also use the service and unlocks. The only thing is that you cannot see any of the main guild members.<br />
 <br />
-<br />
-After crafting your decorations, go the the processor (near the crafting stations in both halls) and queue the decorations you just crafted to complete them. (takes 30 sec / item) after they have finished processing you can use them again for higher level decorations.
-<br />
-<br />
-Some additional tips:
-<br />
-<br />
-1 Buy basic decorations at the decorations vendor for 24 silver each if your guild has it unlocked. You can buy them at the master scribe as well but there they are 50 silver each (but these are always sold, even if your guild did not yet unlock any of the guild decorations merchant upgrades).
-<br />
-<br />
-2 Your guild must have the specific WvW upgrade unlocked in order for you to craft it. (so if that option is not listed as something you can craft, your guild probably misses the unlock)
-<br />
-<br />
-3 Some things can be uncraftable due to it requiring event items (snow piles from wintersday, pumpkins from halloween, red lanterns from lunar new year, super cloud from SAB festival) OR drops from bosses (basically for all the bronze, silver and gold tropies).
-<br />
-<br />
-Also if you need/like a guild to level up your scribe (due to trouble getting permissions or use cheaper basic decorations/possible WvW unlocks), RiFa is still accepting guests,and the contact details mentioned in the article are still correct."""
+You can send an in game mail to  <strong>Vin lady venture (Rin of Rivvinda.4971)</strong> for an invite in RiFa, just make sure you have at least 1 free guild slot and you should be invited within 24 hours.  <br />
+ """
 
 # renown heart vendors
 crandle = u"Agent Crandle - Fort Trinity(Straits of Devastation 70-75)"

@@ -354,10 +354,18 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page += u'	<meta name="description" content="Guild Wars 2 always current crafting guide for '+filename.split('.')[0].replace("_"," ").title()+u'">\n'
 	page += u'	<meta http-equiv="content-type" content="text/html;charset=UTF-8">\n'
 	page += u'	<link href="/css/layout.css" rel="stylesheet" type="text/css" />'
-	page += u'	<link rel="icon" type="image/png" href="/fi.gif">'
+	page += u'	<link rel="icon" type="image/png" href="/fi.gif">\n'
 	page += u'	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>\n'
 	page += u'	<script>(window.jQuery || document.write(\'<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"><\/script>\'));</script>\n'
 	page += u'	<script src="/js/menu.js" type="text/javascript"></script>\n'
+	page += u"""	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script>
+	  (adsbygoogle = window.adsbygoogle || []).push({
+	    google_ad_client: "ca-pub-6865907345688710",
+	    enable_page_level_ads: true
+	  });
+	</script>
+		"""
 	page += u'</head>\n'
 	page += u'<body>\n%s\n'%(localText.header%(filename,filename,filename,filename,filename))
 	page += u"""<script> 
@@ -383,19 +391,30 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 #	page += u"<div class=\"s{}\">{}: <button class=\"arrow {}\" title=\"{}\" id=\"{}{}\">{}</button> {}\n</div>\n".format(
 #		t, localText.discover, cList[item][u'rarity'], localText.toggle, item, tier, cListName[item], tstr)
 	page += u"<strong>%s</strong><br />\n"%(localText.region)
-	# adword
-	page += u'<div style="float:right;position:absolute;right:-320px;"> \
-			\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
-			\n<!-- large sidebar --> \
-			\n<ins class=\"adsbygoogle\" \
-			\n     style=\"display:inline-block;width:300px;height:600px\" \
-			\n     data-ad-client=\"ca-pub-6865907345688710\" \
-			\n     data-ad-slot=\"9285292589\"></ins> \
-			\n<script> \
-			\n(adsbygoogle = window.adsbygoogle || []).push({}); \
-			\n</script> \
-			\n</div>\n'
+#	# adword
+#	page += u'<div style="float:right;position:absolute;right:-320px;"> \
+#			\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
+#			\n<!-- large sidebar --> \
+#			\n<ins class=\"adsbygoogle\" \
+#			\n     style=\"display:inline-block;width:300px;height:600px\" \
+#			\n     data-ad-client=\"ca-pub-6865907345688710\" \
+#			\n     data-ad-slot=\"9285292589\"></ins> \
+#			\n<script> \
+#			\n(adsbygoogle = window.adsbygoogle || []).push({}); \
+#			\n</script> \
+#			\n</div>\n'
 	page += localText.moreInfo%(u"<img src=\"/img/arrow.png\" alt=ARROW>")
+	page += u'<br /><div style="width: 100%;display:block;">\n \
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>\n \
+<!-- link ad -->\n \
+<ins class="adsbygoogle"\n \
+     style="display:block"\n \
+     data-ad-client="ca-pub-6865907345688710"\n \
+     data-ad-slot="5597160982"\n \
+     data-ad-format="link"></ins>\n \
+<script>\n \
+(adsbygoogle = window.adsbygoogle || []).push({});\n \
+</script></div><br />\n'
 	# Page Title Part 1
 	page += u'<h1>'+title+u'</h1>'
 	page += u'<dl>\n'
@@ -479,6 +498,19 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 			t = (t+1)%2
 			page += collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']))
 
+	# adword adaptive
+	page += u'<br /><div style="width: 100%;display:block;">\n \
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>\n \
+<!-- first ad -->\n \
+<ins class="adsbygoogle"\n \
+     style="display:block"\n \
+     data-ad-client="ca-pub-6865907345688710"\n \
+     data-ad-slot="7911498987"\n \
+     data-ad-format="auto"></ins>\n \
+<script>\n \
+(adsbygoogle = window.adsbygoogle || []).push({});\n \
+</script></div>\n'
+
 	page += u"<br />\n<br />\n<h2>%s</h2>\n"%localText.make
 	page += u"<button title=\""+localText.toggle+u"\" class =\"info\" id=\"show_all\">%s</button><br />"%localText.expand
 	page += u"<button title=\""+localText.toggle+u"\" class =\"info\" id=\"hide_all\">%s</button>"%localText.collapse
@@ -494,19 +526,31 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 						page += u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[lvl][item],cList[item][u'rarity'],cListName[item])
 
 
-		if tier == 150:
+		if tier == 225:
+			# adword adaptive
+			page += u'<br /><div style="width: 100%;display:block;">\n \
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>\n \
+			<!-- second ad -->\n \
+			<ins class="adsbygoogle"\n \
+			     style="display:block"\n \
+			     data-ad-client="ca-pub-6865907345688710"\n \
+			     data-ad-slot="4818431783"\n \
+			     data-ad-format="auto"></ins>\n \
+			<script>\n \
+			(adsbygoogle = window.adsbygoogle || []).push({});\n \
+			</script></div>\n'
 			# adword 2
-			page += u'<div style="float:right;position:absolute;right:-320px;"> \
-				\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
-				\n<!-- large side ad 2 --> \
-				\n<ins class=\"adsbygoogle\" \
-				\n     style=\"display:inline-block;width:300px;height:600px\" \
-				\n     data-ad-client=\"ca-pub-6865907345688710\" \
-				\n     data-ad-slot=\"4410765382\"></ins> \
-				\n<script> \
-				\n(adsbygoogle = window.adsbygoogle || []).push({}); \
-				\n</script> \
-				\n</div>\n'
+#			page += u'<div style="float:right;position:absolute;right:-320px;"> \
+#				\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
+#				\n<!-- large side ad 2 --> \
+#				\n<ins class=\"adsbygoogle\" \
+#				\n     style=\"display:inline-block;width:300px;height:600px\" \
+#				\n     data-ad-client=\"ca-pub-6865907345688710\" \
+#				\n     data-ad-slot=\"4410765382\"></ins> \
+#				\n<script> \
+#				\n(adsbygoogle = window.adsbygoogle || []).push({}); \
+#				\n</script> \
+#				\n</div>\n'
 
 		if tierbuy and tier in [0,75,150,225,300]:
 			tt = 0
@@ -622,18 +666,30 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page += u'<br />\n<h3>%s:%i</h3>\n'%(localText.level,tier+25)
 	t = (t+1)%2
 	page += u"<div class=\"s"+str(t)+u"\">%s</div>\n"%localText.finish
+	# adword adaptive
+	page += u'<br /><div style="width: 100%;display:block;">\n \
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>\n \
+<!-- tail ad responsive -->\n \
+<ins class="adsbygoogle"\n \
+     style="display:block"\n \
+     data-ad-client="ca-pub-6865907345688710"\n \
+     data-ad-slot="5237234180"\n \
+     data-ad-format="auto"></ins>\n \
+<script>\n \
+(adsbygoogle = window.adsbygoogle || []).push({});\n \
+</script></div>\n'
 	# adword
-	page += u'<br /><div style="display:block;text-align:Right;"> \
-			\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
-			\n<!-- Tail ad --> \
-			\n<ins class=\"adsbygoogle\" \
-			\n     style=\"display:inline-block;width:336px;height:280px\" \
-			\n     data-ad-client=\"ca-pub-6865907345688710\" \
-			\n     data-ad-slot=\"9889445788\"></ins> \
-			\n<script> \
-			\n(adsbygoogle = window.adsbygoogle || []).push({}); \
-			\n</script> \
-			\n</div>\n'
+#	page += u'<br /><div style="display:block;text-align:Right;"> \
+#			\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
+#			\n<!-- Tail ad --> \
+#			\n<ins class=\"adsbygoogle\" \
+#			\n     style=\"display:inline-block;width:336px;height:280px\" \
+#			\n     data-ad-client=\"ca-pub-6865907345688710\" \
+#			\n     data-ad-slot=\"9889445788\"></ins> \
+#			\n<script> \
+#			\n(adsbygoogle = window.adsbygoogle || []).push({}); \
+#			\n</script> \
+#			\n</div>\n'
 	page += u'</section>\n'
 	page += u'%s\n<script type="text/javascript">\n'%localText.cright
 	for item in buttonList:
@@ -667,6 +723,13 @@ def maketotals(totals, mytime, localText):
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 	<script src="/js/menu.js" type="text/javascript"></script>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6865907345688710",
+    enable_page_level_ads: true
+  });
+</script>
 </head>
 <body>'''
 	page += u"""<script> 
@@ -683,17 +746,17 @@ def maketotals(totals, mytime, localText):
 	page += u"<section class=\"main\">\n<strong>%s</strong><br />\n"%(localText.region)
 	page += u"<h5 style=\"text-align:center;\">"+localText.updated+u": " + mytime + u"</h5>"
 	# adword
-	page += u'<div style="float:right;position:absolute;right:-320px;"> \
-			\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
-			\n<!-- large sidebar --> \
-			\n<ins class=\"adsbygoogle\" \
-			\n     style=\"display:inline-block;width:300px;height:600px\" \
-			\n     data-ad-client=\"ca-pub-6865907345688710\" \
-			\n     data-ad-slot=\"9285292589\"></ins> \
-			\n<script> \
-			\n(adsbygoogle = window.adsbygoogle || []).push({}); \
-			\n</script> \
-			\n</div>\n'
+#	page += u'<div style="float:right;position:absolute;right:-320px;"> \
+#			\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
+#			\n<!-- large sidebar --> \
+#			\n<ins class=\"adsbygoogle\" \
+#			\n     style=\"display:inline-block;width:300px;height:600px\" \
+#			\n     data-ad-client=\"ca-pub-6865907345688710\" \
+#			\n     data-ad-slot=\"9285292589\"></ins> \
+#			\n<script> \
+#			\n(adsbygoogle = window.adsbygoogle || []).push({}); \
+#			\n</script> \
+#			\n</div>\n'
 	page += localText.note
 	page += u'	<table>'
 	page += u'<tr><th>'+localText.craft+u'</th><th>'+localText.nGuides+u'</th><th>'+localText.fGuides+u'</th><th>1-200</th></tr>\n'
@@ -735,8 +798,8 @@ def maketotals(totals, mytime, localText):
 		ctnc += totals[i[0]][u'total']
 		ctfc += totals[i[1]][u'total']
 
-	page += u'<tr><td><strong>'+localText.totals+u'</strong></td><td><strong>'+ mFormat(ctnc)+u'</strong></td><td><strong>'+ mFormat(ctfc)+u'</strong></td><td><strong>'+ mFormat(ct45c)+u'</strong></td><td><strong>'+ mFormat(ct4c)+u'</strong></td></tr></table>\n<br />\n'
-	page += u'<tr><td>'+localText.scribe+u'</td><td>'+mFormat(totals[u'scribe'][u'total'])+u'</td></tr>\n'
+	page += u'<tr><td><strong>'+localText.totals+u'</strong></td><td><strong>'+ mFormat(ctnc)+u'</strong></td><td><strong>'+ mFormat(ctfc)+u'</strong></td><td><strong>'+ mFormat(ct45c)+u'</strong></td><td><strong>'+ mFormat(ct4c)+u'</strong></td></tr>\n<br />\n'
+	page += u'<tr><td>'+localText.scribe+u'</td><td>'+mFormat(totals[u'scribe'][u'total'])+u'</td></tr></table>\n'
 	tpage1 += u'<tr><td>' + localText.scribe + u'</td><td>' + mFormat(totals[u'scribe'][0]) + u'</td><td>' + mFormat(totals[u'scribe'][75]) + u'</td><td>' + mFormat(totals[u'scribe'][150]) + u'</td><td>' + mFormat(totals[u'scribe'][225]) + u'</td><td>' + mFormat(totals[u'scribe'][300]) + u'</td></tr>\n'
 
 	tpage1 += u' </table>\n<br />'
@@ -744,6 +807,19 @@ def maketotals(totals, mytime, localText):
 	tpage3 += u' </table>'
 
 	page += tpage1 + tpage2
+
+	# adword adaptive
+	page += u'<br /><div style="width: 100%;display:block;">\n \
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>\n \
+	<!-- tail ad responsive -->\n \
+	<ins class="adsbygoogle"\n \
+	     style="display:block"\n \
+	     data-ad-client="ca-pub-6865907345688710"\n \
+	     data-ad-slot="5237234180"\n \
+	     data-ad-format="auto"></ins>\n \
+	<script>\n \
+	(adsbygoogle = window.adsbygoogle || []).push({});\n \
+	</script></div>\n'
 
 	page += u'\n</section>\n' + localText.cright
 

@@ -5043,7 +5043,7 @@ ilist = {
 	21157:{u'img_url':u'https://render.guildwars2.com/file/27E67AB70677EB0DB834A4D4244CBE65FA1F1DC7/62862.png', u'output_item_count':u'0', u'rarity':u'Basic', u'vendor_value':0, u'type':u'Other'},
 	21158:{u'img_url':u'https://render.guildwars2.com/file/0F68450F2D9AAE580294070426EFD7AF66F1CE71/63047.png', u'output_item_count':u'0', u'rarity':u'Basic', u'vendor_value':0, u'type':u'Other'},
 	21161:{u'img_url':u'https://render.guildwars2.com/file/0CF25610DF30C07F57F7AF9058F4636B15A2A7D7/66267.png', u'output_item_count':u'0', u'rarity':u'Basic', u'vendor_value':0, u'type':u'Other'},
-	23001:{u'img_url':u'https://render.guildwars2.com/file/DB422F44CD5FC897E1255D601736CD4807D2DF22/526358.png', u'output_item_count':u'0', u'rarity':u'Fine', u'vendor_value':0, u'type':u'Other'},
+	23001:{u'img_url':u'https://render.guildwars2.com/file/3CD995B576C8CB39B02D4826EA04690701755ECB/66254.png', u'output_item_count':u'0', u'rarity':u'Fine', u'vendor_value':0, u'type':u'Other'},
 	24272:{u'img_url':u'https://render.guildwars2.com/file/F438A5EFB89C4ED6F8A04FE6E7060D05C294C4C6/434532.png', u'output_item_count':u'0', u'rarity':u'Fine', u'vendor_value':3, u'type':u'Other'},
 	24273:{u'img_url':u'https://render.guildwars2.com/file/33653CA0C67796BE03A22B5AE3197D0564376700/434533.png', u'output_item_count':u'0', u'rarity':u'Fine', u'vendor_value':5, u'type':u'Other'},
 	24274:{u'img_url':u'https://render.guildwars2.com/file/3F95D5E3E1B07294C7625B36004F6AE76C05E117/434534.png', u'output_item_count':u'0', u'rarity':u'Fine', u'vendor_value':7, u'type':u'Other'},
