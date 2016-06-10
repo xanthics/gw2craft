@@ -26,16 +26,17 @@ Purpose: Get current price data
 Note: Requires Python 2.7.x
 '''
 
-import time
 import json
+import math
 import os
 import sys
-import math
-import Items
+import time
+
+from auto_gen import Items
 # so we can set custom headers
 from multiprocessing import Process, Queue, cpu_count, Pool
 from urllib import FancyURLopener
-from random import choice, randint
+from random import randint
 
 
 # helper function to get data via item_id
@@ -187,7 +188,7 @@ class MyOpener(FancyURLopener):
 		'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1',
 		'Mozilla/5.0 (Windows NT 6.3; rv:36.0) Gecko/20100101 Firefox/36.0'
 	]
-	version = choice(user_agents)
+	# version = choice(user_agents)
 
 
 def gw2apilistworker(input):

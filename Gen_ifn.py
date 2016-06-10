@@ -25,8 +25,9 @@ Author: Jeremy Parks
 Purpose: Generate the index, faq and nav page for each language
 Note: Requires Python 2.7.x
 '''
-import Localen, Localde, Localfr, Locales, Localcz, Localptbr
 import output
+from translations import Localcz, Localde, Localen, Locales, Localfr, Localptbr
+
 
 # Generate a faq using local strings
 def faq(localText):
@@ -35,6 +36,7 @@ def faq(localText):
 	page += u"<head>\n"
 	page += u"	<title>%s</title>\n"%(localText.about)
 	page += u"	<meta name=\"description\" content=\"ACCG FAQ and Contact information\">\n"
+	page += u'	<meta name="keywords" content="best videogames, free mmos, free mmorpg, best free mmorpg, best mmorpg, free to play, mmos, mmorpg, free game, online games, fantasy games, PC games, PC gaming, crafting guide, crafting guides, Guild Wars 2, Trading Post"/>\n'
 	page += u"	<meta http-equiv=\"content-type\" content=\"text/html;charset=UTF-8\">\n"
 	page += u"	<link href=\"/css/layout.css\" rel=\"stylesheet\" type=\"text/css\" />\n"
 	page += u"	<link rel=\"icon\" type=\"image/png\" href=\"/fi.gif\">\n"
@@ -151,6 +153,7 @@ def nav(localText):
 	page += u"<head>\n"
 	page += u"	<title>Nav Page</title>\n"
 	page += u"	<meta name=\"description\" content=\"ACCG nav page\">\n"
+	page += u'	<meta name="keywords" content="best videogames, free mmos, free mmorpg, best free mmorpg, best mmorpg, free to play, mmos, mmorpg, free game, online games, fantasy games, PC games, PC gaming, crafting guide, crafting guides, Guild Wars 2, Trading Post"/>\n'
 	page += u"	<meta http-equiv=\"content-type\" content=\"text/html;charset=UTF-8\">\n"
 	page += u"	<link href=\"/css/layout.css\" rel=\"stylesheet\" type=\"text/css\" />\n"
 	page += u"	<link rel=\"icon\" type=\"image/png\" href=\"/fi.gif\">\n"
@@ -248,6 +251,7 @@ def index(localText):
 	page += u"<head>\n"
 	page += u"	<title>ACCGs for Guild Wars 2</title>\n"
 	page += u"	<meta name=\"description\" content=\"Always Current Crafting Guides for Guild Wars 2 with guides that are updated every 30 minutes based on current TP prices.  Multiple styles.\">\n"
+	page += u'	<meta name="keywords" content="best videogames, free mmos, free mmorpg, best free mmorpg, best mmorpg, free to play, mmos, mmorpg, free game, online games, fantasy games, PC games, PC gaming, crafting guide, crafting guides, Guild Wars 2, Trading Post"/>\n'
 	page += u"	<meta http-equiv=\"content-type\" content=\"text/html;charset=UTF-8\">\n"
 	page += u"	<link href=\"/css/layout.css\" rel=\"stylesheet\" type=\"text/css\" />\n"
 	page += u"	<link rel=\"icon\" type=\"image/png\" href=\"/fi.gif\">\n"

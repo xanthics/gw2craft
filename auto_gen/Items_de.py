@@ -2054,7 +2054,7 @@ ilist = {
 	12400:u"Scheibe Kürbisbrot",
 	12401:u"Schüssel mit Pesto-Nudelsalat",
 	12402:u"Scheibe würziges Brot",
-	12403:u"Eztlitlgefüllter Pilz",
+	12403:u"Gefüllter Pilz à la Eztlitl",
 	12404:u"Schüssel mit Kohl-Kichererbsensalat",
 	12405:u"Schüssel mit sautiertem Blumenkohl",
 	12406:u"Schüssel mit Hummus",
