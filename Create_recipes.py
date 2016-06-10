@@ -29,6 +29,8 @@ import urllib, json, math, codecs, socket
 from multiprocessing import Process, Queue, cpu_count, Pool
 import os
 
+from datetime import datetime
+
 API_ROOT = u"https://api.guildwars2.com/v2/"
 
 
@@ -134,16 +136,18 @@ def parse_recipes(recipes):
 				nc[it] = 1
 
 	for craft in crafts:
-		page = u'# -*- coding: utf-8 -*-\nrecipes = {\n'
+		page = u'# -*- coding: utf-8 -*-\n'
+		page += u'# Created: {} PST\n'.format(datetime.now().strftime('%Y-%m-%dT%H:%M:%S'))
+		page += u'recipes = {\n'
 		for lvl in sorted(crafts[craft]):
-			page += u"\t{}:{{\n".format(lvl)
+			page += u"\t{}: {{\n".format(lvl)
 			for obj in sorted(crafts[craft][lvl]):
 				mystr = u""
 				for part in sorted(crafts[craft][lvl][obj]):
 					if not part[u'item_id'] in item_ids:
 						item_ids[part[u'item_id']] = {u'type': u'Other', u'output_item_count': u'0', u'flags': []}
-					mystr += u"{}:{},".format(part[u'item_id'], part[u'count'])
-				page += u"\t\t{}:{{{}}},\n".format(obj, mystr[:-1])
+					mystr += u"{}: {}, ".format(part[u'item_id'], part[u'count'])
+				page += u"\t\t{}: {{{}}},\n".format(obj, mystr[:-2])
 			page += u"\t},\n"
 		page += u"}"
 		with codecs.open("auto_gen\\" + craft + ".py", "wb", encoding='utf-8') as f:
@@ -204,7 +208,9 @@ def itemlist(item_list, gulist, lang=u"en"):
 							   u'rarity': u"Basic", u'flags': [u"NoSell"], u"vendor_value": 0}
 
 	if lang == u"en":
-		page = u'# -*- coding: utf-8 -*-\nilist = {\n'
+		page = u'# -*- coding: utf-8 -*-\n'
+		page += u'# Created: {} PST\n'.format(datetime.now().strftime('%Y-%m-%dT%H:%M:%S'))
+		page += u'ilist = {\n'
 		# sorted is only so we can easily spot new items with diff
 		for i in sorted(flags):  # otherwise output is semi random order
 			try:
@@ -217,7 +223,7 @@ def itemlist(item_list, gulist, lang=u"en"):
 					item_list[i][u'discover'] = 0
 				item_list[i][u'img_url'] = flags[i][u'icon']
 				del (item_list[i][u'flags'])
-				page += u"\t{}:{},\n".format(i, item_list[i])
+				page += u"\t{}: {},\n".format(i, item_list[i])
 			except Exception, err:
 				print 'Error ilist: {}.\n'.format(str(err))
 				exit()
@@ -225,11 +231,13 @@ def itemlist(item_list, gulist, lang=u"en"):
 		with codecs.open("auto_gen\\Items.py", "wb", encoding='utf-8') as f:
 			f.write(page.replace(u": ", ":"))
 
-	page = u'# -*- coding: utf-8 -*-\nilist = {\n'
+	page = u'# -*- coding: utf-8 -*-\n'
+	page += u'# Created: {} PST\n'.format(datetime.now().strftime('%Y-%m-%dT%H:%M:%S'))
+	page += u'ilist = {\n'
 	# sorted is only so we can easily spot new items with diff
 	for i in sorted(flags):  # otherwise output is semi random order
 		try:
-			page += u"\t{}:u\"{}\",\n".format(i, flags[i][u'name'].replace('"', '\'').strip())
+			page += u"\t{}: u\"{}\",\n".format(i, flags[i][u'name'].replace('"', '\'').strip())
 		except Exception, err:
 			print 'Error items: {}.\n'.format(str(err))
 	page += u'}'
