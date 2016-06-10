@@ -28,15 +28,13 @@ Note: Requires Python 2.7.x
 
 import datetime
 import math
-import os
-import codecs
 import sys
-import threading
-import time
 # recipe and item lists
-import Armorsmith, Artificer, Chef, Chef_karma, Huntsman, Jeweler, Leatherworker, Tailor, Weaponsmith, Scribe, Items, Globals
+import Globals
+from auto_gen import Armorsmith, Artificer, Chef, Chef_karma, Huntsman, Jeweler, Leatherworker, Scribe, Tailor, \
+	Weaponsmith
 # Localized text
-import Localen, Localde, Localfr, Locales, Localcz, Localptbr
+from translations import Localcz, Localde, Localen, Locales, Localfr, Localptbr
 from multiprocessing import Process, Queue, cpu_count
 from copy import deepcopy
 from MyPrint import maketotals
@@ -82,39 +80,39 @@ def main():
 			 (u"cooking_karma_fast_light.html",cooking_karma,True,False,range(0,400,25))],
 			 [(u"cooking_karma.html",cooking_karma,False,False,range(0,400,25)),
 			 (u"cooking_karma_light.html",cooking_karma,False,False,range(0,400,25))],
-			 (u"cooking_fast.html",Chef.recipes,True,False,range(0,400,25)),
-			 (u"cooking.html",Chef.recipes,False,False,range(0,400,25)),
-			 (u"cooking_fast_200.html",Chef.recipes,True,False,range(0,200,25)),
+			 (u"cooking_fast.html", Chef.recipes, True, False, range(0, 400, 25)),
+			 (u"cooking.html", Chef.recipes, False, False, range(0, 400, 25)),
+			 (u"cooking_fast_200.html", Chef.recipes, True, False, range(0, 200, 25)),
 			 (u"cooking_karma_fast_200.html",cooking_karma,True,False,range(0,200,25)),
-			 (u"jewelcraft_fast.html",Jeweler.recipes,True,False,range(0,400,25)),
-			 (u"jewelcraft.html",Jeweler.recipes,False,False,range(0,400,25)),
-			 (u"jewelcraft_400.html",Jeweler.recipes,False,True,range(400,500,25)),
-			 (u"jewelcraft_450.html",Jeweler.recipes,False,True,range(400,450,25)),
-			 (u"artificing_fast.html",Artificer.recipes,True,False,range(0,400,25)),
-			 (u"artificing.html",Artificer.recipes,False,False,range(0,400,25)),
-			 (u"artificing_400.html",Artificer.recipes,False,True,range(400,500,25)),
-			 (u"artificing_450.html",Artificer.recipes,False,True,range(400,450,25)),
-			 (u"weaponcraft_fast.html",Weaponsmith.recipes,True,False,range(0,400,25)),
-			 (u"weaponcraft.html",Weaponsmith.recipes,False,False,range(0,400,25)),
-			 (u"weaponcraft_400.html",Weaponsmith.recipes,False,True,range(400,500,25)),
-			 (u"weaponcraft_450.html",Weaponsmith.recipes,False,True,range(400,450,25)),
-			 (u"huntsman_fast.html",Huntsman.recipes,True,False,range(0,400,25)),
-			 (u"huntsman.html",Huntsman.recipes,False,False,range(0,400,25)),
-			 (u"huntsman_400.html",Huntsman.recipes,False,True,range(400,500,25)),
-			 (u"huntsman_450.html",Huntsman.recipes,False,True,range(400,450,25)),
-			 (u"armorcraft_fast.html",Armorsmith.recipes,True,False,range(0,400,25)),
-			 (u"armorcraft.html",Armorsmith.recipes,False,False,range(0,400,25)),
-			 (u"armorcraft_400.html",Armorsmith.recipes,False,True,range(400,500,25)),
-			 (u"armorcraft_450.html",Armorsmith.recipes,False,True,range(400,450,25)),
-			 (u"tailor_fast.html",Tailor.recipes,True,False,range(0,400,25)),
-			 (u"tailor.html",Tailor.recipes,False,False,range(0,400,25)),
-			 (u"tailor_400.html",Tailor.recipes,False,True,range(400,500,25)),
-			 (u"tailor_450.html",Tailor.recipes,False,True,range(400,450,25)),
-			 (u"leatherworking_fast.html",Leatherworker.recipes,True,False,range(0,400,25)),
-			 (u"leatherworking.html",Leatherworker.recipes,False,False,range(0,400,25)),
-			 (u"leatherworking_400.html",Leatherworker.recipes,False,True,range(400,500,25)),
-			 (u"leatherworking_450.html",Leatherworker.recipes,False,True,range(400,450,25)),
-			 (u"scribe.html",Scribe.recipes,False,False,range(0,400,25))]
+			 (u"jewelcraft_fast.html", Jeweler.recipes, True, False, range(0, 400, 25)),
+			 (u"jewelcraft.html", Jeweler.recipes, False, False, range(0, 400, 25)),
+			 (u"jewelcraft_400.html", Jeweler.recipes, False, True, range(400, 500, 25)),
+			 (u"jewelcraft_450.html", Jeweler.recipes, False, True, range(400, 450, 25)),
+			 (u"artificing_fast.html", Artificer.recipes, True, False, range(0, 400, 25)),
+			 (u"artificing.html", Artificer.recipes, False, False, range(0, 400, 25)),
+			 (u"artificing_400.html", Artificer.recipes, False, True, range(400, 500, 25)),
+			 (u"artificing_450.html", Artificer.recipes, False, True, range(400, 450, 25)),
+			 (u"weaponcraft_fast.html", Weaponsmith.recipes, True, False, range(0, 400, 25)),
+			 (u"weaponcraft.html", Weaponsmith.recipes, False, False, range(0, 400, 25)),
+			 (u"weaponcraft_400.html", Weaponsmith.recipes, False, True, range(400, 500, 25)),
+			 (u"weaponcraft_450.html", Weaponsmith.recipes, False, True, range(400, 450, 25)),
+			 (u"huntsman_fast.html", Huntsman.recipes, True, False, range(0, 400, 25)),
+			 (u"huntsman.html", Huntsman.recipes, False, False, range(0, 400, 25)),
+			 (u"huntsman_400.html", Huntsman.recipes, False, True, range(400, 500, 25)),
+			 (u"huntsman_450.html", Huntsman.recipes, False, True, range(400, 450, 25)),
+			 (u"armorcraft_fast.html", Armorsmith.recipes, True, False, range(0, 400, 25)),
+			 (u"armorcraft.html", Armorsmith.recipes, False, False, range(0, 400, 25)),
+			 (u"armorcraft_400.html", Armorsmith.recipes, False, True, range(400, 500, 25)),
+			 (u"armorcraft_450.html", Armorsmith.recipes, False, True, range(400, 450, 25)),
+			 (u"tailor_fast.html", Tailor.recipes, True, False, range(0, 400, 25)),
+			 (u"tailor.html", Tailor.recipes, False, False, range(0, 400, 25)),
+			 (u"tailor_400.html", Tailor.recipes, False, True, range(400, 500, 25)),
+			 (u"tailor_450.html", Tailor.recipes, False, True, range(400, 450, 25)),
+			 (u"leatherworking_fast.html", Leatherworker.recipes, True, False, range(0, 400, 25)),
+			 (u"leatherworking.html", Leatherworker.recipes, False, False, range(0, 400, 25)),
+			 (u"leatherworking_400.html", Leatherworker.recipes, False, True, range(400, 500, 25)),
+			 (u"leatherworking_450.html", Leatherworker.recipes, False, True, range(400, 450, 25)),
+			 (u"scribe.html", Scribe.recipes, False, False, range(0, 400, 25))]
 
 	nprocs = cpu_count() * 2
 
@@ -139,12 +137,12 @@ def main():
 		if p.is_alive():
 			sys.exit(0)
 
-	maketotals(totals,mytime,Localen)
-	maketotals(totals,mytime,Localde)
-	maketotals(totals,mytime,Localfr)
-	maketotals(totals,mytime,Locales)
-	maketotals(totals,mytime,Localcz)
-	maketotals(totals,mytime,Localptbr)
+	maketotals(totals, mytime, Localen)
+	maketotals(totals, mytime, Localde)
+	maketotals(totals, mytime, Localfr)
+	maketotals(totals, mytime, Locales)
+	maketotals(totals, mytime, Localcz)
+	maketotals(totals, mytime, Localptbr)
 
 	print "End: ", datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
 

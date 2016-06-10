@@ -352,6 +352,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	# Title Part 1
 	page += u'	<title>'+title+u' - Guild War 2 Crafting Guide</title>\n'
 	page += u'	<meta name="description" content="Guild Wars 2 always current crafting guide for '+filename.split('.')[0].replace("_"," ").title()+u'">\n'
+	page += u'	<meta name="keywords" content="best videogames, free mmos, free mmorpg, best free mmorpg, best mmorpg, free to play, mmos, mmorpg, free game, online games, fantasy games, PC games, PC gaming, crafting guide, crafting guides, Guild Wars 2, Trading Post"/>\n'
 	page += u'	<meta http-equiv="content-type" content="text/html;charset=UTF-8">\n'
 	page += u'	<link href="/css/layout.css" rel="stylesheet" type="text/css" />'
 	page += u'	<link rel="icon" type="image/png" href="/fi.gif">\n'
@@ -392,19 +393,19 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 #		t, localText.discover, cList[item][u'rarity'], localText.toggle, item, tier, cListName[item], tstr)
 	page += u"<strong>%s</strong><br />\n"%(localText.region)
 #	# adword
-#	page += u'<div style="float:right;position:absolute;right:-320px;"> \
-#			\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
-#			\n<!-- large sidebar --> \
-#			\n<ins class=\"adsbygoogle\" \
-#			\n     style=\"display:inline-block;width:300px;height:600px\" \
-#			\n     data-ad-client=\"ca-pub-6865907345688710\" \
-#			\n     data-ad-slot=\"9285292589\"></ins> \
-#			\n<script> \
-#			\n(adsbygoogle = window.adsbygoogle || []).push({}); \
-#			\n</script> \
-#			\n</div>\n'
+	page += u'<div style="float:right;position:absolute;right:-320px;"> \
+			\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
+			\n<!-- large sidebar --> \
+			\n<ins class=\"adsbygoogle\" \
+			\n     style=\"display:inline-block;width:300px;height:600px\" \
+			\n     data-ad-client=\"ca-pub-6865907345688710\" \
+			\n     data-ad-slot=\"9285292589\"></ins> \
+			\n<script> \
+			\n(adsbygoogle = window.adsbygoogle || []).push({}); \
+			\n</script> \
+			\n</div>\n'
 	page += localText.moreInfo%(u"<img src=\"/img/arrow.png\" alt=ARROW>")
-	page += u'<br /><div style="width: 100%;display:block;">\n \
+	page += u'<br /><br /><br /><div style="width: 100%;display:block;">\n \
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>\n \
 <!-- link ad -->\n \
 <ins class="adsbygoogle"\n \
@@ -526,19 +527,19 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 						page += u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[lvl][item],cList[item][u'rarity'],cListName[item])
 
 
-		if tier == 225:
+#		if tier == 225:
 			# adword adaptive
-			page += u'<br /><div style="width: 100%;display:block;">\n \
-			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>\n \
-			<!-- second ad -->\n \
-			<ins class="adsbygoogle"\n \
-			     style="display:block"\n \
-			     data-ad-client="ca-pub-6865907345688710"\n \
-			     data-ad-slot="4818431783"\n \
-			     data-ad-format="auto"></ins>\n \
-			<script>\n \
-			(adsbygoogle = window.adsbygoogle || []).push({});\n \
-			</script></div>\n'
+#			page += u'<br /><div style="width: 100%;display:block;">\n \
+#			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>\n \
+#			<!-- second ad -->\n \
+#			<ins class="adsbygoogle"\n \
+#			     style="display:block"\n \
+#			     data-ad-client="ca-pub-6865907345688710"\n \
+#			     data-ad-slot="4818431783"\n \
+#			     data-ad-format="auto"></ins>\n \
+#			<script>\n \
+#			(adsbygoogle = window.adsbygoogle || []).push({});\n \
+#			</script></div>\n'
 			# adword 2
 #			page += u'<div style="float:right;position:absolute;right:-320px;"> \
 #				\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
@@ -716,6 +717,7 @@ def maketotals(totals, mytime, localText):
 <head>
 	<title>Totals</title>
 	<meta name="description" content="Guild Wars 2 always current crafting guide price totals">
+	<meta name="keywords" content="best videogames, free mmos, free mmorpg, best free mmorpg, best mmorpg, free to play, mmos, mmorpg, free game, online games, fantasy games, PC games, PC gaming, crafting guide, crafting guides, Guild Wars 2, Trading Post"/>
 	<meta http-equiv="content-type" content="text/html;charset=UTF-8">
 
 	<link href="/css/layout.css" rel="stylesheet" type="text/css" />
@@ -746,17 +748,17 @@ def maketotals(totals, mytime, localText):
 	page += u"<section class=\"main\">\n<strong>%s</strong><br />\n"%(localText.region)
 	page += u"<h5 style=\"text-align:center;\">"+localText.updated+u": " + mytime + u"</h5>"
 	# adword
-#	page += u'<div style="float:right;position:absolute;right:-320px;"> \
-#			\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
-#			\n<!-- large sidebar --> \
-#			\n<ins class=\"adsbygoogle\" \
-#			\n     style=\"display:inline-block;width:300px;height:600px\" \
-#			\n     data-ad-client=\"ca-pub-6865907345688710\" \
-#			\n     data-ad-slot=\"9285292589\"></ins> \
-#			\n<script> \
-#			\n(adsbygoogle = window.adsbygoogle || []).push({}); \
-#			\n</script> \
-#			\n</div>\n'
+	page += u'<div style="float:right;position:absolute;right:-320px;"> \
+			\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
+			\n<!-- large sidebar --> \
+			\n<ins class=\"adsbygoogle\" \
+			\n     style=\"display:inline-block;width:300px;height:600px\" \
+			\n     data-ad-client=\"ca-pub-6865907345688710\" \
+			\n     data-ad-slot=\"9285292589\"></ins> \
+			\n<script> \
+			\n(adsbygoogle = window.adsbygoogle || []).push({}); \
+			\n</script> \
+			\n</div>\n'
 	page += localText.note
 	page += u'	<table>'
 	page += u'<tr><th>'+localText.craft+u'</th><th>'+localText.nGuides+u'</th><th>'+localText.fGuides+u'</th><th>1-200</th></tr>\n'

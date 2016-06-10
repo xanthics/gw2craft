@@ -146,7 +146,7 @@ def parse_recipes(recipes):
 				page += u"\t\t{}:{{{}}},\n".format(obj, mystr[:-1])
 			page += u"\t},\n"
 		page += u"}"
-		with codecs.open(craft + ".py", "wb", encoding='utf-8') as f:
+		with codecs.open("auto_gen\\" + craft + ".py", "wb", encoding='utf-8') as f:
 			f.write(page)
 
 	for item in [38207, 38208, 38209, 38295, 38296, 38297]:
@@ -222,7 +222,7 @@ def itemlist(item_list, gulist, lang=u"en"):
 				print 'Error ilist: {}.\n'.format(str(err))
 				exit()
 		page += u'}'
-		with codecs.open("Items.py", "wb", encoding='utf-8') as f:
+		with codecs.open("auto_gen\\Items.py", "wb", encoding='utf-8') as f:
 			f.write(page.replace(u": ", ":"))
 
 	page = u'# -*- coding: utf-8 -*-\nilist = {\n'
@@ -233,7 +233,7 @@ def itemlist(item_list, gulist, lang=u"en"):
 		except Exception, err:
 			print 'Error items: {}.\n'.format(str(err))
 	page += u'}'
-	with codecs.open("Items_%s.py" % lang, "wb", encoding='utf-8') as f:
+	with codecs.open("auto_gen\\Items_%s.py" % lang, "wb", encoding='utf-8') as f:
 		f.write(page)
 
 
