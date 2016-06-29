@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2016-06-09T18:30:41 PST
+# Created: 2016-06-28T22:39:25 PST
 ilist = {
 	8576: u"Botella de licor de arroz",
 	8587: u"Huevo escalfado de Drottot",
@@ -8037,4 +8037,13 @@ ilist = {
 	1000728: u"Roca superpequeña",
 	1000729: u"Superrey Sapo",
 	1000730: u"Superrampa de roca",
+	1000749: u"Trofeo de Xera de bronce",
+	1000750: u"Trofeo de Ensamblaje de la Fortaleza de bronce",
+	1000752: u"Resto de cinta de Xera",
+	1000753: u"Trofeo de Ensamblaje de la Fortaleza de plata",
+	1000755: u"Trofeo de asedio de la Fortaleza de plata",
+	1000757: u"Fragmento de torreta de hematites",
+	1000759: u"Chatarra de Ensamblaje de la Fortaleza",
+	1000760: u"Trofeo de asedio de la Fortaleza de bronce",
+	1000761: u"Trofeo de Xera de plata",
 }

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2016-06-09T18:29:51 PST
+# Created: 2016-06-28T22:38:33 PST
 ilist = {
 	8576: u"Bouteille d'alcool de riz",
 	8587: u"Œuf poché façon Drottot",
@@ -8037,4 +8037,13 @@ ilist = {
 	1000728: u"Super petit rocher",
 	1000729: u"Super roi grenouille",
 	1000730: u"Super rampe en pierre",
+	1000749: u"Trophée de bronze de Xera",
+	1000750: u"Trophée de bronze de Titan du fort",
+	1000752: u"Morceau de ruban de Xera",
+	1000753: u"Trophée d'argent de Titan du fort",
+	1000755: u"Trophée d'argent de « Assiéger la forteresse »",
+	1000757: u"Fragment de tourelle de pierre de sang",
+	1000759: u"Gravats de Titan du fort",
+	1000760: u"Trophée de bronze de « Assiéger la forteresse »",
+	1000761: u"Trophée d'argent de Xera",
 }

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2016-06-09T18:29:26 PST
+# Created: 2016-06-28T22:38:09 PST
 ilist = {
 	8576: u"Bottle of Rice Wine",
 	8587: u"Drottot's Poached Egg",
@@ -7877,7 +7877,7 @@ ilist = {
 	1000365: u"Packed Dolyaks",
 	1000369: u"Sandstone Pillar",
 	1000370: u"Hedge Planter",
-	1000372: u"Fuschia Balloon",
+	1000372: u"Fuchsia Balloon",
 	1000383: u"Invulnerable Dolyaks",
 	1000386: u"Armor Stand",
 	1000388: u"Keg Rack",
@@ -8037,4 +8037,13 @@ ilist = {
 	1000728: u"Super Small Rock",
 	1000729: u"Super King Frog",
 	1000730: u"Super Rock Ramp",
+	1000749: u"Bronze Xera Trophy",
+	1000750: u"Bronze Keep Construct Trophy",
+	1000752: u"Xera's Ribbon Scrap",
+	1000753: u"Silver Keep Construct Trophy",
+	1000755: u"Silver Siege the Stronghold Trophy",
+	1000757: u"Bloodstone Turret Fragment",
+	1000759: u"Keep Construct Rubble",
+	1000760: u"Bronze Siege the Stronghold Trophy",
+	1000761: u"Silver Xera Trophy",
 }
