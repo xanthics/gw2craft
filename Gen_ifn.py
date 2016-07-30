@@ -138,6 +138,7 @@ def faq(localText):
 #	page += u"<br /><br /><script src=\"http://coinwidget.com/widget/coin.js\"></script><script>CoinWidgetCom.go({wallet_address: \"18Muvgz2zYeUYcAwrqM24awXkv2WqsLukt\", currency: \"bitcoin\", counter: \"amount\", alignment: \"al\", qrcode: true, auto_show: false, lbl_button: \"Donate\", lbl_address: \"My Bitcoin Address:\", lbl_count: \"donations\", lbl_amount: \"BTC\"});</script>"
 	page += u"</section>\n"
 	page += localText.cright
+	page += u'\n<script type = "text/javascript"> var infolinks_pid = 2820854; var infolinks_wsid = 0; </script> <script type = "text/javascript" src = "//resources.infolinks.com/js/infolinks_main.js"> </script>\n'
 	page += u"</body>\n"
 	page += u"</html>\n"
 
@@ -238,6 +239,7 @@ def nav(localText):
 	page += u"<a href=\"/es/nav.html\" hreflang=\"es\">Español</a><br />\n"
 	page += u"</section>\n"
 	page += localText.cright
+	page += u'\n<script type = "text/javascript"> var infolinks_pid = 2820854; var infolinks_wsid = 0; </script> <script type = "text/javascript" src = "//resources.infolinks.com/js/infolinks_main.js"> </script>\n'
 	page += u"</body>\n"
 	page += u"</html>\n"
 
@@ -331,6 +333,7 @@ def index(localText):
 #			\n</div>\n'
 	page += u"</section>\n"
 	page += localText.cright
+	page += u'\n<script type = "text/javascript"> var infolinks_pid = 2820854; var infolinks_wsid = 0; </script> <script type = "text/javascript" src = "//resources.infolinks.com/js/infolinks_main.js"> </script>\n'
 	page += u"</body>\n"
 	page += u"</html>\n"
 
