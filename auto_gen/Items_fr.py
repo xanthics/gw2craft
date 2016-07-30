@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2016-06-28T22:38:33 PST
+# Created: 2016-07-30T12:05:25 PST
 ilist = {
 	8576: u"Bouteille d'alcool de riz",
 	8587: u"Œuf poché façon Drottot",
@@ -5062,7 +5062,7 @@ ilist = {
 	24286: u"Ecaille",
 	24287: u"Ecaille lisse",
 	24288: u"Grande écaille",
-	24289: u"Ecaille renforcée",
+	24289: u"Écaille renforcée",
 	24290: u"Fiole de sang faible",
 	24291: u"Fiole de sang léger",
 	24292: u"Fiole de sang",
