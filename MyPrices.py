@@ -36,148 +36,8 @@ from auto_gen import Items
 # so we can set custom headers
 from multiprocessing import Process, Queue, cpu_count, Pool
 from urllib import FancyURLopener
-from random import randint
-
-
-# helper function to get data via item_id
-def searchGWT(item_id, itemlist, idIndex):
-	return next((element for element in itemlist if item_id == int(element[idIndex])), None)
-
-
-def itemlistworkerGWT(_itemList, temp, idIndex, buyIndex, sellIndex, supplyIndex, out_q):
-	outdict = {}
-	for item in _itemList:
-		# Get our item from the gw2spidy list
-		val = searchGWT(item, temp, idIndex)
-
-		try:
-			# set value to greater of buy and vendor.  If 0 set to minimum sell value
-			w = Items.ilist[item][u'vendor_value']
-			sellMethod = 0
-			if val[buyIndex] * .85 > w:
-				w = int(val[buyIndex] * .85)
-				sellMethod = 1
-			if w == 0:
-				w = int(val[sellIndex] * .85)
-				sellMethod = 2
-
-			# Save all the information we care about
-			outdict[item] = {u'w': w, u'cost': val[sellIndex], u'recipe': None, u'rarity': Items.ilist[item][u'rarity'],
-							 u'type': Items.ilist[item][u'type'], u'icon': Items.ilist[item][u'img_url'],
-							 u'output_item_count': Items.ilist[item][u'output_item_count'], u'sellMethod': sellMethod,
-							 u"discover": []}
-			# if the item has a low supply, ignore it
-			if val[supplyIndex] <= 50:
-				outdict[item][u'cost'] = 99999999
-
-		# gw2spidy doesn't have the item indexed yet
-		except Exception, err:
-			#			print u'ERROR: %s. %i, %s' % (str(err),item,Items_en.ilist[item])
-			# Save all the information we care about
-			outdict[item] = {u'w': 0, u'cost': 99999999, u'recipe': None, u'rarity': Items.ilist[item][u'rarity'],
-							 u'type': Items.ilist[item][u'type'], u'icon': Items.ilist[item][u'img_url'],
-							 u'output_item_count': Items.ilist[item][u'output_item_count'], u'sellMethod': sellMethod,
-							 u"discover": []}
-
-		if outdict[item][u'type'] == u'UpgradeComponent' and outdict[item][u'rarity'] == u'Exotic':
-			outdict[item][u'rarity'] = u'Exotic UpgradeComponent'
-
-	out_q.put(outdict)
-
-
-# helper function to parse out only the items we care about from gw2spidy
-def cItemlistGWT(itemList, temp, key):
-	out_q = Queue()
-	nprocs = cpu_count() * 2
-
-	chunksize = int(math.ceil(len(itemList) / float(nprocs)))
-	procs = []
-
-	for i in range(nprocs):
-		p = Process(target=itemlistworkerGWT, args=(
-		itemList[chunksize * i:chunksize * (i + 1)], temp, key.index(u'id'), key.index(u'buy'), key.index(u'sell'),
-		key.index(u'supply'), out_q))
-		procs.append(p)
-		p.start()
-
-	resultdict = {}
-	for i in range(nprocs):
-		resultdict.update(out_q.get())
-
-	for p in procs:
-		p.join()
-
-	return resultdict
-
-
-# helper function to get data via item_id
-def search(item_id, itemlist):
-	return next((element for element in itemlist if item_id == int(element[u'data_id'])), None)
-
-
-def itemlistworker(_itemList, temp, out_q):
-	outdict = {}
-	for item in _itemList:
-		# Get our item from the gw2spidy list
-		val = search(item, temp)
-
-		try:
-			# set value to greater of buy and vendor.  If 0 set to minimum sell value
-			w = Items.ilist[item][u'vendor_value']
-			sellMethod = 0
-			if val[u'max_offer_unit_price'] * .85 > w:
-				w = int(val[u'max_offer_unit_price'] * .85)
-				sellMethod = 1
-			if w == 0:
-				w = int(val[u'min_sale_unit_price'] * .85)
-				sellMethod = 2
-
-			# Save all the information we care about
-			outdict[item] = {u'w': w, u'cost': val[u'min_sale_unit_price'], u'recipe': None,
-							 u'rarity': Items.ilist[item][u'rarity'], u'type': Items.ilist[item][u'type'],
-							 u'icon': Items.ilist[item][u'img_url'],
-							 u'output_item_count': Items.ilist[item][u'output_item_count'], u'sellMethod': sellMethod,
-							 u"discover": []}
-			# if the item has a low supply, ignore it
-			if val[u'sale_availability'] <= 50:
-				outdict[item][u'cost'] = 99999999
-
-		# gw2spidy doesn't have the item indexed yet
-		except Exception, err:
-			#			print u'ERROR: %s. %i, %s' % (str(err),item,Items_en.ilist[item])
-			# Save all the information we care about
-			outdict[item] = {u'w': 0, u'cost': 99999999, u'recipe': None, u'rarity': Items.ilist[item][u'rarity'],
-							 u'type': Items.ilist[item][u'type'], u'icon': Items.ilist[item][u'img_url'],
-							 u'output_item_count': Items.ilist[item][u'output_item_count'], u'sellMethod': sellMethod,
-							 u"discover": []}
-
-		if outdict[item][u'type'] == u'UpgradeComponent' and outdict[item][u'rarity'] == u'Exotic':
-			outdict[item][u'rarity'] = u'Exotic UpgradeComponent'
-
-	out_q.put(outdict)
-
-
-# helper function to parse out only the items we care about from gw2spidy
-def cItemlist(itemList, temp):
-	out_q = Queue()
-	nprocs = 8
-
-	chunksize = int(math.ceil(len(itemList) / float(nprocs)))
-	procs = []
-
-	for i in range(nprocs):
-		p = Process(target=itemlistworker, args=(itemList[chunksize * i:chunksize * (i + 1)], temp, out_q))
-		procs.append(p)
-		p.start()
-
-	resultdict = {}
-	for i in range(nprocs):
-		resultdict.update(out_q.get())
-
-	for p in procs:
-		p.join()
-
-	return resultdict
+from random import randint, choice
+import socket
 
 
 # pretend we are a browser
@@ -188,10 +48,11 @@ class MyOpener(FancyURLopener):
 		'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1',
 		'Mozilla/5.0 (Windows NT 6.3; rv:36.0) Gecko/20100101 Firefox/36.0'
 	]
-	# version = choice(user_agents)
+	version = choice(user_agents)
 
 
 def gw2apilistworker(input):
+	socket.setdefaulttimeout(5)
 	baseURL = input[0]
 	ids = input[1]
 	myopener = input[2]
@@ -200,6 +61,7 @@ def gw2apilistworker(input):
 	temp = []
 	while getdata:
 		try:
+			socket.setdefaulttimeout(5)
 			f = myopener.open(baseURL + ",".join(str(i) for i in ids))
 			temp = json.load(f)
 			getdata = False
@@ -236,6 +98,7 @@ def gw2apilistworker(input):
 
 
 def gw2api():
+	socket.setdefaulttimeout(5)
 	listingURL = "https://api.guildwars2.com/v2/commerce/listings"
 	myopener = MyOpener()
 	f = myopener.open(listingURL)
@@ -258,27 +121,6 @@ def gw2api():
 		for i in p:
 			resultdict.update(i)
 
-#	out_q = Queue()
-#	procs = []
-#	chunksize = 200
-
-#	for i in range(int(len(valid) / chunksize)):
-#		print valid[chunksize * i:chunksize * (i + 1)]
-#		p = Process(target=gw2apilistworker, args=(baseURL, valid[chunksize * i:chunksize * (i + 1)], out_q, myopener))
-#		procs.append(p)
-#		p.start()
-
-#	p = Process(target=gw2apilistworker, args=(baseURL, valid[chunksize * (i + 1):], out_q, myopener))
-#	procs.append(p)
-#	p.start()
-
-#	resultdict = {}
-#	for i in range(int(len(valid) / chunksize) + 1):
-#		resultdict.update(out_q.get())
-
-#	for p in procs:
-#		p.join()
-
 	for item in invalid:
 		resultdict[item] = {u'w': 0, u'cost': 1000000000, u'recipe': None, u'rarity': Items.ilist[item][u'rarity'],
 							u'type': Items.ilist[item][u'type'], u'icon': Items.ilist[item][u'img_url'],
@@ -292,9 +134,7 @@ def gw2api():
 
 # add some costs data to gcList
 def appendCosts():
-	temp = []
 	cList = {}
-	myopener = MyOpener()
 	getprices = True  # loop variable to loop until we get a return
 
 	count = 10  # loop variable to terminate loop after x attempts
@@ -306,32 +146,6 @@ def appendCosts():
 			print u'ERROR: %s.' % str(err)
 			time.sleep(randint(1, 10))
 			count -= 1
-
-		#	count = 10 # loop variable to terminate loop after x attempts
-		# This could be in a while loop and keep trying until success, but unnecessary
-		#	while getprices and count:
-		#		try:
-		#			baseURL = "http://api.guildwarstrade.com/1/bulk/items.json"
-		#			f = myopener.open(baseURL)
-		#			temp = json.load(f)
-		#			if os.isatty(sys.stdin.fileno()):
-		#				print len(temp[u'items']) # print total items returned from GWT
-		#			cList = cItemlistGWT(Items.ilist.keys(),temp[u'items'],temp[u'columns'])
-		#			getprices = False
-		#		except Exception, err:
-		#			print u'ERROR: %s.' % str(err)
-		#			try:
-		#				baseURL = "http://gw2spidy.com/api/v0.9/json/all-items/all"
-		#				f = myopener.open(baseURL)
-		#				temp = json.load(f)
-		#				if os.isatty(sys.stdin.fileno()):
-		#					print len(temp[u'results']) # print total items returned from gw2spidy
-		#				cList = cItemlist(Items.ilist.keys(),temp[u'results'])
-		#				getprices = False
-		#			except Exception, err:
-		#				print u'ERROR: %s.' % str(err)
-		#				time.sleep(randint(1,10))
-		#				count -= 1
 
 	# if loop exited because of this variable we didn't get any data, terminate
 	if not count:
