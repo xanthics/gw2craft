@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-# Created:2016-06-28T22:38:03 PST
+# Created:2016-07-30T12:04:55 PST
 ilist = {
 	8576:{u'img_url':u'https://render.guildwars2.com/file/CD065203FA490A7157DC0FDE7506F3CB93E89D0D/63089.png', u'output_item_count':u'0', u'rarity':u'Basic', u'vendor_value':2, u'type':u'Other'},
 	8587:{u'img_url':u'https://render.guildwars2.com/file/BCD0C06CF8AF03D7370B9F217D12D937AB220F2E/63081.png', u'discover':0, u'output_item_count':2, u'rarity':u'Basic', u'vendor_value':0, u'type':u'Snack'},
@@ -6888,10 +6888,10 @@ ilist = {
 	48704:{u'img_url':u'https://render.guildwars2.com/file/00F20B809913F95FAB60AE057D98BB760C984AF8/61613.png', u'output_item_count':1, u'rarity':u'Exotic', u'vendor_value':240, u'type':u'Helm'},
 	48705:{u'img_url':u'https://render.guildwars2.com/file/00F20B809913F95FAB60AE057D98BB760C984AF8/61613.png', u'output_item_count':1, u'rarity':u'Exotic', u'vendor_value':240, u'type':u'Helm'},
 	48884:{u'img_url':u'https://render.guildwars2.com/file/78B90364F0FA4806E6600DD260BE2EBC51D1431D/665773.png', u'output_item_count':u'0', u'rarity':u'Rare', u'vendor_value':0, u'type':u'Other'},
-	49441:{u'img_url':u'https://render.guildwars2.com/file/AE7C224D02E7F16F19FAFAE1CC50B80E5DC80214/511838.png', u'output_item_count':u'0', u'rarity':u'Ascended', u'vendor_value':0, u'type':u'Other'},
-	49442:{u'img_url':u'https://render.guildwars2.com/file/AE7C224D02E7F16F19FAFAE1CC50B80E5DC80214/511838.png', u'output_item_count':1, u'rarity':u'Ascended', u'vendor_value':0, u'type':u'UpgradeComponent'},
-	49443:{u'img_url':u'https://render.guildwars2.com/file/AE7C224D02E7F16F19FAFAE1CC50B80E5DC80214/511838.png', u'output_item_count':1, u'rarity':u'Ascended', u'vendor_value':0, u'type':u'UpgradeComponent'},
-	49444:{u'img_url':u'https://render.guildwars2.com/file/AE7C224D02E7F16F19FAFAE1CC50B80E5DC80214/511838.png', u'output_item_count':1, u'rarity':u'Ascended', u'vendor_value':0, u'type':u'UpgradeComponent'},
+	49441:{u'img_url':u'https://render.guildwars2.com/file/3504CD3199285BC1293FAE249ACF9461C50994DB/1465586.png', u'output_item_count':u'0', u'rarity':u'Ascended', u'vendor_value':0, u'type':u'Other'},
+	49442:{u'img_url':u'https://render.guildwars2.com/file/3504CD3199285BC1293FAE249ACF9461C50994DB/1465586.png', u'output_item_count':1, u'rarity':u'Ascended', u'vendor_value':0, u'type':u'UpgradeComponent'},
+	49443:{u'img_url':u'https://render.guildwars2.com/file/3504CD3199285BC1293FAE249ACF9461C50994DB/1465586.png', u'output_item_count':1, u'rarity':u'Ascended', u'vendor_value':0, u'type':u'UpgradeComponent'},
+	49444:{u'img_url':u'https://render.guildwars2.com/file/3504CD3199285BC1293FAE249ACF9461C50994DB/1465586.png', u'output_item_count':1, u'rarity':u'Ascended', u'vendor_value':0, u'type':u'UpgradeComponent'},
 	49522:{u'img_url':u'https://render.guildwars2.com/file/A3D8FA093CF830A5F799C742AAC70DE590C21498/699307.png', u'output_item_count':u'0', u'rarity':u'Exotic', u'vendor_value':66, u'type':u'Other'},
 	49782:{u'img_url':u'https://render.guildwars2.com/file/5E979AEEF7D092DCFEF9ADA527BB61F6FF03E811/711882.png', u'discover':0, u'output_item_count':1, u'rarity':u'Rare', u'vendor_value':0, u'type':u'Refinement'},
 	50140:{u'img_url':u'https://render.guildwars2.com/file/CA33A318F0EB66D8E03CD978AC2A5CCE0A6BAE17/61223.png', u'output_item_count':1, u'rarity':u'Exotic', u'vendor_value':0, u'type':u'Boots'},
