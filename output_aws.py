@@ -31,9 +31,6 @@ from random import randint
 
 import boto3
 
-# Credentials
-from Ftp_info import amakey, amasec
-
 
 def write_file(directory, filename, contents):
 	while True:
