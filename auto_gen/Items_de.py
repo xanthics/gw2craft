@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2016-07-30T12:05:51 PST
+# Created: 2016-08-20T13:18:23 PST
 ilist = {
 	8576: u"Flasche Reiswein",
 	8587: u"Drottots pochiertes Ei",
