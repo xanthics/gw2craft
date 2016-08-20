@@ -32,10 +32,12 @@ import os
 import sys
 import time
 
+from hashlib import md5
 from auto_gen import Items
 # so we can set custom headers
 from multiprocessing import Process, Queue, cpu_count, Pool
 from urllib import FancyURLopener
+import urllib2
 from random import randint, choice
 import socket
 
@@ -52,17 +54,17 @@ class MyOpener(FancyURLopener):
 
 
 def gw2apilistworker(input):
-	socket.setdefaulttimeout(5)
 	baseURL = input[0]
 	ids = input[1]
-	myopener = input[2]
+	version = input[2]
 	outdict = {}
 	getdata = True
 	temp = []
 	while getdata:
 		try:
-			socket.setdefaulttimeout(5)
-			f = myopener.open(baseURL + ",".join(str(i) for i in ids))
+			req = urllib2.Request(baseURL + ",".join(str(i) for i in ids))
+			req.add_header('User-agent', version)
+			f = urllib2.urlopen(req, timeout=socket.getdefaulttimeout())
 			temp = json.load(f)
 			getdata = False
 		except Exception, err:
@@ -100,8 +102,16 @@ def gw2apilistworker(input):
 def gw2api():
 	socket.setdefaulttimeout(5)
 	listingURL = "https://api.guildwars2.com/v2/commerce/listings"
-	myopener = MyOpener()
-	f = myopener.open(listingURL)
+	req = urllib2.Request(listingURL)
+	user_agents = [
+		'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36',
+		'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.0 Safari/537.36',
+		'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1',
+		'Mozilla/5.0 (Windows NT 6.3; rv:36.0) Gecko/20100101 Firefox/36.0'
+	]
+	version = choice(user_agents)
+	req.add_header('User-agent', version)
+	f = urllib2.urlopen(req, timeout=socket.getdefaulttimeout())
 	temp = json.load(f)
 	valid = []
 	invalid = []
@@ -114,7 +124,7 @@ def gw2api():
 	baseURL = "https://api.guildwars2.com/v2/commerce/prices?ids="
 
 	p = Pool(2)
-	procs = [p.map(gw2apilistworker, [(baseURL, valid[i:i + 200], myopener) for i in range(0, len(valid), 200)])]
+	procs = [p.map(gw2apilistworker, [(baseURL, valid[i:i + 150], version) for i in range(0, len(valid), 150)])]
 
 	resultdict = {}
 	for p in procs:
