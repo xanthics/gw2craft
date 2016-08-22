@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2016-08-20T13:17:33 PST
+# Created: 2016-08-21T19:30:21 PST
 ilist = {
 	8576: u"Bottle of Rice Wine",
 	8587: u"Drottot's Poached Egg",

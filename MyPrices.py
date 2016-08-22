@@ -109,7 +109,7 @@ def gw2api():
 
 	baseURL = "https://api.guildwars2.com/v2/commerce/prices?ids="
 
-	p = Pool(4)
+	p = Pool()
 	procs = [p.map(gw2apilistworker, [(baseURL, valid[i:i + 200], version) for i in range(0, len(valid), 200)])]
 
 	resultdict = {}
