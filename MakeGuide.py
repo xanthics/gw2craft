@@ -120,8 +120,7 @@ def xp_calc(refines,parts,item,discoveries,mod,base_level,actu_level,typ):
 
 # Compute a guide
 def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level,modi=0.54):
-	if os.isatty(sys.stdin.fileno()):
-		print "Start", filename
+	print "Start", filename
 	# TODO Hack, fix this
 	# This is changing the recipe for Bronze Ingot to use 2 Copper Ore.
 	if 19679 in c_recipes[0]:
@@ -365,6 +364,8 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level,m
 	totals = {}
 	totals.update(printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_en.ilist,
 							  Localen))
+	print "Finish", filename
+
 	return totals
 
 
