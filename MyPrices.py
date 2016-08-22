@@ -34,7 +34,6 @@ import time
 from auto_gen import Items
 # so we can set custom headers
 from multiprocessing import Pool
-from urllib import FancyURLopener
 import urllib2
 from random import randint, choice
 import socket
@@ -110,8 +109,8 @@ def gw2api():
 
 	baseURL = "https://api.guildwars2.com/v2/commerce/prices?ids="
 
-	p = Pool(2)
-	procs = [p.map(gw2apilistworker, [(baseURL, valid[i:i + 150], version) for i in range(0, len(valid), 150)])]
+	p = Pool(4)
+	procs = [p.map(gw2apilistworker, [(baseURL, valid[i:i + 200], version) for i in range(0, len(valid), 200)])]
 
 	resultdict = {}
 	for p in procs:

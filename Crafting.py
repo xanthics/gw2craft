@@ -35,11 +35,12 @@ from auto_gen import Armorsmith, Artificer, Chef, Chef_karma, Huntsman, Jeweler,
 	Weaponsmith
 # Localized text
 from translations import Localcz, Localde, Localen, Locales, Localfr, Localptbr
-from multiprocessing import Process, Queue, cpu_count
+from multiprocessing import Process, Queue, cpu_count, Pool
 from copy import deepcopy
 from MyPrint import maketotals
 from MyPrices import appendCosts
 from MakeGuide import costCraft
+from functools import partial
 
 # Join 2 recipe dicts
 def join(A, B):
@@ -47,23 +48,21 @@ def join(A, B):
 				return A or B
 		return dict([(a, join(A.get(a), B.get(a))) for a in set(A.keys()) | set(B.keys())])
 
-def recipeworker(cmds, cList, mytime, xp_to_level, out_q):
+
+def recipeworker((cmds, cList, mytime, xp_to_level)):  # , out_q):
 	Globals.init()
 	totals = {}
-	for cmd in cmds:
-		if len(cmd) == 2:
-			Globals.karmin = {}
-			for subcmd in cmd:
-				totals.update(costCraft(subcmd[0],subcmd[1],subcmd[2],subcmd[3],subcmd[4],deepcopy(cList),mytime,xp_to_level))
-		else:
-			totals.update(costCraft(cmd[0],cmd[1],cmd[2],cmd[3],cmd[4],deepcopy(cList),mytime,xp_to_level))
-	out_q.put(totals)
+	if type(cmds) == list:
+		for cmd in cmds:
+			totals.update(costCraft(cmd[0], cmd[1], cmd[2], cmd[3], cmd[4], deepcopy(cList), mytime, xp_to_level))
+	else:
+		totals.update(costCraft(cmds[0], cmds[1], cmds[2], cmds[3], cmds[4], deepcopy(cList), mytime, xp_to_level))
+	return totals
+
 
 def main():
 	mytime = "<span class=\"localtime\">" + datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S')+u'+00:00</span>'
 	print "Start: ", datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
-	# will hold our guide names, so no more manually creating upload list
-	guides = []
 	# Will hold level:total xp pairs (array)
 	xp_to_level = [0]
 	# populate the xp chart
@@ -72,7 +71,6 @@ def main():
 
 	cList = appendCosts()
 
-	out_q = Queue()
 	#TODO change the way flags are passed so it is easier to understand
 
 	cooking_karma = join(Chef.recipes, Chef_karma.recipes)
@@ -114,28 +112,14 @@ def main():
 			 (u"leatherworking_450.html", Leatherworker.recipes, False, True, range(400, 450, 25)),
 			 (u"scribe.html", Scribe.recipes, False, False, range(0, 400, 25))]
 
-	nprocs = cpu_count() * 2
-
-	procs = []
-	global header
-	global cright
-
-	chunksize = int(math.ceil(len(rList) / float(nprocs)))
-
-	for i in range(nprocs):
-		p = Process(target=recipeworker,args=(rList[chunksize * i:chunksize * (i + 1)],cList,mytime,xp_to_level,out_q))
-		procs.append(p)
-		p.start()
+	p = Pool()
+	params = [(rList[i], cList, mytime, xp_to_level) for i in range(0, len(rList))]
+	procs = p.map(recipeworker, params)
 
 	totals = {}
-	for i in range(nprocs):
-		totals.update(out_q.get())
-
-	for p in procs:
-		p.join(180)
-		# if thread is still alive after 180 seconds, something is wrong.  Kill the script.
-		if p.is_alive():
-			sys.exit(0)
+	for i in procs:
+		print(i)
+		totals.update(i)
 
 	maketotals(totals, mytime, Localen)
 	maketotals(totals, mytime, Localde)
