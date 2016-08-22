@@ -53,6 +53,7 @@ def recipeworker((cmds, cList, mytime, xp_to_level)):  # , out_q):
 	Globals.init()
 	totals = {}
 	if type(cmds) == list:
+		Globals.karmin = {}
 		for cmd in cmds:
 			totals.update(costCraft(cmd[0], cmd[1], cmd[2], cmd[3], cmd[4], deepcopy(cList), mytime, xp_to_level))
 	else:
@@ -112,13 +113,12 @@ def main():
 			 (u"leatherworking_450.html", Leatherworker.recipes, False, True, range(400, 450, 25)),
 			 (u"scribe.html", Scribe.recipes, False, False, range(0, 400, 25))]
 
-	p = Pool()
+	p = Pool(2)
 	params = [(rList[i], cList, mytime, xp_to_level) for i in range(0, len(rList))]
 	procs = p.map(recipeworker, params)
 
 	totals = {}
 	for i in procs:
-		print(i)
 		totals.update(i)
 
 	maketotals(totals, mytime, Localen)
