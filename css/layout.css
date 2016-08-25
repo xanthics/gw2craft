@@ -351,3 +351,11 @@ input[type=checkbox] + span {
 input[type=checkbox]:checked + span {
 	opacity:0.3;
 }
+
+input[type=checkbox] + button {
+	opacity:1.0;
+}
+
+input[type=checkbox]:checked + button {
+	opacity:0.3;
+}

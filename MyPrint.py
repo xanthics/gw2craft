@@ -572,21 +572,21 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 		if pmake[tier]:
 			for item in sorted(pmake[tier]):
 				t = (t+1)%2
-				page += u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span> (From %i tier) </div>\n"%(pmake[tier][item],cList[item][u'rarity'],cListName[item],tier-25)
+				page += u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.make+u":%3i <span class=\"%s\">%s</span> (From %i tier) </div>\n"%(pmake[tier][item],cList[item][u'rarity'],cListName[item],tier-25)
 		for item in sorted(make[tier], key=make[tier].get,reverse=True):
 			if cList[item][u'type'] == u'Refinement':
 				t = (t+1)%2
 				if item == 19679: # Bronze Ingot
-					page += (u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span> (%s)</div>\n")%(make[tier][item],cList[item][u'rarity'],cListName[item],localText.bNote)
+					page += (u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.make+u":%3i <span class=\"%s\">%s</span> (%s)</div>\n")%(make[tier][item],cList[item][u'rarity'],cListName[item],localText.bNote)
 				else:
-					page += u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item])
+					page += u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item])
 		for item in sorted(make[tier], key=make[tier].get,reverse=True):
 			if cList[item][u'type'] in non_item and not cList[item][u'type'] == u'Refinement':
 				t = (t+1)%2
 				if item in [13063,  13189,  13207,  13219,  13045,  13022,  13075,  13177,  13096,  13033, 13201, 13231]: # Sole
-					page += (u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span> (%s)</div>\n")%(make[tier][item]/2,cList[item][u'rarity'],cListName[item],localText.sNote)
+					page += (u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.make+u":%3i <span class=\"%s\">%s</span> (%s)</div>\n")%(make[tier][item]/2,cList[item][u'rarity'],cListName[item],localText.sNote)
 				else:
-					page += u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item])
+					page += u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item])
 
 		index = 0
 		if tier == 425:
@@ -606,12 +606,12 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 					for s in cList[item][u'recipe'][index]:
 						tstr += "\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u'\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][index][s])+u")"
 					tstr += "</div><br />"
-					page += u"<div class=\"s"+str(t)+u"\">"+localText.discover+u": <button class=\"arrow "+cList[item][u'rarity']+u'\" title=\"'+localText.toggle+u'\" id=\"'+str(item)+str(tier)+u'\">'+cListName[item]+u"</button> "+tstr+u"\n</div>\n"
+					page += u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.discover+u": <button class=\"arrow "+cList[item][u'rarity']+u'\" title=\"'+localText.toggle+u'\" id=\"'+str(item)+str(tier)+u'\">'+cListName[item]+u"</button> "+tstr+u"\n</div>\n"
 					buttonList.append(str(item)+str(tier))
 			for item in sorted(make[tier]):
 				if not cList[item][u'type'] in non_item and not cList[item][u'rarity'] == u'Exotic':
 					t = (t+1)%2
-					page += u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item])
+					page += u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item])
 			for item in sorted(make[tier]):
 				try:
 					index = cList[item][u'tier'].index(400)
@@ -632,12 +632,12 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 					for s in cList[item][u'recipe'][index]:
 						tstr += "\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u'\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][index][s])+u")"
 					tstr += "</div><br />"
-					page += u"<div class=\"s"+str(t)+u"\">"+localText.discover+u": <button class=\"arrow "+cList[item][u'rarity']+u'\" title=\"'+localText.toggle+u'\" id=\"'+str(item)+str(tier)+u'\">'+cListName[item]+u"</button> "+tstr+u"\n</div>\n"
+					page += u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.discover+u": <button class=\"arrow "+cList[item][u'rarity']+u'\" title=\"'+localText.toggle+u'\" id=\"'+str(item)+str(tier)+u'\">'+cListName[item]+u"</button> "+tstr+u"\n</div>\n"
 					buttonList.append(str(item)+str(tier))
 			for item in sorted(make[tier]):
 				if not cList[item][u'type'] in non_item and cList[item][u'rarity'] == u'Exotic':
 					t = (t+1)%2
-					page += u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item])
+					page += u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item])
 		else:
 			for item in sorted(make[tier]):
 				if craftexo:
@@ -658,12 +658,12 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 					for s in cList[item][u'recipe'][index]:
 						tstr += "\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u'\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][index][s])+u")"
 					tstr += "</div><br />"
-					page += u"<div class=\"s"+str(t)+u"\">"+localText.discover+u": <button class=\"arrow "+cList[item][u'rarity']+u'\" title=\"'+localText.toggle+u'\" id=\"'+str(item)+str(tier)+u'\">'+cListName[item]+u"</button> "+tstr+u"\n</div>\n"
+					page += u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.discover+u": <button class=\"arrow "+cList[item][u'rarity']+u'\" title=\"'+localText.toggle+u'\" id=\"'+str(item)+str(tier)+u'\">'+cListName[item]+u"</button> "+tstr+u"\n</div>\n"
 					buttonList.append(str(item)+str(tier))
 			for item in sorted(make[tier]):
 				if not cList[item][u'type'] in non_item:
 					t = (t+1)%2
-					page += u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item])
+					page += u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item])
 	page += u'<br />\n<h3>%s:%i</h3>\n'%(localText.level,tier+25)
 	t = (t+1)%2
 	page += u"<div class=\"s"+str(t)+u"\">%s</div>\n"%localText.finish
