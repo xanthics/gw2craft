@@ -217,12 +217,12 @@ def nav(localText):
 	page += u"<a href=\"leatherworking_fast.html\">%s</a><br />\n"%(localText.lw)
 	page += u"<a href=\"tailor_fast.html\">%s</a>\n"%(localText.tailor)
 	page += u"<h3>400-500</h3>\n"
-	page += u"<li><a href=\"artificing_400.html\">{}</a><br /></li>\n".format(localText.art)
-	page += u"<li><a href=\"huntsman_400.html\">{}</a><br /></li>\n".format(localText.hunt)
-	page += u"<li><a href=\"weaponcraft_400.html\">{}</a><br /></li>\n".format(localText.wc)
-	page += u"<li><a href=\"armorcraft_400.html\">{}</a><br /></li>\n".format(localText.ac)
-	page += u"<li><a href=\"leatherworking_400.html\">{}</a><br /></li>\n".format(localText.lw)
-	page += u"<li><a href=\"tailor_400.html\">{}</a><br /></li>\n".format(localText.tailor)
+	page += u"<a href=\"artificing_400.html\">{}</a><br />\n".format(localText.art)
+	page += u"<a href=\"huntsman_400.html\">{}</a><br />\n".format(localText.hunt)
+	page += u"<a href=\"weaponcraft_400.html\">{}</a><br />\n".format(localText.wc)
+	page += u"<a href=\"armorcraft_400.html\">{}</a><br />\n".format(localText.ac)
+	page += u"<a href=\"leatherworking_400.html\">{}</a><br />\n".format(localText.lw)
+	page += u"<a href=\"tailor_400.html\">{}</a><br />\n".format(localText.tailor)
 	page += u"<h3>{}</h3>\n".format(localText.special)
 	page += u"%s 1-200<br />\n"%(localText.cooking)
 	page += u"<ul>\n"
