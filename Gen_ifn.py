@@ -201,6 +201,7 @@ def nav(localText):
 	page += u"<a href=\"armorcraft.html\">%s</a><br />\n"%(localText.ac)
 	page += u"<a href=\"leatherworking.html\">%s</a><br />\n"%(localText.lw)
 	page += u"<a href=\"tailor.html\">%s</a><br />\n"%(localText.tailor)
+	page += u"<a href=\"scribe.html\">%s</a><br />\n"%(localText.scribe)
 	page += u"<h3>%s</h3>\n"%(localText.fGuides)
 	page += u"%s<br />\n"%(localText.cooking)
 	page += u"<ul>\n"
@@ -215,21 +216,29 @@ def nav(localText):
 	page += u"<a href=\"armorcraft_fast.html\">%s</a><br />\n"%(localText.ac)
 	page += u"<a href=\"leatherworking_fast.html\">%s</a><br />\n"%(localText.lw)
 	page += u"<a href=\"tailor_fast.html\">%s</a>\n"%(localText.tailor)
-	page += u"<h3>400+</h3>\n"
-	page += u"%s<br />\n"%(localText.art)
+	page += u"<h3>400-500</h3>\n"
 	page += u"<ul>\n"
-	page += u"<li><a href=\"artificing_450.html\">450</a><br /></li>\n"
-	page += u"<li><a href=\"artificing_400.html\">500</a><br /></li>\n"
+	page += u"<li><a href=\"artificing_400.html\">{}</a><br /></li>\n".format(localText.art)
+	page += u"<li><a href=\"huntsman_400.html\">{}</a><br /></li>\n".format(localText.hunt)
+	page += u"<li><a href=\"weaponcraft_400.html\">{}</a><br /></li>\n".format(localText.wc)
+	page += u"<li><a href=\"armorcraft_400.html\">{}</a><br /></li>\n".format(localText.ac)
+	page += u"<li><a href=\"leatherworking_400.html\">{}</a><br /></li>\n".format(localText.lw)
+	page += u"<li><a href=\"tailor_400.html\">{}</a><br /></li>\n".format(localText.tailor)
 	page += u"</ul>\n"
-	page += u"%s<br />\n"%(localText.hunt)
+	page += u"<h3>{}</h3>\n".format(localText.special)
+	page += u"%s 1-200<br />\n"%(localText.cooking)
 	page += u"<ul>\n"
-	page += u"<li><a href=\"huntsman_450.html\">450</a><br /></li>\n"
-	page += u"<li><a href=\"huntsman_400.html\">500</a><br /></li>\n"
+	page += u"<li><a href=\"cooking_fast_200.html\">{}</a><br /></li>\n".format(localText.nHearts)
+	page += u"<li><a href=\"cooking_karma_fast_200.html\">{}</a><br /></li>\n".format(localText.aHearts)
 	page += u"</ul>\n"
-	page += u"%s<br />\n"%(localText.wc)
+	page += u"400-450<br />\n"
 	page += u"<ul>\n"
-	page += u"<li><a href=\"weaponcraft_450.html\">450</a><br /></li>\n"
-	page += u"<li><a href=\"weaponcraft_400.html\">500</a><br /></li>\n"
+	page += u"<li><a href=\"artificing_450.html\">{}</a><br /></li>\n".format(localText.art)
+	page += u"<li><a href=\"huntsman_450.html\">{}</a><br /></li>\n".format(localText.hunt)
+	page += u"<li><a href=\"weaponcraft_450.html\">{}</a><br /></li>\n".format(localText.wc)
+	page += u"<li><a href=\"armorcraft_450.html\">{}</a><br /></li>\n".format(localText.ac)
+	page += u"<li><a href=\"leatherworking_450.html\">{}</a><br /></li>\n".format(localText.lw)
+	page += u"<li><a href=\"tailor_450.html\">{}</a><br /></li>\n".format(localText.tailor)
 	page += u"</ul>\n"
 	page += u"<h3>%s:%s</h3>\n"%(localText.navLang,localText.lang)
 	page += u"<a href=\"/nav.html\" hreflang=\"en\">English</a><br />\n"
