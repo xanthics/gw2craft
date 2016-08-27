@@ -405,17 +405,17 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 			\n</script> \
 			\n</div>\n'
 	page += localText.moreInfo%(u"<img src=\"/img/arrow.png\" alt=ARROW>")
-	page += u'<br /><br /><br /><div style="width: 100%;display:block;">\n \
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>\n \
-<!-- link ad -->\n \
-<ins class="adsbygoogle"\n \
-     style="display:block"\n \
-     data-ad-client="ca-pub-6865907345688710"\n \
-     data-ad-slot="5597160982"\n \
-     data-ad-format="link"></ins>\n \
-<script>\n \
-(adsbygoogle = window.adsbygoogle || []).push({});\n \
-</script></div><br />\n'
+#	page += u'<br /><br /><br /><div style="width: 100%;display:block;">\n \
+#<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>\n \
+#<!-- link ad -->\n \
+#<ins class="adsbygoogle"\n \
+#     style="display:block"\n \
+#     data-ad-client="ca-pub-6865907345688710"\n \
+#     data-ad-slot="5597160982"\n \
+#     data-ad-format="link"></ins>\n \
+#<script>\n \
+#(adsbygoogle = window.adsbygoogle || []).push({});\n \
+#</script></div><br />\n'
 	# Page Title Part 1
 	page += u'<h1>'+title+u'</h1>'
 	page += u'<dl>\n'
