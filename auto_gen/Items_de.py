@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2016-08-21T19:31:14 PST
+# Created: 2016-10-02T18:18:53 PST
 ilist = {
 	8576: u"Flasche Reiswein",
 	8587: u"Drottots pochiertes Ei",
@@ -6888,10 +6888,10 @@ ilist = {
 	48704: u"Kavaliermäßiger Prunkvoller Helm",
 	48705: u"Schamanischer Prunkvoller Helm",
 	48884: u"Makellose toxische Sporenprobe",
-	49441: u"+18 Quallose Infusion",
-	49442: u"+19 Quallose Infusion",
-	49443: u"+20 Quallose Infusion",
-	49444: u"+21 Quallose Infusion",
+	49441: u"+18 Qual-Infusion",
+	49442: u"+19 Qual-Infusion",
+	49443: u"+20 Qual-Infusion",
+	49444: u"+21 Qual-Infusion",
 	49522: u"Grausame aufwändige Gaze-Insignie",
 	49782: u"Uhrwerkmechanismus",
 	50140: u"Swelter-Tritt",
@@ -7257,7 +7257,7 @@ ilist = {
 	70489: u"Meister-Schleifkit",
 	70490: u"Berserkerhafte Güldene Axt",
 	70503: u"Klerikaler Güldener Hammer",
-	70522: u"Geölter Orichalcum-Schildboss",
+	70522: u"Geölter Orichalcum-Schildbuckel",
 	70541: u"Berserkerhafter Güldener Streitkolben",
 	70569: u"Reckenhafter Perlen-Prügel",
 	70575: u"Marodierende Prunkvolle Handschuhe",
@@ -7500,6 +7500,7 @@ ilist = {
 	73231: u"Phiole mit Grünem Schleim",
 	73243: u"Geölte Gaze-Handschuhleiste",
 	73246: u"Faulender Güldener Kurzbogen",
+	73248: u"Stabilisierende Matrix",
 	73276: u"Marodierendes Güldenes Großschwert",
 	73286: u"Schrift über grundlegende Stärke",
 	73289: u"Geringes Sigill der Konzentration",
@@ -8046,4 +8047,14 @@ ilist = {
 	1000759: u"Festenkonstrukt-Trümmer",
 	1000760: u"'Belagert die Festung'-Bronzetrophäe",
 	1000761: u"Xeras Silbertrophäe",
+	1000766: u"Großer Kristall-Block des Soliden Ozeans",
+	1000767: u"Holo-Tänzerin der Norn",
+	1000769: u"Fragmente des Soliden Ozeans",
+	1000771: u"Welle des Soliden Ozeans",
+	1000772: u"Holo-Tänzer der Norn",
+	1000776: u"Brocken des Soliden Ozeans",
+	1000777: u"Spitze des Soliden Ozeans",
+	1000780: u"Großer Block des Soliden Ozeans",
+	1000786: u"Block des Soliden Ozeans",
+	1000788: u"Kristall-Block des Soliden Ozeans",
 }

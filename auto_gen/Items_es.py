@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2016-08-21T19:31:41 PST
+# Created: 2016-10-02T18:19:17 PST
 ilist = {
 	8576: u"Botella de licor de arroz",
 	8587: u"Huevo escalfado de Drottot",
@@ -6758,7 +6758,7 @@ ilist = {
 	46740: u"Carrete de hilo de seda para tejer",
 	46741: u"Haz de damasco",
 	46742: u"Trozo de mithrilio",
-	46744: u"Pegote de residuo de espíritus ancentrales",
+	46744: u"Pegote de residuo de espíritus ancestrales",
 	46745: u"Carrete de hilo grueso eloniano",
 	46747: u"Reactivo termocatalítico",
 	48580: u"Hombreras dracónicas de rabioso",
@@ -7500,6 +7500,7 @@ ilist = {
 	73231: u"Vial de baba verde",
 	73243: u"Retazo para guante de gasa engrasado",
 	73246: u"Arco corto áurico carroñero",
+	73248: u"Matriz estabilizadora",
 	73276: u"Mandoble áurico de salteador",
 	73286: u"Mandato de fuerza básica",
 	73289: u"Sello menor de concentración",
@@ -8046,4 +8047,14 @@ ilist = {
 	1000759: u"Chatarra de Ensamblaje de la Fortaleza",
 	1000760: u"Trofeo de asedio de la Fortaleza de bronce",
 	1000761: u"Trofeo de Xera de plata",
+	1000766: u"Bloque de cristal grande del Océano Sólido",
+	1000767: u"Holobailarina norn",
+	1000769: u"Fragmentos del Océano Sólido",
+	1000771: u"Ola del Océano Sólido",
+	1000772: u"Holobailarín norn",
+	1000776: u"Pedazo del Océano Sólido",
+	1000777: u"Aguja del Océano Sólido",
+	1000780: u"Bloque grande del Océano Sólido",
+	1000786: u"Bloque del Océano Sólido",
+	1000788: u"Bloque de cristal del Océano Sólido",
 }

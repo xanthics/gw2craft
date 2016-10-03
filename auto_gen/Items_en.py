@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2016-08-21T19:30:21 PST
+# Created: 2016-10-02T18:18:00 PST
 ilist = {
 	8576: u"Bottle of Rice Wine",
 	8587: u"Drottot's Poached Egg",
@@ -7500,6 +7500,7 @@ ilist = {
 	73231: u"Vial of Green Goo",
 	73243: u"Oiled Gossamer Glove Panel",
 	73246: u"Carrion Auric Short Bow",
+	73248: u"Stabilizing Matrix",
 	73276: u"Marauder Auric Greatsword",
 	73286: u"Writ of Basic Strength",
 	73289: u"Minor Sigil of Concentration",
@@ -8046,4 +8047,14 @@ ilist = {
 	1000759: u"Keep Construct Rubble",
 	1000760: u"Bronze Siege the Stronghold Trophy",
 	1000761: u"Silver Xera Trophy",
+	1000766: u"Large Crystal Block of the Solid Ocean",
+	1000767: u"Female Norn Holo-Dancer",
+	1000769: u"Fragments of the Solid Ocean",
+	1000771: u"Wave of the Solid Ocean",
+	1000772: u"Male Norn Holo-Dancer",
+	1000776: u"Chunk of the Solid Ocean",
+	1000777: u"Spire of the Solid Ocean",
+	1000780: u"Large Block of the Solid Ocean",
+	1000786: u"Block of the Solid Ocean",
+	1000788: u"Crystal Block of the Solid Ocean",
 }
