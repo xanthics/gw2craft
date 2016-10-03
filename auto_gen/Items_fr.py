@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2016-08-21T19:30:48 PST
+# Created: 2016-10-02T18:18:25 PST
 ilist = {
 	8576: u"Bouteille d'alcool de riz",
 	8587: u"Œuf poché façon Drottot",
@@ -7500,6 +7500,7 @@ ilist = {
 	73231: u"Fiole de gelée verte",
 	73243: u"Panneau de gants en tulle huilés",
 	73246: u"Arc court aurique nécrophage",
+	73248: u"Matrice stabilisatrice",
 	73276: u"Espadon aurique maraudeur",
 	73286: u"Écrit sur la Force basique",
 	73289: u"Cachet de concentration mineur",
@@ -8046,4 +8047,14 @@ ilist = {
 	1000759: u"Gravats de Titan du fort",
 	1000760: u"Trophée de bronze de « Assiéger la forteresse »",
 	1000761: u"Trophée d'argent de Xera",
+	1000766: u"Gros bloc de cristal de l'océan solide",
+	1000767: u"Danseuse holographique norn",
+	1000769: u"Fragments de l'océan solide",
+	1000771: u"Vague de l'océan solide",
+	1000772: u"Danseur holographique norn",
+	1000776: u"Morceau de l'océan solide",
+	1000777: u"Aiguillon de l'océan solide",
+	1000780: u"Gros bloc de l'océan solide",
+	1000786: u"Bloc de l'océan solide",
+	1000788: u"Bloc de cristal de l'océan solide",
 }
