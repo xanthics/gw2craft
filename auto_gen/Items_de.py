@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2016-10-02T18:18:53 PST
+# Created: 2016-11-09T13:15:26 PST
 ilist = {
 	8576: u"Flasche Reiswein",
 	8587: u"Drottots pochiertes Ei",
@@ -8047,6 +8047,7 @@ ilist = {
 	1000759: u"Festenkonstrukt-Trümmer",
 	1000760: u"'Belagert die Festung'-Bronzetrophäe",
 	1000761: u"Xeras Silbertrophäe",
+	1000764: u"Standard-Grabmarkierung",
 	1000766: u"Großer Kristall-Block des Soliden Ozeans",
 	1000767: u"Holo-Tänzerin der Norn",
 	1000769: u"Fragmente des Soliden Ozeans",
@@ -8057,4 +8058,8 @@ ilist = {
 	1000780: u"Großer Block des Soliden Ozeans",
 	1000786: u"Block des Soliden Ozeans",
 	1000788: u"Kristall-Block des Soliden Ozeans",
+	1000791: u"Ewige Flamme",
+	1000792: u"Dämonen-Statue",
+	1000793: u"Mausoleum",
+	1000794: u"Galgenbaum",
 }

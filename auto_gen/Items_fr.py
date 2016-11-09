@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2016-10-02T18:18:25 PST
+# Created: 2016-11-09T13:15:00 PST
 ilist = {
 	8576: u"Bouteille d'alcool de riz",
 	8587: u"Œuf poché façon Drottot",
@@ -8047,6 +8047,7 @@ ilist = {
 	1000759: u"Gravats de Titan du fort",
 	1000760: u"Trophée de bronze de « Assiéger la forteresse »",
 	1000761: u"Trophée d'argent de Xera",
+	1000764: u"Pierre tombale basique",
 	1000766: u"Gros bloc de cristal de l'océan solide",
 	1000767: u"Danseuse holographique norn",
 	1000769: u"Fragments de l'océan solide",
@@ -8057,4 +8058,8 @@ ilist = {
 	1000780: u"Gros bloc de l'océan solide",
 	1000786: u"Bloc de l'océan solide",
 	1000788: u"Bloc de cristal de l'océan solide",
+	1000791: u"Flamme éternelle",
+	1000792: u"Statue démoniaque",
+	1000793: u"Mausolée",
+	1000794: u"Arbre du pendu",
 }
