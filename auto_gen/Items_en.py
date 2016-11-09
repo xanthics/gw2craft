@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2016-10-02T18:18:00 PST
+# Created: 2016-11-09T13:14:35 PST
 ilist = {
 	8576: u"Bottle of Rice Wine",
 	8587: u"Drottot's Poached Egg",
@@ -8047,6 +8047,7 @@ ilist = {
 	1000759: u"Keep Construct Rubble",
 	1000760: u"Bronze Siege the Stronghold Trophy",
 	1000761: u"Silver Xera Trophy",
+	1000764: u"Basic Grave Marker",
 	1000766: u"Large Crystal Block of the Solid Ocean",
 	1000767: u"Female Norn Holo-Dancer",
 	1000769: u"Fragments of the Solid Ocean",
@@ -8057,4 +8058,8 @@ ilist = {
 	1000780: u"Large Block of the Solid Ocean",
 	1000786: u"Block of the Solid Ocean",
 	1000788: u"Crystal Block of the Solid Ocean",
+	1000791: u"Eternal Flame",
+	1000792: u"Demon Statue",
+	1000793: u"Mausoleum",
+	1000794: u"Hanging Tree",
 }

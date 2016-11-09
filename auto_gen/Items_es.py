@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2016-10-02T18:19:17 PST
+# Created: 2016-11-09T13:15:52 PST
 ilist = {
 	8576: u"Botella de licor de arroz",
 	8587: u"Huevo escalfado de Drottot",
@@ -8047,6 +8047,7 @@ ilist = {
 	1000759: u"Chatarra de Ensamblaje de la Fortaleza",
 	1000760: u"Trofeo de asedio de la Fortaleza de bronce",
 	1000761: u"Trofeo de Xera de plata",
+	1000764: u"Indicador de tumba básico",
 	1000766: u"Bloque de cristal grande del Océano Sólido",
 	1000767: u"Holobailarina norn",
 	1000769: u"Fragmentos del Océano Sólido",
@@ -8057,4 +8058,8 @@ ilist = {
 	1000780: u"Bloque grande del Océano Sólido",
 	1000786: u"Bloque del Océano Sólido",
 	1000788: u"Bloque de cristal del Océano Sólido",
+	1000791: u"Llama eterna",
+	1000792: u"Estatua demoníaca",
+	1000793: u"Mausoleo",
+	1000794: u"Árbol de los ahorcados",
 }
