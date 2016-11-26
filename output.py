@@ -2,7 +2,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 '''
-* Copyright (c) 2013 Jeremy Parks. All rights reserved.
+* Copyright (c) 2013-2016 Jeremy Parks. All rights reserved.
 *
 * Permission is hereby granted, free of charge, to any person obtaining a
 * copy of this software and associated documentation files (the "Software"),
