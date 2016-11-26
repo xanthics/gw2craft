@@ -700,7 +700,6 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page += u"$(\"#show_all\").click(function () {$(\".sbutton\").show();"
 	page += u"});\n$(\"#hide_all\").click(function () {$(\".sbutton\").hide();"
 	page += u'});\n</script>\n'
-#	page += u'\n<script type = "text/javascript"> var infolinks_pid = 2820854; var infolinks_wsid = 0; </script> <script type = "text/javascript" src = "//resources.infolinks.com/js/infolinks_main.js"> </script>\n'
 	page += u'</body>\n'
 	page += u'</html>\n'
 
@@ -825,7 +824,6 @@ def maketotals(totals, mytime, localText):
 	</script></div>\n'
 
 	page += u'\n</section>\n' + localText.cright
-#	page += u'\n<script type = "text/javascript"> var infolinks_pid = 2820854; var infolinks_wsid = 0; </script> <script type = "text/javascript" src = "//resources.infolinks.com/js/infolinks_main.js"> </script>\n'
 	page += u'</body>\n'
 	page += u'</html>\n'
 
