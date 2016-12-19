@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2016-11-25T21:30:00 PST
+# Created: 2016-12-18T22:09:27 PST
 ilist = {
 	8576: u"Botella de licor de arroz",
 	8587: u"Huevo escalfado de Drottot",
@@ -8062,4 +8062,12 @@ ilist = {
 	1000792: u"Estatua demoníaca",
 	1000793: u"Mausoleo",
 	1000794: u"Árbol de los ahorcados",
+	1000795: u"Semiesfera de nieve grande",
+	1000796: u"Ortoedro de nieve",
+	1000797: u"Cuña de nieve grande",
+	1000798: u"Cubo de nieve",
+	1000800: u"Ortoedro de nieve grande",
+	1000801: u"Cubo de nieve grande",
+	1000802: u"Semiesfera de nieve",
+	1000803: u"Cuña de nieve",
 }

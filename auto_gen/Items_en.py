@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2016-11-25T21:28:41 PST
+# Created: 2016-12-18T22:08:11 PST
 ilist = {
 	8576: u"Bottle of Rice Wine",
 	8587: u"Drottot's Poached Egg",
@@ -8062,4 +8062,12 @@ ilist = {
 	1000792: u"Demon Statue",
 	1000793: u"Mausoleum",
 	1000794: u"Hanging Tree",
+	1000795: u"Large Hemisphere of Snow",
+	1000796: u"Cuboid of Snow",
+	1000797: u"Large Wedge of Snow",
+	1000798: u"Cube of Snow",
+	1000800: u"Large Cuboid of Snow",
+	1000801: u"Large Cube of Snow",
+	1000802: u"Hemisphere of Snow",
+	1000803: u"Wedge of Snow",
 }
