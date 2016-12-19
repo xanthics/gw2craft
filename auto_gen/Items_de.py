@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2016-11-25T21:29:35 PST
+# Created: 2016-12-18T22:09:00 PST
 ilist = {
 	8576: u"Flasche Reiswein",
 	8587: u"Drottots pochiertes Ei",
@@ -8062,4 +8062,12 @@ ilist = {
 	1000792: u"Dämonen-Statue",
 	1000793: u"Mausoleum",
 	1000794: u"Galgenbaum",
+	1000795: u"Großer Halbkugel aus Schnee",
+	1000796: u"Quader aus Schnee",
+	1000797: u"Großer Ecke aus Schnee",
+	1000798: u"Würfel aus Schnee",
+	1000800: u"Großer Quader aus Schnee",
+	1000801: u"Großer Würfel aus Schnee",
+	1000802: u"Halbkugel aus Schnee",
+	1000803: u"Ecke aus Schnee",
 }
