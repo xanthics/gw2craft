@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2016-12-18T22:08:11 PST
+# Created: 2017-02-13T13:35:20 PST
 ilist = {
 	8576: u"Bottle of Rice Wine",
 	8587: u"Drottot's Poached Egg",
@@ -7767,6 +7767,7 @@ ilist = {
 	78437: u"Box of Initiate Scribing Supplies",
 	78614: u"Box of Adept Scribing Supplies",
 	78713: u"Box of Journeyman Scribing Supplies",
+	80076: u"Lucky Great Rooster Lantern",
 	1000043: u"Guild Catapult",
 	1000051: u"Vault Transport",
 	1000073: u"+5% Experience Public Banner",
@@ -8070,4 +8071,17 @@ ilist = {
 	1000801: u"Large Cube of Snow",
 	1000802: u"Hemisphere of Snow",
 	1000803: u"Wedge of Snow",
+	1000804: u"Rooster Statue",
+	1000805: u"Impaled Prisoner",
+	1000806: u"Fragment of Saul's Burden",
+	1000807: u"Silver Mursaat Overseer Trophy",
+	1000811: u"Silver Samarog Trophy",
+	1000812: u"Cairn the Indomitable Shard",
+	1000813: u"Rec Room Floor Tile",
+	1000818: u"Bronze Cairn the Indomitable Trophy",
+	1000820: u"Bronze Mursaat Overseer Trophy",
+	1000823: u"Silver Deimos Trophy",
+	1000825: u"Silver Cairn the Indomitable Trophy",
+	1000826: u"Bronze Samarog Trophy",
+	1000829: u"Bronze Deimos Trophy",
 }

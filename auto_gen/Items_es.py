@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2016-12-18T22:09:27 PST
+# Created: 2017-02-13T13:37:36 PST
 ilist = {
 	8576: u"Botella de licor de arroz",
 	8587: u"Huevo escalfado de Drottot",
@@ -7767,6 +7767,7 @@ ilist = {
 	78437: u"Caja de suministros de escriba novato",
 	78614: u"Caja de suministros de escriba avezado",
 	78713: u"Caja de suministros de escriba titulado",
+	80076: u"Lámpara de la suerte de gran gallo",
 	1000043: u"Catapulta del clan",
 	1000051: u"Transporte de la Cámara",
 	1000073: u"Estandarte público de +5 % Experiencia",
@@ -8070,4 +8071,17 @@ ilist = {
 	1000801: u"Cubo de nieve grande",
 	1000802: u"Semiesfera de nieve",
 	1000803: u"Cuña de nieve",
+	1000804: u"Estatua de gallo",
+	1000805: u"Prisionero empalado",
+	1000806: u"Fragmento de la Carga de Saul",
+	1000807: u"Trofeo de dirigente mursaat de plata",
+	1000811: u"Trofeo de Samarog de plata",
+	1000812: u"Esquirla de Cairn el Indomable",
+	1000813: u"Baldosa de la zona de recreo",
+	1000818: u"Trofeo de Cairn el Indomable de bronce",
+	1000820: u"Trofeo de dirigente mursaat de bronce",
+	1000823: u"Trofeo de Deimos de plata",
+	1000825: u"Trofeo de Cairn el Indomable de plata",
+	1000826: u"Trofeo de Samarog de bronce",
+	1000829: u"Trofeo de Deimos de bronce",
 }
