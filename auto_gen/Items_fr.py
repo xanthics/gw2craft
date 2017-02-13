@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2016-12-18T22:08:35 PST
+# Created: 2017-02-13T13:36:06 PST
 ilist = {
 	8576: u"Bouteille d'alcool de riz",
 	8587: u"Œuf poché façon Drottot",
@@ -7767,6 +7767,7 @@ ilist = {
 	78437: u"Boîte de fournitures d'illustrateur initié",
 	78614: u"Boîte de fournitures d'illustrateur adepte",
 	78713: u"Boîte de fournitures d'illustrateur compagnon",
+	80076: u"Lanterne du grand coq chanceux",
 	1000043: u"Catapulte de guilde",
 	1000051: u"Transport de coffre",
 	1000073: u"Bannière publique +5% d'expérience",
@@ -8070,4 +8071,17 @@ ilist = {
 	1000801: u"Grand cube de neige",
 	1000802: u"Demi-sphère de neige",
 	1000803: u"Coin de neige",
+	1000804: u"Statue de coq",
+	1000805: u"Prisonnier empalé",
+	1000806: u"Fragment du fardeau de Saul",
+	1000807: u"Trophée d'argent du surveillant de Mursaat",
+	1000811: u"Trophée d'argent de Samarog",
+	1000812: u"Fragment de Cairn l'Indomptable",
+	1000813: u"Dalle de la salle de jeux",
+	1000818: u"Trophée de bronze de Cairn l'Indomptable",
+	1000820: u"Trophée de bronze du surveillant de Mursaat",
+	1000823: u"Trophée d'argent de Deimos",
+	1000825: u"Trophée d'argent de Cairn l'Indomptable",
+	1000826: u"Trophée de bronze de Samarog",
+	1000829: u"Trophée de bronze de Deimos",
 }

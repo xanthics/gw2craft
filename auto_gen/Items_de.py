@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2016-12-18T22:09:00 PST
+# Created: 2017-02-13T13:36:51 PST
 ilist = {
 	8576: u"Flasche Reiswein",
 	8587: u"Drottots pochiertes Ei",
@@ -7767,6 +7767,7 @@ ilist = {
 	78437: u"Kiste mit Eingeweihten-Schreibvorräten",
 	78614: u"Kiste mit Adepten-Schreibvorräten",
 	78713: u"Kiste mit Gesellen-Schreibvorräten",
+	80076: u"Glückslaterne des Riesenhahns",
 	1000043: u"Blaupause für Gilden-Katapult",
 	1000051: u"Tresortransport",
 	1000073: u"+5% Erfahrungspunkte öffentliches Banner",
@@ -8062,12 +8063,25 @@ ilist = {
 	1000792: u"Dämonen-Statue",
 	1000793: u"Mausoleum",
 	1000794: u"Galgenbaum",
-	1000795: u"Großer Halbkugel aus Schnee",
+	1000795: u"Große Halbkugel aus Schnee",
 	1000796: u"Quader aus Schnee",
-	1000797: u"Großer Ecke aus Schnee",
+	1000797: u"Große Ecke aus Schnee",
 	1000798: u"Würfel aus Schnee",
 	1000800: u"Großer Quader aus Schnee",
 	1000801: u"Großer Würfel aus Schnee",
 	1000802: u"Halbkugel aus Schnee",
 	1000803: u"Ecke aus Schnee",
+	1000804: u"Hahnstatue",
+	1000805: u"Aufgespießter Gefangener",
+	1000806: u"Fragment von Sauls Bürde",
+	1000807: u"Mursaat-Aufseher-Silbertrophäe",
+	1000811: u"Samarog-Silbertrophäe",
+	1000812: u"Scherbe von Cairn dem Unbeugsamen",
+	1000813: u"Bodenplatte des Erholungsraums",
+	1000818: u"Cairn-der-Unbeugsame-Bronzetrophäe",
+	1000820: u"Mursaat-Aufseher-Bronzetrophäe",
+	1000823: u"Deimos-Silbertrophäe",
+	1000825: u"Cairn-der-Unbeugsame-Silbertrophäe",
+	1000826: u"Samarog-Bronzetrophäe",
+	1000829: u"Deimos-Bronzetrophäe",
 }
