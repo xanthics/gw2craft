@@ -353,7 +353,10 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page += u'''<!-- Ezoic Code -->
 <script>var ezoicId = 39853;</script>
 <script type="text/javascript" src="//go.ezoic.net/ezoic/ezoic.js"></script>
-<!-- Ezoic Code -->'''
+<!-- Ezoic Code -->
+<!-- Ezoic Ad Testing Code-->
+<script src="//g.ezoic.net/ezoic/ezoiclitedata.go?did=39853"></script>
+<!-- Ezoic Ad Testing Code-->'''
 	# Title Part 1
 	page += u'	<title>'+title+u' - Guild War 2 Crafting Guide</title>\n'
 	page += u'	<meta name="description" content="Guild Wars 2 always current crafting guide for '+filename.split('.')[0].replace("_"," ").title()+u'">\n'
@@ -630,10 +633,13 @@ def maketotals(totals, mytime, localText):
 <!DOCTYPE html>
 <html>
 <head>
-<!-- Ezoic Code -->
-<script>var ezoicId = 39853;</script>
-<script type="text/javascript" src="//go.ezoic.net/ezoic/ezoic.js"></script>
-<!-- Ezoic Code -->
+	<!-- Ezoic Code -->
+	<script>var ezoicId = 39853;</script>
+	<script type="text/javascript" src="//go.ezoic.net/ezoic/ezoic.js"></script>
+	<!-- Ezoic Code -->
+	<!-- Ezoic Ad Testing Code-->
+	<script src="//g.ezoic.net/ezoic/ezoiclitedata.go?did=39853"></script>
+	<!-- Ezoic Ad Testing Code-->
 	<title>Totals</title>
 	<meta name="description" content="Guild Wars 2 always current crafting guide price totals">
 	<meta name="keywords" content="best videogames, free mmos, free mmorpg, best free mmorpg, best mmorpg, free to play, mmos, mmorpg, free game, online games, fantasy games, PC games, PC gaming, crafting guide, crafting guides, Guild Wars 2, Trading Post"/>
