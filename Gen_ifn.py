@@ -37,7 +37,10 @@ def faq(localText):
 	page += u'''<!-- Ezoic Code -->
 <script>var ezoicId = 39853;</script>
 <script type="text/javascript" src="//go.ezoic.net/ezoic/ezoic.js"></script>
-<!-- Ezoic Code -->'''
+<!-- Ezoic Code -->
+<!-- Ezoic Ad Testing Code-->
+<script src="//g.ezoic.net/ezoic/ezoiclitedata.go?did=39853"></script>
+<!-- Ezoic Ad Testing Code-->'''
 	page += u"	<title>%s</title>\n"%(localText.about)
 	page += u"	<meta name=\"description\" content=\"ACCG FAQ and Contact information\">\n"
 	page += u'	<meta name="keywords" content="best videogames, free mmos, free mmorpg, best free mmorpg, best mmorpg, free to play, mmos, mmorpg, free game, online games, fantasy games, PC games, PC gaming, crafting guide, crafting guides, Guild Wars 2, Trading Post"/>\n'
@@ -151,7 +154,10 @@ def nav(localText):
 	page += u'''<!-- Ezoic Code -->
 <script>var ezoicId = 39853;</script>
 <script type="text/javascript" src="//go.ezoic.net/ezoic/ezoic.js"></script>
-<!-- Ezoic Code -->'''
+<!-- Ezoic Code -->
+<!-- Ezoic Ad Testing Code-->
+<script src="//g.ezoic.net/ezoic/ezoiclitedata.go?did=39853"></script>
+<!-- Ezoic Ad Testing Code-->'''
 	page += u"	<title>Nav Page</title>\n"
 	page += u"	<meta name=\"description\" content=\"ACCG nav page\">\n"
 	page += u'	<meta name="keywords" content="best videogames, free mmos, free mmorpg, best free mmorpg, best mmorpg, free to play, mmos, mmorpg, free game, online games, fantasy games, PC games, PC gaming, crafting guide, crafting guides, Guild Wars 2, Trading Post"/>\n'
@@ -253,7 +259,10 @@ def index(localText):
 	page += u'''<!-- Ezoic Code -->
 <script>var ezoicId = 39853;</script>
 <script type="text/javascript" src="//go.ezoic.net/ezoic/ezoic.js"></script>
-<!-- Ezoic Code -->'''
+<!-- Ezoic Code -->
+<!-- Ezoic Ad Testing Code-->
+<script src="//g.ezoic.net/ezoic/ezoiclitedata.go?did=39853"></script>
+<!-- Ezoic Ad Testing Code-->'''
 	page += u"	<title>ACCGs for Guild Wars 2</title>\n"
 	page += u"	<meta name=\"description\" content=\"Always Current Crafting Guides for Guild Wars 2 with guides that are updated every 30 minutes based on current TP prices.  Multiple styles.\">\n"
 	page += u'	<meta name="keywords" content="best videogames, free mmos, free mmorpg, best free mmorpg, best mmorpg, free to play, mmos, mmorpg, free game, online games, fantasy games, PC games, PC gaming, crafting guide, crafting guides, Guild Wars 2, Trading Post"/>\n'
