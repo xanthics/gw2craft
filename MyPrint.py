@@ -502,16 +502,10 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 
 	# adword adaptive
 	page += u'<br /><div style="width: 100%;display:block;">\n \
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>\n \
-<!-- first ad -->\n \
-<ins class="adsbygoogle"\n \
-     style="display:block"\n \
-     data-ad-client="ca-pub-6865907345688710"\n \
-     data-ad-slot="7911498987"\n \
-     data-ad-format="auto"></ins>\n \
-<script>\n \
-(adsbygoogle = window.adsbygoogle || []).push({});\n \
-</script></div>\n'
+<!-- Ezoic - first banner - mid_content -->\n\
+<div id="ezoic-pub-ad-placeholder-104"></div>\n\
+<!-- End Ezoic - first banner - mid_content -->\n\
+</div>\n'
 
 	page += u"<br />\n<br />\n<h2>%s</h2>\n"%localText.make
 	page += u"<button title=\""+localText.toggle+u"\" class =\"info\" id=\"show_all\">%s</button><br />"%localText.expand
@@ -670,16 +664,9 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page += u"<div class=\"s"+str(t)+u"\">%s</div>\n"%localText.finish
 	# adword adaptive
 	page += u'<br /><div style="width: 100%;display:block;">\n \
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>\n \
-<!-- tail ad responsive -->\n \
-<ins class="adsbygoogle"\n \
-     style="display:block"\n \
-     data-ad-client="ca-pub-6865907345688710"\n \
-     data-ad-slot="5237234180"\n \
-     data-ad-format="auto"></ins>\n \
-<script>\n \
-(adsbygoogle = window.adsbygoogle || []).push({});\n \
-</script></div>\n'
+<!-- Ezoic - Tail - bottom_of_page -->\n \
+<div id="ezoic-pub-ad-placeholder-102"></div>\n\
+<!-- End Ezoic - Tail - bottom_of_page --></div>\n'
 	# adword
 #	page += u'<br /><div style="display:block;text-align:Right;"> \
 #			\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
