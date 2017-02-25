@@ -49,6 +49,14 @@ def faq(localText):
 	page += u"	<link rel=\"icon\" type=\"image/png\" href=\"/fi.gif\">\n"
 	page += u"	<script src=\"//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js\"></script>\n"
 	page += u"	<script src=\"/js/menu.js\" type=\"text/javascript\"></script>\n"
+	page += u"""	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6865907345688710",
+    enable_page_level_ads: true
+  });
+</script>
+	"""
 	page += u"</head>\n"
 	page += u"<body>\n"
 	page += u"""<script> 
@@ -166,6 +174,14 @@ def nav(localText):
 	page += u"	<link rel=\"icon\" type=\"image/png\" href=\"/fi.gif\">\n"
 	page += u"	<script src=\"//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js\"></script>\n"
 	page += u"	<script src=\"/js/menu.js\" type=\"text/javascript\"></script>\n"
+	page += u"""	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script>
+	  (adsbygoogle = window.adsbygoogle || []).push({
+	    google_ad_client: "ca-pub-6865907345688710",
+	    enable_page_level_ads: true
+	  });
+	</script>
+		"""
 	page += u"</head>\n"
 	page += u"<body>\n"
 	page += u"""<script> 
@@ -272,6 +288,14 @@ def index(localText):
 	page += u"	<link rel=\"image_src\" href=\"apple-touch-icon-precomposed.png\">\n"
 	page += u"	<script src=\"//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js\"></script>\n"
 	page += u"	<script src=\"/js/menu.js\" type=\"text/javascript\"></script>\n"
+	page += u"""	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script>
+	  (adsbygoogle = window.adsbygoogle || []).push({
+	    google_ad_client: "ca-pub-6865907345688710",
+	    enable_page_level_ads: true
+	  });
+	</script>
+		"""
 	page += u"</head>\n"
 	page += u"<body>\n"
 	page += u"""<script> 
@@ -311,6 +335,30 @@ def index(localText):
 	page += u"%s\n"%(localText.rCost)
 	page += u"<br /><hr>\n"
 	page += u"%s\n<br />"%(localText.thanks2)
+	# adword adaptive
+	page += u'<br /><hr><br /><div style="width: 100%;display:block;">\n \
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>\n \
+<!-- tail ad responsive -->\n \
+<ins class="adsbygoogle"\n \
+     style="display:block"\n \
+     data-ad-client="ca-pub-6865907345688710"\n \
+     data-ad-slot="5237234180"\n \
+     data-ad-format="auto"></ins>\n \
+<script>\n \
+(adsbygoogle = window.adsbygoogle || []).push({});\n \
+</script></div>\n'
+	# adword
+#	page += u'<br /><hr><br /><div style="display:block;text-align:Right;"> \
+#			\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
+#			\n<!-- Tail ad --> \
+#			\n<ins class=\"adsbygoogle\" \
+#			\n     style=\"display:inline-block;width:336px;height:280px\" \
+#			\n     data-ad-client=\"ca-pub-6865907345688710\" \
+#			\n     data-ad-slot=\"9889445788\"></ins> \
+#			\n<script> \
+#			\n(adsbygoogle = window.adsbygoogle || []).push({}); \
+#			\n</script> \
+#			\n</div>\n'
 	page += u"</section>\n"
 	page += localText.cright
 	page += u"</body>\n"
