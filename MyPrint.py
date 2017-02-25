@@ -401,17 +401,10 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 #		t, localText.discover, cList[item][u'rarity'], localText.toggle, item, tier, cListName[item], tstr)
 	page += u"<strong>%s</strong><br />\n"%(localText.region)
 #	# adword
-	page += u'<div style="float:right;position:absolute;right:-320px;"> \
-			\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
-			\n<!-- large sidebar --> \
-			\n<ins class=\"adsbygoogle\" \
-			\n     style=\"display:inline-block;width:300px;height:600px\" \
-			\n     data-ad-client=\"ca-pub-6865907345688710\" \
-			\n     data-ad-slot=\"9285292589\"></ins> \
-			\n<script> \
-			\n(adsbygoogle = window.adsbygoogle || []).push({}); \
-			\n</script> \
-			\n</div>\n'
+	page += u'<div style="float:right;position:absolute;right:-320px;">\n\
+<!-- Ezoic - Large sidebar - sidebar -->\n\
+<div id="ezoic-pub-ad-placeholder-103"></div>\n\
+<!-- End Ezoic - Large sidebar - sidebar -->\n\n</div>\n'
 	page += localText.moreInfo%(u"<img src=\"/img/arrow.png\" alt=ARROW>")
 #	page += u'<br /><br /><br /><div style="width: 100%;display:block;">\n \
 #<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>\n \
@@ -763,17 +756,11 @@ def maketotals(totals, mytime, localText):
 	page += u"<section class=\"main\">\n<strong>%s</strong><br />\n"%(localText.region)
 	page += u"<h5 style=\"text-align:center;\">"+localText.updated+u": " + mytime + u"</h5>"
 	# adword
-	page += u'<div style="float:right;position:absolute;right:-320px;"> \
-			\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
-			\n<!-- large sidebar --> \
-			\n<ins class=\"adsbygoogle\" \
-			\n     style=\"display:inline-block;width:300px;height:600px\" \
-			\n     data-ad-client=\"ca-pub-6865907345688710\" \
-			\n     data-ad-slot=\"9285292589\"></ins> \
-			\n<script> \
-			\n(adsbygoogle = window.adsbygoogle || []).push({}); \
-			\n</script> \
-			\n</div>\n'
+	page += u'<div style="float:right;position:absolute;right:-320px;">\n \
+<!-- Ezoic - Large sidebar - sidebar -->\n\
+<div id="ezoic-pub-ad-placeholder-103"></div>\n\
+<!-- End Ezoic - Large sidebar - sidebar -->\n\
+</div>\n'
 	page += localText.note
 	page += u'	<table>'
 	page += u'<tr><th>'+localText.craft+u'</th><th>'+localText.nGuides+u'</th><th>'+localText.fGuides+u'</th><th>1-200</th></tr>\n'
@@ -827,16 +814,9 @@ def maketotals(totals, mytime, localText):
 
 	# adword adaptive
 	page += u'<br /><div style="width: 100%;display:block;">\n \
-	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>\n \
-	<!-- tail ad responsive -->\n \
-	<ins class="adsbygoogle"\n \
-	     style="display:block"\n \
-	     data-ad-client="ca-pub-6865907345688710"\n \
-	     data-ad-slot="5237234180"\n \
-	     data-ad-format="auto"></ins>\n \
-	<script>\n \
-	(adsbygoogle = window.adsbygoogle || []).push({});\n \
-	</script></div>\n'
+	<!-- Ezoic - Tail - bottom_of_page -->\n \
+<div id="ezoic-pub-ad-placeholder-102"></div>\n\
+<!-- End Ezoic - Tail - bottom_of_page --></div>\n'
 
 	page += u'\n</section>\n' + localText.cright
 	page += u'</body>\n'

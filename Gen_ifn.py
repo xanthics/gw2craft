@@ -337,16 +337,9 @@ def index(localText):
 	page += u"%s\n<br />"%(localText.thanks2)
 	# adword adaptive
 	page += u'<br /><hr><br /><div style="width: 100%;display:block;">\n \
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>\n \
-<!-- tail ad responsive -->\n \
-<ins class="adsbygoogle"\n \
-     style="display:block"\n \
-     data-ad-client="ca-pub-6865907345688710"\n \
-     data-ad-slot="5237234180"\n \
-     data-ad-format="auto"></ins>\n \
-<script>\n \
-(adsbygoogle = window.adsbygoogle || []).push({});\n \
-</script></div>\n'
+<!-- Ezoic - Tail - bottom_of_page -->\n \
+<div id="ezoic-pub-ad-placeholder-102"></div>\n \
+<!-- End Ezoic - Tail - bottom_of_page --></div>\n'
 	# adword
 #	page += u'<br /><hr><br /><div style="display:block;text-align:Right;"> \
 #			\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
