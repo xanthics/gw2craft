@@ -401,22 +401,10 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 #		t, localText.discover, cList[item][u'rarity'], localText.toggle, item, tier, cListName[item], tstr)
 	page += u"<strong>%s</strong><br />\n"%(localText.region)
 #	# adword
-	page += u'<div style="float:right;position:absolute;right:-320px;">\n\
-<!-- Ezoic - Large sidebar - sidebar -->\n\
-<div id="ezoic-pub-ad-placeholder-103"></div>\n\
-<!-- End Ezoic - Large sidebar - sidebar -->\n\n</div>\n'
+	page += u'<div style="float:right;position:absolute;right:-320px;">\n'
+	page += u'<!-- Ezoic - Large sidebar - sidebar -->\n<div id="ezoic-pub-ad-placeholder-103"></div>\n\<!-- End Ezoic - Large sidebar - sidebar -->\n\n</div>\n'
 	page += localText.moreInfo%(u"<img src=\"/img/arrow.png\" alt=ARROW>")
-#	page += u'<br /><br /><br /><div style="width: 100%;display:block;">\n \
-#<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>\n \
-#<!-- link ad -->\n \
-#<ins class="adsbygoogle"\n \
-#     style="display:block"\n \
-#     data-ad-client="ca-pub-6865907345688710"\n \
-#     data-ad-slot="5597160982"\n \
-#     data-ad-format="link"></ins>\n \
-#<script>\n \
-#(adsbygoogle = window.adsbygoogle || []).push({});\n \
-#</script></div><br />\n'
+	page += u'<!-- Ezoic - page_title - under_page_title -->\n<div id="ezoic-pub-ad-placeholder-105">\n</div><!-- End Ezoic - page_title - under_page_title -->'
 	# Page Title Part 1
 	page += u'<h1>'+title+u'</h1>'
 	page += u'<dl>\n'
@@ -436,6 +424,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 
 	page += u"</div><script type=\"text/javascript\">$('#1tcost').hide();</script><br />"
 	buttonList.append('tcost')
+	page += u'<!-- Ezoic - page_title_2 - under_page_title -->\n<div id="ezoic-pub-ad-placeholder-106"></div>\n<!-- End Ezoic - page_title_2 - under_page_title -->'
 
 	if b_vendor or b_karma_c or b_karma_w:
 		page += u"<h2>%s</h2>\n"%localText.buyVendor
@@ -458,6 +447,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 			t = (t+1)%2
 			page += (u"<div class=\"s%i\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><span class=\"quantity\">%i</span> <span class=\"%s\">%s</span> (%4s %s from %s)</div>\n")%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']),localText.valuePer,localText.method[0])
 
+	page += u'<!-- Ezoic - first_paragraph - under_first_paragraph -->\n<div id="ezoic-pub-ad-placeholder-107"></div>\n<!-- End Ezoic - first_paragraph - under_first_paragraph -->'
 	if recipebuy:
 		page += u"<h2>%s</h2>\n"%localText.bRecipes
 		for item in recipebuy:
@@ -493,25 +483,42 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 		for item in sorted(b_food):
 			t = (t+1)%2
 			page += collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']))
-
+	page += u'<!-- Ezoic - second_paragraph - under_second_paragraph -->\n<div id="ezoic-pub-ad-placeholder-108"></div>\n<!-- End Ezoic - second_paragraph - under_second_paragraph -->'
 	if b_mix:
 		page += u'<h2>%s</h2>\n'%localText.mixedTP
 		for item in sorted(b_mix):
 			t = (t+1)%2
 			page += collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']))
-
-	# adword adaptive
-	page += u'<br /><div style="width: 100%;display:block;">\n \
-<!-- Ezoic - first banner - mid_content -->\n\
-<div id="ezoic-pub-ad-placeholder-104"></div>\n\
-<!-- End Ezoic - first banner - mid_content -->\n\
-</div>\n'
+	page += u'<!-- Ezoic - mid_content - mid_content -->\n<div id="ezoic-pub-ad-placeholder-109"></div>\n<!-- End Ezoic - mid_content - mid_content -->'
 
 	page += u"<br />\n<br />\n<h2>%s</h2>\n"%localText.make
+	# adword adaptive
+	page += u'<br /><div style="width: 100%;display:block;">\n'
+	page += u'<!-- Ezoic - first banner - mid_content -->\n<div id="ezoic-pub-ad-placeholder-104"></div>\n<!-- End Ezoic - first banner - mid_content -->\n'
+	page += u'</div>\n'
+
 	page += u"<button title=\""+localText.toggle+u"\" class =\"info\" id=\"show_all\">%s</button><br />"%localText.expand
 	page += u"<button title=\""+localText.toggle+u"\" class =\"info\" id=\"hide_all\">%s</button>"%localText.collapse
 	rt = 0
 	for tier in mTiers:
+
+		if tier in [75, 425]: # long content
+			page += u'<!-- Ezoic - long_1 - long_content -->\n<div id="ezoic-pub-ad-placeholder-110"></div>\n<!-- End Ezoic - long_1 - long_content -->'
+		elif tier in [100]: # long content
+			page += u'<!-- Ezoic - long_2 - long_content -->\n<div id="ezoic-pub-ad-placeholder-111"></div>\n<!-- End Ezoic - long_2 - long_content -->'
+		elif tier in [150, 450]: # longer
+			page += u'<!-- Ezoic - longer_1 - longer_content -->\n<div id="ezoic-pub-ad-placeholder-112"></div>\n<!-- End Ezoic - longer_1 - longer_content -->'
+		elif tier in [175]: # longer
+			page += u'<!-- Ezoic - longer_2 - longer_content -->\n<div id="ezoic-pub-ad-placeholder-113"></div>\n<!-- End Ezoic - longer_2 - longer_content -->'
+		elif tier in [225, 475]: # longest
+			page += u'<!-- Ezoic - longest_1 - longest_content -->\n<div id="ezoic-pub-ad-placeholder-114"></div>\n<!-- End Ezoic - longest_1 - longest_content -->'
+		elif tier in [250]: # longest
+			page += u'<!-- Ezoic - longest_2 - longest_content -->\n<div id="ezoic-pub-ad-placeholder-115"></div>\n<!-- End Ezoic - longest_2 - longest_content -->'
+		elif tier in [300]: # bottom
+			page += u'<!-- Ezoic - bottom_1 - bottom_of_page -->\n<div id="ezoic-pub-ad-placeholder-116"></div>\n<!-- End Ezoic - bottom_1 - bottom_of_page -->'
+		elif tier in [325]: # bottom
+			page += u'<!-- Ezoic - bottom_2 - bottom_of_page -->\n<div id="ezoic-pub-ad-placeholder-117"></div>\n<!-- End Ezoic - bottom_2 - bottom_of_page -->'
+
 		if tier == 400:
 			precraft = sorted([i for i in make if make[i] and i < 400])
 			if precraft:
@@ -520,33 +527,6 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 					for item in make[lvl]:
 						t = (t+1)%2
 						page += u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[lvl][item],cList[item][u'rarity'],cListName[item])
-
-
-#		if tier == 225:
-			# adword adaptive
-#			page += u'<br /><div style="width: 100%;display:block;">\n \
-#			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>\n \
-#			<!-- second ad -->\n \
-#			<ins class="adsbygoogle"\n \
-#			     style="display:block"\n \
-#			     data-ad-client="ca-pub-6865907345688710"\n \
-#			     data-ad-slot="4818431783"\n \
-#			     data-ad-format="auto"></ins>\n \
-#			<script>\n \
-#			(adsbygoogle = window.adsbygoogle || []).push({});\n \
-#			</script></div>\n'
-			# adword 2
-#			page += u'<div style="float:right;position:absolute;right:-320px;"> \
-#				\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
-#				\n<!-- large side ad 2 --> \
-#				\n<ins class=\"adsbygoogle\" \
-#				\n     style=\"display:inline-block;width:300px;height:600px\" \
-#				\n     data-ad-client=\"ca-pub-6865907345688710\" \
-#				\n     data-ad-slot=\"4410765382\"></ins> \
-#				\n<script> \
-#				\n(adsbygoogle = window.adsbygoogle || []).push({}); \
-#				\n</script> \
-#				\n</div>\n'
 
 		if tierbuy and tier in [0,75,150,225,300]:
 			tt = 0
@@ -663,22 +643,9 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	t = (t+1)%2
 	page += u"<div class=\"s"+str(t)+u"\">%s</div>\n"%localText.finish
 	# adword adaptive
-	page += u'<br /><div style="width: 100%;display:block;">\n \
-<!-- Ezoic - Tail - bottom_of_page -->\n \
-<div id="ezoic-pub-ad-placeholder-102"></div>\n\
-<!-- End Ezoic - Tail - bottom_of_page --></div>\n'
-	# adword
-#	page += u'<br /><div style="display:block;text-align:Right;"> \
-#			\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
-#			\n<!-- Tail ad --> \
-#			\n<ins class=\"adsbygoogle\" \
-#			\n     style=\"display:inline-block;width:336px;height:280px\" \
-#			\n     data-ad-client=\"ca-pub-6865907345688710\" \
-#			\n     data-ad-slot=\"9889445788\"></ins> \
-#			\n<script> \
-#			\n(adsbygoogle = window.adsbygoogle || []).push({}); \
-#			\n</script> \
-#			\n</div>\n'
+	page += u'<br /><div style="width: 100%;display:block;">\n'
+	page += u'<!-- Ezoic - Tail - bottom_of_page -->\n<div id="ezoic-pub-ad-placeholder-102"></div>\n<!-- End Ezoic - Tail - bottom_of_page -->'
+	page += u'</div>\n'
 	page += u'</section>\n'
 	page += u'%s\n<script type="text/javascript">\n'%localText.cright
 	for item in buttonList:
