@@ -47,8 +47,8 @@ span.itemIcon {
 	display: inline-block;
 	position: relative;
 	top: 2px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
 	margin-left: 0px;
 	margin-right: 0px;
 	width: 24px;
@@ -81,16 +81,16 @@ span.quantity {
 	padding-right: 8px;}
 
 h1, h2 {
-    -moz-border-radius: 3px;
-    border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
 	background-color: rgb(55,46,46);
 	color: rgb(225,225,225);
 	padding: .2em;
 }
 
 h3 {
-    -moz-border-radius: 3px;
-    border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
 	background-color: rgb(95,80,80);
 	color: rgb(225,225,225);
 	padding: .1em;
@@ -103,8 +103,8 @@ body {
 	font-family: Arial, Helvetica, sans-serif;}
 
 header {
-    -moz-border-radius: 3px;
-    border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
 	width: 90%;
 	margin: 25% 5%;
 	text-align: center;}
@@ -131,77 +131,77 @@ table {
 /* "Spoiler" Button Style */
 
 button#show_all {
-    margin-bottom: 6px;
+	margin-bottom: 6px;
 }
 
 button.arrow {
-    border: #960000;
-    background-color: inherit;
-    background: url('/img/arrow.png') no-repeat right center;
-    text-decoration: none;
-    margin: 0px 0px;
-    padding: 0px 20px 0px 0px;
-    display: inline-block;
-    vertical-align: middle;
-    font-size: 16px;
-    cursor: pointer;
+	border: #960000;
+	background-color: inherit;
+	background: url('/img/arrow.png') no-repeat right center;
+	text-decoration: none;
+	margin: 0px 0px;
+	padding: 0px 20px 0px 0px;
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 16px;
+	cursor: pointer;
 	min-width: 16px;
 	min-height: 18px;}
 
 button.arrow img {
-    margin-left: 8px;
-    vertical-align: middle;
+	margin-left: 8px;
+	vertical-align: middle;
 }
 
 button.arrow:hover {
-    opacity: 0.6;
-    filter: alpha(opacity=60);
+	opacity: 0.6;
+	filter: alpha(opacity=60);
 }
 
 button.arrow:active {
-    top: 1px !important;
-    position: relative !important;
+	top: 1px !important;
+	position: relative !important;
 }
 
 button.arrow span:active {
-    top: 1px;
-    position: relative;
+	top: 1px;
+	position: relative;
 }
 
 button.arrow img:active {
-    top: 1px;
-    position: relative;
+	top: 1px;
+	position: relative;
 }
 
 button.info {
-    border: #000000;
-    cursor: pointer;
-    color: #dcdcdc;
-    background-color: #525252;
-    background: -moz-linear-gradient(top, #656565, #404040);
-    background: -webkit-gradient(linear, left top, left bottom, from(#656565), to(#404040));
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#656565', endColorstr='#404040');
-    border-style: solid;
-    border-width: 1px;
-    text-decoration: none;
-    margin: 0px 0px;
-    padding: 3px 8px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    font-family: Arial,Helvetica,sans-serif;
-    font-size: 0.92em;
-    display: inline-block;
-    vertical-align: middle;
+	border: #000000;
+	cursor: pointer;
+	color: #dcdcdc;
+	background-color: #525252;
+	background: -moz-linear-gradient(top, #656565, #404040);
+	background: -webkit-gradient(linear, left top, left bottom, from(#656565), to(#404040));
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#656565', endColorstr='#404040');
+	border-style: solid;
+	border-width: 1px;
+	text-decoration: none;
+	margin: 0px 0px;
+	padding: 3px 8px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 0.92em;
+	display: inline-block;
+	vertical-align: middle;
 }
 
 button.info:hover {
-    opacity: 0.6;
-    filter: alpha(opacity=60);
+	opacity: 0.6;
+	filter: alpha(opacity=60);
 }
 
 button.info:active {
-    top: 1px;
-    position: relative;
+	top: 1px;
+	position: relative;
 }
 
 /* Main List Style */
@@ -213,31 +213,33 @@ section {
 	padding:10px;
 	margin-left: auto;
 	margin-right: auto;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
 	border-style:solid;
 	border-width:1px;
 	border-color: rgb(75,75,75);}
 
 section.main {
 	z-index: 1;
-	width: 42em;
+	max-width: 750px;
+	min-width: 750px;
+	width: 95%;
 	position: relative;
 }
 
 /* Alternating list background Styles */
 
 div.s1 {
-    -moz-border-radius: 3px;
-    border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
 	background-color: rgb(185,185,185);
 	padding:6px;
 	margin: 1px
 	line-height: 1px;}
 
 div.s0 {
-    -moz-border-radius: 3px;
-    border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
 	background-color: rgb(220,220,220);
 	padding:6px;
 	margin: 1px
@@ -253,8 +255,8 @@ footer {
 	padding:10px;
 	margin: .1% auto 5% auto;
 	width: 65em;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
 	border-style:solid;
 	border-width:1px;
 	border-color: rgb(75,75,75);
@@ -265,13 +267,13 @@ nav {
 	left: 0;
 	right: 0;
 	z-index: 10;
-	float: left;
+	float: center;
 	text-align: center;
 	position: fixed;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-	min-width:40em;
-	margin: auto auto;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	min-width:750px;
+	margin: 0 auto;
 	clear: both;}
 
 nav ul ul {
@@ -284,7 +286,7 @@ nav ul {
 	background: rgb(150, 150, 150); 
 	box-shadow: 0px 0px 10px rgba(0,0,0,0.15);
 	padding: 0 8px;
-	margin: 0;
+	margin: 0 auto;
 	list-style: none;
 	position: relative;
 	display: inline-table;
