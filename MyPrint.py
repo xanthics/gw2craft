@@ -502,21 +502,21 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	rt = 0
 	for tier in mTiers:
 
-		if tier in [75, 425]: # long content
+		if tier in [75, 425]:  # long content
 			page += u'<!-- Ezoic - long_1 - long_content -->\n<div id="ezoic-pub-ad-placeholder-110"></div>\n<!-- End Ezoic - long_1 - long_content -->'
-		elif tier in [100]: # long content
+		elif tier in [100]:  # long content
 			page += u'<!-- Ezoic - long_2 - long_content -->\n<div id="ezoic-pub-ad-placeholder-111"></div>\n<!-- End Ezoic - long_2 - long_content -->'
-		elif tier in [150, 450]: # longer
+		elif tier in [150, 450]:  # longer
 			page += u'<!-- Ezoic - longer_1 - longer_content -->\n<div id="ezoic-pub-ad-placeholder-112"></div>\n<!-- End Ezoic - longer_1 - longer_content -->'
-		elif tier in [175]: # longer
+		elif tier in [175]:  # longer
 			page += u'<!-- Ezoic - longer_2 - longer_content -->\n<div id="ezoic-pub-ad-placeholder-113"></div>\n<!-- End Ezoic - longer_2 - longer_content -->'
-		elif tier in [225, 475]: # longest
+		elif tier in [225, 475]:  # longest
 			page += u'<!-- Ezoic - longest_1 - longest_content -->\n<div id="ezoic-pub-ad-placeholder-114"></div>\n<!-- End Ezoic - longest_1 - longest_content -->'
-		elif tier in [250]: # longest
+		elif tier in [250]:  # longest
 			page += u'<!-- Ezoic - longest_2 - longest_content -->\n<div id="ezoic-pub-ad-placeholder-115"></div>\n<!-- End Ezoic - longest_2 - longest_content -->'
-		elif tier in [300]: # bottom
+		elif tier in [300]:  # bottom
 			page += u'<!-- Ezoic - bottom_1 - bottom_of_page -->\n<div id="ezoic-pub-ad-placeholder-116"></div>\n<!-- End Ezoic - bottom_1 - bottom_of_page -->'
-		elif tier in [325]: # bottom
+		elif tier in [325]:  # bottom
 			page += u'<!-- Ezoic - bottom_2 - bottom_of_page -->\n<div id="ezoic-pub-ad-placeholder-117"></div>\n<!-- End Ezoic - bottom_2 - bottom_of_page -->'
 
 		if tier == 400:

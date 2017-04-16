@@ -27,20 +27,17 @@ Note: Requires Python 2.7.x
 '''
 
 import datetime
-import math
-import sys
 # recipe and item lists
 import Globals
 from auto_gen import Armorsmith, Artificer, Chef, Chef_karma, Huntsman, Jeweler, Leatherworker, Scribe, Tailor, \
 	Weaponsmith
 # Localized text
 from translations import Localcz, Localde, Localen, Locales, Localfr, Localptbr
-from multiprocessing import Process, Queue, cpu_count, Pool
+from multiprocessing import Pool
 from copy import deepcopy
 from MyPrint import maketotals
 from MyPrices import appendCosts
 from MakeGuide import costCraft
-from functools import partial
 
 # Join 2 recipe dicts
 def join(A, B):

@@ -27,8 +27,6 @@ Note: Requires Python 2.7.x
 '''
 
 import math
-import os
-import sys
 
 import Globals
 # Localized text

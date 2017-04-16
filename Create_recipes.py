@@ -25,11 +25,13 @@ Author: Jeremy Parks
 Purpose: Generates(or updates) all the recipes and the item list used by Crafting.py
 Note: Requires Python 2.7.x
 '''
-import urllib, json, math, codecs, socket
-from multiprocessing import Process, Queue, cpu_count, Pool
+import codecs
+import json
 import os
-
+import socket
+import urllib
 from datetime import datetime
+from multiprocessing import Pool
 
 API_ROOT = u"https://api.guildwars2.com/v2/"
 
