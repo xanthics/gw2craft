@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2017-02-13T13:37:36 PST
+# Created: 2017-04-15T23:38:40 PST
 ilist = {
 	8576: u"Botella de licor de arroz",
 	8587: u"Huevo escalfado de Drottot",
