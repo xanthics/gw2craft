@@ -327,7 +327,7 @@ header = u"""<nav>
           <li><a href="/%s" hreflang="en">English</a></li>
           <li><a href="/fr/%s" hreflang="fr">Français</a></li>
           <li><a href="/cz/%s" hreflang="fr">Čeština</a></li>
-          <li><a href="# hreflang="de">Deutsch</a></li>
+          <li><a href="#" hreflang="de">Deutsch</a></li>
           <li><a href="/es/%s" hreflang="es">Español</a></li>
           <li><a href="/pt-br/%s" hreflang="pt-BR">Português do Brasil</a></li>
           <li><a href="/zh/%s" hreflang="zh">Chinese (Simplified)</a></li>
