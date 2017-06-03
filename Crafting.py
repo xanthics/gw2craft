@@ -32,12 +32,27 @@ import Globals
 from auto_gen import Armorsmith, Artificer, Chef, Chef_karma, Huntsman, Jeweler, Leatherworker, Scribe, Tailor, \
 	Weaponsmith
 # Localized text
-from translations import Localcz, Localde, Localen, Locales, Localfr, Localptbr
+from translations import Localcz, Localde, Localen, Locales, Localfr, Localptbr, Localzh
 from multiprocessing import Pool
 from copy import deepcopy
 from MyPrint import maketotals
 from MyPrices import appendCosts
 from MakeGuide import costCraft
+from time import time
+
+# helper class to time main function
+class mytimer:
+	def __init__(self, name):
+		self.__name = name
+
+	def __enter__(self):
+		print("Start {}".format(self.__name))
+		self.__t = time()
+
+	def __exit__(self, exc_type, exc_val, exc_tb):
+		t2 = time()
+		print("End {}, took {:.3f} seconds".format(self.__name, t2-self.__t))
+
 
 # Join 2 recipe dicts
 def join(A, B):
@@ -49,12 +64,15 @@ def join(A, B):
 def recipeworker((cmds, cList, mytime, xp_to_level)):  # , out_q):
 	Globals.init()
 	totals = {}
+
 	if type(cmds) == list:
 		Globals.karmin = {}
 		for cmd in cmds:
-			totals.update(costCraft(cmd[0], cmd[1], cmd[2], cmd[3], cmd[4], deepcopy(cList), mytime, xp_to_level))
+			with mytimer(cmd[0]):
+				totals.update(costCraft(cmd[0], cmd[1], cmd[2], cmd[3], cmd[4], deepcopy(cList), mytime, xp_to_level))
 	else:
-		totals.update(costCraft(cmds[0], cmds[1], cmds[2], cmds[3], cmds[4], deepcopy(cList), mytime, xp_to_level))
+		with mytimer(cmds[0]):
+			totals.update(costCraft(cmds[0], cmds[1], cmds[2], cmds[3], cmds[4], deepcopy(cList), mytime, xp_to_level))
 	return totals
 
 
@@ -124,10 +142,12 @@ def main():
 	maketotals(totals, mytime, Locales)
 	maketotals(totals, mytime, Localcz)
 	maketotals(totals, mytime, Localptbr)
+	maketotals(totals, mytime, Localzh)
 
 	print "End: ", datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
 
 
 # If ran directly, call main
 if __name__ == '__main__':
-	main()
+	with mytimer('main'):
+		main()
