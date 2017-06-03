@@ -21,7 +21,7 @@
 * DEALINGS IN THE SOFTWARE.
 
 Author: Jeremy Parks
-Purpose: de Localized text
+Purpose: en Localized text
 Note: Requires Python 2.7.x
 '''
 
@@ -29,10 +29,10 @@ region = "NA/EU price data only"
 
 # Copyright notice for GW2 IP
 cright = u'''<footer>
-    Guild Wars 2 © 2012 ArenaNet, Inc. Alle Rechte vorbehalten. NCsoft, das ineinandergreifende NC-Logo, ArenaNet, Guild Wars, Guild Wars Factions, Guild Wars Nightfall, Guild Wars: Eye of the North, Guild Wars 2 und alle in Verbindung stehenden Logos und Designs sind Warenzeichen oder eingetragene Warenzeichen der NCsoft Corporation. Alle anderen Warenzeichen sind das Eigentum ihrer jeweiligen Eigentümer.
+    Guild Wars 2 © 2012 ArenaNet, Inc. All rights reserved. NCsoft, the interlocking NC logo, ArenaNet, Guild Wars, Guild Wars Factions, Guild Wars Nightfall, Guild Wars: Eye of the North, Guild Wars 2, and all associated logos and designs are trademarks or registered trademarks of NCsoft Corporation. All other trademarks are the property of their respective owners.
 </footer>'''
 
-scribetease = u"Click here for important hints"
+scribetease = u"Click here for important Scribe hints"
 
 scribeinfo = u"""Note, “Auto Turrets” in the guide are called “Gate Turrets” in game. (API error)<br />
 <br />
@@ -130,124 +130,124 @@ krug       = u"Veteran Krug - Taminn Foothills(Queensdale 1-15)"
 wupwup     = u"Wupwup Chief - Apostate Wastes(Fireheart Rise 60-70)"
 
 # guide variables
-iCost        = u"anfängliche Kosten"
-eRecovery    = u"erwarteter Erlös"
-fCost        = u"erwartete Gesamtkosten"
-sList        = u"Verkaufsliste"
-bRecipes     = u"KAUFE REZEPTE"
-collectibles = u"SAMMELGEGENSTÄNDE (Schau erst in die Sammelbank oder kaufe sie im HP)"
-warning1     = u"Aktualisiere diese Seite nicht."
-warning2     = u"Sie kann sich ändern. Letztes Update"
-moreInfo     = u"Wannimmer Du dieses Symbol siehst %s kannst Du für weitere Informationen darauf klicken"
-soldVia      = u"Verkauft für %s pro Stück "
-method       = [u"Händler",
-                u"maximaler Ankaufspreis",
-                u"minimaler Verkaufspreis"]
-valuePer     = u"pro Stück"
-buyVendor    = u"BEIM HÄNDLER KAUFEN"
-mixedTP      = u"Verschiedenes (Beim Handelsposten kaufen)"
-rTP          = u"Beim Handelsposten kaufen"
-make         = u"Stelle her"
-discover     = u"Entdecke"
-expand       = u"Alle Rezepte zum Entdecken aufklappen"
-collapse     = u"Alle Rezepte zum Entdecken schließen"
+iCost        = u"Initial Cost"
+eRecovery    = u"Expected Recovery"
+fCost        = u"Expected Final Cost"
+sList        = u"Sell List"
+bRecipes     = u"BUY RECIPES"
+collectibles = u"COLLECTIBLES(Check Bank First or Buy on TP)"
+warning1     = u"Do not refresh this page."
+warning2     = u"It may change. Updated"
+moreInfo     = u"Whenever you see this %s you can click for more information"
+soldVia      = u"Sold for %s per via"
+method       = [u"Vendor",
+                u"Max Buyout",
+                u"Minimum Sale Price"]
+valuePer     = u"per"
+buyVendor    = u"BUY VENDOR"
+mixedTP      = u"Mixed (Buy on TP)"
+rTP          = u"Buy on TP"
+make         = u"Make"
+discover     = u"Discover"
+expand       = u"Expand all discovery recipes"
+collapse     = u"Collapse all discovery recipes"
 tier         = u"Tier %i. Levels %i-%i"
-buyList      = u"Einkaufsliste (nur Tier %i)"
-blNotice     = u"Hinweis: Wenn Du dem kompletten Guide folgst, dann hast Du diese Gegenstände bereits gekauft."
-costRT       = u"Kosten: %s (Total: %s)"
+buyList      = u"Buy List(Only Tier %i)"
+blNotice     = u"Notice: If you are following the full guide then you already purchased these materials."
+costRT       = u"Cost: %s (Rolling Total: %s)"
 level        = u"Level"
-finish       = u"Nichts. Du bist fertig!"
-updated      = u"aktualisiert"
-note         = u"<strong>Hinweis:</strong> Die angezeigten Kosten berücksichtigen noch nicht den Erlös durch den Verkauf produzierter Waren."
-craft        = u"Stelle her"
+finish       = u"Nothing.  You are done!"
+updated      = u"Updated"
+note         = u"<strong>Note:</strong> The prices show here are initial costs and do not take sellback into account."
+craft        = u"Craft"
 tiers        = u"Tier"
-toggle       = u"zum Umschalten klicken"
-kNote        = u"Hinweis: 11 Basilikum Blätter (als Beispiel) bedeutet: kaufe einen Stapel Basilikumblätter und anschließend bleiben 14 übrig."
-bNote        = u"Ergibt 5 Barren pro Herstellung"
-sNote        = u"Ergibt 2 Sohlen pro Herstellung"
+toggle       = u"Click To Toggle"
+kNote        = u"Note: 11 Basil Leaf(e.g.) means buy 1 bulk Basil Leaf and you will have 14 left over"
+bNote        = u"Produces 5 Ingot per make"
+sNote        = u"Produces 2 Soles per make"
 
 # FAQ strings
-costs    = u"Die Kosten werden abgedeckt, aber Spenden sind willkommen"
-gw2spidy = u"Auch diese Guides wären ohne <a möglich href=\"http://www.gw2spidy.com\">gw2spidy</a> und <a href=\"http://www.guildwarstrade.com/\">guildwarstrade</a>."
-oThread  = u"GW2 Offizieller Thread (En)"
-rThread  = u"reddit Thread (En)"
-gThread  = u"guildwars2guru Thread (En)"
-twitter  = u"Twitter (En)"
-email    = u"eMail (En)"
-contact  = u"Wenn Sie irgendwelche Fragen, Kommentare, Anliegen oder das Gefühl haben, einen Fehler gefunden zu haben, kontaktieren Sie mich bitte auf eine dieser Arten."
+costs    = u"Costs are covered, but donations are appreciated"
+gw2spidy = u"Also these guides would not be possible without <a href=\"http://www.gw2spidy.com\">gw2spidy</a> and <a href=\"http://www.guildwarstrade.com/\">guildwarstrade</a>."
+oThread  = u"GW2 Official Forum Discussion Thread"
+rThread  = u"reddit Discussion Thread"
+gThread  = u"guildwars2guru Discussion Thread"
+twitter  = u"Twitter"
+email    = u"Email"
+contact  = u"If you have any questions, comments, concerns or feel that you have noticed a bug please contact me using one of these methods."
 faq      = u"FAQ"
-question = u"F"
+question = u"Q"
 answer   = u"A"
-source   = u"Der Quellcode?"
-q1       = u"Wie viele Stufen kann ich durch Crafting aufsteigen?"
-a11      = u"Die Erfahrung, die Sie durch Crafting erhalten, wird durch den Fortschritt auf den unterschiedlichen Leveln anhand folgender Werte definiert:"
-a12      = u"1-100 1% des aktuellen Levels pro Handwerksstufe"
-a13      = u"101-200 2% des aktuellen Levels pro Handwerksstufe"
-a14      = u"201-300 3% des aktuellen Levels pro Handwerksstufe"
-a15      = u"301-400 4% des aktuellen Levels pro Handwerksstufe"
-a16      = u"Und diese Werte skalieren zu Teilleveln. So ist bei Level 1 und einem halbvollen XP-Balken der Fortschritt 1,5% des Levels. Crafting von 0-400 gibt Dir 10 Level, egal von welchem Level Du startest."
-a17      = u"Es gibt eine Ausnahme: bis Level 15 ist der XP-Gewinn größer (<a href=\"http://wiki.guildwars2.com/wiki/Experience#Total_experience_gain_per_level\">Quelle</a>), so dass Du auf etwa 13 Level beim Craften kommst."
-a18      = u"Das bedeutet, Du kannst von Level 1 auf 80 nur durchs Craften kommen, da es 8 Berufe gibt."
-q2       = u"Werden die Guides nicht inkorrekt, wenn jeder die Items im HP kauft?"
-a2       = u"Diese Guides berechnen die herzustellenden oder zu kaufenden Gegenstände anhand des gegenwärtigen HP-Preises. Sie passen sich an, sobald sie die Preise ändern. (Fast) alle möglichen Rezepte werden in Erwägung gezogen, wenn diese Guides erstellt werden."
-q3       = u"Verschiedene Fragen zu Crit-Rate/Glück und Crafting-Boosts."
-a31      = u"Dieses Script nimm eine Crit-Rate von 0% an, so dass Crits die Anzahl von Herstellungen und somit Material reduzieren können."
-a32      = u"Crafting-Boosts geben Dir +50% Wahrscheinlichkeit zum Crit zusätzlich zum WvW and guild booster Bonus. Maximaler Bonus ist 90%. Bei einem Crit beim Craften bekommst Du 50% XP-Bonus, die zusaätzlich zu anderen Boni gerechnet werden (Entdeckungen, Herstellung höherwertiger Gegenstände). Durch die Boosts kannst Du die Anzahl der Herstellungen verringern, um Level 400 zu erreichen, aber Du wirst dadurch nicht mehr als 10 Level aufsteigen."
-q4       = u"Darf ich Deine Guides wiederverwenden oder verlinken?"
-a4       = u"Ja, aber sei Dir vewusst, dass die Guides sich ändern und ich keinen Support leisten werde. Bitte verweise deutlich auf den Entwickler (xanthic.9478 und ein Link zu dieser Seite)."
-q5       = u"Verschiedene Fragen zu HP-Verkaufspreisen und Händler-Verkaufs-Erlösen."
-a51      = u"Balancing auf Basis der HP-Verkaufspreise würden das Risiko der Guides erhöhen, da sich die Preise ausgleichen und stagnieren würden und so manche nicht mehr in der Lage wären, ihre Kosten zu decken und so der Guidedurchlauf einige Silber teurer wäre. Zur Zeit schätze ich den Verkaufserlös anhand von Höchstgebot und Händler-Verkaufspreis ab: was immer mehr einbringt."
-a52      = u"Man kann auch nicht automatisiert feststellen, ob ein Gegenstand tatsächlich zu dem eingestellten Preis verkauft wird."
-q6       = u"Wie machst Du die Guides?"
-a6       = u"Ein mehrteiliges Python-2.7.3-Skript, das einen Greedy-Algorithmus verwedet, sowie die Preisinformationen von gw2spidy, um die günstigste zu berechnen, einen Beruf zu leveln."
-q7       = u"Nein, ich meine, wie machst Du die Guides? (einfache Antwort)"
-a7       = u"Für jede Herstellung berechne ich die Liste der Gegenstände, berechne größten XP-Gewinn und die geringsten Kosten, um diesen Gegenstand herzustellen und das für die Möglichkeiten, die benötigten Teile herzustellen oder zu kaufen, und dann wird der beste Gegenstand ausgewählt."
-q8       = u"Nein, ich meine, wie machst Du die Guides? (ausführliche Antwort)"
-a8       = u"Zunächst teile ich das Herstellen in 16 Buckets mit jeweils 25 Punkten (0-24, 25-49,...). Ab Level 375 berechne ich für jeden Gegenstand, der XP bringt, dessen XP/Grundkosten-Faktor und wenn irgendwelche dieser Gegenstände aus anderen Teilen besteht, wird dies für diese Teile ebenfalls berechnet, bis ich auf Gegenstände stoße, zu denen keine Rezepte mehr existieren. Teile werden zur Herstellung ausgewählt, wenn das günstiger ist, als sie zu kaufen, oder aber sie den XP/Kosten-Faktor mehr erhöhen, als den Gegenstand zu kaufen. Deswegen kann der Guide Dir raten, einen Gegenstand herzustellen, obwohl der Kauf günstiger wäre. Nachdem dann die beste Wahl gefunden ist, werden die XP-Ladungen berechnet (über alle Buckets) und die beste Wahl ist erneut gefunden."
-thanks   = u"Vielen Dank an die Menschen, die Guides vor mir geschaffen haben; Qorthos, pwnuniversity, gw2wiz und guildwars-2-Crafting. Ich wäre nicht auf die Idee gekommen, diesen Guide zu schreiben, ohne dass Eure Guides mir eine Vorlage geliefert hätten, auf der ich bauen konnte."
+source   = u"Source code?"
+q1       = u"How many levels can I get from crafting?"
+a11      = u"The amount of character experience you get from crafting is determined by your progress through the crafting levels based on the following values;"
+a12      = u"1-100 1% of current level per crafting level"
+a13      = u"101-200 2% of current level per crafting level"
+a14      = u"201-300 3% of current level per crafting level"
+a15      = u"301-400 4% of current level per crafting level"
+a16      = u"And these values scale to partial levels, like lvl 1, half full bar is 1.5% of a level. Going 0-400 will give you 10 levels from whatever level you started at, every time."
+a17      = u"There is 1 exception in that xp rewards from 1-15 are larger than the actual xp needed for those levels. ( <a href=\"http://wiki.guildwars2.com/wiki/Experience#Total_experience_gain_per_level\">source</a> ) so you will get about 13 levels while crafting."
+a18      = u"This means you can level from 2-80 entirely from crafting as there are 8 crafts."
+q2       = u"Won't these guides be wrong once everyone buys out item X?"
+a2       = u"These guides suggest crafting or buying items based on current TP prices. They will adjust suggested items as prices change.  (Nearly) all possible recipes are considered when guides are generated."
+q3       = u"Various questions about crit rate/chance or crafting boosters."
+a31      = u"This script assumes a 0% crit rate, so crits may reduce the number of crafts and thus materials needed."
+a32      = u"Crafting boosters give you a +50%, additive with wvw and guild booster bonus, chance to critical while doing a craft. Max bonus of 90%. What a critical does while crafting is give you 50% bonus crafting experience that is additive with other crafting bonuses(discovery, masterwork and rare crafts). Crafting boosters may make it so you need less crafts to reach 400 in a craft but it will not cause you to gain more than 10 character levels."
+q4       = u"Can I reuse or link to your guides?"
+a4       = u"Yes, just be aware the current output may change and I will not provide support. Also please provide proper attribution ( xanthic.9478 and a link to this site )."
+q5       = u"Various questions about considering TP sell values or adding vendor cost recovery."
+a51      = u"Balancing based on TP sell values would add risk to the guide price, as prices would even out and stagnate removing the ability for some people to recovery costs that way and thus making their run through the guide several silver more expensive. I currently provide a \"best guess\" cost recovery based on maximum bid or vendor price, whichever is greater, and if 0 minimum TP sale price."
+a52      = u"There also doesn't exist an \"automatic\" way to determine if an item will actually sell at the price listed either."
+q6       = u"How are you making these guides?"
+a6       = u"Multi-part Python 2.7.3 script that uses a greedy algorithm and price data from gw2spidy to calculate the lowest initial gold method of leveling a craft using in game formulas"
+q7       = u"No, I mean how are you making these guides? (Simple answer)"
+a7       = u"For each \"make\", I generate a list of items, calculate the highest xp/lowest cost way to make that item based on crafting or buying its parts and then choose the best item to make."
+q8       = u"No, I mean how are you making these guides? (Elaborate answer)"
+a8       = u"First I divide crafting up into 16 25 point buckets(ie 0-24, 25-49).  Then starting at the 375 I compute(for every item that gives xp) its xp/base_cost, and then for every sub part of that item I compute its xp/base_cost and if any of those items have sub parts I then compute their xp/base_cost until I reach items without recipes.  Sub parts are chosen to be made if they are cheaper than buying the part, or they increase the xp/cost ratio more than buying the part.  Which is why the guide may tell you to craft something even if it is slightly cheaper to buy it.  Then after the best choice is found, xp changes are calculated(across all buckets) and then the best choice is found again."
+thanks   = u"Thank you to the people that created guides before me; Qorthos, pwnuniversity, gw2wiz and guildwars-2-crafting. I wouldn't have had the idea to write this without your guides providing a template for me to build from."
 
 # index strings
-fThings = u"Vier Dinge, die Sie wissen sollten"
-t1      = u"<img src=\"/img/arrow.png\" alt=\"ARROW\"> kann für alle Rezeptentdeckungen sowie für Verkaufslisten geklickt werden"
-t2      = u"<input type=\"checkbox\"/> hilft, den Überblick über den Fortschritt in der Liste zu bewahren"
-t3      = u"Für alle Anleitungen (außer dem Küchenmeister) existieren Tier-spezifische Einkauflisten, die über gesonderte Schaltflächen zu erreichen sind"
-t4      = u"<a href=\"/de/nav.html\"> Navigation </a>, solltet ihr das Navigationsmenü nicht verwenden können"
-nge     = u"Wägt das Herstellen und Einkaufen von Zutaten und Elementen eines Gegenstandes ab."
-fge     = u"Macht den gleichen Gegenstand für 25 Handwerkspunkte. Schneller und einfacher als andere Anleitungen dafür kostenaufwendiger."
-tge     = u"Versucht die Zutaten wenn möglich herzustellen als sie zu kaufen. In der Regel teurer als normale Anleitungen, aber weniger komplex. Vergleichbar mit Anleitungen die vor ACCG existierten."
-wit     = u"<strong> Was ist das hier überhaupt? </strong> Immer aktuelle Handwerksanleitungen für Guild Wars 2. Alle Anleitungen werden jede Stunde auf Basis der aktuellen Handelspostenpreise neu berechnet, sofern der Server läuft und gw2spidy erreichbar ist. Diese Anleitungen wurden ursprünglich für Freunde erstellt, doch die Popularität meiner Arbeit brachte mich dazu noch mehr daran zu arbeiten - Das Ergebnis seht ihr hier. Dieses Skript setzt allerdings voraus, dass es eine \"unendliche\" Menge der Artikel zu einem bestimmten Preis im Handelsposten gibt. Wurden also alle aufgekauft oder es sind weniger vorhanden als angenommen können die Preise bis zum nächten Update abweichen."
-nWarn   = u"<strong> [Hinweis] </strong> Wenn du nicht vorhast die Anleitung in einem Rutsch durchzuziehen, dann speichere Sie bitte auf deinem PC, dann Sie ist ständigen Änderungen unterworfen und wird stündlich aktualisiert."
-rCost   = u"<strong> Hinweis, um Kosten zu senken:</strong> Speichere dir eine Kopie der Anleitung und platziere Kaufgeobte im Handelsposten für die Materialien."
-thanks2 = u"Weitere deutsche Übersetzungen und Korrekturen von Aaron Raff."
+fThings = u"4 things you should know"
+t1      = u"<img src=\"/img/arrow.png\" alt=\"ARROW\"> can be clicked for all discovery recipes as well as sold item list"
+t2      = u"<input type=\"checkbox\"/> exist so you can track your location in the buy list"
+t3      = u"Tier specific buy lists exist for non-cooking guides(click the button)"
+t4      = u"<a href=\"nav.html\">Nav page</a> if you can't use the nav bar"
+nge     = u"Will make smart choices between crafting or buying sub parts of an item."
+fge     = u"Makes the same item for 25 points.  Faster and easier than other guides but more expensive."
+tge     = u"Will craft sub parts of an item if possible instead of buying.  Usually more expensive than normal guides, but can be less complex.  This is similar to crafting guides that existed before ACCG."
+wit     = u"<strong>What is this?</strong> Always current crafting guides for Guild Wars 2. All guides are recalculated based on current TP prices every hour assuming the computer running the script is on and gw2spidy is reachable. These guides were originally created for friends, but based on the popularity of these within the Guild Wars 2 community, I continued to improve them to what you see today.  This script does assume there are \"infinite\" of an item at a given cost, so if they all get bought up, or there is very few available during the update window prices may be wrong until the next update."
+nWarn   = u"<strong>[Notice]</strong> If you are not going to do the guide in 1 sitting make sure to save it to your machine. As these guides can and will change."
+rCost   = u"<strong>Hints to reduce costs:</strong> Save a copy of the guide and place buy orders for the materials."
+thanks2 = u"Thanks to Marc Ramos(desmodium.3745) for the Spanish translation.  Thanks to Nickolas of Dragonbrand Heroes for the Português-Brasil translation.  Additional german translations and corrections by Aaron Raff."
 
 # nav strings
-navNotice = u"Dies ist eine einfache nav Seite, sollten Sie nur dann erreichen, wenn Sie nicht verwenden können, die Navigationsleiste. Wenn Sie diese Seite übersetzen sind bitte mailen Sie mir an gw2crafts@live.com mit der Ausgangssprache und Übersetzung Seite verwendet und ich werde versuchen, es zu beheben."
-navLang   = u"Sprache"
+navNotice = u"This is a simple nav page, you should only be reaching it if you cannot use the nav bar.  If you are translating this site please email me at gw2crafts@live.com with the source language and translation page used and I will try to fix it."
+navLang   = u"Language"
 
 #nav page headers and guide names
-home    = u"Startseite"
-nGuides = u"Normale Guides"
-fGuides = u"Schnelle Guides"
-tGuides = u"Traditionelle Guides"
-cooking = u"Küchenmeister"
-nHearts = u"Ohne Herzen"
-tHearts = u"Top 5 Herzen"
-aHearts = u"alle Herzen"
-jc      = u"Juwelier"
-art     = u"Konstrukteur"
-hunt    = u"Waidmann"
-wc      = u"Waffenschmied"
-ac      = u"Rüstungsschmied"
-lw      = u"Lederer"
-tailor  = u"Schneider"
-totals  = u"Insgesamt"
-about   = u"Über"
-lang    = u"Deutsch"
+home    = u"Home"
+nGuides = u"Normal Guides"
+fGuides = u"Fast Guides"
+tGuides = u"Traditional Guides"
+cooking = u"Cooking"
+nHearts = u"No Hearts"
+tHearts = u"Top 5 Hearts"
+aHearts = u"All Hearts"
+jc      = u"Jewelcrafting"
+art     = u"Artificing"
+hunt    = u"Huntsman"
+wc      = u"Weaponcrafting"
+ac      = u"Armorcrafting"
+lw      = u"Leatherworking"
+tailor  = u"Tailoring"
+totals  = u"Totals"
+about   = u"About"
+lang    = u"English"
 special = u"Special"
 scribe  = u"Scribe"
 
 # directory path
-path = "de/"
+path = "zh/"
 
 # don't change this
 header = u"""<nav>
@@ -327,10 +327,10 @@ header = u"""<nav>
           <li><a href="/%s" hreflang="en">English</a></li>
           <li><a href="/fr/%s" hreflang="fr">Français</a></li>
           <li><a href="/cz/%s" hreflang="fr">Čeština</a></li>
-          <li><a href="# hreflang="de">Deutsch</a></li>
+          <li><a href="/de/%s" hreflang="de">Deutsch</a></li>
           <li><a href="/es/%s" hreflang="es">Español</a></li>
           <li><a href="/pt-br/%s" hreflang="pt-BR">Português do Brasil</a></li>
-          <li><a href="/zh/%s" hreflang="zh">Chinese (Simplified)</a></li>
+          <li><a href="# hreflang="zh">Chinese (Simplified)</a></li>
         </ul>
         </li>
     </ul>
