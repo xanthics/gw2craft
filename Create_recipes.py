@@ -50,7 +50,7 @@ def recipelistWorker(items):
 # Get and return all available recipes from the API
 def get_recipes():
 	lister = _api_call(u'recipes.json')
-	p = Pool(2)
+	p = Pool()
 	procs = [p.map(recipelistWorker, [lister[i:i + 200] for i in range(0, len(lister), 200)])]
 
 	flags = {}
@@ -188,7 +188,7 @@ def itemlistWorker(vals):
 def itemlist(item_list, gulist, lang=u"en"):
 	print "Starting {}".format(lang)
 	lister = gulist
-	p = Pool(2)
+	p = Pool()
 	procs = [p.map(guilditemlistWorker, [(lister[i:i + 200], lang) for i in range(0, len(lister), 200)])]
 
 	guild_flags = {}
@@ -197,7 +197,7 @@ def itemlist(item_list, gulist, lang=u"en"):
 			guild_flags.update(i)
 
 	lister = item_list.keys()
-	p = Pool(2)
+	p = Pool()
 	procs = [p.map(itemlistWorker, [(lister[i:i + 200], lang) for i in range(0, len(lister), 200)])]
 
 	flags = {}

@@ -128,7 +128,7 @@ def main():
 			 (u"leatherworking_450.html", Leatherworker.recipes, False, True, range(400, 450, 25)),
 			 (u"scribe.html", Scribe.recipes, False, False, range(0, 400, 25))]
 
-	p = Pool(2)
+	p = Pool()
 	params = [(rList[i], cList, mytime, xp_to_level) for i in range(0, len(rList))]
 	procs = p.map(recipeworker, params)
 
