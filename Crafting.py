@@ -46,12 +46,12 @@ class mytimer:
 		self.__name = name
 
 	def __enter__(self):
-		print("Start {}".format(self.__name))
+		print("Start: {}".format(self.__name))
 		self.__t = time()
 
 	def __exit__(self, exc_type, exc_val, exc_tb):
 		t2 = time()
-		print("End {}, took {:.3f} seconds".format(self.__name, t2-self.__t))
+		print("  End: {}, took {:.3f} seconds".format(self.__name, t2-self.__t))
 
 
 # Join 2 recipe dicts
@@ -78,14 +78,14 @@ def recipeworker((cmds, cList, mytime, xp_to_level)):  # , out_q):
 
 def main():
 	mytime = "<span class=\"localtime\">" + datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S')+u'+00:00</span>'
-	print "Start: ", datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
 	# Will hold level:total xp pairs (array)
 	xp_to_level = [0]
 	# populate the xp chart
 	for i in range(1,510):
 		xp_to_level.append(Globals.xpreq(i)+xp_to_level[i-1])
 
-	cList = appendCosts()
+	with mytimer('costs'):
+		cList = appendCosts()
 
 	#TODO change the way flags are passed so it is easier to understand
 
@@ -143,8 +143,6 @@ def main():
 	maketotals(totals, mytime, Localcz)
 	maketotals(totals, mytime, Localptbr)
 	maketotals(totals, mytime, Localzh)
-
-	print "End: ", datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
 
 
 # If ran directly, call main

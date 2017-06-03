@@ -31,7 +31,7 @@ import math
 import Globals
 # Localized text
 from translations import Localcz, Localde, Localen, Locales, Localfr, Localptbr, Localzh
-from auto_gen import Items_de, Items_en, Items_es, Items, Items_fr
+from auto_gen import Items_de, Items_en, Items_es, Items, Items_fr, Items_zh
 from collections import defaultdict
 from copy import deepcopy
 from MyPrint import printtofile
@@ -353,7 +353,7 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level,m
 	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_es.ilist, Locales)
 	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_en.ilist, Localcz)
 	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_en.ilist, Localptbr)
-	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_en.ilist, Localzh)
+	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_zh.ilist, Localzh)
 	totals = {}
 	totals.update(printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_en.ilist, Localen))
 
