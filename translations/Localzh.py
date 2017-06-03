@@ -242,7 +242,7 @@ lw      = u"Leatherworking"
 tailor  = u"Tailoring"
 totals  = u"Totals"
 about   = u"About"
-lang    = u"English"
+lang    = u"Chinese (Simplified)"
 special = u"Special"
 scribe  = u"Scribe"
 
@@ -322,7 +322,7 @@ header = u"""<nav>
         </li>
         <li><a href="/"""+path+u"""total.html">"""+totals+u"""</a></li>
         <li><a href="/"""+path+u"""faq.html">"""+about+u"""</a></li>
-        <li><a href="#" class="language" hreflang="en">"""+lang+u"""</a>
+        <li><a href="#" class="language" hreflang="zh">"""+lang+u"""</a>
         <ul>
           <li><a href="/%s" hreflang="en">English</a></li>
           <li><a href="/fr/%s" hreflang="fr">Français</a></li>
