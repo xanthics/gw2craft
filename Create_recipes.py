@@ -286,6 +286,7 @@ def main():
 	itemlist(item_list, gulist, u"fr")
 	itemlist(item_list, gulist, u"de")
 	itemlist(item_list, gulist, u"es")
+	itemlist(item_list, gulist, u"zh")
 
 
 # If ran directly, call main

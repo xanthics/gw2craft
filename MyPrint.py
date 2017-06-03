@@ -376,7 +376,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	</script>
 		"""
 	page += u'</head>\n'
-	page += u'<body>\n%s\n'%(localText.header%(filename,filename,filename,filename,filename))
+	page += u'<body>\n%s\n'%(localText.header%(filename,filename,filename,filename,filename,filename))
 	page += u"""<script> 
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -706,7 +706,7 @@ def maketotals(totals, mytime, localText):
   ga('send', 'pageview');
 
 </script>"""
-	page += localText.header%('total.html',u'total.html',u'total.html',u'total.html',u'total.html')
+	page += localText.header%('total.html',u'total.html',u'total.html',u'total.html',u'total.html',u'total.html')
 	page += u"<section class=\"main\">\n<strong>%s</strong><br />\n"%(localText.region)
 	page += u"<h5 style=\"text-align:center;\">"+localText.updated+u": " + mytime + u"</h5>"
 	# adword

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2017-04-15T23:37:10 PST
+# Created: 2017-06-03T14:38:50 PST
 ilist = {
 	8576: u"Bouteille d'alcool de riz",
 	8587: u"Œuf poché façon Drottot",
@@ -6747,7 +6747,7 @@ ilist = {
 	46690: u"Inscription enchantée sur plaque d'orichalque sanguinaire",
 	46708: u"Insigne en tulle entrelacé chamanique",
 	46709: u"Insigne en tulle entrelacé cavalier",
-	46710: u"Insigne enragé en tulle entrelacé",
+	46710: u"Insigne en tulle entrelacé enragé",
 	46711: u"Insigne en tulle entrelacé mage",
 	46712: u"Insigne en tulle entrelacé militaire",
 	46713: u"Insigne en tulle entrelacé colonisateur",

@@ -26,7 +26,7 @@ Purpose: Generate the index, faq and nav page for each language
 Note: Requires Python 2.7.x
 '''
 import output
-from translations import Localcz, Localde, Localen, Locales, Localfr, Localptbr
+from translations import Localcz, Localde, Localen, Locales, Localfr, Localptbr, Localzh
 
 
 # Generate a faq using local strings
@@ -69,7 +69,7 @@ def faq(localText):
   ga('send', 'pageview');
 
 </script>"""
-	page += localText.header%(u'faq.html',u'faq.html',u'faq.html',u'faq.html',u'faq.html')
+	page += localText.header%(u'faq.html',u'faq.html',u'faq.html',u'faq.html',u'faq.html',u'faq.html')
 	page += u"<section class=\"main\">\n"
 #	page += u"<a href=\"https://forum-en.guildwars2.com/forum/community/links/Dynamic-crafting-guides-for-all-8-crafts\" style=\"line-height:150%%;\"><strong>%s</strong></a>\n"%(localText.oThread)
 #	page += u"<br />\n"
@@ -194,7 +194,7 @@ def nav(localText):
   ga('send', 'pageview');
 
 </script>"""
-	page += localText.header%('nav.html','nav.html','nav.html','nav.html','nav.html')
+	page += localText.header%('nav.html','nav.html','nav.html','nav.html','nav.html','nav.html')
 	page += u"<section class=\"main\">\n"
 	page += u"%s\n"%(localText.navNotice)
 	page += u"<br /><br />\n"
@@ -309,7 +309,7 @@ def index(localText):
 
 </script>"""
 #	page += u"<div id=\"fb-root\"></div><script>(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = \"//connect.facebook.net/en_US/all.js#xfbml=1\";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));</script>"
-	page += localText.header%('index.html','index.html','index.html','index.html','index.html')
+	page += localText.header%('index.html','index.html','index.html','index.html','index.html','index.html')
 	page += u"<section class=\"main\">\n"
 	page += u"<a href=\"https://twitter.com/gw2crafts\" class=\"twitter-follow-button\" data-show-count=\"true\" data-dnt=\"true\">Follow @gw2crafts</a>\n<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>"
 #	page += u"\t<div class=\"g-plusone\" data-size=\"medium\" data-href=\"http://gw2crafts.net\"></div><script type=\"text/javascript\">(function() {var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;po.src = 'https://apis.google.com/js/plusone.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);})();</script>\n"
@@ -362,7 +362,7 @@ def index(localText):
 
 
 def main():
-	for lang in [Localen, Localde, Localfr, Locales, Localcz, Localptbr]:
+	for lang in [Localen, Localde, Localfr, Locales, Localcz, Localptbr, Localzh]:
 		print lang
 		faq(lang)
 		nav(lang)
