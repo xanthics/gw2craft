@@ -46,13 +46,30 @@ span.itemIcon {
 	background-size: 24px 24px;
 	display: inline-block;
 	position: relative;
-	top: 2px;
+    vertical-align: middle;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 	margin-left: 0px;
 	margin-right: 0px;
 	width: 24px;
 	height: 24px;}
+
+input[type=number] {
+    width: 4em;
+    background-color: rgba(255,255,255,0.25);
+    vertical-align: middle;
+	text-align: right;
+	display: inline-block;
+	position: relative;}
+
+input[readonly] {
+    background-color: transparent;}
+
+input:placeholder-shown {
+    background: : rgba(155,255,155,0.75);}
+
+input[type=text]:hover {
+    content: "Hide";}
 	
 span.warning{
 	background: url() no-repeat left bottom;
@@ -85,16 +102,14 @@ h1, h2 {
 	border-radius: 3px;
 	background-color: rgb(55,46,46);
 	color: rgb(225,225,225);
-	padding: .2em;
-}
+	padding: .2em;}
 
 h3 {
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 	background-color: rgb(95,80,80);
 	color: rgb(225,225,225);
-	padding: .1em;
-}
+	padding: .1em;}
 
 body {
 	background-color: rgb(100,100,100);
@@ -131,8 +146,7 @@ table {
 /* "Spoiler" Button Style */
 
 button#show_all {
-	margin-bottom: 6px;
-}
+	margin-bottom: 6px;}
 
 button.arrow {
 	border: #960000;
@@ -150,28 +164,23 @@ button.arrow {
 
 button.arrow img {
 	margin-left: 8px;
-	vertical-align: middle;
-}
+	vertical-align: middle;}
 
 button.arrow:hover {
 	opacity: 0.6;
-	filter: alpha(opacity=60);
-}
+	filter: alpha(opacity=60);}
 
 button.arrow:active {
 	top: 1px !important;
-	position: relative !important;
-}
+	position: relative !important;}
 
 button.arrow span:active {
 	top: 1px;
-	position: relative;
-}
+	position: relative;}
 
 button.arrow img:active {
 	top: 1px;
-	position: relative;
-}
+	position: relative;}
 
 button.info {
 	border: #000000;
@@ -191,18 +200,15 @@ button.info {
 	font-family: Arial,Helvetica,sans-serif;
 	font-size: 0.92em;
 	display: inline-block;
-	vertical-align: middle;
-}
+	vertical-align: middle;}
 
 button.info:hover {
 	opacity: 0.6;
-	filter: alpha(opacity=60);
-}
+	filter: alpha(opacity=60);}
 
 button.info:active {
 	top: 1px;
-	position: relative;
-}
+	position: relative;}
 
 /* Main List Style */
 
@@ -224,8 +230,7 @@ section.main {
 	max-width: 750px;
 	min-width: 750px;
 	width: 95%;
-	position: relative;
-}
+	position: relative;}
 
 /* Alternating list background Styles */
 
@@ -235,7 +240,7 @@ div.s1 {
 	background-color: rgb(185,185,185);
 	padding:6px;
 	margin: 1px
-	line-height: 1px;}
+	line-height: 1em;}
 
 div.s0 {
 	-moz-border-radius: 3px;
@@ -243,7 +248,7 @@ div.s0 {
 	background-color: rgb(220,220,220);
 	padding:6px;
 	margin: 1px
-	line-height: 1px;}
+	line-height: 1em;}
 
 /* GW2 copyright notice Style */
 
@@ -347,17 +352,13 @@ nav ul ul ul li {
 	background: rgb(125,55,55);}
 
 input[type=checkbox] + span {
-	opacity:1.0;
-}
+	opacity:1.0;}
 
 input[type=checkbox]:checked + span {
-	opacity:0.3;
-}
+	opacity:0.3;}
 
 input[type=checkbox] + button {
-	opacity:1.0;
-}
+	opacity:1.0;}
 
 input[type=checkbox]:checked + button {
-	opacity:0.3;
-}
+	opacity:0.3;}
