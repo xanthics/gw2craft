@@ -49,26 +49,8 @@ def faq(localText):
 	page += u"	<link rel=\"icon\" type=\"image/png\" href=\"/fi.gif\">\n"
 	page += u"	<script src=\"//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js\"></script>\n"
 	page += u"	<script src=\"/js/menu.js\" type=\"text/javascript\"></script>\n"
-	page += u"""	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-6865907345688710",
-    enable_page_level_ads: true
-  });
-</script>
-	"""
 	page += u"</head>\n"
 	page += u"<body>\n"
-	page += u"""<script> 
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-38972433-1', 'auto');
-  ga('send', 'pageview');
-
-</script>"""
 	page += localText.header%(u'faq.html',u'faq.html',u'faq.html',u'faq.html',u'faq.html',u'faq.html')
 	page += u"<section class=\"main\">\n"
 #	page += u"<a href=\"https://forum-en.guildwars2.com/forum/community/links/Dynamic-crafting-guides-for-all-8-crafts\" style=\"line-height:150%%;\"><strong>%s</strong></a>\n"%(localText.oThread)
@@ -174,27 +156,9 @@ def nav(localText):
 	page += u"	<link rel=\"icon\" type=\"image/png\" href=\"/fi.gif\">\n"
 	page += u"	<script src=\"//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js\"></script>\n"
 	page += u"	<script src=\"/js/menu.js\" type=\"text/javascript\"></script>\n"
-	page += u"""	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-	<script>
-	  (adsbygoogle = window.adsbygoogle || []).push({
-	    google_ad_client: "ca-pub-6865907345688710",
-	    enable_page_level_ads: true
-	  });
-	</script>
-		"""
 	page += u"</head>\n"
 	page += u"<body>\n"
-	page += u"""<script> 
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-38972433-1', 'auto');
-  ga('send', 'pageview');
-
-</script>"""
-	page += localText.header%('nav.html','nav.html','nav.html','nav.html','nav.html','nav.html')
+	page += localText.header%(u'nav.html',u'nav.html',u'nav.html',u'nav.html',u'nav.html',u'nav.html')
 	page += u"<section class=\"main\">\n"
 	page += u"%s\n"%(localText.navNotice)
 	page += u"<br /><br />\n"
@@ -288,28 +252,10 @@ def index(localText):
 	page += u"	<link rel=\"image_src\" href=\"apple-touch-icon-precomposed.png\">\n"
 	page += u"	<script src=\"//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js\"></script>\n"
 	page += u"	<script src=\"/js/menu.js\" type=\"text/javascript\"></script>\n"
-	page += u"""	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-	<script>
-	  (adsbygoogle = window.adsbygoogle || []).push({
-	    google_ad_client: "ca-pub-6865907345688710",
-	    enable_page_level_ads: true
-	  });
-	</script>
-		"""
 	page += u"</head>\n"
 	page += u"<body>\n"
-	page += u"""<script> 
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-38972433-1', 'auto');
-  ga('send', 'pageview');
-
-</script>"""
 #	page += u"<div id=\"fb-root\"></div><script>(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = \"//connect.facebook.net/en_US/all.js#xfbml=1\";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));</script>"
-	page += localText.header%('index.html','index.html','index.html','index.html','index.html','index.html')
+	page += localText.header%(u'index.html',u'index.html',u'index.html',u'index.html',u'index.html',u'index.html')
 	page += u"<section class=\"main\">\n"
 	page += u"<a href=\"https://twitter.com/gw2crafts\" class=\"twitter-follow-button\" data-show-count=\"true\" data-dnt=\"true\">Follow @gw2crafts</a>\n<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>"
 #	page += u"\t<div class=\"g-plusone\" data-size=\"medium\" data-href=\"http://gw2crafts.net\"></div><script type=\"text/javascript\">(function() {var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;po.src = 'https://apis.google.com/js/plusone.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);})();</script>\n"
@@ -340,18 +286,6 @@ def index(localText):
 <!-- Ezoic - Tail - bottom_of_page -->\n \
 <div id="ezoic-pub-ad-placeholder-102"></div>\n \
 <!-- End Ezoic - Tail - bottom_of_page --></div>\n'
-	# adword
-#	page += u'<br /><hr><br /><div style="display:block;text-align:Right;"> \
-#			\n<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \
-#			\n<!-- Tail ad --> \
-#			\n<ins class=\"adsbygoogle\" \
-#			\n     style=\"display:inline-block;width:336px;height:280px\" \
-#			\n     data-ad-client=\"ca-pub-6865907345688710\" \
-#			\n     data-ad-slot=\"9889445788\"></ins> \
-#			\n<script> \
-#			\n(adsbygoogle = window.adsbygoogle || []).push({}); \
-#			\n</script> \
-#			\n</div>\n'
 	page += u"</section>\n"
 	page += localText.cright
 	page += u"</body>\n"
