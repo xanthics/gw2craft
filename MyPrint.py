@@ -366,26 +366,8 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page += u'	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>\n'
 	page += u'	<script>(window.jQuery || document.write(\'<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"><\/script>\'));</script>\n'
 	page += u'	<script src="/js/menu.js" type="text/javascript"></script>\n'
-	page += u"""	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-	<script>
-	  (adsbygoogle = window.adsbygoogle || []).push({
-	    google_ad_client: "ca-pub-6865907345688710",
-	    enable_page_level_ads: true
-	  });
-	</script>
-		"""
 	page += u'</head>\n'
 	page += u'<body>\n%s\n'%(localText.header%(filename,filename,filename,filename,filename,filename))
-	page += u"""<script> 
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-38972433-1', 'auto');
-  ga('send', 'pageview');
-
-</script>"""
 	page += u'<section class=\"main\">'
 	page += u'<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n'
 	page += u'<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">%s</span>	%s: %s</span>\n'%(localText.warning1,localText.warning2,mytime)
@@ -740,25 +722,8 @@ def maketotals(totals, mytime, localText):
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 	<script src="/js/menu.js" type="text/javascript"></script>
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-6865907345688710",
-    enable_page_level_ads: true
-  });
-</script>
 </head>
 <body>'''
-	page += u"""<script> 
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-38972433-1', 'auto');
-  ga('send', 'pageview');
-
-</script>"""
 	page += localText.header%(u'total.html',u'total.html',u'total.html',u'total.html',u'total.html',u'total.html')
 	page += u"<section class=\"main\">\n<strong>%s</strong><br />\n"%(localText.region)
 	page += u"<h5 style=\"text-align:center;\">"+localText.updated+u": " + mytime + u"</h5>"
