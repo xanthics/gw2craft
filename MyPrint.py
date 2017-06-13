@@ -680,13 +680,15 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 				});
 				done -= 1
 				if (done == 0) {
+					
 					for (var key in dict) {
 						if (dict.hasOwnProperty(key)) {
 							//if item.id in page
 							idval = key + 'ih';
 							if (document.getElementById(idval)) {
 								//update element to item.count
-								document.getElementById(idval).value = dict[key];
+								document.getElementById(idval).value = dict[key];									
+								document.getElementById(idval).oninput();
 							}
 						}
 					}
