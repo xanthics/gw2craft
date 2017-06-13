@@ -66,11 +66,21 @@ input[readonly] {
     background-color: transparent;}
 
 input:placeholder-shown {
-    background: : rgba(155,255,155,0.75);}
+    background-color: : rgba(155,255,155,0.75);}
 
 input[type=text]:hover {
     content: "Hide";}
-	
+
+input[readonly][data-need="more"] {
+    box-shadow: 0 0 3px rgba(255,0,0,1);
+    color: red;
+}
+
+input[readonly][data-need="done"] {
+    background-color: : rgba(0,255,0,0.5);
+    color: transparent
+}
+
 span.warning{
 	background: url() no-repeat left bottom;
 	width: 24px;
