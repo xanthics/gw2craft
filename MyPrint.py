@@ -310,9 +310,8 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 				b_food[item] = buy[item]
 			else:
 				b_mix[item] = buy[item]
-
-	karma_str = u"<div class=\"s{0}\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url({1});\"></span><input type=\"number\" onkeypress=\"return event.charCode >= 48\" oninput=\"updateNeed(this, {2}, '{9}bv');\" id=\"{9}ih\" placeholder='0' min=\"0\" /><input type=\"number\" id=\"{9}bv\" value='{2}' readonly min=\"0\" /> <button title=\""+localText.toggle+u"\" class=\"{3} arrow\" id=\"{4}\">{5}</button><div class=\"lsbutton\" id=\"1{6}\">{7} <span class=\"karmaIcon\"></span> "+localText.valuePer+u" 25 <br /> {8}</div></div>\n"
-	collectable_str = u"<div class=\"s{0}\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url({1});\"></span><input type=\"number\" onkeypress=\"return event.charCode >= 48\" oninput=\"updateNeed(this, {2}, '{6}bv');\" id=\"{6}ih\" placeholder='0' min=\"0\" /><input type=\"number\" id=\"{6}bv\" value='{2}' readonly min=\"0\" /> <span class=\"{3}\">{4}</span> ({5} "+localText.valuePer+u")</div>\n"
+	karma_str = u"<div class=\"s{0}\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url({1});\"></span><input type=\"number\" onkeypress=\"return event.charCode >= 48\" oninput=\"updateNeed(this, {2}, '{9}bv');\" id=\"{9}ih\" placeholder='0' min=\"0\" /><input type=\"number\" id=\"{9}bv\" value='{2}' readonly data-need = \"more\" min=\"0\" /> <button title=\""+localText.toggle+u"\" class=\"{3} arrow\" id=\"{4}\">{5}</button><div class=\"lsbutton\" id=\"1{6}\">{7} <span class=\"karmaIcon\"></span> "+localText.valuePer+u" 25 <br /> {8}</div></div>\n"
+	collectable_str = u"<div class=\"s{0}\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url({1});\"></span><input type=\"number\" onkeypress=\"return event.charCode >= 48\" oninput=\"updateNeed(this, {2}, '{6}bv');\" id=\"{6}ih\" placeholder='0' min=\"0\" /><input type=\"number\" id=\"{6}bv\" value='{2}' readonly data-need = \"more\" min=\"0\" /> <span class=\"{3}\">{4}</span> ({5} "+localText.valuePer+u")</div>\n"
 
 	title = ""
 	# Page Title Part 1
@@ -449,7 +448,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 
 		for item in sorted(b_vendor):
 			t = (t+1)%2
-			page += u"<div class=\"s{0}\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url({1});\"></span><input type=\"number\" onkeypress=\"return event.charCode >= 48\" oninput=\"updateNeed(this, {2}, '{8}bv');\" id=\"{8}ih\" placeholder='0' min=\"0\" /><input type=\"number\" id=\"{8}bv\" value='{2}' readonly min=\"0\" /> <span class=\"{3}\">{4}</span> ({5} {6} from {7})</div>\n".format(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']),localText.valuePer,localText.method[0], item)
+			page += u"<div class=\"s{0}\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url({1});\"></span><input type=\"number\" onkeypress=\"return event.charCode >= 48\" oninput=\"updateNeed(this, {2}, '{8}bv');\" id=\"{8}ih\" placeholder='0' min=\"0\" /><input type=\"number\" id=\"{8}bv\" value='{2}' readonly data-need = \"more\" min=\"0\" /> <span class=\"{3}\">{4}</span> ({5} {6} from {7})</div>\n".format(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']),localText.valuePer,localText.method[0], item)
 
 	page += u'<!-- Ezoic - first_paragraph - under_first_paragraph -->\n<div id="ezoic-pub-ad-placeholder-107"></div>\n<!-- End Ezoic - first_paragraph - under_first_paragraph -->'
 	if recipebuy:
@@ -659,7 +658,18 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page += u"$(\"#show_all\").click(function () {$(\".sbutton\").show();"
 	page += u"});\n$(\"#hide_all\").click(function () {$(\".sbutton\").hide();"
 	page += u'});\n</script>\n'
-	page += u'<script>function updateNeed(field, val, idval) {document.getElementById(idval).value = +val - +field.value;}</script>\n'
+	page += u'''<script>
+	function updateNeed(field, val, idval) {
+		newval = +val - +field.value;
+		document.getElementById(idval).value = newval;
+		if ( newval > 0 ) {
+			document.getElementById(idval).setAttribute('data-need', 'more');
+		}
+		else {
+			document.getElementById(idval).setAttribute('data-need', 'done');
+		}
+	}
+</script>\n'''
 	page += u'''<script>
 	function updateBank(api_key) {
 		var dict = {}
