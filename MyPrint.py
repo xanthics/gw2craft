@@ -311,8 +311,8 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 			else:
 				b_mix[item] = buy[item]
 
-	karma_str = u"<div class=\"s%d\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><span class=\"quantity\">%d</span> <button title=\""+localText.toggle+u"\" class=\"%s arrow\" id=\"%d\">%s</button><div class=\"lsbutton\" id=\"1%d\">%d <span class=\"karmaIcon\"></span> "+localText.valuePer+u" 25 <br /> %s</div></div>\n"
-	collectable_str = u"<div class=\"s%d\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><span class=\"quantity\">%d</span> <span class=\"%s\">%s</span> (%4s "+localText.valuePer+u")</div>\n"
+	karma_str = u"<div class=\"s{0}\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url({1});\"></span><input type=\"number\" oninput=\"updateNeed(this, {2}, '{9}bv');\" id=\"{9}ih\" placeholder='0' /><input type=\"number\" id=\"{9}bv\" value='{2}' readonly /> <button title=\""+localText.toggle+u"\" class=\"{3} arrow\" id=\"{4}\">{5}</button><div class=\"lsbutton\" id=\"1{6}\">{7} <span class=\"karmaIcon\"></span> "+localText.valuePer+u" 25 <br /> {8}</div></div>\n"
+	collectable_str = u"<div class=\"s{0}\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url({1});\"></span><input type=\"number\" oninput=\"updateNeed(this, {2}, '{6}bv');\" id=\"{6}ih\" placeholder='0' /><input type=\"number\" id=\"{6}bv\" value='{2}' readonly /> <span class=\"{3}\">{4}</span> ({5} "+localText.valuePer+u")</div>\n"
 
 	title = ""
 	# Page Title Part 1
@@ -395,7 +395,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 		page += u'<div>\n'
 		page += u'<button title=\"{}\" class =\"arrow\" id=\"scribehint\">{}</button><div class=\"lsbutton\" id=\"1scribehint\">\n'.format(localText.toggle, localText.scribetease)
 		page += u'{}</div><br /></div><br />\n'.format(localText.scribeinfo)
-		buttonList.append('scribehint')
+		buttonList.append(u'scribehint')
 
 #	page += u"<div class=\"s{}\">{}: <button class=\"arrow {}\" title=\"{}\" id=\"{}{}\">{}</button> {}\n</div>\n".format(
 #		t, localText.discover, cList[item][u'rarity'], localText.toggle, item, tier, cListName[item], tstr)
@@ -423,9 +423,13 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 			page += u'<div class=\"s%i\">%3i <span class=\"%s\">%s</span> - %s %s</div>\n'%(t,sell[line],cList[line][u'rarity'],cListName[line],(localText.soldVia%mFormat(cList[line][u'w'])),localText.method[cList[line][u'sellMethod']])
 
 	page += u"</div><script type=\"text/javascript\">$('#1tcost').hide();</script><br />"
-	buttonList.append('tcost')
+	buttonList.append(u'tcost')
 	page += u'<!-- Ezoic - page_title_2 - under_page_title -->\n<div id="ezoic-pub-ad-placeholder-106"></div>\n<!-- End Ezoic - page_title_2 - under_page_title -->'
-
+	page += u'<br /><br /><input type="text" id="api_key" name="api key" placeholder="Enter API key here" style=\'text-align: center;\'><br />'
+	page += u'<button type="button" onclick="updateBank(document.getElementById(\'api_key\').value);" style=\'text-align: center;\'>Get Bank Content</button>\n'
+	page += u'<br /> The API key you enter needs \'inventories\' permission to work.  <a href="https://account.arena.net/applications/create">You can generate a key here</a>. <br /><br />'
+	page += u'Clicking the button will update the quantities of all items in your bank and material storage that are used in this guide.'
+	page += u"<br /><br /><div class=\"s1\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(/apple-touch-icon-144x144-precomposed.png);\"></span><input type=\"text\" value='Have' readonly style=\"width: 4em;\" /><input type=\"text\" value='Need' readonly style=\"width: 4em;\" /> Name of an item and its per unit cost.</div>\n"
 	if b_vendor or b_karma_c or b_karma_w:
 		page += u"<h2>%s</h2>\n"%localText.buyVendor
 		if b_karma_c or b_karma_w:
@@ -433,32 +437,32 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 
 		for item in sorted(b_karma_w):
 			t = (t+1)%2
-			page += karma_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],item,cListName[item],item,karma_items[item][u'cost'],karma_items[item][u'note'])
+			page += karma_str.format(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],item,cListName[item],item,karma_items[item][u'cost'],karma_items[item][u'note'],item)
 			buttonList.append(item)
 			kt += int(math.ceil(buy[item]/25.0)*karma_items[item][u'cost'])
 
 		for item in sorted(b_karma_c):
 			t = (t+1)%2
-			page += karma_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],item,cListName[item],item,karma_chef[item][u'cost'],karma_chef[item][u'note'])
+			page += karma_str.format(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],item,cListName[item],item,karma_chef[item][u'cost'],karma_chef[item][u'note'],item)
 			buttonList.append(item)
 			kt += int(math.ceil(buy[item]/25.0)*karma_chef[item][u'cost'])
 
 		for item in sorted(b_vendor):
 			t = (t+1)%2
-			page += (u"<div class=\"s%i\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><span class=\"quantity\">%i</span> <span class=\"%s\">%s</span> (%4s %s from %s)</div>\n")%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']),localText.valuePer,localText.method[0])
+			page += u"<div class=\"s{0}\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url({1});\"></span><input type=\"number\" oninput=\"updateNeed(this, {2}, '{8}bv');\" id=\"{8}ih\" placeholder='0' /><input type=\"number\" id=\"{8}bv\" value='{2}' readonly /> <span class=\"{3}\">{4}</span> ({5} {6} from {7})</div>\n".format(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']),localText.valuePer,localText.method[0], item)
 
 	page += u'<!-- Ezoic - first_paragraph - under_first_paragraph -->\n<div id="ezoic-pub-ad-placeholder-107"></div>\n<!-- End Ezoic - first_paragraph - under_first_paragraph -->'
 	if recipebuy:
 		page += u"<h2>%s</h2>\n"%localText.bRecipes
 		for item in recipebuy:
 			t = (t+1)%2
-			if karma_recipe[item]['cost']:
-				page += (u"<div class=\"s%d\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><button title=\""+localText.toggle+u"\" class=\"arrow %s\" id=\"%d\">%s</button><div class=\"lsbutton\" id=\"1%d\">%i <span class=\"karmaIcon\"></span>, %s</div></div>\n")%(t,cList[item]['icon'],cList[item]['rarity'],item,cListName[item],item,karma_recipe[item]['cost'],karma_recipe[item]['note'])
+			if karma_recipe[item][u'cost']:
+				page += (u"<div class=\"s%d\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><button title=\""+localText.toggle+u"\" class=\"arrow %s\" id=\"%d\">%s</button><div class=\"lsbutton\" id=\"1%d\">%i <span class=\"karmaIcon\"></span>, %s</div></div>\n")%(t,cList[item][u'icon'],cList[item][u'rarity'],item,cListName[item],item,karma_recipe[item][u'cost'],karma_recipe[item][u'note'])
 			else:
 				if item in rsps:
-					page += (u"<div class=\"s%d\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><button title=\""+localText.toggle+u"\" class=\"arrow %s\" id=\"%d\">%s</button><div class=\"lsbutton\" id=\"1%d\">%s</div></div>\n")%(t,cList[item]['icon'],cList[item]['rarity'],item,cListName[rsps[item]],item,karma_recipe[item]['note'])
+					page += (u"<div class=\"s%d\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><button title=\""+localText.toggle+u"\" class=\"arrow %s\" id=\"%d\">%s</button><div class=\"lsbutton\" id=\"1%d\">%s</div></div>\n")%(t,cList[item]['icon'],cList[item][u'rarity'],item,cListName[rsps[item]],item,karma_recipe[item][u'note'])
 				else:
-					page += (u"<div class=\"s%d\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><button title=\""+localText.toggle+u"\" class=\"arrow %s\" id=\"%d\">%s</button><div class=\"lsbutton\" id=\"1%d\">%s</div></div>\n")%(t,cList[item]['icon'],cList[item]['rarity'],item,cListName[item],item,karma_recipe[item]['note'])
+					page += (u"<div class=\"s%d\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><button title=\""+localText.toggle+u"\" class=\"arrow %s\" id=\"%d\">%s</button><div class=\"lsbutton\" id=\"1%d\">%s</div></div>\n")%(t,cList[item]['icon'],cList[item][u'rarity'],item,cListName[item],item,karma_recipe[item][u'note'])
 			buttonList.append(item)
 			kt += int(karma_recipe[item][u'cost'])
 	if kt:
@@ -467,28 +471,28 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 		page += u'<h2>%s</h2>\n'%localText.collectibles
 		for item in sorted(b_common):
 			t = (t+1)%2
-			page += collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']))
+			page += collectable_str.format(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']),item)
 		for item in sorted(b_fine):
 			t = (t+1)%2
-			page += collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']))
+			page += collectable_str.format(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']),item)
 		for item in sorted(b_rare):
 			t = (t+1)%2
-			page += collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']))
+			page += collectable_str.format(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']),item)
 		for item in sorted(b_gem):
 			t = (t+1)%2
-			page += collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']))
+			page += collectable_str.format(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']),item)
 		for item in sorted(b_holiday):
 			t = (t+1)%2
-			page += collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']))
+			page += collectable_str.format(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']),item)
 		for item in sorted(b_food):
 			t = (t+1)%2
-			page += collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']))
+			page += collectable_str.format(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']),item)
 	page += u'<!-- Ezoic - second_paragraph - under_second_paragraph -->\n<div id="ezoic-pub-ad-placeholder-108"></div>\n<!-- End Ezoic - second_paragraph - under_second_paragraph -->'
 	if b_mix:
 		page += u'<h2>%s</h2>\n'%localText.mixedTP
 		for item in sorted(b_mix):
 			t = (t+1)%2
-			page += collectable_str%(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']))
+			page += collectable_str.format(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']),item)
 	page += u'<!-- Ezoic - mid_content - mid_content -->\n<div id="ezoic-pub-ad-placeholder-109"></div>\n<!-- End Ezoic - mid_content - mid_content -->'
 
 	page += u"<br />\n<br />\n<h2>%s</h2>\n"%localText.make
@@ -577,10 +581,10 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 					else:
 						del(make[tier][item])
 					t = (t+1)%2
-					tstr = "<div class=\"sbutton\" id=\"1"+str(item)+str(tier)+u"\">"
+					tstr = u"<div class=\"sbutton\" id=\"1"+str(item)+str(tier)+u"\">"
 					for s in cList[item][u'recipe'][index]:
-						tstr += "\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u'\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][index][s])+u")"
-					tstr += "</div><br />"
+						tstr += u"\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u'\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][index][s])+u")"
+					tstr += u"</div><br />"
 					page += u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.discover+u": <button class=\"arrow "+cList[item][u'rarity']+u'\" title=\"'+localText.toggle+u'\" id=\"'+str(item)+str(tier)+u'\">'+cListName[item]+u"</button> "+tstr+u"\n</div>\n"
 					buttonList.append(str(item)+str(tier))
 			for item in sorted(make[tier]):
@@ -599,14 +603,14 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 					else:
 						del(make[tier][item])
 					t = (t+1)%2
-					tstr = "<div class=\"sbutton\" id=\"1"+str(item)+str(tier)+u"\">"
+					tstr = u"<div class=\"sbutton\" id=\"1"+str(item)+str(tier)+u"\">"
 					if craftexo:
 						inde = 400
 					else:
 						inde = tier
 					for s in cList[item][u'recipe'][index]:
-						tstr += "\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u'\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][index][s])+u")"
-					tstr += "</div><br />"
+						tstr += u"\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u'\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][index][s])+u")"
+					tstr += u"</div><br />"
 					page += u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.discover+u": <button class=\"arrow "+cList[item][u'rarity']+u'\" title=\"'+localText.toggle+u'\" id=\"'+str(item)+str(tier)+u'\">'+cListName[item]+u"</button> "+tstr+u"\n</div>\n"
 					buttonList.append(str(item)+str(tier))
 			for item in sorted(make[tier]):
@@ -629,10 +633,10 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 					else:
 						del(make[tier][item])
 					t = (t+1)%2
-					tstr = "<div class=\"sbutton\" id=\"1"+str(item)+str(tier)+u"\">"
+					tstr = u"<div class=\"sbutton\" id=\"1"+str(item)+str(tier)+u"\">"
 					for s in cList[item][u'recipe'][index]:
-						tstr += "\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u'\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][index][s])+u")"
-					tstr += "</div><br />"
+						tstr += u"\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u'\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][index][s])+u")"
+					tstr += u"</div><br />"
 					page += u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.discover+u": <button class=\"arrow "+cList[item][u'rarity']+u'\" title=\"'+localText.toggle+u'\" id=\"'+str(item)+str(tier)+u'\">'+cListName[item]+u"</button> "+tstr+u"\n</div>\n"
 					buttonList.append(str(item)+str(tier))
 			for item in sorted(make[tier]):
@@ -655,6 +659,43 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page += u"$(\"#show_all\").click(function () {$(\".sbutton\").show();"
 	page += u"});\n$(\"#hide_all\").click(function () {$(\".sbutton\").hide();"
 	page += u'});\n</script>\n'
+	page += u'<script>function updateNeed(field, val, idval) {document.getElementById(idval).value = +val - +field.value;}</script>\n'
+	page += u'''<script>
+	function updateBank(api_key) {
+		var dict = {}
+		var done = 2
+		
+		$(['materials', 'bank']).each(function() {
+			var endpoint = this;
+			$.getJSON('https://api.guildwars2.com/v2/account/' + endpoint + '?access_token=' + api_key, function(data) {
+				//for item in data
+				$.each(data, function(value) {
+					if(data[value]) {
+						var exists = dict[data[value].id];
+						if(!exists) {
+							dict[data[value].id] = 0;
+						}
+						dict[data[value].id] += data[value].count
+					}
+				});
+				done -= 1
+				if (done == 0) {
+					for (var key in dict) {
+						if (dict.hasOwnProperty(key)) {
+							//if item.id in page
+							idval = key + 'ih';
+							if (document.getElementById(idval)) {
+								//update element to item.count
+								document.getElementById(idval).value = dict[key];
+							}
+						}
+					}
+				}
+			});
+		});
+	}
+</script>
+'''
 	page += u'</body>\n'
 	page += u'</html>\n'
 
@@ -706,7 +747,7 @@ def maketotals(totals, mytime, localText):
   ga('send', 'pageview');
 
 </script>"""
-	page += localText.header%('total.html',u'total.html',u'total.html',u'total.html',u'total.html',u'total.html')
+	page += localText.header%(u'total.html',u'total.html',u'total.html',u'total.html',u'total.html',u'total.html')
 	page += u"<section class=\"main\">\n<strong>%s</strong><br />\n"%(localText.region)
 	page += u"<h5 style=\"text-align:center;\">"+localText.updated+u": " + mytime + u"</h5>"
 	# adword
