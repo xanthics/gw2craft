@@ -51,6 +51,16 @@ def faq(localText):
 	page += u"	<script src=\"/js/menu.js\" type=\"text/javascript\"></script>\n"
 	page += u"</head>\n"
 	page += u"<body>\n"
+	page += u"""<script> 
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38972433-1', 'auto');
+  ga('send', 'pageview');
+
+</script>"""
 	page += localText.header%(u'faq.html',u'faq.html',u'faq.html',u'faq.html',u'faq.html',u'faq.html')
 	page += u"<section class=\"main\">\n"
 #	page += u"<a href=\"https://forum-en.guildwars2.com/forum/community/links/Dynamic-crafting-guides-for-all-8-crafts\" style=\"line-height:150%%;\"><strong>%s</strong></a>\n"%(localText.oThread)
@@ -158,7 +168,17 @@ def nav(localText):
 	page += u"	<script src=\"/js/menu.js\" type=\"text/javascript\"></script>\n"
 	page += u"</head>\n"
 	page += u"<body>\n"
-	page += localText.header%(u'nav.html',u'nav.html',u'nav.html',u'nav.html',u'nav.html',u'nav.html')
+	page += u"""<script> 
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38972433-1', 'auto');
+  ga('send', 'pageview');
+
+</script>"""
+	page += localText.header%('nav.html','nav.html','nav.html','nav.html','nav.html','nav.html')
 	page += u"<section class=\"main\">\n"
 	page += u"%s\n"%(localText.navNotice)
 	page += u"<br /><br />\n"
@@ -254,6 +274,16 @@ def index(localText):
 	page += u"	<script src=\"/js/menu.js\" type=\"text/javascript\"></script>\n"
 	page += u"</head>\n"
 	page += u"<body>\n"
+	page += u"""<script> 
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38972433-1', 'auto');
+  ga('send', 'pageview');
+
+</script>"""
 #	page += u"<div id=\"fb-root\"></div><script>(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = \"//connect.facebook.net/en_US/all.js#xfbml=1\";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));</script>"
 	page += localText.header%(u'index.html',u'index.html',u'index.html',u'index.html',u'index.html',u'index.html')
 	page += u"<section class=\"main\">\n"
