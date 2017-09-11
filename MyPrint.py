@@ -417,7 +417,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	buttonList.append(u'tcost')
 	page += u'<!-- Ezoic - page_title_2 - under_page_title -->\n<div id="ezoic-pub-ad-placeholder-106"></div>\n<!-- End Ezoic - page_title_2 - under_page_title -->'
 	page += u'<br /><br /><input type="text" id="api_key" name="api key" placeholder="Enter API key here" style=\'text-align: center;\'><br />'
-	page += u'<button type="button" onclick="updateBank(document.getElementById(\'api_key\').value);" style=\'text-align: center;\'>Get Bank Content</button>\n'
+	page += u'<button type="button" onclick="updateBank(document.getElementById(\'api_key\').value.trim());" style=\'text-align: center;\'>Get Bank Content</button>\n'
 	page += u'<br /> The API key you enter needs \'inventories\' permission to work.  <a href="https://account.arena.net/applications/create">You can generate a key here</a>. <br /><br />'
 	page += u'Clicking the button will update the quantities of all items in your bank and material storage that are used in this guide.'
 	page += u"<br /><br /><div class=\"s1\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(/apple-touch-icon-144x144-precomposed.png);\"></span><input type=\"text\" value='Have' readonly style=\"width: 4em;\" /><input type=\"text\" value='Need' readonly style=\"width: 4em;\" /> Name of an item and its per unit cost.</div>\n"
