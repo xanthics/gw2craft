@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2017-06-03T14:38:50 PST
+# Created: 2017-09-13T00:40:28 PST
 ilist = {
 	8576: u"Bouteille d'alcool de riz",
 	8587: u"Œuf poché façon Drottot",
@@ -6758,6 +6758,7 @@ ilist = {
 	46740: u"Bobine de fil de soie à tisser",
 	46741: u"Rouleau de damassé",
 	46742: u"Morceau de mithrillium",
+	46743: u"Lingot d'électrum Xunlai",
 	46744: u"Boule de résidu d'esprit ancestral",
 	46745: u"Bobine de fil épais de cuir élonien",
 	46747: u"Réactif thermocatalytique",
@@ -8084,4 +8085,9 @@ ilist = {
 	1000825: u"Trophée d'argent de Cairn l'Indomptable",
 	1000826: u"Trophée de bronze de Samarog",
 	1000829: u"Trophée de bronze de Deimos",
+	1000833: u"Super fleur",
+	1000836: u"Super champignon",
+	1000837: u"Super maison forestière",
+	1000839: u"Super feu de camp",
+	1000843: u"Super pin",
 }

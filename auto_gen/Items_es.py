@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2017-06-03T14:40:22 PST
+# Created: 2017-09-13T00:40:42 PST
 ilist = {
 	8576: u"Botella de licor de arroz",
 	8587: u"Huevo escalfado de Drottot",
@@ -6758,6 +6758,7 @@ ilist = {
 	46740: u"Carrete de hilo de seda para tejer",
 	46741: u"Haz de damasco",
 	46742: u"Trozo de mithrilio",
+	46743: u"Lingote de electrum xunlai",
 	46744: u"Pegote de residuo de espíritus ancestrales",
 	46745: u"Carrete de hilo grueso eloniano",
 	46747: u"Reactivo termocatalítico",
@@ -8084,4 +8085,9 @@ ilist = {
 	1000825: u"Trofeo de Cairn el Indomable de plata",
 	1000826: u"Trofeo de Samarog de bronce",
 	1000829: u"Trofeo de Deimos de bronce",
+	1000833: u"Superflor",
+	1000836: u"Superchampiñón",
+	1000837: u"Supercabaña",
+	1000839: u"Superhoguera",
+	1000843: u"Superpino",
 }

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2017-06-03T14:38:06 PST
+# Created: 2017-09-13T00:40:21 PST
 ilist = {
 	8576: u"Bottle of Rice Wine",
 	8587: u"Drottot's Poached Egg",
@@ -6758,6 +6758,7 @@ ilist = {
 	46740: u"Spool of Silk Weaving Thread",
 	46741: u"Bolt of Damask",
 	46742: u"Lump of Mithrillium",
+	46743: u"Xunlai Electrum Ingot",
 	46744: u"Glob of Elder Spirit Residue",
 	46745: u"Spool of Thick Elonian Cord",
 	46747: u"Thermocatalytic Reagent",
@@ -8084,4 +8085,9 @@ ilist = {
 	1000825: u"Silver Cairn the Indomitable Trophy",
 	1000826: u"Bronze Samarog Trophy",
 	1000829: u"Bronze Deimos Trophy",
+	1000833: u"Super Flower",
+	1000836: u"Super Mushroom",
+	1000837: u"Super Forest House",
+	1000839: u"Super Campfire",
+	1000843: u"Super Pine Tree",
 }
