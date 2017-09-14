@@ -440,7 +440,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 
 		for item in sorted(b_vendor):
 			t = (t + 1) % 2
-			page += u"<div class=\"s{0}\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url({1});\"></span><input type=\"number\" onkeypress=\"return event.charCode >= 48\" oninput=\"updateNeed(this, {2}, '{8}bv');\" id=\"{8}ih\" placeholder='0' min=\"0\" /><input type=\"number\" id=\"{8}bv\" value='{2}' raw_copper='{9}' readonly data-need = \"more\" min=\"0\" /> <span class=\"{3}\">{4}</span> ({5} {6} from {7})</div>\n".format(t, cList[item][u'icon'], buy[item],cList[item][u'rarity'], cListName[item],mFormat(cList[item][u'cost']), localText.valuePer, localText.method[0], item, cList[item][u'cost'])
+			page += u"<div class=\"s{0}\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url({1});\"></span><input type=\"number\" onkeypress=\"return event.charCode >= 48\" oninput=\"updateNeed(this, {2}, '{8}bv');\" id=\"{8}ih\" placeholder='0' min=\"0\" /><input type=\"number\" id=\"{8}bv\" value='{2}' raw_copper='{9}' readonly data-need = \"more\" min=\"0\" /> <span class=\"{3}\">{4}</span> ({5} {6} from {7})</div>\n".format(t, cList[item][u'icon'], buy[item], cList[item][u'rarity'], cListName[item], mFormat(cList[item][u'cost']), localText.valuePer, localText.method[0], item, cList[item][u'cost'])
 
 	page += u'<!-- Ezoic - first_paragraph - under_first_paragraph -->\n<div id="ezoic-pub-ad-placeholder-107"></div>\n<!-- End Ezoic - first_paragraph - under_first_paragraph -->'
 	if recipebuy:
@@ -483,7 +483,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 		page += u'<h2>%s</h2>\n'%localText.mixedTP
 		for item in sorted(b_mix):
 			t = (t + 1) % 2
-			page += collectable_str.format(t,cList[item][u'icon'],buy[item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost']),item)
+			page += collectable_str.format(t, cList[item][u'icon'], buy[item], cList[item][u'rarity'], cListName[item], mFormat(cList[item][u'cost']), item, cList[item][u'cost'])
 	page += u'<!-- Ezoic - mid_content - mid_content -->\n<div id="ezoic-pub-ad-placeholder-109"></div>\n<!-- End Ezoic - mid_content - mid_content -->'
 
 	page += u"<br />\n<br />\n<h2>%s</h2>\n"%localText.make
