@@ -310,7 +310,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 				b_food[item] = buy[item]
 			else:
 				b_mix[item] = buy[item]
-	karma_str = u"<div class=\"s{0}\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url({1});\"></span><input type=\"number\" onkeypress=\"return event.charCode >= 48\" oninput=\"updateNeed(this, {2}, '{9}bv');\" id=\"{9}ih\" placeholder='0' min=\"0\" /><input type=\"number\" id=\"{9}bv\" value='{2}' raw_copper='{10}' readonly data-need = \"more\" min=\"0\" /> <button title=\""+localText.toggle+u"\" class=\"{3} arrow\" id=\"{4}\">{5}</button><div class=\"lsbutton\" id=\"1{6}\">{7} <span class=\"karmaIcon\"></span> "+localText.valuePer+u" 25 <br /> {8}</div></div>\n"
+	karma_str = u"<div class=\"s{0}\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url({1});\"></span><input type=\"number\" onkeypress=\"return event.charCode >= 48\" oninput=\"updateNeed(this, {2}, '{9}bv');\" id=\"{9}ih\" placeholder='0' min=\"0\" /><input type=\"number\" id=\"{9}bv\" value='{2}' raw_copper='0' readonly data-need = \"more\" min=\"0\" /> <button title=\""+localText.toggle+u"\" class=\"{3} arrow\" id=\"{4}\">{5}</button><div class=\"lsbutton\" id=\"1{6}\">{7} <span class=\"karmaIcon\"></span> "+localText.valuePer+u" 25 <br /> {8}</div></div>\n"
 	collectable_str = u"<div class=\"s{0}\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url({1});\"></span><input type=\"number\" onkeypress=\"return event.charCode >= 48\" oninput=\"updateNeed(this, {2}, '{6}bv');\" id=\"{6}ih\" placeholder='0' min=\"0\" /><input type=\"number\" id=\"{6}bv\" value='{2}' raw_copper='{7}' readonly data-need = \"more\" min=\"0\" /> <span class=\"{3}\">{4}</span> ({5} "+localText.valuePer+u")</div>\n"
 
 	title = ""
@@ -428,13 +428,13 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 
 		for item in sorted(b_karma_w):
 			t = (t + 1) % 2
-			page += karma_str.format(t, cList[item][u'icon'], buy[item], cList[item][u'rarity'], item, cListName[item], item, karma_items[item][u'cost'], karma_items[item][u'note'], item, 0)
+			page += karma_str.format(t, cList[item][u'icon'], buy[item], cList[item][u'rarity'], item, cListName[item], item, karma_items[item][u'cost'], karma_items[item][u'note'], item)
 			buttonList.append(item)
 			kt += int(math.ceil(buy[item]/25.0)*karma_items[item][u'cost'])
 
 		for item in sorted(b_karma_c):
 			t = (t + 1) % 2
-			page += karma_str.format(t, cList[item][u'icon'], buy[item], cList[item][u'rarity'], item, cListName[item], item, karma_chef[item][u'cost'], karma_chef[item][u'note'], item, karma_chef[item][u'cost'])
+			page += karma_str.format(t, cList[item][u'icon'], buy[item], cList[item][u'rarity'], item, cListName[item], item, karma_chef[item][u'cost'], karma_chef[item][u'note'], item)
 			buttonList.append(item)
 			kt += int(math.ceil(buy[item]/25.0)*karma_chef[item][u'cost'])
 
