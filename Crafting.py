@@ -33,7 +33,7 @@ from auto_gen import Armorsmith, Artificer, Chef, Chef_karma, Huntsman, Jeweler,
 	Weaponsmith
 # Localized text
 from translations import Localcz, Localde, Localen, Locales, Localfr, Localptbr, Localzh
-from multiprocessing import Pool
+from multiprocessing import Pool, cpu_count
 from copy import deepcopy
 from MyPrint import maketotals
 from MyPrices import appendCosts
@@ -128,7 +128,7 @@ def main():
 			 (u"leatherworking_450.html", Leatherworker.recipes, False, True, range(400, 450, 25)),
 			 (u"scribe.html", Scribe.recipes, False, False, range(0, 400, 25))]
 
-	p = Pool()
+	p = Pool(cpu_count() - 1 if cpu_count() > 1 else 1)
 	params = [(rList[i], cList, mytime, xp_to_level) for i in range(0, len(rList))]
 	procs = p.map(recipeworker, params)
 
