@@ -130,6 +130,7 @@ shelp      = u"Shelp - Degun Shun(Estepas Crestafulgurante 40-50)"
 vaastas    = u"Vaastas Matacarne - Aldea del Tajo del Carnicero(Meseta de Diessa 15-25)"
 krug       = u"Veterano Krug - Colinas Tamini(Valle de la Reina 1-15)"
 wupwup     = u"Jefe Wupwup - Tierras Baldías del Apóstata(Colina del Corazón de Fuego 60-70)"
+yoal       = u"Yoal - Quetzal(Caledon Forest 1-15)"
 
 # guide variables
 iCost        = u"Coste Inicial"

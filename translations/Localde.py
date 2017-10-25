@@ -128,6 +128,7 @@ shelp      = u"Shelp - Degun Shun(Blazeridge Steppes 40-50)"
 vaastas    = u"Vaastas Meatslayer - Village of Butcher's Block(Diessa Plateau 15-25)"
 krug       = u"Veteran Krug - Taminn Foothills(Queensdale 1-15)"
 wupwup     = u"Wupwup Chief - Apostate Wastes(Fireheart Rise 60-70)"
+yoal       = u"Yoal - Quetzal(Caledon Forest 1-15)"
 
 # guide variables
 iCost        = u"anfängliche Kosten"

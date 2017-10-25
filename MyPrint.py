@@ -67,7 +67,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 					12232:{u'note':u"{}".format(localText.albin),u'cost':35}, # Green Bean
 					12518:{u'note':u"{} <br />{}".format(localText.laudren,localText.wupwup),u'cost':112}, # Horseradish Root
 					12239:{u'note':u"{} <br />{} <br />{}".format(localText.brian,localText.kastaz,localText.hune),u'cost':49}, # Kidney Bean
-					12252:{u'note':u"{} <br />{} <br />{}".format(localText.eona,localText.hrappa,localText.milton),u'cost':35}, # Lemon
+					12252:{u'note':u"{} <br />{} <br />{}".format(localText.yoal,localText.hrappa,localText.milton),u'cost':35}, # Lemon
 					12339:{u'note':u"{}".format(localText.shelp),u'cost':77}, # Lime
 					12543:{u'note':u"{}".format(localText.crandle),u'cost':203}, # Mango
 					12249:{u'note':u"{} <br />{}".format(localText.jenks,localText.milton),u'cost':35}, # Nutmeg Seed

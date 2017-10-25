@@ -128,6 +128,7 @@ shelp      = u"Shelp - Degun Shun (Les steppes de la Strie flamboyante 40-50)"
 vaastas    = u"Vaastas Meatslayer - Village du Bloc de Boucher (Plateau de Diessa 15-25)"
 krug       = u"Krug vétéran - Contreforts de Taminn (Vallée de la reine 1-15)"
 wupwup     = u"Chef Wupwup - Contrées sauvages de l'Apostat (Montée de Flambecoeur 60-70)"
+yoal       = u"Yoal - Quetzal(Caledon Forest 1-15)"
 
 # guide variables
 iCost        = u"Coût Initial"
