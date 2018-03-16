@@ -27,6 +27,7 @@ Note: Requires Python 2.7.x
 '''
 
 import math
+from itertools import chain
 
 import Globals
 # Localized text
@@ -35,6 +36,7 @@ from auto_gen import Items_de, Items_en, Items_es, Items, Items_fr, Items_zh
 from collections import defaultdict
 from copy import deepcopy
 from MyPrint import printtofile
+from xpgain_lookup import table
 
 # scribe hack for single use recipes
 badrecipe = []
@@ -50,6 +52,9 @@ def rarityNum(num):
 
 # compute the xp gain of a single craft
 def xpgain(level,typ,minlvl):
+	if '{},{},{}'.format(level, typ, minlvl) in table:
+		return table['{},{},{}'.format(level, typ, minlvl)]
+	print('Key miss with: {},{},{}'.format(level, typ, minlvl))
 	span = 0.0
 	mult = 0.0
 	if typ == 1: # refinement
@@ -276,7 +281,7 @@ def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level,m
 
 			while craftcount[tier][u'current_xp'] < xp_to_level[tier + 25]:
 				# We still want to compute every make on fast guides for the 375-400 range
-				if fast and tier == 375 and not "cook" in filename:
+				if fast and tier == 375 and "cook" not in filename:
 					bucket = {}
 					bucket = makeQueuecraft(c_recipes[tier], cList,craftcount,tier,xp_to_level,craftexo)
 					bkey = sorted(bucket, reverse=True)
