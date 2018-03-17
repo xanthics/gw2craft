@@ -36,7 +36,7 @@ from auto_gen import Items_de, Items_en, Items_es, Items, Items_fr, Items_zh
 from collections import defaultdict
 from copy import deepcopy
 from MyPrint import printtofile
-from xpgain_lookup import table
+
 
 # scribe hack for single use recipes
 badrecipe = []
@@ -50,10 +50,11 @@ def rarityNum(num):
 	else:
 		return 1.0
 
+
 # compute the xp gain of a single craft
-def xpgain(level,typ,minlvl):
-	if '{},{},{}'.format(level, typ, minlvl) in table:
-		return table['{},{},{}'.format(level, typ, minlvl)]
+def xpgain(level, typ, minlvl):
+	if '{},{},{}'.format(level, typ, minlvl) in Globals.table:
+		return Globals.table['{},{},{}'.format(level, typ, minlvl)]
 	print('Key miss with: {},{},{}'.format(level, typ, minlvl))
 	span = 0.0
 	mult = 0.0
@@ -74,6 +75,7 @@ def xpgain(level,typ,minlvl):
 	if gain < 0.0 or level - minlvl >= span:
 		return 0.0
 	return math.ceil(gain)
+
 
 # compute what level would be after crafting items, assume order is refine > parts > discovery > items
 def compute_level(_xp, craftlist, tlvl, xp_to_level):
@@ -112,6 +114,7 @@ def compute_level(_xp, craftlist, tlvl, xp_to_level):
 			level += 1
 	return _xp
 
+
 # calculate the total xp 
 def xp_calc(refines,parts,item,discoveries,mod,base_level,actu_level,typ):
 	weight = 0.0
@@ -121,8 +124,9 @@ def xp_calc(refines,parts,item,discoveries,mod,base_level,actu_level,typ):
 	weight += xpgain(actu_level,typ,base_level)*discoveries*(1+mod)
 	return weight
 
+
 # Compute a guide
-def costCraft(filename,c_recipes,fast,craftexo,mTiers,cList,mytime,xp_to_level,modi=0.54):
+def costCraft(filename, c_recipes, fast, craftexo, mTiers, cList, mytime, xp_to_level, modi=0.54):
 	# TODO Hack, fix this
 	# This is changing the recipe for Bronze Ingot to use 2 Copper Ore.
 	if 19679 in c_recipes[0]:

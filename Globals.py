@@ -28,6 +28,7 @@ Note: Requires Python 2.7.x
 
 import threading
 import math
+from xpgain_lookup import table
 
 def init():
 	# Hold our 5 most popular renown heart karma items for cooking

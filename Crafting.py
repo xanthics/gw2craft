@@ -29,8 +29,7 @@ Note: Requires Python 2.7.x
 import datetime
 # recipe and item lists
 import Globals
-from auto_gen import Armorsmith, Artificer, Chef, Chef_karma, Huntsman, Jeweler, Leatherworker, Scribe, Tailor, \
-	Weaponsmith
+from auto_gen import Armorsmith, Artificer, Chef, Chef_karma, Huntsman, Jeweler, Leatherworker, Scribe, Tailor, Weaponsmith
 # Localized text
 from translations import Localcz, Localde, Localen, Locales, Localfr, Localptbr, Localzh
 from multiprocessing import Pool, cpu_count
