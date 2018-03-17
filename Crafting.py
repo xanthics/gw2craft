@@ -91,6 +91,7 @@ def main():
 	cooking_karma = join(Chef.recipes, Chef_karma.recipes)
 	rList = [[(u"cooking_karma_fast.html",cooking_karma,True,False,range(0,400,25)),
 			 (u"cooking_karma_fast_light.html",cooking_karma,True,False,range(0,400,25))],
+	         (u"scribe.html", Scribe.recipes, False, False, range(0, 400, 25)),
 			 [(u"cooking_karma.html",cooking_karma,False,False,range(0,400,25)),
 			 (u"cooking_karma_light.html",cooking_karma,False,False,range(0,400,25))],
 			 (u"cooking_fast.html", Chef.recipes, True, False, range(0, 400, 25)),
@@ -124,8 +125,7 @@ def main():
 			 (u"leatherworking_fast.html", Leatherworker.recipes, True, False, range(0, 400, 25)),
 			 (u"leatherworking.html", Leatherworker.recipes, False, False, range(0, 400, 25)),
 			 (u"leatherworking_400.html", Leatherworker.recipes, False, True, range(400, 500, 25)),
-			 (u"leatherworking_450.html", Leatherworker.recipes, False, True, range(400, 450, 25)),
-			 (u"scribe.html", Scribe.recipes, False, False, range(0, 400, 25))]
+			 (u"leatherworking_450.html", Leatherworker.recipes, False, True, range(400, 450, 25))]
 
 	p = Pool(cpu_count() - 1 if cpu_count() > 1 else 1)
 	params = [(rList[i], cList, mytime, xp_to_level) for i in range(0, len(rList))]
