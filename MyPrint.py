@@ -650,56 +650,6 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page.append(u"$(\"#show_all\").click(function () {$(\".sbutton\").show();")
 	page.append(u"});\n$(\"#hide_all\").click(function () {$(\".sbutton\").hide();")
 	page.append(u'});\n</script>\n')
-	page.append(u'''<script>
-	function updateNeed(field, val, idval) {
-		newval = +val - +field.value;
-		document.getElementById(idval).value = newval;
-		if ( newval > 0 ) {
-			document.getElementById(idval).setAttribute('data-need', 'more');
-		}
-		else {
-			document.getElementById(idval).setAttribute('data-need', 'done');
-		}
-	}
-</script>\n''')
-	page.append(u'''<script>
-	function updateBank(api_key) {
-		var dict = {}
-		var done = 2
-		
-		$(['materials', 'bank']).each(function() {
-			var endpoint = this;
-			$.getJSON('https://api.guildwars2.com/v2/account/' + endpoint + '?access_token=' + api_key, function(data) {
-				//for item in data
-				$.each(data, function(value) {
-					if(data[value]) {
-						var exists = dict[data[value].id];
-						if(!exists) {
-							dict[data[value].id] = 0;
-						}
-						dict[data[value].id] += data[value].count
-					}
-				});
-				done -= 1
-				if (done == 0) {
-					
-					for (var key in dict) {
-						if (dict.hasOwnProperty(key)) {
-							//if item.id in page
-							idval = key + 'ih';
-							if (document.getElementById(idval)) {
-								//update element to item.count
-								document.getElementById(idval).value = dict[key];									
-								document.getElementById(idval).oninput();
-							}
-						}
-					}
-				}
-			});
-		});
-	}
-</script>
-''')
 	page.append(u'</body>\n')
 	page.append(u'</html>\n')
 

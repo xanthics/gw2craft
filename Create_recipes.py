@@ -96,7 +96,7 @@ def parse_recipes(recipes):
 
 	# Karma and account bound items that we don't want to save the recipe of items that use
 	# Sun Beads, Obsidian Shard, Essence of Luck, Essence of Luck, Essence of Luck, Essence of Luck, Essence of Luck
-	bad_karma = [19717, 19925, 45175, 45176, 45177, 45178] + list(range(49424, 49441))
+	bad_karma = [19717, 19925, 45175, 45176, 45177, 45178, 1000721] + list(range(49424, 49441))
 
 	crafts = {u'Weaponsmith': {}, u'Chef': {}, u'Chef_karma': {}, u'Huntsman': {},
 			  u'Armorsmith': {}, u'Jeweler': {}, u'Artificer': {}, u'Tailor': {},
@@ -115,8 +115,8 @@ def parse_recipes(recipes):
 		ingredient_set = set(int(i[u'item_id']) for i in data[u'ingredients'])
 
 		# We don't want cap level recipes or recipes that use items the player can't buy off the tp or make
-		if min_rating == 500 or (min_rating == 400 and (u'Chef' in data[u'disciplines'] or u'Scribe' in data[u'disciplines'])) or set(bad_karma).intersection(
-				set(ingredient_set)):
+		# 24838 at lvl 375 is a bugged recipe(Major Rune of Water, Tailoring)
+		if min_rating == 500 or (min_rating == 400 and (u'Chef' in data[u'disciplines'] or u'Scribe' in data[u'disciplines'])) or set(bad_karma).intersection(set(ingredient_set)) or (item_id == 24838 and min_rating == 375):
 			continue
 
 		for it in data[u'disciplines']:
@@ -227,8 +227,8 @@ def itemlist(item_list, gulist, lang=u"en"):
 				del (item_list[i][u'flags'])
 				page += u"\t{}: {},\n".format(i, item_list[i])
 			except Exception, err:
-				print 'Error ilist: {}.\n'.format(str(err))
-				exit()
+				print 'Error ilist: {}.'.format(str(err))
+				#exit()
 		page += u'}'
 		with codecs.open("auto_gen\\Items.py", "wb", encoding='utf-8') as f:
 			f.write(page.replace(u": ", ":"))
@@ -259,10 +259,9 @@ def _api_call(endpoint):
 
 # add guild_ingredient item_id to each item
 def guild_recipes(recipes):
-
 	gulist = []
 	for item in recipes.keys():
-		if recipes[item][u'min_rating'] < 400:
+		if u'Scribe' in recipes[item][u'disciplines'] and recipes[item][u'min_rating'] < 400:
 			if u"guild_ingredients" in recipes[item]:
 				for i in recipes[item][u'guild_ingredients']:
 					if i[u'upgrade_id'] not in gulist:
