@@ -129,6 +129,7 @@ yoal       = u"Yoal - Quetzal(Caledon Forest 1-15)"
 
 # guide variables
 iCost = u"Custo Inicial"
+remCost      = u"Remaining Cost"
 eRecovery = u"Retorno Previsto"
 fCost = u"Previsão de Custo Final"
 sList = u"Lista de Venda"

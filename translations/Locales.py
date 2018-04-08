@@ -134,6 +134,7 @@ yoal       = u"Yoal - Quetzal(Caledon Forest 1-15)"
 
 # guide variables
 iCost        = u"Coste Inicial"
+remCost      = u"Remaining Cost"
 eRecovery    = u"Beneficios"
 fCost        = u"Coste Final"
 sList        = u"Lista De Venta"

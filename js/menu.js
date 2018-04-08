@@ -2,7 +2,7 @@
 
 function mainmenu(){
 /*$("nav ul").css({display: "none"}); // Opera Fix*/
-$("nav li").hover(function(){
+    $("nav li").hover(function(){
 		$(this).find('ul:first').css({visibility: "visible",display: "none"}).show(200);
 		},function(){
 		$(this).find('ul:first').css({visibility: "hidden"});
@@ -54,6 +54,7 @@ function updateNeed(field, val, idval) {
     else {
         document.getElementById(idval).setAttribute('data-need', 'done');
     }
+    updateRemaining();
 }
 
 function updateBank(api_key) {
@@ -90,4 +91,38 @@ function updateBank(api_key) {
             }
         });
     });
+}
+
+function updateRemaining() {
+    var sum = 0;
+    var copper = 0;
+    var silver = 0;
+    var gold = 0;
+    var temp = 0;
+
+    $(".vTotal").each(function(){
+        temp = +$(this).val() * +$(this).attr("raw_copper");
+        if(temp > 0) {
+            sum += temp;
+        }
+    });
+    copper = sum % 100;
+    sum = Math.floor(sum / 100);
+    silver = sum % 100;
+    sum = Math.floor(sum / 100);
+    gold = sum;
+
+    celements = document.getElementsByClassName("mycopper");
+    selements = document.getElementsByClassName("mysilver");
+    gelements = document.getElementsByClassName("mygold");
+
+    for(var i=0; i<celements.length; i++) {
+        celements[i].textContent=("00" + copper).slice(-2);
+    }
+    for(var i=0; i<selements.length; i++) {
+        selements[i].textContent=("00" + silver).slice(-2);
+    }
+    for(var i=0; i<gelements.length; i++) {
+        gelements[i].textContent=gold.toString();
+    }
 }
