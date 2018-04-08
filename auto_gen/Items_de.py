@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2018-03-15T22:20:32 PST
+# Created: 2018-04-07T17:41:43 PST
 ilist = {
 	8576: u"Flasche Reiswein",
 	8587: u"Pochiertes Ei Drottots",
@@ -8212,4 +8212,9 @@ ilist = {
 	1000954: u"Weißes Wintertag-Geschenk",
 	1000955: u"Tablett mit Eierpunsch",
 	1000956: u"Hundestatue",
+	1000957: u"Super-Wütende Wolke",
+	1000958: u"Super-Großer Fels",
+	1000959: u"Super-Truhe",
+	1000960: u"Super-Buche",
+	1000961: u"Super-Glückliche Wolke",
 }

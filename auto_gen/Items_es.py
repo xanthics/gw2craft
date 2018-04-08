@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2018-03-15T22:22:13 PST
+# Created: 2018-04-07T17:41:51 PST
 ilist = {
 	8576: u"Botella de licor de arroz",
 	8587: u"Huevo escalfado de Drottot",
@@ -8212,4 +8212,9 @@ ilist = {
 	1000954: u"Regalo del Día Invernal blanco",
 	1000955: u"Bandeja de ponche de huevo",
 	1000956: u"Estatua de perro",
+	1000957: u"Supernube enfadada",
+	1000958: u"Superroca grande",
+	1000959: u"Supercofre",
+	1000960: u"Superhaya",
+	1000961: u"Supernube contenta",
 }

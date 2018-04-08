@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2018-03-15T22:20:23 PST
+# Created: 2018-04-07T17:41:35 PST
 ilist = {
 	8576: u"Bouteille d'alcool de riz",
 	8587: u"Œuf poché façon Drottot",
@@ -8212,4 +8212,9 @@ ilist = {
 	1000954: u"Présent d'Hivernel blanc",
 	1000955: u"Plateau de lait de poule",
 	1000956: u"Statue du Chien",
+	1000957: u"Super nuage menaçant",
+	1000958: u"Super gros rocher",
+	1000959: u"Super coffre",
+	1000960: u"Super hêtre",
+	1000961: u"Super nuage joyeux",
 }

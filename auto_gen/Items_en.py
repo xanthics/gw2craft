@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2018-03-15T22:20:14 PST
+# Created: 2018-04-07T17:41:27 PST
 ilist = {
 	8576: u"Bottle of Rice Wine",
 	8587: u"Drottot's Poached Egg",
@@ -8212,4 +8212,9 @@ ilist = {
 	1000954: u"White Wintersday Gift",
 	1000955: u"Tray of Eggnog",
 	1000956: u"Dog Statue",
+	1000957: u"Super Angry Cloud",
+	1000958: u"Super Large Rock",
+	1000959: u"Super Chest",
+	1000960: u"Super Beech Tree",
+	1000961: u"Super Happy Cloud",
 }
