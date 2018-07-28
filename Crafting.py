@@ -39,6 +39,7 @@ from MyPrices import appendCosts
 from MakeGuide import costCraft
 from time import time
 
+
 # helper class to time main function
 class mytimer:
 	def __init__(self, name):

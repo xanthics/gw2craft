@@ -39,7 +39,6 @@ API_ROOT = u"https://api.guildwars2.com/v2/"
 # Helper Function
 def recipelistWorker(items):
 	outdict = {}
-
 	items = _api_call(u'recipes.json?ids={}'.format(",".join(map(str, items))))
 	for i in items:
 		outdict[i[u'id']] = i

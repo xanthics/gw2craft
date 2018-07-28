@@ -357,15 +357,30 @@ def costCraft(filename, c_recipes, fast, craftexo, mTiers, cList, mytime, xp_to_
 				if set(rsps.keys()).intersection(set(bucket[bkey[0]][u'make'])):
 					cList[set(rsps.keys()).intersection(set(bucket[bkey[0]][u'make'])).pop()][u'RecipeLearned'] = True
 
-	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_de.ilist, Localde)
-	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_fr.ilist, Localfr)
-	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_es.ilist, Locales)
-	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_en.ilist, Localcz)
-	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_en.ilist, Localptbr)
-	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_zh.ilist, Localzh)
-	totals = {}
-	totals.update(printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), deepcopy(pmake), deepcopy(buy), deepcopy(tierbuy), deepcopy(cList), filename, mytime, Items_en.ilist, Localen))
+	# TODO add check for buying bronze ingot and reduce by amount we add, remove if <0
+	if 19679 in make[0]:
+		var = 5 - (make[0][19679] % 5)
+		if var in [1, 2, 3, 4]:
+			make[0][19679] += var
+			tierbuy[0][19697] += 2 * var
+			tierbuy[0][19704] += 0.2 * var
+			buy[19697] += 2 * var
+			buy[19704] += 0.2 * var
+			tcost += cList[19697][u'cost'] * var + 8.0 * (0.2 * var)
+		make[0][19679] = make[0][19679] / 5
 
+	if 19704 in buy and buy[19704] == 0.0:
+		del (buy[19704])
+		del (tierbuy[0][19704])
+
+	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), pmake, buy, tierbuy, cList, filename, mytime, Items_de.ilist, Localde)
+	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), pmake, buy, tierbuy, cList, filename, mytime, Items_fr.ilist, Localfr)
+	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), pmake, buy, tierbuy, cList, filename, mytime, Items_es.ilist, Locales)
+	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), pmake, buy, tierbuy, cList, filename, mytime, Items_en.ilist, Localcz)
+	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), pmake, buy, tierbuy, cList, filename, mytime, Items_en.ilist, Localptbr)
+	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), pmake, buy, tierbuy, cList, filename, mytime, Items_zh.ilist, Localzh)
+	totals = {}
+	totals.update(printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), pmake, buy, tierbuy, cList, filename, mytime, Items_en.ilist, Localen))
 	return totals
 
 

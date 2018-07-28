@@ -260,21 +260,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	# "Artichoke","Asparagus Spear","Basil Leaf","Bay Leaf","Beet","Black Peppercorn","Blackberry","Blueberry","Butternut Squash","Carrot","Cayenne Pepper","Chili Pepper","Chocolate Bar","Cinnamon Stick","Clam","Clove","Coriander Seed","Dill Sprig","Egg","Head of Cabbage","Head of Cauliflower","Head of Garlic","Head of Lettuce","Kale Leaf","Leek","Mint Leaf","Mushroom","Onion","Orange","Oregano Leaf","Parsley Leaf","Parsnip","Passion Fruit","Piece of Candy Corn","Portobello Mushroom","Potato","Raspberry","Rosemary Sprig","Rutabaga","Sage Leaf","Sesame Seed","Slab of Poultry Meat","Slab of Red Meat","Snow Truffle","Spinach Leaf","Stick of Butter","Strawberry","Sugar Pumpkin","Tarragon Leaves","Thyme Leaf","Turnip","Vanilla Bean","Walnut","Yam","Zucchini","Green Onion", Omnomberry, Lotus Root
 	basic_fo = [12512,  12505,  12245,  12247,  12161,  12236,  12537,  12255,  12511,  12134,  12504,  12331,  12229,  12258,  12327,  12534,  12531,  12336,  12143,  12332,  12532,  12163,  12238,  12333,  12508,  12536,  12147,  12142,  12351,  12244,  12246,  12507,  36731,  36041,  12334,  12135,  12254,  12335,  12535,  12243,  12342,  24360,  24359,  12144,  12241,  12138,  12253,  12538,  12506,  12248,  12162,  12234,  12250,  12329,  12330,  12533,  12128, 12510]
 
-	# TODO add check for buying bronze ingot and reduce by amount we add, remove if <0
-	if 19679 in make[0]:
-		var = 5 - (make[0][19679] % 5)
-		if var in [1,2,3,4]:
-			make[0][19679] += var
-			tierbuy[0][19697] += 2*var
-			tierbuy[0][19704] += 0.2*var
-			buy[19697] += 2*var
-			buy[19704] += 0.2*var
-			tcost += cList[19697][u'cost']*var+8.0*(0.2*var)
-		make[0][19679] = make[0][19679]/5
 
-	if 19704 in buy and buy[19704] == 0.0:
-		del(buy[19704])
-		del(tierbuy[0][19704])
 
 	b_karma_w = defaultdict(int)
 	b_karma_c = defaultdict(int)
@@ -551,14 +537,14 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 			for item in sorted(pmake[tier]):
 				t = (t + 1) % 2
 				page.append(u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.make+u":%3i <span class=\"%s\">%s</span> (From %i tier) </div>\n"%(pmake[tier][item],cList[item][u'rarity'],cListName[item],tier-25))
-		for item in sorted(make[tier], key=make[tier].get,reverse=True):
+		for item in sorted(make[tier], key=make[tier].get, reverse=True):
 			if cList[item][u'type'] == u'Refinement':
 				t = (t + 1) % 2
 				if item == 19679: # Bronze Ingot
 					page.append((u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.make+u":%3i <span class=\"%s\">%s</span> (%s)</div>\n")%(make[tier][item],cList[item][u'rarity'],cListName[item],localText.bNote))
 				else:
 					page.append(u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
-		for item in sorted(make[tier], key=make[tier].get,reverse=True):
+		for item in sorted(make[tier], key=make[tier].get, reverse=True):
 			if cList[item][u'type'] in non_item and not cList[item][u'type'] == u'Refinement':
 				t = (t + 1) % 2
 				if item in [13063,  13189,  13207,  13219,  13045,  13022,  13075,  13177,  13096,  13033, 13201, 13231]: # Sole
