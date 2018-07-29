@@ -44,3 +44,21 @@ def xpreq(level):
 	for _i in range(1,level):
 		tmp = math.floor(tmp * 1.01)
 	return tmp
+
+
+# replacement for deepcopy for dictionary as it is bottlenecking the code
+def mydeepcopy(indict):
+	ret = {}
+	for k, v in indict.iteritems():
+		try:
+			ret[k] = v.copy()
+		# not a set or dict
+		except AttributeError:
+			try:
+				ret[k] = v[:]
+			# not a list, string, or tuple
+			# should be a simple type(eg int/float)
+			except TypeError:
+				ret[k] = v
+
+	return ret

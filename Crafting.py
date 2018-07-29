@@ -33,7 +33,6 @@ from auto_gen import Armorsmith, Artificer, Chef, Chef_karma, Huntsman, Jeweler,
 # Localized text
 from translations import Localcz, Localde, Localen, Locales, Localfr, Localptbr, Localzh
 from multiprocessing import Pool, cpu_count
-from copy import deepcopy
 from MyPrint import maketotals
 from MyPrices import appendCosts
 from MakeGuide import costCraft
@@ -69,10 +68,10 @@ def recipeworker((cmds, cList, mytime, xp_to_level)):  # , out_q):
 		Globals.karmin = {}
 		for cmd in cmds:
 			with mytimer(cmd[0]):
-				totals.update(costCraft(cmd[0], cmd[1], cmd[2], cmd[3], cmd[4], deepcopy(cList), mytime, xp_to_level))
+				totals.update(costCraft(cmd[0], cmd[1], cmd[2], cmd[3], cmd[4], Globals.mydeepcopy(cList), mytime, xp_to_level))
 	else:
 		with mytimer(cmds[0]):
-			totals.update(costCraft(cmds[0], cmds[1], cmds[2], cmds[3], cmds[4], deepcopy(cList), mytime, xp_to_level))
+			totals.update(costCraft(cmds[0], cmds[1], cmds[2], cmds[3], cmds[4], Globals.mydeepcopy(cList), mytime, xp_to_level))
 	return totals
 
 
