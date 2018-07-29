@@ -50,10 +50,12 @@ def xpreq(level):
 def mydeepcopy(indict):
 	ret = {}
 	for k, v in indict.iteritems():
-		try:
+		if type(v) is dict:
+			ret[k] = mydeepcopy(v)
+		elif type(v) is set:
 			ret[k] = v.copy()
-		# not a set or dict
-		except AttributeError:
+		# not a dict or set
+		else:
 			try:
 				ret[k] = v[:]
 			# not a list, string, or tuple
