@@ -373,14 +373,14 @@ def costCraft(filename, c_recipes, fast, craftexo, mTiers, cList, mytime, xp_to_
 		del (buy[19704])
 		del (tierbuy[0][19704])
 
-	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), pmake, buy, tierbuy, cList, filename, mytime, Items_de.ilist, Localde)
-	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), pmake, buy, tierbuy, cList, filename, mytime, Items_fr.ilist, Localfr)
-	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), pmake, buy, tierbuy, cList, filename, mytime, Items_es.ilist, Locales)
-	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), pmake, buy, tierbuy, cList, filename, mytime, Items_en.ilist, Localcz)
-	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), pmake, buy, tierbuy, cList, filename, mytime, Items_en.ilist, Localptbr)
-	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), pmake, buy, tierbuy, cList, filename, mytime, Items_zh.ilist, Localzh)
+	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), pmake, buy, tierbuy, deepcopy(cList), filename, mytime, Items_de.ilist, Localde)
+	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), pmake, buy, tierbuy, deepcopy(cList), filename, mytime, Items_fr.ilist, Localfr)
+	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), pmake, buy, tierbuy, deepcopy(cList), filename, mytime, Items_es.ilist, Locales)
+	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), pmake, buy, tierbuy, deepcopy(cList), filename, mytime, Items_en.ilist, Localcz)
+	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), pmake, buy, tierbuy, deepcopy(cList), filename, mytime, Items_en.ilist, Localptbr)
+	printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), pmake, buy, tierbuy, deepcopy(cList), filename, mytime, Items_zh.ilist, Localzh)
 	totals = {}
-	totals.update(printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), pmake, buy, tierbuy, cList, filename, mytime, Items_en.ilist, Localen))
+	totals.update(printtofile(tcost, treco, sell, craftexo, mTiers, deepcopy(make), pmake, buy, tierbuy, deepcopy(cList), filename, mytime, Items_en.ilist, Localen))
 	return totals
 
 
