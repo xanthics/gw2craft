@@ -28,6 +28,8 @@ Note: Requires Python 2.7.x
 
 import threading
 import math
+from copy import deepcopy
+
 from xpgain_lookup import table
 
 def init():
@@ -46,8 +48,14 @@ def xpreq(level):
 	return tmp
 
 
-# replacement for deepcopy for dictionary as it is bottlenecking the code
+# replacement for deepcopy for dictionary as the default is overkill(slow)
+# TODO: fix this, is creating incomplete guides.
 def mydeepcopy(indict):
+	ret = deepcopy(indict)
+	return ret
+'''	
+	if not indict:
+		return None
 	ret = {}
 	for k, v in indict.iteritems():
 		if type(v) is dict:
@@ -64,3 +72,4 @@ def mydeepcopy(indict):
 				ret[k] = v
 
 	return ret
+'''
