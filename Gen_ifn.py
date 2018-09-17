@@ -122,10 +122,10 @@ def faq(localText):
 	page += u"<strong>%s)</strong> %s\n"%(localText.question,localText.q8)
 	page += u"<br /><br />\n"
 	page += u"<strong>%s)</strong> %s\n"%(localText.answer,localText.a8)
-	page += u"<br /><hr>\n"
-	page += u"%s\n"%(localText.thanks)
-	page += u"<br /><br />\n"
-	page += u"%s\n"%(localText.thanks2)
+#	page += u"<br /><hr>\n"
+#	page += u"%s\n"%(localText.thanks)
+#	page += u"<br /><br />\n"
+#	page += u"%s\n"%(localText.thanks2)
 #	page += u"<hr>%s: <br />\n"%(localText.costs)
 #	page += u"<br />YTD: $217 USD <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" >\n"
 #	page += u"<input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\">\n"
@@ -308,8 +308,8 @@ def index(localText):
 	page += u"%s\n"%(localText.nWarn)
 	page += u"<br /><br />\n"
 	page += u"%s\n"%(localText.rCost)
-	page += u"<br /><hr>\n"
-	page += u"%s\n<br />"%(localText.thanks2)
+#	page += u"<br /><hr>\n"
+#	page += u"%s\n<br />"%(localText.thanks2)
 	# adword adaptive
 	page += u'<br /><hr><br /><div style="width: 100%;display:block;">\n \
 <!-- Ezoic - Tail - bottom_of_page -->\n \
