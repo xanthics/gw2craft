@@ -133,7 +133,6 @@ def faq(localText):
 #	page += u"<input type=\"image\" src=\"https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif\" border=\"0\" name=\"submit\" alt=\"PayPal - The safer, easier way to pay online!\">\n"
 #	page += u"<img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/en_US/i/scr/pixel.gif\" width=\"1\" height=\"1\">\n"
 #	page += u"</form> \n"
-	page += u"<br /><br /><a href='https://www.pledgie.com/campaigns/19451'><img alt='Click here to lend your support to: gw2crafts.net donations. and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/19451.png?skin_name=chrome' border='0' ></a>"
 #	page += u"<br /><br /><script src=\"http://coinwidget.com/widget/coin.js\"></script><script>CoinWidgetCom.go({wallet_address: \"18Muvgz2zYeUYcAwrqM24awXkv2WqsLukt\", currency: \"bitcoin\", counter: \"amount\", alignment: \"al\", qrcode: true, auto_show: false, lbl_button: \"Donate\", lbl_address: \"My Bitcoin Address:\", lbl_count: \"donations\", lbl_amount: \"BTC\"});</script>"
 	page += u"</section>\n"
 	page += localText.cright
