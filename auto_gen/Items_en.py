@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2018-10-28T14:00:34 PST
+# Created: 2018-11-15T02:24:21 PST
 ilist = {
 	8576: u"Bottle of Rice Wine",
 	8587: u"Drottot's Poached Egg",
@@ -5897,6 +5897,7 @@ ilist = {
 	41415: u"Sentinel's Feathered Pants",
 	41416: u"Sentinel's Masquerade Leggings",
 	41417: u"Sentinel's Exalted Pants",
+	41418: u"Sentinel's Feathered Mantle",
 	41420: u"Sentinel's Masquerade Mantle",
 	41421: u"Sentinel's Exalted Mantle",
 	41422: u"Sentinel's Prowler Boots",
@@ -7823,6 +7824,14 @@ ilist = {
 	86926: u"Lucky Great Dog Lantern",
 	87029: u"Avocado Smoothie",
 	87289: u"Bottle of Coconut Milk",
+	89098: u"Symbol of Control",
+	89103: u"Charm of Brilliance",
+	89140: u"Lucent Mote",
+	89141: u"Symbol of Enhancement",
+	89182: u"Symbol of Pain",
+	89216: u"Charm of Skill",
+	89258: u"Charm of Potence",
+	89271: u"Pile of Lucent Crystal",
 	1000043: u"Guild Catapult",
 	1000051: u"Vault Transport",
 	1000073: u"+5% Experience Public Banner",

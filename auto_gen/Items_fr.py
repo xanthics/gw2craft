@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2018-10-28T14:00:57 PST
+# Created: 2018-11-15T02:24:42 PST
 ilist = {
 	8576: u"Bouteille d'alcool de riz",
 	8587: u"Œuf poché façon Drottot",
@@ -5897,6 +5897,7 @@ ilist = {
 	41415: u"Pantalon à plumes sentinelle",
 	41416: u"Jambières de mascarade sentinelles",
 	41417: u"Pantalon exalté sentinelle",
+	41418: u"Houppelande à plumes sentinelle",
 	41420: u"Houppelande de mascarade sentinelle",
 	41421: u"Houppelande exaltée sentinelle",
 	41422: u"Bottes d'écumeur sentinelles",
@@ -7823,6 +7824,14 @@ ilist = {
 	86926: u"Lanterne du grand Chien chanceux",
 	87029: u"Smoothie à l'avocat",
 	87289: u"Bouteille de lait de coco",
+	89098: u"Symbole de contrôle",
+	89103: u"Charme de la fulgurance",
+	89140: u"Particule luisante",
+	89141: u"Symbole d'amélioration",
+	89182: u"Symbole de douleur",
+	89216: u"Charme de compétence",
+	89258: u"Charme de puissance",
+	89271: u"Tas de cristaux luisants",
 	1000043: u"Catapulte de guilde",
 	1000051: u"Transport de coffre",
 	1000073: u"Bannière publique +5% d'expérience",

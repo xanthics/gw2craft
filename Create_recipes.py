@@ -115,7 +115,7 @@ def parse_recipes(recipes):
 
 		# We don't want cap level recipes or recipes that use items the player can't buy off the tp or make
 		# 24838 at lvl 375 is a bugged recipe(Major Rune of Water, Tailoring)
-		if min_rating == 500 or (min_rating == 400 and (u'Chef' in data[u'disciplines'] or u'Scribe' in data[u'disciplines'])) or set(bad_karma).intersection(set(ingredient_set)) or (item_id == 24838 and min_rating == 375):
+		if min_rating == 500 or (min_rating == 400 and (u'Chef' in data[u'disciplines'] or u'Scribe' in data[u'disciplines'])) or set(bad_karma).intersection(set(ingredient_set)):  # or (item_id == 24838 and min_rating == 375):
 			continue
 
 		for it in data[u'disciplines']:

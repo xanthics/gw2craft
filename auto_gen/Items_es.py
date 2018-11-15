@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2018-10-28T14:01:39 PST
+# Created: 2018-11-15T02:25:28 PST
 ilist = {
 	8576: u"Botella de licor de arroz",
 	8587: u"Huevo escalfado de Drottot",
@@ -5897,6 +5897,7 @@ ilist = {
 	41415: u"Pantalones emplumados de centinela",
 	41416: u"Calzas de mascarada de centinela",
 	41417: u"Pantalones exaltados de centinela",
+	41418: u"Manto emplumado de centinela",
 	41420: u"Manto de mascarada de centinela",
 	41421: u"Manto exaltado de centinela",
 	41422: u"Botas de merodeador de centinela",
@@ -7823,6 +7824,14 @@ ilist = {
 	86926: u"Lámpara de la suerte de gran perro",
 	87029: u"Batido de aguacate",
 	87289: u"Botella de leche de coco",
+	89098: u"Símbolo de control",
+	89103: u"Talismán de brillantez",
+	89140: u"Mota luminosa",
+	89141: u"Símbolo de mejora",
+	89182: u"Símbolo de dolor",
+	89216: u"Talismán de habilidad",
+	89258: u"Talismán de potencia",
+	89271: u"Montón de cristal luminoso",
 	1000043: u"Catapulta de clan",
 	1000051: u"Transporte de la Cámara",
 	1000073: u"Estandarte público de +5 % Experiencia",

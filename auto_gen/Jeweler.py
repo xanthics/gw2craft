@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2018-10-28T14:00:10 PST
+# Created: 2018-11-15T02:23:57 PST
 recipes = {
 	0: {
 		12806: {19680: 2},
