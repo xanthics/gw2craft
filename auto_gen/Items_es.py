@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2018-11-15T02:25:28 PST
+# Created: 2018-12-23T23:30:02 PST
 ilist = {
 	8576: u"Botella de licor de arroz",
 	8587: u"Huevo escalfado de Drottot",
@@ -5866,6 +5866,7 @@ ilist = {
 	41375: u"Botas bárbaras de centinela",
 	41377: u"Botas dracónicas de centinela",
 	41378: u"Abrigo bárbaro de centinela",
+	41379: u"Abrigo bárbaro de centinela",
 	41380: u"Loriga de gladiador de centinela",
 	41381: u"Abrigo dracónico de centinela",
 	41382: u"Guantes bárbaros de centinela",
@@ -5889,6 +5890,7 @@ ilist = {
 	41403: u"Vestiduras emplumadas de centinela",
 	41404: u"Ropaje de mascarada de centinela",
 	41405: u"Abrigo exaltado de centinela",
+	41408: u"Guantes de mascarada de centinela",
 	41409: u"Guantes exaltados de centinela",
 	41410: u"Capacete emplumado de centinela",
 	41412: u"Máscara de mascarada de centinela",
@@ -5973,6 +5975,8 @@ ilist = {
 	41497: u"Pistola de mithril de centinela",
 	41499: u"Colt krait de centinela",
 	41500: u"Cañón de mano perlado de centinela",
+	41501: u"Rifle de mithril de centinela",
+	41502: u"Rifle de mithril de centinela",
 	41503: u"Disparador krait de centinela",
 	41504: u"Trabuco perlado de centinela",
 	41507: u"Arco corto krait de centinela",
@@ -5982,6 +5986,7 @@ ilist = {
 	41515: u"Brasero krait de centinela",
 	41516: u"Brasero perlado de centinela",
 	41517: u"Cuerno de guerra de madera ancestral de centinela",
+	41518: u"Cuerno de guerra de madera ancestral de centinela",
 	41519: u"Buccino krait de centinela",
 	41520: u"Sirena perlada de centinela",
 	41522: u"Hacha de mithril de centinela",
@@ -6856,6 +6861,8 @@ ilist = {
 	49441: u"Infusión de +18 de Resistencia a la Agonía",
 	49442: u"Infusión de +19 de Resistencia a la Agonía",
 	49443: u"Infusión de +20 de Resistencia a la Agonía",
+	49444: u"Infusión de +21 de Resistencia a la Agonía",
+	49445: u"Infusión de +22 de Resistencia a la Agonía",
 	49522: u"Insignia de gasa intrincada nefasta",
 	49782: u"Mecanismo mecánico",
 	50140: u"Andares sofocantes",
@@ -8213,4 +8220,8 @@ ilist = {
 	1000998: u"Maceta de crisantemo",
 	1000999: u"Caja torácica de leviatán primordial: curvada a la izquierda",
 	1001000: u"Caja torácica de leviatán primordial: curvada a la derecha",
+	1001023: u"Castillo de Hielo: Torreta",
+	1001024: u"Castillo de Hielo: Suelo",
+	1001025: u"Castillo de Hielo: Muro",
+	1001026: u"Castillo de Hielo: Techo",
 }
