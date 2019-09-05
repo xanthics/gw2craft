@@ -50,14 +50,14 @@ class mytimer:
 
 	def __exit__(self, exc_type, exc_val, exc_tb):
 		t2 = time()
-		print("  End: {}, took {:.3f} seconds".format(self.__name, t2-self.__t))
+		print("  End: {}, took {:.3f} seconds".format(self.__name, t2 - self.__t))
 
 
 # Join 2 recipe dicts
 def join(A, B):
-		if not isinstance(A, dict) or not isinstance(B, dict):
-				return A or B
-		return dict([(a, join(A.get(a), B.get(a))) for a in set(A.keys()) | set(B.keys())])
+	if not isinstance(A, dict) or not isinstance(B, dict):
+		return A or B
+	return dict([(a, join(A.get(a), B.get(a))) for a in set(A.keys()) | set(B.keys())])
 
 
 def recipeworker((cmds, cList, mytime, xp_to_level)):  # , out_q):
@@ -76,58 +76,67 @@ def recipeworker((cmds, cList, mytime, xp_to_level)):  # , out_q):
 
 
 def main():
-	mytime = "<span class=\"localtime\">" + datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S')+u'+00:00</span>'
+	mytime = "<span class=\"localtime\">" + datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S') + u'+00:00</span>'
 	# Will hold level:total xp pairs (array)
 	xp_to_level = [0]
 	# populate the xp chart
-	for i in range(1,510):
-		xp_to_level.append(Globals.xpreq(i)+xp_to_level[i-1])
+	for i in range(1, 510):
+		xp_to_level.append(Globals.xpreq(i) + xp_to_level[i - 1])
 
 	with mytimer('costs'):
 		cList = appendCosts()
 
-	#TODO change the way flags are passed so it is easier to understand
+	# TODO change the way flags are passed so it is easier to understand
 
 	cooking_karma = join(Chef.recipes, Chef_karma.recipes)
-	rList = [[(u"cooking_karma_fast.html",cooking_karma,True,False,range(0,400,25)),
-			 (u"cooking_karma_fast_light.html",cooking_karma,True,False,range(0,400,25))],
-	         (u"scribe.html", Scribe.recipes, False, False, range(0, 400, 25)),
-			 [(u"cooking_karma.html",cooking_karma,False,False,range(0,400,25)),
-			 (u"cooking_karma_light.html",cooking_karma,False,False,range(0,400,25))],
-			 (u"cooking_fast.html", Chef.recipes, True, False, range(0, 400, 25)),
-			 (u"cooking.html", Chef.recipes, False, False, range(0, 400, 25)),
-			 (u"cooking_fast_200.html", Chef.recipes, True, False, range(0, 200, 25)),
-			 (u"cooking_karma_fast_200.html",cooking_karma,True,False,range(0,200,25)),
-			 (u"jewelcraft_fast.html", Jeweler.recipes, True, False, range(0, 400, 25)),
-			 (u"jewelcraft.html", Jeweler.recipes, False, False, range(0, 400, 25)),
-			 (u"jewelcraft_400.html", Jeweler.recipes, False, True, range(400, 500, 25)),
-			 (u"jewelcraft_450.html", Jeweler.recipes, False, True, range(400, 450, 25)),
-			 (u"artificing_fast.html", Artificer.recipes, True, False, range(0, 400, 25)),
-			 (u"artificing.html", Artificer.recipes, False, False, range(0, 400, 25)),
-			 (u"artificing_400.html", Artificer.recipes, False, True, range(400, 500, 25)),
-			 (u"artificing_450.html", Artificer.recipes, False, True, range(400, 450, 25)),
-			 (u"weaponcraft_fast.html", Weaponsmith.recipes, True, False, range(0, 400, 25)),
-			 (u"weaponcraft.html", Weaponsmith.recipes, False, False, range(0, 400, 25)),
-			 (u"weaponcraft_400.html", Weaponsmith.recipes, False, True, range(400, 500, 25)),
-			 (u"weaponcraft_450.html", Weaponsmith.recipes, False, True, range(400, 450, 25)),
-			 (u"huntsman_fast.html", Huntsman.recipes, True, False, range(0, 400, 25)),
-			 (u"huntsman.html", Huntsman.recipes, False, False, range(0, 400, 25)),
-			 (u"huntsman_400.html", Huntsman.recipes, False, True, range(400, 500, 25)),
-			 (u"huntsman_450.html", Huntsman.recipes, False, True, range(400, 450, 25)),
-			 (u"armorcraft_fast.html", Armorsmith.recipes, True, False, range(0, 400, 25)),
-			 (u"armorcraft.html", Armorsmith.recipes, False, False, range(0, 400, 25)),
-			 (u"armorcraft_400.html", Armorsmith.recipes, False, True, range(400, 500, 25)),
-			 (u"armorcraft_450.html", Armorsmith.recipes, False, True, range(400, 450, 25)),
-			 (u"tailor_fast.html", Tailor.recipes, True, False, range(0, 400, 25)),
-			 (u"tailor.html", Tailor.recipes, False, False, range(0, 400, 25)),
-			 (u"tailor_400.html", Tailor.recipes, False, True, range(400, 500, 25)),
-			 (u"tailor_450.html", Tailor.recipes, False, True, range(400, 450, 25)),
-			 (u"leatherworking_fast.html", Leatherworker.recipes, True, False, range(0, 400, 25)),
-			 (u"leatherworking.html", Leatherworker.recipes, False, False, range(0, 400, 25)),
-			 (u"leatherworking_400.html", Leatherworker.recipes, False, True, range(400, 500, 25)),
-			 (u"leatherworking_450.html", Leatherworker.recipes, False, True, range(400, 450, 25))]
+	rList = [
+		[(u"cooking_karma_fast.html", cooking_karma, True, False, range(0, 400, 25)),
+		 (u"cooking_karma_fast_light.html", cooking_karma, True, False, range(0, 400, 25))],
+		[(u"cooking_karma.html", cooking_karma, False, False, range(0, 400, 25)),
+		 (u"cooking_karma_light.html", cooking_karma, False, False, range(0, 400, 25))],
+		(u"cooking_fast.html", Chef.recipes, True, False, range(0, 400, 25)),
+		(u"cooking.html", Chef.recipes, False, False, range(0, 400, 25)),
+		(u"cooking_fast_200.html", Chef.recipes, True, False, range(0, 200, 25)),
+		(u"cooking_karma_fast_200.html", cooking_karma, True, False, range(0, 200, 25)),
+
+#		(u"cooking_karma_400.html", cooking_karma, False, False, range(400, 500, 25)),
+		(u"cooking_karma_450.html", cooking_karma, False, False, range(400, 450, 25)),
+#		(u"cooking_400.html", Chef.recipes, False, False, range(400, 500, 25)),
+		(u"cooking_450.html", Chef.recipes, False, False, range(400, 450, 25)),
+
+		(u"jewelcraft_fast.html", Jeweler.recipes, True, False, range(0, 400, 25)),
+		(u"jewelcraft.html", Jeweler.recipes, False, False, range(0, 400, 25)),
+#		(u"jewelcraft_400.html", Jeweler.recipes, False, True, range(400, 500, 25)),
+#		(u"jewelcraft_450.html", Jeweler.recipes, False, True, range(400, 450, 25)),
+		(u"artificing_fast.html", Artificer.recipes, True, False, range(0, 400, 25)),
+		(u"artificing.html", Artificer.recipes, False, False, range(0, 400, 25)),
+		(u"artificing_400.html", Artificer.recipes, False, True, range(400, 500, 25)),
+		(u"artificing_450.html", Artificer.recipes, False, True, range(400, 450, 25)),
+		(u"weaponcraft_fast.html", Weaponsmith.recipes, True, False, range(0, 400, 25)),
+		(u"weaponcraft.html", Weaponsmith.recipes, False, False, range(0, 400, 25)),
+		(u"weaponcraft_400.html", Weaponsmith.recipes, False, True, range(400, 500, 25)),
+		(u"weaponcraft_450.html", Weaponsmith.recipes, False, True, range(400, 450, 25)),
+		(u"huntsman_fast.html", Huntsman.recipes, True, False, range(0, 400, 25)),
+		(u"huntsman.html", Huntsman.recipes, False, False, range(0, 400, 25)),
+		(u"huntsman_400.html", Huntsman.recipes, False, True, range(400, 500, 25)),
+		(u"huntsman_450.html", Huntsman.recipes, False, True, range(400, 450, 25)),
+		(u"armorcraft_fast.html", Armorsmith.recipes, True, False, range(0, 400, 25)),
+		(u"armorcraft.html", Armorsmith.recipes, False, False, range(0, 400, 25)),
+		(u"armorcraft_400.html", Armorsmith.recipes, False, True, range(400, 500, 25)),
+		(u"armorcraft_450.html", Armorsmith.recipes, False, True, range(400, 450, 25)),
+		(u"tailor_fast.html", Tailor.recipes, True, False, range(0, 400, 25)),
+		(u"tailor.html", Tailor.recipes, False, False, range(0, 400, 25)),
+		(u"tailor_400.html", Tailor.recipes, False, True, range(400, 500, 25)),
+		(u"tailor_450.html", Tailor.recipes, False, True, range(400, 450, 25)),
+		(u"leatherworking_fast.html", Leatherworker.recipes, True, False, range(0, 400, 25)),
+		(u"leatherworking.html", Leatherworker.recipes, False, False, range(0, 400, 25)),
+		(u"leatherworking_400.html", Leatherworker.recipes, False, True, range(400, 500, 25)),
+		(u"leatherworking_450.html", Leatherworker.recipes, False, True, range(400, 450, 25)),
+		(u"scribe.html", Scribe.recipes, False, False, range(0, 400, 25)),
+	]
 
 	p = Pool(cpu_count() - 1 if cpu_count() > 1 else 1)
+	#p = Pool(1)
 	params = [(rList[i], cList, mytime, xp_to_level) for i in range(0, len(rList))]
 	procs = p.map(recipeworker, params)
 

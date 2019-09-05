@@ -286,12 +286,14 @@ header = u"""<nav>
             </li>
             <li><a href="#">400-450</a>
             <ul>
-		    <li><a href="/"""+path+u"""artificing_450.html">"""+art+u"""</a></li>
-		    <li><a href="/"""+path+u"""huntsman_450.html">"""+hunt+u"""</a></li>
-		    <li><a href="/"""+path+u"""weaponcraft_450.html">"""+wc+u"""</a></li>
-		    <li><a href="/"""+path+u"""armorcraft_450.html">"""+ac+u"""</a></li>
-		    <li><a href="/"""+path+u"""leatherworking_450.html">"""+lw+u"""</a></li>
-		    <li><a href="/"""+path+u"""tailor_450.html">"""+tailor+u"""</a></li>
+                <li><a href="/"""+path+u"""cooking_450.html">"""+nHearts+u"""</a></li>
+                <li><a href="/"""+path+u"""cooking_karma_450.html">"""+aHearts+u"""</a></li>
+                <li><a href="/"""+path+u"""artificing_450.html">"""+art+u"""</a></li>
+                <li><a href="/"""+path+u"""huntsman_450.html">"""+hunt+u"""</a></li>
+                <li><a href="/"""+path+u"""weaponcraft_450.html">"""+wc+u"""</a></li>
+                <li><a href="/"""+path+u"""armorcraft_450.html">"""+ac+u"""</a></li>
+                <li><a href="/"""+path+u"""leatherworking_450.html">"""+lw+u"""</a></li>
+                <li><a href="/"""+path+u"""tailor_450.html">"""+tailor+u"""</a></li>
             </ul>
             </li>
         </ul>
