@@ -49,7 +49,7 @@ def faq(localText):
 #	page += u"<br />\n"
 #	page += u"<a href=\"http://www.guildwars2guru.com/topic/80318-dynamic-crafting-guides-for-all-crafts-httpgw2craftssaladonnet/\" style=\"line-height:150%%;\"><strong>%s</strong></a>\n"%(localText.gThread)
 #	page += u"<br />\n"
-	page += u"<a href=\"https://twitter.com/gw2crafts\" style=\"line-height:150%%;\"><strong>%s</strong></a>\n"%(localText.twitter)
+	page += u"<a href=\"https://www.patreon.com/bePatron?u=33775051\" data-patreon-widget-type=\"become-patron-button\">Become a Patron!</a><script async src=\"https://c6.patreon.com/becomePatronButton.bundle.js\"></script>\n"
 	page += u"<br />\n"
 	page += u"<a href=\"mailto:gw2crafts@live.com\" style=\"line-height:150%%;\"><strong>%s</strong></a></br/> \n"%(localText.email)
 #	page += u"<a href=\"http://gw2crafts.net/analytics/\" style=\"line-height:150%%;\"><strong>Analytics</strong></a>\n"
@@ -231,6 +231,7 @@ def nav(localText):
 	output.write_file(localText.path,u'nav.html',page)
 	return
 
+
 # Generate and index using local strings
 def index(localText):
 	page = u"<!DOCTYPE html>\n"
@@ -268,7 +269,6 @@ def index(localText):
 #	page += u"<div id=\"fb-root\"></div><script>(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = \"//connect.facebook.net/en_US/all.js#xfbml=1\";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));</script>"
 	page += localText.header%(u'index.html',u'index.html',u'index.html',u'index.html',u'index.html',u'index.html')
 	page += u"<section class=\"main\">\n"
-	page += u"<a href=\"https://twitter.com/gw2crafts\" class=\"twitter-follow-button\" data-show-count=\"true\" data-dnt=\"true\">Follow @gw2crafts</a>\n<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>"
 	page += u"<br /><br />Support for Cooking 400-450 has been added.  450+ needs to be done via the in-game quest system and cannot be handled by these guides."
 #	page += u"\t<div class=\"g-plusone\" data-size=\"medium\" data-href=\"http://gw2crafts.net\"></div><script type=\"text/javascript\">(function() {var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;po.src = 'https://apis.google.com/js/plusone.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);})();</script>\n"
 #	page += u"\t<div class=\"fb-like\" data-href=\"http://gw2crafts.net\" data-width=\"150\" data-layout=\"button_count\" data-show-faces=\"false\" data-send=\"false\"></div>"
