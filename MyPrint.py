@@ -615,7 +615,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page.append(u'<br /><div style="width: 100%;display:block;">\n')
 	page.append(u'<!-- Ezoic - Tail - bottom_of_page -->\n<div id="ezoic-pub-ad-placeholder-102"></div>\n<!-- End Ezoic - Tail - bottom_of_page -->')
 	page.append(u'</div>\n')
-	page.append(u'<div id="patreon" style="display: flex; justify-content: flex-end"><a href="https://www.patreon.com/bePatron?u=33775051" data-patreon-widget-type="become-patron-button">Become a Patron!</a></div><script async src="https://c6.patreon.com/becomePatronButton.bundle.js"></script></section>\n')
+	page.append(u'</section>\n')
 	page.append(u'%s\n<script type="text/javascript">\n'%localText.cright)
 	for item in buttonList:
 		page.append(u"$(\"#"+str(item)+u"\").click(function () {\n\t$(\"#1"+str(item)+u"\").toggle();});\n")
@@ -734,7 +734,7 @@ def maketotals(totals, mytime, localText):
 <div id="ezoic-pub-ad-placeholder-102"></div>\n\
 <!-- End Ezoic - Tail - bottom_of_page --></div>\n'
 
-	page += u'\n<div id="patreon" style="display: flex; justify-content: flex-end"><a href="https://www.patreon.com/bePatron?u=33775051" data-patreon-widget-type="become-patron-button">Become a Patron!</a></div><script async src="https://c6.patreon.com/becomePatronButton.bundle.js"></script></section>\n' + localText.cright
+	page += u'\n</section>\n' + localText.cright
 	page += u'</body>\n'
 	page += u'</html>\n'
 
