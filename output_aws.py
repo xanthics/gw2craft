@@ -18,7 +18,7 @@ def write_file(directory, filename, contents):
 		try:
 			keyname = os.path.join('{}'.format(directory), filename)
 			s3 = boto3.resource('s3')
-			s3.Object('gw2crafts.net', keyname).put(Body=contents.encode('utf8'), ContentType='text/html')
+			s3.Object('gw2crafts.net', keyname).put(Body=contents.encode('utf8'), ContentType='text/html', CacheControl='public, max-age=1260')
 			return
 		except Exception, err:
 			print u'ERROR: %s.' % str(err)
