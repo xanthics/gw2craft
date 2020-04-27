@@ -327,6 +327,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page.append(u'	<meta name="description" content="Guild Wars 2 always current crafting guide for '+filename.split('.')[0].replace("_"," ").title()+u'">\n')
 	page.append(u'	<meta name="keywords" content="best videogames, free mmos, free mmorpg, best free mmorpg, best mmorpg, free to play, mmos, mmorpg, free game, online games, fantasy games, PC games, PC gaming, crafting guide, crafting guides, Guild Wars 2, Trading Post"/>\n')
 	page.append(u'	<meta http-equiv="content-type" content="text/html;charset=UTF-8">\n')
+	page.append(u'	<meta http-equiv="Cache-Control" content="public, max-age=1260">\n')
 	page.append(u'	<link href="/css/layout.css" rel="stylesheet" type="text/css" />')
 	page.append(u'	<link rel="icon" type="image/png" href="/fi.gif">\n')
 	page.append(u'	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>\n')
@@ -650,6 +651,7 @@ def maketotals(totals, mytime, localText):
 	<meta name="description" content="Guild Wars 2 always current crafting guide price totals">
 	<meta name="keywords" content="best videogames, free mmos, free mmorpg, best free mmorpg, best mmorpg, free to play, mmos, mmorpg, free game, online games, fantasy games, PC games, PC gaming, crafting guide, crafting guides, Guild Wars 2, Trading Post"/>
 	<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+	<meta http-equiv="Cache-Control" content="public, max-age=1260">
 
 	<link href="/css/layout.css" rel="stylesheet" type="text/css" />
 	<link rel="icon" type="image/png" href="/fi.gif" />

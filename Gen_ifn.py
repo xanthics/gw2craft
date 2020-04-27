@@ -25,6 +25,7 @@ def faq(localText):
 	page += u"	<meta name=\"description\" content=\"ACCG FAQ and Contact information\">\n"
 	page += u'	<meta name="keywords" content="best videogames, free mmos, free mmorpg, best free mmorpg, best mmorpg, free to play, mmos, mmorpg, free game, online games, fantasy games, PC games, PC gaming, crafting guide, crafting guides, Guild Wars 2, Trading Post"/>\n'
 	page += u"	<meta http-equiv=\"content-type\" content=\"text/html;charset=UTF-8\">\n"
+	page += u'	<meta http-equiv="Cache-Control" content="public, max-age=7776000">\n'
 	page += u"	<link href=\"/css/layout.css\" rel=\"stylesheet\" type=\"text/css\" />\n"
 	page += u"	<link rel=\"icon\" type=\"image/png\" href=\"/fi.gif\">\n"
 	page += u"	<script src=\"//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js\"></script>\n"
@@ -141,6 +142,7 @@ def nav(localText):
 	page += u"	<meta name=\"description\" content=\"ACCG nav page\">\n"
 	page += u'	<meta name="keywords" content="best videogames, free mmos, free mmorpg, best free mmorpg, best mmorpg, free to play, mmos, mmorpg, free game, online games, fantasy games, PC games, PC gaming, crafting guide, crafting guides, Guild Wars 2, Trading Post"/>\n'
 	page += u"	<meta http-equiv=\"content-type\" content=\"text/html;charset=UTF-8\">\n"
+	page += u'	<meta http-equiv="Cache-Control" content="public, max-age=7776000">\n'
 	page += u"	<link href=\"/css/layout.css\" rel=\"stylesheet\" type=\"text/css\" />\n"
 	page += u"	<link rel=\"icon\" type=\"image/png\" href=\"/fi.gif\">\n"
 	page += u"	<script src=\"//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js\"></script>\n"
@@ -249,6 +251,7 @@ def index(localText):
 	page += u"	<meta name=\"description\" content=\"Always Current Crafting Guides for Guild Wars 2 with guides that are updated every 30 minutes based on current TP prices.  Multiple styles.\">\n"
 	page += u'	<meta name="keywords" content="best videogames, free mmos, free mmorpg, best free mmorpg, best mmorpg, free to play, mmos, mmorpg, free game, online games, fantasy games, PC games, PC gaming, crafting guide, crafting guides, Guild Wars 2, Trading Post"/>\n'
 	page += u"	<meta http-equiv=\"content-type\" content=\"text/html;charset=UTF-8\">\n"
+	page += u'	<meta http-equiv="Cache-Control" content="public, max-age=7776000">\n'
 	page += u"	<link href=\"/css/layout.css\" rel=\"stylesheet\" type=\"text/css\" />\n"
 	page += u"	<link rel=\"icon\" type=\"image/png\" href=\"/fi.gif\">\n"
 	page += u"	<link rel=\"image_src\" href=\"apple-touch-icon-precomposed.png\">\n"
