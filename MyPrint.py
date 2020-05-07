@@ -633,7 +633,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	return totals
 
 
-def maketotals(totals, mytime, localText, backupkey):
+def maketotals(totals, mytime, localText):
 	tpage1 = u""
 	tpage2 = u""
 	tpage3 = u""
@@ -742,5 +742,5 @@ def maketotals(totals, mytime, localText, backupkey):
 	page += u'</body>\n'
 	page += u'</html>\n'
 
-	output.write_file(localText.path, u'total.html', page, backupkey)
+	output.write_file(localText.path, u'total.html', page)
 	return

@@ -145,13 +145,13 @@ def main():
 	for i in procs:
 		totals.update(i)
 
-	maketotals(totals, mytime, Localen, backupkey)
-	maketotals(totals, mytime, Localde, backupkey)
-	maketotals(totals, mytime, Localfr, backupkey)
-	maketotals(totals, mytime, Locales, backupkey)
-	maketotals(totals, mytime, Localcz, backupkey)
-	maketotals(totals, mytime, Localptbr, backupkey)
-	maketotals(totals, mytime, Localzh, backupkey)
+	maketotals(totals, mytime, Localen)
+	maketotals(totals, mytime, Localde)
+	maketotals(totals, mytime, Localfr)
+	maketotals(totals, mytime, Locales)
+	maketotals(totals, mytime, Localcz)
+	maketotals(totals, mytime, Localptbr)
+	maketotals(totals, mytime, Localzh)
 
 
 # If ran directly, call main
