@@ -60,7 +60,7 @@ def join(A, B):
 	return dict([(a, join(A.get(a), B.get(a))) for a in set(A.keys()) | set(B.keys())])
 
 
-def recipeworker((cmds, cList, mytime, xp_to_level)):  # , out_q):
+def recipeworker((cmds, cList, mytime, xp_to_level, backupkey)):  # , out_q):
 	Globals.init()
 	totals = {}
 
@@ -68,14 +68,15 @@ def recipeworker((cmds, cList, mytime, xp_to_level)):  # , out_q):
 		Globals.karmin = {}
 		for cmd in cmds:
 			with mytimer(cmd[0]):
-				totals.update(costCraft(cmd[0], cmd[1], cmd[2], cmd[3], cmd[4], Globals.mydeepcopy(cList), mytime, xp_to_level))
+				totals.update(costCraft(cmd[0], cmd[1], cmd[2], cmd[3], cmd[4], Globals.mydeepcopy(cList), mytime, xp_to_level, backupkey))
 	else:
 		with mytimer(cmds[0]):
-			totals.update(costCraft(cmds[0], cmds[1], cmds[2], cmds[3], cmds[4], Globals.mydeepcopy(cList), mytime, xp_to_level))
+			totals.update(costCraft(cmds[0], cmds[1], cmds[2], cmds[3], cmds[4], Globals.mydeepcopy(cList), mytime, xp_to_level, backupkey))
 	return totals
 
 
 def main():
+	backupkey = datetime.datetime.utcnow().strftime('%Y%m%dT%H%M%S')
 	mytime = "<span class=\"localtime\">" + datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S') + u'+00:00</span>'
 	# Will hold level:total xp pairs (array)
 	xp_to_level = [0]
@@ -137,20 +138,20 @@ def main():
 
 	p = Pool(cpu_count() - 1 if cpu_count() > 1 else 1)
 	#p = Pool(1)
-	params = [(rList[i], cList, mytime, xp_to_level) for i in range(0, len(rList))]
+	params = [(rList[i], cList, mytime, xp_to_level, backupkey) for i in range(0, len(rList))]
 	procs = p.map(recipeworker, params)
 
 	totals = {}
 	for i in procs:
 		totals.update(i)
 
-	maketotals(totals, mytime, Localen)
-	maketotals(totals, mytime, Localde)
-	maketotals(totals, mytime, Localfr)
-	maketotals(totals, mytime, Locales)
-	maketotals(totals, mytime, Localcz)
-	maketotals(totals, mytime, Localptbr)
-	maketotals(totals, mytime, Localzh)
+	maketotals(totals, mytime, Localen, backupkey)
+	maketotals(totals, mytime, Localde, backupkey)
+	maketotals(totals, mytime, Localfr, backupkey)
+	maketotals(totals, mytime, Locales, backupkey)
+	maketotals(totals, mytime, Localcz, backupkey)
+	maketotals(totals, mytime, Localptbr, backupkey)
+	maketotals(totals, mytime, Localzh, backupkey)
 
 
 # If ran directly, call main

@@ -22,7 +22,8 @@ def mFormat(line):
 	else:
 		return '{}<span class=\"copperIcon\"></span>'.format(line)
 
-def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy, cList, filename, mytime, cListName, localText):
+
+def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy, cList, filename, mytime, cListName, localText, backupkey):
 	scribewarn = 'This is a beta guide, read all steps before attempting.'
 	buttonList = []
 	totals = {}
@@ -628,10 +629,11 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page.append(u'</body>\n')
 	page.append(u'</html>\n')
 
-	output.write_file(localText.path,filename,''.join(page))
+	output.write_file(localText.path,filename,''.join(page), backupkey)
 	return totals
 
-def maketotals(totals, mytime, localText):
+
+def maketotals(totals, mytime, localText, backupkey):
 	tpage1 = u""
 	tpage2 = u""
 	tpage3 = u""
@@ -740,5 +742,5 @@ def maketotals(totals, mytime, localText):
 	page += u'</body>\n'
 	page += u'</html>\n'
 
-	output.write_file(localText.path,u'total.html',page)
+	output.write_file(localText.path, u'total.html', page, backupkey)
 	return

@@ -13,12 +13,19 @@ from random import randint
 import boto3
 
 
-def write_file(directory, filename, contents):
+def write_file(directory, filename, contents, backupdir=''):
 	while True:
 		try:
 			keyname = os.path.join('{}'.format(directory), filename)
 			s3 = boto3.resource('s3')
 			s3.Object('gw2crafts.net', keyname).put(Body=contents.encode('utf8'), ContentType='text/html', CacheControl='public, max-age=1260')
+			if backupdir:
+				copy_source = {
+					'Bucket': 'gw2crafts.net',
+					'Key': keyname
+				}
+				b_keyname = os.path.join('{}'.format([backupdir] + directory), filename)
+				s3.meta.client.copy(copy_source, 'gw2crafts.net', b_keyname)
 			return
 		except Exception, err:
 			print u'ERROR: %s.' % str(err)

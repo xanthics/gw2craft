@@ -105,7 +105,7 @@ def xp_calc(refines,parts,item,discoveries,mod,base_level,actu_level,typ):
 
 
 # Compute a guide
-def costCraft(filename, c_recipes, fast, craftexo, mTiers, cList, mytime, xp_to_level, modi=0.54):
+def costCraft(filename, c_recipes, fast, craftexo, mTiers, cList, mytime, xp_to_level, backupkey, modi=0.54):
 	# TODO Hack, fix this
 	# This is changing the recipe for Bronze Ingot to use 2 Copper Ore.
 	if 19679 in c_recipes[0]:
@@ -352,14 +352,14 @@ def costCraft(filename, c_recipes, fast, craftexo, mTiers, cList, mytime, xp_to_
 		del (buy[19704])
 		del (tierbuy[0][19704])
 
-	printtofile(tcost, treco, sell, craftexo, mTiers, Globals.mydeepcopy(make), Globals.mydeepcopy(pmake), Globals.mydeepcopy(buy), Globals.mydeepcopy(tierbuy), Globals.mydeepcopy(cList), filename, mytime, Items_de.ilist, Localde)
-	printtofile(tcost, treco, sell, craftexo, mTiers, Globals.mydeepcopy(make), Globals.mydeepcopy(pmake), Globals.mydeepcopy(buy), Globals.mydeepcopy(tierbuy), Globals.mydeepcopy(cList), filename, mytime, Items_fr.ilist, Localfr)
-	printtofile(tcost, treco, sell, craftexo, mTiers, Globals.mydeepcopy(make), Globals.mydeepcopy(pmake), Globals.mydeepcopy(buy), Globals.mydeepcopy(tierbuy), Globals.mydeepcopy(cList), filename, mytime, Items_es.ilist, Locales)
-	printtofile(tcost, treco, sell, craftexo, mTiers, Globals.mydeepcopy(make), Globals.mydeepcopy(pmake), Globals.mydeepcopy(buy), Globals.mydeepcopy(tierbuy), Globals.mydeepcopy(cList), filename, mytime, Items_en.ilist, Localcz)
-	printtofile(tcost, treco, sell, craftexo, mTiers, Globals.mydeepcopy(make), Globals.mydeepcopy(pmake), Globals.mydeepcopy(buy), Globals.mydeepcopy(tierbuy), Globals.mydeepcopy(cList), filename, mytime, Items_en.ilist, Localptbr)
-	printtofile(tcost, treco, sell, craftexo, mTiers, Globals.mydeepcopy(make), Globals.mydeepcopy(pmake), Globals.mydeepcopy(buy), Globals.mydeepcopy(tierbuy), Globals.mydeepcopy(cList), filename, mytime, Items_zh.ilist, Localzh)
+	printtofile(tcost, treco, sell, craftexo, mTiers, Globals.mydeepcopy(make), Globals.mydeepcopy(pmake), Globals.mydeepcopy(buy), Globals.mydeepcopy(tierbuy), Globals.mydeepcopy(cList), filename, mytime, Items_de.ilist, Localde, backupkey)
+	printtofile(tcost, treco, sell, craftexo, mTiers, Globals.mydeepcopy(make), Globals.mydeepcopy(pmake), Globals.mydeepcopy(buy), Globals.mydeepcopy(tierbuy), Globals.mydeepcopy(cList), filename, mytime, Items_fr.ilist, Localfr, backupkey)
+	printtofile(tcost, treco, sell, craftexo, mTiers, Globals.mydeepcopy(make), Globals.mydeepcopy(pmake), Globals.mydeepcopy(buy), Globals.mydeepcopy(tierbuy), Globals.mydeepcopy(cList), filename, mytime, Items_es.ilist, Locales, backupkey)
+	printtofile(tcost, treco, sell, craftexo, mTiers, Globals.mydeepcopy(make), Globals.mydeepcopy(pmake), Globals.mydeepcopy(buy), Globals.mydeepcopy(tierbuy), Globals.mydeepcopy(cList), filename, mytime, Items_en.ilist, Localcz, backupkey)
+	printtofile(tcost, treco, sell, craftexo, mTiers, Globals.mydeepcopy(make), Globals.mydeepcopy(pmake), Globals.mydeepcopy(buy), Globals.mydeepcopy(tierbuy), Globals.mydeepcopy(cList), filename, mytime, Items_en.ilist, Localptbr, backupkey)
+	printtofile(tcost, treco, sell, craftexo, mTiers, Globals.mydeepcopy(make), Globals.mydeepcopy(pmake), Globals.mydeepcopy(buy), Globals.mydeepcopy(tierbuy), Globals.mydeepcopy(cList), filename, mytime, Items_zh.ilist, Localzh, backupkey)
 	totals = {}
-	totals.update(printtofile(tcost, treco, sell, craftexo, mTiers, Globals.mydeepcopy(make), pmake, buy, tierbuy, Globals.mydeepcopy(cList), filename, mytime, Items_en.ilist, Localen))
+	totals.update(printtofile(tcost, treco, sell, craftexo, mTiers, Globals.mydeepcopy(make), pmake, buy, tierbuy, Globals.mydeepcopy(cList), filename, mytime, Items_en.ilist, Localen, backupkey))
 	return totals
 
 
