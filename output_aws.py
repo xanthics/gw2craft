@@ -24,7 +24,7 @@ def write_file(directory, filename, contents, backupdir=''):
 					'Bucket': 'gw2crafts.net',
 					'Key': keyname
 				}
-				b_keyname = os.path.join('{}'.format([backupdir] + directory), filename)
+				b_keyname = os.path.join('{}'.format(backupdir + '/' + directory), filename)
 				s3.meta.client.copy(copy_source, 'gw2crafts.net', b_keyname)
 			return
 		except Exception, err:
