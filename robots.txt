@@ -1,2 +1,2 @@
 User-agent: *
-Disallow: /202*
+Disallow: /archive/*

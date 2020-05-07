@@ -76,7 +76,7 @@ def recipeworker((cmds, cList, mytime, xp_to_level, backupkey)):  # , out_q):
 
 
 def main():
-	backupkey = datetime.datetime.utcnow().strftime('%Y%m%dT%H%M%S')
+	backupkey = 'archive/' + datetime.datetime.utcnow().strftime('%Y%m%dT%H%M%S')
 	mytime = "<span class=\"localtime\">" + datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S') + u'+00:00</span>'
 	# Will hold level:total xp pairs (array)
 	xp_to_level = [0]
