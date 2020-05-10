@@ -352,6 +352,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page.append(u'</div><br />\n')
 	if u'scribe' in filename:
 		page.append(u'<div>\n')
+		page.append(u"<p>The scribe guides need a new guild with unlocks as RiFa appears to be defunct.  Please email me at <a href=\"mailto:gw2crafts@live.com\">gw2crafts@live.com</a> if you have a guild that can accommodate.  Would need a contact name and guild, they will go on the scribe page.</p>")
 		page.append(u'<button title=\"{}\" class =\"arrow\" id=\"scribehint\">{}</button><div class=\"lsbutton\" id=\"1scribehint\">\n'.format(localText.toggle, localText.scribetease))
 		page.append(u'{}</div><br /></div><br />\n'.format(localText.scribeinfo))
 		buttonList.append(u'scribehint')

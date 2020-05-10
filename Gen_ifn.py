@@ -272,8 +272,9 @@ def index(localText):
 #	page += u"<div id=\"fb-root\"></div><script>(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = \"//connect.facebook.net/en_US/all.js#xfbml=1\";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));</script>"
 	page += localText.header%(u'index.html',u'index.html',u'index.html',u'index.html',u'index.html',u'index.html')
 	page += u"<section class=\"main\">\n"
+	page += u"<p>The scribe guides need a new guild with unlocks as RiFa appears to be defunct.  Please email me at <a href=\"mailto:gw2crafts@live.com\">gw2crafts@live.com</a> if you have a guild that can accommodate.  Would need a contact name and guild, they will go on the scribe page.</p>"
 	page += u"<p>All guide pages now have a permalink, at the top in the warning, to a cached version.  Amazon claims unlimited space, so these likely won't be deleted.</p>"
-	page += u"<br /><br />Support for Cooking 400-450 has been added.  450+ needs to be done via the in-game quest system and cannot be handled by these guides."
+	page += u"<p>Support for Cooking 400-450 has been added.  450+ needs to be done via the in-game quest system and cannot be handled by these guides.</p>"
 #	page += u"\t<div class=\"g-plusone\" data-size=\"medium\" data-href=\"http://gw2crafts.net\"></div><script type=\"text/javascript\">(function() {var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;po.src = 'https://apis.google.com/js/plusone.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);})();</script>\n"
 #	page += u"\t<div class=\"fb-like\" data-href=\"http://gw2crafts.net\" data-width=\"150\" data-layout=\"button_count\" data-show-faces=\"false\" data-send=\"false\"></div>"
 	page += u"<hr>"
