@@ -324,7 +324,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 <script src="//g.ezoic.net/ezoic/ezoiclitedata.go?did=39853"></script>
 <!-- Ezoic Ad Testing Code-->''')
 	# Title Part 1
-	page.append(u'	<title>'+title+u' - Guild War 2 Crafting Guide</title>\n')
+	page.append(u'	<title>'+title+u' - Guild Wars 2 Crafting Guide</title>\n')
 	page.append(u'	<meta name="description" content="Guild Wars 2 always current crafting guide for '+filename.split('.')[0].replace("_"," ").title()+u'">\n')
 	page.append(u'	<meta name="keywords" content="best videogames, free mmos, free mmorpg, best free mmorpg, best mmorpg, free to play, mmos, mmorpg, free game, online games, fantasy games, PC games, PC gaming, crafting guide, crafting guides, Guild Wars 2, Trading Post"/>\n')
 	page.append(u'	<meta http-equiv="content-type" content="text/html;charset=UTF-8">\n')
