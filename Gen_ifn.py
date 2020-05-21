@@ -22,7 +22,7 @@ def faq(localText):
 <script src="//g.ezoic.net/ezoic/ezoiclitedata.go?did=39853"></script>
 <!-- Ezoic Ad Testing Code-->'''
 	page += u"	<title>%s</title>\n"%(localText.about)
-	page += u"	<meta name=\"description\" content=\"ACCG FAQ and Contact information\">\n"
+	page += u"	<meta name=\"description\" content=\"ACCG FAQ, Contact information, and Privacy Policy\">\n"
 	page += u'	<meta name="keywords" content="best videogames, free mmos, free mmorpg, best free mmorpg, best mmorpg, free to play, mmos, mmorpg, free game, online games, fantasy games, PC games, PC gaming, crafting guide, crafting guides, Guild Wars 2, Trading Post"/>\n'
 	page += u"	<meta http-equiv=\"content-type\" content=\"text/html;charset=UTF-8\">\n"
 	page += u'	<meta http-equiv="Cache-Control" content="public, max-age=7776000">\n'
@@ -115,6 +115,12 @@ def faq(localText):
 #	page += u"<img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/en_US/i/scr/pixel.gif\" width=\"1\" height=\"1\">\n"
 #	page += u"</form> \n"
 #	page += u"<br /><br /><script src=\"http://coinwidget.com/widget/coin.js\"></script><script>CoinWidgetCom.go({wallet_address: \"18Muvgz2zYeUYcAwrqM24awXkv2WqsLukt\", currency: \"bitcoin\", counter: \"amount\", alignment: \"al\", qrcode: true, auto_show: false, lbl_button: \"Donate\", lbl_address: \"My Bitcoin Address:\", lbl_count: \"donations\", lbl_amount: \"BTC\"});</script>"
+	page += u"<h3 style=\"text-align:center;\">[Privacy Policy]</h3>\n"
+	page += u"<p>This site makes use of default Google Analytics settings to evaluate usage over time which has an opt out option <a href=\"https://tools.google.com/dlpage/gaoptout/\" target=\"_blank\">here.</a>  Google Analytic's privacy policy can be found <a href=\"https://support.google.com/analytics/answer/6004245\" target=\"_blank\">here.</a></p>"
+	page += u"<p>Ezoic privacy policy should be embedded below but it can also be found <a href=\"https://g.ezoic.net/privacy/gw2crafts.net\" target=\"_blank\">here.</a></p>"
+	page += u"<p>No other data should be collected as this site does not use any local storage or cookies except as needed for Google Analytics and Ezoic.</p>"
+	page += u"<br /><br /><span id=\"ezoic-privacy-policy-embed\"></span>"
+
 	page += u"</section>\n"
 	page += localText.cright
 	page += u"</body>\n"
