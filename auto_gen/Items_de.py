@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2020-04-10T17:49:03 PST
+# Created: 2020-06-23T00:04:53 PST
 ilist = {
 	8576: u"Flasche Reiswein",
 	8587: u"Pochiertes Ei Drottots",
@@ -8447,4 +8447,9 @@ ilist = {
 	1001139: u"Pfefferminz-Plattform",
 	1001140: u"Riesenzuckerstange",
 	1001141: u"Rattenstatue",
+	1001146: u"Super-Baum-Ast",
+	1001147: u"Super-Blatt-Plattform",
+	1001148: u"Super-Pilz-Plattform",
+	1001149: u"Super-Baum-Stamm",
+	1001150: u"Super-Seerosenblatt",
 }

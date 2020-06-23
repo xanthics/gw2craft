@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2020-04-10T17:49:14 PST
+# Created: 2020-06-23T00:05:04 PST
 ilist = {
 	8576: u"Botella de licor de arroz",
 	8587: u"Huevo escalfado de Drottot",
@@ -1877,7 +1877,7 @@ ilist = {
 	12209: u"Pollo a la parrilla",
 	12210: u"Hamburguesa",
 	12211: u"Cuenco de estofado de sierpe frío",
-	12212: u"Sándwich sustancioso tostado",
+	12212: u"Bocadillo de carne asada",
 	12213: u"Hamburguesa con queso",
 	12214: u"Piccata de pollo",
 	12215: u"Pimiento relleno",
@@ -8447,4 +8447,9 @@ ilist = {
 	1001139: u"Plataforma mentolada",
 	1001140: u"Bastón de caramelo gigante",
 	1001141: u"Estatua de rata",
+	1001146: u"Rama de superárbol",
+	1001147: u"Plataforma de superhojas",
+	1001148: u"Plataforma de superchampiñones",
+	1001149: u"Tronco de superárbol",
+	1001150: u"Supernenúfar",
 }

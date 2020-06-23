@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2020-04-10T17:48:43 PST
+# Created: 2020-06-23T00:04:30 PST
 ilist = {
 	8576: u"Bottle of Rice Wine",
 	8587: u"Drottot's Poached Egg",
@@ -8447,4 +8447,9 @@ ilist = {
 	1001139: u"Peppermint Platform",
 	1001140: u"Giant Candy Cane",
 	1001141: u"Rat Statue",
+	1001146: u"Super Tree Branch",
+	1001147: u"Super Leaf Platform",
+	1001148: u"Super Mushroom Platform",
+	1001149: u"Super Tree Trunk",
+	1001150: u"Super Lily Pad",
 }

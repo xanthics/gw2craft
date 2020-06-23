@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2020-04-10T17:48:53 PST
+# Created: 2020-06-23T00:04:41 PST
 ilist = {
 	8576: u"Bouteille d'alcool de riz",
 	8587: u"Œuf poché façon Drottot",
@@ -8447,4 +8447,9 @@ ilist = {
 	1001139: u"Plate-forme à la menthe poivrée",
 	1001140: u"Canne en sucre géante",
 	1001141: u"Statue du Rat",
+	1001146: u"Super branche d'arbre",
+	1001147: u"Super plate-forme feuillue",
+	1001148: u"Super plate-forme champignon",
+	1001149: u"Super tronc d'arbre",
+	1001150: u"Super feuille de nénuphar",
 }
