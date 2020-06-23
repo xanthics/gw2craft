@@ -550,7 +550,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 					t = (t + 1) % 2
 					tstr = u"<div class=\"sbutton\" id=\"1"+str(item)+str(tier)+u"\">"
 					for s in cList[item][u'recipe'][index]:
-						tstr += u"\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u'\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][index][s])+u")"
+						tstr += u"\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u' select_text\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][index][s])+u")"
 					tstr += u"</div><br />"
 					page.append(u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.discover+u": <button class=\"arrow "+cList[item][u'rarity']+u'\" title=\"'+localText.toggle+u'\" id=\"'+str(item)+str(tier)+u'\">'+cListName[item]+u"</button> "+tstr+u"\n</div>\n")
 					buttonList.append(str(item)+str(tier))
@@ -576,7 +576,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 					else:
 						inde = tier
 					for s in cList[item][u'recipe'][index]:
-						tstr += u"\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u'\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][index][s])+u")"
+						tstr += u"\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u' select_text\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][index][s])+u")"
 					tstr += u"</div><br />"
 					page.append(u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.discover+u": <button class=\"arrow "+cList[item][u'rarity']+u'\" title=\"'+localText.toggle+u'\" id=\"'+str(item)+str(tier)+u'\">'+cListName[item]+u"</button> "+tstr+u"\n</div>\n")
 					buttonList.append(str(item)+str(tier))
@@ -602,7 +602,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 					t = (t + 1) % 2
 					tstr = u"<div class=\"sbutton\" id=\"1"+str(item)+str(tier)+u"\">"
 					for s in cList[item][u'recipe'][index]:
-						tstr += u"\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u'\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][index][s])+u")"
+						tstr += u"\n<br />\t<span class=\"itemIcon\" style=\"background-image: url("+cList[s][u'icon']+u");\"></span> <span class=\""+cList[s][u'rarity']+u' selecct_text\">'+cListName[s]+u"</span> ("+str(cList[item][u'recipe'][index][s])+u")"
 					tstr += u"</div><br />"
 					page.append(u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.discover+u": <button class=\"arrow "+cList[item][u'rarity']+u'\" title=\"'+localText.toggle+u'\" id=\"'+str(item)+str(tier)+u'\">'+cListName[item]+u"</button> "+tstr+u"\n</div>\n")
 					buttonList.append(str(item)+str(tier))
