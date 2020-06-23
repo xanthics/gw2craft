@@ -278,7 +278,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 			else:
 				b_mix[item] = buy[item]
 	karma_str = u"<div class=\"s{0}\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url({1});\"></span><input type=\"number\" onkeypress=\"return event.charCode >= 48\" oninput=\"updateNeed(this, {2}, '{9}bv');\" id=\"{9}ih\" placeholder='0' min=\"0\" /><input type=\"number\" id=\"{9}bv\" value='{2}' raw_copper='0' readonly data-need = \"more\" min=\"0\" /> <button title=\""+localText.toggle+u"\" class=\"{3} arrow\" id=\"{4}\">{5}</button><div class=\"lsbutton\" id=\"1{6}\">{7} <span class=\"karmaIcon\"></span> "+localText.valuePer+u" 25 <br /> {8}</div></div>\n"
-	collectable_str = u"<div class=\"s{0}\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url({1});\"></span><input type=\"number\" onkeypress=\"return event.charCode >= 48\" oninput=\"updateNeed(this, {2}, '{6}bv');\" id=\"{6}ih\" placeholder='0' min=\"0\" /><input type=\"number\" id=\"{6}bv\" value='{2}' raw_copper='{7}' class='vTotal' readonly data-need = \"more\" min=\"0\" /> <span class=\"{3}\">{4}</span> ({5} "+localText.valuePer+u")</div>\n"
+	collectable_str = u"<div class=\"s{0}\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url({1});\"></span><input type=\"number\" onkeypress=\"return event.charCode >= 48\" oninput=\"updateNeed(this, {2}, '{6}bv');\" id=\"{6}ih\" placeholder='0' min=\"0\" /><input type=\"number\" id=\"{6}bv\" value='{2}' raw_copper='{7}' class='vTotal' readonly data-need = \"more\" min=\"0\" /> <span class=\"{3} select_text\">{4}</span> ({5} "+localText.valuePer+u")</div>\n"
 
 	title = ""
 	# Page Title Part 1
@@ -497,7 +497,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 				for lvl in precraft:
 					for item in make[lvl]:
 						t = (t + 1) % 2
-						page.append(u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[lvl][item],cList[item][u'rarity'],cListName[item]))
+						page.append(u"<div class=\"s"+str(t)+u"\">"+localText.make+u":%3i <span class=\"%s select_text\">%s</span></div>\n"%(make[lvl][item],cList[item][u'rarity'],cListName[item]))
 
 		if tierbuy and tier in [0,75,150,225,300]:
 			tt = 0
@@ -508,7 +508,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 			page.append(u"<h5>%s</h5>"%localText.blNotice)
 			for item in sorted(tierbuy[tier]):
 				t = (t + 1) % 2
-				page.append((u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url("+cList[item][u'icon']+u");\"></span><span class=\"quantity\">%i</span> <span class=\"%s\">%s</span> (%4s "+localText.valuePer+u")</div>\n")%(tierbuy[tier][item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost'])))
+				page.append((u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url("+cList[item][u'icon']+u");\"></span><span class=\"quantity\">%i</span> <span class=\"%s select_text\">%s</span> (%4s "+localText.valuePer+u")</div>\n")%(tierbuy[tier][item],cList[item][u'rarity'],cListName[item],mFormat(cList[item][u'cost'])))
 				tt += tierbuy[tier][item]*cList[item][u'cost']
 			buttonList.append(str(tier)+u'tier')
 			rt += tt
@@ -518,21 +518,21 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 		if pmake[tier]:
 			for item in sorted(pmake[tier]):
 				t = (t + 1) % 2
-				page.append(u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.make+u":%3i <span class=\"%s\">%s</span> (From %i tier) </div>\n"%(pmake[tier][item],cList[item][u'rarity'],cListName[item],tier-25))
+				page.append(u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.make+u":%3i <span class=\"%s select_text\">%s</span> (From %i tier) </div>\n"%(pmake[tier][item],cList[item][u'rarity'],cListName[item],tier-25))
 		for item in sorted(make[tier], key=make[tier].get, reverse=True):
 			if cList[item][u'type'] == u'Refinement':
 				t = (t + 1) % 2
 				if item == 19679: # Bronze Ingot
-					page.append((u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.make+u":%3i <span class=\"%s\">%s</span> (%s)</div>\n")%(make[tier][item],cList[item][u'rarity'],cListName[item],localText.bNote))
+					page.append((u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.make+u":%3i <span class=\"%s select_text\">%s</span> (%s)</div>\n")%(make[tier][item],cList[item][u'rarity'],cListName[item],localText.bNote))
 				else:
-					page.append(u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
+					page.append(u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.make+u":%3i <span class=\"%s select_text\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
 		for item in sorted(make[tier], key=make[tier].get, reverse=True):
 			if cList[item][u'type'] in non_item and not cList[item][u'type'] == u'Refinement':
 				t = (t + 1) % 2
 				if item in [13063,  13189,  13207,  13219,  13045,  13022,  13075,  13177,  13096,  13033, 13201, 13231]: # Sole
-					page.append((u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.make+u":%3i <span class=\"%s\">%s</span> (%s)</div>\n")%(make[tier][item]/2,cList[item][u'rarity'],cListName[item],localText.sNote))
+					page.append((u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.make+u":%3i <span class=\"%s select_text\">%s</span> (%s)</div>\n")%(make[tier][item]/2,cList[item][u'rarity'],cListName[item],localText.sNote))
 				else:
-					page.append(u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
+					page.append(u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.make+u":%3i <span class=\"%s select_text\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
 
 		index = 0
 		if tier == 425:
@@ -557,7 +557,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 			for item in sorted(make[tier]):
 				if not cList[item][u'type'] in non_item and not cList[item][u'rarity'] == u'Exotic':
 					t = (t + 1) % 2
-					page.append(u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
+					page.append(u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.make+u":%3i <span class=\"%s select_text\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
 			for item in sorted(make[tier]):
 				try:
 					index = cList[item][u'tier'].index(400)
@@ -583,7 +583,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 			for item in sorted(make[tier]):
 				if not cList[item][u'type'] in non_item and cList[item][u'rarity'] == u'Exotic':
 					t = (t + 1) % 2
-					page.append(u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
+					page.append(u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.make+u":%3i <span class=\"%s select_text\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
 		else:
 			for item in sorted(make[tier]):
 				if craftexo:
@@ -609,7 +609,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 			for item in sorted(make[tier]):
 				if not cList[item][u'type'] in non_item:
 					t = (t + 1) % 2
-					page.append(u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.make+u":%3i <span class=\"%s\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
+					page.append(u"<div class=\"s"+str(t)+u"\"><input type=\"checkbox\" />"+localText.make+u":%3i <span class=\"%s select_text\">%s</span></div>\n"%(make[tier][item],cList[item][u'rarity'],cListName[item]))
 	page.append(u'<br />\n<h3>%s:%i</h3>\n'%(localText.level,tier+25))
 	t = (t + 1) % 2
 	page.append(u"<div class=\"s"+str(t)+u"\">%s</div>\n"%localText.finish)

@@ -28,7 +28,14 @@ dd {
 	color: rgb(0,0,100);}
 
 .Basic {
-	color: rgb(0,0,0);}
+    color: rgb(0,0,0);}
+
+.select_text {
+    -webkit-user-select: all; /* Safari */
+    -ms-user-select: all; /* IE 10+ and Edge */
+    -moz-user-select: all; /* Firefox */
+    user-select: all; /* Standard syntax */
+    cursor: pointer;}
 
 span.goldIcon, span.silverIcon, span.copperIcon, span.karmaIcon {
 	background: url() no-repeat left bottom;
