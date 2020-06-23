@@ -379,12 +379,11 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 
 	remaining = u'<dl>\n	<dt>{}</dt>\n	<dd><span class="mygold">{}</span><span class=\"goldIcon\"></span><span class="mysilver">{}</span><span class=\"silverIcon\"></span><span class="mycopper">{}</span><span class=\"copperIcon\"></span></dd>\n</dl><div class="clear"></div>'.format(localText.remCost,tcost//10000,(tcost//100)%100,tcost%100)
 
-
 	page.append(u'<br /><button title=\"%s\" class=\"arrow\" id=\"tcost\">%s:</button><div class=\"lsbutton\" id=\"1tcost\">'%(localText.toggle,localText.sList))
 	for line in sorted(sell):
 		if cList[line][u'w'] > 0:
 			t = (t + 1) % 2
-			page.append(u'<div class=\"s%i\">%3i <span class=\"%s\">%s</span> - %s %s</div>\n'%(t,sell[line],cList[line][u'rarity'],cListName[line],(localText.soldVia%mFormat(cList[line][u'w'])),localText.method[cList[line][u'sellMethod']]))
+			page.append(u'<div class=\"s%i\">%3i <span class=\"%s select_text\">%s</span> - %s %s</div>\n'%(t,sell[line],cList[line][u'rarity'],cListName[line],(localText.soldVia%mFormat(cList[line][u'w'])),localText.method[cList[line][u'sellMethod']]))
 
 	page.append(u"</div><script type=\"text/javascript\">$('#1tcost').hide();</script><br />")
 	buttonList.append(u'tcost')
@@ -415,7 +414,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 
 		for item in sorted(b_vendor):
 			t = (t + 1) % 2
-			page.append(u"<div class=\"s{0}\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url({1});\"></span><input type=\"number\" onkeypress=\"return event.charCode >= 48\" oninput=\"updateNeed(this, {2}, '{8}bv');\" id=\"{8}ih\" placeholder='0' min=\"0\" /><input type=\"number\" id=\"{8}bv\" value='{2}' raw_copper='{9}' class='vTotal' readonly data-need = \"more\" min=\"0\" /> <span class=\"{3}\">{4}</span> ({5} {6} from {7})</div>\n".format(t, cList[item][u'icon'], buy[item], cList[item][u'rarity'], cListName[item], mFormat(cList[item][u'cost']), localText.valuePer, localText.method[0], item, cList[item][u'cost']))
+			page.append(u"<div class=\"s{0}\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url({1});\"></span><input type=\"number\" onkeypress=\"return event.charCode >= 48\" oninput=\"updateNeed(this, {2}, '{8}bv');\" id=\"{8}ih\" placeholder='0' min=\"0\" /><input type=\"number\" id=\"{8}bv\" value='{2}' raw_copper='{9}' class='vTotal' readonly data-need = \"more\" min=\"0\" /> <span class=\"{3} select_text\">{4}</span> ({5} {6} from {7})</div>\n".format(t, cList[item][u'icon'], buy[item], cList[item][u'rarity'], cListName[item], mFormat(cList[item][u'cost']), localText.valuePer, localText.method[0], item, cList[item][u'cost']))
 
 	page.append(u'<!-- Ezoic - first_paragraph - under_first_paragraph -->\n<div id="ezoic-pub-ad-placeholder-107"></div>\n<!-- End Ezoic - first_paragraph - under_first_paragraph -->')
 	if recipebuy:

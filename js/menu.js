@@ -126,3 +126,20 @@ function updateRemaining() {
         gelements[i].textContent=gold.toString();
     }
 }
+
+/* from https://stackoverflow.com/questions/11451353/how-to-select-the-text-of-a-span-on-click */
+
+$('.select_text').click(function (){
+    var text = $(this).text();
+    var $this = $(this);
+    var $input = $('<input type=text>');
+    $input.prop('value', text);
+    $input.insertAfter($(this));
+    $input.focus();
+    $input.select();
+    $this.hide();
+    $input.focusout(function(){
+        $this.show();
+        $input.remove();
+    });
+});​
