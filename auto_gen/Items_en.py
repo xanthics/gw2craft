@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2020-06-23T00:04:30 PST
+# Created: 2020-08-13T10:38:01 PST
 ilist = {
 	8576: u"Bottle of Rice Wine",
 	8587: u"Drottot's Poached Egg",
@@ -7275,6 +7275,7 @@ ilist = {
 	66625: u"Cleric's Adventurer's Spectacles",
 	66923: u"Plate of Piquant Plant Food",
 	66933: u"Foxfire Cluster",
+	68063: u"Amalgamated Gemstone",
 	68620: u"Lucky Great Ram Lantern",
 	68942: u"Evergreen Lodestone",
 	68944: u"Auric Sliver",
@@ -8028,6 +8029,8 @@ ilist = {
 	92138: u"Saint Bones",
 	92196: u"Soul Cake",
 	92632: u"Lucky Great Rat Lantern",
+	93417: u"Tengu Echo Blade",
+	93567: u"Stormcaller Core",
 	1000043: u"Guild Catapult",
 	1000051: u"Vault Transport",
 	1000073: u"+5% Experience Public Banner",
@@ -8452,4 +8455,10 @@ ilist = {
 	1001148: u"Super Mushroom Platform",
 	1001149: u"Super Tree Trunk",
 	1001150: u"Super Lily Pad",
+	1001155: u"Zephyr Walkway",
+	1001157: u"Zephyr Support",
+	1001158: u"Zephyr Scaffolding",
+	1001159: u"Triumphant Dragon Bash Poster",
+	1001160: u"Victorious Dragon Bash Poster",
+	1001161: u"Dragon Bash Banner",
 }

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2020-06-23T00:05:04 PST
+# Created: 2020-08-13T10:38:35 PST
 ilist = {
 	8576: u"Botella de licor de arroz",
 	8587: u"Huevo escalfado de Drottot",
@@ -7275,6 +7275,7 @@ ilist = {
 	66625: u"Gafas de aventurero de clérigo",
 	66923: u"Plato de abono picante",
 	66933: u"Conjunto de hongos luminiscentes",
+	68063: u"Gema amalgamada",
 	68620: u"Lámpara de la suerte de gran carnero",
 	68942: u"Piedra imán perenne",
 	68944: u"Astilla áurica",
@@ -8028,6 +8029,8 @@ ilist = {
 	92138: u"Huesos de santo",
 	92196: u"Pastel de difuntos",
 	92632: u"Lámpara de la suerte de gran rata",
+	93417: u"Filo de ecos tengu",
+	93567: u"Núcleo de invocatormenta",
 	1000043: u"Catapulta de clan",
 	1000051: u"Transporte de la Cámara",
 	1000073: u"Estandarte público de +5 % Experiencia",
@@ -8452,4 +8455,10 @@ ilist = {
 	1001148: u"Plataforma de superchampiñones",
 	1001149: u"Tronco de superárbol",
 	1001150: u"Supernenúfar",
+	1001155: u"Pasarela del céfiro",
+	1001157: u"Soporte del céfiro",
+	1001158: u"Andamio del céfiro",
+	1001159: u"Cartel del Dragonicidio triunfante",
+	1001160: u"Cartel del Dragonicidio victorioso",
+	1001161: u"Estandarte del Dragonicidio",
 }

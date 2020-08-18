@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2020-06-23T00:04:41 PST
+# Created: 2020-08-13T10:38:12 PST
 ilist = {
 	8576: u"Bouteille d'alcool de riz",
 	8587: u"Œuf poché façon Drottot",
@@ -7275,6 +7275,7 @@ ilist = {
 	66625: u"Lunettes d'aventurier cléricales",
 	66923: u"Assiette d'engrais épicé",
 	66933: u"Carré bioluminescent",
+	68063: u"Pierre précieuse amalgamée",
 	68620: u"Lanterne du grand Bélier chanceux",
 	68942: u"Magnétite verdoyante",
 	68944: u"Esquille aurique",
@@ -8028,6 +8029,8 @@ ilist = {
 	92138: u"Ossements sacrés",
 	92196: u"Cake aux âmes",
 	92632: u"Lanterne du grand Rat chanceux",
+	93417: u"Lame d'écho des Tengus",
+	93567: u"Noyau d'Invoque-tempête",
 	1000043: u"Catapulte de guilde",
 	1000051: u"Transport de coffre",
 	1000073: u"Bannière publique +5% d'expérience",
@@ -8452,4 +8455,10 @@ ilist = {
 	1001148: u"Super plate-forme champignon",
 	1001149: u"Super tronc d'arbre",
 	1001150: u"Super feuille de nénuphar",
+	1001155: u"Passerelle du zéphyr",
+	1001157: u"Pilier du zéphyr",
+	1001158: u"Échafaudage du zéphyr",
+	1001159: u"Affiche triomphale de la Foire du Dragon",
+	1001160: u"Affiche victorieuse de la Foire du Dragon",
+	1001161: u"Bannière de la Foire du Dragon",
 }

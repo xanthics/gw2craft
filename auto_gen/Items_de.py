@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2020-06-23T00:04:53 PST
+# Created: 2020-08-13T10:38:24 PST
 ilist = {
 	8576: u"Flasche Reiswein",
 	8587: u"Pochiertes Ei Drottots",
@@ -7275,6 +7275,7 @@ ilist = {
 	66625: u"Klerikale Abenteurer-Brille",
 	66923: u"Teller mit schmackhafter Pflanzennahrung",
 	66933: u"Leuchtpilzgruppe",
+	68063: u"Verschmolzener Edelstein",
 	68620: u"Glückslaterne des Riesenwidders",
 	68942: u"Immergrün-Magnetstein",
 	68944: u"Güldener Span",
@@ -8028,6 +8029,8 @@ ilist = {
 	92138: u"Heiligen-Knochen",
 	92196: u"Seelenkuchen",
 	92632: u"Glückslaterne der Riesenratte",
+	93417: u"Tengu-Echo-Klinge",
+	93567: u"Sturmrufer-Kern",
 	1000043: u"Blaupause für Gilden-Katapult",
 	1000051: u"Tresortransport",
 	1000073: u"+5 % Erfahrungspunkte öffentliches Banner",
@@ -8452,4 +8455,10 @@ ilist = {
 	1001148: u"Super-Pilz-Plattform",
 	1001149: u"Super-Baum-Stamm",
 	1001150: u"Super-Seerosenblatt",
+	1001155: u"Zephyr-Laufsteg",
+	1001157: u"Zephyr-Unterstützung",
+	1001158: u"Zephyr-Gerüst",
+	1001159: u"Triumphales Drachen-Gepolter-Plakat",
+	1001160: u"Siegreiches Drachen-Gepolter-Plakat",
+	1001161: u"Drachen-Gepolter-Banner",
 }
