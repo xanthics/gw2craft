@@ -55,10 +55,11 @@ Lv 350-375 Vault Transport, Emergency Waypoint, Gate Turrets (in guide listed as
 <strong>My guild lacks the unlocks/will not give me permissions to level up my scribe</strong><br />
 If your guild is missing the guild unlocks (and alternatives) you can “visit” (temporarily join) a guild that has them unlocked so you can level your scribe in their hall. Just keep in mind that all the guild related itmes (banners, WvW items and decorations) that your craft in that guild hall, will stay in the guildhall that you are visiting.<br />
 <br />
+<p><strong>RiFa appears to be defunct, you should use a guild listed at the beginning of this page.</strong></p><s>
 <strong>The Rising Falcons[RiFa] and the scribe guide History</strong><br />
 Ever since <strong>Vin Lady Venture</strong> made the first static (now outdated) scribe together with <strong>Dulfy</strong> and found out that the guild unlocked scribe recipes could help leveling scribes safe a lot of gold  He opened up the guild “The rising Falcons[RiFa]” for scribes who wanted to level up and RiFa has continued to run this service ever since. While the original guide has now been replaced by the much more advanced and up to date guide that you see here, made by <strong>xanthic.9478</strong>, RiFa is still accepting scribes who do not have access to (all of) the guild unlocked recipes. It is a casual relaxed guild that offers this service to anyone who likes to level his/her scribe, free of charge. While RiFa is an EU based guild, US based players can also use the service and unlocks. The only thing is that you cannot see any of the main guild members.<br />
 <br />
-You can send an in game mail to  <strong>Vin lady venture (Rin of Rivvinda.4971)</strong> for an invite in RiFa, just make sure you have at least 1 free guild slot and you should be invited within 24 hours.  <br />
+You can send an in game mail to  <strong>Vin lady venture (Rin of Rivvinda.4971)</strong> for an invite in RiFa, just make sure you have at least 1 free guild slot and you should be invited within 24 hours.  <br /></s>
  """
 
 # renown heart vendors

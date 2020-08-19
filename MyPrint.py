@@ -354,7 +354,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 		page.append(u'<div>\n')
 		page.append(u"<p>Please email me at <a href=\"mailto:gw2crafts@live.com\">gw2crafts@live.com</a> if you would like your guild listed here.  The following guild(s) have the necessary crafting recipes unlocked and are accepting guests:</p>")
 		page.append(u"<hr>")
-		page.append(u"<p>Hearth of Owl [HoO] is grateful to share our scribing station with all scribes-in-training.</p>")
+		page.append(u"<p>Hearth of Owl [HoO] is grateful to share our scribing station with all scribes-in-training.  We are an NA guild, but still totally open to accepting EU members for scribing.</p>")
 		page.append(u"<p>We are an experienced PvE guild that shares knowledge and resources to help new and returning players get acclimated to the vast, ever-changing world of Tyria.  We strive for a friendly and spoiler-free environment.</p>")
 		page.append(u"<p>You can join our discord for more information and a faster guild invite.<br /><a href=\"https://discord.gg/BavHsUP\">https://discord.gg/BavHsUP</a></p>")
 		page.append(u"<p>Otherwise, whisper or send an in-game mail to receive an invite.<br />ecstaseed.2109<br />archangel.4027</p>")
