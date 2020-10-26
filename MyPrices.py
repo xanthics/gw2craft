@@ -14,7 +14,7 @@ import time
 from auto_gen import Items
 # so we can set custom headers
 from multiprocessing import Pool
-import urllib.request, urllib.error, urllib.parse
+import requests
 from random import randint, choice
 import socket
 
@@ -28,10 +28,10 @@ def gw2apilistworker(input_url):
 	temp = []
 	while getdata:
 		try:
-			req = urllib.request.Request(baseURL + ",".join(str(i) for i in ids))
-			req.add_header('User-agent', version)
-			f = urllib.request.urlopen(req, timeout=socket.getdefaulttimeout())
-			temp = json.load(f.decode('utf-8'))
+			request = baseURL + ",".join(str(i) for i in ids)
+			header = {'User-agent': version}
+			f = requests.get(request, headers=header, timeout=socket.getdefaulttimeout())
+			temp = f.json(encoding='utf-8')
 			getdata = False
 		except Exception as err:
 			print('ERROR: %s.' % str(err))
@@ -68,7 +68,6 @@ def gw2apilistworker(input_url):
 def gw2api():
 	socket.setdefaulttimeout(5)
 	listingURL = "https://api.guildwars2.com/v2/commerce/listings"
-	req = urllib.request.Request(listingURL)
 	user_agents = [
 		'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36',
 		'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.0 Safari/537.36',
@@ -76,9 +75,9 @@ def gw2api():
 		'Mozilla/5.0 (Windows NT 6.3; rv:36.0) Gecko/20100101 Firefox/36.0'
 	]
 	version = choice(user_agents)
-	req.add_header('User-agent', version)
-	f = urllib.request.urlopen(req, timeout=socket.getdefaulttimeout())
-	temp = json.load(f.decode('utf-8'))
+	header = {'User-agent': version}
+	f = requests.get(listingURL, headers=header, timeout=socket.getdefaulttimeout())
+	temp = f.json(encoding='utf-8')
 	valid = []
 	invalid = []
 	for item in list(Items.ilist.keys()):
