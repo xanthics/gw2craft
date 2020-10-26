@@ -3,13 +3,17 @@
 '''
 Author: Jeremy Parks
 Purpose: Function for writing output files to local filesystem.
-Note: Requires Python 2.7.x
+Note: Requires Python 3.7.x
 '''
 
 import codecs
 import os
 
-def write_file(directory, filename, contents):
+
+def write_file(directory, filename, contents, backupdir=''):
+	if 'free' in directory:
+		directory = directory[5:]
+		filename = f'free_{filename}'
 	if directory and not os.path.exists(directory):
 		os.makedirs(directory)
 

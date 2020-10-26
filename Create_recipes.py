@@ -23,32 +23,32 @@
 
 Author: Jeremy Parks
 Purpose: Generates(or updates) all the recipes and the item list used by Crafting.py
-Note: Requires Python 2.7.x
+Note: Requires Python 3.7.x
 '''
 import codecs
 import json
 import os
 import socket
-import urllib
+import urllib.request, urllib.parse, urllib.error
 from datetime import datetime
 from multiprocessing import Pool
 
-API_ROOT = u"https://api.guildwars2.com/v2/"
+API_ROOT = "https://api.guildwars2.com/v2/"
 
 
 # Helper Function
 def recipelistWorker(items):
 	outdict = {}
-	items = _api_call(u'recipes.json?ids={}'.format(",".join(map(str, items))))
+	items = _api_call('recipes.json?ids={}'.format(",".join(map(str, items))))
 	for i in items:
-		outdict[i[u'id']] = i
+		outdict[i['id']] = i
 
 	return outdict
 
 
 # Get and return all available recipes from the API
 def get_recipes():
-	lister = _api_call(u'recipes.json')
+	lister = _api_call('recipes.json')
 	p = Pool()
 	procs = [p.map(recipelistWorker, [lister[i:i + 200] for i in range(0, len(lister), 200)])]
 
@@ -97,65 +97,65 @@ def parse_recipes(recipes):
 	# Sun Beads, Obsidian Shard, Essence of Luck, Essence of Luck, Essence of Luck, Essence of Luck, Essence of Luck
 	bad_karma = [19717, 19925, 45175, 45176, 45177, 45178, 1000721] + list(range(49424, 49441))
 
-	crafts = {u'Weaponsmith': {}, u'Chef': {}, u'Chef_karma': {}, u'Huntsman': {},
-			  u'Armorsmith': {}, u'Jeweler': {}, u'Artificer': {}, u'Tailor': {},
-			  u'Leatherworker': {}, u'Scribe': {}}
+	crafts = {'Weaponsmith': {}, 'Chef': {}, 'Chef_karma': {}, 'Huntsman': {},
+			  'Armorsmith': {}, 'Jeweler': {}, 'Artificer': {}, 'Tailor': {},
+			  'Leatherworker': {}, 'Scribe': {}}
 	item_ids = {}
 
-	new_recipes = {r[0]: r[1] for r in recipes.items()
-				   if not int(r[1][u'output_item_id']) in bad_recipes
-				   and not r[1][u'type'] in [u'Feast', u'Backpack']
-				   or (r[1][u'type'] == u'Backpack' and u'Scribe' in r[1][u'disciplines'])}
+	new_recipes = {r[0]: r[1] for r in list(recipes.items())
+				   if not int(r[1]['output_item_id']) in bad_recipes
+				   and not r[1]['type'] in ['Feast', 'Backpack']
+				   or (r[1]['type'] == 'Backpack' and 'Scribe' in r[1]['disciplines'])}
 	nc = {}
-	for _recipe, data in new_recipes.items():
-		min_rating = data[u'min_rating']
-		item_id = data[u'output_item_id']
-		item_count = data[u'output_item_count']
-		ingredient_set = set(int(i[u'item_id']) for i in data[u'ingredients'])
+	for _recipe, data in list(new_recipes.items()):
+		min_rating = data['min_rating']
+		item_id = data['output_item_id']
+		item_count = data['output_item_count']
+		ingredient_set = set(int(i['item_id']) for i in data['ingredients'])
 
 		# We don't want cap level recipes or recipes that use items the player can't buy off the tp or make
 		# 24838 at lvl 375 is a bugged recipe(Major Rune of Water, Tailoring)
-		if min_rating == 500 or (min_rating == 400 and (u'Scribe' in data[u'disciplines'] or u'Jeweler' in data[u'disciplines'])) or set(bad_karma).intersection(set(ingredient_set)):  # or (item_id == 24838 and min_rating == 375):
+		if min_rating == 500 or (min_rating == 400 and ('Scribe' in data['disciplines'] or 'Jeweler' in data['disciplines'])) or set(bad_karma).intersection(set(ingredient_set)):  # or (item_id == 24838 and min_rating == 375):
 			continue
 
-		for it in data[u'disciplines']:
+		for it in data['disciplines']:
 			key = it
 			# We don't want recipe items.  Except for karma cooking and known good recipes
-			if u'LearnedFromItem' in data[u'flags'] and not (it == u'Chef' or int(item_id) in good_recipes):
+			if 'LearnedFromItem' in data['flags'] and not (it == 'Chef' or int(item_id) in good_recipes):
 				continue
-			if it == u'Chef' and (set(karma) & ingredient_set or u'LearnedFromItem' in data[u'flags']):
-				key = u'Chef_karma'
+			if it == 'Chef' and (set(karma) & ingredient_set or 'LearnedFromItem' in data['flags']):
+				key = 'Chef_karma'
 
 			crafts[key].setdefault(min_rating, {})
-			crafts[key][min_rating][item_id] = data[u'ingredients']
-			item_ids[item_id] = {u'output_item_count': item_count,
-								 u'type': data[u'type'],
-								 u'flags': data[u'flags']}
+			crafts[key][min_rating][item_id] = data['ingredients']
+			item_ids[item_id] = {'output_item_count': item_count,
+								 'type': data['type'],
+								 'flags': data['flags']}
 			if it in nc:
 				nc[it] += 1
 			else:
 				nc[it] = 1
 
 	for craft in crafts:
-		page = u'# -*- coding: utf-8 -*-\n'
-		page += u'# Created: {} PST\n'.format(datetime.now().strftime('%Y-%m-%dT%H:%M:%S'))
-		page += u'recipes = {\n'
+		page = '# -*- coding: utf-8 -*-\n'
+		page += '# Created: {} PST\n'.format(datetime.now().strftime('%Y-%m-%dT%H:%M:%S'))
+		page += 'recipes = {\n'
 		for lvl in sorted(crafts[craft]):
-			page += u"\t{}: {{\n".format(lvl)
+			page += "\t{}: {{\n".format(lvl)
 			for obj in sorted(crafts[craft][lvl]):
-				mystr = u""
-				for part in sorted(crafts[craft][lvl][obj]):
-					if not part[u'item_id'] in item_ids:
-						item_ids[part[u'item_id']] = {u'type': u'Other', u'output_item_count': u'0', u'flags': []}
-					mystr += u"{}: {}, ".format(part[u'item_id'], part[u'count'])
-				page += u"\t\t{}: {{{}}},\n".format(obj, mystr[:-2])
-			page += u"\t},\n"
-		page += u"}"
+				mystr = ""
+				for part in sorted(crafts[craft][lvl][obj], key=lambda k: k['item_id']):
+					if not part['item_id'] in item_ids:
+						item_ids[part['item_id']] = {'type': 'Other', 'output_item_count': '0', 'flags': []}
+					mystr += "{}: {}, ".format(part['item_id'], part['count'])
+				page += "\t\t{}: {{{}}},\n".format(obj, mystr[:-2])
+			page += "\t},\n"
+		page += "}"
 		with codecs.open("auto_gen\\" + craft + ".py", "wb", encoding='utf-8') as f:
 			f.write(page)
 
 	for item in [38207, 38208, 38209, 38295, 38296, 38297]:
-		item_ids[item] = {u'type': u'Recipe', u'output_item_count': u'1', u'flags': []}
+		item_ids[item] = {'type': 'Recipe', 'output_item_count': '1', 'flags': []}
 
 	return item_ids
 
@@ -165,9 +165,9 @@ def guilditemlistWorker(vals):
 	ids = vals[0]
 	lang = vals[1]
 	outdict = {}
-	items = _api_call(u'guild/upgrades.json?ids={}&lang={}'.format(",".join(map(str, ids)), lang))
+	items = _api_call('guild/upgrades.json?ids={}&lang={}'.format(",".join(map(str, ids)), lang))
 	for i in items:
-		outdict[i[u'id']] = i
+		outdict[i['id']] = i
 	return outdict
 
 
@@ -176,16 +176,16 @@ def itemlistWorker(vals):
 	ids = vals[0]
 	lang = vals[1]
 	outdict = {}
-	items = _api_call(u'items.json?ids={}&lang={}'.format(",".join(map(str, ids)), lang))
+	items = _api_call('items.json?ids={}&lang={}'.format(",".join(map(str, ids)), lang))
 	for i in items:
-		outdict[i[u'id']] = i
+		outdict[i['id']] = i
 	return outdict
 
 
 # get more information on every item the recipes use
 # Currently supported languages: en, fr, de, es
-def itemlist(item_list, gulist, lang=u"en"):
-	print "Starting {}".format(lang)
+def itemlist(item_list, gulist, lang="en"):
+	print("Starting {}".format(lang))
 	lister = gulist
 	p = Pool()
 	procs = [p.map(guilditemlistWorker, [(lister[i:i + 200], lang) for i in range(0, len(lister), 200)])]
@@ -195,7 +195,7 @@ def itemlist(item_list, gulist, lang=u"en"):
 		for i in p:
 			guild_flags.update(i)
 
-	lister = item_list.keys()
+	lister = list(item_list.keys())
 	p = Pool()
 	procs = [p.map(itemlistWorker, [(lister[i:i + 200], lang) for i in range(0, len(lister), 200)])]
 
@@ -204,44 +204,44 @@ def itemlist(item_list, gulist, lang=u"en"):
 		for i in p:
 			flags.update(i)
 
-	for item in guild_flags.keys():
-		flags[item+1000000] = {u'name': guild_flags[item][u"name"], u"icon": guild_flags[item][u"icon"],
-							   u'rarity': u"Basic", u'flags': [u"NoSell"], u"vendor_value": 0}
+	for item in list(guild_flags.keys()):
+		flags[item+1000000] = {'name': guild_flags[item]["name"], "icon": guild_flags[item]["icon"],
+							   'rarity': "Basic", 'flags': ["NoSell"], "vendor_value": 0}
 
-	if lang == u"en":
-		page = u'# -*- coding: utf-8 -*-\n'
-		page += u'# Created: {} PST\n'.format(datetime.now().strftime('%Y-%m-%dT%H:%M:%S'))
-		page += u'ilist = {\n'
+	if lang == "en":
+		page = '# -*- coding: utf-8 -*-\n'
+		page += '# Created: {} PST\n'.format(datetime.now().strftime('%Y-%m-%dT%H:%M:%S'))
+		page += 'ilist = {\n'
 		# sorted is only so we can easily spot new items with diff
 		for i in sorted(flags):  # otherwise output is semi random order
 			try:
-				item_list[i][u'rarity'] = flags[i][u'rarity']
-				if u"NoSell" in flags[i][u"flags"]:
-					item_list[i][u'vendor_value'] = 0
+				item_list[i]['rarity'] = flags[i]['rarity']
+				if "NoSell" in flags[i]["flags"]:
+					item_list[i]['vendor_value'] = 0
 				else:
-					item_list[i][u'vendor_value'] = int(flags[i][u'vendor_value'])
-				if item_list[i][u'flags']:
-					item_list[i][u'discover'] = 0
-				item_list[i][u'img_url'] = flags[i][u'icon']
-				del (item_list[i][u'flags'])
-				page += u"\t{}: {},\n".format(i, item_list[i])
-			except Exception, err:
-				print 'Error ilist: {}.'.format(str(err))
+					item_list[i]['vendor_value'] = int(flags[i]['vendor_value'])
+				if item_list[i]['flags']:
+					item_list[i]['discover'] = 0
+				item_list[i]['img_url'] = flags[i]['icon']
+				del (item_list[i]['flags'])
+				page += "\t{}: {},\n".format(i, item_list[i])
+			except Exception as err:
+				print('Error ilist: {}.'.format(str(err)))
 				#exit()
-		page += u'}'
+		page += '}'
 		with codecs.open("auto_gen\\Items.py", "wb", encoding='utf-8') as f:
-			f.write(page.replace(u": ", ":"))
+			f.write(page.replace(": ", ":"))
 
-	page = u'# -*- coding: utf-8 -*-\n'
-	page += u'# Created: {} PST\n'.format(datetime.now().strftime('%Y-%m-%dT%H:%M:%S'))
-	page += u'ilist = {\n'
+	page = '# -*- coding: utf-8 -*-\n'
+	page += '# Created: {} PST\n'.format(datetime.now().strftime('%Y-%m-%dT%H:%M:%S'))
+	page += 'ilist = {\n'
 	# sorted is only so we can easily spot new items with diff
 	for i in sorted(flags):  # otherwise output is semi random order
 		try:
-			page += u"\t{}: u\"{}\",\n".format(i, flags[i][u'name'].replace('"', '\'').strip())
-		except Exception, err:
-			print 'Error items: {}.\n'.format(str(err))
-	page += u'}'
+			page += "\t{}: \"{}\",\n".format(i, flags[i]['name'].replace('"', '\'').strip())
+		except Exception as err:
+			print('Error items: {}.\n'.format(str(err)))
+	page += '}'
 	with codecs.open("auto_gen\\Items_%s.py" % lang, "wb", encoding='utf-8') as f:
 		f.write(page)
 
@@ -249,27 +249,27 @@ def itemlist(item_list, gulist, lang=u"en"):
 def _api_call(endpoint):
 	while (1):
 		try:
-			f = urllib.urlopen(API_ROOT + endpoint)
+			f = urllib.request.urlopen(API_ROOT + endpoint)
 			item = json.load(f)
 			return item
-		except Exception, err:
-			print 'Error api: {}. at {}\n'.format(str(err), API_ROOT + endpoint)
+		except Exception as err:
+			print('Error api: {}. at {}\n'.format(str(err), API_ROOT + endpoint))
 
 
 # add guild_ingredient item_id to each item
 def guild_recipes(recipes):
 	gulist = []
-	for item in recipes.keys():
-		if u'Scribe' in recipes[item][u'disciplines'] and recipes[item][u'min_rating'] < 400:
-			if u"guild_ingredients" in recipes[item]:
-				for i in recipes[item][u'guild_ingredients']:
-					if i[u'upgrade_id'] not in gulist:
-						gulist.append(i[u'upgrade_id'])
-					recipes[item][u'ingredients'].append({u"count": i[u'count'], u"item_id": i[u'upgrade_id']+1000000})
-			if u'output_upgrade_id' in recipes[item]:
-				if recipes[item][u'output_upgrade_id'] not in gulist:
-						gulist.append(recipes[item][u'output_upgrade_id'])
-				recipes[item][u'output_item_id'] = recipes[item][u'output_upgrade_id'] + 1000000
+	for item in list(recipes.keys()):
+		if 'Scribe' in recipes[item]['disciplines'] and recipes[item]['min_rating'] < 400:
+			if "guild_ingredients" in recipes[item]:
+				for i in recipes[item]['guild_ingredients']:
+					if i['upgrade_id'] not in gulist:
+						gulist.append(i['upgrade_id'])
+					recipes[item]['ingredients'].append({"count": i['count'], "item_id": i['upgrade_id']+1000000})
+			if 'output_upgrade_id' in recipes[item]:
+				if recipes[item]['output_upgrade_id'] not in gulist:
+						gulist.append(recipes[item]['output_upgrade_id'])
+				recipes[item]['output_item_id'] = recipes[item]['output_upgrade_id'] + 1000000
 	return gulist, recipes
 
 
@@ -281,10 +281,10 @@ def main():
 	item_list = parse_recipes(recipes)
 
 	itemlist(item_list, gulist)
-	itemlist(item_list, gulist, u"fr")
-	itemlist(item_list, gulist, u"de")
-	itemlist(item_list, gulist, u"es")
-	itemlist(item_list, gulist, u"zh")
+	itemlist(item_list, gulist, "fr")
+	itemlist(item_list, gulist, "de")
+	itemlist(item_list, gulist, "es")
+	itemlist(item_list, gulist, "zh")
 
 
 # If ran directly, call main

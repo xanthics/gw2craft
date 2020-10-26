@@ -23,11 +23,14 @@
 
 Author: Jeremy Parks
 Purpose: Generates a crafting guide, for all crafts in Guild Wars 2, based on current market prices
-Note: Requires Python 2.7.x
+Note: Requires Python 3.7.x
 '''
 
 import datetime
 # recipe and item lists
+import sys
+from copy import deepcopy
+
 import Globals
 from auto_gen import Armorsmith, Artificer, Chef, Chef_karma, Huntsman, Jeweler, Leatherworker, Scribe, Tailor, Weaponsmith
 # Localized text
@@ -45,12 +48,12 @@ class mytimer:
 		self.__name = name
 
 	def __enter__(self):
-		print("Start: {}".format(self.__name))
+		print(("Start: {}".format(self.__name)))
 		self.__t = time()
 
 	def __exit__(self, exc_type, exc_val, exc_tb):
 		t2 = time()
-		print("  End: {}, took {:.3f} seconds".format(self.__name, t2 - self.__t))
+		print(("  End: {}, took {:.3f} seconds".format(self.__name, t2 - self.__t)))
 
 
 # Join 2 recipe dicts
@@ -60,7 +63,8 @@ def join(A, B):
 	return dict([(a, join(A.get(a), B.get(a))) for a in set(A.keys()) | set(B.keys())])
 
 
-def recipeworker((cmds, cList, mytime, xp_to_level, backupkey)):  # , out_q):
+def recipeworker(inc_params):  # , out_q):
+	cmds, cList, free, mytime, xp_to_level, backupkey = inc_params
 	Globals.init()
 	totals = {}
 
@@ -68,16 +72,16 @@ def recipeworker((cmds, cList, mytime, xp_to_level, backupkey)):  # , out_q):
 		Globals.karmin = {}
 		for cmd in cmds:
 			with mytimer(cmd[0]):
-				totals.update(costCraft(cmd[0], cmd[1], cmd[2], cmd[3], cmd[4], Globals.mydeepcopy(cList), mytime, xp_to_level, backupkey))
+				totals.update(costCraft(cmd[0], cmd[1], cmd[2], cmd[3], cmd[4], Globals.mydeepcopy(cList), mytime, xp_to_level, backupkey, free))
 	else:
 		with mytimer(cmds[0]):
-			totals.update(costCraft(cmds[0], cmds[1], cmds[2], cmds[3], cmds[4], Globals.mydeepcopy(cList), mytime, xp_to_level, backupkey))
+			totals.update(costCraft(cmds[0], cmds[1], cmds[2], cmds[3], cmds[4], Globals.mydeepcopy(cList), mytime, xp_to_level, backupkey, free))
 	return totals
 
 
 def main():
 	backupkey = 'archive/' + datetime.datetime.utcnow().strftime('%Y%m%dT%H%M%S')
-	mytime = "<span class=\"localtime\">" + datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S') + u'+00:00</span>'
+	mytime = "<span class=\"localtime\">" + datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S') + '+00:00</span>'
 	# Will hold level:total xp pairs (array)
 	xp_to_level = [0]
 	# populate the xp chart
@@ -87,71 +91,90 @@ def main():
 	with mytimer('costs'):
 		cList = appendCosts()
 
-	# TODO change the way flags are passed so it is easier to understand
+	# create a copy of our pricelist and update the prices for non-whitelisted items
+	cList_free = deepcopy(cList)
+	for item in cList_free:
+		if not cList_free[item]['whitelist']:
+			cList_free[item]['cost'] = sys.maxsize
+		del cList[item]['whitelist']
+		del cList_free[item]['whitelist']
 
 	cooking_karma = join(Chef.recipes, Chef_karma.recipes)
 	rList = [
-		[(u"cooking_karma_fast.html", cooking_karma, True, False, range(0, 400, 25)),
-		 (u"cooking_karma_fast_light.html", cooking_karma, True, False, range(0, 400, 25))],
-		[(u"cooking_karma.html", cooking_karma, False, False, range(0, 400, 25)),
-		 (u"cooking_karma_light.html", cooking_karma, False, False, range(0, 400, 25))],
-		(u"cooking_fast.html", Chef.recipes, True, False, range(0, 400, 25)),
-		(u"cooking.html", Chef.recipes, False, False, range(0, 400, 25)),
-		(u"cooking_fast_200.html", Chef.recipes, True, False, range(0, 200, 25)),
-		(u"cooking_karma_fast_200.html", cooking_karma, True, False, range(0, 200, 25)),
+		[("cooking_karma_fast.html", cooking_karma, True, False, list(range(0, 400, 25))),
+		 ("cooking_karma_fast_light.html", cooking_karma, True, False, list(range(0, 400, 25)))],
+		[("cooking_karma.html", cooking_karma, False, False, list(range(0, 400, 25))),
+		 ("cooking_karma_light.html", cooking_karma, False, False, list(range(0, 400, 25)))],
+		("cooking_fast.html", Chef.recipes, True, False, list(range(0, 400, 25))),
+		("cooking.html", Chef.recipes, False, False, list(range(0, 400, 25))),
+		("cooking_fast_200.html", Chef.recipes, True, False, list(range(0, 200, 25))),
+		("cooking_karma_fast_200.html", cooking_karma, True, False, list(range(0, 200, 25))),
 
 #		(u"cooking_karma_400.html", cooking_karma, False, False, range(400, 500, 25)),
-		(u"cooking_karma_450.html", cooking_karma, False, False, range(400, 450, 25)),
+		("cooking_karma_450.html", cooking_karma, False, False, list(range(400, 450, 25))),
 #		(u"cooking_400.html", Chef.recipes, False, False, range(400, 500, 25)),
-		(u"cooking_450.html", Chef.recipes, False, False, range(400, 450, 25)),
+		("cooking_450.html", Chef.recipes, False, False, list(range(400, 450, 25))),
 
-		(u"jewelcraft_fast.html", Jeweler.recipes, True, False, range(0, 400, 25)),
-		(u"jewelcraft.html", Jeweler.recipes, False, False, range(0, 400, 25)),
+		("jewelcraft_fast.html", Jeweler.recipes, True, False, list(range(0, 400, 25))),
+		("jewelcraft.html", Jeweler.recipes, False, False, list(range(0, 400, 25))),
 #		(u"jewelcraft_400.html", Jeweler.recipes, False, True, range(400, 500, 25)),
 #		(u"jewelcraft_450.html", Jeweler.recipes, False, True, range(400, 450, 25)),
-		(u"artificing_fast.html", Artificer.recipes, True, False, range(0, 400, 25)),
-		(u"artificing.html", Artificer.recipes, False, False, range(0, 400, 25)),
-		(u"artificing_400.html", Artificer.recipes, False, True, range(400, 500, 25)),
-		(u"artificing_450.html", Artificer.recipes, False, True, range(400, 450, 25)),
-		(u"weaponcraft_fast.html", Weaponsmith.recipes, True, False, range(0, 400, 25)),
-		(u"weaponcraft.html", Weaponsmith.recipes, False, False, range(0, 400, 25)),
-		(u"weaponcraft_400.html", Weaponsmith.recipes, False, True, range(400, 500, 25)),
-		(u"weaponcraft_450.html", Weaponsmith.recipes, False, True, range(400, 450, 25)),
-		(u"huntsman_fast.html", Huntsman.recipes, True, False, range(0, 400, 25)),
-		(u"huntsman.html", Huntsman.recipes, False, False, range(0, 400, 25)),
-		(u"huntsman_400.html", Huntsman.recipes, False, True, range(400, 500, 25)),
-		(u"huntsman_450.html", Huntsman.recipes, False, True, range(400, 450, 25)),
-		(u"armorcraft_fast.html", Armorsmith.recipes, True, False, range(0, 400, 25)),
-		(u"armorcraft.html", Armorsmith.recipes, False, False, range(0, 400, 25)),
-		(u"armorcraft_400.html", Armorsmith.recipes, False, True, range(400, 500, 25)),
-		(u"armorcraft_450.html", Armorsmith.recipes, False, True, range(400, 450, 25)),
-		(u"tailor_fast.html", Tailor.recipes, True, False, range(0, 400, 25)),
-		(u"tailor.html", Tailor.recipes, False, False, range(0, 400, 25)),
-		(u"tailor_400.html", Tailor.recipes, False, True, range(400, 500, 25)),
-		(u"tailor_450.html", Tailor.recipes, False, True, range(400, 450, 25)),
-		(u"leatherworking_fast.html", Leatherworker.recipes, True, False, range(0, 400, 25)),
-		(u"leatherworking.html", Leatherworker.recipes, False, False, range(0, 400, 25)),
-		(u"leatherworking_400.html", Leatherworker.recipes, False, True, range(400, 500, 25)),
-		(u"leatherworking_450.html", Leatherworker.recipes, False, True, range(400, 450, 25)),
-		(u"scribe.html", Scribe.recipes, False, False, range(0, 400, 25)),
+		("artificing_fast.html", Artificer.recipes, True, False, list(range(0, 400, 25))),
+		("artificing.html", Artificer.recipes, False, False, list(range(0, 400, 25))),
+		("artificing_400.html", Artificer.recipes, False, True, list(range(400, 500, 25))),
+		("artificing_450.html", Artificer.recipes, False, True, list(range(400, 450, 25))),
+		("weaponcraft_fast.html", Weaponsmith.recipes, True, False, list(range(0, 400, 25))),
+		("weaponcraft.html", Weaponsmith.recipes, False, False, list(range(0, 400, 25))),
+		("weaponcraft_400.html", Weaponsmith.recipes, False, True, list(range(400, 500, 25))),
+		("weaponcraft_450.html", Weaponsmith.recipes, False, True, list(range(400, 450, 25))),
+		("huntsman_fast.html", Huntsman.recipes, True, False, list(range(0, 400, 25))),
+		("huntsman.html", Huntsman.recipes, False, False, list(range(0, 400, 25))),
+		("huntsman_400.html", Huntsman.recipes, False, True, list(range(400, 500, 25))),
+		("huntsman_450.html", Huntsman.recipes, False, True, list(range(400, 450, 25))),
+		("armorcraft_fast.html", Armorsmith.recipes, True, False, list(range(0, 400, 25))),
+		("armorcraft.html", Armorsmith.recipes, False, False, list(range(0, 400, 25))),
+		("armorcraft_400.html", Armorsmith.recipes, False, True, list(range(400, 500, 25))),
+		("armorcraft_450.html", Armorsmith.recipes, False, True, list(range(400, 450, 25))),
+		("tailor_fast.html", Tailor.recipes, True, False, list(range(0, 400, 25))),
+		("tailor.html", Tailor.recipes, False, False, list(range(0, 400, 25))),
+		("tailor_400.html", Tailor.recipes, False, True, list(range(400, 500, 25))),
+		("tailor_450.html", Tailor.recipes, False, True, list(range(400, 450, 25))),
+		("leatherworking_fast.html", Leatherworker.recipes, True, False, list(range(0, 400, 25))),
+		("leatherworking.html", Leatherworker.recipes, False, False, list(range(0, 400, 25))),
+		("leatherworking_400.html", Leatherworker.recipes, False, True, list(range(400, 500, 25))),
+		("leatherworking_450.html", Leatherworker.recipes, False, True, list(range(400, 450, 25))),
+		("scribe.html", Scribe.recipes, False, False, list(range(0, 400, 25))),
 	]
 
 	p = Pool(cpu_count() - 1 if cpu_count() > 1 else 1)
 	#p = Pool(1)
-	params = [(rList[i], cList, mytime, xp_to_level, backupkey) for i in range(0, len(rList))]
+	# create params for the core and free guides
+#	for my_list, free in [(cList, False), (cList_free, True)]:
+#	from hanging_threads import start_monitoring
+#	monitoring_thread = start_monitoring()
+	params = []
+	for i in range(0, len(rList)-1):
+		params.append((rList[i], cList, False, mytime, xp_to_level, backupkey))
+		params.append((rList[i], cList_free, True, mytime, xp_to_level, backupkey))
+	# free accounts can't follow scribe guides
+	params.append((rList[-1], cList, False, mytime, xp_to_level, backupkey))
+
 	procs = p.map(recipeworker, params)
 
 	totals = {}
+	totals_free = {'scribe': {0: 0, 75: 0, 150: 0, 225: 0, 300: 0, 'total': 0}}
+	# this needs to be rewritten so that we can do the free and core guides in the same queue
 	for i in procs:
-		totals.update(i)
+		val = i['free']
+		del i['free']
+		if val:
+			totals_free.update(i)
+		else:
+			totals.update(i)
 
-	maketotals(totals, mytime, Localen)
-	maketotals(totals, mytime, Localde)
-	maketotals(totals, mytime, Localfr)
-	maketotals(totals, mytime, Locales)
-	maketotals(totals, mytime, Localcz)
-	maketotals(totals, mytime, Localptbr)
-	maketotals(totals, mytime, Localzh)
+	for lang in [Localen, Localde, Localfr, Locales, Localcz, Localptbr, Localzh]:
+		maketotals(totals, mytime, lang, False)
+		maketotals(totals_free, mytime, lang, True)
 
 
 # If ran directly, call main

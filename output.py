@@ -3,7 +3,7 @@
 '''
 Author: Jeremy Parks
 Purpose: Interface for writing output files, regardless of method.
-Note: Requires Python 2.7.x
+Note: Requires Python 3.7.x
 '''
 
 

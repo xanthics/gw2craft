@@ -3,7 +3,7 @@
 '''
 Author: Jeremy Parks
 Purpose: Lookup table for xpgain function.
-Note: Requires Python 2.7.x
+Note: Requires Python 3.7.x
 '''
 
 table = {

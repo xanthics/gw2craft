@@ -3,7 +3,7 @@ gw2craft
 
 These are all the Python files that generate http://gw2crafts.net
 
-Requires Python 2.7.x.  You will need to define a ftp_info.py file which contains 3 strings; ftp_url, ftp_user, and ftp_pass.
+Requires Python 3.7.x.  You will need to define a ftp_info.py file which contains 3 strings; ftp_url, ftp_user, and ftp_pass.
 
 
 **Primary .py Files:**

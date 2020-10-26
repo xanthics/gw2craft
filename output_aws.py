@@ -3,7 +3,7 @@
 '''
 Author: Jeremy Parks
 Purpose: Function for writing output files to AWS.
-Note: Requires Python 2.7.x
+Note: Requires Python 3.7.x
 '''
 
 import os
@@ -28,6 +28,6 @@ def write_file(directory, filename, contents, backupdir=''):
 				#s3.meta.client.copy(copy_source, 'gw2crafts.net', b_keyname)
 				s3.Object('gw2crafts.net', b_keyname).copy_from(CopySource='gw2crafts.net/' + keyname, ContentType='text/html', CacheControl='public', Metadata={'X-Robots-Tag': 'noindex'}, MetadataDirective="REPLACE")
 			return
-		except Exception, err:
-			print u'ERROR: %s.' % str(err)
+		except Exception as err:
+			print('ERROR: %s.' % str(err))
 			time.sleep(randint(1, 10))

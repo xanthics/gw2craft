@@ -3,7 +3,7 @@
 '''
 Author: Jeremy Parks
 Purpose: Get current price data
-Note: Requires Python 2.7.x
+Note: Requires Python 3.7.x
 '''
 
 import json
@@ -14,53 +14,53 @@ import time
 from auto_gen import Items
 # so we can set custom headers
 from multiprocessing import Pool
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 from random import randint, choice
 import socket
 
 
-def gw2apilistworker(input):
-	baseURL = input[0]
-	ids = input[1]
-	version = input[2]
+def gw2apilistworker(input_url):
+	baseURL = input_url[0]
+	ids = input_url[1]
+	version = input_url[2]
 	outdict = {}
 	getdata = True
 	temp = []
 	while getdata:
 		try:
-			req = urllib2.Request(baseURL + ",".join(str(i) for i in ids))
+			req = urllib.request.Request(baseURL + ",".join(str(i) for i in ids))
 			req.add_header('User-agent', version)
-			f = urllib2.urlopen(req, timeout=socket.getdefaulttimeout())
+			f = urllib.request.urlopen(req, timeout=socket.getdefaulttimeout())
 			temp = json.load(f)
 			getdata = False
-		except Exception, err:
-			print u'ERROR: %s.' % str(err)
+		except Exception as err:
+			print('ERROR: %s.' % str(err))
 			time.sleep(randint(1, 10))
 	for sitem in temp:
 		item = sitem["id"]
 		# set value to greater of buy and vendor.  If 0 set to minimum sell value
-		w = Items.ilist[item][u'vendor_value']
+		w = Items.ilist[item]['vendor_value']
 		sellMethod = 0
-		if sitem[u'buys'][u'unit_price'] * .85 > w:
-			w = int(sitem[u'buys'][u'unit_price'] * .85)
+		if sitem['buys']['unit_price'] * .85 > w:
+			w = int(sitem['buys']['unit_price'] * .85)
 			sellMethod = 1
 		if w == 0:
-			w = int(sitem[u'sells'][u'unit_price'] * .85)
+			w = int(sitem['sells']['unit_price'] * .85)
 			sellMethod = 2
 
 		# Save all the information we care about
-		outdict[item] = {u'w': w, u'cost': sitem[u'sells'][u'unit_price'], u'recipe': None,
-						 u'rarity': Items.ilist[item][u'rarity'], u'type': Items.ilist[item][u'type'],
-						 u'icon': Items.ilist[item][u'img_url'],
-						 u'output_item_count': Items.ilist[item][u'output_item_count'], u'sellMethod': sellMethod,
-						 u"discover": []}
+		outdict[item] = {'w': w, 'cost': sitem['sells']['unit_price'], 'recipe': None,
+						 'rarity': Items.ilist[item]['rarity'], 'type': Items.ilist[item]['type'],
+						 'icon': Items.ilist[item]['img_url'],
+						 'output_item_count': Items.ilist[item]['output_item_count'], 'sellMethod': sellMethod,
+						 "discover": [], 'whitelist': sitem[u'whitelisted']}
 
-		if outdict[item][u'type'] == u'UpgradeComponent' and outdict[item][u'rarity'] == u'Exotic':
-			outdict[item][u'rarity'] = u'Exotic UpgradeComponent'
+		if outdict[item]['type'] == 'UpgradeComponent' and outdict[item]['rarity'] == 'Exotic':
+			outdict[item]['rarity'] = 'Exotic UpgradeComponent'
 
 		# if the item has a low supply, ignore it
-		if sitem[u'sells'][u'quantity'] <= 50:
-			outdict[item][u'cost'] = sys.maxint
+		if sitem['sells']['quantity'] <= 50:
+			outdict[item]['cost'] = sys.maxsize
 
 	return outdict
 
@@ -68,7 +68,7 @@ def gw2apilistworker(input):
 def gw2api():
 	socket.setdefaulttimeout(5)
 	listingURL = "https://api.guildwars2.com/v2/commerce/listings"
-	req = urllib2.Request(listingURL)
+	req = urllib.request.Request(listingURL)
 	user_agents = [
 		'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36',
 		'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.0 Safari/537.36',
@@ -77,11 +77,11 @@ def gw2api():
 	]
 	version = choice(user_agents)
 	req.add_header('User-agent', version)
-	f = urllib2.urlopen(req, timeout=socket.getdefaulttimeout())
+	f = urllib.request.urlopen(req, timeout=socket.getdefaulttimeout())
 	temp = json.load(f)
 	valid = []
 	invalid = []
-	for item in Items.ilist.keys():
+	for item in list(Items.ilist.keys()):
 		if item in temp:
 			valid.append(item)
 		else:
@@ -98,12 +98,12 @@ def gw2api():
 			resultdict.update(i)
 
 	for item in invalid:
-		resultdict[item] = {u'w': 0, u'cost': 1000000000, u'recipe': None, u'rarity': Items.ilist[item][u'rarity'],
-							u'type': Items.ilist[item][u'type'], u'icon': Items.ilist[item][u'img_url'],
-							u'output_item_count': Items.ilist[item][u'output_item_count'], u'sellMethod': 0,
-							u"discover": []}
-		if resultdict[item][u'type'] == u'UpgradeComponent' and resultdict[item][u'rarity'] == u'Exotic':
-			resultdict[item][u'rarity'] = u'Exotic UpgradeComponent'
+		resultdict[item] = {'w': 0, 'cost': sys.maxsize, 'recipe': None, 'rarity': Items.ilist[item]['rarity'],
+							'type': Items.ilist[item]['type'], 'icon': Items.ilist[item]['img_url'],
+							'output_item_count': Items.ilist[item]['output_item_count'], 'sellMethod': 0,
+							"discover": [], 'whitelist': False}
+		if resultdict[item]['type'] == 'UpgradeComponent' and resultdict[item]['rarity'] == 'Exotic':
+			resultdict[item]['rarity'] = 'Exotic UpgradeComponent'
 
 	return resultdict
 
@@ -118,8 +118,8 @@ def appendCosts():
 		try:
 			cList = gw2api()
 			getprices = False
-		except Exception, err:
-			print u'ERROR: %s.' % str(err)
+		except Exception as err:
+			print('ERROR: %s.' % str(err))
 			time.sleep(randint(1, 10))
 			count -= 1
 
@@ -127,59 +127,59 @@ def appendCosts():
 	if not count:
 		sys.exit(0)
 
-	cList[19792][u'cost'] = 8  # Spool of Jute Thread
-	cList[19789][u'cost'] = 16  # Spool of Wool Thread
-	cList[19794][u'cost'] = 24  # Spool of Cotton Thread
-	cList[19793][u'cost'] = 32  # Spool of Linen Thread
-	cList[19791][u'cost'] = 48  # Spool of Silk Thread
-	cList[19790][u'cost'] = 64  # Spool of Gossamer Thread
-	cList[19704][u'cost'] = 8  # Lump of Tin
-	cList[19750][u'cost'] = 16  # Lump of Coal
-	cList[19924][u'cost'] = 48  # Lump of Primordium
-	cList[12157][u'cost'] = 8  # Jar of Vinegar
-	cList[12151][u'cost'] = 8  # Packet of Baking Powder
-	cList[12158][u'cost'] = 8  # Jar of Vegetable Oil
-	cList[12153][u'cost'] = 8  # Packet of Salt
-	cList[12155][u'cost'] = 8  # Bag of Sugar
-	cList[12156][u'cost'] = 8  # Jug of Water
-	cList[12324][u'cost'] = 8  # Bag of Starch
-	cList[12136][u'cost'] = 8  # Bag of Flour
-	cList[8576][u'cost'] = 16  # Bottle of Rice Wine
-	cList[12271][u'cost'] = 8  # Bottle of Soy Sauce
-	cList[13010][u'cost'] = 496  # "Minor Rune of Holding"
-	cList[13006][u'cost'] = 1480  # "Rune of Holding"
-	cList[13007][u'cost'] = 5000  # "Major Rune of Holding"
-	cList[13008][u'cost'] = 20000  # "Greater Rune of Holding"
-	cList[70647][u'cost'] = 32  # "Crystalline Bottle"
-	cList[75762][u'cost'] = 104  # "Bag of Mortar"
-	cList[1000352][u'cost'] = 2400  # Basic Flagpole Purchased from the commendation vendor.
-	cList[1000589][u'cost'] = 2400  # Basic Boulder Purchased from the basic decoration vendor.
-	cList[1000574][u'cost'] = 2400  # Basic Column Purchased from the basic decoration vendor.
-	cList[1000601][u'cost'] = 2400  # Basic Basket Purchased from the basic decoration vendor.
-	cList[1000403][u'cost'] = 2400  # White Balloon Purchased from the basic decoration vendor.
+	cList[19792]['cost'] = 8  # Spool of Jute Thread
+	cList[19789]['cost'] = 16  # Spool of Wool Thread
+	cList[19794]['cost'] = 24  # Spool of Cotton Thread
+	cList[19793]['cost'] = 32  # Spool of Linen Thread
+	cList[19791]['cost'] = 48  # Spool of Silk Thread
+	cList[19790]['cost'] = 64  # Spool of Gossamer Thread
+	cList[19704]['cost'] = 8  # Lump of Tin
+	cList[19750]['cost'] = 16  # Lump of Coal
+	cList[19924]['cost'] = 48  # Lump of Primordium
+	cList[12157]['cost'] = 8  # Jar of Vinegar
+	cList[12151]['cost'] = 8  # Packet of Baking Powder
+	cList[12158]['cost'] = 8  # Jar of Vegetable Oil
+	cList[12153]['cost'] = 8  # Packet of Salt
+	cList[12155]['cost'] = 8  # Bag of Sugar
+	cList[12156]['cost'] = 8  # Jug of Water
+	cList[12324]['cost'] = 8  # Bag of Starch
+	cList[12136]['cost'] = 8  # Bag of Flour
+	cList[8576]['cost'] = 16  # Bottle of Rice Wine
+	cList[12271]['cost'] = 8  # Bottle of Soy Sauce
+	cList[13010]['cost'] = 496  # "Minor Rune of Holding"
+	cList[13006]['cost'] = 1480  # "Rune of Holding"
+	cList[13007]['cost'] = 5000  # "Major Rune of Holding"
+	cList[13008]['cost'] = 20000  # "Greater Rune of Holding"
+	cList[70647]['cost'] = 32  # "Crystalline Bottle"
+	cList[75762]['cost'] = 104  # "Bag of Mortar"
+	cList[1000352]['cost'] = 2400  # Basic Flagpole Purchased from the commendation vendor.
+	cList[1000589]['cost'] = 2400  # Basic Boulder Purchased from the basic decoration vendor.
+	cList[1000574]['cost'] = 2400  # Basic Column Purchased from the basic decoration vendor.
+	cList[1000601]['cost'] = 2400  # Basic Basket Purchased from the basic decoration vendor.
+	cList[1000403]['cost'] = 2400  # White Balloon Purchased from the basic decoration vendor.
 #	cList[1000376][u'cost'] = 2400  # Basic Fountain Purchased from the basic decoration vendor.
-	cList[1000223][u'cost'] = 2400  # Basic Planter Purchased from the basic decoration vendor.
-	cList[1000548][u'cost'] = 2400  # Basic Pedestal Purchased from the basic decoration vendor.
-	cList[1000209][u'cost'] = 2400  # Basic Shrub Purchased from the basic decoration vendor.
-	cList[1000516][u'cost'] = 2400  # Basic Crate Purchased from the basic decoration vendor.
-	cList[1000620][u'cost'] = 2400  # Basic Tree Purchased from the basic decoration vendor.
-	cList[1000202][u'cost'] = 2400  # Basic Table
-	cList[1000582][u'cost'] = 2400  # Basic Torch Purchased from the basic decoration vendor.
-	cList[1000437][u'cost'] = 2400  # Basic Candle Purchased from the basic decoration vendor.
-	cList[1000413][u'cost'] = 2400  # Basic Chair Purchased from the basic decoration vendor.
-	cList[1000224][u'cost'] = 2400  # Basic Bookshelf Purchased from the basic decoration vendor.
-	cList[46747][u'cost'] = 150  # Thermocatalytic Reagent.
+	cList[1000223]['cost'] = 2400  # Basic Planter Purchased from the basic decoration vendor.
+	cList[1000548]['cost'] = 2400  # Basic Pedestal Purchased from the basic decoration vendor.
+	cList[1000209]['cost'] = 2400  # Basic Shrub Purchased from the basic decoration vendor.
+	cList[1000516]['cost'] = 2400  # Basic Crate Purchased from the basic decoration vendor.
+	cList[1000620]['cost'] = 2400  # Basic Tree Purchased from the basic decoration vendor.
+	cList[1000202]['cost'] = 2400  # Basic Table
+	cList[1000582]['cost'] = 2400  # Basic Torch Purchased from the basic decoration vendor.
+	cList[1000437]['cost'] = 2400  # Basic Candle Purchased from the basic decoration vendor.
+	cList[1000413]['cost'] = 2400  # Basic Chair Purchased from the basic decoration vendor.
+	cList[1000224]['cost'] = 2400  # Basic Bookshelf Purchased from the basic decoration vendor.
+	cList[46747]['cost'] = 150  # Thermocatalytic Reagent.
 	if 62942 in cList:
-		cList[62942][u'cost'] = 8  # Crafter's Backpack Frame
+		cList[62942]['cost'] = 8  # Crafter's Backpack Frame
 	# [u'Bell Pepper',u'Basil Leaf',u'Ginger Root',u'Tomato',u'Bowl of Sour Cream',u'Rice Ball',u'Packet of Yeast',u'Glass of Buttermilk',u'Cheese Wedge',u"Almond",u"Apple",u"Avocado",u"Banana",u"Black Bean",u"Celery Stalk",u"Cherry",u"Chickpea",u"Coconut",u"Cumin",u"Eggplant",u"Green Bean",u"Horseradish Root",u"Kidney Bean",u"Lemon",u"Lime",u"Mango",u"Nutmeg Seed",u"Peach",u"Pear",u"Pinenut",u"Shallot"]
 	karma = [12235, 12245, 12328, 12141, 12325, 12145, 12152, 12137, 12159, 12337, 12165, 12340, 12251, 12237, 12240,
 			 12338, 12515, 12350, 12256, 12502, 12232, 12518, 12239, 12252, 12339, 12543, 12249, 12503, 12514, 12516,
 			 12517]
 	for item in karma:
-		cList[item][u'cost'] = 0
-	cList[12132][u'cost'] = 99999999  # Loaf of Bread is soulbound, cheat to make it not purchased
+		cList[item]['cost'] = 0
+	cList[12132]['cost'] = 99999999  # Loaf of Bread is soulbound, cheat to make it not purchased
 
 	if os.isatty(sys.stdin.fileno()):
-		print len(cList.keys())  # print number of items used by the guides
+		print(len(list(cList.keys())))  # print number of items used by the guides
 
 	return cList
