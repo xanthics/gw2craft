@@ -636,7 +636,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page.append('</body>\n')
 	page.append('</html>\n')
 
-	output.write_file(f"{'free/' if free else ''}{localText.path}", filename, ''.join(page), backupkey)
+	output.write_file(f"{'f2p/' if free else ''}{localText.path}", filename, ''.join(page), backupkey)
 	return totals
 
 
@@ -749,5 +749,5 @@ def maketotals(totals, mytime, localText, free):
 	page += '</body>\n'
 	page += '</html>\n'
 
-	output.write_file(f"{'free/' if free else ''}{localText.path}", 'total.html', page)
+	output.write_file(f"{'f2p/' if free else ''}{localText.path}", 'total.html', page)
 	return
