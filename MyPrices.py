@@ -176,6 +176,7 @@ def appendCosts():
 			 12517]
 	for item in karma:
 		cList[item]['cost'] = 0
+		cList[item]['whitelist'] = True
 	cList[12132]['cost'] = 99999999  # Loaf of Bread is soulbound, cheat to make it not purchased
 
 	if os.isatty(sys.stdin.fileno()):
