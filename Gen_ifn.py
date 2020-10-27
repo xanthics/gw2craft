@@ -43,9 +43,9 @@ def faq(localText, free):
   ga('send', 'pageview');
 
 </script>"""
-	page += Globals.header.format(localText.path, localText.home, localText.nGuides, localText.fGuides, localText.special, localText.cooking, localText.nHearts, localText.tHearts, localText.aHearts, localText.jc, localText.art, localText.hunt, localText.wc, localText.ac, localText.lw, localText.tailor, localText.scribe, localText.totals, localText.about, localText.lang, localText.lang_code, 'faq.html', 'free/' if free else '')
+	page += Globals.header.format(localText.path, localText.home, localText.nGuides, localText.fGuides, localText.special, localText.cooking, localText.nHearts, localText.tHearts, localText.aHearts, localText.jc, localText.art, localText.hunt, localText.wc, localText.ac, localText.lw, localText.tailor, localText.scribe, localText.totals, localText.about, localText.lang, localText.lang_code, 'faq.html', 'f2p/' if free else '')
 	page += "<section class=\"main\">\n"
-	page += f"<strong>Notice:</strong> you are following a {'F2P' if free else 'Core'} guide.  <a href=\"{'/' if free else '/free/'}{localText.path}faq.html\">Click here for a {'Core' if free else 'F2P'} account guide</a>.<br />"
+	page += f"<strong>Notice:</strong> you are following a {'F2P' if free else 'Core'} guide.  <a href=\"{'/' if free else '/f2p/'}{localText.path}faq.html\">Click here for a {'Core' if free else 'F2P'} account guide</a>.<br />"
 
 #	page += u"<a href=\"https://forum-en.guildwars2.com/forum/community/links/Dynamic-crafting-guides-for-all-8-crafts\" style=\"line-height:150%%;\"><strong>%s</strong></a>\n"%(localText.oThread)
 #	page += u"<br />\n"
@@ -129,7 +129,7 @@ def faq(localText, free):
 	page += "</body>\n"
 	page += "</html>\n"
 
-	output.write_file(f"{'free/' if free else ''}{localText.path}",'faq.html',page)
+	output.write_file(f"{'f2p/' if free else ''}{localText.path}",'faq.html',page)
 	return
 
 
@@ -168,9 +168,9 @@ def nav(localText, free):
   ga('send', 'pageview');
 
 </script>"""
-	page += Globals.header.format(localText.path, localText.home, localText.nGuides, localText.fGuides, localText.special, localText.cooking, localText.nHearts, localText.tHearts, localText.aHearts, localText.jc, localText.art, localText.hunt, localText.wc, localText.ac, localText.lw, localText.tailor, localText.scribe, localText.totals, localText.about, localText.lang, localText.lang_code, 'nav.html', 'free/' if free else '')
+	page += Globals.header.format(localText.path, localText.home, localText.nGuides, localText.fGuides, localText.special, localText.cooking, localText.nHearts, localText.tHearts, localText.aHearts, localText.jc, localText.art, localText.hunt, localText.wc, localText.ac, localText.lw, localText.tailor, localText.scribe, localText.totals, localText.about, localText.lang, localText.lang_code, 'nav.html', 'f2p/' if free else '')
 	page += "<section class=\"main\">\n"
-	page += f"<strong>Notice:</strong> you are following a {'F2P' if free else 'Core'} guide.  <a href=\"{'/' if free else '/free/'}{localText.path}nav.html\">Click here for a {'Core' if free else 'F2P'} account guide</a>.<br />"
+	page += f"<strong>Notice:</strong> you are following a {'F2P' if free else 'Core'} guide.  <a href=\"{'/' if free else '/f2p/'}{localText.path}nav.html\">Click here for a {'Core' if free else 'F2P'} account guide</a>.<br />"
 	page += "%s\n"%(localText.navNotice)
 	page += "<br /><br />\n"
 	page += "<a href=\"/\">%s</a><br />\n"%(localText.home)
@@ -240,7 +240,7 @@ def nav(localText, free):
 	page += "</body>\n"
 	page += "</html>\n"
 
-	output.write_file(f"{'free/' if free else ''}{localText.path}",'nav.html',page)
+	output.write_file(f"{'f2p/' if free else ''}{localText.path}",'nav.html',page)
 	return
 
 
@@ -280,9 +280,9 @@ def index(localText, free):
 
 </script>"""
 #	page += u"<div id=\"fb-root\"></div><script>(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = \"//connect.facebook.net/en_US/all.js#xfbml=1\";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));</script>"
-	page += Globals.header.format(localText.path, localText.home, localText.nGuides, localText.fGuides, localText.special, localText.cooking, localText.nHearts, localText.tHearts, localText.aHearts, localText.jc, localText.art, localText.hunt, localText.wc, localText.ac, localText.lw, localText.tailor, localText.scribe, localText.totals, localText.about, localText.lang, localText.lang_code, 'index.html', 'free/' if free else '')
+	page += Globals.header.format(localText.path, localText.home, localText.nGuides, localText.fGuides, localText.special, localText.cooking, localText.nHearts, localText.tHearts, localText.aHearts, localText.jc, localText.art, localText.hunt, localText.wc, localText.ac, localText.lw, localText.tailor, localText.scribe, localText.totals, localText.about, localText.lang, localText.lang_code, 'index.html', 'f2p/' if free else '')
 	page += "<section class=\"main\">\n"
-	page += f"<strong>Notice:</strong> you are following a {'F2P' if free else 'Core'} guide.  <a href=\"{'/' if free else '/free/'}{localText.path}index.html\">Click here for a {'Core' if free else 'F2P'} account guide</a>.<br />"
+	page += f"<strong>Notice:</strong> you are following a {'F2P' if free else 'Core'} guide.  <a href=\"{'/' if free else '/f2p/'}{localText.path}index.html\">Click here for a {'Core' if free else 'F2P'} account guide</a>.<br />"
 #	page += u"<p>The scribe guides need a new guild with unlocks as RiFa appears to be defunct.  Please email me at <a href=\"mailto:gw2crafts@live.com\">gw2crafts@live.com</a> if you have a guild that can accommodate.  Would need a contact name and guild, they will go on the scribe page.</p>"
 	page += "<p>All guide pages now have a permalink, at the top in the warning, to a cached version.  Amazon claims unlimited space, so these likely won't be deleted.</p>"
 	page += "<p>Support for Cooking 400-450 has been added.  450+ needs to be done via the in-game quest system and cannot be handled by these guides.</p>"
@@ -319,7 +319,7 @@ def index(localText, free):
 	page += "</body>\n"
 	page += "</html>\n"
 
-	output.write_file(f"{'free/' if free else ''}{localText.path}",'index.html',page)
+	output.write_file(f"{'f2p/' if free else ''}{localText.path}",'index.html',page)
 	return
 
 
