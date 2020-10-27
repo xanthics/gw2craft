@@ -366,7 +366,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 #	page.append(u"<div class=\"s{}\">{}: <button class=\"arrow {}\" title=\"{}\" id=\"{}{}\">{}</button> {}\n</div>\n".format(
 #		t, localText.discover, cList[item][u'rarity'], localText.toggle, item, tier, cListName[item], tstr))
 	page.append("<strong>%s</strong><br />\n"%(localText.region))
-	page.append(f"<strong>Notice:</strong> you are following a {'F2P' if free else 'Core'} guide.  <a href=\"{'' if free else 'free/'}{localText.path}{filename}\">Click here for a {'Core' if free else 'F2P'} account guide</a>.<br />")
+	page.append(f"<strong>Notice:</strong> you are following a {'F2P' if free else 'Core'} guide.  <a href=\"{'/' if free else '/free/'}{localText.path}{filename}\">Click here for a {'Core' if free else 'F2P'} account guide</a>.<br />")
 #	# adword
 	page.append('<div style="float:right;position:absolute;right:-320px;">\n')
 	page.append('<!-- Ezoic - Large sidebar - sidebar -->\n<div id="ezoic-pub-ad-placeholder-103"></div>\n\<!-- End Ezoic - Large sidebar - sidebar -->\n\n</div>\n')
