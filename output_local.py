@@ -11,9 +11,6 @@ import os
 
 
 def write_file(directory, filename, contents, backupdir=''):
-	if 'free' in directory:
-		directory = directory[5:]
-		filename = f'free_{filename}'
 	if directory and not os.path.exists(directory):
 		os.makedirs(directory)
 
