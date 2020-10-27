@@ -681,6 +681,7 @@ def maketotals(totals, mytime, localText, free):
 </script>"""
 	page += Globals.header.format(localText.path, localText.home, localText.nGuides, localText.fGuides, localText.special, localText.cooking, localText.nHearts, localText.tHearts, localText.aHearts, localText.jc, localText.art, localText.hunt, localText.wc, localText.ac, localText.lw, localText.tailor, localText.scribe, localText.totals, localText.about, localText.lang, localText.lang_code, 'total.html', 'free/' if free else '')
 	page += "<section class=\"main\">\n<strong>%s</strong><br />\n"%(localText.region)
+	page += f"<strong>Notice:</strong> you are following a {'F2P' if free else 'Core'} guide.  <a href=\"{'/' if free else '/free/'}{localText.path}total.html\">Click here for a {'Core' if free else 'F2P'} account guide</a>.<br />"
 	page += "<h5 style=\"text-align:center;\">"+localText.updated+": " + mytime + "</h5>"
 	# adword
 	page += '<div style="float:right;position:absolute;right:-320px;">\n \
