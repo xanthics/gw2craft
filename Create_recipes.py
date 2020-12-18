@@ -146,7 +146,7 @@ def parse_recipes(recipes):
 				mystr = ""
 				for part in sorted(crafts[craft][lvl][obj], key=lambda k: k['item_id']):
 					if not part['item_id'] in item_ids:
-						item_ids[part['item_id']] = {'type': 'Other', 'output_item_count': '0', 'flags': []}
+						item_ids[part['item_id']] = {'type': 'Other', 'output_item_count': 0, 'flags': []}
 					mystr += "{}: {}, ".format(part['item_id'], part['count'])
 				page += "\t\t{}: {{{}}},\n".format(obj, mystr[:-2])
 			page += "\t},\n"
@@ -155,7 +155,7 @@ def parse_recipes(recipes):
 			f.write(page)
 
 	for item in [38207, 38208, 38209, 38295, 38296, 38297]:
-		item_ids[item] = {'type': 'Recipe', 'output_item_count': '1', 'flags': []}
+		item_ids[item] = {'type': 'Recipe', 'output_item_count': 1, 'flags': []}
 
 	return item_ids
 

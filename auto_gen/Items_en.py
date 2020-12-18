@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2020-10-26T16:18:51 PST
+# Created: 2020-12-18T02:10:47 PST
 ilist = {
 	8576: "Bottle of Rice Wine",
 	8587: "Drottot's Poached Egg",
@@ -7283,6 +7283,7 @@ ilist = {
 	68955: "Evergreen Shard",
 	69370: "Superior Rune of the Revenant",
 	69392: "Ley Line Spark",
+	69466: "Evergreen Fragment",
 	70413: "Crusader Auric Focus",
 	70420: "Bronze Chisel",
 	70434: "Crusader Orichalcum Imbued Inscription",
@@ -8465,4 +8466,8 @@ ilist = {
 	1001164: "Bat Lanterns",
 	1001166: "Clock Tower Gear",
 	1001167: "Pumpkin Lanterns",
+	1001168: "Snowfall Drift",
+	1001169: "Wintersday Star",
+	1001170: "Draped Wintersday Garland",
+	1001171: "Wintersday Garland",
 }

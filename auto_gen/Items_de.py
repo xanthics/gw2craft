@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2020-10-26T16:19:10 PST
+# Created: 2020-12-18T02:11:08 PST
 ilist = {
 	8576: "Flasche Reiswein",
 	8587: "Pochiertes Ei Drottots",
@@ -7283,6 +7283,7 @@ ilist = {
 	68955: "Immergrün-Scherbe",
 	69370: "Überlegene Rune des Widergängers",
 	69392: "Ley-Linien-Funke",
+	69466: "Immergrün-Fragment",
 	70413: "Reckenhafter Güldener Fokus",
 	70420: "Bronze-Meißel",
 	70434: "Reckenhafte orichalcumdurchdrungene Inschrift",
@@ -8465,4 +8466,8 @@ ilist = {
 	1001164: "Fledermaus-Laterne",
 	1001166: "Uhrturm-Zahnrad",
 	1001167: "Kürbis-Laterne",
+	1001168: "Schneefall-Verwehung",
+	1001169: "Wintertag-Stern",
+	1001170: "Drapierte Wintertag-Girlande",
+	1001171: "Wintertag-Girlande",
 }

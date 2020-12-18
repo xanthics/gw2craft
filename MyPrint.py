@@ -332,7 +332,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page.append('	<link href="/css/layout.css" rel="stylesheet" type="text/css" />')
 	page.append('	<link rel="icon" type="image/png" href="/fi.gif">\n')
 	page.append('	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>\n')
-	page.append('	<script>(window.jQuery || document.write(\'<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"><\/script>\'));</script>\n')
+	page.append('	<script>(window.jQuery || document.write(\'<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>\'));</script>\n')
 	page.append('	<script src="/js/menu.js" type="text/javascript"></script>\n')
 	page.append('</head>\n')
 	page.append('<body>\n%s\n'%(Globals.header.format(localText.path, localText.home, localText.nGuides, localText.fGuides, localText.special, localText.cooking, localText.nHearts, localText.tHearts, localText.aHearts, localText.jc, localText.art, localText.hunt, localText.wc, localText.ac, localText.lw, localText.tailor, localText.scribe, localText.totals, localText.about, localText.lang, localText.lang_code, filename, 'f2p/' if free else '')))
@@ -369,7 +369,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page.append(f"<strong>Notice:</strong> you are following a {'F2P' if free else 'Core'} guide.  <a href=\"{'/' if free else '/f2p/'}{localText.path}{filename}\">Click here for a {'Core' if free else 'F2P'} account guide</a>.<br />")
 #	# adword
 	page.append('<div style="float:right;position:absolute;right:-320px;">\n')
-	page.append('<!-- Ezoic - Large sidebar - sidebar -->\n<div id="ezoic-pub-ad-placeholder-103"></div>\n\<!-- End Ezoic - Large sidebar - sidebar -->\n\n</div>\n')
+	page.append('<!-- Ezoic - Large sidebar - sidebar -->\n<div id="ezoic-pub-ad-placeholder-103"></div>\n<!-- End Ezoic - Large sidebar - sidebar -->\n\n</div>\n')
 	page.append(localText.moreInfo%("<img src=\"/img/arrow.png\" alt=ARROW>"))
 	page.append('<!-- Ezoic - page_title - under_page_title -->\n<div id="ezoic-pub-ad-placeholder-105">\n</div><!-- End Ezoic - page_title - under_page_title -->')
 	# Page Title Part 1

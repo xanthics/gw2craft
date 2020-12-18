@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2020-10-26T16:19:01 PST
+# Created: 2020-12-18T02:10:58 PST
 ilist = {
 	8576: "Bouteille d'alcool de riz",
 	8587: "Œuf poché façon Drottot",
@@ -5760,7 +5760,7 @@ ilist = {
 	38288: "Epaulières de fureteur bienfaitrices",
 	38295: "Recette : inscription enchantée sur plaque d'acier sombre bienfaitrice",
 	38296: "Recette : inscription enchantée sur plaque de mithril bienfaitrice",
-	38297: "Recette : Inscription enchantée du pourvoyeur sur plaque d'orichalque",
+	38297: "Recette : Inscription enchantée du pourvoyeur sur plaque d'orichalque",
 	38308: "Bol de glace de bonbons",
 	38315: "Hache en fer bienfaitrice",
 	38316: "Hache en fer bienfaitrice",
@@ -7283,6 +7283,7 @@ ilist = {
 	68955: "Éclat verdoyant",
 	69370: "Rune de revenant supérieure",
 	69392: "Étincelle des lignes de force",
+	69466: "Fragment verdoyant",
 	70413: "Focus aurique croisé",
 	70420: "Burin en bronze",
 	70434: "Inscription enchantée sur plaque d'orichalque croisée",
@@ -8465,4 +8466,8 @@ ilist = {
 	1001164: "Lanterne de la chauve-souris",
 	1001166: "Rouage de beffroi",
 	1001167: "Lanterne de la citrouille",
+	1001168: "Amas de boules de neige",
+	1001169: "Étoile d'Hivernel",
+	1001170: "Guirlande suspendue d'Hivernel",
+	1001171: "Guirlande d'Hivernel",
 }

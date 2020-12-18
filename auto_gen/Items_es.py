@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2020-10-26T16:19:20 PST
+# Created: 2020-12-18T02:11:19 PST
 ilist = {
 	8576: "Botella de licor de arroz",
 	8587: "Huevo escalfado de Drottot",
@@ -7283,6 +7283,7 @@ ilist = {
 	68955: "Esquirla perenne",
 	69370: "Runa superior del retornado",
 	69392: "Chispa de línea ley",
+	69466: "Fragmento perenne",
 	70413: "Foco áurico de cruzado",
 	70420: "Cincel de bronce",
 	70434: "Inscripción imbuida de oricalco de cruzado",
@@ -8465,4 +8466,8 @@ ilist = {
 	1001164: "Linterna de murciélago",
 	1001166: "Engranaje de la Torre del Reloj",
 	1001167: "Farol de calabaza",
+	1001168: "Nevero",
+	1001169: "Estrella del Día Invernal",
+	1001170: "Guirnalda del Día Invernal drapeada",
+	1001171: "Guirnalda del Día Invernal",
 }
