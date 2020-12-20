@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2020-12-18T02:10:47 PST
+# Created: 2020-12-20T01:47:07 PST
 ilist = {
 	8576: "Bottle of Rice Wine",
 	8587: "Drottot's Poached Egg",
@@ -6915,6 +6915,8 @@ ilist = {
 	49443: "+20 Agony Infusion",
 	49444: "+21 Agony Infusion",
 	49445: "+22 Agony Infusion",
+	49446: "+23 Agony Infusion",
+	49447: "+24 Agony Infusion",
 	49522: "Dire Intricate Gossamer Insignia",
 	50140: "Swelter's Gait",
 	50141: "Bella's Crown",

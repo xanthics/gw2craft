@@ -29,9 +29,12 @@ import codecs
 import json
 import os
 import socket
-import urllib.request, urllib.parse, urllib.error
+import urllib.error
+import urllib.parse
+import urllib.request
 from datetime import datetime
 from multiprocessing import Pool
+import pickle
 
 API_ROOT = "https://api.guildwars2.com/v2/"
 
@@ -137,22 +140,15 @@ def parse_recipes(recipes):
 				nc[it] = 1
 
 	for craft in crafts:
-		page = '# -*- coding: utf-8 -*-\n'
-		page += '# Created: {} PST\n'.format(datetime.now().strftime('%Y-%m-%dT%H:%M:%S'))
-		page += 'recipes = {\n'
-		for lvl in sorted(crafts[craft]):
-			page += "\t{}: {{\n".format(lvl)
-			for obj in sorted(crafts[craft][lvl]):
-				mystr = ""
-				for part in sorted(crafts[craft][lvl][obj], key=lambda k: k['item_id']):
+		for lvl in crafts[craft]:
+			for obj in crafts[craft][lvl]:
+				for part in crafts[craft][lvl][obj]:
 					if not part['item_id'] in item_ids:
 						item_ids[part['item_id']] = {'type': 'Other', 'output_item_count': 0, 'flags': []}
-					mystr += "{}: {}, ".format(part['item_id'], part['count'])
-				page += "\t\t{}: {{{}}},\n".format(obj, mystr[:-2])
-			page += "\t},\n"
-		page += "}"
-		with codecs.open("auto_gen\\" + craft + ".py", "wb", encoding='utf-8') as f:
-			f.write(page)
+				crafts[craft][lvl][obj] = {k['item_id']: k['count'] for k in crafts[craft][lvl][obj]}
+
+	with open(f"auto_gen\\recipes.pickle", 'wb') as f:
+		pickle.dump(crafts, f, protocol=pickle.HIGHEST_PROTOCOL)
 
 	for item in [38207, 38208, 38209, 38295, 38296, 38297]:
 		item_ids[item] = {'type': 'Recipe', 'output_item_count': 1, 'flags': []}
