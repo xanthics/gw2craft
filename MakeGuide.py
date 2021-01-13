@@ -161,8 +161,6 @@ def costCraft(filename, c_recipes, fast, craftexo, mTiers, cList, mytime, xp_to_
 					cList[i]['cost'] = 99999999
 	elif not craftexo:  # 400+ doesn't care about tierbuy
 		tierbuy = {0: defaultdict(int), 75: defaultdict(int), 150: defaultdict(int), 225: defaultdict(int), 300: defaultdict(int)}
-		buy[19704] = 0.0  # Lump of Tin
-		tierbuy[0][19704] = 0.0  # Lump of Tin
 
 	for tier in range(0, 500, 25):  # tiers:
 		make[tier] = defaultdict(int)
