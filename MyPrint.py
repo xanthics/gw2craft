@@ -12,6 +12,9 @@ import output
 
 
 # Format copper values so they are easier to read
+from auto_gen import mod_recipes
+
+
 def mFormat(line):
 	line = int(line)
 
@@ -536,19 +539,18 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 		for item in sorted(make[tier], key=make[tier].get, reverse=True):
 			if cList[item]['type'] == 'Refinement':
 				t = (t + 1) % 2
-				if item == 19679:  # Bronze Ingot
-					page.append(("<div class=\"s" + str(t) + "\"><input type=\"checkbox\" />" + localText.make + ":%3i <span class=\"%s select_text\">%s</span> (%s)</div>\n") % (make[tier][item], cList[item]['rarity'], cListName[item], localText.bNote))
+				if item in mod_recipes.ilist:  # multi output recipe
+					page.append(("<div class=\"s" + str(t) + "\"><input type=\"checkbox\" />" + localText.make + ":%3i <span class=\"%s select_text\">%s</span> (%s)</div>\n") % (make[tier][item], cList[item]['rarity'], cListName[item], localText.bNote.format(mod_recipes.ilist[item])))
 				else:
 					page.append("<div class=\"s" + str(t) + "\"><input type=\"checkbox\" />" + localText.make + ":%3i <span class=\"%s select_text\">%s</span></div>\n" % (make[tier][item], cList[item]['rarity'], cListName[item]))
 		for item in sorted(make[tier], key=make[tier].get, reverse=True):
 			if cList[item]['type'] in non_item and not cList[item]['type'] == 'Refinement':
 				t = (t + 1) % 2
-				if item in [13063, 13189, 13207, 13219, 13045, 13022, 13075, 13177, 13096, 13033, 13201, 13231]:  # Sole
-					page.append(("<div class=\"s" + str(t) + "\"><input type=\"checkbox\" />" + localText.make + ":%3i <span class=\"%s select_text\">%s</span> (%s)</div>\n") % (make[tier][item] / 2, cList[item]['rarity'], cListName[item], localText.sNote))
+				if item in mod_recipes.ilist:  # multi output recipe
+					page.append(("<div class=\"s" + str(t) + "\"><input type=\"checkbox\" />" + localText.make + ":%3i <span class=\"%s select_text\">%s</span> (%s)</div>\n") % (make[tier][item], cList[item]['rarity'], cListName[item], localText.bNote.format(mod_recipes.ilist[item])))
 				else:
 					page.append("<div class=\"s" + str(t) + "\"><input type=\"checkbox\" />" + localText.make + ":%3i <span class=\"%s select_text\">%s</span></div>\n" % (make[tier][item], cList[item]['rarity'], cListName[item]))
 
-		index = 0
 		if tier == 425:
 			for item in sorted(make[tier]):
 				try:

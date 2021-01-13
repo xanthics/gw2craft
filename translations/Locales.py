@@ -148,8 +148,7 @@ craft        = "Artesanía"
 tiers        = "Rango"
 toggle       = "Click para desplegar/cerrar"
 kNote        = "Nota: 11 Hojas de albahaca (por ejemplo) quiere decir que compras 1 bolsa a granel y te sobran 14"
-bNote        = "Produce 5 Lingotes"
-sNote        = "Produce 2 Suelas"
+bNote        = "Produce {}"
 
 # FAQ strings
 costs    = "El coste de la web está cubierto, pero se aceptan donaciones"

@@ -146,8 +146,7 @@ craft        = "Craft"
 tiers        = "Tier"
 toggle       = "Click To Toggle"
 kNote        = "Note: 11 Basil Leaf(e.g.) means buy 1 bulk Basil Leaf and you will have 14 left over"
-bNote        = "Produces 5 Ingot per make"
-sNote        = "Produces 2 Soles per make"
+bNote        = "Produces {} per make"
 
 # FAQ strings
 costs    = "Costs are covered, but donations are appreciated"

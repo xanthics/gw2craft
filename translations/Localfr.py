@@ -146,8 +146,7 @@ craft        = "Artisanat"
 tiers        = "Tier"
 toggle       = "Cliquez pour Basculer"
 kNote        = "Note: 11 Feuille de basilic(e.g.) signifie acheter 1 Feuilles de basilic en vrac et il vous restera 14"
-bNote        = "Produit 5 Lingots par création"
-sNote        = "Produit 2 Semelles par création"
+bNote        = "Produit {} par création"
 
 # FAQ strings
 costs    = "Les coûts sont couverts, mais les dons sont appréciés"

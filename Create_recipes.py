@@ -269,6 +269,30 @@ def guild_recipes(recipes):
 	return gulist, recipes
 
 
+def gen_multi_tracker():
+	from auto_gen import Items
+	with open('auto_gen\\recipes.pickle', 'rb') as f:
+		myrecipes = pickle.load(f)
+
+	# Generate a set of recipes with multiple outputs that are used by other recipes
+	multi_items = {}
+	for craft in myrecipes:
+		for tier in myrecipes[craft]:
+			for item in myrecipes[craft][tier]:
+				for mat in myrecipes[craft][tier][item]:
+					if Items.ilist[mat]['output_item_count'] > 1:
+						multi_items[mat] = Items.ilist[mat]['output_item_count']
+						myrecipes[craft][tier][item][mat] /= Items.ilist[mat]['output_item_count']
+
+	page = ['# -*- coding: utf-8 -*-', '# Created: {} PST\n'.format(datetime.now().strftime('%Y-%m-%dT%H:%M:%S')), 'ilist = {']
+	# sorted is only so we can easily spot new items with diff
+	for item in multi_items:
+		page.append(f'\t{item}: {multi_items[item]},')
+	page.append('}\n')
+	with codecs.open("auto_gen\\mod_recipes.py", "wb", encoding='utf-8') as f:
+		f.write('\n'.join(page))
+
+
 def main():
 	os.environ['NO_PROXY'] = 'api.guildwars2.com'
 	socket.setdefaulttimeout(15)
@@ -281,6 +305,7 @@ def main():
 	itemlist(item_list, gulist, "de")
 	itemlist(item_list, gulist, "es")
 	itemlist(item_list, gulist, "zh")
+	gen_multi_tracker()
 
 
 # If ran directly, call main

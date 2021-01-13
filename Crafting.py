@@ -146,7 +146,6 @@ def main():
 		("leatherworking.html", myrecipes['Leatherworker'], False, False, list(range(0, 400, 25))),
 		("leatherworking_400.html", myrecipes['Leatherworker'], False, True, list(range(400, 500, 25))),
 		("leatherworking_450.html", myrecipes['Leatherworker'], False, True, list(range(400, 450, 25))),
-		("scribe.html", myrecipes['Scribe'], False, False, list(range(0, 400, 25))),
 	]
 
 	p = Pool(cpu_count() - 1 if cpu_count() > 1 else 1)
@@ -156,11 +155,11 @@ def main():
 #	from hanging_threads import start_monitoring
 #	monitoring_thread = start_monitoring()
 	params = []
-	for i in range(0, len(rList)-1):
+	for i in range(0, len(rList)):
 		params.append((rList[i], cList, False, mytime, xp_to_level, backupkey))
 		params.append((rList[i], cList_free, True, mytime, xp_to_level, backupkey))
 	# free accounts can't follow scribe guides
-	params.append((rList[-1], cList, False, mytime, xp_to_level, backupkey))
+	params.append((("scribe.html", myrecipes['Scribe'], False, False, list(range(0, 400, 25))), cList, False, mytime, xp_to_level, backupkey))
 
 	procs = p.map(recipeworker, params)
 

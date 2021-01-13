@@ -146,8 +146,7 @@ craft        = "Stelle her"
 tiers        = "Tier"
 toggle       = "zum Umschalten klicken"
 kNote        = "Hinweis: 11 Basilikum Blätter (als Beispiel) bedeutet: kaufe einen Stapel Basilikumblätter und anschließend bleiben 14 übrig."
-bNote        = "Ergibt 5 Barren pro Herstellung"
-sNote        = "Ergibt 2 Sohlen pro Herstellung"
+bNote        = "Ergibt {} pro Herstellung"
 
 # FAQ strings
 costs    = "Die Kosten werden abgedeckt, aber Spenden sind willkommen"

@@ -146,8 +146,7 @@ craft        = "Povolání"
 tiers        = "Tier"
 toggle       = "Ukázat / Schovat"
 kNote        = "Poznámka: 11 Basil Leaf(např.) znamená, že máte koupit 1 balení Basil Leaf a zněho Vám pak 14 ks zbyde"
-bNote        = "Vytvoří 5x Ingot najednou"
-sNote        = "Vytvoří 2x Sole najednou"
+bNote        = "Vytvoří {}x najednou"
 
 # FAQ strings
 costs    = "Náklady jsou pokryté, ale každé podpory si ceníme"
