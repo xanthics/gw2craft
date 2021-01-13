@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2021-01-13T08:17:24 PST
+# Created: 2020-12-18T02:10:58 PST
 ilist = {
 	8576: "Bouteille d'alcool de riz",
 	8587: "Œuf poché façon Drottot",
@@ -6915,8 +6915,6 @@ ilist = {
 	49443: "Infusion de résistance à l'agonie +20",
 	49444: "Infusion de résistance à l'agonie +21",
 	49445: "Infusion de résistance à l'agonie +22",
-	49446: "Infusion de résistance à l'agonie +23",
-	49447: "Infusion de résistance à l'agonie +24",
 	49522: "Insigne en tulle entrelacé sanguinaire",
 	50140: "Démarche estivale",
 	50141: "Couronne de Bella",

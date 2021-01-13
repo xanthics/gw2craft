@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-# Created:2021-01-13T08:17:15 PST
+# Created:2020-12-18T02:10:47 PST
 ilist = {
 	8576:{'type':'Other', 'output_item_count':0, 'rarity':'Basic', 'vendor_value':2, 'img_url':'https://render.guildwars2.com/file/CD065203FA490A7157DC0FDE7506F3CB93E89D0D/63089.png'},
 	8587:{'output_item_count':2, 'type':'Snack', 'rarity':'Basic', 'vendor_value':0, 'discover':0, 'img_url':'https://render.guildwars2.com/file/BCD0C06CF8AF03D7370B9F217D12D937AB220F2E/63081.png'},
@@ -6915,8 +6915,6 @@ ilist = {
 	49443:{'output_item_count':1, 'type':'UpgradeComponent', 'rarity':'Ascended', 'vendor_value':0, 'img_url':'https://render.guildwars2.com/file/3504CD3199285BC1293FAE249ACF9461C50994DB/1465586.png'},
 	49444:{'output_item_count':1, 'type':'UpgradeComponent', 'rarity':'Ascended', 'vendor_value':0, 'img_url':'https://render.guildwars2.com/file/3504CD3199285BC1293FAE249ACF9461C50994DB/1465586.png'},
 	49445:{'output_item_count':1, 'type':'UpgradeComponent', 'rarity':'Ascended', 'vendor_value':0, 'img_url':'https://render.guildwars2.com/file/3504CD3199285BC1293FAE249ACF9461C50994DB/1465586.png'},
-	49446:{'output_item_count':1, 'type':'UpgradeComponent', 'rarity':'Ascended', 'vendor_value':0, 'img_url':'https://render.guildwars2.com/file/3504CD3199285BC1293FAE249ACF9461C50994DB/1465586.png'},
-	49447:{'output_item_count':1, 'type':'UpgradeComponent', 'rarity':'Ascended', 'vendor_value':0, 'img_url':'https://render.guildwars2.com/file/3504CD3199285BC1293FAE249ACF9461C50994DB/1465586.png'},
 	49522:{'type':'Other', 'output_item_count':0, 'rarity':'Exotic', 'vendor_value':66, 'img_url':'https://render.guildwars2.com/file/A3D8FA093CF830A5F799C742AAC70DE590C21498/699307.png'},
 	50140:{'output_item_count':1, 'type':'Boots', 'rarity':'Exotic', 'vendor_value':0, 'img_url':'https://render.guildwars2.com/file/CA33A318F0EB66D8E03CD978AC2A5CCE0A6BAE17/61223.png'},
 	50141:{'output_item_count':1, 'type':'Helm', 'rarity':'Exotic', 'vendor_value':0, 'img_url':'https://render.guildwars2.com/file/4AEE36464FD5E6C0FDB50AB22D59994B665836D5/61283.png'},

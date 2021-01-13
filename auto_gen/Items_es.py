@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2021-01-13T08:17:41 PST
+# Created: 2020-12-18T02:11:19 PST
 ilist = {
 	8576: "Botella de licor de arroz",
 	8587: "Huevo escalfado de Drottot",
@@ -6915,8 +6915,6 @@ ilist = {
 	49443: "Infusión de +20 de Resistencia a la Agonía",
 	49444: "Infusión de +21 de Resistencia a la Agonía",
 	49445: "Infusión de +22 de Resistencia a la Agonía",
-	49446: "Infusión de +23 de Resistencia a la Agonía",
-	49447: "Infusión de +24 de Resistencia a la Agonía",
 	49522: "Insignia de gasa intrincada nefasta",
 	50140: "Andares sofocantes",
 	50141: "Corona de Bella",

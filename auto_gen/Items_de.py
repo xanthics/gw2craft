@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2021-01-13T08:17:33 PST
+# Created: 2020-12-18T02:11:08 PST
 ilist = {
 	8576: "Flasche Reiswein",
 	8587: "Pochiertes Ei Drottots",
@@ -6915,8 +6915,6 @@ ilist = {
 	49443: "+20 Qual-Infusion",
 	49444: "+21 Qual-Infusion",
 	49445: "+22 Qual-Infusion",
-	49446: "+23 Qual-Infusion",
-	49447: "+24 Qual-Infusion",
 	49522: "Grausame aufwändige Gaze-Insignie",
 	50140: "Swelter-Tritt",
 	50141: "Bella-Krone",
