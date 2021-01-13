@@ -29,7 +29,9 @@ import codecs
 import json
 import os
 import socket
-import urllib.request, urllib.parse, urllib.error
+import urllib.error
+import urllib.parse
+import urllib.request
 from datetime import datetime
 from multiprocessing import Pool
 
@@ -274,23 +276,22 @@ def guild_recipes(recipes):
 
 
 def gen_multi_tracker():
-	from auto_gen import Items
-	with open('auto_gen\\recipes.pickle', 'rb') as f:
-		myrecipes = pickle.load(f)
+	# importing now (local) as they are created with earlier code and not needed until now
+	from auto_gen import Items, Armorsmith, Artificer, Chef, Chef_karma, Huntsman, Jeweler, Leatherworker, Scribe, Tailor, Weaponsmith
 
 	# Generate a set of recipes with multiple outputs that are used by other recipes
 	multi_items = {}
-	for craft in myrecipes:
-		for tier in myrecipes[craft]:
-			for item in myrecipes[craft][tier]:
-				for mat in myrecipes[craft][tier][item]:
+	for craft in [Armorsmith, Artificer, Chef, Chef_karma, Huntsman, Jeweler, Leatherworker, Scribe, Tailor, Weaponsmith]:
+		for tier in craft.recipes:
+			for item in craft.recipes[tier]:
+				for mat in craft.recipes[tier][item]:
 					if Items.ilist[mat]['output_item_count'] > 1:
 						multi_items[mat] = Items.ilist[mat]['output_item_count']
-						myrecipes[craft][tier][item][mat] /= Items.ilist[mat]['output_item_count']
+						craft.recipes[tier][item][mat] /= Items.ilist[mat]['output_item_count']
 
 	page = ['# -*- coding: utf-8 -*-', '# Created: {} PST\n'.format(datetime.now().strftime('%Y-%m-%dT%H:%M:%S')), 'ilist = {']
 	# sorted is only so we can easily spot new items with diff
-	for item in multi_items:
+	for item in sorted(multi_items):
 		page.append(f'\t{item}: {multi_items[item]},')
 	page.append('}\n')
 	with codecs.open("auto_gen\\mod_recipes.py", "wb", encoding='utf-8') as f:
