@@ -167,7 +167,7 @@ def costCraft(filename, c_recipes, fast, craftexo, mTiers, cList, mytime, xp_to_
 		pmake[tier] = defaultdict(int)
 		craftcount[tier] = {'refine': 0.0, 'part': [], 'ptitem': [], 'item': [], 'discovery': [], 'current_xp': xp_to_level[tier]}
 
-	tcost = 0  # total cost
+#	tcost = 0  # total cost
 	treco = 0  # total recovery
 
 	if craftexo:
@@ -185,7 +185,7 @@ def costCraft(filename, c_recipes, fast, craftexo, mTiers, cList, mytime, xp_to_
 				bucket = makeQueuecraft(c_recipes[400], cList, craftcount, tier, xp_to_level, craftexo, craft_queue)
 				bkey = sorted(bucket, reverse=True)
 
-				tcost += bucket[bkey[0]]['cost']
+#				tcost += bucket[bkey[0]]['cost']
 				treco += cList[bucket[bkey[0]]['item_id']]['w'] * int(cList[bucket[bkey[0]]['item_id']]['output_item_count'])
 				sell[bucket[bkey[0]]['item_id']] += int(cList[bucket[bkey[0]]['item_id']]['output_item_count'])
 				recalc = {tier: 0}  # always recalc the tier we are on
@@ -263,7 +263,7 @@ def costCraft(filename, c_recipes, fast, craftexo, mTiers, cList, mytime, xp_to_
 						bucket = makeQueuecraft(c_recipes[tier], cList, craftcount, tier, xp_to_level, craftexo, craft_queue)
 					bkey = sorted(bucket, reverse=True)
 
-				tcost += bucket[bkey[0]]['cost']
+#				tcost += bucket[bkey[0]]['cost']
 				treco += cList[bucket[bkey[0]]['item_id']]['w'] * int(cList[bucket[bkey[0]]['item_id']]['output_item_count'])
 				sell[bucket[bkey[0]]['item_id']] += int(cList[bucket[bkey[0]]['item_id']]['output_item_count'])
 				recalc = {tier: 0}  # always recalc the tier we are on
@@ -316,6 +316,12 @@ def costCraft(filename, c_recipes, fast, craftexo, mTiers, cList, mytime, xp_to_
 						buy[item] += 1
 				if set(rsps.keys()).intersection(set(bucket[bkey[0]]['make'])):
 					cList[set(rsps.keys()).intersection(set(bucket[bkey[0]]['make'])).pop()]['RecipeLearned'] = True
+
+	# Calculate total cost.  Due to partially consuming items with multiple outputs, previous calculation is incorrect
+	tcost = 0
+	for item in buy:
+		if item in cList:
+			tcost += cList[item]['cost'] * buy[item]
 
 	printtofile(tcost, treco, sell, craftexo, mTiers, Globals.mydeepcopy(make), Globals.mydeepcopy(pmake), Globals.mydeepcopy(buy), Globals.mydeepcopy(tierbuy), Globals.mydeepcopy(cList), filename, mytime, Items_de.ilist, Localde, backupkey, free)
 	printtofile(tcost, treco, sell, craftexo, mTiers, Globals.mydeepcopy(make), Globals.mydeepcopy(pmake), Globals.mydeepcopy(buy), Globals.mydeepcopy(tierbuy), Globals.mydeepcopy(cList), filename, mytime, Items_fr.ilist, Localfr, backupkey, free)

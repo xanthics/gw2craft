@@ -387,7 +387,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page.append('</dl>')
 	page.append('<div class="clear"></div>')
 
-	remaining = '<dl>\n	<dt>{}</dt>\n	<dd><span class="mygold">{}</span><span class=\"goldIcon\"></span><span class="mysilver">{}</span><span class=\"silverIcon\"></span><span class="mycopper">{}</span><span class=\"copperIcon\"></span></dd>\n</dl><div class="clear"></div>'.format(localText.remCost, tcost // 10000, (tcost // 100) % 100, tcost % 100)
+	remaining = '<dl>\n	<dt>{}</dt>\n	<dd><span class="mygold">{}</span><span class=\"goldIcon\"></span><span class="mysilver">{}</span><span class=\"silverIcon\"></span><span class="mycopper">{}</span><span class=\"copperIcon\"></span></dd>\n</dl><div class="clear"></div>'.format(localText.remCost, int(tcost // 10000), int((tcost // 100) % 100), int(tcost % 100))
 
 	page.append('<br /><button title=\"%s\" class=\"arrow\" id=\"tcost\">%s:</button><div class=\"lsbutton\" id=\"1tcost\">' % (localText.toggle, localText.sList))
 	for line in sorted(sell):
