@@ -278,8 +278,8 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 			b_food[item] = buy[item]
 		else:
 			b_mix[item] = buy[item]
-	karma_str = "<div class=\"s{0}\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url({1});\"></span><input type=\"number\" onkeypress=\"return event.charCode >= 48\" oninput=\"updateNeed(this, {2}, '{9}bv');\" id=\"{9}ih\" placeholder='0' min=\"0\" /><input type=\"number\" id=\"{9}bv\" value='{2}' raw_copper='0' readonly data-need = \"more\" min=\"0\" /> <button title=\"" + localText.toggle + "\" class=\"{3} arrow\" id=\"{4}\">{5}</button><div class=\"lsbutton\" id=\"1{6}\">{7} <span class=\"karmaIcon\"></span> " + localText.valuePer + " 25 <br /> {8}</div></div>\n"
-	collectable_str = "<div class=\"s{0}\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url({1});\"></span><input type=\"number\" onkeypress=\"return event.charCode >= 48\" oninput=\"updateNeed(this, {2}, '{6}bv');\" id=\"{6}ih\" placeholder='0' min=\"0\" /><input type=\"number\" id=\"{6}bv\" value='{2}' raw_copper='{7}' class='vTotal' readonly data-need = \"more\" min=\"0\" /> <span class=\"{3} select_text\">{4}</span> ({5} " + localText.valuePer + ")</div>\n"
+	karma_str = "<div class=\"s{0}\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url({1});\"></span><input type=\"number\" onkeypress=\"return event.charCode >= 48\" oninput=\"updateNeed(this, {2}, '{9}bv');\" id=\"{9}ih\" placeholder='0' min=\"0\" value=\"0\" /><input type=\"number\" id=\"{9}bv\" value='{2}' raw_copper='0' readonly data-need = \"more\" min=\"0\" /> <button title=\"" + localText.toggle + "\" class=\"{3} arrow\" id=\"{4}\">{5}</button><div class=\"lsbutton\" id=\"1{6}\">{7} <span class=\"karmaIcon\"></span> " + localText.valuePer + " 25 <br /> {8}</div></div>\n"
+	collectable_str = "<div class=\"s{0}\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url({1});\"></span><input type=\"number\" onkeypress=\"return event.charCode >= 48\" oninput=\"updateNeed(this, {2}, '{6}bv');\" id=\"{6}ih\" placeholder='0' min=\"0\" value=\"0\" /><input type=\"number\" id=\"{6}bv\" value='{2}' raw_copper='{7}' class='vTotal' readonly data-need = \"more\" min=\"0\" /> <span class=\"{3} select_text\">{4}</span> ({5} " + localText.valuePer + ")</div>\n"
 
 	title = ""
 	# Page Title Part 1
@@ -426,7 +426,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 		for item in sorted(b_vendor):
 			t = (t + 1) % 2
 			page.append(
-				"<div class=\"s{0}\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url({1});\"></span><input type=\"number\" onkeypress=\"return event.charCode >= 48\" oninput=\"updateNeed(this, {2}, '{8}bv');\" id=\"{8}ih\" placeholder='0' min=\"0\" /><input type=\"number\" id=\"{8}bv\" value='{2}' raw_copper='{9}' class='vTotal' readonly data-need = \"more\" min=\"0\" /> <span class=\"{3} select_text\">{4}</span> ({5} {6} from {7})</div>\n".format(
+				"<div class=\"s{0}\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url({1});\"></span><input type=\"number\" onkeypress=\"return event.charCode >= 48\" oninput=\"updateNeed(this, {2}, '{8}bv');\" id=\"{8}ih\" placeholder='0' min=\"0\" value=\"0\" /><input type=\"number\" id=\"{8}bv\" value='{2}' raw_copper='{9}' class='vTotal' readonly data-need = \"more\" min=\"0\" /> <span class=\"{3} select_text\">{4}</span> ({5} {6} from {7})</div>\n".format(
 					t, cList[item]['icon'], buy[item], cList[item]['rarity'], cListName[item], mFormat(cList[item]['cost']), localText.valuePer, localText.method[0], item, cList[item]['cost']))
 
 	page.append('<!-- Ezoic - first_paragraph - under_first_paragraph -->\n<div id="ezoic-pub-ad-placeholder-107"></div>\n<!-- End Ezoic - first_paragraph - under_first_paragraph -->')
