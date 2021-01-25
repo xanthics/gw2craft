@@ -137,7 +137,7 @@ def parse_recipes(recipes):
 				nc[it] += 1
 			else:
 				nc[it] = 1
-
+	import auto_gen.Items_en as ige
 	for craft in crafts:
 		page = '# -*- coding: utf-8 -*-\n'
 		page += '# Created: {} PST\n'.format(datetime.now().strftime('%Y-%m-%dT%H:%M:%S'))
@@ -150,7 +150,7 @@ def parse_recipes(recipes):
 					if not part['item_id'] in item_ids:
 						item_ids[part['item_id']] = {'type': 'Other', 'output_item_count': 0, 'flags': []}
 					mystr += "{}: {}, ".format(part['item_id'], part['count'])
-				page += "\t\t{}: {{{}}},\n".format(obj, mystr[:-2])
+				page += "\t\t{}: {{{}}},  # {}\n".format(obj, mystr[:-2], ige.ilist[obj])
 			page += "\t},\n"
 		page += "}"
 		with codecs.open("auto_gen\\" + craft + ".py", "wb", encoding='utf-8') as f:
