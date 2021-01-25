@@ -167,7 +167,6 @@ def costCraft(filename, c_recipes, fast, craftexo, mTiers, cList, mytime, xp_to_
 		pmake[tier] = defaultdict(int)
 		craftcount[tier] = {'refine': 0.0, 'part': [], 'ptitem': [], 'item': [], 'discovery': [], 'current_xp': xp_to_level[tier]}
 
-#	tcost = 0  # total cost
 	treco = 0  # total recovery
 
 	if craftexo:
@@ -185,7 +184,6 @@ def costCraft(filename, c_recipes, fast, craftexo, mTiers, cList, mytime, xp_to_
 				bucket = makeQueuecraft(c_recipes[400], cList, craftcount, tier, xp_to_level, craftexo, craft_queue)
 				bkey = sorted(bucket, reverse=True)
 
-#				tcost += bucket[bkey[0]]['cost']
 				treco += cList[bucket[bkey[0]]['item_id']]['w'] * int(cList[bucket[bkey[0]]['item_id']]['output_item_count'])
 				sell[bucket[bkey[0]]['item_id']] += int(cList[bucket[bkey[0]]['item_id']]['output_item_count'])
 				recalc = {tier: 0}  # always recalc the tier we are on
@@ -257,13 +255,9 @@ def costCraft(filename, c_recipes, fast, craftexo, mTiers, cList, mytime, xp_to_
 					bucket = makeQueuecraft(c_recipes[tier], cList, craftcount, tier, xp_to_level, craftexo, craft_queue)
 					bkey = sorted(bucket, reverse=True)
 				elif not fast:
-					if 0:  # not tier == 0 and craftcount[tier][u'current_xp'] <= xp_to_level[tier+10]:
-						bucket = makeQueuecraft(dict(chain(iter(c_recipes[tier].items()), iter(c_recipes[tier - 25].items()))), cList, craftcount, tier, xp_to_level, craftexo)
-					else:
-						bucket = makeQueuecraft(c_recipes[tier], cList, craftcount, tier, xp_to_level, craftexo, craft_queue)
+					bucket = makeQueuecraft(c_recipes[tier], cList, craftcount, tier, xp_to_level, craftexo, craft_queue)
 					bkey = sorted(bucket, reverse=True)
 
-#				tcost += bucket[bkey[0]]['cost']
 				treco += cList[bucket[bkey[0]]['item_id']]['w'] * int(cList[bucket[bkey[0]]['item_id']]['output_item_count'])
 				sell[bucket[bkey[0]]['item_id']] += int(cList[bucket[bkey[0]]['item_id']]['output_item_count'])
 				recalc = {tier: 0}  # always recalc the tier we are on
@@ -343,6 +337,7 @@ def costCraft(filename, c_recipes, fast, craftexo, mTiers, cList, mytime, xp_to_
 # include cost for current state, and xp generated.
 def calcRecipecraft(recipe, items, craftcount, tier, itier, xp_to_level, craftexo, craft_q):
 	global badrecipe
+	global mod
 	level = 0
 	while xp_to_level[int(level)] < craftcount[int(tier)]['current_xp']:
 		level += 1
@@ -382,6 +377,7 @@ def calcRecipecraft(recipe, items, craftcount, tier, itier, xp_to_level, craftex
 		mycost += 9999999999
 
 	for item in items[recipe]['recipe'][index]:
+		item_count = items[recipe]['recipe'][index][item]
 		if items[item]['recipe']:
 			# if we have seen this item before, return its cached value
 			if item in Globals.TLcache.hash:
@@ -399,36 +395,36 @@ def calcRecipecraft(recipe, items, craftcount, tier, itier, xp_to_level, craftex
 
 			# Add the cost of the recipe to the inscription
 			rsps = dict([(38166, 38208), (38167, 38209), (38434, 38297), (38432, 38296), (38433, 38295), (38162, 38207)])
-			if item in list(rsps.keys()) and not 'RecipeLearned' in items[item]:
+			if item in list(rsps.keys()) and 'RecipeLearned' not in items[item]:
 				tcost += items[rsps[item]]['cost']
 
-			if tcost < items[item]['cost'] or float(xptotal + txptotal) / float(mycost + (tcost - items[item]['cost']) * items[recipe]['recipe'][index][item]) >= float(xptotal) / float(mycost):
-				global mod
+			if tcost < items[item]['cost'] or float(xptotal + txptotal) / float(mycost + (tcost - items[item]['cost']) * item_count) >= float(xptotal) / float(mycost):
 				if item in mod_recipes.ilist:
-					if item in craft_q and items[recipe]['recipe'][index][item] <= craft_q[item]:
-						craft_q[item] -= items[recipe]['recipe'][index][item]
-						make += tmake * items[recipe]['recipe'][index][item]
-						cost += tcost * items[recipe]['recipe'][index][item] / mod_recipes.ilist[item]
+
+					if item in craft_q and item_count <= craft_q[item]:
+						craft_q[item] -= item_count
+						make += [item] * item_count
+						cost += tcost * item_count / mod_recipes.ilist[item]
 						continue
 					else:
-						t_need = items[recipe]['recipe'][index][item] - craft_q[item] if item in craft_q else items[recipe]['recipe'][index][item]
+						t_need = item_count - craft_q[item] if item in craft_q else item_count
 						t_count = math.ceil(t_need / mod_recipes.ilist[item])
 						craft_q[item] = mod_recipes.ilist[item] * t_count - t_need
 						xptotal += txptotal * t_count * mod
 						cost += tcost * t_need / mod_recipes.ilist[item]
 						buy += tbuy * t_count
-						make += tmake * items[recipe]['recipe'][index][item]
+						make += tmake * t_count + [item] * (item_count - t_count)
 				else:
-					xptotal += txptotal * items[recipe]['recipe'][index][item] * mod
-					cost += tcost * items[recipe]['recipe'][index][item]
-					buy += tbuy * items[recipe]['recipe'][index][item]
-					make += tmake * items[recipe]['recipe'][index][item]
+					xptotal += txptotal * item_count * mod
+					cost += tcost * item_count
+					buy += tbuy * item_count
+					make += tmake * item_count
 			else:
-				buy += [item] * items[recipe]['recipe'][index][item]
-				cost += items[item]['cost'] * items[recipe]['recipe'][index][item]
+				buy += [item] * item_count
+				cost += items[item]['cost'] * item_count
 		else:
-			buy += [item] * items[recipe]['recipe'][index][item]
-			cost += items[item]['cost'] * items[recipe]['recipe'][index][item]
+			buy += [item] * item_count
+			cost += items[item]['cost'] * item_count
 	return cost, xptotal, make, buy
 
 
