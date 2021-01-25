@@ -351,7 +351,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 </script>""")
 	page.append('<section class=\"main\">')
 	page.append('<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n')
-	page.append('<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">%s</span>	%s: %s</span> <a href="/%s/%s%s" style="position: relative; top: 4px;">Permalink</a>\n' % (localText.warning1, localText.warning2, mytime, backupkey, localText.path, filename))
+	page.append('<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">%s</span>	%s: %s</span> <a href="/%s/%s%s" style="position: relative; top: 4px;">Permalink</a>\n' % (localText.warning1, localText.warning2, mytime, backupkey, localText.path, f'f2p/{filename}' if free else filename))
 	page.append('</div><br />\n')
 	if 'scribe' in filename:
 		page.append('<div>\n')
