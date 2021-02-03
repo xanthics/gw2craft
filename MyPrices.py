@@ -31,7 +31,7 @@ def gw2apilistworker(input_url):
 			request = baseURL + ",".join(str(i) for i in ids)
 			header = {'User-agent': version}
 			f = requests.get(request, headers=header, timeout=socket.getdefaulttimeout())
-			temp = f.json(encoding='utf-8')
+			temp = f.json()
 			getdata = False
 		except Exception as err:
 			print('ERROR: %s.' % str(err))
@@ -77,7 +77,7 @@ def gw2api():
 	version = choice(user_agents)
 	header = {'User-agent': version}
 	f = requests.get(listingURL, headers=header, timeout=socket.getdefaulttimeout())
-	temp = f.json(encoding='utf-8')
+	temp = f.json()
 	valid = []
 	invalid = []
 	for item in list(Items.ilist.keys()):

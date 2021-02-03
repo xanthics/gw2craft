@@ -332,8 +332,8 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page.append('	<meta http-equiv="Cache-Control" content="public, max-age=1260">\n')
 	page.append('	<link href="/css/layout.css" rel="stylesheet" type="text/css" />')
 	page.append('	<link rel="icon" type="image/png" href="/fi.gif">\n')
-	page.append('	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>\n')
-	page.append('	<script>(window.jQuery || document.write(\'<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>\'));</script>\n')
+	page.append('	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>\n')
+#	page.append('	<script>(window.jQuery || document.write(\'<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>\'));</script>\n')
 	page.append('	<script src="/js/menu.js" type="text/javascript"></script>\n')
 	page.append('</head>\n')
 	page.append('<body>\n%s\n' % (
