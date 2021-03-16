@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2021-01-24T14:49:57 PST
+# Created: 2021-03-16T07:01:52 PST
 ilist = {
 	8576: "Flasche Reiswein",
 	8587: "Pochiertes Ei Drottots",
@@ -5949,6 +5949,7 @@ ilist = {
 	41439: "Wachende Lauerer-Hose",
 	41440: "Wachende Edelmann-Hose",
 	41441: "Wachende Prunkvolle Hose",
+	41442: "Wachende Lauerer-Schultern",
 	41443: "Wachende Lauerer-Schultern",
 	41444: "Wachende Edelmann-Schultern",
 	41445: "Wachende Prunkvolle Schultern",
@@ -8035,6 +8036,7 @@ ilist = {
 	92632: "Glückslaterne der Riesenratte",
 	93417: "Tengu-Echo-Klinge",
 	93567: "Sturmrufer-Kern",
+	94692: "Glückslaterne des Riesenochsen",
 	1000043: "Blaupause für Gilden-Katapult",
 	1000051: "Tresortransport",
 	1000073: "+5 % Erfahrungspunkte öffentliches Banner",
@@ -8472,4 +8474,5 @@ ilist = {
 	1001169: "Wintertag-Stern",
 	1001170: "Drapierte Wintertag-Girlande",
 	1001171: "Wintertag-Girlande",
+	1001173: "Ochsenstatue",
 }

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2021-01-24T14:49:41 PST
+# Created: 2021-03-16T07:01:32 PST
 ilist = {
 	8576: "Bottle of Rice Wine",
 	8587: "Drottot's Poached Egg",
@@ -5949,6 +5949,7 @@ ilist = {
 	41439: "Sentinel's Prowler Pants",
 	41440: "Sentinel's Noble Pants",
 	41441: "Sentinel's Emblazoned Pants",
+	41442: "Sentinel's Prowler Shoulders",
 	41443: "Sentinel's Prowler Shoulders",
 	41444: "Sentinel's Noble Shoulders",
 	41445: "Sentinel's Emblazoned Shoulders",
@@ -8035,6 +8036,7 @@ ilist = {
 	92632: "Lucky Great Rat Lantern",
 	93417: "Tengu Echo Blade",
 	93567: "Stormcaller Core",
+	94692: "Lucky Great Ox Lantern",
 	1000043: "Guild Catapult",
 	1000051: "Vault Transport",
 	1000073: "+5% Experience Public Banner",
@@ -8472,4 +8474,5 @@ ilist = {
 	1001169: "Wintersday Star",
 	1001170: "Draped Wintersday Garland",
 	1001171: "Wintersday Garland",
+	1001173: "Ox Statue",
 }

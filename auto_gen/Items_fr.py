@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2021-01-24T14:49:49 PST
+# Created: 2021-03-16T07:01:43 PST
 ilist = {
 	8576: "Bouteille d'alcool de riz",
 	8587: "Œuf poché façon Drottot",
@@ -5949,6 +5949,7 @@ ilist = {
 	41439: "Pantalon d'écumeur sentinelle",
 	41440: "Pantalon noble sentinelle",
 	41441: "Pantalon armorié sentinelle",
+	41442: "Epaulières d'écumeur sentinelles",
 	41443: "Epaulières d'écumeur sentinelles",
 	41444: "Epaulières nobles sentinelles",
 	41445: "Epaulières armoriées sentinelles",
@@ -8035,6 +8036,7 @@ ilist = {
 	92632: "Lanterne du grand Rat chanceux",
 	93417: "Lame d'écho des Tengus",
 	93567: "Noyau d'Invoque-tempête",
+	94692: "Lanterne du grand Taureau chanceux",
 	1000043: "Catapulte de guilde",
 	1000051: "Transport de coffre",
 	1000073: "Bannière publique +5% d'expérience",
@@ -8472,4 +8474,5 @@ ilist = {
 	1001169: "Étoile d'Hivernel",
 	1001170: "Guirlande suspendue d'Hivernel",
 	1001171: "Guirlande d'Hivernel",
+	1001173: "Statue du Taureau",
 }
