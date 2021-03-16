@@ -379,3 +379,24 @@ input[type=checkbox] + button {
 
 input[type=checkbox]:checked + button {
 	opacity:0.3;}
+
+#sponsor {
+    display: flex;
+    justify-content: space-between;
+    margin-left: auto;
+    gap: 5px;
+    width: 225px;
+}
+
+.sponsor_img {
+    height: auto;
+    width: 100%
+}
+
+#github_image{
+    flex:3.1;
+}
+
+#patreon_image {
+    flex:4.255;
+}

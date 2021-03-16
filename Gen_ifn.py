@@ -53,8 +53,9 @@ def faq(localText, free):
 #	page += u"<br />\n"
 #	page += u"<a href=\"http://www.guildwars2guru.com/topic/80318-dynamic-crafting-guides-for-all-crafts-httpgw2craftssaladonnet/\" style=\"line-height:150%%;\"><strong>%s</strong></a>\n"%(localText.gThread)
 #	page += u"<br />\n"
-	page += "<a href=\"https://www.patreon.com/bePatron?u=33775051\" data-patreon-widget-type=\"become-patron-button\">Become a Patron!</a><script async src=\"https://c6.patreon.com/becomePatronButton.bundle.js\"></script>\n"
-	page += "<br />\n"
+	page += '<p><a href="https://github.com/xanthics/gw2craft/discussions" target="_blank">Suggestions</a><br />'
+	page += '<a href="https://github.com/xanthics/gw2craft/issues" target="_blank">Bugs</a></p>'
+
 	page += "<a href=\"mailto:gw2crafts@live.com\" style=\"line-height:150%%;\"><strong>%s</strong></a></br/> \n"%(localText.email)
 #	page += u"<a href=\"http://gw2crafts.net/analytics/\" style=\"line-height:150%%;\"><strong>Analytics</strong></a>\n"
 	page += "<br /><br />\n"
@@ -123,7 +124,7 @@ def faq(localText, free):
 	page += "<p>Ezoic privacy policy should be embedded below but it can also be found <a href=\"https://g.ezoic.net/privacy/gw2crafts.net\" target=\"_blank\">here.</a></p>"
 	page += "<p>No other data should be collected as this site does not use any local storage or cookies except as needed for Google Analytics and Ezoic.</p>"
 	page += "<br /><br /><span id=\"ezoic-privacy-policy-embed\"></span>"
-
+	page += '<div id="sponsor"><div id="github_image"><a href="https://github.com/sponsors/xanthics"><img alt="Sponsor me on Github!" src="img/github_sponsor.png" class="sponsor_img"></a></div><div id="patreon_image"><a href="https://www.patreon.com/xanthics"><img alt="Become a Patron!" src="img/become_a_patron_button@2x.png" class="sponsor_img"></a></div></div>'
 	page += "</section>\n"
 	page += localText.cright
 	page += "</body>\n"
@@ -235,6 +236,7 @@ def nav(localText, free):
 	page += "<a href=\"/cz/nav.html\" hreflang=\"cz\">Čeština</a><br />\n"
 	page += "<a href=\"/de/nav.html\" hreflang=\"de\">Deutsch</a><br />\n"
 	page += "<a href=\"/es/nav.html\" hreflang=\"es\">Español</a><br />\n"
+	page += '<div id="sponsor"><div id="github_image"><a href="https://github.com/sponsors/xanthics"><img alt="Sponsor me on Github!" src="img/github_sponsor.png" class="sponsor_img"></a></div><div id="patreon_image"><a href="https://www.patreon.com/xanthics"><img alt="Become a Patron!" src="img/become_a_patron_button@2x.png" class="sponsor_img"></a></div></div>'
 	page += "</section>\n"
 	page += localText.cright
 	page += "</body>\n"
@@ -310,6 +312,7 @@ def index(localText, free):
 #	page += u"<br /><hr>\n"
 #	page += u"%s\n<br />"%(localText.thanks2)
 	# adword adaptive
+	page += '<div id="sponsor"><div id="github_image"><a href="https://github.com/sponsors/xanthics"><img alt="Sponsor me on Github!" src="img/github_sponsor.png" class="sponsor_img"></a></div><div id="patreon_image"><a href="https://www.patreon.com/xanthics"><img alt="Become a Patron!" src="img/become_a_patron_button@2x.png" class="sponsor_img"></a></div></div>'
 	page += '<br /><hr><br /><div style="width: 100%;display:block;">\n \
 <!-- Ezoic - Tail - bottom_of_page -->\n \
 <div id="ezoic-pub-ad-placeholder-102"></div>\n \
