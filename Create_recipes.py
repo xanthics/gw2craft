@@ -150,7 +150,10 @@ def parse_recipes(recipes):
 					if not part['item_id'] in item_ids:
 						item_ids[part['item_id']] = {'type': 'Other', 'output_item_count': 0, 'flags': []}
 					mystr += "{}: {}, ".format(part['item_id'], part['count'])
-				page += "\t\t{}: {{{}}},  # {}\n".format(obj, mystr[:-2], ige.ilist[obj])
+				if obj in ige.ilist:
+					page += "\t\t{}: {{{}}},  # {}\n".format(obj, mystr[:-2], ige.ilist[obj])
+				else:
+					page += "\t\t{}: {{{}}},  # {}\n".format(obj, mystr[:-2], "New this run")
 			page += "\t},\n"
 		page += "}"
 		with codecs.open("auto_gen\\" + craft + ".py", "wb", encoding='utf-8') as f:
