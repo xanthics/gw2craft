@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2021-03-16T07:01:32 PST
+# Created: 2021-05-27T18:49:53 PST
 ilist = {
 	8576: "Bottle of Rice Wine",
 	8587: "Drottot's Poached Egg",
@@ -8475,4 +8475,10 @@ ilist = {
 	1001170: "Draped Wintersday Garland",
 	1001171: "Wintersday Garland",
 	1001173: "Ox Statue",
+	1001175: "Super Pointing Flat Sad Hand",
+	1001176: "Super Pointing Flat Hand",
+	1001177: "Super Pointing Hand",
+	1001178: "Super Pointing Flat Glad Hand",
+	1001179: "Super Pointing Glad Hand",
+	1001180: "Super Pointing Sad Hand",
 }

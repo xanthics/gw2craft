@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2021-03-16T07:01:24 PST
+# Created: 2021-05-27T18:49:45 PST
 recipes = {
 	0: {
 		9404: {19738: 10},  # 8 Slot Rawhide Leather Pack
@@ -772,7 +772,7 @@ recipes = {
 		41430: {13224: 1, 13225: 1, 41553: 1},  # Sentinel's Prowler Gloves
 		41434: {13226: 1, 13227: 1, 41553: 1},  # Sentinel's Prowler Helm
 		41438: {13228: 1, 13229: 1, 41553: 1},  # Sentinel's Prowler Pants
-		41442: {13220: 1, 13230: 1, 41553: 1},  # New this run
+		41442: {13220: 1, 13230: 1, 41553: 1},  # Sentinel's Prowler Shoulders
 		45763: {13228: 1, 13229: 1, 19853: 1},  # Assassin's Prowler Pants
 		45776: {13222: 1, 13223: 1, 19853: 1},  # Assassin's Prowler Coat
 		45789: {13224: 1, 13225: 1, 19853: 1},  # Assassin's Prowler Gloves

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2021-03-16T07:01:52 PST
+# Created: 2021-05-27T18:50:14 PST
 ilist = {
 	8576: "Flasche Reiswein",
 	8587: "Pochiertes Ei Drottots",
@@ -8475,4 +8475,10 @@ ilist = {
 	1001170: "Drapierte Wintertag-Girlande",
 	1001171: "Wintertag-Girlande",
 	1001173: "Ochsenstatue",
+	1001175: "Flache traurige Super-Zeigehand",
+	1001176: "Flache Super-Zeigehand",
+	1001177: "Super-Zeigehand",
+	1001178: "Flache frohe Super-Zeigehand",
+	1001179: "Frohe Super-Zeigehand",
+	1001180: "Traurige Super-Zeigehand",
 }

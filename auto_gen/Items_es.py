@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2021-03-16T07:02:02 PST
+# Created: 2021-05-27T18:50:24 PST
 ilist = {
 	8576: "Botella de licor de arroz",
 	8587: "Huevo escalfado de Drottot",
@@ -5100,10 +5100,10 @@ ilist = {
 	24294: "Vial de sangre potente",
 	24295: "Vial de sangre poderosa",
 	24296: "Tótem diminuto",
-	24297: "Tótem",
+	24297: "Tótem pequeño",
 	24298: "Tótem",
-	24299: "Tótem",
-	24300: "Tótem",
+	24299: "Tótem intrincado",
+	24300: "Tótem elaborado",
 	24301: "Astilla cargada",
 	24302: "Fragmento cargado",
 	24303: "Esquirla cargada",
@@ -5164,7 +5164,7 @@ ilist = {
 	24358: "Hueso antiguo",
 	24359: "Trozo de carne roja",
 	24360: "Trozo de carne de ave",
-	24363: "Tótem",
+	24363: "Tótem grabado",
 	24464: "Guijarro de granate",
 	24465: "Guijarro de turquesa",
 	24466: "Guijarro de malaquita",
@@ -8475,4 +8475,10 @@ ilist = {
 	1001170: "Guirnalda del Día Invernal drapeada",
 	1001171: "Guirnalda del Día Invernal",
 	1001173: "Estatua de buey",
+	1001175: "Supermano apuntadora plana triste",
+	1001176: "Supermano apuntadora plana",
+	1001177: "Supermano apuntadora",
+	1001178: "Supermano apuntadora plana alegre",
+	1001179: "Supermano apuntadora alegre",
+	1001180: "Supermano apuntadora triste",
 }

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2021-03-16T07:01:43 PST
+# Created: 2021-05-27T18:50:03 PST
 ilist = {
 	8576: "Bouteille d'alcool de riz",
 	8587: "Œuf poché façon Drottot",
@@ -8475,4 +8475,10 @@ ilist = {
 	1001170: "Guirlande suspendue d'Hivernel",
 	1001171: "Guirlande d'Hivernel",
 	1001173: "Statue du Taureau",
+	1001175: "Super main plate triste pointant du doigt",
+	1001176: "Super main plate pointant du doigt",
+	1001177: "Super main pointant du doigt",
+	1001178: "Super main plate gaie pointant du doigt",
+	1001179: "Super main gaie pointant du doigt",
+	1001180: "Super main triste pointant du doigt",
 }
