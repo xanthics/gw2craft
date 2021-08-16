@@ -351,7 +351,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 </script>""")
 	page.append('<section class=\"main\">')
 	page.append('<div style="width: 100%; border: 2px #fffaaa solid; border-left: 0px; border-right: 0px; background: #fffddd; height: 24px;">\n')
-	page.append('<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">%s</span>	%s: %s</span><br/><a href="/%s/%s%s" style="position: relative; top: 4px;">Archive Link</a>(Good for 3 months)\n' % (localText.warning1, localText.warning2, mytime, backupkey, localText.path, f'f2p/{filename}' if free else filename))
+	page.append('<span class=\"warning\"></span><span style="position: relative; top: 4px;"><span style="color: red">%s</span>	%s: %s</span>\n' % (localText.warning1, localText.warning2, mytime))
 	page.append('</div><br />\n')
 	if 'scribe' in filename:
 		page.append('<div>\n')
@@ -368,6 +368,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 
 	#	page.append(u"<div class=\"s{}\">{}: <button class=\"arrow {}\" title=\"{}\" id=\"{}{}\">{}</button> {}\n</div>\n".format(
 	#		t, localText.discover, cList[item][u'rarity'], localText.toggle, item, tier, cListName[item], tstr))
+	page.append('<p><a href="/%s/%s%s">Archive Link</a>(Good for 3 months)</p>\n'.format(backupkey, localText.path, f'f2p/{filename}' if free else filename))
 	page.append("<strong>%s</strong><br />\n" % (localText.region))
 	page.append(f"<strong>Notice:</strong> you are following a {'F2P' if free else 'Core'} guide.  <a href=\"{'/' if free else '/f2p/'}{localText.path}{filename}\">Click here for a {'Core' if free else 'F2P'} account guide</a>.<br />")
 	#	# adword
