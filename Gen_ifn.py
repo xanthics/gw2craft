@@ -286,7 +286,7 @@ def index(localText, free):
 	page += "<section class=\"main\">\n"
 	page += f"<strong>Notice:</strong> you are following a {'F2P' if free else 'Core'} guide.  <a href=\"{'/' if free else '/f2p/'}{localText.path}index.html\">Click here for a {'Core' if free else 'F2P'} account guide</a>.<br />"
 #	page += u"<p>The scribe guides need a new guild with unlocks as RiFa appears to be defunct.  Please email me at <a href=\"mailto:gw2crafts@live.com\">gw2crafts@live.com</a> if you have a guild that can accommodate.  Would need a contact name and guild, they will go on the scribe page.</p>"
-	page += "<p>All guide pages now have a permalink, at the top in the warning, to a cached version.  Amazon claims unlimited space, so these likely won't be deleted.</p>"
+	page += "<p>All guide pages now have a link, at the top in the warning, to a cached version.  These cached pages will be good for at least 3 months but will eventually be deleted.</p>"
 	page += "<p>Support for Cooking 400-450 has been added.  450+ needs to be done via the in-game quest system and cannot be handled by these guides.</p>"
 #	page += u"\t<div class=\"g-plusone\" data-size=\"medium\" data-href=\"http://gw2crafts.net\"></div><script type=\"text/javascript\">(function() {var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;po.src = 'https://apis.google.com/js/plusone.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);})();</script>\n"
 #	page += u"\t<div class=\"fb-like\" data-href=\"http://gw2crafts.net\" data-width=\"150\" data-layout=\"button_count\" data-show-faces=\"false\" data-send=\"false\"></div>"
