@@ -10,7 +10,7 @@ from good_recipes import good_recipes
 GUILD_ITEM_OFFSET = 10000000
 
 # api request limit.  stored in a queue.Queue
-limiter = Limiter(RequestRate(20, Duration.SECOND), RequestRate(600, Duration.MINUTE))
+limiter = Limiter(RequestRate(15, Duration.SECOND), RequestRate(600, Duration.MINUTE))
 
 
 @limiter.ratelimit('api', delay=True, max_delay=120)
@@ -115,8 +115,6 @@ def validate_data(recipes, items, guild):
 			else:
 				n_r[items[item]['details']['recipe_id']]['items'].append(items[item]['id'])
 
-	for n in sorted(n_r, key=lambda value: n_r[value]['name']):
-		print(f"\t{n}: {n_r[n]['items']},  # {n_r[n]['name']}")
 	print(len(items))
 
 
@@ -180,17 +178,17 @@ async def itemlist(recipes, items, guild, session, lang="en"):
 
 # generate lists guild items (Scribe) and update item ids as appropriate
 def get_guild_items(recipes):
-	outputs = [recipes[x]['output_item_id'] for x in recipes]
-	inputs = [x['item_id'] for y in recipes for x in recipes[y]['ingredients']]
+	outputs = {recipes[x]['output_item_id'] for x in recipes}
+	inputs = {x['item_id'] for y in recipes for x in recipes[y]['ingredients']}
 	recipe_ids = []
 	for recipe in good_recipes:
 		recipe_ids.extend(good_recipes[recipe])
 	# needs to be str since we will be using join later to create urls
-	item_ids = [str(x) for x in inputs + outputs + recipe_ids]
+	item_ids = [str(x) for x in list(inputs | outputs) + recipe_ids]
 
 	guild_ids = []
 	for item in recipes:
-		if 'Scribe' in recipes[item]['disciplines'] and recipes[item]['min_rating'] < 400:
+		if 'Scribe' in recipes[item]['disciplines']:
 			if "guild_ingredients" in recipes[item]:
 				for i in recipes[item]['guild_ingredients']:
 					if i['upgrade_id'] not in guild_ids:
@@ -211,11 +209,25 @@ def gen_multi_tracker():
 async def main():
 	api_root = "https://api.guildwars2.com"
 	async with aiohttp.ClientSession(api_root) as session:
+#		recipes = await get_recipes(session)
+#		item_ids, guild_ids = get_guild_items(recipes)
+#		items = await get_items(session, item_ids)
+#		guild = await get_guild(session, guild_ids)
+
 		#  load/dump code is temporary while validation code is finalized
-		recipes = await get_recipes(session)
-		item_ids, guild_ids = get_guild_items(recipes)
-		items = await get_items(session, item_ids)
-		guild = await get_guild(session, guild_ids)
+#		with open('recipes.pickle', 'wb') as f:
+#			pickle.dump(recipes, f)
+#		with open('items.pickle', 'wb') as f:
+#			pickle.dump(items, f)
+#		with open('guild.pickle', 'wb') as f:
+#			pickle.dump(guild, f)
+		with open('recipes.pickle', 'rb') as f:
+			recipes = pickle.load(f)
+		with open('items.pickle', 'rb') as f:
+			items = pickle.load(f)
+		with open('guild.pickle', 'rb') as f:
+			guild = pickle.load(f)
+
 		validate_data(recipes, items, guild)
 
 

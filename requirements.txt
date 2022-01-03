@@ -1,0 +1,2 @@
+aiohttp~=3.8.1
+pyrate_limiter~=2.6.0
