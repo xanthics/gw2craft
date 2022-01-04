@@ -1,5 +1,7 @@
 import asyncio
 import sys
+import time
+
 import aiohttp
 from datetime import datetime
 from pyrate_limiter import *
@@ -19,21 +21,29 @@ GUILD_ITEM_OFFSET = 10000000
 limiter = Limiter(RequestRate(20, Duration.SECOND), RequestRate(575, Duration.MINUTE))
 
 
-@limiter.ratelimit('api', delay=True, max_delay=120)
+@limiter.ratelimit('api', delay=True, max_delay=128)
 async def _api_call(session, endpoint, first=False):
-	print(f"Running: {endpoint[:100]}")
-	async with session.get(endpoint) as req:
-		reply = await req.json()
-		if req.status not in [200, 206]:
-			raise Exception('API response: {} {}'.format(req.status, req.content))
-		if first:
-			return int(req.headers['x-page-total']), reply
-		return reply
+	x = 1
+	while True:
+		print(f"Running: {endpoint[:100]}")
+		async with session.get(endpoint) as req:
+			reply = await req.json()
+			if req.status not in [200, 206]:
+				# attempt to sleep with a too many requests response.  Fail if backoff limit reached
+				if req.status == 429 and x < 65:
+					print(f"API Get sleeping for {x} second(s).")
+					time.sleep(x)
+					x *= 2
+					continue
+				raise Exception('API response: {} {}'.format(req.status, req.content))
+			if first:
+				return int(req.headers['x-page-total']), reply
+			return reply
 
 
 # check that a recipe is one we care about
 def validate_recipe(item):
-	if (('LearnedFromItem' in item['flags'] and item['id'] not in good_recipes)
+	if (('LearnedFromItem' in item['flags'] and item['id'] not in good_recipes)  # only consider allow listed recipes that are learned from an item
 			or not len(item['disciplines'])
 			or item['type'] in ['Feast', 'Backpack']
 			or (all(x in ['Scribe', 'Jeweler'] for x in item['disciplines']) and item['min_rating'] >= 400)
@@ -74,16 +84,11 @@ async def get_items(session, item_ids):
 		for val in p:
 			items[val['id']] = val
 
-	for p in tasks:
-		for val in p:
-			items[val['id']] = val
-
 	return items
 
 
 # get all available recipes
 async def get_guild(session, guild_ids):
-	# first request, getting number of pages in result
 	guild_items = {}
 	guild_sets = (','.join(guild_ids[i:i+200]) for i in range(0, len(guild_ids), 200))
 	jobs = (asyncio.ensure_future(_api_call(session, f'/v2/guild/upgrades?lang=en&ids={page}')) for page in guild_sets)
@@ -184,9 +189,7 @@ async def itemlist(recipes, items, guild, session, lang="en"):
 def get_guild_items(recipes):
 	outputs = {recipes[x]['output_item_id'] for x in recipes}
 	inputs = {x['item_id'] for y in recipes for x in recipes[y]['ingredients']}
-	recipe_ids = []
-	for recipe in good_recipes:
-		recipe_ids.extend(good_recipes[recipe])
+	recipe_ids = [good_recipes[recipe] for recipe in good_recipes]
 	# needs to be str since we will be using join later to create urls
 	item_ids = [str(x) for x in list(inputs | outputs) + recipe_ids]
 
