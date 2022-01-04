@@ -3,7 +3,6 @@
 from typing import Optional
 
 from aiohttp.client_exceptions import ClientPayloadError
-from aiohttp.client_proto import ResponseHandler
 from aiohttp.helpers import BaseTimerContext
 from aiohttp.http import HttpResponseParser
 
@@ -41,6 +40,3 @@ def set_response_params(
     if self._tail:
         data, self._tail = self._tail, b""
         self.data_received(data)
-
-
-#ResponseHandler.set_response_params = set_response_params
