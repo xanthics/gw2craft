@@ -7,6 +7,10 @@ import pickle
 from good_items import good_items
 from good_recipes import good_recipes
 
+# import monkey patch for aiohttp to allow response headers > 8190 bytes
+from helper_files.aiohttp_monkey import set_response_params
+aiohttp.client_proto.ResponseHandler.set_response_params = set_response_params
+
 
 # Globals are bad, oh well
 GUILD_ITEM_OFFSET = 10000000
