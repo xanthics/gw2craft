@@ -7,10 +7,12 @@ import pickle
 from good_items import good_items
 from good_recipes import good_recipes
 
+
+# Globals are bad, oh well
 GUILD_ITEM_OFFSET = 10000000
 
 # api request limit.  stored in a queue.Queue
-limiter = Limiter(RequestRate(15, Duration.SECOND), RequestRate(600, Duration.MINUTE))
+limiter = Limiter(RequestRate(20, Duration.SECOND), RequestRate(575, Duration.MINUTE))
 
 
 @limiter.ratelimit('api', delay=True, max_delay=120)
@@ -27,13 +29,11 @@ async def _api_call(session, endpoint, first=False):
 
 # check that a recipe is one we care about
 def validate_recipe(item):
-	if 'LearnedFromItem' in item['flags'] and item['id'] not in good_recipes:
-		return False
-	if not len(item['disciplines']):
-		return False
-	if item['type'] in ['Feast', 'Backpack']:
-		return False
-	if (all(x in ['Scribe', 'Jeweler'] for x in item['disciplines']) and item['min_rating'] >= 400) or item['min_rating'] >= 500:
+	if (('LearnedFromItem' in item['flags'] and item['id'] not in good_recipes)
+			or not len(item['disciplines'])
+			or item['type'] in ['Feast', 'Backpack']
+			or (all(x in ['Scribe', 'Jeweler'] for x in item['disciplines']) and item['min_rating'] >= 400)
+			or item['min_rating'] >= 500):
 		return False
 	return True
 
@@ -48,7 +48,7 @@ async def get_recipes(session):
 	for val in task:
 		if validate_recipe(val):
 			recipes[val['id']] = val
-	jobs = [asyncio.ensure_future(_api_call(session, f'/v2/recipes?page={page}&page_size=200')) for page in range(1, pages)]
+	jobs = (asyncio.ensure_future(_api_call(session, f'/v2/recipes?page={page}&page_size=200')) for page in range(1, pages))
 	# get the rest of the recipes
 	tasks = await asyncio.gather(*jobs)
 
@@ -63,8 +63,8 @@ async def get_recipes(session):
 # get all referenced items
 async def get_items(session, item_ids):
 	items = {}
-	item_sets = [','.join(item_ids[i:i+200]) for i in range(0, len(item_ids), 200)]
-	jobs = [asyncio.ensure_future(_api_call(session, f'/v2/items?lang=en&ids={page}')) for page in item_sets]
+	item_sets = (','.join(item_ids[i:i+200]) for i in range(0, len(item_ids), 200))
+	jobs = (asyncio.ensure_future(_api_call(session, f'/v2/items?lang=en&ids={page}')) for page in item_sets)
 	tasks = await asyncio.gather(*jobs)
 	for p in tasks:
 		for val in p:
@@ -81,12 +81,12 @@ async def get_items(session, item_ids):
 async def get_guild(session, guild_ids):
 	# first request, getting number of pages in result
 	guild_items = {}
-	guild_sets = [','.join(guild_ids[i:i+200]) for i in range(0, len(guild_ids), 200)]
-	jobs = [asyncio.ensure_future(_api_call(session, f'/v2/guild/upgrades?lang=en&ids={page}')) for page in guild_sets]
+	guild_sets = (','.join(guild_ids[i:i+200]) for i in range(0, len(guild_ids), 200))
+	jobs = (asyncio.ensure_future(_api_call(session, f'/v2/guild/upgrades?lang=en&ids={page}')) for page in guild_sets)
 	tasks = await asyncio.gather(*jobs)
 	for p in tasks:
 		for val in p:
-			guild_items[val['id']] = val
+			guild_items[val['id'] + GUILD_ITEM_OFFSET] = val
 
 	return guild_items
 
