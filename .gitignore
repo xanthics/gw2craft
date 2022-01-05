@@ -14,9 +14,4 @@ pt-br/
 test.py
 temp.pickle
 /venv/
-/helper_files/guild.json
-/helper_files/guild.pickle
-/helper_files/items.json
-/helper_files/items.pickle
-/helper_files/recipes.json
-/helper_files/recipes.pickle
+

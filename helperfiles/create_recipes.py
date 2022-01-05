@@ -11,7 +11,7 @@ from good_items import good_items, good_vendor
 from good_recipes import good_recipes
 
 # import monkey patch for aiohttp to allow response headers > 8190 bytes
-from helper_files.aiohttp_monkey import set_response_params
+from helperfiles.aiohttp_monkey import set_response_params
 aiohttp.client_proto.ResponseHandler.set_response_params = set_response_params
 
 
@@ -138,7 +138,7 @@ def write_recipes(recipes, items):
 				page.append(f"\t\t{obj}: {{{r_part}}},  # {items[obj]['name']}")
 			page.append("\t},")
 		page.append("}\n")
-		with open(f"..\\auto_gen\\{craft}.py", "w", encoding="utf-8") as f:
+		with open(f"../autogen\\{craft}.py", "w", encoding="utf-8") as f:
 			f.write('\n'.join(page))
 
 
@@ -188,7 +188,7 @@ async def itemlist(items, guild, session, lang="en"):
 				items[i]['output_item_count'] = 0
 			page.append(f"\t{i}: {{'output_item_count': {items[i]['output_item_count']}, 'type': '{items[i]['type']}', 'rarity': '{items[i]['rarity']}', 'vendor_value': {items[i]['vendor_value']}, 'img_url': '{items[i]['icon']}'}},  # {items[i]['name']}")
 		page.append('}\n')
-		with open("..\\auto_gen\\Items.py", "w", encoding="utf-8") as f:
+		with open("../autogen\\Items.py", "w", encoding="utf-8") as f:
 			f.write('\n'.join(page))
 	else:
 		item_ids = [str(x) for x in items if x < GUILD_ITEM_OFFSET]
@@ -212,7 +212,7 @@ async def itemlist(items, guild, session, lang="en"):
 	for i in sorted(flags):  # otherwise output is semi random order
 		page.append(f'\t{i}: {repr(flags[i])},')
 	page.append('}\n')
-	with open(f"..\\auto_gen\\Items_{lang}.py", "w", encoding="utf-8") as f:
+	with open(f"../autogen\\Items_{lang}.py", "w", encoding="utf-8") as f:
 		f.write('\n'.join(page))
 
 

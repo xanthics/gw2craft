@@ -1,4 +1,4 @@
-# Created: 2022-01-04T05:01 PST
+# Created: 2022-01-04T17:57 PST
 recipes = {
 	0: {
 		12806: {19680: 2},  # Copper Hook
