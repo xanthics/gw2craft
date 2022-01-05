@@ -36,8 +36,8 @@ good_items = {
 	12543,  # Mango
 }
 
+# Vendor Items (copper)
 good_vendor = {
-	# Vendor Items
 	19792: 8,  # Spool of Jute Thread
 	19789: 16,  # Spool of Wool Thread
 	19794: 24,  # Spool of Cotton Thread
@@ -63,21 +63,21 @@ good_vendor = {
 	13008: 20000,  # "Greater Rune of Holding"
 	70647: 32,  # "Crystalline Bottle"
 	75762: 104,  # "Bag of Mortar"
-	1000352: 2400,  # Basic Flagpole Purchased from the commendation vendor.
-	1000589: 2400,  # Basic Boulder Purchased from the basic decoration vendor.
-	1000574: 2400,  # Basic Column Purchased from the basic decoration vendor.
-	1000601: 2400,  # Basic Basket Purchased from the basic decoration vendor.
-	1000403: 2400,  # White Balloon Purchased from the basic decoration vendor.
-	1000223: 2400,  # Basic Planter Purchased from the basic decoration vendor.
-	1000548: 2400,  # Basic Pedestal Purchased from the basic decoration vendor.
-	1000209: 2400,  # Basic Shrub Purchased from the basic decoration vendor.
-	1000516: 2400,  # Basic Crate Purchased from the basic decoration vendor.
-	1000620: 2400,  # Basic Tree Purchased from the basic decoration vendor.
-	1000202: 2400,  # Basic Table
-	1000582: 2400,  # Basic Torch Purchased from the basic decoration vendor.
-	1000437: 2400,  # Basic Candle Purchased from the basic decoration vendor.
-	1000413: 2400,  # Basic Chair Purchased from the basic decoration vendor.
-	1000224: 2400,  # Basic Bookshelf Purchased from the basic decoration vendor.
 	46747: 150,  # Thermocatalytic Reagent.
 	62942: 8,  # Crafter's Backpack Frame
+	10000352: 2400,  # Basic Flagpole Purchased from the commendation vendor.
+	10000589: 2400,  # Basic Boulder Purchased from the basic decoration vendor.
+	10000574: 2400,  # Basic Column Purchased from the basic decoration vendor.
+	10000601: 2400,  # Basic Basket Purchased from the basic decoration vendor.
+	10000403: 2400,  # White Balloon Purchased from the basic decoration vendor.
+	10000223: 2400,  # Basic Planter Purchased from the basic decoration vendor.
+	10000548: 2400,  # Basic Pedestal Purchased from the basic decoration vendor.
+	10000209: 2400,  # Basic Shrub Purchased from the basic decoration vendor.
+	10000516: 2400,  # Basic Crate Purchased from the basic decoration vendor.
+	10000620: 2400,  # Basic Tree Purchased from the basic decoration vendor.
+	10000202: 2400,  # Basic Table
+	10000582: 2400,  # Basic Torch Purchased from the basic decoration vendor.
+	10000437: 2400,  # Basic Candle Purchased from the basic decoration vendor.
+	10000413: 2400,  # Basic Chair Purchased from the basic decoration vendor.
+	10000224: 2400,  # Basic Bookshelf Purchased from the basic decoration vendor.
 }

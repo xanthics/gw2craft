@@ -1,10 +1,10 @@
 # Using GW2 api, get all recipes, calculated used items, output valid recipes, output all used items in supported languages
-
+import aiohttp
 import asyncio
 import sys
 import time
 
-import aiohttp
+
 from datetime import datetime
 from pyrate_limiter import *
 from good_items import good_items, good_vendor
@@ -186,7 +186,7 @@ async def itemlist(items, guild, session, lang="en"):
 				items[i]['discover'] = 0
 			if 'output_item_count' not in items[i]:
 				items[i]['output_item_count'] = 0
-			page.append(f"\t{i}: {{'output_item_count': {items[i]['output_item_count']}, 'type': '{items[i]['type']}', 'rarity': '{items[i]['rarity']}', 'vendor_value': {items[i]['vendor_value']}, 'img_url': '{items[i]['icon']}'}},  # {items[i]['name']}")
+			page.append(f"\t{i}: {{'output_item_count': {items[i]['output_item_count']}, 'type': '{items[i]['type']}', 'rarity': '{items[i]['rarity']}', 'vendor_value': {items[i]['vendor_value']}, 'flags': {items[i]['flags']}, 'img_url': '{items[i]['icon']}'}},  # {items[i]['name']}")
 		page.append('}\n')
 		with open("../autogen/items.py", "w", encoding="utf-8") as f:
 			f.write('\n'.join(page))
