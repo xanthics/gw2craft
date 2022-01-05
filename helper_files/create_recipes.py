@@ -7,7 +7,7 @@ import time
 import aiohttp
 from datetime import datetime
 from pyrate_limiter import *
-from good_items import good_items
+from good_items import good_items, good_vendor
 from good_recipes import good_recipes
 
 # import monkey patch for aiohttp to allow response headers > 8190 bytes
@@ -158,10 +158,10 @@ def clean_items(recipes, items):
 	removed = True
 	while removed:
 		removed = False
-		outputs = {recipes[x]['output_item_id'] for x in recipes}
+		allowed_bound_items = {recipes[x]['output_item_id'] for x in recipes} | good_items | {x for x in good_vendor}
 		for recipe in sorted(recipes):
 			for x in recipes[recipe]['ingredients']:
-				if x['item_id'] < GUILD_ITEM_OFFSET and 'AccountBound' in items[x['item_id']]['flags'] and x['item_id'] not in outputs | good_items:
+				if x['item_id'] < GUILD_ITEM_OFFSET and 'AccountBound' in items[x['item_id']]['flags'] and x['item_id'] not in allowed_bound_items:
 					removed = True
 					del recipes[recipe]
 					break
