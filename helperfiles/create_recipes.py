@@ -148,6 +148,10 @@ def validate_data(recipes, items, guild):
 	outputs = {recipes[x]['output_item_id'] for x in recipes}
 	inputs = {x['item_id'] for y in recipes for x in recipes[y]['ingredients']}
 
+	for recipe in recipes:
+		if not recipes[recipe]['flags']:
+			items[recipes[recipe]['output_item_id']]['flags'].append('Discover')
+
 	for item in list(items.keys()):
 		if item not in outputs | inputs and not ('details' in items[item] and 'recipe_id' in items[item]['details'] and items[item]['details']['recipe_id'] in recipes):
 			del items[item]

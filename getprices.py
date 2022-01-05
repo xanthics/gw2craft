@@ -49,19 +49,19 @@ async def getprices():
 				item = sitem["id"]
 				# set value to greater of buy and vendor.  If 0 set to minimum sell value
 				w = ilist[item]['vendor_value']
-				sell_method = 0
+				sell_method = 'vendor'
 				if sitem['buys']['unit_price'] * .85 > w:
 					w = int(sitem['buys']['unit_price'] * .85)
-					sell_method = 1
+					sell_method = 'maxbuyout'
 				if w == 0:
 					w = int(sitem['sells']['unit_price'] * .85)
-					sell_method = 2
+					sell_method = 'minsell'
 
 				# Save all the information we care about
-				outdict[item] = {'w': w, 'cost': sitem['sells']['unit_price'], 'recipe': None, 'rarity': ilist[item]['rarity'],
+				outdict[item] = {'value': w, 'cost': sitem['sells']['unit_price'], 'recipe': None, 'rarity': ilist[item]['rarity'],
 				                 'type': ilist[item]['type'], 'icon': ilist[item]['img_url'],
 				                 'output_item_count': ilist[item]['output_item_count'], 'sellMethod': sell_method,
-				                 "discover": [], 'whitelist': sitem[u'whitelisted']}
+				                 "discover": True if 'Discover' in ilist[item]['flags'] else False, 'whitelist': sitem[u'whitelisted']}
 
 				if outdict[item]['type'] == 'UpgradeComponent' and outdict[item]['rarity'] == 'Exotic':
 					outdict[item]['rarity'] = 'Exotic UpgradeComponent'
@@ -72,10 +72,10 @@ async def getprices():
 
 	# set up data for items that you can't buy from tp
 	for item in (x for x in ilist if x not in outdict):
-		outdict[item] = {'w': 0, 'cost': sys.maxsize, 'recipe': None, 'rarity': ilist[item]['rarity'],
+		outdict[item] = {'value': 0, 'cost': sys.maxsize, 'recipe': None, 'rarity': ilist[item]['rarity'],
 		                 'type': ilist[item]['type'], 'icon': ilist[item]['img_url'],
-		                 'output_item_count': ilist[item]['output_item_count'], 'sellMethod': 0,
-		                 "discover": [], 'whitelist': False}
+		                 'output_item_count': ilist[item]['output_item_count'], 'sellMethod': 'vendor',
+		                 "discover": True if 'Discover' in ilist[item]['flags'] else False, 'whitelist': False}
 
 		if outdict[item]['type'] == 'UpgradeComponent' and outdict[item]['rarity'] == 'Exotic':
 			outdict[item]['rarity'] = 'Exotic UpgradeComponent'
