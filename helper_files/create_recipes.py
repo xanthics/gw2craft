@@ -257,7 +257,7 @@ async def main():
 		merge_items_guild(items, guild)
 		write_recipes(recipes, items)
 
-		for lang in ['en', 'de', 'es', 'fr', 'zh']:
+		for lang in ['en', 'de', 'es', 'fr']:  # , 'zh']:
 			await itemlist(items, guild, session, lang)
 
 
