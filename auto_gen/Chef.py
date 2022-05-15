@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2021-01-24T14:49:33 PST
+# Created: 2022-05-15T03:17:12 PST
 recipes = {
 	0: {
 		12132: {12136: 1, 12152: 1, 12156: 1},  # Loaf of Bread
@@ -133,6 +133,7 @@ recipes = {
 		12375: {12135: 1, 12142: 1, 12333: 1, 12491: 1},  # Bowl of Kale Soup
 		12752: {12134: 25, 12142: 25, 12329: 25},  # Unidentified Orange Dye
 		62987: {12171: 5},  # Savory Chef's Tools
+		95847: {12145: 1, 12157: 1, 12509: 1, 97690: 1},  # Whitefish Sushi
 	},
 	175: {
 		12272: {12243: 1, 12246: 2, 12248: 1, 12335: 1},  # Pile of Divinity Fair Herbs
@@ -183,6 +184,7 @@ recipes = {
 		12520: {12143: 1, 12155: 1, 12519: 1, 12538: 1},  # Bowl of Pumpkin Pie Filling
 		12751: {12241: 25, 12244: 25, 12536: 25},  # Unidentified Green Dye
 		36079: {12166: 1, 12520: 1, 36052: 2},  # Glazed Pumpkin Pie
+		96285: {12145: 1, 12157: 1, 12509: 1, 96943: 1},  # Yellowfish Sushi
 	},
 	250: {
 		12260: {12142: 1, 12172: 1, 12278: 1, 12331: 1},  # Bowl of Simple Chili Base
@@ -217,6 +219,7 @@ recipes = {
 		12744: {12134: 25, 12142: 25, 12329: 25, 12511: 25},  # Unidentified Orange Dye
 		36082: {12229: 1, 12254: 1, 12263: 1, 36052: 2},  # Glazed Chocolate Raspberry Cookie
 		62989: {12519: 5},  # Gourmet Chef's Tools
+		96898: {12145: 1, 12157: 1, 12509: 1, 95663: 1},  # Orangefish Sushi
 	},
 	325: {
 		12416: {12137: 1, 12155: 1, 12229: 1, 12254: 1},  # Chocolate Raspberry Cream
@@ -296,6 +299,11 @@ recipes = {
 		66537: {12136: 5, 12138: 2, 12177: 5, 66522: 5},  # Bowl of Prickly Pear Pie Filling
 		72224: {19684: 10, 19709: 10, 73034: 3},  # Empty Keg
 		92001: {12153: 2, 12504: 10, 12544: 3, 92072: 5},  # Handful of Charr Spice Blend
+		95745: {12142: 1, 12147: 1, 12330: 1, 12332: 1},  # Bowl of Canthan Vegetable Mix
+		96282: {12342: 5},  # Bottle of Sesame Oil
+		96793: {97105: 3},  # Block of Tofu
+		97128: {12153: 1, 12163: 2, 12331: 3, 12332: 1},  # Jar of Kimchi
+		97771: {12145: 1, 12157: 1, 12509: 1, 95673: 1},  # Redfish Sushi
 	},
 	425: {
 		91689: {12432: 1, 12452: 1, 12465: 1, 12486: 1},  # Chef's Tasting Platter
@@ -307,5 +315,6 @@ recipes = {
 		91825: {12155: 1, 12156: 1},  # Bottle of Simple Syrup
 		91842: {12143: 1, 76603: 1, 91826: 1, 91861: 1},  # Plate of Eggs Benedict
 		91868: {12258: 1, 91796: 1},  # Pile of Clove Spice Mix
+		95898: {12155: 1, 12331: 10, 96282: 1, 97105: 1},  # Jars of Sweet Chili Paste
 	},
 }

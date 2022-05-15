@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2021-01-24T14:49:33 PST
+# Created: 2022-05-15T03:17:12 PST
 recipes = {
 	0: {
 		12131: {12147: 1, 12153: 1, 12202: 1},  # Bowl of Watery Mushroom Soup
@@ -67,6 +67,7 @@ recipes = {
 		12363: {12172: 1, 12237: 1, 12239: 1, 12278: 1},  # Bowl of Fancy Bean Chili
 		12755: {12142: 25, 12247: 25, 12252: 100},  # Unidentified Yellow Dye
 		36817: {12251: 1, 36796: 1},  # Bowl of Grilled Bananas with Passion Fruit Sauce
+		95277: {12158: 2, 12251: 4},  # Fried Banana Chips
 	},
 	150: {
 		12318: {12229: 1, 12338: 1},  # Chocolate Cherry
@@ -92,6 +93,8 @@ recipes = {
 		12377: {12299: 1, 12340: 1},  # Bowl of Chili and Avocado
 		12493: {12270: 1, 12338: 1},  # Bowl of Chocolate Cherry Frosting
 		12754: {12141: 100, 12253: 25, 12338: 100},  # Unidentified Red Dye
+		95520: {12136: 2, 12156: 2, 12275: 1, 12533: 1},  # Longevity Noodles
+		95556: {12143: 3, 12155: 2, 12337: 15},  # Turrón Slice
 	},
 	225: {
 		12264: {12155: 1, 12166: 1, 12254: 4},  # Raspberry Pie
@@ -263,6 +266,14 @@ recipes = {
 		91950: {82915: 1, 91954: 1, 92001: 2},  # Bowl of Firebreather Chili
 		91954: {12239: 25, 12260: 2, 92001: 5, 92006: 1},  # Bowl of Carne Khan Chili
 		92078: {38216: 1, 86601: 25, 92001: 5},  # Bowl of Green Chile Ice Cream
+		95421: {12155: 12, 12169: 8, 12229: 6, 91702: 3},  # Homemade Campfire Treat
+		95942: {8576: 1, 12271: 1, 12505: 2, 24359: 1},  # Meaty Asparagus Skewer
+		96578: {12136: 1, 12143: 2, 12156: 1, 97128: 3},  # Plate of Kimchi Pancakes
+		96707: {12491: 1, 96762: 3, 96943: 1, 97690: 2},  # Bowl of Fish Stew
+		96916: {12143: 1, 12145: 1, 24359: 1, 95745: 1},  # Meaty Rice Bowl
+		97422: {12491: 1, 96793: 1, 96943: 2, 97128: 1},  # Bowl of Kimchi Tofu Stew
+		97767: {12143: 1, 12145: 1, 95663: 1, 95745: 1},  # Fishy Rice Bowl
+		97933: {12329: 2, 12350: 2, 38216: 2, 91702: 1},  # New this run
 	},
 	425: {
 		91745: {46736: 4, 46739: 1},  # Portable Composter
