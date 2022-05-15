@@ -399,8 +399,8 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page.append("</div><script type=\"text/javascript\">$('#1tcost').hide();</script><br />")
 	buttonList.append('tcost')
 	page.append('<!-- Ezoic - page_title_2 - under_page_title -->\n<div id="ezoic-pub-ad-placeholder-106"></div>\n<!-- End Ezoic - page_title_2 - under_page_title -->')
-	page.append('<br /><br /><input type="text" id="api_key" name="api key" placeholder="Enter API key here" style=\'text-align: center;\'><br />')
-	page.append('<button type="button" onclick="updateBank(document.getElementById(\'api_key\').value.trim());" style=\'text-align: center;\'>Get Bank Content</button>\n')
+	page.append('<br /><br /><iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe><form id ="gw2apiform" target="dummyframe"><input type="text" id="api_key" name="gw2 api key" autocomplete="one-time-code" placeholder="Enter API key here" style=\'text-align: center;\'></form><br />')
+	page.append('<button type="submit" form="gw2apiform" onclick="updateBank(document.getElementById(\'api_key\').value.trim());" style=\'text-align: center;\'>Get Bank Content</button>\n')
 	page.append('<br /> The API key you enter needs \'inventories\' permission to work.  <a href="https://account.arena.net/applications/create">You can generate a key here</a>. <br /><br />')
 	page.append('Clicking the button will update the quantities of all items in your bank and material storage that are used in this guide.')
 	page.append(
