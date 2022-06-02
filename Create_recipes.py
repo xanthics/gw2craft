@@ -75,7 +75,7 @@ def parse_recipes(recipes):
 	# Glazed Peach Tart[s], Glazed Pear Tart[s], Piece[s] of Candy Corn Almond
 	# Brittle, Strawberry Ghost[s], Bowl[s] of Candy Corn Custard
 	# key is item_id
-	bad_recipes = [36081, 36080, 36077, 36076, 36074]
+	bad_recipes = [36081, 36080, 36077, 36076, 36074, 95277]
 
 	# Recipes learned from Master Craftsmen that we still want to consider
 	# key is item_id

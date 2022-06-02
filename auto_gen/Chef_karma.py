@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2022-05-15T03:17:12 PST
+# Created: 2022-06-02T08:52:56 PST
 recipes = {
 	0: {
 		12131: {12147: 1, 12153: 1, 12202: 1},  # Bowl of Watery Mushroom Soup
@@ -67,7 +67,6 @@ recipes = {
 		12363: {12172: 1, 12237: 1, 12239: 1, 12278: 1},  # Bowl of Fancy Bean Chili
 		12755: {12142: 25, 12247: 25, 12252: 100},  # Unidentified Yellow Dye
 		36817: {12251: 1, 36796: 1},  # Bowl of Grilled Bananas with Passion Fruit Sauce
-		95277: {12158: 2, 12251: 4},  # Fried Banana Chips
 	},
 	150: {
 		12318: {12229: 1, 12338: 1},  # Chocolate Cherry
@@ -273,7 +272,7 @@ recipes = {
 		96916: {12143: 1, 12145: 1, 24359: 1, 95745: 1},  # Meaty Rice Bowl
 		97422: {12491: 1, 96793: 1, 96943: 2, 97128: 1},  # Bowl of Kimchi Tofu Stew
 		97767: {12143: 1, 12145: 1, 95663: 1, 95745: 1},  # Fishy Rice Bowl
-		97933: {12329: 2, 12350: 2, 38216: 2, 91702: 1},  # New this run
+		97933: {12329: 2, 12350: 2, 38216: 2, 91702: 1},  # Super Mixed Parfait
 	},
 	425: {
 		91745: {46736: 4, 46739: 1},  # Portable Composter

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2022-05-15T03:17:19 PST
+# Created: 2022-06-02T08:53:02 PST
 ilist = {
 	8576: "Bottle of Rice Wine",
 	8587: "Drottot's Poached Egg",
@@ -8037,7 +8037,6 @@ ilist = {
 	93417: "Tengu Echo Blade",
 	93567: "Stormcaller Core",
 	94692: "Lucky Great Ox Lantern",
-	95277: "Fried Banana Chips",
 	95421: "Homemade Campfire Treat",
 	95520: "Longevity Noodles",
 	95537: "Lucky Great Tiger Lantern",

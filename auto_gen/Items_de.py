@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2022-05-15T03:17:34 PST
+# Created: 2022-06-02T08:53:19 PST
 ilist = {
 	8576: "Flasche Reiswein",
 	8587: "Pochiertes Ei Drottots",
@@ -8037,7 +8037,6 @@ ilist = {
 	93417: "Tengu-Echo-Klinge",
 	93567: "Sturmrufer-Kern",
 	94692: "Glückslaterne des Riesenochsen",
-	95277: "Frittierter Bananenchip",
 	95421: "Selbstgemachte Lagerfeuer-Leckerei",
 	95520: "Langlebigkeitsnudeln",
 	95537: "Glückslaterne des Riesentigers",

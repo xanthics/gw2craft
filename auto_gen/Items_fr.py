@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2022-05-15T03:17:27 PST
+# Created: 2022-06-02T08:53:14 PST
 ilist = {
 	8576: "Bouteille d'alcool de riz",
 	8587: "Œuf poché façon Drottot",
@@ -8037,7 +8037,6 @@ ilist = {
 	93417: "Lame d'écho des Tengus",
 	93567: "Noyau d'Invoque-tempête",
 	94692: "Lanterne du grand Taureau chanceux",
-	95277: "Chips de banane frite",
 	95421: "Friandise de feu de camp maison",
 	95520: "Nouilles de longévité",
 	95537: "Lanterne du grand Tigre chanceux",

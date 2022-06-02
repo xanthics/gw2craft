@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2022-05-15T03:17:12 PST
+# Created: 2022-06-02T08:52:56 PST
 recipes = {
 	0: {
 		12132: {12136: 1, 12152: 1, 12156: 1},  # Loaf of Bread
@@ -315,6 +315,6 @@ recipes = {
 		91825: {12155: 1, 12156: 1},  # Bottle of Simple Syrup
 		91842: {12143: 1, 76603: 1, 91826: 1, 91861: 1},  # Plate of Eggs Benedict
 		91868: {12258: 1, 91796: 1},  # Pile of Clove Spice Mix
-		95898: {12155: 1, 12331: 10, 96282: 1, 97105: 1},  # Jars of Sweet Chili Paste
+		95898: {12155: 1, 12331: 10, 96282: 1, 97105: 1},  # Jar of Sweet Chili Paste
 	},
 }
