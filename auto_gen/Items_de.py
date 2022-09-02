@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2022-06-02T08:53:19 PST
+# Created: 2022-09-02T09:58:56 PST
 ilist = {
 	8576: "Flasche Reiswein",
 	8587: "Pochiertes Ei Drottots",
@@ -8526,4 +8526,18 @@ ilist = {
 	1001205: "Super-Mürrische Wolke",
 	1001206: "Super-Riesige Wolke",
 	1001207: "Super-Wolkenwand",
+	1001208: "Holografische Strecke: Linkskurve",
+	1001209: "Holografische Strecke: Rechte Abwärtskurve",
+	1001211: "Holografische Strecke: Linke Aufwärtskurve",
+	1001212: "Holografische Strecke: Linke Abwärtskurve",
+	1001213: "Holografische Strecke: Rechte Aufwärtskurve",
+	1001214: "Holografische Strecke: Lange Gerade",
+	1001215: "Holografische Strecke: Rechtskurve",
+	1001217: "Holografische Strecke: Gerade",
+	1001218: "Holografische Strecke: Aufwärtsrampe",
+	1001219: "Holografische Strecke: Abwärtsrampe",
+	1001220: "Flaschenzug-Haken",
+	1001221: "Kisten im Netz",
+	1001222: "Hafenkran",
+	1001223: "Windmühlenrad",
 }

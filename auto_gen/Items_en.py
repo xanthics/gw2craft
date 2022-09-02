@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2022-06-02T08:53:02 PST
+# Created: 2022-09-02T09:58:38 PST
 ilist = {
 	8576: "Bottle of Rice Wine",
 	8587: "Drottot's Poached Egg",
@@ -8526,4 +8526,18 @@ ilist = {
 	1001205: "Super Grumpy Cloud",
 	1001206: "Super Giant Cloud",
 	1001207: "Super Cloud Wall",
+	1001208: "Holographic Track Left Curve",
+	1001209: "Holographic Track Downward Right Curve",
+	1001211: "Holographic Track Upward Left Curve",
+	1001212: "Holographic Track Downward Left Curve",
+	1001213: "Holographic Track Upward Right Curve",
+	1001214: "Holographic Track Long Straightaway",
+	1001215: "Holographic Track Right Curve",
+	1001217: "Holographic Track Straightaway",
+	1001218: "Holographic Track Upward Ramp",
+	1001219: "Holographic Track Downward Ramp",
+	1001220: "Pulley Hook",
+	1001221: "Netted Crates",
+	1001222: "Dock Crane",
+	1001223: "Windmill Wheel",
 }

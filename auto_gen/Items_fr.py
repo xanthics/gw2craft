@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2022-06-02T08:53:14 PST
+# Created: 2022-09-02T09:58:47 PST
 ilist = {
 	8576: "Bouteille d'alcool de riz",
 	8587: "Œuf poché façon Drottot",
@@ -8526,4 +8526,18 @@ ilist = {
 	1001205: "Super nuage grincheux",
 	1001206: "Super nuage géant",
 	1001207: "Super mur de nuages",
+	1001208: "Virage à gauche de piste holographique",
+	1001209: "Virage descendant à droite de piste holographique",
+	1001211: "Virage montant à gauche de piste holographique",
+	1001212: "Virage descendant à gauche de piste holographique",
+	1001213: "Virage montant à droite de piste holographique",
+	1001214: "Longue ligne droite de piste holographique",
+	1001215: "Virage à droite de piste holographique",
+	1001217: "Ligne droite de piste holographique",
+	1001218: "Rampe montante de piste holographique",
+	1001219: "Rampe descendante de piste holographique",
+	1001220: "Palan",
+	1001221: "Caisse dans un filet",
+	1001222: "Grue de quai",
+	1001223: "Roue de moulin",
 }
