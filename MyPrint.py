@@ -632,7 +632,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page.append("<div class=\"s" + str(t) + "\">%s</div>\n" % localText.finish)
 	# adword adaptive
 	page.append('<br /><div style="width: 100%;display:block;">\n')
-	page.append('<div id="sponsor"><div id="github_image"><a href="https://github.com/sponsors/xanthics"><img alt="Sponsor me on Github!" src="img/github_sponsor.png" class="sponsor_img"></a></div><div id="patreon_image"><a href="https://www.patreon.com/xanthics"><img alt="Become a Patron!" src="img/become_a_patron_button@2x.png" class="sponsor_img"></a></div></div>')
+	page.append('<div id="sponsor"><div id="patreon_image"><a href="https://www.patreon.com/xanthics"><img alt="Become a Patron!" src="img/become_a_patron_button@2x.png" class="sponsor_img"></a></div></div>')
 	page.append('<br/ ><hr><br />\n<!-- Ezoic - Tail - bottom_of_page -->\n<div id="ezoic-pub-ad-placeholder-102"></div>\n<!-- End Ezoic - Tail - bottom_of_page --></div>\n')
 	page.append('</section>\n')
 	page.append('%s\n<script type="text/javascript">\n' % localText.cright)
@@ -751,7 +751,7 @@ def maketotals(totals, mytime, localText, free):
 	page += tpage1 + tpage2
 
 	# adword adaptive
-	page += '<div id="sponsor"><div id="github_image"><a href="https://github.com/sponsors/xanthics"><img alt="Sponsor me on Github!" src="img/github_sponsor.png" class="sponsor_img"></a></div><div id="patreon_image"><a href="https://www.patreon.com/xanthics"><img alt="Become a Patron!" src="img/become_a_patron_button@2x.png" class="sponsor_img"></a></div></div>'
+	page += '<div id="sponsor"><div id="patreon_image"><a href="https://www.patreon.com/xanthics"><img alt="Become a Patron!" src="img/become_a_patron_button@2x.png" class="sponsor_img"></a></div></div>'
 	page += '<br/ ><hr><br /><div style="width: 100%;display:block;">\n \
 	<!-- Ezoic - Tail - bottom_of_page -->\n \
 <div id="ezoic-pub-ad-placeholder-102"></div>\n\

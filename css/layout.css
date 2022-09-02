@@ -393,10 +393,6 @@ input[type=checkbox]:checked + button {
     width: 100%
 }
 
-#github_image{
-    flex:3.1;
-}
-
 #patreon_image {
     flex:4.255;
 }
