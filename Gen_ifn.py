@@ -56,8 +56,7 @@ def faq(localText, free):
 	page += '<p><a href="https://github.com/xanthics/gw2craft/discussions" target="_blank">Suggestions</a><br />'
 	page += '<a href="https://github.com/xanthics/gw2craft/issues" target="_blank">Bugs</a></p>'
 
-	page += "<a href=\"mailto:gw2crafts@live.com\" style=\"line-height:150%%;\"><strong>%s</strong></a></br/> \n"%(localText.email)
-#	page += u"<a href=\"http://gw2crafts.net/analytics/\" style=\"line-height:150%%;\"><strong>Analytics</strong></a>\n"
+	page += "<a href=\"https://discord.gg/zqeHCEg\" target=\"_blank\"><strong>Discord</strong></a> #gw2crafts, @xanthics</br/> \n"
 	page += "<br /><br />\n"
 	page += "%s\n"%(localText.contact)
 	page += "<br /><br /><hr>\n"
