@@ -147,6 +147,8 @@ tiers        = "Tier"
 toggle       = "Cliquez pour Basculer"
 kNote        = "Note: 11 Feuille de basilic(e.g.) signifie acheter 1 Feuilles de basilic en vrac et il vous restera 14"
 bNote        = "Produit {} par création"
+api_note     = "The API key you enter needs \'inventories\' permissions for bank items and \'unlocks\' for recipes."
+api_new_key  = "You can generate a key here"
 
 # FAQ strings
 costs    = "Les coûts sont couverts, mais les dons sont appréciés"

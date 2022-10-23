@@ -91,6 +91,15 @@ function updateBank(api_key) {
             }
         });
     });
+	$.getJSON('https://api.guildwars2.com/v2/account/recipes?access_token=' + api_key, function(data) {
+		//for item in data
+		$.each(data, function(value) {
+			var reci = data[value]
+			if($("#reci" + reci).length) {
+				$("#reci" + reci).prop('checked', true);
+			}
+		});
+	});
 }
 
 function updateRemaining() {

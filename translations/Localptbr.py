@@ -145,6 +145,9 @@ tiers = "Tier"
 toggle = "Clique para alternar"
 kNote = "Nota: 11 Basil Leaf(por exemplo) significa que você irá comprar 1 Bulk Basil Leaf e irão sobrar 14 Basil Leaf."
 bNote = "Produz {} por vez"
+api_note     = "The API key you enter needs \'inventories\' permissions for bank items and \'unlocks\' for recipes."
+api_new_key  = "You can generate a key here"
+
 # FAQ strings
 costs = "Custos estão cobertos, mas doações são apreciadas"
 gw2spidy = "Estes guias não seriam possíveis sem <a href=\"http://www.gw2spidy.com\">gw2spidy</a> e <a href=\"http://www.guildwarstrade.com/\">guildwarstrade</a>."
@@ -184,6 +187,7 @@ a7 = "Para cada \"criação\", eu gero uma lista de itens, calculo a maior XP/me
 q8 = "Não, quero dizer, como está fazendo estes guias? (Resposta elaborada)"
 a8 = "Primeiro eu divido o crafting em 16 grupos de 25 pontos (ex.: 0-24, 25-49). Então, começando no 375, eu calculo (para cada item que dá XP) seu XP/custo base, e então para cada sub-parte daquele item eu calculo seu XP/custo base e se algum destes itens possuir sub-partes, faço o mesmo até chegar a itens sem receita. Sub-partes são escolhidas para serem feitas se forem mais baratas que comprar a parte, ou se aumentam a proporção XP/custo mais do que comprar a parte. Por isto, o guia pode lhe dizer para criar algo mesmo que seja um pouco mais barato comprá-lo. Então, depois que a melhor escolha foi encontrada, as mudanças de XP são calculadas (através de todos os grupos) e então a melhor escolha é encontrada novamente."
 thanks = "Thank you to the people that created guides before me; Qorthos, pwnuniversity, gw2wiz and guildwars-2-crafting. I wouldn't have had the idea to write this without your guides providing a template for me to build from."
+
 # index strings
 fThings = "4 coisas que você deve saber"
 t1 = "<img src=\"/img/arrow.png\" alt=\"ARROW\"> pode ser clicada para todas as receitas de descoberta (Discovery) assim como listas de itens vendidos."
@@ -201,6 +205,7 @@ thanks2 = "Agradecimentos à guilda Dragonbrand Heroes ( <a href=\"http://dh.fan
 # nav strings
 navNotice = "Essa é uma simples página de navegação, você só deve acessá-la se não puder usar a barra de navegação."
 navLang = "Idioma"
+
 #nav page headers and guide names
 home = "Home"
 nGuides = "Guias Normais"

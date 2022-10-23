@@ -149,6 +149,8 @@ tiers        = "Rango"
 toggle       = "Click para desplegar/cerrar"
 kNote        = "Nota: 11 Hojas de albahaca (por ejemplo) quiere decir que compras 1 bolsa a granel y te sobran 14"
 bNote        = "Produce {}"
+api_note     = "The API key you enter needs \'inventories\' permissions for bank items and \'unlocks\' for recipes."
+api_new_key  = "You can generate a key here"
 
 # FAQ strings
 costs    = "El coste de la web está cubierto, pero se aceptan donaciones"

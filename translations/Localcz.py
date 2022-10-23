@@ -147,6 +147,8 @@ tiers        = "Tier"
 toggle       = "Ukázat / Schovat"
 kNote        = "Poznámka: 11 Basil Leaf(např.) znamená, že máte koupit 1 balení Basil Leaf a zněho Vám pak 14 ks zbyde"
 bNote        = "Vytvoří {}x najednou"
+api_note     = "The API key you enter needs \'inventories\' permissions for bank items and \'unlocks\' for recipes."
+api_new_key  = "You can generate a key here"
 
 # FAQ strings
 costs    = "Náklady jsou pokryté, ale každé podpory si ceníme"

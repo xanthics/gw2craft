@@ -147,6 +147,8 @@ tiers        = "Tier"
 toggle       = "Click To Toggle"
 kNote        = "Note: 11 Basil Leaf(e.g.) means buy 1 bulk Basil Leaf and you will have 14 left over"
 bNote        = "Produces {} per make"
+api_note     = "The API key you enter needs \'inventories\' permissions for bank items and \'unlocks\' for recipes."
+api_new_key  = "You can generate a key here"
 
 # FAQ strings
 costs    = "Costs are covered, but donations are appreciated"
