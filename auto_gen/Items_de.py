@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2022-09-02T09:58:56 PST
+# Created: 2022-10-22T20:13:34 PST
 ilist = {
 	8576: "Flasche Reiswein",
 	8587: "Pochiertes Ei Drottots",
@@ -8540,4 +8540,8 @@ ilist = {
 	1001221: "Kisten im Netz",
 	1001222: "Hafenkran",
 	1001223: "Windmühlenrad",
+	1001224: "Vergänglicher Spinnennetz-Boden",
+	1001225: "Spinnennetz-Wand",
+	1001226: "Vergängliche Spinnennetz-Wand",
+	1001227: "Spinnennetz-Boden",
 }

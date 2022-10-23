@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2022-09-02T09:58:38 PST
+# Created: 2022-10-22T20:13:24 PST
 ilist = {
 	8576: "Bottle of Rice Wine",
 	8587: "Drottot's Poached Egg",
@@ -8540,4 +8540,8 @@ ilist = {
 	1001221: "Netted Crates",
 	1001222: "Dock Crane",
 	1001223: "Windmill Wheel",
+	1001224: "Ephemeral Spider's Web Floor",
+	1001225: "Spider's Web Wall",
+	1001226: "Ephemeral Spider's Web Wall",
+	1001227: "Spider's Web Floor",
 }

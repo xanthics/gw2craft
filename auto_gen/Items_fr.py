@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2022-09-02T09:58:47 PST
+# Created: 2022-10-22T20:13:29 PST
 ilist = {
 	8576: "Bouteille d'alcool de riz",
 	8587: "Œuf poché façon Drottot",
@@ -8540,4 +8540,8 @@ ilist = {
 	1001221: "Caisse dans un filet",
 	1001222: "Grue de quai",
 	1001223: "Roue de moulin",
+	1001224: "Sol en toiles d'araignées éphémères",
+	1001225: "Mur en toiles d'araignées",
+	1001226: "Mur en toiles d'araignées éphémères",
+	1001227: "Sol en toiles d'araignées",
 }

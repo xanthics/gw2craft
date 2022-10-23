@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2022-09-02T09:59:05 PST
+# Created: 2022-10-22T20:13:41 PST
 ilist = {
 	8576: "Botella de licor de arroz",
 	8587: "Huevo escalfado de Drottot",
@@ -8540,4 +8540,8 @@ ilist = {
 	1001221: "Cajones en una red",
 	1001222: "Grúa del muelle",
 	1001223: "Velas de molino de viento",
+	1001224: "Suelo de telaraña efímera",
+	1001225: "Muro de telaraña",
+	1001226: "Muro de telaraña efímera",
+	1001227: "Suelo de telaraña",
 }
