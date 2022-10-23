@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2022-10-22T19:51:37 PST
+# Created: 2022-10-22T20:13:17 PST
 id_rid = {
 	8587: 2843,  # Drottot's Poached Egg
 	12131: 2844,  # Bowl of Watery Mushroom Soup
@@ -130,7 +130,7 @@ id_rid = {
 	38432: 7006,  # Giver's Mithril Imbued Inscription
 	38433: 7005,  # Giver's Darksteel Imbued Inscription
 	38434: 7007,  # Bringer's Orichalcum-Imbued Inscription
-	41561: 7219,  # Carrot Soufflé
+	41561: 7219,  # Carrot SoufflÃ©
 	41562: 7221,  # Bowl of Refugee's Beet Soup
 	41563: 7222,  # Spicy Marinated Mushroom
 	41564: 7223,  # Plate of Frostgorge Clams
@@ -146,7 +146,7 @@ id_rid = {
 	66527: 9712,  # Loaf of Candy Cactus Cornbread
 	66528: 9710,  # Bowl of Sweet and Spicy Beans
 	66529: 9708,  # Bowl of Black Pepper Cactus Salad
-	66530: 9717,  # Bowl of Nopalitos Sauté
+	66530: 9717,  # Bowl of Nopalitos SautÃ©
 	66536: 9716,  # Plate of Roasted Cactus
 	66538: 9718,  # Prickly Pear Pie
 	66539: 9720,  # Bowl of Prickly Pear Sorbet
@@ -234,7 +234,7 @@ id_rid = {
 	92078: 13269,  # Bowl of Green Chile Ice Cream
 	95421: 13499,  # Homemade Campfire Treat
 	95520: 13508,  # Longevity Noodles
-	95556: 13504,  # Turrón Slice
+	95556: 13504,  # TurrÃ³n Slice
 	95942: 13675,  # Meaty Asparagus Skewer
 	96578: 13842,  # Plate of Kimchi Pancakes
 	96707: 13853,  # Bowl of Fish Stew

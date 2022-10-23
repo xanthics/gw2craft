@@ -166,7 +166,7 @@ def parse_recipes(recipes):
 	page = ['# -*- coding: utf-8 -*-', '# Created: {} PST'.format(datetime.now().strftime('%Y-%m-%dT%H:%M:%S')), 'id_rid = {']
 	page.extend([f"\t{item}: {item_recipe[item]},  # {ige.ilist[item]}" for item in sorted(item_recipe)])
 	page.append('}\n')
-	with open('auto_gen\\item_to_recipe.py', 'w') as f:
+	with codecs.open('auto_gen\\item_to_recipe.py', 'w', encoding='utf-8') as f:
 		f.write('\n'.join(page))
 
 	for item in [38207, 38208, 38209, 38295, 38296, 38297]:
