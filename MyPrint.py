@@ -13,6 +13,7 @@ import output
 
 # Format copper values so they are easier to read
 from auto_gen import mod_recipes
+from auto_gen.item_to_recipe import id_rid
 
 
 def mFormat(line):
@@ -436,15 +437,12 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 		for item in recipebuy:
 			t = (t + 1) % 2
 			if karma_recipe[item]['cost']:
-				page.append(("<div class=\"s%d\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><button title=\"" + localText.toggle + "\" class=\"arrow %s\" id=\"%d\">%s</button><div class=\"lsbutton\" id=\"1%d\">%i <span class=\"karmaIcon\"></span>, %s</div></div>\n") % (
-				t, cList[item]['icon'], cList[item]['rarity'], item, cListName[item], item, karma_recipe[item]['cost'], karma_recipe[item]['note']))
+				page.append(("<div class=\"s%d\"><input type=\"checkbox\" id=\"reci%d\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><button title=\"" + localText.toggle + "\" class=\"arrow %s\" id=\"%d\">%s</button><div class=\"lsbutton\" id=\"1%d\">%i <span class=\"karmaIcon\"></span>, %s</div></div>\n") % (t, id_rid[item], cList[item]['icon'], cList[item]['rarity'], item, cListName[item], item, karma_recipe[item]['cost'], karma_recipe[item]['note']))
 			else:
 				if item in rsps:
-					page.append(("<div class=\"s%d\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><button title=\"" + localText.toggle + "\" class=\"arrow %s\" id=\"%d\">%s</button><div class=\"lsbutton\" id=\"1%d\">%s</div></div>\n") % (
-					t, cList[item]['icon'], cList[item]['rarity'], item, cListName[rsps[item]], item, karma_recipe[item]['note']))
+					page.append(("<div class=\"s%d\"><input type=\"checkbox\" id=\"reci%d\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><button title=\"" + localText.toggle + "\" class=\"arrow %s\" id=\"%d\">%s</button><div class=\"lsbutton\" id=\"1%d\">%s</div></div>\n") % (t, id_rid[item], cList[item]['icon'], cList[item]['rarity'], item, cListName[rsps[item]], item, karma_recipe[item]['note']))
 				else:
-					page.append(("<div class=\"s%d\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><button title=\"" + localText.toggle + "\" class=\"arrow %s\" id=\"%d\">%s</button><div class=\"lsbutton\" id=\"1%d\">%s</div></div>\n") % (
-					t, cList[item]['icon'], cList[item]['rarity'], item, cListName[item], item, karma_recipe[item]['note']))
+					page.append(("<div class=\"s%d\"><input type=\"checkbox\" id=\"reci%d\" /><span class=\"itemIcon\" style=\"background-image: url(%s);\"></span><button title=\"" + localText.toggle + "\" class=\"arrow %s\" id=\"%d\">%s</button><div class=\"lsbutton\" id=\"1%d\">%s</div></div>\n") % (t, id_rid[item], cList[item]['icon'], cList[item]['rarity'], item, cListName[item], item, karma_recipe[item]['note']))
 			buttonList.append(item)
 			kt += int(karma_recipe[item]['cost'])
 	if kt:

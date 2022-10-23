@@ -109,6 +109,7 @@ def parse_recipes(recipes):
 				   and not r[1]['type'] in ['Feast', 'Backpack']
 				   or (r[1]['type'] == 'Backpack' and 'Scribe' in r[1]['disciplines'])}
 	nc = {}
+	item_recipe = {}
 	for _recipe, data in list(new_recipes.items()):
 		min_rating = data['min_rating']
 		item_id = data['output_item_id']
@@ -128,6 +129,8 @@ def parse_recipes(recipes):
 			if it == 'Chef' and (set(karma) & ingredient_set or 'LearnedFromItem' in data['flags']):
 				key = 'Chef_karma'
 
+			if 'LearnedFromItem' in data['flags']:
+				item_recipe[data['output_item_id']] = data['id']
 			crafts[key].setdefault(min_rating, {})
 			crafts[key][min_rating][item_id] = data['ingredients']
 			item_ids[item_id] = {'output_item_count': item_count,
@@ -137,6 +140,7 @@ def parse_recipes(recipes):
 				nc[it] += 1
 			else:
 				nc[it] = 1
+
 	import auto_gen.Items_en as ige
 	for craft in crafts:
 		page = '# -*- coding: utf-8 -*-\n'
@@ -158,6 +162,12 @@ def parse_recipes(recipes):
 		page += "}"
 		with codecs.open("auto_gen\\" + craft + ".py", "wb", encoding='utf-8') as f:
 			f.write(page)
+
+	page = ['# -*- coding: utf-8 -*-', '# Created: {} PST'.format(datetime.now().strftime('%Y-%m-%dT%H:%M:%S')), 'id_rid = {']
+	page.extend([f"\t{item}: {item_recipe[item]},  # {ige.ilist[item]}" for item in sorted(item_recipe)])
+	page.append('}\n')
+	with open('auto_gen\\item_to_recipe.py', 'w') as f:
+		f.write('\n'.join(page))
 
 	for item in [38207, 38208, 38209, 38295, 38296, 38297]:
 		item_ids[item] = {'type': 'Recipe', 'output_item_count': 1, 'flags': []}
