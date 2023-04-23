@@ -58,7 +58,7 @@ def faq(localText, free):
 
 	page += "<a href=\"https://discord.gg/zqeHCEg\" target=\"_blank\"><strong>Discord</strong></a> #gw2crafts, @xanthics</br/> \n"
 	page += "<br /><br />\n"
-	page += "%s\n"%(localText.contact)
+	page += "%s.  Or you can check out some music a friend made <a href=\"https://youtu.be/fkutLousvVM\" target=\"_blank\">https://youtu.be/fkutLousvVM </a>\n"%(localText.contact)
 	page += "<br /><br /><hr>\n"
 	page += "<h3 style=\"text-align:center;\">[%s]</h3>\n"%(localText.faq)
 	page += "<hr>\n"

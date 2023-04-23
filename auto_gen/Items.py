@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-# Created:2022-10-22T20:13:24 PST
+# Created:2023-04-23T11:36:31 PST
 ilist = {
 	8576:{'type':'Other', 'output_item_count':0, 'rarity':'Basic', 'vendor_value':2, 'img_url':'https://render.guildwars2.com/file/CD065203FA490A7157DC0FDE7506F3CB93E89D0D/63089.png'},
 	8587:{'output_item_count':2, 'type':'Snack', 'rarity':'Basic', 'vendor_value':0, 'discover':0, 'img_url':'https://render.guildwars2.com/file/BCD0C06CF8AF03D7370B9F217D12D937AB220F2E/63081.png'},
@@ -5915,6 +5915,7 @@ ilist = {
 	41404:{'output_item_count':1, 'type':'Coat', 'rarity':'Rare', 'vendor_value':160, 'img_url':'https://render.guildwars2.com/file/E156D2564805DE9757E839D3C1044B519E462C53/61355.png'},
 	41405:{'output_item_count':1, 'type':'Coat', 'rarity':'Exotic', 'vendor_value':240, 'img_url':'https://render.guildwars2.com/file/072F6E4D010C68014D725D9066AEE7EECB2CC1CA/61521.png'},
 	41406:{'output_item_count':1, 'type':'Gloves', 'rarity':'Fine', 'vendor_value':77, 'img_url':'https://render.guildwars2.com/file/A0385E243BCF3EC104BFEB0D9318A2FB08C6E292/61468.png'},
+	41407:{'output_item_count':1, 'type':'Gloves', 'rarity':'Masterwork', 'vendor_value':80, 'img_url':'https://render.guildwars2.com/file/A0385E243BCF3EC104BFEB0D9318A2FB08C6E292/61468.png'},
 	41408:{'output_item_count':1, 'type':'Gloves', 'rarity':'Rare', 'vendor_value':160, 'img_url':'https://render.guildwars2.com/file/6329B19E9F9603C1AD46D0A4C347DA0604A0DAAB/61358.png'},
 	41409:{'output_item_count':1, 'type':'Gloves', 'rarity':'Exotic', 'vendor_value':240, 'img_url':'https://render.guildwars2.com/file/77EC710506D20A724036E55D12054903D2F42763/61522.png'},
 	41410:{'output_item_count':1, 'type':'Helm', 'rarity':'Fine', 'vendor_value':77, 'img_url':'https://render.guildwars2.com/file/7DDDD3115823EC6EA8AC6BD6A303F40E057BCCD4/61469.png'},
@@ -8063,6 +8064,8 @@ ilist = {
 	97767:{'output_item_count':1, 'type':'Meal', 'rarity':'Fine', 'vendor_value':0, 'discover':0, 'img_url':'https://render.guildwars2.com/file/C318CFBFE2BA565A5D1505FBAFA0F89F3211C22D/2594834.png'},
 	97771:{'output_item_count':1, 'type':'Meal', 'rarity':'Fine', 'vendor_value':0, 'discover':0, 'img_url':'https://render.guildwars2.com/file/268003229232EFBFDD265D34039E80DE5CE7A630/2594841.png'},
 	97933:{'output_item_count':1, 'type':'Snack', 'rarity':'Masterwork', 'vendor_value':0, 'discover':0, 'img_url':'https://render.guildwars2.com/file/A0A0C4B108FC669676CC4F7429DE99480333D17C/2666705.png'},
+	99313:{'type':'Other', 'output_item_count':0, 'rarity':'Exotic', 'vendor_value':8888, 'img_url':'https://render.guildwars2.com/file/37BB91567E4126AAFB96AC02DA4ACF06CBD2DD66/2868104.png'},
+	99327:{'type':'Other', 'output_item_count':0, 'rarity':'Rare', 'vendor_value':888, 'img_url':'https://render.guildwars2.com/file/E204CD54C83574324A6ED6D3F3B7A0D7CBE1DED8/2868103.png'},
 	1000043:{'output_item_count':1, 'type':'GuildConsumableWvw', 'rarity':'Basic', 'vendor_value':0, 'discover':0, 'img_url':'https://render.guildwars2.com/file/B254F052D5670840390C477AD96BA3144C7AAC0D/1228602.png'},
 	1000051:{'output_item_count':1, 'type':'GuildConsumable', 'rarity':'Basic', 'vendor_value':0, 'discover':0, 'img_url':'https://render.guildwars2.com/file/EB49E2DD921863CF0A3AE8EDCE7731AD01EA4F97/1202588.png'},
 	1000073:{'output_item_count':1, 'type':'GuildConsumable', 'rarity':'Basic', 'vendor_value':0, 'discover':0, 'img_url':'https://render.guildwars2.com/file/935E250F12AE504777F2303DE55870463AA9A440/1202636.png'},
@@ -8503,4 +8506,8 @@ ilist = {
 	1001225:{'output_item_count':1, 'type':'GuildDecoration', 'rarity':'Basic', 'vendor_value':0, 'discover':0, 'img_url':'https://render.guildwars2.com/file/A31EDCC10099B8E0BA31669C2CD6B4C1FB0F1239/2752283.png'},
 	1001226:{'output_item_count':1, 'type':'GuildDecoration', 'rarity':'Basic', 'vendor_value':0, 'discover':0, 'img_url':'https://render.guildwars2.com/file/5360FA3F3AE6345F249E25DFFDE64EDB565DAF44/2752284.png'},
 	1001227:{'output_item_count':1, 'type':'GuildDecoration', 'rarity':'Basic', 'vendor_value':0, 'discover':0, 'img_url':'https://render.guildwars2.com/file/F02AF2DAAAEE55BAB5E0D276FBA41556FFB609D3/2752280.png'},
+	1001230:{'output_item_count':1, 'type':'GuildDecoration', 'rarity':'Basic', 'vendor_value':0, 'discover':0, 'img_url':'https://render.guildwars2.com/file/5F9203CB3E73490DC95E096897651ECF65597EEA/2789291.png'},
+	1001232:{'output_item_count':1, 'type':'GuildDecoration', 'rarity':'Basic', 'vendor_value':0, 'discover':0, 'img_url':'https://render.guildwars2.com/file/D41276C45877E463555455A0020CB0DE92ECB001/2789292.png'},
+	1001233:{'output_item_count':1, 'type':'GuildDecoration', 'rarity':'Basic', 'vendor_value':0, 'discover':0, 'img_url':'https://render.guildwars2.com/file/713ED963CB5DE2D9ADAB716C0BC2C416100E2762/2870931.png'},
+	1001234:{'output_item_count':1, 'type':'GuildDecoration', 'rarity':'Basic', 'vendor_value':0, 'discover':0, 'img_url':'https://render.guildwars2.com/file/45B7011D0730920ED733F5775943274545CEFB0C/2870930.png'},
 }

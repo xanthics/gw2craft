@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2021-01-24T14:49:33 PST
+# Created: 2023-04-23T11:36:24 PST
 recipes = {
 	0: {
 		9406: {19720: 10},  # 8 Slot Jute Bag
@@ -834,6 +834,7 @@ recipes = {
 		37175: {37897: 10, 72194: 1},  # Apothecary's Embroidered Silk Insignia
 		41399: {13189: 2, 13190: 1, 41554: 1},  # Sentinel's Feathered Boots
 		41403: {13183: 1, 13184: 1, 41554: 1},  # Sentinel's Feathered Vestments
+		41407: {13185: 1, 13186: 1, 41554: 1},  # New this run
 		41411: {13191: 1, 13192: 1, 41554: 1},  # Sentinel's Feathered Headpiece
 		41415: {13187: 1, 13188: 1, 41554: 1},  # Sentinel's Feathered Pants
 		41419: {13193: 1, 13194: 1, 41554: 1},  # Sentinel's Feathered Mantle
