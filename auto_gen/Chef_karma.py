@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2022-06-02T08:52:56 PST
+# Created: 2023-08-07T08:10:19 PST
 recipes = {
 	0: {
 		12131: {12147: 1, 12153: 1, 12202: 1},  # Bowl of Watery Mushroom Soup
@@ -92,8 +92,8 @@ recipes = {
 		12377: {12299: 1, 12340: 1},  # Bowl of Chili and Avocado
 		12493: {12270: 1, 12338: 1},  # Bowl of Chocolate Cherry Frosting
 		12754: {12141: 100, 12253: 25, 12338: 100},  # Unidentified Red Dye
-		95520: {12136: 2, 12156: 2, 12275: 1, 12533: 1},  # Longevity Noodles
 		95556: {12143: 3, 12155: 2, 12337: 15},  # Turrón Slice
+		99955: {12236: 2, 12271: 2, 96943: 5, 97690: 5},  # Zephyrite Fish Jerky
 	},
 	225: {
 		12264: {12155: 1, 12166: 1, 12254: 4},  # Raspberry Pie

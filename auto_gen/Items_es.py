@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2023-04-23T11:36:55 PST
+# Created: 2023-08-07T08:10:49 PST
 ilist = {
 	8576: "Botella de licor de arroz",
 	8587: "Huevo escalfado de Drottot",
@@ -8039,7 +8039,6 @@ ilist = {
 	93567: "Núcleo de invocatormenta",
 	94692: "Lámpara de la suerte de gran buey",
 	95421: "Delicia de campamento casera",
-	95520: "Fideos de la longevidad",
 	95537: "Lámpara de la suerte del gran tigre",
 	95556: "Tableta de turrón",
 	95663: "Filete de pescado fantástico",
@@ -8066,6 +8065,7 @@ ilist = {
 	97933: "Superpostre helado mixto",
 	99313: "Lámpara de la suerte del gran conejo",
 	99327: "Lámpara de la suerte del conejo",
+	99955: "Cecina de pescado cefirita",
 	1000043: "Catapulta de clan",
 	1000051: "Transporte de la Cámara",
 	1000073: "Estandarte público de +5 % de experiencia",
@@ -8226,7 +8226,7 @@ ilist = {
 	1000508: "Globo amarillo",
 	1000510: "Candelero cuadrado",
 	1000511: "Carreta",
-	1000513: "Fortificaciones invulnerables",
+	1000513: "Atenuación de asedio",
 	1000516: "Cajón básico",
 	1000518: "Pilar cuadrado grande",
 	1000519: "Palmera de abanico en tiesto",
@@ -8555,4 +8555,10 @@ ilist = {
 	1001236: "Suelo de supercueva",
 	1001237: "Meseta de supercueva",
 	1001238: "Pilar de supercueva",
+	1001239: "Rampa curvada de circuito holográfico",
+	1001240: "Rampa curvada grande de circuito holográfico",
+	1001241: "Rampa curvada ancha de circuito holográfico",
+	1001243: "Puente de escalera de Cantha",
+	1001244: "Muro de jardín de Cantha",
+	1001245: "Puente de Seitung",
 }

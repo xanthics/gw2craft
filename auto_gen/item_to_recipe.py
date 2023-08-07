@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2022-10-22T20:13:17 PST
+# Created: 2023-08-07T08:10:19 PST
 id_rid = {
 	8587: 2843,  # Drottot's Poached Egg
 	12131: 2844,  # Bowl of Watery Mushroom Soup
@@ -233,7 +233,6 @@ id_rid = {
 	91954: 13268,  # Bowl of Carne Khan Chili
 	92078: 13269,  # Bowl of Green Chile Ice Cream
 	95421: 13499,  # Homemade Campfire Treat
-	95520: 13508,  # Longevity Noodles
 	95556: 13504,  # Turrón Slice
 	95942: 13675,  # Meaty Asparagus Skewer
 	96578: 13842,  # Plate of Kimchi Pancakes
@@ -242,4 +241,5 @@ id_rid = {
 	97422: 13822,  # Bowl of Kimchi Tofu Stew
 	97767: 13699,  # Fishy Rice Bowl
 	97933: 13896,  # Super Mixed Parfait
+	99955: 13935,  # Zephyrite Fish Jerky
 }

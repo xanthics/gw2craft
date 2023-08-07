@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2021-01-24T14:49:33 PST
+# Created: 2023-08-07T08:10:19 PST
 recipes = {
 	0: {
 		9464: {24272: 6},  # Apprentice Tuning Crystal
@@ -785,30 +785,30 @@ recipes = {
 		13253: {19712: 2},  # Ancient Trident Shaft
 		13255: {19712: 2},  # Ancient Scepter Core
 		13261: {19712: 2},  # Ancient Staff Head
-		13583: {12973: 1, 13261: 1, 19917: 1, 24325: 30},  # Carrion Primordus Staff
-		13584: {12973: 1, 13261: 1, 19918: 1, 24325: 30},  # Cleric's Primordus Staff
-		13586: {12973: 1, 13261: 1, 19923: 1, 24325: 30},  # Valkyrie Primordus Staff
-		13587: {12973: 1, 13261: 1, 19920: 1, 24325: 30},  # Berserker's Primordus Staff
-		13588: {12973: 1, 13261: 1, 19921: 1, 24325: 30},  # Rampager's Primordus Staff
-		13589: {12973: 1, 13261: 1, 19922: 1, 24325: 30},  # Knight's Primordus Staff
-		13590: {13004: 1, 13253: 1, 19917: 1, 24325: 30},  # Carrion Primordus Trident
-		13591: {13004: 1, 13253: 1, 19918: 1, 24325: 30},  # Cleric's Primordus Trident
-		13593: {13004: 1, 13253: 1, 19923: 1, 24325: 30},  # Valkyrie Primordus Trident
-		13594: {13004: 1, 13253: 1, 19920: 1, 24325: 30},  # Berserker's Primordus Trident
-		13595: {13004: 1, 13253: 1, 19921: 1, 24325: 30},  # Rampager's Primordus Trident
-		13596: {13004: 1, 13253: 1, 19922: 1, 24325: 30},  # Knight's Primordus Trident
-		13597: {12976: 1, 13255: 1, 19917: 1, 24325: 20},  # Carrion Primordus Scepter
-		13598: {12976: 1, 13255: 1, 19918: 1, 24325: 20},  # Cleric's Primordus Scepter
-		13600: {12976: 1, 13255: 1, 19923: 1, 24325: 20},  # Valkyrie Primordus Scepter
-		13601: {12976: 1, 13255: 1, 19920: 1, 24325: 20},  # Berserker's Primordus Scepter
-		13602: {12976: 1, 13255: 1, 19921: 1, 24325: 20},  # Rampager's Primordus Scepter
-		13603: {12976: 1, 13255: 1, 19922: 1, 24325: 20},  # Knight's Primordus Scepter
-		13604: {12982: 1, 13243: 1, 19917: 1, 24325: 15},  # Carrion Primordus Focus
-		13605: {12982: 1, 13243: 1, 19918: 1, 24325: 15},  # Cleric's Primordus Focus
-		13607: {12982: 1, 13243: 1, 19923: 1, 24325: 15},  # Valkyrie Primordus Focus
-		13608: {12982: 1, 13243: 1, 19920: 1, 24325: 15},  # Berserker's Primordus Focus
-		13609: {12982: 1, 13243: 1, 19921: 1, 24325: 15},  # Rampager's Primordus Focus
-		13610: {12982: 1, 13243: 1, 19922: 1, 24325: 15},  # Knight's Primordus Focus
+		13583: {12973: 1, 13261: 1, 19917: 1, 24325: 30},  # Carrion Destroyer Staff
+		13584: {12973: 1, 13261: 1, 19918: 1, 24325: 30},  # Cleric's Destroyer Staff
+		13586: {12973: 1, 13261: 1, 19923: 1, 24325: 30},  # Valkyrie Destroyer Staff
+		13587: {12973: 1, 13261: 1, 19920: 1, 24325: 30},  # Berserker's Destroyer Staff
+		13588: {12973: 1, 13261: 1, 19921: 1, 24325: 30},  # Rampager's Destroyer Staff
+		13589: {12973: 1, 13261: 1, 19922: 1, 24325: 30},  # Knight's Destroyer Staff
+		13590: {13004: 1, 13253: 1, 19917: 1, 24325: 30},  # Carrion Destroyer Trident
+		13591: {13004: 1, 13253: 1, 19918: 1, 24325: 30},  # Cleric's Destroyer Trident
+		13593: {13004: 1, 13253: 1, 19923: 1, 24325: 30},  # Valkyrie Destroyer Trident
+		13594: {13004: 1, 13253: 1, 19920: 1, 24325: 30},  # Berserker's Destroyer Trident
+		13595: {13004: 1, 13253: 1, 19921: 1, 24325: 30},  # Rampager's Destroyer Trident
+		13596: {13004: 1, 13253: 1, 19922: 1, 24325: 30},  # Knight's Destroyer Trident
+		13597: {12976: 1, 13255: 1, 19917: 1, 24325: 20},  # Carrion Destroyer Scepter
+		13598: {12976: 1, 13255: 1, 19918: 1, 24325: 20},  # Cleric's Destroyer Scepter
+		13600: {12976: 1, 13255: 1, 19923: 1, 24325: 20},  # Valkyrie Destroyer Scepter
+		13601: {12976: 1, 13255: 1, 19920: 1, 24325: 20},  # Berserker's Destroyer Scepter
+		13602: {12976: 1, 13255: 1, 19921: 1, 24325: 20},  # Rampager's Destroyer Scepter
+		13603: {12976: 1, 13255: 1, 19922: 1, 24325: 20},  # Knight's Destroyer Scepter
+		13604: {12982: 1, 13243: 1, 19917: 1, 24325: 15},  # Carrion Destroyer Focus
+		13605: {12982: 1, 13243: 1, 19918: 1, 24325: 15},  # Cleric's Destroyer Focus
+		13607: {12982: 1, 13243: 1, 19923: 1, 24325: 15},  # Valkyrie Destroyer Focus
+		13608: {12982: 1, 13243: 1, 19920: 1, 24325: 15},  # Berserker's Destroyer Focus
+		13609: {12982: 1, 13243: 1, 19921: 1, 24325: 15},  # Rampager's Destroyer Focus
+		13610: {12982: 1, 13243: 1, 19922: 1, 24325: 15},  # Knight's Destroyer Focus
 		13896: {12973: 1, 13261: 1, 19917: 1},  # Carrion Pearl Quarterstaff
 		13897: {12973: 1, 13261: 1, 19918: 1},  # Cleric's Pearl Quarterstaff
 		13899: {12973: 1, 13261: 1, 19920: 1},  # Berserker's Pearl Quarterstaff
@@ -853,28 +853,28 @@ recipes = {
 		36791: {12976: 1, 13255: 1, 37181: 1},  # Apothecary's Pearl Rod
 		36824: {12973: 1, 13261: 1, 37181: 1},  # Apothecary's Pearl Quarterstaff
 		36852: {13004: 1, 13253: 1, 37181: 1},  # Apothecary's Pearl Trident
-		36859: {12982: 1, 13243: 1, 24325: 15, 37181: 1},  # Apothecary's Primordus Focus
-		36863: {12976: 1, 13255: 1, 24325: 20, 37181: 1},  # Apothecary's Primordus Scepter
-		36868: {12973: 1, 13261: 1, 24325: 30, 37181: 1},  # Apothecary's Primordus Staff
-		36873: {13004: 1, 13253: 1, 24325: 30, 37181: 1},  # Apothecary's Primordus Trident
+		36859: {12982: 1, 13243: 1, 24325: 15, 37181: 1},  # Apothecary's Destroyer Focus
+		36863: {12976: 1, 13255: 1, 24325: 20, 37181: 1},  # Apothecary's Destroyer Scepter
+		36868: {12973: 1, 13261: 1, 24325: 30, 37181: 1},  # Apothecary's Destroyer Staff
+		36873: {13004: 1, 13253: 1, 24325: 30, 37181: 1},  # Apothecary's Destroyer Trident
 		37181: {12988: 5, 19721: 5, 37897: 30},  # Apothecary's Orichalcum Imbued Inscription
 		38410: {12982: 1, 13243: 1, 38434: 1},  # Bringer's Pearl Conch
 		38416: {12976: 1, 13255: 1, 38434: 1},  # Bringer's Pearl Rod
 		38422: {12973: 1, 13261: 1, 38434: 1},  # Bringer's Pearl Quarterstaff
 		38428: {13004: 1, 13253: 1, 38434: 1},  # Bringer's Pearl Trident
 		38434: {12988: 5, 19721: 5, 86601: 100},  # Bringer's Orichalcum-Imbued Inscription
-		41460: {12982: 1, 13243: 1, 24325: 20, 41560: 1},  # Sentinel's Primordus Focus
-		41468: {12976: 1, 13255: 1, 24325: 20, 41560: 1},  # Sentinel's Primordus Scepter
-		41472: {12973: 1, 13261: 1, 24325: 20, 41560: 1},  # Sentinel's Primordus Staff
-		41475: {13004: 1, 13253: 1, 24325: 20, 41560: 1},  # Sentinel's Primordus Trident
+		41460: {12982: 1, 13243: 1, 24325: 20, 41560: 1},  # Sentinel's Destroyer Focus
+		41468: {12976: 1, 13255: 1, 24325: 20, 41560: 1},  # Sentinel's Destroyer Scepter
+		41472: {12973: 1, 13261: 1, 24325: 20, 41560: 1},  # Sentinel's Destroyer Staff
+		41475: {13004: 1, 13253: 1, 24325: 20, 41560: 1},  # Sentinel's Destroyer Trident
 		41480: {12982: 1, 13243: 1, 41560: 1},  # Sentinel's Pearl Conch
 		41484: {12976: 1, 13255: 1, 41560: 1},  # Sentinel's Pearl Rod
 		41488: {12973: 1, 13261: 1, 41560: 1},  # Sentinel's Pearl Quarterstaff
 		41492: {13004: 1, 13253: 1, 41560: 1},  # Sentinel's Pearl Trident
-		45945: {12982: 1, 13243: 1, 19919: 1, 24325: 15},  # Assassin's Primordus Focus
-		45953: {12976: 1, 13255: 1, 19919: 1, 24325: 20},  # Assassin's Primordus Scepter
-		45957: {12973: 1, 13261: 1, 19919: 1, 24325: 30},  # Assassin's Primordus Staff
-		45960: {13004: 1, 13253: 1, 19919: 1, 24325: 30},  # Assassin's Primordus Trident
+		45945: {12982: 1, 13243: 1, 19919: 1, 24325: 15},  # Assassin's Destroyer Focus
+		45953: {12976: 1, 13255: 1, 19919: 1, 24325: 20},  # Assassin's Destroyer Scepter
+		45957: {12973: 1, 13261: 1, 19919: 1, 24325: 30},  # Assassin's Destroyer Staff
+		45960: {13004: 1, 13253: 1, 19919: 1, 24325: 30},  # Assassin's Destroyer Trident
 		45962: {12973: 1, 13261: 1, 19721: 5, 46686: 1},  # Rabid Pearl Quarterstaff
 		45963: {12973: 1, 13261: 1, 19721: 5, 46690: 1},  # Dire Pearl Quarterstaff
 		45964: {12973: 1, 13261: 1, 19721: 5, 46687: 1},  # Magi's Pearl Quarterstaff

@@ -75,7 +75,9 @@ def parse_recipes(recipes):
 	# Glazed Peach Tart[s], Glazed Pear Tart[s], Piece[s] of Candy Corn Almond
 	# Brittle, Strawberry Ghost[s], Bowl[s] of Candy Corn Custard
 	# key is item_id
-	bad_recipes = [36081, 36080, 36077, 36076, 36074, 95277]
+	bad_recipes = [36081, 36080, 36077, 36076, 36074, 95277,
+	               95520, 95534,  # Longevity Noodles - Account bound recipe only from New Years
+	               ]
 
 	# Recipes learned from Master Craftsmen that we still want to consider
 	# key is item_id
@@ -164,7 +166,7 @@ def parse_recipes(recipes):
 			f.write(page)
 
 	page = ['# -*- coding: utf-8 -*-', '# Created: {} PST'.format(datetime.now().strftime('%Y-%m-%dT%H:%M:%S')), 'id_rid = {']
-	page.extend([f"\t{item}: {item_recipe[item]},  # {ige.ilist[item]}" for item in sorted(item_recipe)])
+	page.extend([f"\t{item}: {item_recipe[item]},  # {ige.ilist[item] if item in ige.ilist else 'Unknown'}" for item in sorted(item_recipe)])
 	page.append('}\n')
 	with codecs.open('auto_gen\\item_to_recipe.py', 'w', encoding='utf-8') as f:
 		f.write('\n'.join(page))

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2023-04-23T11:36:31 PST
+# Created: 2023-08-07T08:10:27 PST
 ilist = {
 	8576: "Bottle of Rice Wine",
 	8587: "Drottot's Poached Egg",
@@ -8039,7 +8039,6 @@ ilist = {
 	93567: "Stormcaller Core",
 	94692: "Lucky Great Ox Lantern",
 	95421: "Homemade Campfire Treat",
-	95520: "Longevity Noodles",
 	95537: "Lucky Great Tiger Lantern",
 	95556: "Turrón Slice",
 	95663: "Fantastic Fish Fillet",
@@ -8066,6 +8065,7 @@ ilist = {
 	97933: "Super Mixed Parfait",
 	99313: "Lucky Great Rabbit Lantern",
 	99327: "Lucky Rabbit Lantern",
+	99955: "Zephyrite Fish Jerky",
 	1000043: "Guild Catapult",
 	1000051: "Vault Transport",
 	1000073: "+5% Experience Public Banner",
@@ -8226,7 +8226,7 @@ ilist = {
 	1000508: "Yellow Balloon",
 	1000510: "Square Candlestick",
 	1000511: "Wagon",
-	1000513: "Invulnerable Fortifications",
+	1000513: "Siege Dampener",
 	1000516: "Basic Crate",
 	1000518: "Large Square Pillar",
 	1000519: "Potted Fan Palm",
@@ -8555,4 +8555,10 @@ ilist = {
 	1001236: "Super Cave Floor",
 	1001237: "Super Cave Plateau",
 	1001238: "Super Cave Pillar",
+	1001239: "Holographic Track Curved Ramp",
+	1001240: "Holographic Track Large Curved Ramp",
+	1001241: "Holographic Track Wide Curved Ramp",
+	1001243: "Canthan Stair Bridge",
+	1001244: "Canthan Garden Wall",
+	1001245: "Seitung Bridge",
 }

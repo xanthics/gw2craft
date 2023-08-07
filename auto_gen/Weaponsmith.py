@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2021-01-24T14:49:33 PST
+# Created: 2023-08-07T08:10:19 PST
 recipes = {
 	0: {
 		9431: {19679: 3, 24272: 3},  # Rough Sharpening Stone
@@ -1164,54 +1164,54 @@ recipes = {
 		12906: {19685: 2},  # Orichalcum Shield Backing
 		12912: {19685: 2},  # Orichalcum Shield Boss
 		12998: {19685: 3},  # Orichalcum Spear Head
-		13660: {12858: 1, 12882: 1, 19917: 1, 24325: 20},  # Carrion Primordus Dagger
-		13661: {12858: 1, 12882: 1, 19918: 1, 24325: 20},  # Cleric's Primordus Dagger
-		13663: {12858: 1, 12882: 1, 19920: 1, 24325: 20},  # Berserker's Primordus Dagger
-		13664: {12858: 1, 12882: 1, 19923: 1, 24325: 20},  # Valkyrie Primordus Dagger
-		13665: {12858: 1, 12882: 1, 19921: 1, 24325: 20},  # Rampager's Primordus Dagger
-		13666: {12858: 1, 12882: 1, 19922: 1, 24325: 20},  # Knight's Primordus Dagger
-		13667: {12846: 1, 12870: 1, 19917: 1, 24325: 20},  # Carrion Primordus Sword
-		13668: {12846: 1, 12870: 1, 19918: 1, 24325: 20},  # Cleric's Primordus Sword
-		13670: {12846: 1, 12870: 1, 19920: 1, 24325: 20},  # Berserker's Primordus Sword
-		13671: {12846: 1, 12870: 1, 19923: 1, 24325: 20},  # Valkyrie Primordus Sword
-		13672: {12846: 1, 12870: 1, 19921: 1, 24325: 20},  # Rampager's Primordus Sword
-		13673: {12846: 1, 12870: 1, 19922: 1, 24325: 20},  # Knight's Primordus Sword
-		13674: {12876: 1, 12892: 1, 19917: 1, 24325: 20},  # Carrion Primordus Mace
-		13675: {12876: 1, 12892: 1, 19918: 1, 24325: 20},  # Cleric's Primordus Mace
-		13677: {12876: 1, 12892: 1, 19920: 1, 24325: 20},  # Berserker's Primordus Mace
-		13678: {12876: 1, 12892: 1, 19923: 1, 24325: 20},  # Valkyrie Primordus Mace
-		13679: {12876: 1, 12892: 1, 19921: 1, 24325: 20},  # Rampager's Primordus Mace
-		13680: {12876: 1, 12892: 1, 19922: 1, 24325: 20},  # Knight's Primordus Mace
-		13681: {12906: 1, 12912: 1, 19917: 1, 24325: 15},  # Carrion Primordus Shield
-		13682: {12906: 1, 12912: 1, 19918: 1, 24325: 15},  # Cleric's Primordus Shield
-		13684: {12906: 1, 12912: 1, 19920: 1, 24325: 15},  # Berserker's Primordus Shield
-		13685: {12906: 1, 12912: 1, 19923: 1, 24325: 15},  # Valkyrie Primordus Shield
-		13686: {12906: 1, 12912: 1, 19921: 1, 24325: 15},  # Rampager's Primordus Shield
-		13687: {12906: 1, 12912: 1, 19922: 1, 24325: 15},  # Knight's Primordus Shield
-		13688: {12852: 1, 12892: 1, 19917: 1, 24325: 20},  # Carrion Primordus Axe
-		13689: {12852: 1, 12892: 1, 19918: 1, 24325: 20},  # Cleric's Primordus Axe
-		13691: {12852: 1, 12892: 1, 19920: 1, 24325: 20},  # Berserker's Primordus Axe
-		13692: {12852: 1, 12892: 1, 19923: 1, 24325: 20},  # Valkyrie Primordus Axe
-		13693: {12852: 1, 12892: 1, 19921: 1, 24325: 20},  # Rampager's Primordus Axe
-		13694: {12852: 1, 12892: 1, 19922: 1, 24325: 20},  # Knight's Primordus Axe
-		13695: {12840: 1, 12888: 1, 19917: 1, 24325: 30},  # Carrion Primordus Greatsword
-		13696: {12840: 1, 12888: 1, 19918: 1, 24325: 30},  # Cleric's Primordus Greatsword
-		13698: {12840: 1, 12888: 1, 19920: 1, 24325: 30},  # Berserker's Primordus Greatsword
-		13699: {12840: 1, 12888: 1, 19923: 1, 24325: 30},  # Valkyrie Primordus Greatsword
-		13700: {12840: 1, 12888: 1, 19921: 1, 24325: 30},  # Rampager's Primordus Greatsword
-		13701: {12840: 1, 12888: 1, 19922: 1, 24325: 30},  # Knight's Primordus Greatsword
-		13702: {12864: 1, 12899: 1, 19917: 1, 24325: 30},  # Carrion Primordus Maul
-		13703: {12864: 1, 12899: 1, 19918: 1, 24325: 30},  # Cleric's Primordus Maul
-		13705: {12864: 1, 12899: 1, 19920: 1, 24325: 30},  # Berserker's Primordus Maul
-		13706: {12864: 1, 12899: 1, 19923: 1, 24325: 30},  # Valkyrie Primordus Maul
-		13707: {12864: 1, 12899: 1, 19921: 1, 24325: 30},  # Rampager's Primordus Maul
-		13708: {12864: 1, 12899: 1, 19922: 1, 24325: 30},  # Knight's Primordus Maul
-		13709: {12899: 1, 12998: 1, 19917: 1, 24325: 30},  # Carrion Primordus Pike
-		13710: {12899: 1, 12998: 1, 19918: 1, 24325: 30},  # Cleric's Primordus Pike
-		13712: {12899: 1, 12998: 1, 19920: 1, 24325: 30},  # Berserker's Primordus Pike
-		13713: {12899: 1, 12998: 1, 19923: 1, 24325: 30},  # Valkyrie Primordus Pike
-		13714: {12899: 1, 12998: 1, 19921: 1, 24325: 30},  # Rampager's Primordus Pike
-		13715: {12899: 1, 12998: 1, 19922: 1, 24325: 30},  # Knight's Primordus Pike
+		13660: {12858: 1, 12882: 1, 19917: 1, 24325: 20},  # Carrion Destroyer Dagger
+		13661: {12858: 1, 12882: 1, 19918: 1, 24325: 20},  # Cleric's Destroyer Dagger
+		13663: {12858: 1, 12882: 1, 19920: 1, 24325: 20},  # Berserker's Destroyer Dagger
+		13664: {12858: 1, 12882: 1, 19923: 1, 24325: 20},  # Valkyrie Destroyer Dagger
+		13665: {12858: 1, 12882: 1, 19921: 1, 24325: 20},  # Rampager's Destroyer Dagger
+		13666: {12858: 1, 12882: 1, 19922: 1, 24325: 20},  # Knight's Destroyer Dagger
+		13667: {12846: 1, 12870: 1, 19917: 1, 24325: 20},  # Carrion Destroyer Sword
+		13668: {12846: 1, 12870: 1, 19918: 1, 24325: 20},  # Cleric's Destroyer Sword
+		13670: {12846: 1, 12870: 1, 19920: 1, 24325: 20},  # Berserker's Destroyer Sword
+		13671: {12846: 1, 12870: 1, 19923: 1, 24325: 20},  # Valkyrie Destroyer Sword
+		13672: {12846: 1, 12870: 1, 19921: 1, 24325: 20},  # Rampager's Destroyer Sword
+		13673: {12846: 1, 12870: 1, 19922: 1, 24325: 20},  # Knight's Destroyer Sword
+		13674: {12876: 1, 12892: 1, 19917: 1, 24325: 20},  # Carrion Destroyer Mace
+		13675: {12876: 1, 12892: 1, 19918: 1, 24325: 20},  # Cleric's Destroyer Mace
+		13677: {12876: 1, 12892: 1, 19920: 1, 24325: 20},  # Berserker's Destroyer Mace
+		13678: {12876: 1, 12892: 1, 19923: 1, 24325: 20},  # Valkyrie Destroyer Mace
+		13679: {12876: 1, 12892: 1, 19921: 1, 24325: 20},  # Rampager's Destroyer Mace
+		13680: {12876: 1, 12892: 1, 19922: 1, 24325: 20},  # Knight's Destroyer Mace
+		13681: {12906: 1, 12912: 1, 19917: 1, 24325: 15},  # Carrion Destroyer Shield
+		13682: {12906: 1, 12912: 1, 19918: 1, 24325: 15},  # Cleric's Destroyer Shield
+		13684: {12906: 1, 12912: 1, 19920: 1, 24325: 15},  # Berserker's Destroyer Shield
+		13685: {12906: 1, 12912: 1, 19923: 1, 24325: 15},  # Valkyrie Destroyer Shield
+		13686: {12906: 1, 12912: 1, 19921: 1, 24325: 15},  # Rampager's Destroyer Shield
+		13687: {12906: 1, 12912: 1, 19922: 1, 24325: 15},  # Knight's Destroyer Shield
+		13688: {12852: 1, 12892: 1, 19917: 1, 24325: 20},  # Carrion Destroyer Axe
+		13689: {12852: 1, 12892: 1, 19918: 1, 24325: 20},  # Cleric's Destroyer Axe
+		13691: {12852: 1, 12892: 1, 19920: 1, 24325: 20},  # Berserker's Destroyer Axe
+		13692: {12852: 1, 12892: 1, 19923: 1, 24325: 20},  # Valkyrie Destroyer Axe
+		13693: {12852: 1, 12892: 1, 19921: 1, 24325: 20},  # Rampager's Destroyer Axe
+		13694: {12852: 1, 12892: 1, 19922: 1, 24325: 20},  # Knight's Destroyer Axe
+		13695: {12840: 1, 12888: 1, 19917: 1, 24325: 30},  # Carrion Destroyer Greatsword
+		13696: {12840: 1, 12888: 1, 19918: 1, 24325: 30},  # Cleric's Destroyer Greatsword
+		13698: {12840: 1, 12888: 1, 19920: 1, 24325: 30},  # Berserker's Destroyer Greatsword
+		13699: {12840: 1, 12888: 1, 19923: 1, 24325: 30},  # Valkyrie Destroyer Greatsword
+		13700: {12840: 1, 12888: 1, 19921: 1, 24325: 30},  # Rampager's Destroyer Greatsword
+		13701: {12840: 1, 12888: 1, 19922: 1, 24325: 30},  # Knight's Destroyer Greatsword
+		13702: {12864: 1, 12899: 1, 19917: 1, 24325: 30},  # Carrion Destroyer Maul
+		13703: {12864: 1, 12899: 1, 19918: 1, 24325: 30},  # Cleric's Destroyer Maul
+		13705: {12864: 1, 12899: 1, 19920: 1, 24325: 30},  # Berserker's Destroyer Maul
+		13706: {12864: 1, 12899: 1, 19923: 1, 24325: 30},  # Valkyrie Destroyer Maul
+		13707: {12864: 1, 12899: 1, 19921: 1, 24325: 30},  # Rampager's Destroyer Maul
+		13708: {12864: 1, 12899: 1, 19922: 1, 24325: 30},  # Knight's Destroyer Maul
+		13709: {12899: 1, 12998: 1, 19917: 1, 24325: 30},  # Carrion Destroyer Pike
+		13710: {12899: 1, 12998: 1, 19918: 1, 24325: 30},  # Cleric's Destroyer Pike
+		13712: {12899: 1, 12998: 1, 19920: 1, 24325: 30},  # Berserker's Destroyer Pike
+		13713: {12899: 1, 12998: 1, 19923: 1, 24325: 30},  # Valkyrie Destroyer Pike
+		13714: {12899: 1, 12998: 1, 19921: 1, 24325: 30},  # Rampager's Destroyer Pike
+		13715: {12899: 1, 12998: 1, 19922: 1, 24325: 30},  # Knight's Destroyer Pike
 		15269: {12858: 1, 12882: 1, 19917: 1},  # Carrion Pearl Carver
 		15270: {12858: 1, 12882: 1, 19918: 1},  # Cleric's Pearl Carver
 		15272: {12858: 1, 12882: 1, 19920: 1},  # Berserker's Pearl Carver
@@ -1279,14 +1279,14 @@ recipes = {
 		36895: {12906: 1, 12912: 1, 37181: 1},  # Apothecary's Pearl Shell
 		36904: {12899: 1, 12998: 1, 37181: 1},  # Apothecary's Pearl Impaler
 		36913: {12846: 1, 12870: 1, 37181: 1},  # Apothecary's Pearl Sabre
-		36915: {12852: 1, 12892: 1, 24325: 20, 37181: 1},  # Apothecary's Primordus Axe
-		36916: {12858: 1, 12882: 1, 24325: 20, 37181: 1},  # Apothecary's Primordus Dagger
-		36919: {12840: 1, 12888: 1, 24325: 30, 37181: 1},  # Apothecary's Primordus Greatsword
-		36920: {12864: 1, 12899: 1, 24325: 30, 37181: 1},  # Apothecary's Primordus Maul
-		36921: {12876: 1, 12892: 1, 24325: 20, 37181: 1},  # Apothecary's Primordus Mace
-		36922: {12906: 1, 12912: 1, 24325: 15, 37181: 1},  # Apothecary's Primordus Shield
-		36923: {12899: 1, 12998: 1, 24325: 30, 37181: 1},  # Apothecary's Primordus Pike
-		36924: {12846: 1, 12870: 1, 24325: 20, 37181: 1},  # Apothecary's Primordus Sword
+		36915: {12852: 1, 12892: 1, 24325: 20, 37181: 1},  # Apothecary's Destroyer Axe
+		36916: {12858: 1, 12882: 1, 24325: 20, 37181: 1},  # Apothecary's Destroyer Dagger
+		36919: {12840: 1, 12888: 1, 24325: 30, 37181: 1},  # Apothecary's Destroyer Greatsword
+		36920: {12864: 1, 12899: 1, 24325: 30, 37181: 1},  # Apothecary's Destroyer Maul
+		36921: {12876: 1, 12892: 1, 24325: 20, 37181: 1},  # Apothecary's Destroyer Mace
+		36922: {12906: 1, 12912: 1, 24325: 15, 37181: 1},  # Apothecary's Destroyer Shield
+		36923: {12899: 1, 12998: 1, 24325: 30, 37181: 1},  # Apothecary's Destroyer Pike
+		36924: {12846: 1, 12870: 1, 24325: 20, 37181: 1},  # Apothecary's Destroyer Sword
 		37181: {12988: 5, 19721: 5, 37897: 30},  # Apothecary's Orichalcum Imbued Inscription
 		38319: {12852: 1, 12892: 1, 38434: 1},  # Bringer's Pearl Reaver
 		38321: {12846: 1, 12870: 1, 38434: 1},  # Bringer's Pearl Sabre
@@ -1297,14 +1297,14 @@ recipes = {
 		38345: {12840: 1, 12888: 1, 38434: 1},  # Bringer's Pearl Broadsword
 		38350: {12858: 1, 12882: 1, 38434: 1},  # Bringer's Pearl Carver
 		38434: {12988: 5, 19721: 5, 86601: 100},  # Bringer's Orichalcum-Imbued Inscription
-		41458: {12852: 1, 12892: 1, 24325: 20, 41560: 1},  # Sentinel's Primordus Axe
-		41459: {12858: 1, 12882: 1, 24325: 20, 41560: 1},  # Sentinel's Primordus Dagger
-		41461: {12840: 1, 12888: 1, 24325: 20, 41560: 1},  # Sentinel's Primordus Greatsword
-		41462: {12864: 1, 12899: 1, 24325: 20, 41560: 1},  # Sentinel's Primordus Maul
-		41465: {12876: 1, 12892: 1, 24325: 20, 41560: 1},  # Sentinel's Primordus Mace
-		41469: {12906: 1, 12912: 1, 24325: 20, 41560: 1},  # Sentinel's Primordus Shield
-		41471: {12899: 1, 12998: 1, 24325: 20, 41560: 1},  # Sentinel's Primordus Pike
-		41473: {12846: 1, 12870: 1, 24325: 20, 41560: 1},  # Sentinel's Primordus Sword
+		41458: {12852: 1, 12892: 1, 24325: 20, 41560: 1},  # Sentinel's Destroyer Axe
+		41459: {12858: 1, 12882: 1, 24325: 20, 41560: 1},  # Sentinel's Destroyer Dagger
+		41461: {12840: 1, 12888: 1, 24325: 20, 41560: 1},  # Sentinel's Destroyer Greatsword
+		41462: {12864: 1, 12899: 1, 24325: 20, 41560: 1},  # Sentinel's Destroyer Maul
+		41465: {12876: 1, 12892: 1, 24325: 20, 41560: 1},  # Sentinel's Destroyer Mace
+		41469: {12906: 1, 12912: 1, 24325: 20, 41560: 1},  # Sentinel's Destroyer Shield
+		41471: {12899: 1, 12998: 1, 24325: 20, 41560: 1},  # Sentinel's Destroyer Pike
+		41473: {12846: 1, 12870: 1, 24325: 20, 41560: 1},  # Sentinel's Destroyer Sword
 		41524: {12852: 1, 12892: 1, 41560: 1},  # Sentinel's Pearl Reaver
 		41528: {12858: 1, 12882: 1, 41560: 1},  # Sentinel's Pearl Carver
 		41532: {12840: 1, 12888: 1, 41560: 1},  # Sentinel's Pearl Broadsword
@@ -1313,14 +1313,14 @@ recipes = {
 		41544: {12906: 1, 12912: 1, 41560: 1},  # Sentinel's Pearl Shell
 		41548: {12899: 1, 12998: 1, 41560: 1},  # Sentinel's Pearl Impaler
 		41552: {12846: 1, 12870: 1, 41560: 1},  # Sentinel's Pearl Sabre
-		45943: {12852: 1, 12892: 1, 19919: 1, 24325: 20},  # Assassin's Primordus Axe
-		45944: {12858: 1, 12882: 1, 19919: 1, 24325: 20},  # Assassin's Primordus Dagger
-		45946: {12840: 1, 12888: 1, 19919: 1, 24325: 30},  # Assassin's Primordus Greatsword
-		45947: {12864: 1, 12899: 1, 19919: 1, 24325: 30},  # Assassin's Primordus Maul
-		45950: {12876: 1, 12892: 1, 19919: 1, 24325: 20},  # Assassin's Primordus Mace
-		45954: {12906: 1, 12912: 1, 19919: 1, 24325: 15},  # Assassin's Primordus Shield
-		45956: {12899: 1, 12998: 1, 19919: 1, 24325: 30},  # Assassin's Primordus Pike
-		45958: {12846: 1, 12870: 1, 19919: 1, 24325: 20},  # Assassin's Primordus Sword
+		45943: {12852: 1, 12892: 1, 19919: 1, 24325: 20},  # Assassin's Destroyer Axe
+		45944: {12858: 1, 12882: 1, 19919: 1, 24325: 20},  # Assassin's Destroyer Dagger
+		45946: {12840: 1, 12888: 1, 19919: 1, 24325: 30},  # Assassin's Destroyer Greatsword
+		45947: {12864: 1, 12899: 1, 19919: 1, 24325: 30},  # Assassin's Destroyer Maul
+		45950: {12876: 1, 12892: 1, 19919: 1, 24325: 20},  # Assassin's Destroyer Mace
+		45954: {12906: 1, 12912: 1, 19919: 1, 24325: 15},  # Assassin's Destroyer Shield
+		45956: {12899: 1, 12998: 1, 19919: 1, 24325: 30},  # Assassin's Destroyer Pike
+		45958: {12846: 1, 12870: 1, 19919: 1, 24325: 20},  # Assassin's Destroyer Sword
 		46201: {12858: 1, 12882: 1, 19721: 5, 46686: 1},  # Rabid Pearl Carver
 		46202: {12858: 1, 12882: 1, 19721: 5, 46690: 1},  # Dire Pearl Carver
 		46203: {12858: 1, 12882: 1, 19721: 5, 46687: 1},  # Magi's Pearl Carver

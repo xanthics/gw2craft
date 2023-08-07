@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2023-04-23T11:36:39 PST
+# Created: 2023-08-07T08:10:34 PST
 ilist = {
 	8576: "Bouteille d'alcool de riz",
 	8587: "Œuf poché façon Drottot",
@@ -8039,7 +8039,6 @@ ilist = {
 	93567: "Noyau d'Invoque-tempête",
 	94692: "Lanterne du grand Taureau chanceux",
 	95421: "Friandise de feu de camp maison",
-	95520: "Nouilles de longévité",
 	95537: "Lanterne du grand Tigre chanceux",
 	95556: "Tablette de touron",
 	95663: "Filet de poisson fantastique",
@@ -8066,6 +8065,7 @@ ilist = {
 	97933: "Super parfait composé",
 	99313: "Lanterne du grand Lapin chanceux",
 	99327: "Lanterne du Lapin chanceux",
+	99955: "Poisson séché des Zéphyrites",
 	1000043: "Catapulte de guilde",
 	1000051: "Transport de coffre",
 	1000073: "Bannière publique +5% d'expérience",
@@ -8226,7 +8226,7 @@ ilist = {
 	1000508: "Ballon jaune",
 	1000510: "Chandelier carré",
 	1000511: "Chariot",
-	1000513: "Fortifications invulnérables",
+	1000513: "Atténuateur de siège",
 	1000516: "Caisse basique",
 	1000518: "Grand pilier carré",
 	1000519: "Palmier nain en pot",
@@ -8555,4 +8555,10 @@ ilist = {
 	1001236: "Super plancher de grotte",
 	1001237: "Super plateau de grotte",
 	1001238: "Super pilier de grotte",
+	1001239: "Rampe courbée de piste holographique",
+	1001240: "Grande rampe courbée de piste holographique",
+	1001241: "Rampe courbée large de piste holographique",
+	1001243: "Pont à escalier canthien",
+	1001244: "Muret de jardin canthien",
+	1001245: "Pont de Seitung",
 }

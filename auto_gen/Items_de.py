@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2023-04-23T11:36:47 PST
+# Created: 2023-08-07T08:10:41 PST
 ilist = {
 	8576: "Flasche Reiswein",
 	8587: "Pochiertes Ei Drottots",
@@ -8039,7 +8039,6 @@ ilist = {
 	93567: "Sturmrufer-Kern",
 	94692: "Glückslaterne des Riesenochsen",
 	95421: "Selbstgemachte Lagerfeuer-Leckerei",
-	95520: "Langlebigkeitsnudeln",
 	95537: "Glückslaterne des Riesentigers",
 	95556: "Stück Turrón",
 	95663: "Fantastisches Fischfilet",
@@ -8066,6 +8065,7 @@ ilist = {
 	97933: "Super-Gemischtes Parfait",
 	99313: "Glückslaterne des Riesenhasen",
 	99327: "Glückslaterne des Hasen",
+	99955: "Zephyriten-Dörrfisch",
 	1000043: "Blaupause für Gilden-Katapult",
 	1000051: "Tresortransport",
 	1000073: "+5 % Erfahrungspunkte öffentliches Banner",
@@ -8226,7 +8226,7 @@ ilist = {
 	1000508: "Gelber Ballon",
 	1000510: "Quadratischer Kerzenständer",
 	1000511: "Wagen",
-	1000513: "Unverwundbare Befestigungen",
+	1000513: "Belagerungsdämpfer",
 	1000516: "Standard-Kiste",
 	1000518: "Große quadratische Säule",
 	1000519: "Fächerpalme im Topf",
@@ -8555,4 +8555,10 @@ ilist = {
 	1001236: "Superhöhlen-Boden",
 	1001237: "Superhöhlen-Plateau",
 	1001238: "Superhöhlen-Säule",
+	1001239: "Holografische Strecke: Kurvenrampe",
+	1001240: "Holografische Strecke: Große Kurvenrampe",
+	1001241: "Holografische Strecke: Breite Kurvenrampe",
+	1001243: "Canthanische Treppenbrücke",
+	1001244: "Canthanische Gartenmauer",
+	1001245: "Seitung-Brücke",
 }

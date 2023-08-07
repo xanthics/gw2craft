@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2021-01-24T14:49:33 PST
+# Created: 2023-08-07T08:10:19 PST
 recipes = {
 	0: {
 		9452: {12156: 3, 24272: 4},  # Apprentice Maintenance Oil
@@ -1042,48 +1042,48 @@ recipes = {
 		13014: {19712: 2},  # Ancient Torch Handle
 		13051: {19685: 2, 19712: 2},  # Ancient Harpoon
 		13061: {19685: 2},  # Orichalcum Torch Head
-		13611: {12947: 1, 12963: 1, 19917: 1, 24325: 30},  # Carrion Primordus Short Bow
-		13612: {12947: 1, 12963: 1, 19918: 1, 24325: 30},  # Cleric's Primordus Short Bow
-		13614: {12947: 1, 12963: 1, 19923: 1, 24325: 30},  # Valkyrie Primordus Short Bow
-		13615: {12947: 1, 12963: 1, 19920: 1, 24325: 30},  # Berserker's Primordus Short Bow
-		13616: {12947: 1, 12963: 1, 19921: 1, 24325: 30},  # Rampager's Primordus Short Bow
-		13617: {12947: 1, 12963: 1, 19922: 1, 24325: 30},  # Knight's Primordus Short Bow
-		13618: {12930: 1, 12936: 1, 19917: 1, 24325: 15},  # Carrion Primordus Warhorn
-		13619: {12930: 1, 12936: 1, 19918: 1, 24325: 15},  # Cleric's Primordus Warhorn
-		13621: {12930: 1, 12936: 1, 19923: 1, 24325: 15},  # Valkyrie Primordus Warhorn
-		13622: {12930: 1, 12936: 1, 19920: 1, 24325: 15},  # Berserker's Primordus Warhorn
-		13623: {12930: 1, 12936: 1, 19921: 1, 24325: 15},  # Rampager's Primordus Warhorn
-		13624: {12930: 1, 12936: 1, 19922: 1, 24325: 15},  # Knight's Primordus Warhorn
-		13625: {13014: 1, 13061: 1, 19917: 1, 24325: 15},  # Carrion Primordus Torch
-		13626: {13014: 1, 13061: 1, 19918: 1, 24325: 15},  # Cleric's Primordus Torch
-		13628: {13014: 1, 13061: 1, 19923: 1, 24325: 15},  # Valkyrie Primordus Torch
-		13629: {13014: 1, 13061: 1, 19920: 1, 24325: 15},  # Berserker's Primordus Torch
-		13630: {13014: 1, 13061: 1, 19921: 1, 24325: 15},  # Rampager's Primordus Torch
-		13631: {13014: 1, 13061: 1, 19922: 1, 24325: 15},  # Knight's Primordus Torch
-		13632: {12941: 1, 12963: 1, 19917: 1, 24325: 30},  # Carrion Primordus Longbow
-		13633: {12941: 1, 12963: 1, 19918: 1, 24325: 30},  # Cleric's Primordus Longbow
-		13635: {12941: 1, 12963: 1, 19923: 1, 24325: 30},  # Valkyrie Primordus Longbow
-		13636: {12941: 1, 12963: 1, 19920: 1, 24325: 30},  # Berserker's Primordus Longbow
-		13637: {12941: 1, 12963: 1, 19921: 1, 24325: 30},  # Rampager's Primordus Longbow
-		13638: {12941: 1, 12963: 1, 19922: 1, 24325: 30},  # Knight's Primordus Longbow
-		13639: {12924: 1, 12959: 1, 19917: 1, 24325: 20},  # Carrion Primordus Pistol
-		13640: {12924: 1, 12959: 1, 19918: 1, 24325: 20},  # Cleric's Primordus Pistol
-		13642: {12924: 1, 12959: 1, 19923: 1, 24325: 20},  # Valkyrie Primordus Pistol
-		13643: {12924: 1, 12959: 1, 19920: 1, 24325: 20},  # Berserker's Primordus Pistol
-		13644: {12924: 1, 12959: 1, 19921: 1, 24325: 20},  # Rampager's Primordus Pistol
-		13645: {12924: 1, 12959: 1, 19922: 1, 24325: 20},  # Knight's Primordus Pistol
-		13646: {12918: 1, 12953: 1, 19917: 1, 24325: 30},  # Carrion Primordus Rifle
-		13647: {12918: 1, 12953: 1, 19918: 1, 24325: 30},  # Cleric's Primordus Rifle
-		13649: {12918: 1, 12953: 1, 19923: 1, 24325: 30},  # Valkyrie Primordus Rifle
-		13650: {12918: 1, 12953: 1, 19920: 1, 24325: 30},  # Berserker's Primordus Rifle
-		13651: {12918: 1, 12953: 1, 19921: 1, 24325: 30},  # Rampager's Primordus Rifle
-		13652: {12918: 1, 12953: 1, 19922: 1, 24325: 30},  # Knight's Primordus Rifle
-		13653: {12953: 1, 13051: 1, 19917: 1, 24325: 30},  # Carrion Primordus Harpoon Gun
-		13654: {12953: 1, 13051: 1, 19918: 1, 24325: 30},  # Cleric's Primordus Harpoon Gun
-		13656: {12953: 1, 13051: 1, 19923: 1, 24325: 30},  # Valkyrie Primordus Harpoon Gun
-		13657: {12953: 1, 13051: 1, 19920: 1, 24325: 30},  # Berserker's Primordus Harpoon Gun
-		13658: {12953: 1, 13051: 1, 19921: 1, 24325: 30},  # Rampager's Primordus Harpoon Gun
-		13659: {12953: 1, 13051: 1, 19922: 1, 24325: 30},  # Knight's Primordus Harpoon Gun
+		13611: {12947: 1, 12963: 1, 19917: 1, 24325: 30},  # Carrion Destroyer Short Bow
+		13612: {12947: 1, 12963: 1, 19918: 1, 24325: 30},  # Cleric's Destroyer Short Bow
+		13614: {12947: 1, 12963: 1, 19923: 1, 24325: 30},  # Valkyrie Destroyer Short Bow
+		13615: {12947: 1, 12963: 1, 19920: 1, 24325: 30},  # Berserker's Destroyer Short Bow
+		13616: {12947: 1, 12963: 1, 19921: 1, 24325: 30},  # Rampager's Destroyer Short Bow
+		13617: {12947: 1, 12963: 1, 19922: 1, 24325: 30},  # Knight's Destroyer Short Bow
+		13618: {12930: 1, 12936: 1, 19917: 1, 24325: 15},  # Carrion Destroyer Warhorn
+		13619: {12930: 1, 12936: 1, 19918: 1, 24325: 15},  # Cleric's Destroyer Warhorn
+		13621: {12930: 1, 12936: 1, 19923: 1, 24325: 15},  # Valkyrie Destroyer Warhorn
+		13622: {12930: 1, 12936: 1, 19920: 1, 24325: 15},  # Berserker's Destroyer Warhorn
+		13623: {12930: 1, 12936: 1, 19921: 1, 24325: 15},  # Rampager's Destroyer Warhorn
+		13624: {12930: 1, 12936: 1, 19922: 1, 24325: 15},  # Knight's Destroyer Warhorn
+		13625: {13014: 1, 13061: 1, 19917: 1, 24325: 15},  # Carrion Destroyer Torch
+		13626: {13014: 1, 13061: 1, 19918: 1, 24325: 15},  # Cleric's Destroyer Torch
+		13628: {13014: 1, 13061: 1, 19923: 1, 24325: 15},  # Valkyrie Destroyer Torch
+		13629: {13014: 1, 13061: 1, 19920: 1, 24325: 15},  # Berserker's Destroyer Torch
+		13630: {13014: 1, 13061: 1, 19921: 1, 24325: 15},  # Rampager's Destroyer Torch
+		13631: {13014: 1, 13061: 1, 19922: 1, 24325: 15},  # Knight's Destroyer Torch
+		13632: {12941: 1, 12963: 1, 19917: 1, 24325: 30},  # Carrion Destroyer Longbow
+		13633: {12941: 1, 12963: 1, 19918: 1, 24325: 30},  # Cleric's Destroyer Longbow
+		13635: {12941: 1, 12963: 1, 19923: 1, 24325: 30},  # Valkyrie Destroyer Longbow
+		13636: {12941: 1, 12963: 1, 19920: 1, 24325: 30},  # Berserker's Destroyer Longbow
+		13637: {12941: 1, 12963: 1, 19921: 1, 24325: 30},  # Rampager's Destroyer Longbow
+		13638: {12941: 1, 12963: 1, 19922: 1, 24325: 30},  # Knight's Destroyer Longbow
+		13639: {12924: 1, 12959: 1, 19917: 1, 24325: 20},  # Carrion Destroyer Pistol
+		13640: {12924: 1, 12959: 1, 19918: 1, 24325: 20},  # Cleric's Destroyer Pistol
+		13642: {12924: 1, 12959: 1, 19923: 1, 24325: 20},  # Valkyrie Destroyer Pistol
+		13643: {12924: 1, 12959: 1, 19920: 1, 24325: 20},  # Berserker's Destroyer Pistol
+		13644: {12924: 1, 12959: 1, 19921: 1, 24325: 20},  # Rampager's Destroyer Pistol
+		13645: {12924: 1, 12959: 1, 19922: 1, 24325: 20},  # Knight's Destroyer Pistol
+		13646: {12918: 1, 12953: 1, 19917: 1, 24325: 30},  # Carrion Destroyer Rifle
+		13647: {12918: 1, 12953: 1, 19918: 1, 24325: 30},  # Cleric's Destroyer Rifle
+		13649: {12918: 1, 12953: 1, 19923: 1, 24325: 30},  # Valkyrie Destroyer Rifle
+		13650: {12918: 1, 12953: 1, 19920: 1, 24325: 30},  # Berserker's Destroyer Rifle
+		13651: {12918: 1, 12953: 1, 19921: 1, 24325: 30},  # Rampager's Destroyer Rifle
+		13652: {12918: 1, 12953: 1, 19922: 1, 24325: 30},  # Knight's Destroyer Rifle
+		13653: {12953: 1, 13051: 1, 19917: 1, 24325: 30},  # Carrion Destroyer Harpoon Gun
+		13654: {12953: 1, 13051: 1, 19918: 1, 24325: 30},  # Cleric's Destroyer Harpoon Gun
+		13656: {12953: 1, 13051: 1, 19923: 1, 24325: 30},  # Valkyrie Destroyer Harpoon Gun
+		13657: {12953: 1, 13051: 1, 19920: 1, 24325: 30},  # Berserker's Destroyer Harpoon Gun
+		13658: {12953: 1, 13051: 1, 19921: 1, 24325: 30},  # Rampager's Destroyer Harpoon Gun
+		13659: {12953: 1, 13051: 1, 19922: 1, 24325: 30},  # Knight's Destroyer Harpoon Gun
 		14441: {12941: 1, 12963: 1, 19918: 1},  # Cleric's Pearl Stinger
 		14443: {12941: 1, 12963: 1, 19920: 1},  # Berserker's Pearl Stinger
 		14444: {12941: 1, 12963: 1, 19921: 1},  # Rampager's Pearl Stinger
@@ -1144,13 +1144,13 @@ recipes = {
 		36875: {12953: 1, 13051: 1, 37181: 1},  # Apothecary's Pearl Speargun
 		36894: {13014: 1, 13061: 1, 37181: 1},  # Apothecary's Pearl Brazier
 		36905: {12930: 1, 12936: 1, 37181: 1},  # Apothecary's Pearl Siren
-		36906: {12941: 1, 12963: 1, 24325: 30, 37181: 1},  # Apothecary's Primordus Longbow
-		36908: {12924: 1, 12959: 1, 24325: 20, 37181: 1},  # Apothecary's Primordus Pistol
-		36910: {12918: 1, 12953: 1, 24325: 30, 37181: 1},  # Apothecary's Primordus Rifle
-		36912: {12947: 1, 12963: 1, 24325: 30, 37181: 1},  # Apothecary's Primordus Short Bow
-		36914: {12953: 1, 13051: 1, 24325: 30, 37181: 1},  # Apothecary's Primordus Harpoon Gun
-		36917: {13014: 1, 13061: 1, 24325: 15, 37181: 1},  # Apothecary's Primordus Torch
-		36918: {12930: 1, 12936: 1, 24325: 15, 37181: 1},  # Apothecary's Primordus Warhorn
+		36906: {12941: 1, 12963: 1, 24325: 30, 37181: 1},  # Apothecary's Destroyer Longbow
+		36908: {12924: 1, 12959: 1, 24325: 20, 37181: 1},  # Apothecary's Destroyer Pistol
+		36910: {12918: 1, 12953: 1, 24325: 30, 37181: 1},  # Apothecary's Destroyer Rifle
+		36912: {12947: 1, 12963: 1, 24325: 30, 37181: 1},  # Apothecary's Destroyer Short Bow
+		36914: {12953: 1, 13051: 1, 24325: 30, 37181: 1},  # Apothecary's Destroyer Harpoon Gun
+		36917: {13014: 1, 13061: 1, 24325: 15, 37181: 1},  # Apothecary's Destroyer Torch
+		36918: {12930: 1, 12936: 1, 24325: 15, 37181: 1},  # Apothecary's Destroyer Warhorn
 		37181: {12988: 5, 19721: 5, 37897: 30},  # Apothecary's Orichalcum Imbued Inscription
 		38368: {12941: 1, 12963: 1, 38434: 1},  # Bringer's Pearl Stinger
 		38374: {12924: 1, 12959: 1, 38434: 1},  # Bringer's Pearl Handcannon
@@ -1160,13 +1160,13 @@ recipes = {
 		38398: {13014: 1, 13061: 1, 38434: 1},  # Bringer's Pearl Brazier
 		38404: {12930: 1, 12936: 1, 38434: 1},  # Bringer's Pearl Siren
 		38434: {12988: 5, 19721: 5, 86601: 100},  # Bringer's Orichalcum-Imbued Inscription
-		41463: {12953: 1, 13051: 1, 24325: 20, 41560: 1},  # Sentinel's Primordus Harpoon Gun
-		41464: {12941: 1, 12963: 1, 24325: 20, 41560: 1},  # Sentinel's Primordus Longbow
-		41466: {12924: 1, 12959: 1, 24325: 20, 41560: 1},  # Sentinel's Primordus Pistol
-		41467: {12918: 1, 12953: 1, 24325: 20, 41560: 1},  # Sentinel's Primordus Rifle
-		41470: {12947: 1, 12963: 1, 24325: 20, 41560: 1},  # Sentinel's Primordus Short Bow
-		41474: {13014: 1, 13061: 1, 24325: 20, 41560: 1},  # Sentinel's Primordus Torch
-		41476: {12930: 1, 12936: 1, 24325: 20, 41560: 1},  # Sentinel's Primordus Warhorn
+		41463: {12953: 1, 13051: 1, 24325: 20, 41560: 1},  # Sentinel's Destroyer Harpoon Gun
+		41464: {12941: 1, 12963: 1, 24325: 20, 41560: 1},  # Sentinel's Destroyer Longbow
+		41466: {12924: 1, 12959: 1, 24325: 20, 41560: 1},  # Sentinel's Destroyer Pistol
+		41467: {12918: 1, 12953: 1, 24325: 20, 41560: 1},  # Sentinel's Destroyer Rifle
+		41470: {12947: 1, 12963: 1, 24325: 20, 41560: 1},  # Sentinel's Destroyer Short Bow
+		41474: {13014: 1, 13061: 1, 24325: 20, 41560: 1},  # Sentinel's Destroyer Torch
+		41476: {12930: 1, 12936: 1, 24325: 20, 41560: 1},  # Sentinel's Destroyer Warhorn
 		41496: {12941: 1, 12963: 1, 41560: 1},  # Sentinel's Pearl Stinger
 		41500: {12924: 1, 12959: 1, 41560: 1},  # Sentinel's Pearl Handcannon
 		41504: {12918: 1, 12953: 1, 41560: 1},  # Sentinel's Pearl Blunderbuss
@@ -1174,13 +1174,13 @@ recipes = {
 		41512: {12953: 1, 13051: 1, 41560: 1},  # Sentinel's Pearl Speargun
 		41516: {13014: 1, 13061: 1, 41560: 1},  # Sentinel's Pearl Brazier
 		41520: {12930: 1, 12936: 1, 41560: 1},  # Sentinel's Pearl Siren
-		45948: {12953: 1, 13051: 1, 19919: 1, 24325: 30},  # Assassin's Primordus Harpoon Gun
-		45949: {12941: 1, 12963: 1, 19919: 1, 24325: 30},  # Assassin's Primordus Longbow
-		45951: {12924: 1, 12959: 1, 19919: 1, 24325: 20},  # Assassin's Primordus Pistol
-		45952: {12918: 1, 12953: 1, 19919: 1, 24325: 30},  # Assassin's Primordus Rifle
-		45955: {12947: 1, 12963: 1, 19919: 1, 24325: 30},  # Assassin's Primordus Short Bow
-		45959: {13014: 1, 13061: 1, 19919: 1, 24325: 15},  # Assassin's Primordus Torch
-		45961: {12930: 1, 12936: 1, 19919: 1, 24325: 15},  # Assassin's Primordus Warhorn
+		45948: {12953: 1, 13051: 1, 19919: 1, 24325: 30},  # Assassin's Destroyer Harpoon Gun
+		45949: {12941: 1, 12963: 1, 19919: 1, 24325: 30},  # Assassin's Destroyer Longbow
+		45951: {12924: 1, 12959: 1, 19919: 1, 24325: 20},  # Assassin's Destroyer Pistol
+		45952: {12918: 1, 12953: 1, 19919: 1, 24325: 30},  # Assassin's Destroyer Rifle
+		45955: {12947: 1, 12963: 1, 19919: 1, 24325: 30},  # Assassin's Destroyer Short Bow
+		45959: {13014: 1, 13061: 1, 19919: 1, 24325: 15},  # Assassin's Destroyer Torch
+		45961: {12930: 1, 12936: 1, 19919: 1, 24325: 15},  # Assassin's Destroyer Warhorn
 		46061: {12947: 1, 12963: 1, 19721: 5, 46686: 1},  # Rabid Pearl Needler
 		46062: {12947: 1, 12963: 1, 19721: 5, 46690: 1},  # Dire Pearl Needler
 		46063: {12947: 1, 12963: 1, 19721: 5, 46687: 1},  # Magi's Pearl Needler
