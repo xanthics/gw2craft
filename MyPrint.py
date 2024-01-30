@@ -361,7 +361,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 		page.append("<p>Hearth of Owl [HoO] is grateful to share our scribing station with all scribes-in-training.  We are an NA guild, but still totally open to accepting EU members for scribing.</p>")
 		page.append("<p>We are an experienced PvE guild that shares knowledge and resources to help new and returning players get acclimated to the vast, ever-changing world of Tyria.  We strive for a friendly and spoiler-free environment.</p>")
 		page.append("<p>You can join our discord for more information and a faster guild invite.<br /><a href=\"https://discord.gg/BavHsUP\">https://discord.gg/BavHsUP</a></p>")
-		page.append("<p>Otherwise, whisper or send an in-game mail to receive an invite.<br />ecstaseed.2109<br />archangel.4027</p>")
+		page.append("<p>Otherwise, whisper or send an in-game mail to receive an invite.<br />ecstaseed.2109<br />sturmblitzz.9254<br />archangel.4027</p>")
 		page.append("<hr>")
 		page.append('<button title=\"{}\" class =\"arrow\" id=\"scribehint\">{}</button><div class=\"lsbutton\" id=\"1scribehint\">\n'.format(localText.toggle, localText.scribetease))
 		page.append('{}</div><br /></div><br />\n'.format(localText.scribeinfo))
