@@ -113,35 +113,36 @@ def parse_recipes(recipes):
 	nc = {}
 	item_recipe = {}
 	for _recipe, data in list(new_recipes.items()):
-		min_rating = data['min_rating']
-		item_id = data['output_item_id']
-		item_count = data['output_item_count']
-		ingredient_set = set(int(i['item_id']) for i in data['ingredients'])
+		if data['ingredients']:
+			min_rating = data['min_rating']
+			item_id = data['output_item_id']
+			item_count = data['output_item_count']
+			ingredient_set = set(int(i['item_id']) for i in data['ingredients'])
 
-		# We don't want cap level recipes or recipes that use items the player can't buy off the tp or make
-		# 24838 at lvl 375 is a bugged recipe(Major Rune of Water, Tailoring)
-		if min_rating == 500 or (min_rating == 400 and ('Scribe' in data['disciplines'] or 'Jeweler' in data['disciplines'])) or set(bad_karma).intersection(set(ingredient_set)):  # or (item_id == 24838 and min_rating == 375):
-			continue
-
-		for it in data['disciplines']:
-			key = it
-			# We don't want recipe items.  Except for karma cooking and known good recipes
-			if 'LearnedFromItem' in data['flags'] and not (it == 'Chef' or int(item_id) in good_recipes):
+			# We don't want cap level recipes or recipes that use items the player can't buy off the tp or make
+			# 24838 at lvl 375 is a bugged recipe(Major Rune of Water, Tailoring)
+			if min_rating == 500 or (min_rating == 400 and ('Scribe' in data['disciplines'] or 'Jeweler' in data['disciplines'])) or set(bad_karma).intersection(set(ingredient_set)):  # or (item_id == 24838 and min_rating == 375):
 				continue
-			if it == 'Chef' and (set(karma) & ingredient_set or 'LearnedFromItem' in data['flags']):
-				key = 'Chef_karma'
 
-			if 'LearnedFromItem' in data['flags']:
-				item_recipe[data['output_item_id']] = data['id']
-			crafts[key].setdefault(min_rating, {})
-			crafts[key][min_rating][item_id] = data['ingredients']
-			item_ids[item_id] = {'output_item_count': item_count,
-								 'type': data['type'],
-								 'flags': data['flags']}
-			if it in nc:
-				nc[it] += 1
-			else:
-				nc[it] = 1
+			for it in data['disciplines']:
+				key = it
+				# We don't want recipe items.  Except for karma cooking and known good recipes
+				if 'LearnedFromItem' in data['flags'] and not (it == 'Chef' or int(item_id) in good_recipes):
+					continue
+				if it == 'Chef' and (set(karma) & ingredient_set or 'LearnedFromItem' in data['flags']):
+					key = 'Chef_karma'
+
+				if 'LearnedFromItem' in data['flags']:
+					item_recipe[data['output_item_id']] = data['id']
+				crafts[key].setdefault(min_rating, {})
+				crafts[key][min_rating][item_id] = data['ingredients']
+				item_ids[item_id] = {'output_item_count': item_count,
+									'type': data['type'],
+									'flags': data['flags']}
+				if it in nc:
+					nc[it] += 1
+				else:
+					nc[it] = 1
 
 	import auto_gen.Items_en as ige
 	for craft in crafts:
