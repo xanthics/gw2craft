@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2024-01-30T09:26:04 PST
+# Created: 2024-08-23T14:08:34 PST
 recipes = {
 	0: {
 		9464: {24272: 6},  # Apprentice Tuning Crystal
