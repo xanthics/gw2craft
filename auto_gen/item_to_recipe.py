@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2023-08-07T08:10:19 PST
+# Created: 2024-11-29T08:44:27 PST
 id_rid = {
 	8587: 2843,  # Drottot's Poached Egg
 	12131: 2844,  # Bowl of Watery Mushroom Soup
@@ -216,7 +216,6 @@ id_rid = {
 	86997: 12661,  # Plate of Beef Rendang
 	87029: 12656,  # Avocado Smoothie
 	87076: 12658,  # Bowl of Poultry Satay
-	90339: 13168,  # Extra-Pungent Skyscale Treat
 	91681: 13262,  # Varietal Sesame Seed Pouch
 	91695: 13256,  # Varietal Cilantro Seed Pouch
 	91722: 13252,  # Glob of Gelatin

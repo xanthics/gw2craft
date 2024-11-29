@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2023-08-07T08:10:19 PST
+# Created: 2024-11-29T08:44:27 PST
 recipes = {
 	0: {
 		9452: {12156: 3, 24272: 4},  # Apprentice Maintenance Oil
@@ -1354,8 +1354,6 @@ recipes = {
 		86677: {12930: 1, 12936: 1, 86685: 1},  # Giver's Pearl Siren
 		86718: {12947: 1, 12963: 1, 86685: 1},  # Giver's Pearl Needler
 		86727: {12941: 1, 12963: 1, 86685: 1},  # Giver's Pearl Stinger
-		93417: {19684: 2, 19685: 2, 19686: 2, 68063: 2},  # Tengu Echo Blade
-		93567: {19685: 25, 19746: 75, 24305: 10, 43772: 1},  # Stormcaller Core
 	},
 	425: {
 		50342: {12988: 3, 19721: 5, 24277: 3},  # Ineffable Orichalcum Plated Inscription

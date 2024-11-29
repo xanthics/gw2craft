@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2023-08-07T08:10:19 PST
+# Created: 2024-11-29T08:44:27 PST
 recipes = {
 	0: {
 		9464: {24272: 6},  # Apprentice Tuning Crystal
@@ -975,8 +975,6 @@ recipes = {
 		86522: {12973: 1, 13261: 1, 86685: 1},  # Giver's Pearl Quarterstaff
 		86582: {12976: 1, 13255: 1, 86685: 1},  # Giver's Pearl Rod
 		86589: {12982: 1, 13243: 1, 86685: 1},  # Giver's Pearl Conch
-		93417: {19684: 2, 19685: 2, 19686: 2, 68063: 2},  # Tengu Echo Blade
-		93567: {19685: 25, 19746: 75, 24305: 10, 43772: 1},  # Stormcaller Core
 	},
 	425: {
 		50342: {12988: 3, 19721: 5, 24277: 3},  # Ineffable Orichalcum Plated Inscription
