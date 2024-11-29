@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2023-08-07T08:10:19 PST
+# Created: 2024-11-29T08:44:27 PST
 recipes = {
 	0: {
 		12131: {12147: 1, 12153: 1, 12202: 1},  # Bowl of Watery Mushroom Soup
@@ -133,7 +133,6 @@ recipes = {
 		12418: {12263: 1, 12503: 1},  # Peach Cookie
 		12435: {12136: 1, 12143: 1, 12236: 1, 12502: 1},  # Eggplant Fritter
 		12747: {12142: 25, 12247: 25, 12252: 100, 12503: 100},  # Unidentified Yellow Dye
-		90339: {24359: 2, 43772: 1, 46731: 10, 90201: 1},  # Extra-Pungent Skyscale Treat
 	},
 	325: {
 		12421: {12155: 1, 12254: 1, 12503: 1},  # Raspberry Peach Compote

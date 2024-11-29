@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2023-08-07T08:10:19 PST
+# Created: 2024-11-29T08:44:27 PST
 recipes = {
 	0: {
 		9431: {19679: 3, 24272: 3},  # Rough Sharpening Stone
@@ -1458,7 +1458,6 @@ recipes = {
 		73720: {19917: 1, 70779: 1, 74091: 1, 76164: 1},  # Carrion Auric Hammer
 		73771: {37181: 1, 70522: 1, 72012: 1, 74335: 1},  # Apothecary's Auric Shield
 		73944: {19685: 3, 73034: 5},  # Oiled Orichalcum Axe Blade
-		74042: {19685: 2, 43772: 1, 46731: 50, 69392: 1},  # Ley-Line Infused Tool
 		74062: {12858: 1, 12882: 1, 76361: 1},  # Marauder Pearl Carver
 		74091: {19712: 2, 73034: 5},  # Oiled Large Ancient Haft
 		74111: {19923: 1, 70792: 1, 71352: 1, 76084: 1},  # Valkyrie Auric Greatsword
@@ -1520,8 +1519,6 @@ recipes = {
 		86680: {12906: 1, 12912: 1, 86685: 1},  # Giver's Pearl Shell
 		86695: {12846: 1, 12870: 1, 86685: 1},  # Giver's Pearl Sabre
 		86720: {12899: 1, 12998: 1, 86685: 1},  # Giver's Pearl Impaler
-		93417: {19684: 2, 19685: 2, 19686: 2, 68063: 2},  # Tengu Echo Blade
-		93567: {19685: 25, 19746: 75, 24305: 10, 43772: 1},  # Stormcaller Core
 	},
 	425: {
 		50342: {12988: 3, 19721: 5, 24277: 3},  # Ineffable Orichalcum Plated Inscription

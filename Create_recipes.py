@@ -29,6 +29,7 @@ import codecs
 import json
 import os
 import socket
+import types
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -99,17 +100,22 @@ def parse_recipes(recipes):
 
 	# Karma and account bound items that we don't want to save the recipe of items that use
 	# Charged Quartz Crystal, Sun Beads, Obsidian Shard, Essence of Luck, Essence of Luck, Essence of Luck, Essence of Luck, Essence of Luck
-	bad_karma = [43772, 43773, 19717, 19925, 45175, 45176, 45177, 45178, 1000721] + list(range(49424, 49441))
+	bad_karma = set([43772, 43773, 19717, 19925, 45175, 45176, 45177, 45178, 1000721] + list(range(49424, 49441)))
 
 	crafts = {'Weaponsmith': {}, 'Chef': {}, 'Chef_karma': {}, 'Huntsman': {},
 			  'Armorsmith': {}, 'Jeweler': {}, 'Artificer': {}, 'Tailor': {},
 			  'Leatherworker': {}, 'Scribe': {}}
 	item_ids = {}
 
+	# We don't want cap level recipes or recipes that use items the player can't buy off the tp or make
+	# 24838 at lvl 375 is a bugged recipe(Major Rune of Water, Tailoring)
 	new_recipes = {r[0]: r[1] for r in list(recipes.items())
-				   if not int(r[1]['output_item_id']) in bad_recipes
-				   and not r[1]['type'] in ['Feast', 'Backpack']
-				   or (r[1]['type'] == 'Backpack' and 'Scribe' in r[1]['disciplines'])}
+				   if (r[1]['type'] == 'Backpack' and 'Scribe' in r[1]['disciplines']) or
+				   not (int(r[1]['output_item_id']) in bad_recipes
+						or r[1]['type'] in ['Feast', 'Backpack']
+						or r[1]['min_rating'] == 500
+						or (r[1]['min_rating'] == 400 and ('Scribe' in r[1]['disciplines'] or 'Jeweler' in r[1]['disciplines']))
+						or bad_karma.intersection(set(int(i['item_id']) for i in r[1]['ingredients'])))}
 	nc = {}
 	item_recipe = {}
 	for _recipe, data in list(new_recipes.items()):
@@ -118,11 +124,6 @@ def parse_recipes(recipes):
 			item_id = data['output_item_id']
 			item_count = data['output_item_count']
 			ingredient_set = set(int(i['item_id']) for i in data['ingredients'])
-
-			# We don't want cap level recipes or recipes that use items the player can't buy off the tp or make
-			# 24838 at lvl 375 is a bugged recipe(Major Rune of Water, Tailoring)
-			if min_rating == 500 or (min_rating == 400 and ('Scribe' in data['disciplines'] or 'Jeweler' in data['disciplines'])) or set(bad_karma).intersection(set(ingredient_set)):  # or (item_id == 24838 and min_rating == 375):
-				continue
 
 			for it in data['disciplines']:
 				key = it
@@ -144,7 +145,11 @@ def parse_recipes(recipes):
 				else:
 					nc[it] = 1
 
-	import auto_gen.Items_en as ige
+	if os.path.isfile("auto_gen\\Items_en.py"):
+		import auto_gen.Items_en as ige
+	else:
+		ige = types.ModuleType("ige")
+		setattr(ige, "ilist", {})
 	for craft in crafts:
 		page = '# -*- coding: utf-8 -*-\n'
 		page += '# Created: {} PST\n'.format(datetime.now().strftime('%Y-%m-%dT%H:%M:%S'))
@@ -163,13 +168,13 @@ def parse_recipes(recipes):
 					page += "\t\t{}: {{{}}},  # {}\n".format(obj, mystr[:-2], "New this run")
 			page += "\t},\n"
 		page += "}"
-		with codecs.open("auto_gen\\" + craft + ".py", "wb", encoding='utf-8') as f:
+		with codecs.open(os.path.join("auto_gen", craft + ".py"), "wb", encoding='utf-8') as f:
 			f.write(page)
 
 	page = ['# -*- coding: utf-8 -*-', '# Created: {} PST'.format(datetime.now().strftime('%Y-%m-%dT%H:%M:%S')), 'id_rid = {']
 	page.extend([f"\t{item}: {item_recipe[item]},  # {ige.ilist[item] if item in ige.ilist else 'Unknown'}" for item in sorted(item_recipe)])
 	page.append('}\n')
-	with codecs.open('auto_gen\\item_to_recipe.py', 'w', encoding='utf-8') as f:
+	with codecs.open(os.path.join('auto_gen', 'item_to_recipe.py'), 'w', encoding='utf-8') as f:
 		f.write('\n'.join(page))
 
 	for item in [38207, 38208, 38209, 38295, 38296, 38297]:
@@ -247,7 +252,7 @@ def itemlist(item_list, gulist, lang="en"):
 				print('Error ilist: {}.'.format(str(err)))
 				#exit()
 		page += '}'
-		with codecs.open("auto_gen\\Items.py", "wb", encoding='utf-8') as f:
+		with codecs.open(os.path.join("auto_gen", "Items.py"), "wb", encoding='utf-8') as f:
 			f.write(page.replace(": ", ":"))
 
 	page = '# -*- coding: utf-8 -*-\n'
@@ -260,7 +265,7 @@ def itemlist(item_list, gulist, lang="en"):
 		except Exception as err:
 			print('Error items: {}.\n'.format(str(err)))
 	page += '}'
-	with codecs.open("auto_gen\\Items_%s.py" % lang, "wb", encoding='utf-8') as f:
+	with codecs.open(os.path.join("auto_gen", "Items_%s.py") % lang, "wb", encoding='utf-8') as f:
 		f.write(page)
 
 
@@ -310,7 +315,7 @@ def gen_multi_tracker():
 	for item in sorted(multi_items):
 		page.append(f'\t{item}: {multi_items[item]},')
 	page.append('}\n')
-	with codecs.open("auto_gen\\mod_recipes.py", "wb", encoding='utf-8') as f:
+	with codecs.open(os.path.join("auto_gen", "mod_recipes.py"), "wb", encoding='utf-8') as f:
 		f.write('\n'.join(page))
 
 
