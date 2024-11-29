@@ -98,8 +98,8 @@ def parse_recipes(recipes):
 					24543, 24496, 24544, 24497, 24545, 24498, 24499]
 
 	# Karma and account bound items that we don't want to save the recipe of items that use
-	# Sun Beads, Obsidian Shard, Essence of Luck, Essence of Luck, Essence of Luck, Essence of Luck, Essence of Luck
-	bad_karma = [19717, 19925, 45175, 45176, 45177, 45178, 1000721] + list(range(49424, 49441))
+	# Charged Quartz Crystal, Sun Beads, Obsidian Shard, Essence of Luck, Essence of Luck, Essence of Luck, Essence of Luck, Essence of Luck
+	bad_karma = [43772, 43773, 19717, 19925, 45175, 45176, 45177, 45178, 1000721] + list(range(49424, 49441))
 
 	crafts = {'Weaponsmith': {}, 'Chef': {}, 'Chef_karma': {}, 'Huntsman': {},
 			  'Armorsmith': {}, 'Jeweler': {}, 'Artificer': {}, 'Tailor': {},
