@@ -110,7 +110,7 @@ def parse_recipes(recipes):
 	# We don't want cap level recipes or recipes that use items the player can't buy off the tp or make
 	# 24838 at lvl 375 is a bugged recipe(Major Rune of Water, Tailoring)
 	new_recipes = {r[0]: r[1] for r in list(recipes.items())
-				   if (r[1]['type'] == 'Backpack' and 'Scribe' in r[1]['disciplines']) or
+				   if (r[1]['type'] == 'Backpack' and 'Scribe' in r[1]['disciplines'] and r[1]['min_rating'] < 400) or
 				   not (int(r[1]['output_item_id']) in bad_recipes
 						or r[1]['type'] in ['Feast', 'Backpack']
 						or r[1]['min_rating'] == 500
