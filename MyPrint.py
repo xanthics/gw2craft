@@ -364,7 +364,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 		page.append("<p>Otherwise, whisper or send an in-game mail to receive an invite.<br /><b>ecstaseed.2109</b><br /><b>sturmblitzz.9254</b><br /><b>archangel.4027</b></p>")
 		page.append("<hr>")
 		page.append("<p>The Sun Keepers [SUN] is a maxed(69 lvl) EU guild</p>")
-		page.append("<p>No discord link but people can whisper or send in-game mail to <b>eniki.7206</b> for invite</p>")
+		page.append("<p>No discord link but people can whisper or send in-game mail to <b>eniki.7206</b>, <b>dread.1795<,b>, or <b>Bioowolf.6978</b> for invite</p>")
 		page.append("<hr>")
 		page.append('<button title=\"{}\" class =\"arrow\" id=\"scribehint\">{}</button><div class=\"lsbutton\" id=\"1scribehint\">\n'.format(localText.toggle, localText.scribetease))
 		page.append('{}</div><br /></div><br />\n'.format(localText.scribeinfo))
