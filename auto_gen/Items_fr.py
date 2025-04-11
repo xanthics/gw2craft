@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2024-12-13T07:50:49 PST
+# Created: 2025-04-11T12:19:40 PST
 ilist = {
 	8576: "Bouteille d'alcool de riz",
 	8587: "Œuf poché façon Drottot",
@@ -8054,6 +8054,8 @@ ilist = {
 	99955: "Poisson séché des Zéphyrites",
 	101398: "Lanterne du Dragon chanceux",
 	101429: "Lanterne du Grand Dragon chanceux",
+	104158: "Lanterne du grand Serpent chanceux",
+	104194: "Lanterne du Serpent chanceux",
 	1000043: "Catapulte",
 	1000051: "Transport de coffre",
 	1000073: "Bannière d'expérience de guilde",
@@ -8357,7 +8359,7 @@ ilist = {
 	1000801: "Grand cube de neige",
 	1000802: "Demi-sphère de neige",
 	1000803: "Coin de neige",
-	1000804: "Statue de coq",
+	1000804: "Statue du Coq",
 	1000805: "Prisonnier empalé",
 	1000806: "Fragment du fardeau de Saul",
 	1000807: "Trophée d'argent du surveillant mursaat",
@@ -8581,4 +8583,8 @@ ilist = {
 	1001311: "Stalactite",
 	1001312: "Arc joyeux",
 	1001313: "Guirlande d'étoiles lumineuses",
+	1001314: "Statue dorée du Serpent",
+	1001315: "Lanterne rouge simple",
+	1001316: "Lanterne blanche simple",
+	1001317: "Statue du Serpent",
 }

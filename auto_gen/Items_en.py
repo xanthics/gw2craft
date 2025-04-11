@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2024-12-13T07:50:38 PST
+# Created: 2025-04-11T12:19:27 PST
 ilist = {
 	8576: "Bottle of Rice Wine",
 	8587: "Drottot's Poached Egg",
@@ -8054,6 +8054,8 @@ ilist = {
 	99955: "Zephyrite Fish Jerky",
 	101398: "Lucky Dragon Lantern",
 	101429: "Lucky Great Dragon Lantern",
+	104158: "Lucky Great Snake Lantern",
+	104194: "Lucky Snake Lantern",
 	1000043: "Catapult",
 	1000051: "Vault Transport",
 	1000073: "Guild Experience Banner",
@@ -8581,4 +8583,8 @@ ilist = {
 	1001311: "Icicle",
 	1001312: "Jolly Bow",
 	1001313: "Star Light String",
+	1001314: "Golden Snake Statue",
+	1001315: "Plain Red Lantern",
+	1001316: "Plain White Lantern",
+	1001317: "Snake Statue",
 }

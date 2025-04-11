@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2024-12-13T07:50:59 PST
+# Created: 2025-04-11T12:19:51 PST
 ilist = {
 	8576: "Flasche Reiswein",
 	8587: "Pochiertes Ei Drottots",
@@ -8054,6 +8054,8 @@ ilist = {
 	99955: "Zephyriten-Dörrfisch",
 	101398: "Glückslaterne des Drachen",
 	101429: "Glückslaterne des Riesendrachen",
+	104158: "Glückslaterne der Riesenschlange",
+	104194: "Glückslaterne der Schlange",
 	1000043: "Katapult",
 	1000051: "Tresortransport",
 	1000073: "Gilden-Banner für Erfahrung",
@@ -8357,7 +8359,7 @@ ilist = {
 	1000801: "Großer Würfel aus Schnee",
 	1000802: "Halbkugel aus Schnee",
 	1000803: "Ecke aus Schnee",
-	1000804: "Hahnstatue",
+	1000804: "Hahn-Statue",
 	1000805: "Aufgespießter Gefangener",
 	1000806: "Fragment von Sauls Bürde",
 	1000807: "Mursaat-Aufseher-Silbertrophäe",
@@ -8581,4 +8583,8 @@ ilist = {
 	1001311: "Eiszapfen",
 	1001312: "Festliche Schleife",
 	1001313: "Sternenlicht-Schnur",
+	1001314: "Goldene Schlangenstatue",
+	1001315: "Einfache rote Laterne",
+	1001316: "Einfache weiße Laterne",
+	1001317: "Schlangenstatue",
 }

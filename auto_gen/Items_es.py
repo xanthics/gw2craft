@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2024-12-13T07:51:10 PST
+# Created: 2025-04-11T12:20:06 PST
 ilist = {
 	8576: "Botella de licor de arroz",
 	8587: "Huevo escalfado de Drottot",
@@ -8054,6 +8054,8 @@ ilist = {
 	99955: "Cecina de pescado cefirita",
 	101398: "Lámpara de la suerte del dragón",
 	101429: "Lámpara de la suerte del gran dragón",
+	104158: "Lámpara de la suerte de gran serpiente",
+	104194: "Lámpara de la suerte de serpiente",
 	1000043: "Catapulta",
 	1000051: "Transporte de la Cámara",
 	1000073: "Estandarte de experiencia de clan",
@@ -8484,9 +8486,9 @@ ilist = {
 	1001159: "Cartel del Dragonicidio triunfante",
 	1001160: "Cartel del Dragonicidio victorioso",
 	1001161: "Estandarte del Dragonicidio",
-	1001164: "Linterna de murciélago",
+	1001164: "Lámpara de murciélago",
 	1001166: "Engranaje de la Torre del Reloj",
-	1001167: "Farol de calabaza",
+	1001167: "Lámpara de calabaza",
 	1001168: "Nevero",
 	1001169: "Estrella del Día Invernal",
 	1001170: "Guirnalda del Día Invernal drapeada",
@@ -8581,4 +8583,8 @@ ilist = {
 	1001311: "Carámbano",
 	1001312: "Lazo alegre",
 	1001313: "Guirnalda de estrellas luminosas",
+	1001314: "Estatua de serpiente dorada",
+	1001315: "Lámpara roja sencilla",
+	1001316: "Lámpara blanca sencilla",
+	1001317: "Estatua de serpiente",
 }
