@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2025-04-11T12:19:27 PST
+# Created: 2025-07-23T15:30:42 PST
 ilist = {
 	8576: "Bottle of Rice Wine",
 	8587: "Drottot's Poached Egg",
@@ -5875,8 +5875,8 @@ ilist = {
 	38429: "Giver's Green Inscription",
 	38430: "Giver's Iron-Plated Inscription",
 	38431: "Giver's Steel-Plated Inscription",
-	38432: "Giver's Mithril Imbued Inscription",
-	38433: "Giver's Darksteel Imbued Inscription",
+	38432: "Bringer's Mithril Imbued Inscription",
+	38433: "Bringer's Darksteel Imbued Inscription",
 	38434: "Bringer's Orichalcum-Imbued Inscription",
 	41374: "Sentinel's Barbaric Boots",
 	41375: "Sentinel's Barbaric Boots",
@@ -7274,6 +7274,7 @@ ilist = {
 	66625: "Cleric's Adventurer's Spectacles",
 	66923: "Plate of Piquant Plant Food",
 	66933: "Foxfire Cluster",
+	68063: "Amalgamated Gemstone",
 	68620: "Lucky Great Ram Lantern",
 	68942: "Evergreen Lodestone",
 	68944: "Auric Sliver",
@@ -8056,6 +8057,7 @@ ilist = {
 	101429: "Lucky Great Dragon Lantern",
 	104158: "Lucky Great Snake Lantern",
 	104194: "Lucky Snake Lantern",
+	104934: "Peer Reviewed Research",
 	1000043: "Catapult",
 	1000051: "Vault Transport",
 	1000073: "Guild Experience Banner",
@@ -8587,4 +8589,19 @@ ilist = {
 	1001315: "Plain Red Lantern",
 	1001316: "Plain White Lantern",
 	1001317: "Snake Statue",
+	1001318: "Super Pagoda Door",
+	1001319: "Super Pagoda Roof",
+	1001320: "Super Pagoda Arch",
+	1001321: "Super Pagoda Long Roof",
+	1001322: "Super Pagoda Wall",
+	1001323: "Super Pagoda Floor",
+	1001324: "Super Pagoda Pond",
+	1001325: "Super Pagoda Deck",
+	1001327: "Norn Stone Structure",
+	1001328: "Norn Brazier",
+	1001330: "Raven Hall",
+	1001331: "Wind Aspect Crystal",
+	1001333: "Zephyrite Display Stand",
+	1001334: "Lightning Aspect Crystal",
+	1001335: "Sun Aspect Crystal",
 }
