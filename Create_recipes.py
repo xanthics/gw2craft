@@ -128,7 +128,7 @@ def parse_recipes(recipes):
 			for it in data['disciplines']:
 				key = it
 				# We don't want recipe items.  Except for karma cooking and known good recipes
-				if 'LearnedFromItem' in data['flags'] and not (it == 'Chef' or int(item_id) in good_recipes):
+				if it == "Homesteader" or 'LearnedFromItem' in data['flags'] and not (it == 'Chef' or int(item_id) in good_recipes):
 					continue
 				if it == 'Chef' and (set(karma) & ingredient_set or 'LearnedFromItem' in data['flags']):
 					key = 'Chef_karma'
