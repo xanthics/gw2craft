@@ -80,8 +80,8 @@ def recipeworker(inc_params):  # , out_q):
 
 
 def main():
-	backupkey = 'archive/' + datetime.datetime.now(datetime.UTC).strftime('%Y%m%dT%H%M')
-	mytime = "<span class=\"localtime\">" + datetime.datetime.now(datetime.UTC).strftime('%Y-%m-%dT%H:%M') + '+00:00</span>'
+	backupkey = 'archive/' + datetime.datetime.utcnow().strftime('%Y%m%dT%H%M')
+	mytime = "<span class=\"localtime\">" + datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M') + '+00:00</span>'
 	# Will hold level:total xp pairs (array)
 	xp_to_level = [0]
 	# populate the xp chart
@@ -110,9 +110,9 @@ def main():
 		("cooking_fast_200.html", Chef.recipes, True, False, list(range(0, 200, 25))),
 		("cooking_karma_fast_200.html", cooking_karma, True, False, list(range(0, 200, 25))),
 
-#		(u"cooking_karma_400.html", cooking_karma, False, True, list(range(400, 500, 25))),
+#		(u"cooking_karma_400.html", cooking_karma, False, False, range(400, 500, 25)),
 		("cooking_karma_450.html", cooking_karma, False, False, list(range(400, 450, 25))),
-#		(u"cooking_400.html", Chef.recipes, False, True, list(range(400, 500, 25))),
+#		(u"cooking_400.html", Chef.recipes, False, False, range(400, 500, 25)),
 		("cooking_450.html", Chef.recipes, False, False, list(range(400, 450, 25))),
 
 		("jewelcraft_fast.html", Jeweler.recipes, True, False, list(range(0, 400, 25))),
