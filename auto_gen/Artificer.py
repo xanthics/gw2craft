@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2024-11-29T08:44:27 PST
+# Created: 2025-09-16T20:46:02 PST
 recipes = {
 	0: {
 		9464: {24272: 6},  # Apprentice Tuning Crystal
@@ -37,6 +37,7 @@ recipes = {
 		62943: {19679: 5},  # Simple Artificer's Tools
 		73034: {74090: 15, 76839: 1, 77256: 5},  # Vial of Linseed Oil
 		89271: {89140: 10},  # Pile of Lucent Crystal
+		104934: {19700: 20, 19722: 30, 19748: 30, 68063: 1},  # Peer Reviewed Research
 	},
 	25: {
 		8804: {19683: 1, 24272: 1, 24290: 1, 24346: 1},  # Weak Potion of Flame Legion Slaying
@@ -558,7 +559,7 @@ recipes = {
 		38414: {12979: 1, 13258: 1, 38433: 1},  # Bringer's Ogre Truncheon
 		38420: {12972: 1, 13264: 1, 38433: 1},  # Bringer's Ogre Warstaff
 		38426: {13001: 1, 13250: 1, 38433: 1},  # Bringer's Ogre Trident
-		38433: {12991: 1, 86601: 45},  # Giver's Darksteel Imbued Inscription
+		38433: {12991: 1, 86601: 45},  # Bringer's Darksteel Imbued Inscription
 		45997: {12972: 1, 13264: 1, 19894: 1},  # Assassin's Hard Wood Staff
 		45998: {12972: 1, 13264: 1, 19950: 1},  # Assassin's Ogre Warstaff
 		46014: {13001: 1, 13250: 1, 19894: 1},  # Assassin's Hard Wood Trident
@@ -742,7 +743,7 @@ recipes = {
 		38415: {12977: 1, 13256: 1, 38432: 1},  # Bringer's Krait Wand
 		38421: {12970: 1, 13262: 1, 38432: 1},  # Bringer's Krait Crook
 		38427: {13003: 1, 13252: 1, 38432: 1},  # Bringer's Krait Trident
-		38432: {12989: 2, 86601: 65},  # Giver's Mithril Imbued Inscription
+		38432: {12989: 2, 86601: 65},  # Bringer's Mithril Imbued Inscription
 		41479: {12983: 1, 13244: 1, 41559: 1},  # Sentinel's Krait Star
 		41483: {12977: 1, 13256: 1, 41559: 1},  # Sentinel's Krait Wand
 		41487: {12970: 1, 13262: 1, 41559: 1},  # Sentinel's Krait Crook

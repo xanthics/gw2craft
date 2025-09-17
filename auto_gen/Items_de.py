@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2025-07-23T15:31:07 PST
+# Created: 2025-09-16T20:46:41 PST
 ilist = {
 	8576: "Flasche Reiswein",
 	8587: "Pochiertes Ei Drottots",
@@ -8598,7 +8598,7 @@ ilist = {
 	1001324: "Super-Pagodenteich",
 	1001325: "Super-Pagodenterrasse",
 	1001327: "Norn-Steingebäude",
-	1001328: "Norn Flammenschale",
+	1001328: "Norn-Flammenschale",
 	1001330: "Halle des Raben",
 	1001331: "Wind-Aspektkristall",
 	1001333: "Zephyriten-Präsentationsständer",

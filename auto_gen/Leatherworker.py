@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2021-05-27T18:49:45 PST
+# Created: 2025-09-16T20:46:02 PST
 recipes = {
 	0: {
 		9404: {19738: 10},  # 8 Slot Rawhide Leather Pack
@@ -37,6 +37,7 @@ recipes = {
 		62957: {19738: 5},  # Simple Leatherworker's Tools
 		73034: {74090: 15, 76839: 1, 77256: 5},  # Vial of Linseed Oil
 		89271: {89140: 10},  # Pile of Lucent Crystal
+		104934: {19700: 20, 19722: 30, 19748: 30, 68063: 1},  # Peer Reviewed Research
 	},
 	10: {
 		24869: {19720: 1, 89271: 1},  # Rune of Life

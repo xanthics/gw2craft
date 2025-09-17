@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2024-11-29T08:44:27 PST
+# Created: 2025-09-16T20:46:02 PST
 recipes = {
 	0: {
 		9431: {19679: 3, 24272: 3},  # Rough Sharpening Stone
@@ -59,6 +59,7 @@ recipes = {
 		62949: {19679: 5},  # Simple Weaponsmith's Tools
 		73034: {74090: 15, 76839: 1, 77256: 5},  # Vial of Linseed Oil
 		89271: {89140: 10},  # Pile of Lucent Crystal
+		104934: {19700: 20, 19722: 30, 19748: 30, 68063: 1},  # Peer Reviewed Research
 	},
 	25: {
 		14943: {12848: 1, 12891: 1, 19776: 1},  # Precise Bronze Axe
@@ -823,7 +824,7 @@ recipes = {
 		38342: {12861: 1, 12898: 1, 38433: 1},  # Bringer's Darksteel Hammer
 		38347: {12837: 1, 12885: 1, 38433: 1},  # Bringer's Darksteel Greatsword
 		38352: {12855: 1, 12879: 1, 38433: 1},  # Bringer's Ogre Dirk
-		38433: {12991: 1, 86601: 45},  # Giver's Darksteel Imbued Inscription
+		38433: {12991: 1, 86601: 45},  # Bringer's Darksteel Imbued Inscription
 		46264: {12855: 1, 12879: 1, 19894: 1},  # Assassin's Darksteel Dagger
 		46265: {12855: 1, 12879: 1, 19950: 1},  # Assassin's Ogre Dirk
 		46277: {12843: 1, 12867: 1, 19894: 1},  # Assassin's Darksteel Sword
@@ -1114,7 +1115,7 @@ recipes = {
 		38341: {12863: 1, 12896: 1, 38432: 1},  # Bringer's Krait Warhammer
 		38346: {12839: 1, 12887: 1, 38432: 1},  # Bringer's Krait Slayer
 		38351: {12857: 1, 12881: 1, 38432: 1},  # Bringer's Krait Ripper
-		38432: {12989: 2, 86601: 65},  # Giver's Mithril Imbued Inscription
+		38432: {12989: 2, 86601: 65},  # Bringer's Mithril Imbued Inscription
 		41523: {12851: 1, 12894: 1, 41559: 1},  # Sentinel's Krait Battleaxe
 		41527: {12857: 1, 12881: 1, 41559: 1},  # Sentinel's Krait Ripper
 		41531: {12839: 1, 12887: 1, 41559: 1},  # Sentinel's Krait Slayer

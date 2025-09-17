@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2022-06-02T08:52:56 PST
+# Created: 2025-09-16T20:46:02 PST
 recipes = {
 	0: {
 		12132: {12136: 1, 12152: 1, 12156: 1},  # Loaf of Bread
@@ -22,6 +22,7 @@ recipes = {
 		38216: {12137: 1, 12143: 1, 12155: 1, 12234: 1},  # Bowl of Ice Cream Base
 		62985: {12132: 3, 12178: 2},  # Simple Chef's Tools
 		73034: {74090: 15, 76839: 1, 77256: 5},  # Vial of Linseed Oil
+		104934: {19700: 20, 19722: 30, 19748: 30, 68063: 1},  # Peer Reviewed Research
 	},
 	25: {
 		12176: {12157: 1, 12158: 1, 12178: 1},  # Bottle of Simple Dressing

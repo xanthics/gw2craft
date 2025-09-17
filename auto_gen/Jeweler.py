@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2021-01-24T14:49:33 PST
+# Created: 2025-09-16T20:46:02 PST
 recipes = {
 	0: {
 		12806: {19680: 2},  # Copper Hook
@@ -13,6 +13,7 @@ recipes = {
 		13367: {12812: 1, 12824: 1, 24534: 1},  # Amber Copper Ring
 		19680: {19697: 2},  # Copper Ingot
 		62979: {19680: 5},  # Simple Jeweler's Tools
+		104934: {19700: 20, 19722: 30, 19748: 30, 68063: 1},  # Peer Reviewed Research
 	},
 	25: {
 		13268: {12806: 1, 12812: 1, 24467: 1},  # Tiger's Eye Copper Stud

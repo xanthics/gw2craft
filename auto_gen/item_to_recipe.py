@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2024-11-29T08:44:27 PST
+# Created: 2025-09-16T20:46:02 PST
 id_rid = {
 	8587: 2843,  # Drottot's Poached Egg
 	12131: 2844,  # Bowl of Watery Mushroom Soup
@@ -127,8 +127,8 @@ id_rid = {
 	38162: 6750,  # Giver's Intricate Gossamer Insignia
 	38166: 6749,  # Giver's Embroidered Silk Insignia
 	38167: 6748,  # Giver's Embroidered Linen Insignia
-	38432: 7006,  # Giver's Mithril Imbued Inscription
-	38433: 7005,  # Giver's Darksteel Imbued Inscription
+	38432: 7006,  # Bringer's Mithril Imbued Inscription
+	38433: 7005,  # Bringer's Darksteel Imbued Inscription
 	38434: 7007,  # Bringer's Orichalcum-Imbued Inscription
 	41561: 7219,  # Carrot Soufflé
 	41562: 7221,  # Bowl of Refugee's Beet Soup

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2024-11-29T08:44:27 PST
+# Created: 2025-09-16T20:46:02 PST
 recipes = {
 	0: {
 		9452: {12156: 3, 24272: 4},  # Apprentice Maintenance Oil
@@ -54,6 +54,7 @@ recipes = {
 		62967: {19710: 5},  # Simple Huntsman's Tools
 		73034: {74090: 15, 76839: 1, 77256: 5},  # Vial of Linseed Oil
 		89271: {89140: 10},  # Pile of Lucent Crystal
+		104934: {19700: 20, 19722: 30, 19748: 30, 68063: 1},  # Peer Reviewed Research
 	},
 	25: {
 		14155: {12939: 1, 12964: 1, 19776: 1},  # Precise Green Wood Longbow
@@ -738,7 +739,7 @@ recipes = {
 		38390: {12952: 1, 13054: 1, 38433: 1},  # Bringer's Ogre Harpoon Gun
 		38396: {13012: 1, 13058: 1, 38433: 1},  # Bringer's Ogre Blaze
 		38402: {12927: 1, 12933: 1, 38433: 1},  # Bringer's Ogre Harbinger
-		38433: {12991: 1, 86601: 45},  # Giver's Darksteel Imbued Inscription
+		38433: {12991: 1, 86601: 45},  # Bringer's Darksteel Imbued Inscription
 		46121: {12946: 1, 12965: 1, 19894: 1},  # Assassin's Hard Wood Short Bow
 		46122: {12946: 1, 12965: 1, 19950: 1},  # Assassin's Ogre Short Bow
 		46134: {12927: 1, 12933: 1, 19894: 1},  # Assassin's Hard Wood Warhorn
@@ -998,7 +999,7 @@ recipes = {
 		38391: {12950: 1, 13052: 1, 38432: 1},  # Bringer's Krait Harpoon Gun
 		38397: {13013: 1, 13060: 1, 38432: 1},  # Bringer's Krait Brazier
 		38403: {12929: 1, 12935: 1, 38432: 1},  # Bringer's Krait Whelk
-		38432: {12989: 2, 86601: 65},  # Giver's Mithril Imbued Inscription
+		38432: {12989: 2, 86601: 65},  # Bringer's Mithril Imbued Inscription
 		41495: {12938: 1, 12966: 1, 41559: 1},  # Sentinel's Krait Recurve Bow
 		41499: {12923: 1, 12956: 1, 41559: 1},  # Sentinel's Krait Handgun
 		41503: {12917: 1, 12950: 1, 41559: 1},  # Sentinel's Krait Shooter

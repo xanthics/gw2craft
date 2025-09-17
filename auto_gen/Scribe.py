@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2025-04-11T12:19:16 PST
+# Created: 2025-09-16T20:46:02 PST
 recipes = {
 	0: {
 		19679: {19697: 10, 19704: 1},  # Bronze Ingot
@@ -32,6 +32,7 @@ recipes = {
 		76876: {71641: 10, 72579: 1},  # Sheet of Extra Coarse Sandpaper
 		76903: {19680: 10, 75648: 1},  # Fountain Torch
 		89271: {89140: 10},  # Pile of Lucent Crystal
+		104934: {19700: 20, 19722: 30, 19748: 30, 68063: 1},  # Peer Reviewed Research
 		1000776: {70926: 1, 73248: 4, 75900: 1, 1000769: 2},  # Chunk of the Solid Ocean
 	},
 	25: {
@@ -514,6 +515,10 @@ recipes = {
 		1001290: {19711: 10, 19744: 20, 70489: 1, 1000964: 30},  # Elonian Bazaar Shade
 		1001291: {19711: 5, 70489: 1, 71668: 15, 1000964: 30},  # Krytan Garden Column
 		1001312: {19709: 3, 19747: 10, 70489: 1, 1000661: 10},  # Jolly Bow
+		1001327: {19712: 20, 24315: 5, 43319: 100, 70489: 1},  # Norn Stone Structure
+		1001328: {19712: 10, 24315: 5, 43319: 50, 70489: 1},  # Norn Brazier
+		1001330: {19712: 20, 24330: 5, 43319: 100, 70489: 1},  # Raven Hall
+		1001333: {19709: 25, 70489: 1, 1000964: 20},  # Zephyrite Display Stand
 	},
 	325: {
 		73186: {19735: 10},  # Quality Book Cover

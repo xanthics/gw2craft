@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2023-08-07T08:10:19 PST
+# Created: 2025-09-16T20:46:02 PST
 recipes = {
 	0: {
 		9406: {19720: 10},  # 8 Slot Jute Bag
@@ -37,6 +37,7 @@ recipes = {
 		62973: {19720: 3, 19792: 2},  # Simple Tailor's Tools
 		73034: {74090: 15, 76839: 1, 77256: 5},  # Vial of Linseed Oil
 		89271: {89140: 10},  # Pile of Lucent Crystal
+		104934: {19700: 20, 19722: 30, 19748: 30, 68063: 1},  # Peer Reviewed Research
 	},
 	10: {
 		24869: {19738: 1, 89271: 1},  # Rune of Life

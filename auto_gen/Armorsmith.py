@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2021-01-24T14:49:33 PST
+# Created: 2025-09-16T20:46:02 PST
 recipes = {
 	0: {
 		9420: {19679: 10},  # 8 Slot Reinforced Bronze Box
@@ -38,6 +38,7 @@ recipes = {
 		62961: {19679: 5},  # Simple Armorsmith's Tools
 		73034: {74090: 15, 76839: 1, 77256: 5},  # Vial of Linseed Oil
 		89271: {89140: 10},  # Pile of Lucent Crystal
+		104934: {19700: 20, 19722: 30, 19748: 30, 68063: 1},  # Peer Reviewed Research
 	},
 	10: {
 		24869: {19720: 1, 89271: 1},  # Rune of Life
