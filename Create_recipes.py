@@ -159,7 +159,7 @@ def parse_recipes(recipes):
 			for obj in sorted(crafts[craft][lvl]):
 				mystr = ""
 				for part in sorted(crafts[craft][lvl][obj], key=lambda k: k['item_id']):
-					if not part['item_id'] in item_ids:
+					if part['item_id'] not in item_ids:
 						item_ids[part['item_id']] = {'type': 'Other', 'output_item_count': 0, 'flags': []}
 					mystr += "{}: {}, ".format(part['item_id'], part['count'])
 				if obj in ige.ilist:
@@ -337,3 +337,4 @@ def main():
 # If ran directly, call main
 if __name__ == '__main__':
 	main()
+	exit()

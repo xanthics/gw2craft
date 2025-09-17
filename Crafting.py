@@ -68,7 +68,7 @@ def recipeworker(inc_params):  # , out_q):
 	Globals.init()
 	totals = {}
 
-	if type(cmds) == list:
+	if type(cmds) is list:
 		Globals.karmin = {}
 		for cmd in cmds:
 			with mytimer(cmd[0]):
