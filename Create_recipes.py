@@ -145,7 +145,7 @@ def parse_recipes(recipes):
 				else:
 					nc[it] = 1
 
-	if os.path.isfile("auto_gen\\Items_en.py"):
+	if os.path.isfile(os.path.join('auto_gen', 'Items_en.py')):
 		import auto_gen.Items_en as ige
 	else:
 		ige = types.ModuleType("ige")
