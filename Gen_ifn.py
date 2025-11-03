@@ -15,13 +15,15 @@ def faq(localText, free):
 	page = "<!DOCTYPE html>\n"
 	page += "<html>\n"
 	page += "<head>\n"
-	page += '''<!-- Ezoic Code -->
-<script>var ezoicId = 39853;</script>
-<script type="text/javascript" src="//go.ezoic.net/ezoic/ezoic.js"></script>
-<!-- Ezoic Code -->
-<!-- Ezoic Ad Testing Code-->
-<script src="//g.ezoic.net/ezoic/ezoiclitedata.go?did=39853"></script>
-<!-- Ezoic Ad Testing Code-->'''
+	page.append('	<script src="https://cmp.gatekeeperconsent.com/min.js" data-cfasync="false"></script>\n')
+	page.append('	<script src="https://the.gatekeeperconsent.com/cmp.min.js" data-cfasync="false"></script>\n')
+	# Ezoic adwords
+	page.append('''<script async src="//www.ezojs.com/ezoic/sa.min.js"></script>
+<script>
+    window.ezstandalone = window.ezstandalone || {};
+    ezstandalone.cmd = ezstandalone.cmd || [];
+</script>
+''')
 	page += "	<title>%s</title>\n"%(localText.about)
 	page += "	<meta name=\"description\" content=\"ACCG FAQ, Contact information, and Privacy Policy\">\n"
 	page += '	<meta name="keywords" content="best videogames, free mmos, free mmorpg, best free mmorpg, best mmorpg, free to play, mmos, mmorpg, free game, online games, fantasy games, PC games, PC gaming, crafting guide, crafting guides, Guild Wars 2, Trading Post"/>\n'
@@ -126,6 +128,12 @@ def faq(localText, free):
 	page += '<div id="sponsor"><div id="patreon_image"><a href="https://www.patreon.com/xanthics"><img alt="Become a Patron!" src="img/become_a_patron_button@2x.png" class="sponsor_img"></a></div></div>'
 	page += "</section>\n"
 	page += localText.cright
+	page.append('''<script>
+    ezstandalone.cmd.push(function () {
+        ezstandalone.showAds();
+    });
+</script>
+''')
 	page += "</body>\n"
 	page += "</html>\n"
 
@@ -139,14 +147,15 @@ def nav(localText, free):
 	page = "<!DOCTYPE html>\n"
 	page += "<html>\n"
 	page += "<head>\n"
+	page.append('	<script src="https://cmp.gatekeeperconsent.com/min.js" data-cfasync="false"></script>\n')
+	page.append('	<script src="https://the.gatekeeperconsent.com/cmp.min.js" data-cfasync="false"></script>\n')
 	# Ezoic adwords
-	page += '''<!-- Ezoic Code -->
-<script>var ezoicId = 39853;</script>
-<script type="text/javascript" src="//go.ezoic.net/ezoic/ezoic.js"></script>
-<!-- Ezoic Code -->
-<!-- Ezoic Ad Testing Code-->
-<script src="//g.ezoic.net/ezoic/ezoiclitedata.go?did=39853"></script>
-<!-- Ezoic Ad Testing Code-->'''
+	page.append('''<script async src="//www.ezojs.com/ezoic/sa.min.js"></script>
+<script>
+    window.ezstandalone = window.ezstandalone || {};
+    ezstandalone.cmd = ezstandalone.cmd || [];
+</script>
+''')
 	page += "	<title>Nav Page</title>\n"
 	page += "	<meta name=\"description\" content=\"ACCG nav page\">\n"
 	page += '	<meta name="keywords" content="best videogames, free mmos, free mmorpg, best free mmorpg, best mmorpg, free to play, mmos, mmorpg, free game, online games, fantasy games, PC games, PC gaming, crafting guide, crafting guides, Guild Wars 2, Trading Post"/>\n'
@@ -238,6 +247,12 @@ def nav(localText, free):
 	page += '<div id="sponsor"><div id="patreon_image"><a href="https://www.patreon.com/xanthics"><img alt="Become a Patron!" src="img/become_a_patron_button@2x.png" class="sponsor_img"></a></div></div>'
 	page += "</section>\n"
 	page += localText.cright
+	page.append('''<script>
+    ezstandalone.cmd.push(function () {
+        ezstandalone.showAds();
+    });
+</script>
+''')
 	page += "</body>\n"
 	page += "</html>\n"
 
@@ -250,14 +265,15 @@ def index(localText, free):
 	page = "<!DOCTYPE html>\n"
 	page += "<html>\n"
 	page += "<head>\n"
+	page.append('	<script src="https://cmp.gatekeeperconsent.com/min.js" data-cfasync="false"></script>\n')
+	page.append('	<script src="https://the.gatekeeperconsent.com/cmp.min.js" data-cfasync="false"></script>\n')
 	# Ezoic adwords
-	page += '''<!-- Ezoic Code -->
-<script>var ezoicId = 39853;</script>
-<script type="text/javascript" src="//go.ezoic.net/ezoic/ezoic.js"></script>
-<!-- Ezoic Code -->
-<!-- Ezoic Ad Testing Code-->
-<script src="//g.ezoic.net/ezoic/ezoiclitedata.go?did=39853"></script>
-<!-- Ezoic Ad Testing Code-->'''
+	page.append('''<script async src="//www.ezojs.com/ezoic/sa.min.js"></script>
+<script>
+    window.ezstandalone = window.ezstandalone || {};
+    ezstandalone.cmd = ezstandalone.cmd || [];
+</script>
+''')
 	page += "	<title>ACCGs for Guild Wars 2</title>\n"
 	page += "	<meta name=\"description\" content=\"Always Current Crafting Guides for Guild Wars 2 with guides that are updated every 30 minutes based on current TP prices.  Multiple styles.\">\n"
 	page += '	<meta name="keywords" content="best videogames, free mmos, free mmorpg, best free mmorpg, best mmorpg, free to play, mmos, mmorpg, free game, online games, fantasy games, PC games, PC gaming, crafting guide, crafting guides, Guild Wars 2, Trading Post"/>\n'
@@ -319,6 +335,12 @@ def index(localText, free):
 <!-- End Ezoic - Tail - bottom_of_page --></div>\n'
 	page += "</section>\n"
 	page += localText.cright
+	page.append('''<script>
+    ezstandalone.cmd.push(function () {
+        ezstandalone.showAds();
+    });
+</script>
+''')
 	page += "</body>\n"
 	page += "</html>\n"
 

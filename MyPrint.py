@@ -317,14 +317,15 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page = ['<!DOCTYPE html>\n']
 	page.append('<html>\n')
 	page.append('<head>\n')
+	page.append('	<script src="https://cmp.gatekeeperconsent.com/min.js" data-cfasync="false"></script>\n')
+	page.append('	<script src="https://the.gatekeeperconsent.com/cmp.min.js" data-cfasync="false"></script>\n')
 	# Ezoic adwords
-	page.append('''<!-- Ezoic Code -->
-<script>var ezoicId = 39853;</script>
-<script type="text/javascript" src="//go.ezoic.net/ezoic/ezoic.js"></script>
-<!-- Ezoic Code -->
-<!-- Ezoic Ad Testing Code-->
-<script src="//g.ezoic.net/ezoic/ezoiclitedata.go?did=39853"></script>
-<!-- Ezoic Ad Testing Code-->''')
+	page.append('''<script async src="//www.ezojs.com/ezoic/sa.min.js"></script>
+<script>
+    window.ezstandalone = window.ezstandalone || {};
+    ezstandalone.cmd = ezstandalone.cmd || [];
+</script>
+''')
 	# Title Part 1
 	page.append('	<title>' + title + ' - Guild Wars 2 Crafting Guide</title>\n')
 	page.append('	<meta name="description" content="Guild Wars 2 always current crafting guide for ' + filename.split('.')[0].replace("_", " ").title() + '">\n')
@@ -644,6 +645,12 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page.append("$(\"#show_all\").click(function () {$(\".sbutton\").show();")
 	page.append("});\n$(\"#hide_all\").click(function () {$(\".sbutton\").hide();")
 	page.append('});\n</script>\n')
+	page.append('''<script>
+    ezstandalone.cmd.push(function () {
+        ezstandalone.showAds();
+    });
+</script>
+''')
 	page.append('</body>\n')
 	page.append('</html>\n')
 
