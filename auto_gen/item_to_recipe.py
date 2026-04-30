@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2025-09-16T20:46:02 PST
+# Created: 2026-04-30T14:57:28 PST
 id_rid = {
 	8587: 2843,  # Drottot's Poached Egg
 	12131: 2844,  # Bowl of Watery Mushroom Soup
@@ -241,4 +241,5 @@ id_rid = {
 	97767: 13699,  # Fishy Rice Bowl
 	97933: 13896,  # Super Mixed Parfait
 	99955: 13935,  # Zephyrite Fish Jerky
+	105402: 15189,  # Bag of Popped Candy Corn
 }
