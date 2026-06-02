@@ -407,11 +407,11 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page.append('Clicking the button will update the quantities of all items in your bank and material storage that are used in this guide.')
 	sl_step = 75 if tierbuy else 25
 	sl_max = 300 if tierbuy else 500
-	page.append('<br /><br />' + getattr(localText, 'startLevelLabel', 'Start at level:') +
+	page.append('<br /><br />' + getattr(localText, 'slLabel', 'Start at level:') +
 		' <input type="number" id="start-level" min="0" max="' + str(sl_max) + '" step="' + str(sl_step) + '" value="0" '
 		'oninput="setStartLevel();" data-profession="' + filename.split('.')[0] +
 		'" style="width: 5em; text-align: center;" /> '
-		'<small>' + getattr(localText, 'startLevelHint',
+		'<small>' + getattr(localText, 'slHint',
 			'(0 = full guide; raise to skip tiers you have already finished)') +
 		'</small><br />\n')
 	page.append(
