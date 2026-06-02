@@ -396,3 +396,15 @@ input[type=checkbox]:checked + button {
 #patreon_image {
     flex:4.255;
 }
+
+
+/* === Start-level filter + per-tier bank subtraction === */
+.tier-skip, .level-skip { display: none !important; }
+
+span.quantity[data-need="done"] {
+    color: #060;
+    text-decoration: line-through;
+}
+span.quantity[data-need="more"] {
+    color: #b00;
+}
