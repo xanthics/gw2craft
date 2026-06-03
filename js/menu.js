@@ -272,6 +272,16 @@ function setStartLevel() {
     if (!input) return;
     var level = +input.value || 0;
 
+    // Show a warning when start-level is mid-tier (on guides that have tier-buy lists).
+    // Tier boundaries: 0, 75, 150, 225, 300. Past 400 the final tier is also fully done.
+    var warningEl = document.getElementById('start-level-warning');
+    if (warningEl) {
+        var hasTierBuys = document.querySelectorAll('.tierbuy-row').length > 0;
+        var atBoundary = (level === 0 || level === 75 || level === 150 ||
+                          level === 225 || level === 300 || level >= 400);
+        warningEl.style.display = (hasTierBuys && !atBoundary) ? 'inline' : 'none';
+    }
+
     var tierEls = document.querySelectorAll('[data-tier]');
     for (var i = 0; i < tierEls.length; i++) {
         var t = +tierEls[i].getAttribute('data-tier');

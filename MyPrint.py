@@ -405,15 +405,21 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page.append('<button type="submit" form="gw2apiform" onclick="updateBank(document.getElementById(\'api_key\').value.trim());" style=\'text-align: center;\'>Get Bank Content</button>\n')
 	page.append('<br /> ' + localText.api_note + '<br /><a href="https://account.arena.net/applications/create">' + localText.api_new_key + '</a>. <br /><br />')
 	page.append('Clicking the button will update the quantities of all items in your bank and material storage that are used in this guide.')
-	sl_step = 75 if tierbuy else 25
-	sl_max = 300 if tierbuy else 500
-	page.append('<br /><br />' + getattr(localText, 'slLabel', 'Start at level:') +
-		' <input type="number" id="start-level" min="0" max="' + str(sl_max) + '" step="' + str(sl_step) + '" value="0" '
-		'oninput="setStartLevel();" data-profession="' + filename.split('.')[0] +
-		'" style="width: 5em; text-align: center;" /> '
-		'<small>' + getattr(localText, 'slHint',
-			'(0 = full guide; raise to skip tiers you have already finished)') +
-		'</small><br />\n')
+	# Only show start-level filter on guides with per-tier buy lists.
+	# Craftexo (400+) and cooking guides aggregate cost globally, so a filter
+	# would hide sections without updating the cost numbers - misleading.
+	if tierbuy:
+		page.append('<br /><br />' + getattr(localText, 'slLabel', 'Start at level:') +
+			' <input type="number" id="start-level" min="0" max="300" step="75" value="0" '
+			'oninput="setStartLevel();" data-profession="' + filename.split('.')[0] +
+			'" style="width: 5em; text-align: center;" /> '
+			'<small>' + getattr(localText, 'slHint',
+				'(0 = full guide; raise to skip tiers you have already finished)') +
+			'</small><br />\n'
+			'<small id="start-level-warning" style="display:none; color:#b00;">' +
+				getattr(localText, 'slWarn',
+					'Note: tier buy lists cover the whole tier (multiples of 75); a mid-tier choice may overstate what you still need.') +
+			'</small>\n')
 	page.append(
 		"<br /><br /><div class=\"s1\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(/apple-touch-icon-144x144-precomposed.png);\"></span><input type=\"text\" value='Have' readonly style=\"width: 4em;\" /><input type=\"text\" value='Need' readonly style=\"width: 4em;\" /> Name of an item and its per unit cost.</div>\n")
 
