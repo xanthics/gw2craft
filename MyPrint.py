@@ -279,8 +279,8 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 			b_food[item] = buy[item]
 		else:
 			b_mix[item] = buy[item]
-	karma_str = "<div class=\"s{0}\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url({1});\"></span><input type=\"number\" onkeypress=\"return event.charCode >= 48\" oninput=\"updateNeed(this, {2}, '{9}bv');\" id=\"{9}ih\" placeholder='0' min=\"0\" value=\"0\" /><input type=\"number\" id=\"{9}bv\" value='{2}' raw_copper='0' readonly data-need = \"more\" min=\"0\" /> <button title=\"" + localText.toggle + "\" class=\"{3} arrow\" id=\"{4}\">{5}</button><div class=\"lsbutton\" id=\"1{6}\">{7} <span class=\"karmaIcon\"></span> " + localText.valuePer + " 25 <br /> {8}</div></div>\n"
-	collectable_str = "<div class=\"s{0}\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url({1});\"></span><input type=\"number\" onkeypress=\"return event.charCode >= 48\" oninput=\"updateNeed(this, {2}, '{6}bv');\" id=\"{6}ih\" placeholder='0' min=\"0\" value=\"0\" /><input type=\"number\" id=\"{6}bv\" value='{2}' raw_copper='{7}' class='vTotal' readonly data-need = \"more\" min=\"0\" /> <span class=\"{3} select_text\">{4}</span> ({5} " + localText.valuePer + ")</div>\n"
+	karma_str = "<div class=\"s{0}\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url({1});\"></span><input type=\"number\" onkeypress=\"return event.charCode >= 48\" oninput=\"updateNeed(this, {2}, '{9}bv');\" id=\"{9}ih\" data-item=\"{9}\" data-original-need=\"{2}\" data-manual=\"0\" placeholder='0' min=\"0\" value=\"0\" /><input type=\"number\" id=\"{9}bv\" value='{2}' raw_copper='0' readonly data-need = \"more\" min=\"0\" /> <button title=\"" + localText.toggle + "\" class=\"{3} arrow\" id=\"{4}\">{5}</button><div class=\"lsbutton\" id=\"1{6}\">{7} <span class=\"karmaIcon\"></span> " + localText.valuePer + " 25 <br /> {8}</div></div>\n"
+	collectable_str = "<div class=\"s{0}\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url({1});\"></span><input type=\"number\" onkeypress=\"return event.charCode >= 48\" oninput=\"updateNeed(this, {2}, '{6}bv');\" id=\"{6}ih\" data-item=\"{6}\" data-original-need=\"{2}\" data-manual=\"0\" placeholder='0' min=\"0\" value=\"0\" /><input type=\"number\" id=\"{6}bv\" value='{2}' raw_copper='{7}' class='vTotal' readonly data-need = \"more\" min=\"0\" /> <span class=\"{3} select_text\">{4}</span> ({5} " + localText.valuePer + ")</div>\n"
 
 	title = ""
 	# Page Title Part 1
@@ -405,6 +405,21 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page.append('<button type="submit" form="gw2apiform" onclick="updateBank(document.getElementById(\'api_key\').value.trim());" style=\'text-align: center;\'>Get Bank Content</button>\n')
 	page.append('<br /> ' + localText.api_note + '<br /><a href="https://account.arena.net/applications/create">' + localText.api_new_key + '</a>. <br /><br />')
 	page.append('Clicking the button will update the quantities of all items in your bank and material storage that are used in this guide.')
+	# Only show start-level filter on guides with per-tier buy lists.
+	# Craftexo (400+) and cooking guides aggregate cost globally, so a filter
+	# would hide sections without updating the cost numbers - misleading.
+	if tierbuy:
+		page.append('<br /><br />' + getattr(localText, 'slLabel', 'Start at level:') +
+			' <input type="number" id="start-level" min="0" max="300" step="75" value="0" '
+			'oninput="setStartLevel();" data-profession="' + filename.split('.')[0] +
+			'" style="width: 5em; text-align: center;" /> '
+			'<small>' + getattr(localText, 'slHint',
+				'(0 = full guide; raise to skip tiers you have already finished)') +
+			'</small><br />\n'
+			'<small id="start-level-warning" style="display:none; color:#b00;">' +
+				getattr(localText, 'slWarn',
+					'Note: tier buy lists cover the whole tier (multiples of 75); a mid-tier choice may overstate what you still need.') +
+			'</small>\n')
 	page.append(
 		"<br /><br /><div class=\"s1\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(/apple-touch-icon-144x144-precomposed.png);\"></span><input type=\"text\" value='Have' readonly style=\"width: 4em;\" /><input type=\"text\" value='Need' readonly style=\"width: 4em;\" /> Name of an item and its per unit cost.</div>\n")
 
@@ -429,7 +444,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 		for item in sorted(b_vendor):
 			t = (t + 1) % 2
 			page.append(
-				"<div class=\"s{0}\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url({1});\"></span><input type=\"number\" onkeypress=\"return event.charCode >= 48\" oninput=\"updateNeed(this, {2}, '{8}bv');\" id=\"{8}ih\" placeholder='0' min=\"0\" value=\"0\" /><input type=\"number\" id=\"{8}bv\" value='{2}' raw_copper='{9}' class='vTotal' readonly data-need = \"more\" min=\"0\" /> <span class=\"{3} select_text\">{4}</span> ({5} {6} from {7})</div>\n".format(
+				"<div class=\"s{0}\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url({1});\"></span><input type=\"number\" onkeypress=\"return event.charCode >= 48\" oninput=\"updateNeed(this, {2}, '{8}bv');\" id=\"{8}ih\" data-item=\"{8}\" data-original-need=\"{2}\" data-manual=\"0\" placeholder='0' min=\"0\" value=\"0\" /><input type=\"number\" id=\"{8}bv\" value='{2}' raw_copper='{9}' class='vTotal' readonly data-need = \"more\" min=\"0\" /> <span class=\"{3} select_text\">{4}</span> ({5} {6} from {7})</div>\n".format(
 					t, cList[item]['icon'], buy[item], cList[item]['rarity'], cListName[item], mFormat(cList[item]['cost']), localText.valuePer, localText.method[0], item, cList[item]['cost']))
 
 	page.append('<!-- Ezoic - first_paragraph - under_first_paragraph -->\n<div id="ezoic-pub-ad-placeholder-107"></div>\n<!-- End Ezoic - first_paragraph - under_first_paragraph -->')
@@ -520,17 +535,20 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 			tc = tier + 75
 			if tier == 300:
 				tc += 25
-			page.append(("<br /><br /><h4>%s:<button title=\"" + localText.toggle + "\" class =\"info\" id=\"" + str(tier) + "tier\">%s</button></h4>\n<div class=\"lsbutton\" id=\"1" + str(tier) + "tier\">") % ((localText.tier % (tier / 75 + 1, tier, tc)), localText.buyList % (tier / 75 + 1)))
+			page.append(("<br /><br /><h4 data-tier=\"" + str(tier) + "\">%s:<button title=\"" + localText.toggle + "\" class =\"info\" id=\"" + str(tier) + "tier\">%s</button></h4>\n<div class=\"lsbutton\" data-tier=\"" + str(tier) + "\" id=\"1" + str(tier) + "tier\">") % ((localText.tier % (tier / 75 + 1, tier, tc)), localText.buyList % (tier / 75 + 1)))
 			page.append("<h5>%s</h5>" % localText.blNotice)
 			for item in sorted(tierbuy[tier]):
 				t = (t + 1) % 2
-				page.append(("<div class=\"s" + str(t) + "\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(" + cList[item]['icon'] + ");\"></span><span class=\"quantity\">%i</span> <span class=\"%s select_text\">%s</span> (%4s " + localText.valuePer + ")</div>\n") % (
-				tierbuy[tier][item], cList[item]['rarity'], cListName[item], mFormat(cList[item]['cost'])))
+				page.append(("<div class=\"s" + str(t) + " tierbuy-row\" data-item=\"" + str(item) + "\" data-tier=\"" + str(tier) + "\" data-original-need=\"%i\" data-raw-copper=\"" + str(cList[item]['cost']) + "\"><input type=\"checkbox\" /><span class=\"itemIcon\" style=\"background-image: url(" + cList[item]['icon'] + ");\"></span><span class=\"quantity\" data-need=\"more\">%i</span> <span class=\"%s select_text\">%s</span> (%4s " + localText.valuePer + ")</div>\n") % (
+				tierbuy[tier][item], tierbuy[tier][item], cList[item]['rarity'], cListName[item], mFormat(cList[item]['cost'])))
 				tt += tierbuy[tier][item] * cList[item]['cost']
 			buttonList.append(str(tier) + 'tier')
 			rt += tt
 			totals[filename.split('.')[0]][tier] = tt
-			page.append("</div><h4>%s</h4>\n" % (localText.costRT % (mFormat(tt), mFormat(rt))))
+			page.append(("</div><h4 data-tier=\"" + str(tier) + "\">" + localText.costRT + "</h4>\n") % (
+				"<span class=\"tier-cost\" data-tier=\"" + str(tier) + "\" data-raw-copper=\"" + str(tt) + "\">" + mFormat(tt) + "</span>",
+				"<span class=\"tier-rolling\" data-tier=\"" + str(tier) + "\" data-raw-copper=\"" + str(rt) + "\">" + mFormat(rt) + "</span>"))
+		page.append("<div class=\"level-block\" data-level=\"" + str(tier) + "\">")
 		page.append(("<br />\n<h3>%s:%3i</h3>\n") % (localText.level, tier))
 		if pmake[tier]:
 			for item in sorted(pmake[tier]):
@@ -626,9 +644,12 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 				if not cList[item]['type'] in non_item:
 					t = (t + 1) % 2
 					page.append("<div class=\"s" + str(t) + "\"><input type=\"checkbox\" />" + localText.make + ":%3i <span class=\"%s select_text\">%s</span></div>\n" % (make[tier][item], cList[item]['rarity'], cListName[item]))
+		page.append("</div>")
+	page.append("<div class=\"level-block\" data-level=\"" + str(tier + 25) + "\">")
 	page.append('<br />\n<h3>%s:%i</h3>\n' % (localText.level, tier + 25))
 	t = (t + 1) % 2
 	page.append("<div class=\"s" + str(t) + "\">%s</div>\n" % localText.finish)
+	page.append("</div>")
 	# adword adaptive
 	page.append('<br /><div style="width: 100%;display:block;">\n')
 	page.append('<div id="sponsor"><div id="patreon_image"><a href="https://www.patreon.com/xanthics"><img alt="Become a Patron!" src="img/become_a_patron_button@2x.png" class="sponsor_img"></a></div></div>')
