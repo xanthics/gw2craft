@@ -130,7 +130,7 @@ def faq(localText, free, production_downtime):
 	page += "<p>Ezoic privacy policy should be embedded below but it can also be found <a href=\"https://g.ezoic.net/privacy/gw2crafts.net\" target=\"_blank\">here.</a></p>"
 	page += "<p>No other data should be collected as this site does not use any local storage or cookies except as needed for Google Analytics and Ezoic.</p>"
 	page += "<br /><br /><span id=\"ezoic-privacy-policy-embed\"></span>"
-	page += '<div id="sponsor"><div id="patreon_image"><a href="https://www.patreon.com/xanthics"><img alt="Become a Patron!" src="img/become_a_patron_button@2x.png" class="sponsor_img"></a></div></div>'
+	page += '<div id="sponsor"><div id="patreon_image"><a href="https://www.patreon.com/xanthics"><img alt="Become a Patron!" src="/img/become_a_patron_button@2x.png" class="sponsor_img"></a></div></div>'
 	page += "</section>\n"
 	page += localText.cright
 	page += '''<script>
@@ -255,7 +255,7 @@ def nav(localText, free, production_downtime):
 	page += "<a href=\"/cz/nav.html\" hreflang=\"cz\">Čeština</a><br />\n"
 	page += "<a href=\"/de/nav.html\" hreflang=\"de\">Deutsch</a><br />\n"
 	page += "<a href=\"/es/nav.html\" hreflang=\"es\">Español</a><br />\n"
-	page += '<div id="sponsor"><div id="patreon_image"><a href="https://www.patreon.com/xanthics"><img alt="Become a Patron!" src="img/become_a_patron_button@2x.png" class="sponsor_img"></a></div></div>'
+	page += '<div id="sponsor"><div id="patreon_image"><a href="https://www.patreon.com/xanthics"><img alt="Become a Patron!" src="/img/become_a_patron_button@2x.png" class="sponsor_img"></a></div></div>'
 	page += "</section>\n"
 	page += localText.cright
 	page += '''<script>
@@ -345,7 +345,7 @@ def index(localText, free, production_downtime):
 #	page += u"<br /><hr>\n"
 #	page += u"%s\n<br />"%(localText.thanks2)
 	# adword adaptive
-	page += '<div id="sponsor"><div id="patreon_image"><a href="https://www.patreon.com/xanthics"><img alt="Become a Patron!" src="img/become_a_patron_button@2x.png" class="sponsor_img"></a></div></div>'
+	page += '<div id="sponsor"><div id="patreon_image"><a href="https://www.patreon.com/xanthics"><img alt="Become a Patron!" src="/img/become_a_patron_button@2x.png" class="sponsor_img"></a></div></div>'
 	page += '<br /><hr><br /><div style="width: 100%;display:block;">\n \
 <!-- Ezoic - Tail - bottom_of_page -->\n \
 <div id="ezoic-pub-ad-placeholder-102"></div>\n \
