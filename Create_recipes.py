@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 '''
-* Copyright (c) 2013-2016 Jeremy Parks. All rights reserved.
+* Copyright (c) 2013-2016 Jeremy P. All rights reserved.
 *
 * Permission is hereby granted, free of charge, to any person obtaining a
 * copy of this software and associated documentation files (the "Software"),
@@ -21,7 +21,7 @@
 * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 * DEALINGS IN THE SOFTWARE.
 
-Author: Jeremy Parks
+Author: Jeremy P
 Purpose: Generates(or updates) all the recipes and the item list used by Crafting.py
 Note: Requires Python 3.7.x
 '''

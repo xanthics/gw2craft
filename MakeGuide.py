@@ -1,13 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 '''
-Author: Jeremy Parks
+Author: Jeremy P
 Purpose: Generates a crafting guide based on current market prices
 Note: Requires Python 3.7.x
 '''
 
 import math
-from itertools import chain
 
 import Globals
 # Localized text
@@ -19,7 +18,10 @@ from MyPrint import printtofile
 # scribe hack for single use recipes
 badrecipe = []
 
+# longstanding bug that production downtime gives 15% xp instead of the stated 10%
+PD_RATE = 1.15
 
+missing_keys = set()
 # convert rarities to their xp multiplier
 def rarityNum(num):
 	if num == 'Rare':
@@ -31,10 +33,11 @@ def rarityNum(num):
 
 
 # compute the xp gain of a single craft
-def xpgain(level, typ, minlvl):
-	if '{},{},{}'.format(level, typ, minlvl) in Globals.table:
-		return Globals.table['{},{},{}'.format(level, typ, minlvl)]
-	#	print(('Key miss with: {},{},{}'.format(level, typ, minlvl)))
+def xpgain(level, typ, minlvl, production_downtime):
+	if '{},{},{},{}'.format(level, typ, minlvl, production_downtime) in Globals.table:
+		return Globals.table['{},{},{},{}'.format(level, typ, minlvl, production_downtime)]
+	# print(('Key miss with: {},{},{},{}'.format(level, typ, minlvl, production_downtime)))
+	missing_keys.add('{},{},{},{}'.format(level, typ, minlvl, production_downtime))
 	span = 0.0
 	mult = 0.0
 	if typ == 1:  # refinement
@@ -52,60 +55,63 @@ def xpgain(level, typ, minlvl):
 	# xp_gain(N) = xp_req(N+1) * multiplier * (1.0 - (N - N_min) / span)
 	gain = Globals.xpreq(level + 1) * mult * (1.0 - (level - minlvl) / span)
 	if gain < 0.0 or level - minlvl >= span:
-		return 0.0
-	return math.ceil(gain)
+		return 0
+	if production_downtime:
+		return int(math.ceil(gain) * PD_RATE)
+	else:
+		return int(math.ceil(gain))
 
 
 # compute what level would be after crafting items, assume order is refine > parts > discovery > items
-def compute_level(_xp, craftlist, tlvl, xp_to_level):
+def compute_level(_xp, craftlist, tlvl, xp_to_level, production_downtime):
 	level = tlvl
 	while xp_to_level[level + 1] < _xp:
 		level += 1
 	for i, d in craftlist['ptitem']:
-		_xp += int(i * xpgain(level, d, tlvl - 25))
+		_xp += i * xpgain(level, d, tlvl - 25, production_downtime)
 		while xp_to_level[level + 1] < _xp:
 			level += 1
 	for i in range(0, int(math.ceil(craftlist['refine']))):
-		_xp += int(xpgain(level, 1, tlvl))
+		_xp += xpgain(level, 1, tlvl, production_downtime)
 		while xp_to_level[level + 1] < _xp:
 			level += 1
 	for i in craftlist['part']:
-		_xp += int(i * xpgain(level, 2, tlvl))
+		_xp += i * xpgain(level, 2, tlvl, production_downtime)
 		while xp_to_level[level + 1] < _xp:
 			level += 1
 	# Non exotic weapon/armor crafts
 	for i, d in (x for x in craftlist['discovery'] if not x[1] == 4):
-		_xp += int((i + 1) * xpgain(level, d, tlvl))
+		_xp += (i + 1) * xpgain(level, d, tlvl, production_downtime)
 		while xp_to_level[level + 1] < _xp:
 			level += 1
 	for i, d in (x for x in craftlist['item'] if not x[1] == 4):
-		_xp += int(i * xpgain(level, d, tlvl))
+		_xp += i * xpgain(level, d, tlvl, production_downtime)
 		while xp_to_level[level + 1] < _xp:
 			level += 1
 	# Exotic weapon/armor crafts
 	for i, d in (x for x in craftlist['discovery'] if x[1] == 4):
-		_xp += int((i + 1) * xpgain(level, d, tlvl))
+		_xp += (i + 1) * xpgain(level, d, tlvl, production_downtime)
 		while xp_to_level[level + 1] < _xp:
 			level += 1
 	for i, d in (x for x in craftlist['item'] if x[1] == 4):
-		_xp += int(i * xpgain(level, d, tlvl))
+		_xp += i * xpgain(level, d, tlvl, production_downtime)
 		while xp_to_level[level + 1] < _xp:
 			level += 1
 	return _xp
 
 
 # calculate the total xp 
-def xp_calc(refines, parts, item, discoveries, mod, base_level, actu_level, typ):
+def xp_calc(refines, parts, item, discoveries, mod, base_level, actu_level, typ, production_downtime):
 	weight = 0.0
-	weight += xpgain(actu_level, 1, base_level) * refines
-	weight += xpgain(actu_level, 2, base_level) * parts
-	weight += xpgain(actu_level, typ, base_level) * item * mod
-	weight += xpgain(actu_level, typ, base_level) * discoveries * (1 + mod)
+	weight += xpgain(actu_level, 1, base_level, production_downtime) * refines
+	weight += xpgain(actu_level, 2, base_level, production_downtime) * parts
+	weight += xpgain(actu_level, typ, base_level, production_downtime) * item * mod
+	weight += xpgain(actu_level, typ, base_level, production_downtime) * discoveries * (1 + mod)
 	return weight
 
 
 # Compute a guide
-def costCraft(filename, c_recipes, fast, craftexo, mTiers, cList, mytime, xp_to_level, backupkey, free, modi=0.54):
+def costCraft(filename, c_recipes, fast, craftexo, mTiers, cList, mytime, xp_to_level, backupkey, free, production_downtime, modi=0.54):
 	rsps = dict([(38166, 38208), (38167, 38209), (38434, 38297), (38432, 38296), (38433, 38295), (38162, 38207)])
 	craftcount = {}  # Used to track current xp per tier
 	make = {}  # make list per tier
@@ -181,7 +187,7 @@ def costCraft(filename, c_recipes, fast, craftexo, mTiers, cList, mytime, xp_to_
 
 		for tier in tiers:
 			while craftcount[tier]['current_xp'] < xp_to_level[tier + 25]:
-				bucket = makeQueuecraft(c_recipes[400], cList, craftcount, tier, xp_to_level, craftexo, craft_queue)
+				bucket = makeQueuecraft(c_recipes[400], cList, craftcount, tier, xp_to_level, craftexo, craft_queue, production_downtime)
 				bkey = sorted(bucket, reverse=True)
 
 				treco += cList[bucket[bkey[0]]['item_id']]['w'] * int(cList[bucket[bkey[0]]['item_id']]['output_item_count'])
@@ -222,7 +228,7 @@ def costCraft(filename, c_recipes, fast, craftexo, mTiers, cList, mytime, xp_to_
 					recalc[int(cList[item]['tier'][index])] = 0
 
 				for ctier in recalc:
-					craftcount[ctier]['current_xp'] = compute_level((xp_to_level[ctier] if ctier == 0 or xp_to_level[ctier] >= craftcount[ctier - 25]['current_xp'] else craftcount[ctier - 25]['current_xp']), craftcount[ctier], 400, xp_to_level)
+					craftcount[ctier]['current_xp'] = compute_level((xp_to_level[ctier] if ctier == 0 or xp_to_level[ctier] >= craftcount[ctier - 25]['current_xp'] else craftcount[ctier - 25]['current_xp']), craftcount[ctier], 400, xp_to_level, production_downtime)
 
 				for item in bucket[bkey[0]]['buy']:
 					buy[item] += 1
@@ -236,7 +242,7 @@ def costCraft(filename, c_recipes, fast, craftexo, mTiers, cList, mytime, xp_to_
 			bkey = []
 			# if this is a fast guide, choose our 1 item to craft
 			if fast and (not tier == 375 or "cook" in filename):
-				bucket = makeQueuecraft(c_recipes[tier], cList, craftcount, tier, xp_to_level, craftexo, craft_queue)
+				bucket = makeQueuecraft(c_recipes[tier], cList, craftcount, tier, xp_to_level, craftexo, craft_queue, production_downtime)
 				bkey = sorted(bucket, reverse=True)
 				# If we already made an "Item" this tier from another recipe, keep making that item
 				if make[tier] and "cook" in filename:
@@ -252,10 +258,10 @@ def costCraft(filename, c_recipes, fast, craftexo, mTiers, cList, mytime, xp_to_
 			while craftcount[tier]['current_xp'] < xp_to_level[tier + 25]:
 				# We still want to compute every make on fast guides for the 375-400 range
 				if fast and tier == 375 and "cook" not in filename:
-					bucket = makeQueuecraft(c_recipes[tier], cList, craftcount, tier, xp_to_level, craftexo, craft_queue)
+					bucket = makeQueuecraft(c_recipes[tier], cList, craftcount, tier, xp_to_level, craftexo, craft_queue, production_downtime)
 					bkey = sorted(bucket, reverse=True)
 				elif not fast:
-					bucket = makeQueuecraft(c_recipes[tier], cList, craftcount, tier, xp_to_level, craftexo, craft_queue)
+					bucket = makeQueuecraft(c_recipes[tier], cList, craftcount, tier, xp_to_level, craftexo, craft_queue, production_downtime)
 					bkey = sorted(bucket, reverse=True)
 
 				treco += cList[bucket[bkey[0]]['item_id']]['w'] * int(cList[bucket[bkey[0]]['item_id']]['output_item_count'])
@@ -295,7 +301,7 @@ def costCraft(filename, c_recipes, fast, craftexo, mTiers, cList, mytime, xp_to_
 						badrecipe.append(item)
 
 				for ctier in recalc:
-					craftcount[ctier]['current_xp'] = compute_level((xp_to_level[ctier] if ctier == 0 or xp_to_level[ctier] >= craftcount[ctier - 25]['current_xp'] else craftcount[ctier - 25]['current_xp']), craftcount[ctier], ctier, xp_to_level)
+					craftcount[ctier]['current_xp'] = compute_level((xp_to_level[ctier] if ctier == 0 or xp_to_level[ctier] >= craftcount[ctier - 25]['current_xp'] else craftcount[ctier - 25]['current_xp']), craftcount[ctier], ctier, xp_to_level, production_downtime)
 
 				t = int(math.floor(tier / 75.0) * 75)
 				if t == 375:
@@ -322,20 +328,21 @@ def costCraft(filename, c_recipes, fast, craftexo, mTiers, cList, mytime, xp_to_
 		if craft_queue[item]:
 			sell[item] = craft_queue[item]
 
-	printtofile(tcost, treco, sell, craftexo, mTiers, Globals.mydeepcopy(make), Globals.mydeepcopy(pmake), Globals.mydeepcopy(buy), Globals.mydeepcopy(tierbuy), Globals.mydeepcopy(cList), filename, mytime, Items_de.ilist, Localde, backupkey, free)
-	printtofile(tcost, treco, sell, craftexo, mTiers, Globals.mydeepcopy(make), Globals.mydeepcopy(pmake), Globals.mydeepcopy(buy), Globals.mydeepcopy(tierbuy), Globals.mydeepcopy(cList), filename, mytime, Items_fr.ilist, Localfr, backupkey, free)
-	printtofile(tcost, treco, sell, craftexo, mTiers, Globals.mydeepcopy(make), Globals.mydeepcopy(pmake), Globals.mydeepcopy(buy), Globals.mydeepcopy(tierbuy), Globals.mydeepcopy(cList), filename, mytime, Items_es.ilist, Locales, backupkey, free)
-	printtofile(tcost, treco, sell, craftexo, mTiers, Globals.mydeepcopy(make), Globals.mydeepcopy(pmake), Globals.mydeepcopy(buy), Globals.mydeepcopy(tierbuy), Globals.mydeepcopy(cList), filename, mytime, Items_en.ilist, Localcz, backupkey, free)
-	printtofile(tcost, treco, sell, craftexo, mTiers, Globals.mydeepcopy(make), Globals.mydeepcopy(pmake), Globals.mydeepcopy(buy), Globals.mydeepcopy(tierbuy), Globals.mydeepcopy(cList), filename, mytime, Items_en.ilist, Localptbr, backupkey, free)
-	printtofile(tcost, treco, sell, craftexo, mTiers, Globals.mydeepcopy(make), Globals.mydeepcopy(pmake), Globals.mydeepcopy(buy), Globals.mydeepcopy(tierbuy), Globals.mydeepcopy(cList), filename, mytime, Items_zh.ilist, Localzh, backupkey, free)
+	printtofile(tcost, treco, sell, craftexo, mTiers, Globals.mydeepcopy(make), Globals.mydeepcopy(pmake), Globals.mydeepcopy(buy), Globals.mydeepcopy(tierbuy), Globals.mydeepcopy(cList), filename, mytime, Items_de.ilist, Localde, backupkey, free, production_downtime)
+	printtofile(tcost, treco, sell, craftexo, mTiers, Globals.mydeepcopy(make), Globals.mydeepcopy(pmake), Globals.mydeepcopy(buy), Globals.mydeepcopy(tierbuy), Globals.mydeepcopy(cList), filename, mytime, Items_fr.ilist, Localfr, backupkey, free, production_downtime)
+	printtofile(tcost, treco, sell, craftexo, mTiers, Globals.mydeepcopy(make), Globals.mydeepcopy(pmake), Globals.mydeepcopy(buy), Globals.mydeepcopy(tierbuy), Globals.mydeepcopy(cList), filename, mytime, Items_es.ilist, Locales, backupkey, free, production_downtime)
+	printtofile(tcost, treco, sell, craftexo, mTiers, Globals.mydeepcopy(make), Globals.mydeepcopy(pmake), Globals.mydeepcopy(buy), Globals.mydeepcopy(tierbuy), Globals.mydeepcopy(cList), filename, mytime, Items_en.ilist, Localcz, backupkey, free, production_downtime)
+	printtofile(tcost, treco, sell, craftexo, mTiers, Globals.mydeepcopy(make), Globals.mydeepcopy(pmake), Globals.mydeepcopy(buy), Globals.mydeepcopy(tierbuy), Globals.mydeepcopy(cList), filename, mytime, Items_en.ilist, Localptbr, backupkey, free, production_downtime)
+	printtofile(tcost, treco, sell, craftexo, mTiers, Globals.mydeepcopy(make), Globals.mydeepcopy(pmake), Globals.mydeepcopy(buy), Globals.mydeepcopy(tierbuy), Globals.mydeepcopy(cList), filename, mytime, Items_zh.ilist, Localzh, backupkey, free, production_downtime)
 	totals = {}
-	totals.update(printtofile(tcost, treco, sell, craftexo, mTiers, Globals.mydeepcopy(make), pmake, buy, tierbuy, Globals.mydeepcopy(cList), filename, mytime, Items_en.ilist, Localen, backupkey, free))
+	totals.update(printtofile(tcost, treco, sell, craftexo, mTiers, Globals.mydeepcopy(make), pmake, buy, tierbuy, Globals.mydeepcopy(cList), filename, mytime, Items_en.ilist, Localen, backupkey, free, production_downtime))
+	totals['missing'] = missing_keys
 	return totals
 
 
 # given an item, determine if it is better to craft its sub items, or buy them.  return the recipe.
 # include cost for current state, and xp generated.
-def calcRecipecraft(recipe, items, craftcount, tier, itier, xp_to_level, craftexo, craft_q):
+def calcRecipecraft(recipe, items, craftcount, tier, itier, xp_to_level, craftexo, craft_q, production_downtime):
 	global badrecipe
 	global mod
 	level = 0
@@ -360,15 +367,15 @@ def calcRecipecraft(recipe, items, craftcount, tier, itier, xp_to_level, craftex
 	if recipe in badrecipe:
 		xptotal = 0
 	elif int(items[recipe]['tier'][index]) < int(tier) and not items[recipe]['type'] in non_item and not craftexo:
-		xptotal = xp_calc(0, 0, 1, 0, rarityNum(items[recipe]['rarity']), int(items[recipe]['tier'][index]), level, 3)
+		xptotal = xp_calc(0, 0, 1, 0, rarityNum(items[recipe]['rarity']), int(items[recipe]['tier'][index]), level, 3, production_downtime)
 	elif not items[recipe]['type'] in non_item and not items[recipe]['discover'][index]:
-		xptotal = xp_calc(0, 0, 0, 1, rarityNum(items[recipe]['rarity']), int(items[recipe]['tier'][index]), level, 4 if craftexo and items[recipe]['rarity'] == 'Exotic' else 3)
+		xptotal = xp_calc(0, 0, 0, 1, rarityNum(items[recipe]['rarity']), int(items[recipe]['tier'][index]), level, 4 if craftexo and items[recipe]['rarity'] == 'Exotic' else 3, production_downtime)
 	elif not items[recipe]['type'] in non_item:
-		xptotal = xp_calc(0, 0, 1, 0, rarityNum(items[recipe]['rarity']), int(items[recipe]['tier'][index]), level, 4 if craftexo and items[recipe]['rarity'] == 'Exotic' else 3)
+		xptotal = xp_calc(0, 0, 1, 0, rarityNum(items[recipe]['rarity']), int(items[recipe]['tier'][index]), level, 4 if craftexo and items[recipe]['rarity'] == 'Exotic' else 3, production_downtime)
 	elif items[recipe]['type'] == 'Refinement':
-		xptotal = xp_calc(1, 0, 0, 0, 1.0, int(items[recipe]['tier'][index]), level, 4 if craftexo and items[recipe]['rarity'] == 'Exotic' else 3)
+		xptotal = xp_calc(1, 0, 0, 0, 1.0, int(items[recipe]['tier'][index]), level, 4 if craftexo and items[recipe]['rarity'] == 'Exotic' else 3, production_downtime)
 	else:
-		xptotal = xp_calc(0, 1, 0, 0, 1.0, int(items[recipe]['tier'][index]), level, 4 if craftexo and items[recipe]['rarity'] == 'Exotic' else 3)
+		xptotal = xp_calc(0, 1, 0, 0, 1.0, int(items[recipe]['tier'][index]), level, 4 if craftexo and items[recipe]['rarity'] == 'Exotic' else 3, production_downtime)
 
 	mycost = 0
 	for item in items[recipe]['recipe'][index]:
@@ -386,7 +393,7 @@ def calcRecipecraft(recipe, items, craftcount, tier, itier, xp_to_level, craftex
 				tmake = Globals.TLcache.hash[item]["make"]
 				tbuy = Globals.TLcache.hash[item]["buy"]
 			else:
-				tcost, txptotal, tmake, tbuy = calcRecipecraft(item, items, craftcount, items[item]['tier'][0], int(items[recipe]['tier'][index]), xp_to_level, craftexo, craft_q)
+				tcost, txptotal, tmake, tbuy = calcRecipecraft(item, items, craftcount, items[item]['tier'][0], int(items[recipe]['tier'][index]), xp_to_level, craftexo, craft_q, production_downtime)
 				Globals.TLcache.hash[item] = {}
 				Globals.TLcache.hash[item]["cost"] = tcost
 				Globals.TLcache.hash[item]["xptotal"] = txptotal
@@ -428,7 +435,7 @@ def calcRecipecraft(recipe, items, craftcount, tier, itier, xp_to_level, craftex
 	return cost, xptotal, make, buy
 
 
-def makeQueuecraftnosub(recipes, items, craftcount, tier, xp_to_level, craftexo, craft_queue):
+def makeQueuecraftnosub(recipes, items, craftcount, tier, xp_to_level, craftexo, craft_queue, production_downtime):
 	Globals.TLcache.hash = {}  # clear the item cache
 	outdict = {}
 	non_item = ['Refinement', 'Insignia', 'Inscription', 'Component']
@@ -443,9 +450,9 @@ def makeQueuecraftnosub(recipes, items, craftcount, tier, xp_to_level, craftexo,
 				index = i
 				break
 		# swap which line is commented if you want guides that include "make 83 epaulets" for 25 copper savings
-		if not items[recipe]['type'] in non_item and xp_calc(0, 0, 1, 0, rarityNum(items[recipe]['rarity']), int(items[recipe]['tier'][index]), level, 4 if items[recipe]['rarity'] == 'Exotic' else 3):
+		if not items[recipe]['type'] in non_item and xp_calc(0, 0, 1, 0, rarityNum(items[recipe]['rarity']), int(items[recipe]['tier'][index]), level, 4 if items[recipe]['rarity'] == 'Exotic' else 3, production_downtime):
 			#		if int(items[recipe][u'tier']) > int(tier)-24:
-			cost, xptotal, make, buy = calcRecipecraft(recipe, items, craftcount, tier, tier, xp_to_level, craftexo, craft_queue.copy())
+			cost, xptotal, make, buy = calcRecipecraft(recipe, items, craftcount, tier, tier, xp_to_level, craftexo, craft_queue.copy(), production_downtime)
 			if xptotal:
 				weight = float(xptotal) / float(cost)
 			else:
@@ -458,7 +465,7 @@ def makeQueuecraftnosub(recipes, items, craftcount, tier, xp_to_level, craftexo,
 	return outdict
 
 
-def makeQueuecraftwithsub(recipes, items, craftcount, tier, xp_to_level, craftexo, craft_queue):
+def makeQueuecraftwithsub(recipes, items, craftcount, tier, xp_to_level, craftexo, craft_queue, production_downtime):
 	Globals.TLcache.hash = {}  # clear the item cache
 	outdict = {}
 	non_item = ['Refinement', 'Insignia', 'Inscription', 'Component']
@@ -467,7 +474,7 @@ def makeQueuecraftwithsub(recipes, items, craftcount, tier, xp_to_level, craftex
 	while xp_to_level[int(level)] < craftcount[int(tier)]['current_xp']:
 		level += 1
 	for recipe in list(recipes.keys()):
-		cost, xptotal, make, buy = calcRecipecraft(recipe, items, craftcount, tier, tier, xp_to_level, craftexo, craft_queue.copy())
+		cost, xptotal, make, buy = calcRecipecraft(recipe, items, craftcount, tier, tier, xp_to_level, craftexo, craft_queue.copy(), production_downtime)
 		if xptotal:
 			weight = float(xptotal) / float(cost)
 		else:

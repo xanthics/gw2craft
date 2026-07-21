@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 '''
-Author: Jeremy Parks
+Author: Jeremy P
 Purpose: Generate the index, faq and nav page for each language
 Note: Requires Python 3.7.x
 '''
@@ -11,7 +11,7 @@ from translations import Localcz, Localde, Localen, Locales, Localfr, Localptbr,
 
 
 # Generate a faq using local strings
-def faq(localText, free):
+def faq(localText, free, production_downtime):
 	page = "<!DOCTYPE html>\n"
 	page += "<html>\n"
 	page += "<head>\n"
@@ -47,8 +47,13 @@ def faq(localText, free):
 </script>"""
 	page += Globals.header.format(localText.path, localText.home, localText.nGuides, localText.fGuides, localText.special, localText.cooking, localText.nHearts, localText.tHearts, localText.aHearts, localText.jc, localText.art, localText.hunt, localText.wc, localText.ac, localText.lw, localText.tailor, localText.scribe, localText.totals, localText.about, localText.lang, localText.lang_code, 'faq.html', 'f2p/' if free else '')
 	page += "<section class=\"main\">\n"
-	page += f"<strong>Notice:</strong> you are following a {'F2P' if free else 'Core'} guide.  <a href=\"{'/' if free else '/f2p/'}{localText.path}faq.html\">Click here for a {'Core' if free else 'F2P'} account guide</a>.<br />"
-
+	if free:
+		links = f"<a href=\"/{localText.path}faq.html\">Click here for a Core account guide</a>.<br /><a href=\"/pd/{localText.path}faq.html\">Click here for a Production Downtime account guide</a>."
+	elif production_downtime:
+		links = f"<a href=\"/{localText.path}faq.html\">Click here for a Core account guide</a>.<br /><a href=\"/f2p/{localText.path}faq.html\">Click here for a F2P account guide</a>."
+	else:
+		links = f"<a href=\"/f2p/{localText.path}faq.html\">Click here for a F2P account guide</a>.<br /><a href=\"/pd/{localText.path}faq.html\">Click here for a Production Downtime account guide</a>."
+	page += (f"<br /><strong>Notice:</strong> you are following a {'F2P' if free else 'Production Downtime' if production_downtime else 'Core'} guide.<br />{links}<br /><br />")
 #	page += u"<a href=\"https://forum-en.guildwars2.com/forum/community/links/Dynamic-crafting-guides-for-all-8-crafts\" style=\"line-height:150%%;\"><strong>%s</strong></a>\n"%(localText.oThread)
 #	page += u"<br />\n"
 #	page += u"<a href=\"http://www.reddit.com/r/Guildwars2/comments/179me8/dynamic_crafting_guides_for_all_crafts/\" style=\"line-height:150%%;\"><strong>%s</strong></a>\n"%(localText.rThread)
@@ -137,13 +142,13 @@ def faq(localText, free):
 	page += "</body>\n"
 	page += "</html>\n"
 
-	output.write_file(f"{'f2p/' if free else ''}{localText.path}",'faq.html',page)
+	output.write_file(f"{'f2p/' if free else 'pd/' if production_downtime else ''}{localText.path}",'faq.html',page)
 	return
 
 
 
 # Generate a nav using local strings
-def nav(localText, free):
+def nav(localText, free, production_downtime):
 	page = "<!DOCTYPE html>\n"
 	page += "<html>\n"
 	page += "<head>\n"
@@ -179,7 +184,13 @@ def nav(localText, free):
 </script>"""
 	page += Globals.header.format(localText.path, localText.home, localText.nGuides, localText.fGuides, localText.special, localText.cooking, localText.nHearts, localText.tHearts, localText.aHearts, localText.jc, localText.art, localText.hunt, localText.wc, localText.ac, localText.lw, localText.tailor, localText.scribe, localText.totals, localText.about, localText.lang, localText.lang_code, 'nav.html', 'f2p/' if free else '')
 	page += "<section class=\"main\">\n"
-	page += f"<strong>Notice:</strong> you are following a {'F2P' if free else 'Core'} guide.  <a href=\"{'/' if free else '/f2p/'}{localText.path}nav.html\">Click here for a {'Core' if free else 'F2P'} account guide</a>.<br />"
+	if free:
+		links = f"<a href=\"/{localText.path}nav.html\">Click here for a Core account guide</a>.<br /><a href=\"/pd/{localText.path}nav.html\">Click here for a Production Downtime account guide</a>."
+	elif production_downtime:
+		links = f"<a href=\"/{localText.path}nav.html\">Click here for a Core account guide</a>.<br /><a href=\"/f2p/{localText.path}nav.html\">Click here for a F2P account guide</a>."
+	else:
+		links = f"<a href=\"/f2p/{localText.path}nav.html\">Click here for a F2P account guide</a>.<br /><a href=\"/pd/{localText.path}nav.html\">Click here for a Production Downtime account guide</a>."
+	page += (f"<br /><strong>Notice:</strong> you are following a {'F2P' if free else 'Production Downtime' if production_downtime else 'Core'} guide.<br />{links}<br /><br />")
 	page += "%s\n"%(localText.navNotice)
 	page += "<br /><br />\n"
 	page += "<a href=\"/\">%s</a><br />\n"%(localText.home)
@@ -256,12 +267,12 @@ def nav(localText, free):
 	page += "</body>\n"
 	page += "</html>\n"
 
-	output.write_file(f"{'f2p/' if free else ''}{localText.path}",'nav.html',page)
+	output.write_file(f"{'f2p/' if free else 'pd/' if production_downtime else ''}{localText.path}",'nav.html',page)
 	return
 
 
 # Generate and index using local strings
-def index(localText, free):
+def index(localText, free, production_downtime):
 	page = "<!DOCTYPE html>\n"
 	page += "<html>\n"
 	page += "<head>\n"
@@ -299,7 +310,13 @@ def index(localText, free):
 #	page += u"<div id=\"fb-root\"></div><script>(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = \"//connect.facebook.net/en_US/all.js#xfbml=1\";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));</script>"
 	page += Globals.header.format(localText.path, localText.home, localText.nGuides, localText.fGuides, localText.special, localText.cooking, localText.nHearts, localText.tHearts, localText.aHearts, localText.jc, localText.art, localText.hunt, localText.wc, localText.ac, localText.lw, localText.tailor, localText.scribe, localText.totals, localText.about, localText.lang, localText.lang_code, 'index.html', 'f2p/' if free else '')
 	page += "<section class=\"main\">\n"
-	page += f"<strong>Notice:</strong> you are following a {'F2P' if free else 'Core'} guide.  <a href=\"{'/' if free else '/f2p/'}{localText.path}index.html\">Click here for a {'Core' if free else 'F2P'} account guide</a>.<br />"
+	if free:
+		links = f"<a href=\"/{localText.path}index.html\">Click here for a Core account guide</a>.<br /><a href=\"/pd/{localText.path}index.html\">Click here for a Production Downtime account guide</a>."
+	elif production_downtime:
+		links = f"<a href=\"/{localText.path}index.html\">Click here for a Core account guide</a>.<br /><a href=\"/f2p/{localText.path}index.html\">Click here for a F2P account guide</a>."
+	else:
+		links = f"<a href=\"/f2p/{localText.path}index.html\">Click here for a F2P account guide</a>.<br /><a href=\"/pd/{localText.path}index.html\">Click here for a Production Downtime account guide</a>."
+	page += (f"<br /><strong>Notice:</strong> you are following a {'F2P' if free else 'Production Downtime' if production_downtime else 'Core'} guide.<br />{links}<br /><br />")
 #	page += u"<p>The scribe guides need a new guild with unlocks as RiFa appears to be defunct.  Please email me at <a href=\"mailto:gw2crafts@live.com\">gw2crafts@live.com</a> if you have a guild that can accommodate.  Would need a contact name and guild, they will go on the scribe page.</p>"
 	page += "<p>If you would like to follow a guide without any mixed parts, try a F2P guide, as they cannot buy mixed parts from the TP.</p>"
 	page += "<p>All guide pages now have a link, at the top in the warning, to a cached version.  These cached pages will be good for at least 3 months but will eventually be deleted.</p>"
@@ -344,17 +361,17 @@ def index(localText, free):
 	page += "</body>\n"
 	page += "</html>\n"
 
-	output.write_file(f"{'f2p/' if free else ''}{localText.path}",'index.html',page)
+	output.write_file(f"{'f2p/' if free else 'pd/' if production_downtime else ''}{localText.path}",'index.html',page)
 	return
 
 
 def main():
-	for free in [True, False]:
+	for free, production_downtime in [[True, False], [False, False], [False, True]]:
 		for lang in [Localen, Localde, Localfr, Locales, Localcz, Localptbr, Localzh]:
-			print(lang, free)
-			faq(lang, free)
-			nav(lang, free)
-			index(lang, free)
+			print(lang, free, production_downtime)
+			faq(lang, free, production_downtime)
+			nav(lang, free, production_downtime)
+			index(lang, free, production_downtime)
 
 
 # If ran directly, call main

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 '''
-* Copyright (c) 2013-2016 Jeremy Parks. All rights reserved.
+* Copyright (c) 2013-2016 Jeremy P. All rights reserved.
 *
 * Permission is hereby granted, free of charge, to any person obtaining a
 * copy of this software and associated documentation files (the "Software"),
@@ -21,7 +21,7 @@
 * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 * DEALINGS IN THE SOFTWARE.
 
-Author: Jeremy Parks
+Author: Jeremy P
 Purpose: Generates a crafting guide, for all crafts in Guild Wars 2, based on current market prices
 Note: Requires Python 3.7.x
 '''
@@ -64,7 +64,7 @@ def join(A, B):
 
 
 def recipeworker(inc_params):  # , out_q):
-	cmds, cList, free, mytime, xp_to_level, backupkey = inc_params
+	cmds, cList, free, production_downtime, mytime, xp_to_level, backupkey = inc_params
 	Globals.init()
 	totals = {}
 
@@ -72,10 +72,10 @@ def recipeworker(inc_params):  # , out_q):
 		Globals.karmin = {}
 		for cmd in cmds:
 			with mytimer(cmd[0]):
-				totals.update(costCraft(cmd[0], cmd[1], cmd[2], cmd[3], cmd[4], Globals.mydeepcopy(cList), mytime, xp_to_level, backupkey, free))
+				totals.update(costCraft(cmd[0], cmd[1], cmd[2], cmd[3], cmd[4], Globals.mydeepcopy(cList), mytime, xp_to_level, backupkey, free, production_downtime))
 	else:
 		with mytimer(cmds[0]):
-			totals.update(costCraft(cmds[0], cmds[1], cmds[2], cmds[3], cmds[4], Globals.mydeepcopy(cList), mytime, xp_to_level, backupkey, free))
+			totals.update(costCraft(cmds[0], cmds[1], cmds[2], cmds[3], cmds[4], Globals.mydeepcopy(cList), mytime, xp_to_level, backupkey, free, production_downtime))
 	return totals
 
 
@@ -153,27 +153,41 @@ def main():
 #	monitoring_thread = start_monitoring()
 	params = []
 	for i in range(0, len(rList)):
-		params.append((rList[i], cList, False, mytime, xp_to_level, backupkey))
-		params.append((rList[i], cList_free, True, mytime, xp_to_level, backupkey))
+		# cmds, cList, free, production_downtime, mytime, xp_to_level, backupkey
+		params.append((rList[i], cList, False, False, mytime, xp_to_level, backupkey))
+		params.append((rList[i], cList, False, True, mytime, xp_to_level, backupkey))
+		params.append((rList[i], cList_free, True, False, mytime, xp_to_level, backupkey))
 	# free accounts can't follow scribe guides
-	params.append((("scribe.html", Scribe.recipes, False, False, list(range(0, 400, 25))), cList, False, mytime, xp_to_level, backupkey))
+	params.append((("scribe.html", Scribe.recipes, False, False, list(range(0, 400, 25))), cList, False, False, mytime, xp_to_level, backupkey))
+	params.append((("scribe.html", Scribe.recipes, False, False, list(range(0, 400, 25))), cList, False, True, mytime, xp_to_level, backupkey))
 
 	procs = p.map(recipeworker, params)
 
 	totals = {}
+	totals_pd = {}
 	totals_free = {'scribe': {0: 0, 75: 0, 150: 0, 225: 0, 300: 0, 'total': 0}}
+	missing = set()
 	# this needs to be rewritten so that we can do the free and core guides in the same queue
 	for i in procs:
-		val = i['free']
+		missing.update(i['missing'])
+		del i['missing']
+		free_val = i['free']
 		del i['free']
-		if val:
+		pd_val = i['production_downtime']
+		del i['production_downtime']
+		if free_val:
 			totals_free.update(i)
+		elif pd_val:
+			totals_pd.update(i)
 		else:
 			totals.update(i)
 
 	for lang in [Localen, Localde, Localfr, Locales, Localcz, Localptbr, Localzh]:
-		maketotals(totals, mytime, lang, False)
-		maketotals(totals_free, mytime, lang, True)
+		maketotals(totals_free, mytime, lang, True, False)
+		maketotals(totals, mytime, lang, False, False)
+		maketotals(totals_pd, mytime, lang, False, True)
+
+	print(missing)
 
 
 # If ran directly, call main

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 '''
-Author: Jeremy Parks
+Author: Jeremy P
 Purpose: Get current price data
 Note: Requires Python 3.7.x
 '''

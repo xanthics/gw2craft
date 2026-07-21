@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 '''
-Author: Jeremy Parks
+Author: Jeremy P
 Purpose: Contains all functions for printing guides
 Note: Requires Python 3.7.x
 '''
@@ -27,9 +27,9 @@ def mFormat(line):
 		return '{}<span class=\"copperIcon\"></span>'.format(line)
 
 
-def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy, cList, filename, mytime, cListName, localText, backupkey, free):
+def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy, cList, filename, mytime, cListName, localText, backupkey, free, production_downtime):
 	buttonList = []
-	totals = {'free': free}
+	totals = {'free': free, 'production_downtime': production_downtime}
 	if tierbuy:
 		totals[filename.split('.')[0]] = {0: defaultdict(int), 75: defaultdict(int), 150: defaultdict(int), 225: defaultdict(int), 300: defaultdict(int), 'total': int(tcost)}
 	else:
@@ -340,7 +340,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page.append('</head>\n')
 	page.append('<body>\n%s\n' % (
 		Globals.header.format(localText.path, localText.home, localText.nGuides, localText.fGuides, localText.special, localText.cooking, localText.nHearts, localText.tHearts, localText.aHearts, localText.jc, localText.art, localText.hunt, localText.wc, localText.ac, localText.lw, localText.tailor, localText.scribe, localText.totals, localText.about,
-							  localText.lang, localText.lang_code, filename, 'f2p/' if free else '')))
+							  localText.lang, localText.lang_code, filename, 'f2p/' if free else 'pd/' if production_downtime else '')))
 	page.append("""<script> 
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -370,9 +370,15 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 
 	#	page.append(u"<div class=\"s{}\">{}: <button class=\"arrow {}\" title=\"{}\" id=\"{}{}\">{}</button> {}\n</div>\n".format(
 	#		t, localText.discover, cList[item][u'rarity'], localText.toggle, item, tier, cListName[item], tstr))
-	page.append('<p><a href="/%s/%s%s">Archive Link</a>(Good for 3 months)</p>\n' % (backupkey, localText.path, f'f2p/{filename}' if free else filename))
+	page.append('<p><a href="/%s/%s%s">Archive Link</a>(Good for 3 months)</p>\n' % (backupkey, localText.path, f"{'f2p/' if free else 'pd/' if production_downtime else ''}{filename}"))
 	page.append("<strong>%s</strong><br />\n" % (localText.region))
-	page.append(f"<strong>Notice:</strong> you are following a {'F2P' if free else 'Core'} guide.  <a href=\"{'/' if free else '/f2p/'}{localText.path}{filename}\">Click here for a {'Core' if free else 'F2P'} account guide</a>.<br />")
+	if free:
+		links = f"<a href=\"/{localText.path}{filename}\">Click here for a Core account guide</a>.<br /><a href=\"/pd/{localText.path}{filename}\">Click here for a Production Downtime account guide</a>."
+	elif production_downtime:
+		links = f"<a href=\"/{localText.path}{filename}\">Click here for a Core account guide</a>.<br /><a href=\"/f2p/{localText.path}{filename}\">Click here for a F2P account guide</a>."
+	else:
+		links = f"<a href=\"/f2p/{localText.path}{filename}\">Click here for a F2P account guide</a>.<br /><a href=\"/pd/{localText.path}{filename}\">Click here for a Production Downtime account guide</a>."
+	page.append(f"<br /><strong>Notice:</strong> you are following a {'F2P' if free else 'Production Downtime' if production_downtime else 'Core'} guide.<br />{links}<br /><br />")
 	#	# adword
 	#page.append('<div style="float:right;position:absolute;right:-320px;">\n')
 	#page.append('<!-- Ezoic - Large sidebar - sidebar -->\n<div id="ezoic-pub-ad-placeholder-103"></div>\n<!-- End Ezoic - Large sidebar - sidebar -->\n\n</div>\n')
@@ -672,11 +678,11 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 	page.append('</body>\n')
 	page.append('</html>\n')
 
-	output.write_file(f"{'f2p/' if free else ''}{localText.path}", filename, ''.join(page), backupkey)
+	output.write_file(f"{'f2p/' if free else 'pd/' if production_downtime else ''}{localText.path}", filename, ''.join(page), backupkey)
 	return totals
 
 
-def maketotals(totals, mytime, localText, free):
+def maketotals(totals, mytime, localText, free, production_downtime):
 	tpage1 = ""
 	tpage2 = ""
 	tpage3 = ""
@@ -716,9 +722,15 @@ def maketotals(totals, mytime, localText, free):
 
 </script>"""
 	page += Globals.header.format(localText.path, localText.home, localText.nGuides, localText.fGuides, localText.special, localText.cooking, localText.nHearts, localText.tHearts, localText.aHearts, localText.jc, localText.art, localText.hunt, localText.wc, localText.ac, localText.lw, localText.tailor, localText.scribe, localText.totals, localText.about,
-								  localText.lang, localText.lang_code, 'total.html', 'f2p/' if free else '')
+								  localText.lang, localText.lang_code, 'total.html', 'f2p/' if free else 'pd/' if production_downtime else '')
 	page += "<section class=\"main\">\n<strong>%s</strong><br />\n" % (localText.region)
-	page += f"<strong>Notice:</strong> you are following a {'F2P' if free else 'Core'} guide.  <a href=\"{'/' if free else '/f2p/'}{localText.path}total.html\">Click here for a {'Core' if free else 'F2P'} account guide</a>.<br />"
+	if free:
+		links = f"<a href=\"/{localText.path}total.html\">Click here for a Core account guide</a>.<br /><a href=\"/pd/{localText.path}total.html\">Click here for a Production Downtime account guide</a>."
+	elif production_downtime:
+		links = f"<a href=\"/{localText.path}total.html\">Click here for a Core account guide</a>.<br /><a href=\"/f2p/{localText.path}total.html\">Click here for a F2P account guide</a>."
+	else:
+		links = f"<a href=\"/f2p/{localText.path}total.html\">Click here for a F2P account guide</a>.<br /><a href=\"/pd/{localText.path}total.html\">Click here for a Production Downtime account guide</a>."
+	page += (f"<br /><strong>Notice:</strong> you are following a {'F2P' if free else 'Production Downtime' if production_downtime else 'Core'} guide.<br />{links}<br /><br />")
 	page += "<h5 style=\"text-align:center;\">" + localText.updated + ": " + mytime + "</h5>"
 	# adword
 	page += '<div style="float:right;position:absolute;right:-320px;">\n \
@@ -786,5 +798,5 @@ def maketotals(totals, mytime, localText, free):
 	page += '</body>\n'
 	page += '</html>\n'
 
-	output.write_file(f"{'f2p/' if free else ''}{localText.path}", 'total.html', page)
+	output.write_file(f"{'f2p/' if free else 'pd/' if production_downtime else ''}{localText.path}", 'total.html', page)
 	return
