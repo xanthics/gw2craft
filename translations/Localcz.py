@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-Author: Jeremy Parks, Vítězslav Jaroš (translation)
+Author: Jeremy P, Vítězslav Jaroš (translation)
 Purpose: czech Localized text
 Note: Requires Python 3.7.x
 '''

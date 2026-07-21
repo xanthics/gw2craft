@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-Author: Jeremy Parks
+Author: Jeremy P
 Purpose: de Localized text
 Note: Requires Python 3.7.x
 '''

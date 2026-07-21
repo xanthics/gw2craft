@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Created: 2026-04-30T14:57:28 PST
+# Created: 2026-07-21T03:50:43 PST
 recipes = {
 	0: {
 		12131: {12147: 1, 12153: 1, 12202: 1},  # Bowl of Watery Mushroom Soup
@@ -273,6 +273,7 @@ recipes = {
 		97767: {12143: 1, 12145: 1, 95663: 1, 95745: 1},  # Fishy Rice Bowl
 		97933: {12329: 2, 12350: 2, 38216: 2, 91702: 1},  # Super Mixed Parfait
 		105402: {12249: 5, 12258: 5, 12534: 5, 36041: 50},  # Bag of Popped Candy Corn
+		109776: {12128: 6, 12155: 6, 12499: 6, 43319: 32},  # New this run
 	},
 	425: {
 		91745: {46736: 4, 46739: 1},  # Portable Composter
