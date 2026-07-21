@@ -378,7 +378,7 @@ def printtofile(tcost, treco, sell, craftexo, mTiers, make, pmake, buy, tierbuy,
 		links = f"<a href=\"/{localText.path}{filename}\">Click here for a Core account guide</a>.<br /><a href=\"/f2p/{localText.path}{filename}\">Click here for a F2P account guide</a>."
 	else:
 		links = f"<a href=\"/f2p/{localText.path}{filename}\">Click here for a F2P account guide</a>.<br /><a href=\"/pd/{localText.path}{filename}\">Click here for a Production Downtime account guide</a>."
-	page.append(f"<br /><strong>Notice:</strong> you are following a {'F2P' if free else 'Production Downtime' if production_downtime else 'Core'} guide.<br />{links}<br /><br />")
+	page.append(f"<br /><strong>Notice:</strong> you are viewing a {'F2P' if free else 'Production Downtime' if production_downtime else 'Core'} guide.<br />{links}<br /><br />")
 	#	# adword
 	#page.append('<div style="float:right;position:absolute;right:-320px;">\n')
 	#page.append('<!-- Ezoic - Large sidebar - sidebar -->\n<div id="ezoic-pub-ad-placeholder-103"></div>\n<!-- End Ezoic - Large sidebar - sidebar -->\n\n</div>\n')
@@ -725,12 +725,12 @@ def maketotals(totals, mytime, localText, free, production_downtime):
 								  localText.lang, localText.lang_code, 'total.html', 'f2p/' if free else 'pd/' if production_downtime else '')
 	page += "<section class=\"main\">\n<strong>%s</strong><br />\n" % (localText.region)
 	if free:
-		links = f"<a href=\"/{localText.path}total.html\">Click here for a Core account guide</a>.<br /><a href=\"/pd/{localText.path}total.html\">Click here for a Production Downtime account guide</a>."
+		links = f"<a href=\"/{localText.path}total.html\">Click here for a Core account total</a>.<br /><a href=\"/pd/{localText.path}total.html\">Click here for a Production Downtime account total</a>."
 	elif production_downtime:
-		links = f"<a href=\"/{localText.path}total.html\">Click here for a Core account guide</a>.<br /><a href=\"/f2p/{localText.path}total.html\">Click here for a F2P account guide</a>."
+		links = f"<a href=\"/{localText.path}total.html\">Click here for a Core account total</a>.<br /><a href=\"/f2p/{localText.path}total.html\">Click here for a F2P account total</a>."
 	else:
-		links = f"<a href=\"/f2p/{localText.path}total.html\">Click here for a F2P account guide</a>.<br /><a href=\"/pd/{localText.path}total.html\">Click here for a Production Downtime account guide</a>."
-	page += (f"<br /><strong>Notice:</strong> you are following a {'F2P' if free else 'Production Downtime' if production_downtime else 'Core'} guide.<br />{links}<br /><br />")
+		links = f"<a href=\"/f2p/{localText.path}total.html\">Click here for a F2P account total</a>.<br /><a href=\"/pd/{localText.path}total.html\">Click here for a Production Downtime account total</a>."
+	page += (f"<br /><strong>Notice:</strong> you are viewing a {'F2P' if free else 'Production Downtime' if production_downtime else 'Core'} total.<br />{links}<br /><br />")
 	page += "<h5 style=\"text-align:center;\">" + localText.updated + ": " + mytime + "</h5>"
 	# adword
 	page += '<div style="float:right;position:absolute;right:-320px;">\n \

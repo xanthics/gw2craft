@@ -53,7 +53,7 @@ def faq(localText, free, production_downtime):
 		links = f"<a href=\"/{localText.path}faq.html\">Click here for a Core account guide</a>.<br /><a href=\"/f2p/{localText.path}faq.html\">Click here for a F2P account guide</a>."
 	else:
 		links = f"<a href=\"/f2p/{localText.path}faq.html\">Click here for a F2P account guide</a>.<br /><a href=\"/pd/{localText.path}faq.html\">Click here for a Production Downtime account guide</a>."
-	page += (f"<br /><strong>Notice:</strong> you are following a {'F2P' if free else 'Production Downtime' if production_downtime else 'Core'} guide.<br />{links}<br /><br />")
+	page += (f"<br /><strong>Notice:</strong> you are viewing the {'F2P' if free else 'Production Downtime' if production_downtime else 'Core'} FAQ.<br />{links}<br /><br />")
 #	page += u"<a href=\"https://forum-en.guildwars2.com/forum/community/links/Dynamic-crafting-guides-for-all-8-crafts\" style=\"line-height:150%%;\"><strong>%s</strong></a>\n"%(localText.oThread)
 #	page += u"<br />\n"
 #	page += u"<a href=\"http://www.reddit.com/r/Guildwars2/comments/179me8/dynamic_crafting_guides_for_all_crafts/\" style=\"line-height:150%%;\"><strong>%s</strong></a>\n"%(localText.rThread)
@@ -190,7 +190,7 @@ def nav(localText, free, production_downtime):
 		links = f"<a href=\"/{localText.path}nav.html\">Click here for a Core account guide</a>.<br /><a href=\"/f2p/{localText.path}nav.html\">Click here for a F2P account guide</a>."
 	else:
 		links = f"<a href=\"/f2p/{localText.path}nav.html\">Click here for a F2P account guide</a>.<br /><a href=\"/pd/{localText.path}nav.html\">Click here for a Production Downtime account guide</a>."
-	page += (f"<br /><strong>Notice:</strong> you are following a {'F2P' if free else 'Production Downtime' if production_downtime else 'Core'} guide.<br />{links}<br /><br />")
+	page += (f"<br /><strong>Notice:</strong> you are viewing the {'F2P' if free else 'Production Downtime' if production_downtime else 'Core'} nav page.<br />{links}<br /><br />")
 	page += "%s\n"%(localText.navNotice)
 	page += "<br /><br />\n"
 	page += "<a href=\"/\">%s</a><br />\n"%(localText.home)
@@ -316,7 +316,7 @@ def index(localText, free, production_downtime):
 		links = f"<a href=\"/{localText.path}index.html\">Click here for a Core account guide</a>.<br /><a href=\"/f2p/{localText.path}index.html\">Click here for a F2P account guide</a>."
 	else:
 		links = f"<a href=\"/f2p/{localText.path}index.html\">Click here for a F2P account guide</a>.<br /><a href=\"/pd/{localText.path}index.html\">Click here for a Production Downtime account guide</a>."
-	page += (f"<br /><strong>Notice:</strong> you are following a {'F2P' if free else 'Production Downtime' if production_downtime else 'Core'} guide.<br />{links}<br /><br />")
+	page += (f"<br /><strong>Notice:</strong> you are viewing the {'F2P' if free else 'Production Downtime' if production_downtime else 'Core'} index.<br />{links}<br /><br />")
 #	page += u"<p>The scribe guides need a new guild with unlocks as RiFa appears to be defunct.  Please email me at <a href=\"mailto:gw2crafts@live.com\">gw2crafts@live.com</a> if you have a guild that can accommodate.  Would need a contact name and guild, they will go on the scribe page.</p>"
 	page += "<p>If you would like to follow a guide without any mixed parts, try a F2P guide, as they cannot buy mixed parts from the TP.</p>"
 	page += "<p>All guide pages now have a link, at the top in the warning, to a cached version.  These cached pages will be good for at least 3 months but will eventually be deleted.</p>"
